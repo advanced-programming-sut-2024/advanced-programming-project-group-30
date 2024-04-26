@@ -18,4 +18,8 @@ public class MainMenuController extends Controller{
     public Result showCurrentMenu() {
         return new Result("main menu", true, false);
     }
+    private static MainMenuController mainMenuController = new MainMenuController();
+    public static MainMenuController getInstance() {
+        return mainMenuController;
+    }
 }
