@@ -49,6 +49,30 @@ public class User {
     public void setNickName(String nickName) {
         this.nickName = nickName;
     }
+    public void addToLosses(){
+        losses++;
+    }
+    public void addToWins(){
+        wins++;
+    }
+    public void addToDraws(){
+        draws++;
+    }
+    public int getWins(){
+        return wins;
+    }
+    public int getLosses(){
+        return losses;
+    }
+    public int getDraws(){
+        return draws;
+    }
+    public void addToGameHistory(GameHistory gameHistory){
+        gameHistories.add(gameHistory);
+    }
+    public void setRank(int rank){
+        this.rank = rank;
+    }
 
 
 }
