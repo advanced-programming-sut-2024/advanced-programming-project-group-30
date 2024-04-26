@@ -1,10 +1,13 @@
 package controller;
 
+import enums.Menu;
+import model.App;
 import model.Result;
 
 public class ProfileMenuController extends Controller{
     @Override
     public Result exitMenu() {
+        App.setCurrentMenu(Menu.LOGIN_MENU);
         return null;
     }
     @Override

@@ -29,7 +29,7 @@ public abstract class App {
         return null;
 
     }
-    public void setCurrentMenu(Menu menu){
+    public static void setCurrentMenu(Menu menu){
         currentMenu = menu;
     }
     public static Menu getCurrentMenu() {
