@@ -1,4 +1,18 @@
 package controller;
 
-public class RegisterMenuController {
+import model.Result;
+
+public class RegisterMenuController extends Controller{
+    @Override
+    public Result exitMenu() {
+        return null;
+    }
+    @Override
+    public Result enterMenu(String menuName) {
+        return null;
+    }
+    @Override
+    public Result showCurrentMenu() {
+        return new Result("profile menu", true, false);
+    }
 }

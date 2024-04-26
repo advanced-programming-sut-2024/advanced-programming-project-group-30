@@ -8,8 +8,11 @@ public abstract class App {
     private static Menu currentMenu;
     private static Game currentGame;
     private static User loggedInUser;
-    private static ArrayList<User> allUsers;
-    private static ArrayList<String> securityQuestions;
+    private static final ArrayList<User> allUsers = new ArrayList<>();
+    private static final ArrayList<String> securityQuestions = new ArrayList<>();
+    static {
+
+    }
 
 
 
@@ -17,9 +20,23 @@ public abstract class App {
 
 
 
+    public void addToAllUsers(User user){
+        allUsers.add(user);
+    }
+    public User getUserByUsername(String username){
+        for (User user : allUsers)
+            if (user.getUsername().equals(username)) return user;
+        return null;
 
+    }
+    public void setCurrentMenu(Menu menu){
+        currentMenu = menu;
+    }
     public static Menu getCurrentMenu() {
         return currentMenu;
+    }
+    public static int getUserRank(){
+        return 1;
     }
 
 }

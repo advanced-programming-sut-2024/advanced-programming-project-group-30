@@ -22,4 +22,16 @@ public class LoginMenuController extends Controller{
     public Result setPassword(String username, String password) {
         return new Result("", true, false);
     }
+    @Override
+    public Result exitMenu() {
+        return null;
+    }
+    @Override
+    public Result enterMenu(String menuName) {
+        return null;
+    }
+    @Override
+    public Result showCurrentMenu() {
+        return new Result("login menu", true, false);
+    }
 }
