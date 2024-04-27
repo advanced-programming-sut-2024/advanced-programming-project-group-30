@@ -1,98 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="018b75fa-68cc-48a1-b4f3-e2caa6ded0b1" name="Changes" comment="" />
-=======
-  <component name="ChangeListManager">
-    <list default="true" id="f1724509-8fa7-4a1d-addf-f9c920333c2d" name="Changes" comment="" />
->>>>>>> 1003f9f5b7f54b5a70de761208593b94d168efd8
+    <list default="true" id="3f9fbde3-fb7f-4615-b70d-66f414dd505d" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-<<<<<<< HEAD
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
-  </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
-      </MavenGeneralSettings>
-    </option>
-  </component>
-  <component name="ProjectId" id="2fegJRhkJe9nyNslM3KTHRrtwCq" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
-=======
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
+  "associatedIndex": 1
 }]]></component>
-  <component name="ProjectId" id="2fdZ10ty2xu2b62sULNmmUIGVZt" />
+  <component name="ProjectId" id="2fg95sJASvK2khFSX156AqOOB2H" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
->>>>>>> 1003f9f5b7f54b5a70de761208593b94d168efd8
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-<<<<<<< HEAD
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-=======
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "kotlin-language-version-configured": "true",
     "nodejs_package_manager_path": "npm",
->>>>>>> 1003f9f5b7f54b5a70de761208593b94d168efd8
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-<<<<<<< HEAD
-      <changelist id="018b75fa-68cc-48a1-b4f3-e2caa6ded0b1" name="Changes" comment="" />
-      <created>1714166887608</created>
+      <changelist id="3f9fbde3-fb7f-4615-b70d-66f414dd505d" name="Changes" comment="" />
+      <created>1714211674834</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1714166887608</updated>
-      <workItem from="1714166888671" duration="527000" />
-=======
-      <changelist id="f1724509-8fa7-4a1d-addf-f9c920333c2d" name="Changes" comment="" />
-      <created>1714132697832</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1714132697832</updated>
->>>>>>> 1003f9f5b7f54b5a70de761208593b94d168efd8
+      <updated>1714211674834</updated>
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-<<<<<<< HEAD
-  <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-  </component>
-=======
->>>>>>> 1003f9f5b7f54b5a70de761208593b94d168efd8
 </project>
