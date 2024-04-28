@@ -1,4 +1,5 @@
 package controller;
 
-public class RegisterMenuController {
+public class RegisterMenuController extends Controller{
+
 }
