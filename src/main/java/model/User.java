@@ -1,10 +1,13 @@
 package model;
 
+import java.util.HashMap;
+
 public class User {
     private String username;
     private String password;
     private String email;
     private String nickName;
+    private HashMap<Integer, String> userSecurityQuestions = new HashMap<>();
 
     public User(String username, String password, String email, String nickName) {
         this.username = username;
@@ -35,5 +38,8 @@ public class User {
     }
     public void setNickName(String nickName) {
         this.nickName = nickName;
+    }
+    public void addSecurityQuestion(int questionNumber, String answer) {
+        userSecurityQuestions.put(questionNumber, answer);
     }
 }
