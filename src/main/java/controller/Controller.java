@@ -1,8 +1,10 @@
 package controller;
 
+import model.Result;
+
 public abstract class Controller {
-    public void goToGivenMenu(String menuName) {
-        // TODO implement here
+    public Result showCurrentMenu(){
+        return new Result("", true, false);
     }
 
 }
