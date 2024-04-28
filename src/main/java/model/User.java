@@ -39,7 +39,10 @@ public class User {
     public void setNickName(String nickName) {
         this.nickName = nickName;
     }
-    public void addSecurityQuestion(int questionNumber, String answer) {
+    public void addSecurityQuestionAnswer(int questionNumber, String answer) {
         userSecurityQuestions.put(questionNumber, answer);
+    }
+    public String getSecurityQuestionAnswer(int questionNumber) {
+        return userSecurityQuestions.get(questionNumber);
     }
 }

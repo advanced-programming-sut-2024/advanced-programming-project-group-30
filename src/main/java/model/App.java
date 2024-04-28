@@ -45,4 +45,7 @@ public class App {
     public static String giveSecurityQuestionList(){
         return null;
     }
+    public int getUserRank(User user) {
+        return 0;
+    }
 }
