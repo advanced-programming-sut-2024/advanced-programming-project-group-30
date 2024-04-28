@@ -1,4 +1,4 @@
 package model.factions;
 
-public class Skellige {
+public class Skellige extends Faction{
 }

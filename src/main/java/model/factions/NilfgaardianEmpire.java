@@ -1,4 +1,4 @@
 package model.factions;
 
-public class NilfgaardianEmpire {
+public class NilfgaardianEmpire extends Faction{
 }

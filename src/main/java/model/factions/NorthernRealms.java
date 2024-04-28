@@ -1,4 +1,4 @@
 package model.factions;
 
-public class NorthernRealms {
+public class NorthernRealms extends Faction{
 }

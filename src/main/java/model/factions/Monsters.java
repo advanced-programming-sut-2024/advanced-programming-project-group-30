@@ -1,4 +1,4 @@
 package model.factions;
 
-public class Monsters {
+public class Monsters extends Faction{
 }

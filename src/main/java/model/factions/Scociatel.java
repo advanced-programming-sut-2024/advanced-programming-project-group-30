@@ -1,4 +1,4 @@
 package model.factions;
 
-public class Scociatel {
+public class Scociatel extends Faction{
 }
