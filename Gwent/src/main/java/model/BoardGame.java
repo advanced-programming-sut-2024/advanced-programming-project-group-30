@@ -1,4 +1,4 @@
 package model;
 
-public class BoardGame {
+public abstract class BoardGame {
 }
