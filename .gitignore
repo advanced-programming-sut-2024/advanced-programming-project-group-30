@@ -35,4 +35,10 @@ build/
 .vscode/
 
 ### Mac OS ###
+<<<<<<< HEAD
 .DS_Store
+=======
+.DS_Store
+
+token
+>>>>>>> 756ab1fea1d618c1862d4e156aa8eba25261fee7

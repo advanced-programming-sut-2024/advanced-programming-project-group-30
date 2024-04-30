@@ -8,7 +8,7 @@ public class App {
     private static Menu currentMenu;
     private static ArrayList<User> allUsers = new ArrayList<>();
     private static User loggedInUser;
-    private static BoardGame currentGame;
+    private static Game currentGame;
     private static ArrayList<String> securityQuestions = new ArrayList<>();
     public static User getLoggedInUser() {
         return loggedInUser;
@@ -33,10 +33,10 @@ public class App {
     public static Menu getCurrentMenu() {
         return currentMenu;
     }
-    public static BoardGame getCurrentGame() {
+    public static Game getCurrentGame() {
         return currentGame;
     }
-    public static void setCurrentGame(BoardGame currentGame) {
+    public static void setCurrentGame(Game currentGame) {
         App.currentGame = currentGame;
     }
     public static String getSecurityQuestion(int questionNumber) {
