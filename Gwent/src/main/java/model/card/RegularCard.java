@@ -1,6 +1,6 @@
 package model.card;
 
-public abstract class RegularCard extends Card{
+public abstract class RegularCard extends Card {
     private final boolean isHero;
     private final boolean hasAction;
     private final int point;
