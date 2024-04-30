@@ -1,10 +1,10 @@
-package model.rows;
+package model;
 
 import model.card.Card;
 
 import java.util.ArrayList;
 
-public abstract class Row {
+public class Row {
     private String name;
     private ArrayList<Card> cards;
     private int rowPoint = 0;
