@@ -10,7 +10,6 @@ public class Faction {
     private final String explanation;
     private final ArrayList<Card> allCards;
     private final ArrayList<Leader> leaders;
-    // ability
 
     public static Faction createFaction(String name) {
         return null;
