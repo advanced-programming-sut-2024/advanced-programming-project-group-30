@@ -2,34 +2,28 @@ package controller;
 
 import model.Result;
 
-public class LoginMenuController extends Controller{
+public class LoginMenuController {
     public Result login(String username, String password) {
-        return new Result("", true, false);
-    }
-
-    public Result goToRegisterMenu(){
-        return new Result("", true, false);
-    }
-
-    public Result checkUsernameForForgetPassword(String username){
-        return new Result("", true, false);
-    }
-
-    public Result checkAnswerForSecurityQuestion(String username, int questionNumber, String answer) {
-        return new Result("", true, false);
-    }
-
-    public Result setPassword(String username, String password) {
-        return new Result("", true, false);
-    }
-
-    @Override
-    public Result menuEnter() {
         return null;
     }
 
-    @Override
-    public String menuExit() {
-        return "";
+    public Result checkUsernameForForgetPassword(String username) {
+        return null;
+    }
+
+    public Result checkAnswerOfSecurityQuestion(String username, int questionNumber, String answer) {
+        return null;
+    }
+
+    public Result changePassword(String username, String password) {
+        return null;
+    }
+
+    public Result enterMenu(String menuName) {
+        return null;
+    }
+
+    public Result exitMenu() {
+        return null;
     }
 }

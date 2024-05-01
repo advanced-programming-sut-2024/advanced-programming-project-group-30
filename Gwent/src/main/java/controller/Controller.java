@@ -4,7 +4,7 @@ import model.Result;
 
 public abstract class Controller {
     public String showCurrentMenu() {
-        return "";
+        return null;
     }
 
     public abstract Result menuEnter();
