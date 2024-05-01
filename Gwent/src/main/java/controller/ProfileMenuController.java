@@ -20,5 +20,13 @@ public class ProfileMenuController extends Controller{
     }
 
 
+    @Override
+    public Result menuEnter() {
+        return null;
+    }
 
+    @Override
+    public String menuExit() {
+        return "";
+    }
 }

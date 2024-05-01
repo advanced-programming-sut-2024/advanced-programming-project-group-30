@@ -11,4 +11,13 @@ public class RegisterMenuController extends Controller{
     }
 
 
+    @Override
+    public Result menuEnter() {
+        return null;
+    }
+
+    @Override
+    public String menuExit() {
+        return "";
+    }
 }
