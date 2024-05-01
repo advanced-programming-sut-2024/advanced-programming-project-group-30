@@ -48,8 +48,7 @@ public class Game {
         roundNumber++;
     }
 
-    // heh
-    public void endGame() {
-        
+    public GameHistory endGame() {
+        return null;
     }
 }
