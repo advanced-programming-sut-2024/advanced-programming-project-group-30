@@ -1,10 +1,11 @@
 package model.card;
 
-import model.Ability;
-import model.Faction;
+public abstract class Leader extends Card {
+    private boolean isUsedAbility = false;
 
-public class Leader extends Card {
-    public Leader(String name, String explanation,Faction faction, Ability ability) {
-        super(name, explanation,faction, true, false, ability);
+    public Leader(String name) {
+        super(name, true, false);
     }
+
+    public abstract void UseAbility();
 }

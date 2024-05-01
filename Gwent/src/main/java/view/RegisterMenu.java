@@ -1,4 +1,8 @@
 package view;
 
-public class RegisterMenu {
+import java.util.Scanner;
+
+public class RegisterMenu implements Menu{
+    public void run(Scanner scanner){
+    }
 }
