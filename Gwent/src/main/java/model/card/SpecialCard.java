@@ -3,8 +3,15 @@ package model.card;
 import model.Ability;
 import model.Faction;
 
-public class SpecialCard extends Card {
-    public SpecialCard(String name, String explanation, Faction faction, Ability ability) {
-        super(name, explanation, faction, false, true, ability);
+public class SpecialCard extends DecksCard {
+    private final boolean discardAfterPlaying;
+
+    public SpecialCard(String name, String explanation, Faction faction, Ability ability, String position, boolean discardAfterPlaying) {
+        super(name, explanation, faction, false, ability, true, position);
+        this.discardAfterPlaying = discardAfterPlaying;
+    }
+
+    public boolean isDiscardAfterPlaying() {
+        return discardAfterPlaying;
     }
 }

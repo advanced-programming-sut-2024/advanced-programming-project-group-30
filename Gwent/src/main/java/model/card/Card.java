@@ -8,15 +8,13 @@ public abstract class Card {
     private final String explanation;
     private final Faction faction;
     private final boolean isLeader;
-    private final boolean isSpecialCard;
     private final Ability ability;
 
-    public Card(String name, String explanation, Faction faction, boolean itIsLeader, boolean itIsSpecialCard, Ability ability) {
+    public Card(String name, String explanation, Faction faction, boolean itIsLeader, Ability ability) {
         this.name = name;
         this.explanation = explanation;
         this.faction = faction;
         this.isLeader = itIsLeader;
-        this.isSpecialCard = itIsSpecialCard;
         this.ability = ability;
     }
 
@@ -34,10 +32,6 @@ public abstract class Card {
 
     public boolean isLeader() {
         return isLeader;
-    }
-
-    public boolean isSpecialCard() {
-        return isSpecialCard;
     }
 
     public Ability getAbility() {
