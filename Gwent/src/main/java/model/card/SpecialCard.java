@@ -1,9 +1,10 @@
 package model.card;
 
-public abstract class SpecialCard extends Card {
-    public SpecialCard(String name) {
-        super(name, false, true);
-    }
+import model.Ability;
+import model.Faction;
 
-    public abstract void doAction();
+public class SpecialCard extends Card {
+    public SpecialCard(String name, String explanation, Faction faction, Ability ability) {
+        super(name, explanation, faction, false, true, ability);
+    }
 }
