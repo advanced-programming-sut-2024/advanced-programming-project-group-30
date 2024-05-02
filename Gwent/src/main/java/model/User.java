@@ -9,13 +9,13 @@ public class User {
     private String password;
     private String email;
     private String nickName;
-    private HashMap<Integer, String> securityQuestions;
-    private ArrayList<GameHistory> gameHistories;
+    private final HashMap<Integer, String> securityQuestions = new HashMap<>();
     private int rank;
     private int wins;
     private int losses;
     private int draws;
-    private final ArrayList<Faction> factions = new ArrayList<>();
+    private final ArrayList<GameHistory> gameHistories = new ArrayList<>();
+    private final HashMap<String, Faction> factions = new HashMap<>();
     private Faction selectedFaction;
 
 
@@ -58,36 +58,48 @@ public class User {
         this.nickName = nickName;
     }
 
-    public void addToLosses() {
-        losses++;
+    public HashMap<Integer, String> getSecurityQuestions() {
+        return securityQuestions;
     }
 
-    public void addToWins() {
-        wins++;
+    public int getRank() {
+        return rank;
     }
 
-    public void addToDraws() {
-        draws++;
-    }
-
-    public int getWins() {
-        return wins;
+    public void setRank(int rank) {
+        this.rank = rank;
     }
 
     public int getLosses() {
         return losses;
     }
 
+    public void addToLosses() {
+        losses++;
+    }
+
+    public int getWins() {
+        return wins;
+    }
+
+    public void addToWins() {
+        wins++;
+    }
+
     public int getDraws() {
         return draws;
     }
 
-    public void addToGameHistory(GameHistory gameHistory) {
-        gameHistories.add(gameHistory);
+    public void addToDraws() {
+        draws++;
     }
 
-    public void setRank(int rank) {
-        this.rank = rank;
+    public ArrayList<GameHistory> getGameHistories() {
+        return gameHistories;
+    }
+
+    public Faction getFactionByName(String factionName) {
+        return factions.get(factionName);
     }
 
     public Faction getSelectedFaction() {

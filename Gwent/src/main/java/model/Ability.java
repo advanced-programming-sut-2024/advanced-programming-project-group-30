@@ -1,6 +1,10 @@
 package model;
 
 public abstract class Ability {
+    public Ability createNewAbilityByName(String name) {
+        return null;
+    }
+
     public abstract void run(Game currentGame);
 }
 
@@ -61,7 +65,6 @@ class Spy extends Ability {
 }
 
 class Berserker extends Ability {
-
     @Override
     public void run(Game currentGame) {
 
@@ -69,7 +72,6 @@ class Berserker extends Ability {
 }
 
 class Mardroeme extends Ability {
-
     @Override
     public void run(Game currentGame) {
 
@@ -77,7 +79,6 @@ class Mardroeme extends Ability {
 }
 
 class Transformers extends Ability {
-
     @Override
     public void run(Game currentGame) {
 

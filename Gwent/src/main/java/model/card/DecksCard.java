@@ -3,7 +3,7 @@ package model.card;
 import model.Ability;
 import model.Faction;
 
-public class DecksCard extends Card {
+public abstract class DecksCard extends Card {
     private final boolean isSpecialCard;
     private final String position;
 
