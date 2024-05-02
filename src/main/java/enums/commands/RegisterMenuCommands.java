@@ -1,12 +1,12 @@
-package enums;
+package enums.commands;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public enum GameMenuCommands {
+public enum RegisterMenuCommands {
     ;
     private final String command;
-    GameMenuCommands(String command){
+    RegisterMenuCommands(String command){
         this.command = command;
     }
     public Matcher getMatcher(String input){

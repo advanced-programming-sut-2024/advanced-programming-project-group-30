@@ -36,7 +36,18 @@ public class PreGameManuController {
     public Result selectLeader(String leader){
         return null;
     }
-
+    public Result addCardToDeck(String cardName, String cardCount){
+        return null;
+    }
+    public Result deleteCardFromDeck(String cardName, String cardCount){
+        return null;
+    }
+    public Result changeTurn(){
+        return null;
+    }
+    public Result startGame(){
+        return null;
+    }
 
     public Result exitMenu() {
         return null;

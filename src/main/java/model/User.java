@@ -14,8 +14,6 @@ public class User {
     private int draws;
     private final ArrayList<Faction> factions = new ArrayList<>();
     private Faction selectedFaction;
-
-
     public User(String username, String password, String email, String nickName) {
         this.username = username;
         this.password = password;
@@ -74,7 +72,6 @@ public class User {
     public Faction getSelectedFaction() {
         return selectedFaction;
     }
-
     public void setSelectedFaction(Faction selectedFaction) {
         this.selectedFaction = selectedFaction;
     }

@@ -1,12 +1,12 @@
-package enums;
+package enums.commands;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public enum MainMenuCommands {
+public enum ProfileMenuCommands {
     ;
     private final String command;
-    MainMenuCommands(String command){
+    ProfileMenuCommands(String command){
         this.command = command;
     }
     public Matcher getMatcher(String input){
