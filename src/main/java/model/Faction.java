@@ -11,10 +11,12 @@ public class Faction {
     private final ArrayList<Card> allCards;
     private final ArrayList<Leader> leaders;
 
-    public static Faction createFaction(String name) {
-        return new Faction("", "", new ArrayList<Card>(), new ArrayList<Leader>());
-    }
 
+    // ability
+
+    public static Faction createFaction(String name) {
+        return null;
+    }
     protected Faction(String name, String explanation, ArrayList<Card> allCards, ArrayList<Leader> leaders) {
         this.name = name;
         this.explanation = explanation;
