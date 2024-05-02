@@ -1,8 +1,6 @@
 package model.card;
-import model.Ability;
 import model.Faction;
-import model.LeaderAbility;
-import model.card.Card;
+import model.ability.LeaderAbility;
 
 public class Leader extends Card {
     private boolean isUsedAbility = false;

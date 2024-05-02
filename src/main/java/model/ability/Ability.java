@@ -1,4 +1,6 @@
-package model;
+package model.ability;
+
+import model.Game;
 
 public abstract class Ability {
     public abstract void run(Game currentGame);
@@ -11,7 +13,7 @@ class Decoy extends Ability {
     }
 }
 
-class HornCommander extends Ability {
+class CommanderHorn extends Ability {
     @Override
     public void run(Game currentGame) {
 

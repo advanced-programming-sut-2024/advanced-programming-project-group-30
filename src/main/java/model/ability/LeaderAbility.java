@@ -1,4 +1,6 @@
-package model;
+package model.ability;
+
+import model.Game;
 
 public abstract class LeaderAbility {
     public abstract void run(Game currentGame);

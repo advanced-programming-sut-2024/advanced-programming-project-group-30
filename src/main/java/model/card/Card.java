@@ -1,5 +1,4 @@
 package model.card;
-import model.Ability;
 import model.Faction;
 public abstract class Card {
     private final String name;

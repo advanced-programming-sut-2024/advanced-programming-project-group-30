@@ -5,14 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="772da88e-e03f-4809-9e0e-1358a2e01235" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/card/speacialCards/BitingFrost.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/card/speacialCards/Decoy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/card/speacialCards/ImpenetrableFog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/card/speacialCards/Scorch.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/card/speacialCards/TorrentialRain.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gwent/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gwent/src/main/java/model/card/Leader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gwent/src/main/java/model/card/SpecialCard.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/Error.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/Error.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/commands/GameMenuCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/commands/GameMenuCommands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/commands/MainMenuCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/commands/MainMenuCommands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/commands/ProfileMenuCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/commands/ProfileMenuCommands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Ability.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/ability/Ability.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/LeaderAbility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/ability/LeaderAbility.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/DecksCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/DecksCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/Leader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/Leader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/RegularCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/RegularCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/SpecialCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/SpecialCard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
