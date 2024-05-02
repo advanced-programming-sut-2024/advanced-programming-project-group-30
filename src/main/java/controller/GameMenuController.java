@@ -87,6 +87,12 @@ public class GameMenuController {
     public Result passRound() {
         return null;
     }
+    public Result endTurn(){
+        return null;
+    }
+    public Result endGame(){
+        return null;
+    }
     public Result exitMenu() {
         return null;
     }
