@@ -15,6 +15,8 @@ public class User {
     private int wins;
     private int losses;
     private int draws;
+    private final ArrayList<Faction> factions = new ArrayList<>();
+    private Faction selectedFaction;
 
 
     public User(String username, String password, String email, String nickName) {
@@ -88,5 +90,11 @@ public class User {
         this.rank = rank;
     }
 
+    public Faction getSelectedFaction() {
+        return selectedFaction;
+    }
 
+    public void setSelectedFaction(Faction selectedFaction) {
+        this.selectedFaction = selectedFaction;
+    }
 }

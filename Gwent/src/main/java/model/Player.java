@@ -8,7 +8,6 @@ import java.util.ArrayList;
 public class Player {
     private final User user;
     private final Game game;
-    private Faction faction;
     private Leader leader;
     private final ArrayList<Card> deck = new ArrayList<>();
     private final ArrayList<Card> hand = new ArrayList<>();
@@ -32,14 +31,6 @@ public class Player {
 
     public Game getGame() {
         return game;
-    }
-
-    public Faction getFaction() {
-        return faction;
-    }
-
-    public void setFaction(Faction faction) {
-        this.faction = faction;
     }
 
     public Leader getLeader() {
