@@ -1,13 +1,16 @@
 package model.card;
 import model.Ability;
 import model.Faction;
+import model.LeaderAbility;
 import model.card.Card;
 
 public class Leader extends Card {
     private boolean isUsedAbility = false;
+    private final LeaderAbility leaderAbility;
 
-    public Leader(String name, String explanation, Faction faction, Ability ability) {
-        super(name, explanation, faction, true, ability);
+    public Leader(String name, String explanation, Faction faction, LeaderAbility leaderAbility) {
+        super(name, explanation, faction, true);
+        this.leaderAbility = leaderAbility;
     }
 
     public boolean isUsedAbility() {
@@ -16,5 +19,8 @@ public class Leader extends Card {
 
     public void setUsedAbility(boolean usedAbility) {
         isUsedAbility = usedAbility;
+    }
+    public LeaderAbility getLeaderAbility(){
+        return this.leaderAbility;
     }
 }
