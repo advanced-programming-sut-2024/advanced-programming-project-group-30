@@ -3,7 +3,7 @@ package controller;
 import model.Result;
 
 public class LoginMenuController {
-    public Result login(String username, String password) {
+    public Result login(String username, String password, String stayLoggedInTag) {
         return null;
     }
 
