@@ -5,9 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="772da88e-e03f-4809-9e0e-1358a2e01235" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/commands/LoginMenuCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/commands/LoginMenuCommands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/commands/PreGameMenuCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/commands/PreGameMenuCommands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/commands/RegisterMenuCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/commands/RegisterMenuCommands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gwent/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gwent/src/main/java/model/card/Leader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gwent/src/main/java/model/card/SpecialCard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/Error.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/Error.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/commands/GameMenuCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/commands/GameMenuCommands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/commands/MainMenuCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/commands/MainMenuCommands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/commands/ProfileMenuCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/commands/ProfileMenuCommands.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
