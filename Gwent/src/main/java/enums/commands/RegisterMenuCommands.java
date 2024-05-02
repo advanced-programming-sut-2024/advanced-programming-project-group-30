@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public enum RegisterMenuCommands {
     COMMAND("");
-    
+
     private final String command;
 
     RegisterMenuCommands(String command) {
