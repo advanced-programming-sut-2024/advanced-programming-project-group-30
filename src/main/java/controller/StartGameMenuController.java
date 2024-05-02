@@ -1,4 +1,13 @@
 package controller;
 
-public class StartGameMenuController extends Controller{
+import model.Result;
+
+public class StartGameMenuController {
+    public Result enterMenu(String menuName) {
+        return null;
+    }
+
+    public Result exitMenu() {
+        return null;
+    }
 }

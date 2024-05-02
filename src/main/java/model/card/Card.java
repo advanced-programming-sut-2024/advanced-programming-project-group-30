@@ -20,15 +20,13 @@ public abstract class Card {
     private final String explanation;
     private final Faction faction;
     private final boolean isLeader;
-    private final boolean isSpecialCard;
     private final Ability ability;
 
-    public Card(String name, String explanation, Faction faction, boolean itIsLeader, boolean itIsSpecialCard, Ability ability) {
+    public Card(String name, String explanation, Faction faction, boolean itIsLeader, Ability ability) {
         this.name = name;
         this.explanation = explanation;
         this.faction = faction;
         this.isLeader = itIsLeader;
-        this.isSpecialCard = itIsSpecialCard;
         this.ability = ability;
 >>>>>>> 756ab1fea1d618c1862d4e156aa8eba25261fee7:Gwent/src/main/java/model/card/Card.java
     }
@@ -53,6 +51,7 @@ public abstract class Card {
         return isLeader;
     }
 
+<<<<<<< HEAD:src/main/java/model/card/Card.java
     public boolean isSpecialCard() {
         return isSpecialCard;
     }
@@ -60,6 +59,8 @@ public abstract class Card {
 }
 =======
 
+=======
+>>>>>>> 42d11a37c7db755408f2d623cd1747aff88e2b4b:Gwent/src/main/java/model/card/Card.java
     public Ability getAbility() {
         return ability;
     }

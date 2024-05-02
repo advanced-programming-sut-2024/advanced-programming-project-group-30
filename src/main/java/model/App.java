@@ -4,48 +4,57 @@ import enums.Menu;
 
 import java.util.ArrayList;
 
-public class App {
+public abstract class App {
     private static Menu currentMenu;
-    private static ArrayList<User> allUsers = new ArrayList<>();
-    private static User loggedInUser;
     private static Game currentGame;
-    private static ArrayList<String> securityQuestions = new ArrayList<>();
-    public static User getLoggedInUser() {
-        return loggedInUser;
-    }
-    public static void setLoggedInUser(User loggedInUser) {
-        App.loggedInUser = loggedInUser;
-    }
-    public static User getUserByUsername(String username) {
-        for (User user : allUsers) {
-            if (user.getUsername().equals(username)) {
-                return user;
-            }
-        }
-        return null;
-    }
-    public static void addUser(User user) {
-        allUsers.add(user);
-    }
-    public static void setCurrentMenu(Menu currentMenu) {
-        App.currentMenu = currentMenu;
-    }
+    private static User loggedInUser;
+    private static final ArrayList<User> allUsers = new ArrayList<>();
+    private static final ArrayList<String> securityQuestions = new ArrayList<>();
+
     public static Menu getCurrentMenu() {
         return currentMenu;
     }
+
+    public static void setCurrentMenu(Menu menu) {
+        currentMenu = menu;
+    }
+
+    public static User getLoggedInUser() {
+        return loggedInUser;
+    }
+
+    public static void setLoggedInUser(User loggedInUser) {
+        App.loggedInUser = loggedInUser;
+    }
+
     public static Game getCurrentGame() {
         return currentGame;
     }
+
     public static void setCurrentGame(Game currentGame) {
         App.currentGame = currentGame;
     }
-    public static String getSecurityQuestion(int questionNumber) {
-        return securityQuestions.get(questionNumber);
+
+    public void addUser(User user) {
+        allUsers.add(user);
     }
-    public static String giveSecurityQuestionList(){
+
+    public void removeUser(User user) {
+        allUsers.remove(user);
+    }
+
+    public User getUserByUsername(String username) {
+        for (User user : allUsers)
+            if (user.getUsername().equals(username)) return user;
+        return null;
+
+    }
+
+    public String getListOfSecurityQuestions() {
         return null;
     }
-    public int getUserRank(User user) {
-        return 0;
+
+    public static int getUserRank() {
+        return 1;
     }
 }
