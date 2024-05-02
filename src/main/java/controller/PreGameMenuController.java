@@ -2,7 +2,7 @@ package controller;
 
 import model.Result;
 
-public class PreGameManuController {
+public class PreGameMenuController {
     public Result enterMenu(String menuName) {
         return null;
     }
