@@ -4,12 +4,19 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public enum PreGameMenuCommands {
-    ;
+    COMMANDS("");
+
     private final String command;
-    PreGameMenuCommands(String command){
+
+    PreGameMenuCommands(String command) {
         this.command = command;
     }
-    public Matcher getMatcher(String input){
+
+    public String getCommand() {
+        return command;
+    }
+
+    public Matcher getMatcher(String input) {
         return Pattern.compile(this.command).matcher(input);
     }
 }
