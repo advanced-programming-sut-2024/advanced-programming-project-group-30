@@ -9,7 +9,7 @@ public class Result {
     private final boolean isSuccessful;
     private final Error error;
 
-    public Result(String message, boolean isSuccessful, Error error) {
+    public Result(boolean isSuccessful, Error error, String message) {
         this.message = message;
         this.isSuccessful = isSuccessful;
         this.error = error;

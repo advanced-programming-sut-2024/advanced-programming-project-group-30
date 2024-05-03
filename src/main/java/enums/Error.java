@@ -11,6 +11,13 @@ public enum Error {
         this.message = message;
         this.code = code;
     }
+    public static Error getErrorByCode(String name){
+        return Error.valueOf(name);
+    }
+    @Override
+    public String toString() {
+        return message.toString();
+    }
     public String getCode(){
         return null;
     }
