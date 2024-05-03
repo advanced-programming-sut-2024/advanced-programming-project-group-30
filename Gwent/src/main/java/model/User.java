@@ -1,6 +1,5 @@
 package model;
 
-
 import enums.SecurityQuestion;
 
 import java.util.ArrayList;
@@ -19,7 +18,6 @@ public class User {
     private final ArrayList<GameHistory> gameHistories = new ArrayList<>();
     private final HashMap<String, Faction> factions = new HashMap<>();
     private Faction selectedFaction;
-
 
     public User(String username, String password, String email, String nickName) {
         this.username = username;

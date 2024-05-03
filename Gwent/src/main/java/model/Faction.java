@@ -1,6 +1,5 @@
 package model;
 
-import model.card.Card;
 import model.card.DecksCard;
 import model.card.Leader;
 
@@ -11,10 +10,6 @@ public class Faction {
     private final String explanation;
     private final ArrayList<DecksCard> decksCards;
     private final ArrayList<Leader> leaders;
-
-    public static Faction createFaction(String name) {
-        return null;
-    }
 
     protected Faction(String name, String explanation, ArrayList<DecksCard> allCards, ArrayList<Leader> leaders) {
         this.name = name;

@@ -1,12 +1,13 @@
 package model;
 
+import model.card.specialcard.SpecialCard;
+
 import java.util.ArrayList;
 
 public class Game {
     private Player currentPlayer;
     private Player opponentPlayer;
     private final ArrayList<SpecialCard> specialPosition = new ArrayList<>();
-    private int turn = 1;
     private int roundNumber = 1;
 
     public Player getCurrentPlayer() {
@@ -19,10 +20,6 @@ public class Game {
 
     public ArrayList<SpecialCard> getSpecialPosition() {
         return specialPosition;
-    }
-
-    public int getTurn() {
-        return turn;
     }
 
     public int getRoundNumber() {
@@ -38,7 +35,6 @@ public class Game {
     }
 
     public boolean changeTurn() {
-        turn++;
         return true;
     }
 

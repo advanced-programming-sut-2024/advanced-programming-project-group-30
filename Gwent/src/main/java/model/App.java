@@ -4,7 +4,7 @@ import enums.Menu;
 
 import java.util.ArrayList;
 
-public abstract class App {
+public class App {
     private static Menu currentMenu;
     private static Game currentGame;
     private static User loggedInUser;
