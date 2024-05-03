@@ -1,7 +1,5 @@
 package model;
 
-import model.card.SpecialCard;
-
 import java.util.ArrayList;
 
 public class Game {

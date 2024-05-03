@@ -1,4 +1,6 @@
-package model;
+package model.ability;
+
+import model.Game;
 
 public abstract class Ability {
     public Ability createNewAbilityByName(String name) {
