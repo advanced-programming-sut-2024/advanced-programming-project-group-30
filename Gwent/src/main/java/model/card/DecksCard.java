@@ -5,8 +5,8 @@ import model.Faction;
 public abstract class DecksCard extends Card {
     private final boolean isSpecialCard;
 
-    public DecksCard(String name, String explanation, Faction faction, boolean itIsLeader, boolean isSpecialCard) {
-        super(name, explanation, faction, itIsLeader);
+    public DecksCard(String name, String explanation, Faction faction, boolean isSpecialCard) {
+        super(name, explanation, faction, false);
         this.isSpecialCard = isSpecialCard;
     }
 

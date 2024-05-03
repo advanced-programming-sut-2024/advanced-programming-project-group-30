@@ -7,14 +7,14 @@ public class RegularCard extends DecksCard {
     private final boolean isHero;
     private final int point;
     private final RegularCardsAbility ability;
-    private final String position;
+    private final String positionType;
 
     public RegularCard(String name, String explanation, Faction faction, boolean itIsLeader, boolean itIsSpecialCard, boolean isHero, int point, RegularCardsAbility ability, String position, String position1) {
-        super(name, explanation, faction, itIsLeader, false);
+        super(name, explanation, faction, false);
         this.isHero = isHero;
         this.point = point;
         this.ability = ability;
-        this.position = position1;
+        this.positionType = position1;
     }
 
     public RegularCardsAbility getAbility() {
@@ -29,7 +29,7 @@ public class RegularCard extends DecksCard {
         return point;
     }
 
-    public String getPosition() {
-        return position;
+    public String getPositionType() {
+        return positionType;
     }
 }
