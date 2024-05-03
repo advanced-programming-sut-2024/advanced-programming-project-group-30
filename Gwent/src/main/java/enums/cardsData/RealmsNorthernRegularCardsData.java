@@ -1,6 +1,8 @@
 package enums.cardsData;
 
+import model.Result;
 import model.card.Leader;
+import model.card.RegularCard;
 
 import java.util.ArrayList;
 
@@ -22,11 +24,11 @@ public enum RealmsNorthernRegularCardsData {
         this.numberOfCard = numberOfCard;
     }
 
-    private static Leader createLeader(String leaderName) {
+    private static RegularCard createLeader(String leaderName) {
         return null;
     }
 
-    public static ArrayList<Leader> getAllLeader() {
+    public static ArrayList<RegularCard> getAllLeader() {
         return null;
     }
 }

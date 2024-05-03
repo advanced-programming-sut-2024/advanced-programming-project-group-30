@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f1724509-8fa7-4a1d-addf-f9c920333c2d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/specialcard/ClearWeather.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/specialcard/ClearWeather.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/specialcard/CommanderHorn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/specialcard/CommanderHorn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/specialcard/Decoy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/specialcard/Decoy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/specialcard/ImpenetrableFog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/specialcard/ImpenetrableFog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/specialcard/Scorch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/specialcard/Scorch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/specialcard/TorrentialRain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/specialcard/TorrentialRain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/EmpireNilfgaardianRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/EmpireNilfgaardianRegularCardsData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/MonstersRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/MonstersRegularCardsData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Faction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Faction.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +67,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="model.card.specialcard" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
