@@ -1,6 +1,7 @@
 package model.card.speacialCards;
 
 import model.Faction;
+import model.Game;
 import model.card.Card;
 import model.card.SpecialCard;
 
@@ -16,7 +17,7 @@ public class Decoy extends SpecialCard {
     public Card getSelectedCard(){
         return this.card;
     }
-    public void run(Card card){
+    public void run(Card card, Game game){
 
     }
 }

@@ -10,7 +10,4 @@ public class SpecialCard extends DecksCard {
         this.discardAfterPlaying = discardAfterPlaying;
     }
 
-    public boolean isDiscardAfterPlaying() {
-        return discardAfterPlaying;
-    }
 }
