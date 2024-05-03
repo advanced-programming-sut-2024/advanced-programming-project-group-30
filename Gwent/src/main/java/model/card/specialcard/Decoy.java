@@ -3,13 +3,13 @@ package model.card.speacialCards;
 import model.Faction;
 import model.Game;
 import model.card.Card;
-import model.card.SpecialCard;
+import model.card.specialcard.SpecialCard;
 
 public class Decoy extends SpecialCard {
     private Card card;
 
-    public Decoy(String name, String explanation, Faction faction, String position) {
-        super(name, explanation, faction, position, false);
+    public Decoy(String name, String explanation, Faction faction) {
+        super(name, explanation, faction, false);
     }
     public void setSelectedCard(Card card){
         this.card = card;

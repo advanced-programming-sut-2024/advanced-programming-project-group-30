@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f1724509-8fa7-4a1d-addf-f9c920333c2d" name="Changes" comment="" />
+    <list default="true" id="f1724509-8fa7-4a1d-addf-f9c920333c2d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/specialcard/ClearWeather.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/specialcard/ClearWeather.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/specialcard/CommanderHorn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/specialcard/CommanderHorn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/specialcard/Decoy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/specialcard/Decoy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/specialcard/ImpenetrableFog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/specialcard/ImpenetrableFog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/specialcard/Scorch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/specialcard/Scorch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/specialcard/TorrentialRain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/specialcard/TorrentialRain.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

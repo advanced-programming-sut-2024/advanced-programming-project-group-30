@@ -1,13 +1,12 @@
-package model.card.speacialCards;
+package model.card.specialcard;
 
 import model.Faction;
 import model.Row;
-import model.card.SpecialCard;
 
 public class Mordroeme extends SpecialCard {
     private Row row;
-    public Mordroeme(String name, String explanation, Faction faction, String position, boolean discardAfterPlaying) {
-        super(name, explanation, faction, position, discardAfterPlaying);
+    public Mordroeme(String name, String explanation, Faction faction, boolean discardAfterPlaying) {
+        super(name, explanation, faction, discardAfterPlaying);
     }
     public void setRow(Row row) {
         this.row = row;
