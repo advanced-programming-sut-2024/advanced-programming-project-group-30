@@ -4,24 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f1724509-8fa7-4a1d-addf-f9c920333c2d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/EmpireNilfgaardianLeaderCardsData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/EmpireNilfgaardianRegularCardsData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/RealmsNorthernLeaderCardsData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/RealmsNorthernRegularCardsData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/ScoiaTaelLeaderCardsData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/ScoiaTaelRegularCardsData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/SkelligeLeaderCardsData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/SkelligeRegularCardsData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/GameMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/GameMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/PreGameMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/PreGameMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/ProfileMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ProfileMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/MonstersLeaderCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/MonstersLeaderCardsData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/MonstersRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/MonstersRegularCardsData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/specialcard/SpecialCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/specialcard/SpecialCard.java" afterDir="false" />
-    </list>
+    <list default="true" id="f1724509-8fa7-4a1d-addf-f9c920333c2d" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,8 +13,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
