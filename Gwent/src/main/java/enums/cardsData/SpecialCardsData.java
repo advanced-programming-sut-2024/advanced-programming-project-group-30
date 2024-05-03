@@ -13,7 +13,7 @@ public enum SpecialCardsData {
         this.cardsNumber = cardsNumber;
     }
 
-    private static SpecialCard createCard(SpecialCardsData specialCardsData) {
+    private static SpecialCard createSpecialCard(SpecialCardsData data) {
         return null;
     }
 

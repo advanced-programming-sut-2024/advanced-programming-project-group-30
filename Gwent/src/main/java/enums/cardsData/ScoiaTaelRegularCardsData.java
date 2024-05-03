@@ -23,7 +23,7 @@ public enum ScoiaTaelRegularCardsData {
         this.numberOfCard = numberOfCard;
     }
 
-    private static RegularCard createCard(String cardName) {
+    private static RegularCard createCard(ScoiaTaelRegularCardsData data) {
         return null;
     }
 

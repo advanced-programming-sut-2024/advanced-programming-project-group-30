@@ -17,7 +17,7 @@ public enum MonstersLeaderCardsData {
         this.abilityName = abilityName;
     }
 
-    private static Leader createLeader(String leaderName) {
+    private static Leader createLeader(MonstersLeaderCardsData data) {
         return null;
     }
 

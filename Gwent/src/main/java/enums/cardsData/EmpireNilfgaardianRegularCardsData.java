@@ -23,7 +23,7 @@ public enum EmpireNilfgaardianRegularCardsData {
         this.numberOfCard = numberOfCard;
     }
 
-    private static RegularCard createCard(String cardName) {
+    private static RegularCard createCard(EmpireNilfgaardianRegularCardsData data) {
         return null;
     }
 

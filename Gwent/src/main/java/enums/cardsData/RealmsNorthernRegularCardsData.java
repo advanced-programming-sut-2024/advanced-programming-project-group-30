@@ -23,7 +23,7 @@ public enum RealmsNorthernRegularCardsData {
         this.numberOfCard = numberOfCard;
     }
 
-    private static RegularCard createCard(String cardName) {
+    private static RegularCard createCard(RealmsNorthernRegularCardsData data) {
         return null;
     }
 

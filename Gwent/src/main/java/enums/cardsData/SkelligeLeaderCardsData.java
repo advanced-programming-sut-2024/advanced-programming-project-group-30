@@ -17,7 +17,7 @@ public enum SkelligeLeaderCardsData {
         this.abilityName = abilityName;
     }
 
-    private static Leader createLeader(String leaderName) {
+    private static Leader createLeader(SkelligeLeaderCardsData data) {
         return null;
     }
 

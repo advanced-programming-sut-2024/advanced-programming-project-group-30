@@ -17,7 +17,7 @@ public enum ScoiaTaelLeaderCardsData {
         this.abilityName = abilityName;
     }
 
-    private static Leader createLeader(String leaderName) {
+    private static Leader createLeader(ScoiaTaelLeaderCardsData data) {
         return null;
     }
 

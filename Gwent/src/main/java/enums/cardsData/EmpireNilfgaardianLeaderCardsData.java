@@ -17,7 +17,7 @@ public enum EmpireNilfgaardianLeaderCardsData {
         this.abilityName = abilityName;
     }
 
-    private static Leader createLeader(String leaderName) {
+    private static Leader createLeader(EmpireNilfgaardianLeaderCardsData data) {
         return null;
     }
 

@@ -23,7 +23,7 @@ public enum SkelligeRegularCardsData {
         this.numberOfCard = numberOfCard;
     }
 
-    private static RegularCard createCard(String cardName) {
+    private static RegularCard createCard(SkelligeRegularCardsData data) {
         return null;
     }
 

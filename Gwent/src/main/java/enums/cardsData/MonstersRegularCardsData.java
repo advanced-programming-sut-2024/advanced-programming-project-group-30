@@ -23,7 +23,7 @@ public enum MonstersRegularCardsData {
         this.numberOfCard = numberOfCard;
     }
 
-    private static RegularCard createCard(String cardName) {
+    private static RegularCard createCard(MonstersRegularCardsData data) {
         return null;
     }
 
