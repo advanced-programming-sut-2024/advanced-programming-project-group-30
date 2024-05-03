@@ -3,10 +3,6 @@ package controller;
 import model.Result;
 
 public class PreGameMenuController {
-    public Result enterMenu(String menuName) {
-        return null;
-    }
-
     public Result createGame(String username) {
         return null;
     }
@@ -60,6 +56,10 @@ public class PreGameMenuController {
     }
 
     public Result startGame() {
+        return null;
+    }
+
+    public Result enterMenu(String menuName) {
         return null;
     }
 

@@ -5,10 +5,6 @@ import model.Result;
 import javax.swing.text.html.HTML;
 
 public class ProfileMenuController {
-    public Result enterMenu(String menuName) {
-        return null;
-    }
-
     public Result changeUsername(String newUsername) {
         return null;
     }
@@ -25,7 +21,11 @@ public class ProfileMenuController {
         return null;
     }
 
-    public Result showGameHistory(String number) {
+    public Result showGameHistory(String numberString) {
+        return null;
+    }
+
+    public Result enterMenu(String menuName) {
         return null;
     }
 

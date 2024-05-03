@@ -4,10 +4,6 @@ import model.Player;
 import model.Result;
 
 public class GameMenuController {
-    public Result enterMenu(String menuName) {
-        return null;
-    }
-
     public Result vetoCard(String cardName) {
         return null;
     }
@@ -28,7 +24,7 @@ public class GameMenuController {
         return null;
     }
 
-    private static String showPlayerOutOfPlayCards(Player player) {
+    private String showPlayerOutOfPlayCards(Player player) {
         return null;
     }
 
@@ -87,12 +83,19 @@ public class GameMenuController {
     public Result passRound() {
         return null;
     }
-    public Result endTurn(){
+
+    public Result endTurn() {
         return null;
     }
-    public Result endGame(){
+
+    public Result endGame() {
         return null;
     }
+
+    public Result enterMenu(String menuName) {
+        return null;
+    }
+
     public Result exitMenu() {
         return null;
     }

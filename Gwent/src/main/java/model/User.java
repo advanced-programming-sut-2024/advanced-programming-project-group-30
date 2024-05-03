@@ -1,6 +1,8 @@
 package model;
 
 
+import enums.SecurityQuestion;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -9,7 +11,7 @@ public class User {
     private String password;
     private String email;
     private String nickName;
-    private final HashMap<Integer, String> securityQuestions = new HashMap<>();
+    private final HashMap<SecurityQuestion, String> securityQuestions = new HashMap<>();
     private int rank;
     private int wins;
     private int losses;
@@ -58,7 +60,7 @@ public class User {
         this.nickName = nickName;
     }
 
-    public HashMap<Integer, String> getSecurityQuestions() {
+    public HashMap<SecurityQuestion, String> getSecurityQuestions() {
         return securityQuestions;
     }
 

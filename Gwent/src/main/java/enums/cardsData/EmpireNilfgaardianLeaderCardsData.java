@@ -4,22 +4,17 @@ import model.card.Leader;
 
 import java.util.ArrayList;
 
-public enum MonstersRegularCardsData {
-    CARDS_NAME("card name", "card explanation", "ability name", false, 0, 1);
+public enum EmpireNilfgaardianLeaderCardsData {
+    CARDS_NAME("card name", "card explanation", "ability name");
+
     private final String name;
     private final String explanation;
     private final String abilityName;
-    private final boolean isHero;
-    private final int point;
-    private final int numberOfCard;
 
-    MonstersRegularCardsData(String name, String explanation, String abilityName, boolean isHero, int point, int numberOfCard) {
+    EmpireNilfgaardianLeaderCardsData(String name, String explanation, String abilityName) {
         this.name = name;
         this.explanation = explanation;
         this.abilityName = abilityName;
-        this.isHero = isHero;
-        this.point = point;
-        this.numberOfCard = numberOfCard;
     }
 
     private static Leader createLeader(String leaderName) {
