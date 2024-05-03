@@ -5,41 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f1724509-8fa7-4a1d-addf-f9c920333c2d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/SpecialCardsData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/enums/RegularCardPositionType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/ProfileMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ProfileMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/Error.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/Error.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/EmpireNilfgaardianRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/EmpireNilfgaardianRegularCardsData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/MonstersLeaderCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/MonstersLeaderCardsData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/MonstersRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/MonstersRegularCardsData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/NeutralRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/NeutralRegularCardsData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/RealmsNorthernLeaderCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/RealmsNorthernLeaderCardsData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/RealmsNorthernRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/RealmsNorthernRegularCardsData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/ScoiaTaelLeaderCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/ScoiaTaelLeaderCardsData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/ScoiaTaelRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/ScoiaTaelRegularCardsData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/SkelligeLeaderCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/SkelligeLeaderCardsData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/SkelligeRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/SkelligeRegularCardsData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/commands/GameMenuCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/commands/GameMenuCommands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/commands/LoginMenuCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/commands/LoginMenuCommands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/commands/MainMenuCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/commands/MainMenuCommands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/commands/ProfileMenuCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/commands/ProfileMenuCommands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/commands/RegisterMenuCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/commands/RegisterMenuCommands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/commands/StartGameMenuCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/commands/StartGameMenuCommands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/ability/Ability.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/ability/RegularCardsAbility.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/ability/LeaderAbility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/ability/LeaderAbility.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/Leader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/Leader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/card/RegularCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/RegularCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/specialcard/BitingFrost.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/specialcard/BitingFrost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/specialcard/ClearWeather.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/specialcard/ClearWeather.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/specialcard/CommanderHorn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/specialcard/CommanderHorn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/specialcard/Decoy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/specialcard/Decoy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/specialcard/ImpenetrableFog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/specialcard/ImpenetrableFog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/specialcard/Mordroeme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/specialcard/Mordroeme.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/specialcard/Scorch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/specialcard/Scorch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/specialcard/SkelliegeStorm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/specialcard/SkelliegeStorm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/specialcard/SpecialCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/specialcard/SpecialCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/specialcard/TorrentialRain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/specialcard/TorrentialRain.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,8 +17,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
