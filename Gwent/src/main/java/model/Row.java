@@ -1,7 +1,6 @@
 package model;
 
 import model.card.Card;
-import model.card.RegularCard;
 
 import java.util.ArrayList;
 
@@ -10,7 +9,7 @@ public class Row {
     private final ArrayList<Card> cards = new ArrayList<>();
     private int rowPoint = 0;
     private Card specialCard = null;
-    private final ArrayList<RegularCard> bonesCard = new ArrayList<>();
+    private boolean hasBonus = false;
     private int extraPoint = 0;
     private boolean isDamaged = false;
 
