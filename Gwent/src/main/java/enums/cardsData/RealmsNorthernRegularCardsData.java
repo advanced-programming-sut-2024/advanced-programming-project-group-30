@@ -31,3 +31,4 @@ public enum RealmsNorthernRegularCardsData {
         return null;
     }
 }
+

@@ -25,3 +25,4 @@ public enum SkelligeLeaderCardsData {
         return null;
     }
 }
+
