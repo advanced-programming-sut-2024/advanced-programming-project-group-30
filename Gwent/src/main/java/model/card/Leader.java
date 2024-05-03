@@ -1,6 +1,5 @@
 package model.card;
 
-import model.ability.Ability;
 import model.Faction;
 import model.ability.LeaderAbility;
 

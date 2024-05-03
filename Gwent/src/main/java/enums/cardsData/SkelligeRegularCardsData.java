@@ -1,12 +1,12 @@
 package enums.cardsData;
 
-import model.card.Leader;
 import model.card.RegularCard;
 
 import java.util.ArrayList;
 
 public enum SkelligeRegularCardsData {
     CARDS_NAME("card name", "card explanation", "ability name", false, 0, 1);
+
     private final String name;
     private final String explanation;
     private final String abilityName;
@@ -23,11 +23,11 @@ public enum SkelligeRegularCardsData {
         this.numberOfCard = numberOfCard;
     }
 
-    private static RegularCard createLeader(String leaderName) {
+    private static RegularCard createCard(String cardName) {
         return null;
     }
 
-    public static ArrayList<RegularCard> getAllLeader() {
+    public static ArrayList<RegularCard> getAllRegularCard() {
         return null;
     }
 }

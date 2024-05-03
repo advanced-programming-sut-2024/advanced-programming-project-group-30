@@ -1,17 +1,13 @@
-package model.card.speacialCards;
+package model.card.specialcard;
 
 import model.Faction;
 import model.Game;
-import model.card.specialcard.SpecialCard;
-
 
 public class TorrentialRain extends SpecialCard {
-
-    public TorrentialRain(String name, String explanation, Faction faction, boolean discardAfterPlaying) {
+    public TorrentialRain(String name, String explanation, Faction faction) {
         super(name, explanation, faction, false);
     }
 
     public void run(Game game){
-
     }
 }

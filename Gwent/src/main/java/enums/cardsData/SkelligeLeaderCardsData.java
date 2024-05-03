@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public enum SkelligeLeaderCardsData {
     CARDS_NAME("card name", "card explanation", "ability name");
+
     private final String name;
     private final String explanation;
     private final String abilityName;

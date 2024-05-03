@@ -1,4 +1,5 @@
 package model.card.specialcard;
+
 import model.Faction;
 import model.card.DecksCard;
 

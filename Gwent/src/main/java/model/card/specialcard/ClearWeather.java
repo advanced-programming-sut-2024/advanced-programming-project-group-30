@@ -1,14 +1,13 @@
-package model.card.speacialCards;
+package model.card.specialcard;
 
 import model.Faction;
 import model.Game;
-import model.card.specialcard.SpecialCard;
 
 public class ClearWeather extends SpecialCard {
-    public ClearWeather(String name, String explanation, Faction faction, boolean discardAfterPlaying) {
+    public ClearWeather(String name, String explanation, Faction faction) {
         super(name, explanation, faction, true);
     }
-    public void run(Game game){
-        //TODO
+
+    public void run(Game game) {
     }
 }

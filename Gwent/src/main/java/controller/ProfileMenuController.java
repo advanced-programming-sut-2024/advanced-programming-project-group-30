@@ -2,8 +2,6 @@ package controller;
 
 import model.Result;
 
-import javax.swing.text.html.HTML;
-
 public class ProfileMenuController {
     public Result changeUsername(String newUsername) {
         return null;
