@@ -1,3 +1,4 @@
+
 package enums.commands;
 
 import java.util.regex.Matcher;
@@ -6,17 +7,17 @@ import java.util.regex.Pattern;
 public enum MainMenuCommands {
     COMMAND("");
 
-    private final String command;
+    private final String regex;
 
     MainMenuCommands(String command) {
-        this.command = command;
+        this.regex = command;
     }
 
     public String getCommand() {
-        return command;
+        return regex;
     }
 
     public Matcher getMatcher(String input) {
-        return Pattern.compile(this.command).matcher(input);
+        return Pattern.compile(this.regex).matcher(input);
     }
 }

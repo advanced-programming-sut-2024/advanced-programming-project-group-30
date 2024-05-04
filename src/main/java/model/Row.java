@@ -1,13 +1,17 @@
+
 package model;
-import model.card.Card;
+
+import model.card.DecksCard;
+import model.card.speacialCards.SpecialCard;
+
 
 import java.util.ArrayList;
 
 public class Row {
     private final String name;
-    private final ArrayList<Card> cards = new ArrayList<>();
+    private final ArrayList<DecksCard> cards = new ArrayList<>();
     private int rowPoint = 0;
-    private Card specialCard = null;
+    private SpecialCard specialCard = null;
     private boolean hasBonus = false;
     private int extraPoint = 0;
     private boolean isDamaged = false;
@@ -20,7 +24,7 @@ public class Row {
         return name;
     }
 
-    public ArrayList<Card> getCards() {
+    public ArrayList<DecksCard> getCards() {
         return cards;
     }
 
@@ -32,11 +36,11 @@ public class Row {
         this.rowPoint = rowPoint;
     }
 
-    public Card getSpecialCard() {
+    public SpecialCard getSpecialCard() {
         return specialCard;
     }
 
-    public void setSpecialCard(Card specialCard) {
+    public void setSpecialCard(SpecialCard specialCard) {
         this.specialCard = specialCard;
     }
 

@@ -1,15 +1,12 @@
+
 package model;
-
-import enums.Error;
-
-import javax.swing.*;
 
 public class Result {
     private final String message;
     private final boolean isSuccessful;
     private final Error error;
 
-    public Result(boolean isSuccessful, Error error, String message) {
+    public Result(String message, boolean isSuccessful, boolean needFurtherInput, Error error) {
         this.message = message;
         this.isSuccessful = isSuccessful;
         this.error = error;
@@ -19,6 +16,9 @@ public class Result {
         return isSuccessful;
     }
 
+    public Error getError() {
+        return error;
+    }
 
     @Override
     public String toString() {

@@ -1,4 +1,6 @@
+
 package model.card;
+
 import model.Faction;
 import model.ability.LeaderAbility;
 
@@ -7,7 +9,7 @@ public class Leader extends Card {
     private final LeaderAbility leaderAbility;
 
     public Leader(String name, String explanation, Faction faction, LeaderAbility leaderAbility) {
-        super(name, explanation, faction, true);
+        super(name, explanation, faction);
         this.leaderAbility = leaderAbility;
     }
 
@@ -18,7 +20,8 @@ public class Leader extends Card {
     public void setUsedAbility(boolean usedAbility) {
         isUsedAbility = usedAbility;
     }
-    public LeaderAbility getLeaderAbility(){
+
+    public LeaderAbility getLeaderAbility() {
         return this.leaderAbility;
     }
 }

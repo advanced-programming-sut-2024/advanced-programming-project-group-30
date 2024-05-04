@@ -4,12 +4,11 @@ import enums.Menu;
 
 import java.util.ArrayList;
 
-public abstract class App {
+public class App {
     private static Menu currentMenu;
     private static Game currentGame;
     private static User loggedInUser;
     private static final ArrayList<User> allUsers = new ArrayList<>();
-    private static final ArrayList<String> securityQuestions = new ArrayList<>();
 
     public static Menu getCurrentMenu() {
         return currentMenu;
@@ -48,10 +47,6 @@ public abstract class App {
             if (user.getUsername().equals(username)) return user;
         return null;
 
-    }
-
-    public String getListOfSecurityQuestions() {
-        return null;
     }
 
     public static int getUserRank() {
