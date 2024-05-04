@@ -1,7 +1,7 @@
 package enums;
 
 public enum Error {
-    INVALID_USERNAME("", "001");
+    INVALID_USERNAME("  ","001");
 
     public final String message;
     public final String code;
