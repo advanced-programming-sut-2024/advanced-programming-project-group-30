@@ -34,11 +34,11 @@ public class App {
         App.currentGame = currentGame;
     }
 
-    public void addUser(User user) {
+    public static void addUser(User user) {
         allUsers.add(user);
     }
 
-    public void removeUser(User user) {
+    public static void removeUser(User user) {
         allUsers.remove(user);
     }
 

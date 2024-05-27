@@ -4,6 +4,7 @@ import model.Result;
 
 public class LoginMenuController {
     public Result login(String username, String password, String stayLoggedInTag) {
+
         return null;
     }
 

@@ -3,6 +3,7 @@ package controller;
 import enums.RegisterMenuCheck;
 import model.App;
 import model.Result;
+import model.User;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,6 +19,11 @@ public class RegisterMenuController {
     private static String PASSWORD_ALL_CHARACTERS = PASSWORD_UPPERCASE_LETTERS + PASSWORD_LOWERCASE_LETTERS + PASSWORD_NUMBERS + PASSWORD_SPECIAL_CHARACTERS;
 
     public void register(String username, String password, String passwordConfirm, String nickname, String email) {
+        //TODO: check if all inputs are ok and then register
+        User user = new User(username, password, email, nickname);
+        App.addUser(user);
+        //TODO: set security questions for user
+
 
 
     }
@@ -64,7 +70,6 @@ public class RegisterMenuController {
 
     public String createRandomPassword() {
         List<Character> password = new ArrayList<>();
-
         password.add(PASSWORD_LOWERCASE_LETTERS.charAt(random.nextInt(PASSWORD_LOWERCASE_LETTERS.length())));
         password.add(PASSWORD_UPPERCASE_LETTERS.charAt(random.nextInt(PASSWORD_UPPERCASE_LETTERS.length())));
         password.add(PASSWORD_NUMBERS.charAt(random.nextInt(PASSWORD_NUMBERS.length())));
@@ -84,10 +89,6 @@ public class RegisterMenuController {
     }
 
     public Result pickQuestion(int questionNumber, String answer, String answerConfirmation) {
-        return null;
-    }
-
-    public Result enterMenu(String menuName) {
         return null;
     }
 
