@@ -42,7 +42,7 @@ public class App {
         allUsers.remove(user);
     }
 
-    public User getUserByUsername(String username) {
+    public static User getUserByUsername(String username) {
         for (User user : allUsers)
             if (user.getUsername().equals(username)) return user;
         return null;
