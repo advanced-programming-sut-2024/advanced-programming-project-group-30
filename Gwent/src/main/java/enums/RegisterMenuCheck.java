@@ -7,7 +7,7 @@ public enum RegisterMenuCheck {
     VALID_USERNAME("[a-zA-Z0-9_]+"),
     STRONG_PASSWORD("(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]){8,}"),
     VALID_PASSWORD("[a-zA-Z0-9!@#$%^&*]+"),
-    VALID_EMAIL("\\S");
+    VALID_EMAIL("[A-Za-z0-9+_.-]+@(.+)");
 
 
     private String regex;

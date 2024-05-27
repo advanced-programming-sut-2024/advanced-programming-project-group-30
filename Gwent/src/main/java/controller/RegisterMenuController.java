@@ -23,9 +23,6 @@ public class RegisterMenuController {
         User user = new User(username, password, email, nickname);
         App.addUser(user);
         //TODO: set security questions for user
-
-
-
     }
     private static Result checkInformation(String username, String password, String passwordConfirm, String nickname, String email) {
 
