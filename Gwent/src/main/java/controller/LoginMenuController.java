@@ -1,6 +1,7 @@
 package controller;
 
 import enums.Menu;
+import enums.SecurityQuestion;
 import model.App;
 import model.Result;
 import model.User;
@@ -20,20 +21,24 @@ public class LoginMenuController {
         return (password.equals(user.getPassword()));
     }
 
-
-
     public Result checkUsernameForForgetPassword(String username) {
         return null;
     }
 
-    public Result checkAnswerOfSecurityQuestion(String username, int questionNumber, String answer) {
-        return null;
+    public boolean checkAnswerOfSecurityQuestion(String username, int questionNumber, String answer) {
+        SecurityQuestion securityQuestion = SecurityQuestion.values()[questionNumber];
+        User user = App.getUserByUsername(username);
+        assert user != null;
+        return user.getSecurityQuestions().get(securityQuestion).equals(answer);
     }
 
-
-    public Result enterRegisterMenu() {
+    public Result changePassword(String password) {
+        User user = App.getLoggedInUser();
+        user.setPassword(password);
+        return new Result(true, "Password changed successfully");
+    }
+    public void enterRegisterMenu() {
         App.setCurrentMenu(Menu.REGISTER_MENU);
-        return null;
     }
 
     public Result exitMenu() {

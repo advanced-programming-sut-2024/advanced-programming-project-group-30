@@ -8,8 +8,6 @@ public enum Error {
     WRONG_PASSWORD_CONFIRMATION("Password and confirmation don't match", "005"),
     INVALID_EMAIL("Invalid email format", "006");
 
-
-
     public final String explanation;
     public final String code;
 

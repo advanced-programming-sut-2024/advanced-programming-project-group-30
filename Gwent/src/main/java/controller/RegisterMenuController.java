@@ -1,6 +1,8 @@
 package controller;
 
+import enums.Menu;
 import enums.RegisterMenuCheck;
+import enums.SecurityQuestion;
 import model.App;
 import model.Result;
 import model.User;
@@ -18,15 +20,35 @@ public class RegisterMenuController {
     private static String PASSWORD_SPECIAL_CHARACTERS = "!@#$%^&*";
     private static String PASSWORD_ALL_CHARACTERS = PASSWORD_UPPERCASE_LETTERS + PASSWORD_LOWERCASE_LETTERS + PASSWORD_NUMBERS + PASSWORD_SPECIAL_CHARACTERS;
 
-    public void register(String username, String password, String passwordConfirm, String nickname, String email) {
+    private static void register(String username, String password, String passwordConfirm, String nickname, String email) {
         //TODO: check if all inputs are ok and then register
         User user = new User(username, password, email, nickname);
         App.addUser(user);
         //TODO: set security questions for user
     }
-    private static Result checkInformation(String username, String password, String passwordConfirm, String nickname, String email) {
-
-        return null;
+    public static Result checkInformation(String username, String password, String passwordConfirm, String nickname, String email) {
+        if (!isUsernameUnique(username)) {
+            String suggestedUsername = createUniqueUserName(username);
+            return new Result(false, "Username already exists. Suggested username: " + suggestedUsername);
+        }
+        if (!isUsernameValid(username)) {
+            return new Result(false, "Invalid username");
+        }
+        if (!checkPasswordValidation(password)) {
+            return new Result(false, "Invalid password");
+        }
+        if (!checkPasswordWeakness(password)) {
+            return new Result(false, "Weak password");
+        }
+        if (!password.equals(passwordConfirm)) {
+            return new Result(false, "Passwords do not match");
+        }
+        if (!checkEmail(email)) {
+            return new Result(false, "Invalid email");
+        }
+        //after all checks are passed, register the user
+        register(username, password, passwordConfirm, nickname, email);
+        return new Result(true, "Registered successfully");
     }
     private static boolean isUsernameUnique(String username) {
         return App.getUserByUsername(username) != null;
@@ -45,7 +67,7 @@ public class RegisterMenuController {
         return RegisterMenuCheck.VALID_EMAIL.getMatcher(email).matches();
     }
 
-    public String createUniqueUserName(String duplicateUsername) {
+    private static String createUniqueUserName(String duplicateUsername) {
         StringBuilder duplicateUsernameBuilder = new StringBuilder(duplicateUsername);
         for (char c : duplicateUsername.toCharArray()){
             duplicateUsernameBuilder.append(c);
@@ -65,7 +87,7 @@ public class RegisterMenuController {
         return duplicateUsernameBuilder.toString();
     }
 
-    public String createRandomPassword() {
+    public Result createRandomPassword() {
         List<Character> password = new ArrayList<>();
         password.add(PASSWORD_LOWERCASE_LETTERS.charAt(random.nextInt(PASSWORD_LOWERCASE_LETTERS.length())));
         password.add(PASSWORD_UPPERCASE_LETTERS.charAt(random.nextInt(PASSWORD_UPPERCASE_LETTERS.length())));
@@ -82,14 +104,21 @@ public class RegisterMenuController {
         for (char c : password) {
             passwordString.append(c);
         }
-        return passwordString.toString();
+        App.getLoggedInUser().setPassword(passwordString.toString());
+        return new Result(true, passwordString.toString());
     }
 
     public Result pickQuestion(int questionNumber, String answer, String answerConfirmation) {
-        return null;
+        User user = App.getLoggedInUser();
+        if (!answer.equals(answerConfirmation)) {
+            return new Result(false, "Answers do not match");
+        }
+        SecurityQuestion securityQuestion = SecurityQuestion.values()[questionNumber];
+        user.addToSecurityQuestions(securityQuestion, answer);
+        return new Result(true, "Question added successfully");
     }
 
-    public Result exitMenu() {
-        return null;
+    public void exitMenu() {
+        App.setCurrentMenu(Menu.LOGIN_MENU);
     }
 }
