@@ -1,10 +1,13 @@
 package view;
 
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 import java.util.Scanner;
 
-public class MainMenu implements Menu{
-    @Override
-    public void run(Scanner scanner) {
+public class MainMenu extends Menu{
 
-    }
+
 }
