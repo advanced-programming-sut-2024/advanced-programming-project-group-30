@@ -3,22 +3,18 @@ package controller;
 import enums.Menu;
 import model.App;
 import model.Game;
-import model.Result;
 
 public class MainMenuController {
-    public Result logout() {
+    public void logout() {
         App.setLoggedInUser(null);
         App.setCurrentMenu(Menu.LOGIN_MENU);
-        return null;
     }
-
-    public Result enterGameMenu(String menuName) {
+    public void enterGameMenu() {
         Game game = new Game();
         App.setCurrentGame(game);
-        return null;
+        App.setCurrentMenu(Menu.GAME_MENU);
     }
-    public Result enterProfileMenu(String menuName) {
+    public void enterProfileMenu() {
         App.setCurrentMenu(Menu.PROFILE_MENU);
-        return null;
     }
 }
