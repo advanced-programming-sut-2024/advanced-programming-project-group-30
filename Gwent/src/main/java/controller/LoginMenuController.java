@@ -8,15 +8,16 @@ import model.User;
 
 public class LoginMenuController {
     public Result login(String username, String password, String stayLoggedInTag) {
-
         User user = App.getUserByUsername(username);
         App.setLoggedInUser(user);
         return null;
     }
-    private static boolean doesUsernameExist(String username){
+
+    private static boolean doesUsernameExist(String username) {
         return (App.getUserByUsername(username) == null);
     }
-    private static boolean isPasswordCorrect(String username, String password){
+
+    private static boolean isPasswordCorrect(String username, String password) {
         User user = App.getLoggedInUser();
         return (password.equals(user.getPassword()));
     }
@@ -37,6 +38,7 @@ public class LoginMenuController {
         user.setPassword(password);
         return new Result(true, "Password changed successfully");
     }
+
     public void enterRegisterMenu() {
         App.setCurrentMenu(Menu.REGISTER_MENU);
     }
