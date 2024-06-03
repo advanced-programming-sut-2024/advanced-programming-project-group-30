@@ -1,0 +1,4 @@
+.MenusBackground {
+    -fx-background-image: url(../Images/Backgrounds/MenusBackground.jpeg);
+    -fx-background-size: cover;
+}

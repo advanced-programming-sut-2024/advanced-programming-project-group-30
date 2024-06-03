@@ -5,19 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f1724509-8fa7-4a1d-addf-f9c920333c2d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/view/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/CSS/NodeStyle.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/FXML/LoginMenu.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Backgrounds/MenusBackground.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/CSS/Backgrounds.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/LoginMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/LoginMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/gwent/hello-view.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../advanced-programming-project-group-30" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../token" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/CSS/NodeStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/CSS/NodeStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/LoginMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/LoginMenu.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,8 +22,8 @@
         <option value="Enum" />
         <option value="Class" />
         <option value="FxmlFile" />
-        <option value="CSS File" />
         <option value="module-info" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -57,6 +49,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "LoginAndRegisterMenu",
+    "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Fatemeh/Desktop/Uni/AP/tamrin2/AtomicBomber",
     "list.type.of.created.stylesheet": "CSS",
@@ -69,6 +62,13 @@
   }
 }]]></component>
   <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="view.Main" />
+      <module name="Gwent" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -99,6 +99,7 @@
       <updated>1714132697832</updated>
       <workItem from="1716717638958" duration="1314000" />
       <workItem from="1716798562429" duration="5307000" />
+      <workItem from="1717410570450" duration="5762000" />
     </task>
     <servers />
   </component>
