@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane styleClass="MenusBackground" stylesheets="@../CSS/Backgrounds.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.RegisterMenu">
+    <center>
+      <Pane maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="600.0" prefHeight="600.0" prefWidth="600.0">
+         <children>
+              <Pane layoutX="100.0" layoutY="30.0" maxHeight="540.0" maxWidth="400.0" minHeight="540.0" minWidth="400.0" prefHeight="540.0" prefWidth="400.0" styleClass="brownBox" stylesheets="@../CSS/NodeStyle.css">
+                  <Label layoutX="135.0" layoutY="27.0" prefHeight="50.0" prefWidth="135.0" styleClass="beigeTitle" text="Sign up" />
+                  <VBox layoutX="37.0" layoutY="83.0" style="-fx-spacing: 19;">
+                      <TextField minHeight="45.0" prefHeight="45.0" prefWidth="325.0" promptText="username" styleClass="bottomBorderField" />
+                      <PasswordField minHeight="45.0" prefHeight="45.0" prefWidth="325.0" promptText="password" styleClass="bottomBorderField" />
+                      <TextField minHeight="45.0" prefHeight="45.0" prefWidth="325.0" promptText="password confirm" styleClass="bottomBorderField" />
+                      <TextField minHeight="45.0" prefHeight="45.0" prefWidth="325.0" promptText="nickname" styleClass="bottomBorderField" />
+                      <TextField minHeight="45.0" prefHeight="45.0" prefWidth="325.0" promptText="email (Example@email.com)" styleClass="bottomBorderField" />
+                  </VBox>
+                  <Button layoutX="38.0" layoutY="419.0" prefHeight="40.0" prefWidth="325.0" styleClass="buttonWithBeigeBg" text="Continue" />
+                  <Label alignment="CENTER" layoutX="64.0" layoutY="483.0" prefHeight="28.0" prefWidth="203.0" style="-fx-font-size: 17;" styleClass="simpleText" text="Already have an account?" />
+                  <Button layoutX="229.0" layoutY="480.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="126.0" styleClass="boldButtonWithBeigeBg" text="Login" />
+                  <effect>
+                      <Blend mode="COLOR_BURN" opacity="0.2" />
+                  </effect>
+              </Pane>
+         </children>
+      </Pane>
+    </center>
+</BorderPane>
