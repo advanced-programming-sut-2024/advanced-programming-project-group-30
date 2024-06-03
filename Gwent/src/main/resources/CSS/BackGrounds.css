@@ -1,3 +1,4 @@
-.login-menu{
-    -fx-background: url("/Images/BackGround1.png");
+.MenusBackground {
+    -fx-background-image: url("../Images/Backgrounds/MenusBackground.jpeg");
+    -fx-background-size: cover;
 }
