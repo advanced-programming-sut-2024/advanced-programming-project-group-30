@@ -18,7 +18,4 @@ public class MainMenuController {
         App.setCurrentMenu(Menu.PROFILE_MENU);
     }
 
-    public void backToLoginMenu() {
-        App.setCurrentMenu(Menu.LOGIN_MENU);
-    }
 }

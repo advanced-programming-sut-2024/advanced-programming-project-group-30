@@ -38,8 +38,4 @@ public class MainMenu extends Menu{
     public void logout(){
         mainMenuController.logout();
     }
-    @FXML
-    public void backToLoginMenu() {
-        mainMenuController.backToLoginMenu();
-    }
 }
