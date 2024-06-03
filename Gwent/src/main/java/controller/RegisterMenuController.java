@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Random;
 
 public class RegisterMenuController {
+    
     private static Random random = new Random();
     private static String PASSWORD_UPPERCASE_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static String PASSWORD_LOWERCASE_LETTERS = "abcdefghijklmnopqrstuvwxyz";
