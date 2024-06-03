@@ -28,7 +28,7 @@ public enum Menu{
     }
 
 
-    public void run(Scanner scanner) {
-        menu.run(scanner);
+    public void run() {
+        menu.run();
     }
 }

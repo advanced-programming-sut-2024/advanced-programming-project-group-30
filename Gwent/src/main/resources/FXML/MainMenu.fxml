@@ -49,19 +49,19 @@
     <center>
         <VBox alignment="CENTER" prefHeight="500.0" prefWidth="839.0" styleClass="MenusBackground" BorderPane.alignment="CENTER">
             <Pane maxHeight="480.0" maxWidth="400.0" minHeight="480.0" minWidth="400.0" prefHeight="480.0" prefWidth="400.0" styleClass="brownBox" stylesheets="@../CSS/NodeStyle.css">
-                <Label alignment="CENTER" layoutX="133.0" layoutY="30.0" styleClass="beigeTitle" prefHeight="46.0" prefWidth="135.0" fx:id="username" textFill="#f3d6b0"/>
-                <Label alignment="CENTER" layoutX="133.0" layoutY="30.0" styleClass="beigeTitle" prefHeight="46.0" prefWidth="135.0" fx:id="nickname" textFill="#f3d6b0"/>
-                <Button layoutX="37.0" layoutY="144.0" mnemonicParsing="false" onAction="#goToProfileMenu" prefHeight="41.0" prefWidth="326.0" styleClass="buttonWithBeigeBg" text="Profile Menu">
+                <Label alignment="CENTER" layoutX="133.0" layoutY="10.0" styleClass="beigeTitle" prefHeight="46.0" prefWidth="135.0" fx:id="username" textFill="#f3d6b0"/>
+                <Label alignment="CENTER" layoutX="133.0" layoutY="50.0" styleClass="beigeTitle" prefHeight="46.0" prefWidth="135.0" fx:id="nickname" textFill="#f3d6b0"/>
+                <Button layoutX="37.0" layoutY="200.0" mnemonicParsing="false" onAction="#goToProfileMenu" prefHeight="41.0" prefWidth="326.0" styleClass="buttonWithBeigeBg" text="Profile Menu">
                     <font>
                         <Font name="Times New Roman Bold" size="20.0" />
                     </font>
                 </Button>
-                <Button layoutX="37.0" layoutY="244.0" mnemonicParsing="false" onAction="#goToPreGameMenu" prefHeight="41.0" prefWidth="326.0" styleClass="buttonWithBeigeBg" text="Pregame Menu">
+                <Button layoutX="37.0" layoutY="280.0" mnemonicParsing="false" onAction="#goToPreGameMenu" prefHeight="41.0" prefWidth="326.0" styleClass="buttonWithBeigeBg" text="Pregame Menu">
                     <font>
                         <Font name="Times New Roman Bold" size="20.0" />
                     </font>
                 </Button>
-                <Button layoutX="37.0" layoutY="344.0" mnemonicParsing="false" onAction="#logout" prefHeight="41.0" prefWidth="326.0" styleClass="buttonWithBeigeBg" text="Logout">
+                <Button layoutX="37.0" layoutY="360.0" mnemonicParsing="false" onAction="#logout" prefHeight="41.0" prefWidth="326.0" styleClass="buttonWithBeigeBg" text="Logout">
                     <font>
                         <Font name="Times New Roman Bold" size="20.0" />
                     </font>
