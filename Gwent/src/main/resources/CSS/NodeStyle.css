@@ -18,3 +18,17 @@
     -fx-background-size: 100% 100%;
     -fx-background-image: url('../Images/Icons/hideIcon.png');
 }
+
+/*checkBoxStyle*/
+
+.check-box .box {
+    -fx-background-color: rgb(158, 132, 96);
+}
+
+.check-box:selected .mark {
+    -fx-background-color: #ffddad;
+}
+
+.check-box:selected .box {
+    -fx-background-color: #b38d59;
+}

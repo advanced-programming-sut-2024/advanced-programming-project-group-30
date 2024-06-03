@@ -25,9 +25,18 @@
                     </font>
                 </TextField>
                 <TextField disable="true" layoutX="226.0" layoutY="154.0" promptText="password" visible="false" />
-                <Button layoutX="167.0" layoutY="344.0" mnemonicParsing="false" text="login" />
-                <Button layoutX="256.0" layoutY="240.0" mnemonicParsing="false" text="forgot password?" />
-                <CheckBox layoutX="71.0" layoutY="291.0" mnemonicParsing="false" text="remember me" />
+                <Button layoutX="37.0" layoutY="305.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="326.0" style="-fx-background-color: f3d6b0; -fx-border-color: rgb(142,106,78); -fx-border-radius: 10; -fx-background-radius: 10; -fx-opacity: 0.85;" text="Login">
+               <font>
+                  <Font name="Times New Roman Bold" size="20.0" />
+               </font></Button>
+                <Button layoutX="241.0" layoutY="232.0" mnemonicParsing="false" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: f3d6b0;" text="forgot password?">
+               <font>
+                  <Font name="Times New Roman" size="15.0" />
+               </font></Button>
+                <CheckBox layoutX="43.0" layoutY="234.0" mnemonicParsing="false" style="-fx-text-fill: f3d6b0;" text="remember me" textFill="#221212">
+               <font>
+                  <Font name="Times New Roman" size="15.0" />
+               </font></CheckBox>
             <ToggleButton layoutX="329.0" layoutY="180.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="29.0" styleClass="showPasswordButton" />
 
                 <effect>
