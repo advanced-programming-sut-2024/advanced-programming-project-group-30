@@ -1,6 +1,5 @@
 package controller;
 
-import enums.Error;
 import enums.Menu;
 import enums.RegisterMenuCheck;
 import enums.SecurityQuestion;
@@ -21,34 +20,35 @@ public class RegisterMenuController {
     private static String PASSWORD_SPECIAL_CHARACTERS = "!@#$%^&*";
     private static String PASSWORD_ALL_CHARACTERS = PASSWORD_UPPERCASE_LETTERS + PASSWORD_LOWERCASE_LETTERS + PASSWORD_NUMBERS + PASSWORD_SPECIAL_CHARACTERS;
 
-    private static void register(String username, String password, String passwordConfirm, String nickname, String email) {
+    private static void register(String username, String password, String passwordConfirm, String nickname, String email, boolean stayLoggedIn){
         //TODO: check if all inputs are ok and then register
-        User user = new User(username, password, email, nickname);
+        User user = new User(username, password, email, nickname, stayLoggedIn);
         App.addUser(user);
         //TODO: set security questions for user
     }
-    public static Result checkInformation(String username, String password, String passwordConfirm, String nickname, String email) {
+    public static Result checkInformation(String username, String password, String passwordConfirm, String nickname, String email, boolean stayLoggedIn) {
         if (!isUsernameUnique(username)) {
-            return new Result(false, Error.REPEATED_USERNAME);
+            String newUsername = createUniqueUserName(username);
+            return new Result(false, "User with the same username already exists. Recommended username:" + newUsername + ".");
         }
         else if (!isUsernameValid(username)) {
-            return new Result(false, Error.INVALID_USERNAME);
+            return new Result(false, "Invalid username format");
         }
         else if (!checkPasswordValidation(password)) {
-            return new Result(false, Error.INVAlID_PASSWORD);
+            return new Result(false, "Invalid password format");
         }
         else if (!checkPasswordWeakness(password)) {
-            return new Result(false, Error.WEAK_PASSWORD);
+            return new Result(false, "Password is too weak!");
         }
         else if (!password.equals(passwordConfirm)) {
-            return new Result(false, Error.WRONG_PASSWORD_CONFIRMATION);
+            return new Result(false, "Password and confirmation don't match");
         }
         else if (!checkEmail(email)){
-            return new Result(false, Error.INVALID_EMAIL);
+            return new Result(false, "Invalid email format");
         }
 
-        register(username, password, passwordConfirm, nickname, email);
-        return new Result(true, Error.REGISTER_SUCCESSFUL);
+        register(username, password, passwordConfirm, nickname, email, stayLoggedIn);
+        return new Result(true, "Registered successfully");
     }
     private static boolean isUsernameUnique(String username) {
         return App.getUserByUsername(username) != null;
@@ -97,7 +97,6 @@ public class RegisterMenuController {
         for (int i = 4; i < 8; i++) {
             password.add(PASSWORD_ALL_CHARACTERS.charAt(random.nextInt(PASSWORD_ALL_CHARACTERS.length())));
         }
-
         Collections.shuffle(password);
 
         StringBuilder passwordString = new StringBuilder();
@@ -111,11 +110,11 @@ public class RegisterMenuController {
     public Result pickQuestion(int questionNumber, String answer, String answerConfirmation) {
         User user = App.getLoggedInUser();
         if (!answer.equals(answerConfirmation)) {
-            return new Result(false, Error.WRONG_ANSWER_CONFIRMATION);
+            return new Result(false, "Answer and confirmation don't match");
         }
         SecurityQuestion securityQuestion = SecurityQuestion.values()[questionNumber];
         user.addToSecurityQuestions(securityQuestion, answer);
-        return new Result(true, Error.SECURITY_QUESTION_DONE);
+        return new Result(true, "Security question added successfully");
     }
 
     public void exitMenu() {

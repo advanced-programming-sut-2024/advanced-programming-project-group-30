@@ -7,22 +7,28 @@ import model.Result;
 import model.User;
 
 public class LoginMenuController {
-    public Result login(String username, String password, String stayLoggedInTag) {
-
+    public void login(String username, String password, String stayLoggedInTag) {
         User user = App.getUserByUsername(username);
         App.setLoggedInUser(user);
-        return null;
-    }
-    private static boolean doesUsernameExist(String username){
-        return (App.getUserByUsername(username) == null);
-    }
-    private static boolean isPasswordCorrect(String username, String password){
-        User user = App.getLoggedInUser();
-        return (password.equals(user.getPassword()));
     }
 
-    public Result checkUsernameForForgetPassword(String username) {
-        return null;
+
+
+
+    private static Result doesUsernameExist(String username) {
+        User user = App.getUserByUsername(username);
+        if (user == null) {
+            return new Result(false, "Username does not exist");
+        }
+        return new Result(true, "Username exists");
+    }
+
+    private static Result isPasswordCorrect(String username, String password) {
+        User user = App.getLoggedInUser();
+        if (!user.getPassword().equals(password)) {
+            return new Result(false, "Password is incorrect");
+        }
+        return new Result(true, "Password is correct");
     }
 
     public boolean checkAnswerOfSecurityQuestion(String username, int questionNumber, String answer) {
@@ -32,16 +38,16 @@ public class LoginMenuController {
         return user.getSecurityQuestions().get(securityQuestion).equals(answer);
     }
 
-    public Result changePassword(String password) {
+    public void changePassword(String password) {
         User user = App.getLoggedInUser();
         user.setPassword(password);
-        return new Result(true, "Password changed successfully");
     }
+
     public void enterRegisterMenu() {
         App.setCurrentMenu(Menu.REGISTER_MENU);
     }
 
-    public Result exitMenu() {
-        return null;
+    public void exitMenu() {
+        System.exit(0);
     }
 }

@@ -10,6 +10,7 @@ public class User {
     private String password;
     private String email;
     private String nickName;
+    private final boolean stayLoggedIn;
     private final HashMap<SecurityQuestion, String> securityQuestions = new HashMap<>();
     private int rank;
     private int wins;
@@ -19,11 +20,12 @@ public class User {
     private final HashMap<String, Faction> factions = new HashMap<>();
     private Faction selectedFaction;
 
-    public User(String username, String password, String email, String nickName) {
+    public User(String username, String password, String email, String nickName, boolean stayLoggedIn) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.nickName = nickName;
+        this.stayLoggedIn = stayLoggedIn;
     }
 
     public String getUsername() {
@@ -111,5 +113,9 @@ public class User {
 
     public void setSelectedFaction(Faction selectedFaction) {
         this.selectedFaction = selectedFaction;
+    }
+
+    public boolean isStayLoggedIn() {
+        return stayLoggedIn;
     }
 }
