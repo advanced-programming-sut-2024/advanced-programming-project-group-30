@@ -14,6 +14,13 @@
     -fx-font-style: italic;
     -fx-font-weight: bold;
 }
+.userInfoLabel {
+    -fx-alignment: center;
+    -fx-text-fill: #f3d6b0;
+    -fx-font-family: 'Brush Script MT', cursive;
+    -fx-font-size: 28;
+    -fx-font-style: italic;
+}
 .bottomBorderField {
     -fx-background-color: transparent;
     -fx-border-style: hidden hidden solid hidden;
@@ -37,13 +44,6 @@
 /*    -fx-background-image: url('../Images/Icons/hideIcon.png');*/
 /*}*/
 
-.buttonWithoutBg {
-    -fx-background-color: TRANSPARENT;
-    -fx-text-fill: f3d6b0;
-    -fx-font-family: "Times New Roman";
-    -fx-font-size: 15;
-}
-
 .buttonWithBeigeBg {
     -fx-background-color: f3d6b0;
     -fx-border-color: rgb(142, 106, 78);
@@ -51,6 +51,21 @@
     -fx-background-radius: 10;
     -fx-opacity: 0.85;
     -fx-font-family: "Times New Roman";
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+}
+.buttonWithoutBg, .simpleText, .boldButtonWithBeigeBg {
+    -fx-background-color: TRANSPARENT;
+    -fx-text-fill: f3d6b0;
+    -fx-font-family: "Times New Roman";
+    -fx-font-size: 15;
+}
+
+.simpleText, .boldButtonWithBeigeBg {
+    -fx-font-style: italic;
+}
+
+.boldButtonWithBeigeBg {
     -fx-font-size: 20;
     -fx-font-weight: bold;
 }

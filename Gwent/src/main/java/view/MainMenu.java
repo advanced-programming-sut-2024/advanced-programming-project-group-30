@@ -2,6 +2,7 @@ package view;
 
 import controller.MainMenuController;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -36,5 +37,9 @@ public class MainMenu extends Menu{
     @FXML
     public void logout(){
         mainMenuController.logout();
+    }
+    @FXML
+    public void backToLoginMenu() {
+        mainMenuController.backToLoginMenu();
     }
 }

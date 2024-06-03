@@ -1,4 +1,6 @@
 .MenusBackground {
-    -fx-background-image: url("../Images/Backgrounds/MenusBackground.jpeg");
+    -fx-background-image: url(../Images/Backgrounds/MenusBackground.jpeg);
     -fx-background-size: cover;
+    -fx-pref-width: 1000;
+    -fx-pref-height: 625;
 }
