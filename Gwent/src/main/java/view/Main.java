@@ -17,7 +17,7 @@ public class Main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader();
         Scene scene = new Scene(fxmlLoader.load(Objects.requireNonNull(Main.class.getResource("/FXML/RegisterMenu.fxml"))));
         stage.setScene(scene);
-        stage.setTitle("Login Menu");
+        stage.setTitle("Gwent");
         stage.show();
     }
 }

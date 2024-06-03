@@ -15,8 +15,8 @@
                 <Button layoutX="242.0" layoutY="240.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="126.0" styleClass="buttonWithoutBg" text="forgot password?" />
                 <CheckBox layoutX="43.0" layoutY="242.0" styleClass="buttonWithoutBg" text="remember me" />
                 <Button layoutX="38.0" layoutY="304.0" prefHeight="40.0" prefWidth="325.0" styleClass="buttonWithBeigeBg" text="Login" />
-                <Label alignment="CENTER" layoutX="101.0" layoutY="379.0" prefHeight="28.0" prefWidth="203.0" style="-fx-font-size: 17;" styleClass="simpleText" text="Don't have an account?" />
-                <Button layoutX="137.0" layoutY="404.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="126.0" styleClass="boldButtonWithBeigeBg" text="Sign up" />
+                <Label alignment="CENTER" layoutX="101.0" layoutY="379.0" prefHeight="28.0" prefWidth="203.0" style="-fx-font-size: 17;" styleClass="italicText" text="Don't have an account?" />
+                <Button layoutX="137.0" layoutY="404.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="126.0" styleClass="boldButtonWithoutBg" text="Sign up" />
                 <effect>
                     <Blend mode="COLOR_BURN" opacity="0.2" />
                 </effect>
