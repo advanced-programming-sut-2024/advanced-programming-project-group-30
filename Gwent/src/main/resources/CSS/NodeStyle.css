@@ -24,6 +24,7 @@
     -fx-text-fill: rgba(243, 214, 176, 1);
     -fx-font-family: "Gabriola";
     -fx-font-size: 24;
+    -fx-padding: 0;
 }
 
 .showPasswordButton {
@@ -38,11 +39,20 @@
     -fx-background-image: url('../Images/Icons/hideIcon.png');
 }
 
-.buttonWithoutBg {
+.buttonWithoutBg, .simpleText, .boldButtonWithBeigeBg {
     -fx-background-color: TRANSPARENT;
     -fx-text-fill: f3d6b0;
     -fx-font-family: "Times New Roman";
     -fx-font-size: 15;
+}
+
+.simpleText, .boldButtonWithBeigeBg {
+    -fx-font-style: italic;
+}
+
+.boldButtonWithBeigeBg {
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
 }
 
 .buttonWithBeigeBg {

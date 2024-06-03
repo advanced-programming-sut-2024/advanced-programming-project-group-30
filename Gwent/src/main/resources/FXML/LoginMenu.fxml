@@ -3,26 +3,22 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="625.0" prefWidth="1000.0" stylesheets="@../CSS/Backgrounds.css" styleClass="MenusBackground"
-            xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.LoginMenu">
+<BorderPane prefHeight="625.0" prefWidth="1000.0" styleClass="MenusBackground" stylesheets="@../CSS/Backgrounds.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.LoginMenu">
     <center>
         <VBox alignment="CENTER" prefHeight="500.0" prefWidth="850.0">
-            <Pane stylesheets="@../CSS/NodeStyle.css" maxHeight="480.0" maxWidth="400.0" minHeight="480.0" minWidth="400.0"
-                  styleClass="brownBox">
-                <Label styleClass="beigeTitle" layoutX="135.0" layoutY="30.0" prefHeight="50.0" prefWidth="135.0" text="Login"/>
-                <TextField layoutX="37.0" layoutY="99.0" minHeight="45.0" prefHeight="45.0" prefWidth="325.0"
-                           promptText="Enter your username" styleClass="bottomBorderField"/>
-                <PasswordField layoutX="38.0" layoutY="168.0" minHeight="45.0" prefHeight="45.0" prefWidth="325.0"
-                               promptText="Enter your password" styleClass="bottomBorderField"/>
-                <ToggleButton layoutX="329.0" layoutY="180.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="29.0"
-                              styleClass="showPasswordButton"/>
-                <Button styleClass="buttonWithoutBg" layoutX="241.0" layoutY="232.0" mnemonicParsing="false" text="forgot password?"/>
-                <CheckBox styleClass="buttonWithoutBg" layoutX="43.0" layoutY="234.0" text="remember me"/>
-                <Button styleClass="buttonWithBeigeBg" layoutX="37.0" layoutY="305.0" prefHeight="40.0" prefWidth="325.0" text="Login"/>
+            <Pane maxHeight="480.0" maxWidth="400.0" minHeight="480.0" minWidth="400.0" styleClass="brownBox" stylesheets="@../CSS/NodeStyle.css">
+                <Label layoutX="135.0" layoutY="30.0" prefHeight="50.0" prefWidth="135.0" styleClass="beigeTitle" text="Login" />
+                <TextField layoutX="37.0" layoutY="98.0" minHeight="45.0" prefHeight="45.0" prefWidth="325.0" promptText="Enter your username" styleClass="bottomBorderField" />
+                <PasswordField layoutX="38.0" layoutY="169.0" minHeight="45.0" prefHeight="45.0" prefWidth="325.0" promptText="Enter your password" styleClass="bottomBorderField" />
+                <ToggleButton layoutX="329.0" layoutY="181.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="29.0" styleClass="showPasswordButton" />
+                <Button layoutX="242.0" layoutY="240.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="126.0" styleClass="buttonWithoutBg" text="forgot password?" />
+                <CheckBox layoutX="43.0" layoutY="242.0" styleClass="buttonWithoutBg" text="remember me" />
+                <Button layoutX="38.0" layoutY="304.0" prefHeight="40.0" prefWidth="325.0" styleClass="buttonWithBeigeBg" text="Login" />
+                <Label alignment="CENTER" layoutX="101.0" layoutY="379.0" prefHeight="28.0" prefWidth="203.0" style="-fx-font-size: 17;" styleClass="simpleText" text="Don't have an account?" />
+                <Button layoutX="137.0" layoutY="404.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="126.0" styleClass="boldButtonWithBeigeBg" text="Sign up" />
                 <effect>
-                    <Blend mode="COLOR_BURN" opacity="0.2"/>
+                    <Blend mode="COLOR_BURN" opacity="0.2" />
                 </effect>
             </Pane>
         </VBox>
