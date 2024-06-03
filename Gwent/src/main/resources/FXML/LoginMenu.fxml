@@ -4,7 +4,7 @@
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="625.0" prefWidth="1000.0" styleClass="MenusBackground" stylesheets="@../CSS/Backgrounds.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.LoginMenu">
+<BorderPane styleClass="MenusBackground" stylesheets="@../CSS/Backgrounds.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.LoginMenu">
     <center>
         <VBox alignment="CENTER" prefHeight="500.0" prefWidth="850.0">
             <Pane maxHeight="480.0" maxWidth="400.0" minHeight="480.0" minWidth="400.0" styleClass="brownBox" stylesheets="@../CSS/NodeStyle.css">
