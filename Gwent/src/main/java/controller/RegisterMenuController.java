@@ -1,5 +1,6 @@
 package controller;
 
+import enums.Error;
 import enums.Menu;
 import enums.RegisterMenuCheck;
 import enums.SecurityQuestion;
@@ -28,27 +29,26 @@ public class RegisterMenuController {
     }
     public static Result checkInformation(String username, String password, String passwordConfirm, String nickname, String email) {
         if (!isUsernameUnique(username)) {
-            String suggestedUsername = createUniqueUserName(username);
-            return new Result(false, "Username already exists. Suggested username: " + suggestedUsername);
+            return new Result(false, Error.REPEATED_USERNAME);
         }
-        if (!isUsernameValid(username)) {
-            return new Result(false, "Invalid username");
+        else if (!isUsernameValid(username)) {
+            return new Result(false, Error.INVALID_USERNAME);
         }
-        if (!checkPasswordValidation(password)) {
-            return new Result(false, "Invalid password");
+        else if (!checkPasswordValidation(password)) {
+            return new Result(false, Error.INVAlID_PASSWORD);
         }
-        if (!checkPasswordWeakness(password)) {
-            return new Result(false, "Weak password");
+        else if (!checkPasswordWeakness(password)) {
+            return new Result(false, Error.WEAK_PASSWORD);
         }
-        if (!password.equals(passwordConfirm)) {
-            return new Result(false, "Passwords do not match");
+        else if (!password.equals(passwordConfirm)) {
+            return new Result(false, Error.WRONG_PASSWORD_CONFIRMATION);
         }
-        if (!checkEmail(email)) {
-            return new Result(false, "Invalid email");
+        else if (!checkEmail(email)){
+            return new Result(false, Error.INVALID_EMAIL);
         }
-        //after all checks are passed, register the user
+
         register(username, password, passwordConfirm, nickname, email);
-        return new Result(true, "Registered successfully");
+        return new Result(true, Error.REGISTER_SUCCESSFUL);
     }
     private static boolean isUsernameUnique(String username) {
         return App.getUserByUsername(username) != null;
@@ -87,7 +87,7 @@ public class RegisterMenuController {
         return duplicateUsernameBuilder.toString();
     }
 
-    public Result createRandomPassword() {
+    public String createRandomPassword() {
         List<Character> password = new ArrayList<>();
         password.add(PASSWORD_LOWERCASE_LETTERS.charAt(random.nextInt(PASSWORD_LOWERCASE_LETTERS.length())));
         password.add(PASSWORD_UPPERCASE_LETTERS.charAt(random.nextInt(PASSWORD_UPPERCASE_LETTERS.length())));
@@ -105,17 +105,17 @@ public class RegisterMenuController {
             passwordString.append(c);
         }
         App.getLoggedInUser().setPassword(passwordString.toString());
-        return new Result(true, passwordString.toString());
+        return passwordString.toString();
     }
 
     public Result pickQuestion(int questionNumber, String answer, String answerConfirmation) {
         User user = App.getLoggedInUser();
         if (!answer.equals(answerConfirmation)) {
-            return new Result(false, "Answers do not match");
+            return new Result(false, Error.WRONG_ANSWER_CONFIRMATION);
         }
         SecurityQuestion securityQuestion = SecurityQuestion.values()[questionNumber];
         user.addToSecurityQuestions(securityQuestion, answer);
-        return new Result(true, "Question added successfully");
+        return new Result(true, Error.SECURITY_QUESTION_DONE);
     }
 
     public void exitMenu() {

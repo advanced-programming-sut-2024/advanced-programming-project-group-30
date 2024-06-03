@@ -4,8 +4,8 @@ import enums.Error;
 
 public class Result {
     private final boolean isSuccessful;
-    private final String errorCode;
-    public Result(boolean isSuccessful, String errorCode) {
+    private final Error errorCode;
+    public Result(boolean isSuccessful, Error errorCode) {
         this.isSuccessful = isSuccessful;
         this.errorCode = errorCode;
     }
@@ -15,7 +15,7 @@ public class Result {
     public boolean isSuccessful() {
         return isSuccessful;
     }
-    public String getErrorCode() {
+    public Error getErrorCode() {
         return errorCode;
     }
 
