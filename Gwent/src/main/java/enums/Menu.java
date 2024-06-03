@@ -8,11 +8,11 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public enum Menu{
-//    LOGIN_MENU(new LoginMenu()),
-    MAIN_MENU("/FXML/MainMenu.fxml"),;
-//    GAME_MENU(new GameMenu()),
-//    PROFILE_MENU(new ProfileMenu()),
-//    REGISTER_MENU(new RegisterMenu());
+    LOGIN_MENU("/FXML/LoginMenu.fxml"),
+    MAIN_MENU("/FXML/MainMenu.fxml"),
+    GAME_MENU("/FXML/GameMenu.fxml"),
+    PROFILE_MENU("/FXML/ProfileMenu.fxml"),
+    REGISTER_MENU("/FXML/RegisterMenu.fxml");
 
     private final Scene scene;
     private final view.Menu menu;
