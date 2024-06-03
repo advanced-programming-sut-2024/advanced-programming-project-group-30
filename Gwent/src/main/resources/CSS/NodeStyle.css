@@ -7,7 +7,14 @@
     -fx-text-fill: rgba(243, 214, 176, 1);
 }
 
-/*.showPasswordButton {*/
-/*    -fx-background-size: 100% 100%;*/
-/*    -fx-background-image: url;*/
-/*}*/
+.showPasswordButton {
+    -fx-background-color: TRANSPARENT;
+    -fx-background-size: 100% 100%;
+    -fx-background-image: url('../Images/Icons/showIcon.png');
+}
+
+.showPasswordButton:selected {
+    -fx-background-color: TRANSPARENT;
+    -fx-background-size: 100% 100%;
+    -fx-background-image: url('../Images/Icons/hideIcon.png');
+}
