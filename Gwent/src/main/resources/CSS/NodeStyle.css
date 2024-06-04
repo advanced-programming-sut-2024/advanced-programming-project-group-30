@@ -22,8 +22,8 @@
     -fx-border-color: rgba(243, 214, 176, 0.6);
     -fx-prompt-text-fill: rgba(243, 214, 176, 0.75);
     -fx-text-fill: rgba(243, 214, 176, 1);
-    -fx-font-family: "Gabriola";
-    -fx-font-size: 24;
+    -fx-font-family: "Times New Roman";
+    -fx-font-size: 20;
     -fx-padding: 0;
 }
 
@@ -39,7 +39,7 @@
     -fx-background-image: url('../Images/Icons/hideIcon.png');
 }
 
-.buttonWithoutBg, .italicText, .simpleText, .boldButtonWithoutBg {
+.buttonWithoutBg, .italicText, .simpleText, .brownCheckBox, .boldButtonWithoutBg {
     -fx-background-color: TRANSPARENT;
     -fx-text-fill: f3d6b0;
     -fx-font-family: "Times New Roman";
@@ -48,6 +48,18 @@
 
 .italicText, .boldButtonWithoutBg {
     -fx-font-style: italic;
+}
+
+.brownCheckBox .box {
+    -fx-background-color: rgb(158, 132, 96);
+}
+
+.brownCheckBox:selected .mark {
+    -fx-background-color: #ffddad;
+}
+
+.brownCheckBox:selected .box {
+    -fx-background-color: #b38d59;
 }
 
 .boldButtonWithoutBg {
@@ -82,6 +94,10 @@
     -fx-text-fill: rgb(195, 174, 148);
 }
 
+.blackBgChooseBox {
+    -fx-mark-color: #73614d;
+}
+
 .blackBgChooseBox .label {
     -fx-padding: 8 40 8 15;
     -fx-text-fill: #C3AE94FF;
@@ -100,16 +116,4 @@
 .blackBgChooseBox .menu-item > .label {
     -fx-text-fill: #C3AE94FF;
     -fx-font-size: 16;
-}
-
-.check-box .box {
-    -fx-background-color: rgb(158, 132, 96);
-}
-
-.check-box:selected .mark {
-    -fx-background-color: #ffddad;
-}
-
-.check-box:selected .box {
-    -fx-background-color: #b38d59;
 }
