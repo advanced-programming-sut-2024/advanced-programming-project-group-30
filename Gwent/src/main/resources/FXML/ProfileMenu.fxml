@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane minHeight="500.0" minWidth="800.0" prefHeight="625.0" prefWidth="890.0" stylesheets="@../CSS/BackGrounds.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ProfileMenu">
+   <center>
+        <VBox alignment="CENTER" prefHeight="500.0" prefWidth="700.0" styleClass="MenusBackground" BorderPane.alignment="CENTER">
+            <Pane maxHeight="480.0" maxWidth="350.0" minHeight="480.0" minWidth="350.0" prefHeight="480.0" prefWidth="400.0" stylesheets="@../CSS/NodeStyle.css">
+            <TabPane layoutY="-28.0" prefHeight="511.0" prefWidth="351.0" styleClass="tab-header-background" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                  <Tab text="User Information" onSelectionChanged="#showUserInfo">
+                      <content>
+                          <Pane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                              <effect>
+                                  <Blend mode="COLOR_BURN" opacity="0.2" />
+                              </effect>
+                              <children>
+                              </children>
+                          </Pane>
+                      </content>
+                  </Tab>
+                  <Tab text="Edit Profile" onSelectionChanged="#editProfile">
+                      <content>
+                          <Pane minHeight="0.0" minWidth="0.0" prefHeight="529.0" prefWidth="351.0">
+                              <effect>
+                                  <Blend mode="COLOR_BURN" opacity="0.2" />
+                              </effect>
+                           <children>
+                              <Button layoutX="132.0" layoutY="400.0" onAction="#saveChanges" mnemonicParsing="false" styleClass="buttonWithBeigeBg" text="Save Changes" />
+                              <VBox layoutX="57.0" layoutY="22.0" prefHeight="73.0" prefWidth="237.0">
+                                 <children>
+                                    <TextField styleClass="bottomBorderField" fx:id="username" />
+                                    <Label prefHeight="17.0" prefWidth="132.0" fx:id="usernameErrorField"/>
+                                 </children>
+                              </VBox>
+                              <VBox layoutX="57.0" layoutY="112.0" prefHeight="73.0" prefWidth="237.0">
+                                 <children>
+                                    <TextField styleClass="bottomBorderField" fx:id="nickname"/>
+                                    <Label prefHeight="17.0" prefWidth="132.0" />
+                                 </children>
+                              </VBox>
+                              <VBox layoutX="57.0" layoutY="202.0" prefHeight="73.0" prefWidth="237.0">
+                                 <children>
+                                    <TextField styleClass="bottomBorderField" fx:id="email"/>
+                                    <Label prefHeight="17.0" prefWidth="132.0" />
+                                 </children>
+                              </VBox>
+                              <VBox layoutX="57.0" layoutY="292.0" prefHeight="73.0" prefWidth="237.0">
+                                 <children>
+                                    <TextField styleClass="bottomBorderField" />
+                                    <Label prefHeight="17.0" prefWidth="132.0" />
+                                 </children>
+                              </VBox>
+                           </children>
+                          </Pane>
+                      </content>
+                  </Tab>
+                  <Tab text="Game History" onSelectionChanged="#showGameHistory">
+                      <content>
+                          <Pane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                              <effect>
+                                  <Blend mode="COLOR_BURN" opacity="0.2" />
+                              </effect>
+                           <children>
+                           </children>
+                          </Pane>
+                      </content>
+                  </Tab>
+              </tabs>
+            </TabPane>
+
+
+            </Pane>
+        </VBox>
+   </center>
+</BorderPane>

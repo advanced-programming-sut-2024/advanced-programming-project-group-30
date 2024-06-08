@@ -1,33 +1,38 @@
 package controller;
 
+import enums.RegisterMenuCheck;
+import model.App;
 import model.Result;
 
 public class ProfileMenuController {
-    public Result changeUsername(String newUsername) {
+
+    private static boolean isUsernameTheSame(String username){
+        return App.getLoggedInUser().getUsername().equals(username);
+    }
+    private static boolean isUsernameValid(String username){
+        return RegisterMenuCheck.VALID_USERNAME.getMatcher(username).matches();
+    }
+    public void changeUsername(String newUsername) {
+
+    }
+
+    public void changeNickname(String newNickname) {
+
+    }
+
+    public void changePassword(String currentPassword, String newPassword) {
+
+    }
+
+    public void changeEmail(String newEmail) {
+
+    }
+
+    public String showGameHistory(String numberString) {
+        return null;
+    }
+    public String showInformation(){
         return null;
     }
 
-    public Result changeNickname(String newNickname) {
-        return null;
-    }
-
-    public Result changePassword(String currentPassword, String newPassword) {
-        return null;
-    }
-
-    public Result changeEmail(String newEmail) {
-        return null;
-    }
-
-    public Result showGameHistory(String numberString) {
-        return null;
-    }
-
-    public Result enterMenu(String menuName) {
-        return null;
-    }
-
-    public Result exitMenu() {
-        return null;
-    }
 }

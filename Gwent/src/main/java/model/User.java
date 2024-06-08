@@ -61,6 +61,9 @@ public class User {
     public HashMap<SecurityQuestion, String> getSecurityQuestions() {
         return securityQuestions;
     }
+    public void addToSecurityQuestions(SecurityQuestion securityQuestion, String answer) {
+        securityQuestions.put(securityQuestion, answer);
+    }
 
     public int getRank() {
         return rank;
@@ -108,5 +111,9 @@ public class User {
 
     public void setSelectedFaction(Faction selectedFaction) {
         this.selectedFaction = selectedFaction;
+    }
+
+    public String getNickname() {
+        return nickName;
     }
 }

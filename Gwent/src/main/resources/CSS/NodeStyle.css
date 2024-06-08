@@ -1,0 +1,132 @@
+.brownBox {
+    -fx-background-color: rgba(21, 17, 15, 0.85);
+    -fx-background-radius: 20;
+    -fx-border-width: 1;
+    -fx-border-color: rgb(101, 88, 71);
+    -fx-border-radius: 20;
+    -fx-opacity: 0.9;
+}
+
+.beigeTitle {
+    -fx-alignment: center;
+    -fx-text-fill: #f3d6b0;
+    -fx-font-family: "Times New Roman";
+    -fx-font-size: 32;
+    -fx-font-style: italic;
+    -fx-font-weight: bold;
+}
+.userInfoLabel {
+    -fx-alignment: center;
+    -fx-text-fill: #f3d6b0;
+    -fx-font-family: 'Brush Script MT', cursive;
+    -fx-font-size: 28;
+    -fx-font-style: italic;
+}
+.bottomBorderField {
+    -fx-background-color: transparent;
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-border-width: 1;
+    -fx-border-color: rgba(243, 214, 176, 0.6);
+    -fx-prompt-text-fill: rgba(243, 214, 176, 0.75);
+    -fx-text-fill: rgba(243, 214, 176, 1);
+    -fx-font-family: "Gabriola";
+    -fx-font-size: 24;
+}
+
+/*.showPasswordButton {*/
+/*    -fx-background-color: transparent;*/
+/*    -fx-background-size: 100% 100%;*/
+/*    -fx-background-image: url('../Images/Icons/showIcon.png');*/
+/*}*/
+
+/*.showPasswordButton:selected {*/
+/*    -fx-background-color: TRANSPARENT;*/
+/*    -fx-background-size: 100% 100%;*/
+/*    -fx-background-image: url('../Images/Icons/hideIcon.png');*/
+/*}*/
+
+.buttonWithBeigeBg {
+    -fx-background-color: f3d6b0;
+    -fx-border-color: rgb(142, 106, 78);
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-opacity: 0.85;
+    -fx-font-family: "Times New Roman";
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+}
+.buttonWithoutBg, .simpleText, .boldButtonWithBeigeBg {
+    -fx-background-color: TRANSPARENT;
+    -fx-text-fill: f3d6b0;
+    -fx-font-family: "Times New Roman";
+    -fx-font-size: 15;
+}
+
+.simpleText, .boldButtonWithBeigeBg {
+    -fx-font-style: italic;
+}
+
+.boldButtonWithBeigeBg {
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+}
+
+/*checkBoxStyle*/
+
+.check-box .box {
+    -fx-background-color: rgb(158, 132, 96);
+}
+.check-box:selected .mark {
+    -fx-background-color: #ffddad;
+}
+.check-box:selected .box {
+    -fx-background-color: #b38d59;
+}
+.tab-pane:top .tab-header-area {
+    -fx-background-color: TRANSPARENT;
+    -fx-border-width: 1;
+    -fx-border-radius: 20px;
+}
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 0;
+}
+
+.tab-pane
+{
+    -fx-background-color: rgba(21, 17, 15, 0.85);
+    -fx-tab-min-width:90px;
+}
+
+.tab{
+    -fx-background-insets: 1 1 0 1,0,0;
+}
+.tab-pane .tab
+{
+    -fx-background-color: rgba(21, 17, 15, 0.85);
+
+}
+
+.tab-pane .tab:selected{
+    -fx-background-color: rgba(21, 17, 15, 0.85);
+    /*-fx-border-color: rgba(243, 214, 176, 0.6);*/
+    -fx-focus-color: rgba(243, 214, 176, 0.6);
+    /*-fx-*/
+    /*-fx-border-radius: 20px;*/
+}
+
+.tab .tab-label {
+    -fx-alignment: CENTER;
+    -fx-text-fill: #3c3c3c;
+    -fx-font-size: 14px;
+    -fx-border-radius: 20px;
+    -fx-font-weight: bold;
+}
+
+/*.tab:selected .tab-label {*/
+/*    -fx-alignment: CENTER;*/
+/*    -fx-text-fill: #3c3c3c;*/
+/*}*/
+/*.tab-header-area:focused {*/
+/*    -fx-background-color: rgba(21, 17, 15, 0.85);*/
+/*    -fx-border-color: rgba(21, 17, 15, 0.85);*/
+/*}*/

@@ -2,7 +2,10 @@ package view;
 
 import java.util.Scanner;
 
-public class LoginMenu implements Menu{
-    public void run(Scanner scanner){
+public class LoginMenu extends Menu{
+    @Override
+    public void run(){
+        System.out.println("Login Menu");
     }
+
 }

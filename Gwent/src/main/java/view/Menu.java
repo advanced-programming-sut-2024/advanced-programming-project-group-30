@@ -1,7 +1,10 @@
 package view;
 
+import javafx.fxml.FXML;
+import javafx.scene.Scene;
+
 import java.util.Scanner;
 
-public interface Menu {
-    public void run(Scanner scanner);
+public abstract class Menu {
+    public abstract void run();
 }

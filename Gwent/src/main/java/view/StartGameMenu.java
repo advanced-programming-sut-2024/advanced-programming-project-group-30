@@ -2,7 +2,10 @@ package view;
 
 import java.util.Scanner;
 
-public class StartGameMenu implements Menu{
-    public void run(Scanner scanner){
+public class StartGameMenu extends Menu{
+    @Override
+    public void run(){
+        System.out.println("Start Game Menu");
     }
+    
 }
