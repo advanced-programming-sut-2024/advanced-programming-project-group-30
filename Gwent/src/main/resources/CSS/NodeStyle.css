@@ -20,7 +20,7 @@
     -fx-font-family: "Droid Serif";
     -fx-font-style: italic;
     -fx-font-size: 11.0;
-    -fx-text-fill: #ee3d11;
+    -fx-text-fill: rgba(238, 61, 17, 0.75);
 }
 
 .bottomBorderField {

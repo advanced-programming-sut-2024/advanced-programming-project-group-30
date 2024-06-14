@@ -44,6 +44,8 @@ public class RegisterMenu implements Menu {
     @FXML
     private Label emailError;
     @FXML
+    private Label continueError;
+    @FXML
     private ChoiceBox questions;
 
     public void run(Scanner scanner) {
@@ -80,6 +82,7 @@ public class RegisterMenu implements Menu {
     private void continueSignUp() {
         Result result = userInformationController.checkInformation(username.getText(), password.getText(), passwordConfirm.getText(), nickname.getText(), email.getText());
         if (!result.isSuccessful()) {
+            continueError.setText(result.toString());
             return;
         }
         firstPage.setDisable(true);
