@@ -1,21 +1,31 @@
 package model;
 
-import enums.Menu;
+import enums.MenuScene;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
 public class App {
-    private static Menu currentMenu;
+    private static Stage primaryStage;
+    private static MenuScene currentMenuScene = MenuScene.LOGIN_SCENE;
     private static Game currentGame;
     private static User loggedInUser;
     private static final ArrayList<User> allUsers = new ArrayList<>();
 
-    public static Menu getCurrentMenu() {
-        return currentMenu;
+    public static Stage getPrimaryStage() {
+        return primaryStage;
     }
 
-    public static void setCurrentMenu(Menu menu) {
-        currentMenu = menu;
+    public static void setPrimaryStage(Stage primaryStage) {
+        App.primaryStage = primaryStage;
+    }
+
+    public static MenuScene getCurrentMenuScene() {
+        return currentMenuScene;
+    }
+
+    public static void setCurrentMenuScene(MenuScene currentMenuScene) {
+        App.currentMenuScene = currentMenuScene;
     }
 
     public static User getLoggedInUser() {

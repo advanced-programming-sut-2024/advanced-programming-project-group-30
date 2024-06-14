@@ -48,7 +48,7 @@ public class RegisterMenu implements Menu {
     @FXML
     private ChoiceBox questions;
 
-    public void run(Scanner scanner) {
+    public void run() {
     }
 
     @FXML

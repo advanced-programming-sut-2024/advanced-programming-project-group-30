@@ -1,7 +1,5 @@
 package controller;
 
-import enums.Menu;
-import enums.SecurityQuestion;
 import model.App;
 import model.Result;
 import model.User;
@@ -72,9 +70,5 @@ public class RegisterMenuController {
         }
 
         return new Result(true, "");
-    }
-
-    public void exitMenu() {
-        App.setCurrentMenu(Menu.LOGIN_MENU);
     }
 }
