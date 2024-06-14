@@ -61,6 +61,7 @@ public class User {
     public HashMap<SecurityQuestion, String> getSecurityQuestions() {
         return securityQuestions;
     }
+
     public void addToSecurityQuestions(SecurityQuestion securityQuestion, String answer) {
         securityQuestions.put(securityQuestion, answer);
     }

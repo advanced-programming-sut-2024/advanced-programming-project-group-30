@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.collections.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
@@ -10,46 +8,62 @@
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.RegisterMenu">
     <center>
         <Pane maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="600.0" stylesheets="@../CSS/NodeStyle.css">
-            <Pane layoutX="100" layoutY="30.0" maxHeight="540.0" maxWidth="400.0" minHeight="540.0" minWidth="400.0" styleClass="brownBox">
-                <Label layoutX="135.0" layoutY="27.0" prefHeight="50.0" prefWidth="135.0" styleClass="beigeTitle" text="Sign up"/>
-                <VBox layoutX="37.0" layoutY="83.0" style="-fx-spacing: 19;">
-                    <TextField minHeight="45.0" prefHeight="45.0" prefWidth="325.0" promptText="username" styleClass="bottomBorderField"/>
-                    <PasswordField minHeight="45.0" prefHeight="45.0" prefWidth="325.0" promptText="password"
+            <Pane fx:id="firstPage" layoutX="100" layoutY="30.0" maxHeight="540.0" maxWidth="400.0" minHeight="540.0" minWidth="400.0"
+                  styleClass="brownBox">
+                <Label layoutX="135.0" layoutY="26.0" prefHeight="50.0" prefWidth="135.0" styleClass="beigeTitle" text="Sign up"/>
+                <VBox layoutX="37.0" layoutY="74.0">
+                    <VBox style="-fx-spacing: 3;">
+                        <TextField fx:id="username" minHeight="45.0" prefHeight="45.0" prefWidth="325.0" promptText="username"
                                    styleClass="bottomBorderField"/>
-                    <TextField minHeight="45.0" prefHeight="45.0" prefWidth="325.0" promptText="password confirm"
-                               styleClass="bottomBorderField"/>
-                    <TextField minHeight="45.0" prefHeight="45.0" prefWidth="325.0" promptText="nickname" styleClass="bottomBorderField"/>
-                    <TextField minHeight="45.0" prefHeight="45.0" prefWidth="325.0" promptText="email (Example@email.com)"
-                               styleClass="bottomBorderField"/>
+                        <Label fx:id="usernameError" prefHeight="17.0" prefWidth="317.0" styleClass="errorMessage"
+                               text="** username can't be empty."/>
+                    </VBox>
+                    <VBox style="-fx-spacing: 3;">
+                        <PasswordField fx:id="password" minHeight="45.0" prefHeight="45.0" prefWidth="325.0" promptText="password"
+                                       styleClass="bottomBorderField"/>
+                        <Label fx:id="passwordError" prefHeight="17.0" prefWidth="317.0" styleClass="errorMessage"
+                               text="** password can't be empty."/>
+                    </VBox>
+                    <VBox style="-fx-spacing: 3;">
+                        <PasswordField fx:id="passwordConfirm" minHeight="45.0" prefHeight="45.0" prefWidth="325.0"
+                                       promptText="password confirm" styleClass="bottomBorderField"/>
+                        <Label fx:id="passwordConfirmError" prefHeight="17.0" prefWidth="317.0" styleClass="errorMessage"
+                               text="** password confirm can't be empty."/>
+                    </VBox>
+                    <VBox style="-fx-spacing: 3;">
+                        <TextField fx:id="nickname" minHeight="45.0" prefHeight="45.0" prefWidth="325.0" promptText="nickname"
+                                   styleClass="bottomBorderField"/>
+                        <Label fx:id="nicknameError" prefHeight="17.0" prefWidth="317.0" styleClass="errorMessage"
+                               text="** username can't be empty."/>
+                    </VBox>
+                    <VBox style="-fx-spacing: 3;">
+                        <TextField fx:id="email" minHeight="45.0" prefHeight="45.0" prefWidth="325.0" promptText="email (Example@email.com)"
+                                   styleClass="bottomBorderField"/>
+                        <Label fx:id="emailError" prefHeight="17.0" prefWidth="317.0" styleClass="errorMessage"
+                               text="** username can't be empty."/>
+                    </VBox>
                 </VBox>
-                <Button layoutX="38.0" layoutY="419.0" prefHeight="40.0" prefWidth="325.0" styleClass="buttonWithBeigeBg" text="Continue"/>
-                <Label alignment="CENTER" layoutX="64.0" layoutY="483.0" prefHeight="28.0" prefWidth="203.0" style="-fx-font-size: 17;"
+                <Button layoutX="38.0" layoutY="424.0" onMouseClicked="#continueSignUp" prefHeight="40.0" prefWidth="325.0"
+                        styleClass="buttonWithBeigeBg" text="Continue"/>
+                <Label alignment="CENTER" layoutX="64.0" layoutY="482.0" prefHeight="28.0" prefWidth="203.0" style="-fx-font-size: 17;"
                        styleClass="simpleText" text="Already have an account?"/>
-                <Button layoutX="229.0" layoutY="480.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="126.0"
+                <Button layoutX="229.0" layoutY="479.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="126.0"
                         styleClass="boldButtonWithoutBg" text="Login"/>
                 <effect>
                     <Blend mode="COLOR_BURN" opacity="0.2"/>
                 </effect>
             </Pane>
-            <Pane disable="true" layoutX="100.0" layoutY="83.0" maxHeight="540.0" maxWidth="400.0" minHeight="411.0" minWidth="400.0"
-                  styleClass="brownBox" visible="false">
+
+            <Pane visible="false" disable="true" fx:id="secondPage" layoutX="100.0" layoutY="83.0" maxHeight="540.0" maxWidth="400.0"
+                  minHeight="411.0" minWidth="400.0" prefHeight="428.0" prefWidth="400.0" styleClass="brownBox">
                 <Label layoutX="133.0" layoutY="28.0" prefHeight="50.0" prefWidth="135.0" styleClass="beigeTitle" text="Sign up"/>
-                <ChoiceBox layoutX="51.0" layoutY="141.0" prefHeight="38.0" prefWidth="300.0" styleClass="blackBgChooseBox"
-                           value="choose a question">
-                    <items>
-                        <FXCollections fx:factory="observableArrayList">
-                            <String fx:value="What was your first pet's name?"/>
-                            <String fx:value="What was your favorite sport in high school?"/>
-                            <String fx:value="What was your best friend's name in elementary school?"/>
-                            <String fx:value="What was the first meal you cooked?"/>
-                        </FXCollections>
-                    </items>
-                </ChoiceBox>
+                <ChoiceBox fx:id="questions" layoutX="51.0" layoutY="141.0" prefHeight="38.0"
+                           prefWidth="300.0" styleClass="blackBgChooseBox" value="choose a question"/>
                 <Button layoutX="38.0" layoutY="282.0" prefHeight="40.0" prefWidth="325.0" styleClass="buttonWithBeigeBg"
                         text="Complete Sign up"/>
-                <Label alignment="CENTER" layoutX="100.0" layoutY="351.0" prefHeight="28.0" prefWidth="203.0" style="-fx-font-size: 17;"
+                <Label alignment="CENTER" layoutX="100.0" layoutY="346.0" prefHeight="28.0" prefWidth="203.0" style="-fx-font-size: 17;"
                        styleClass="italicText" text="Already have an account?"/>
-                <Button layoutX="138.0" layoutY="379.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="126.0"
+                <Button layoutX="138.0" layoutY="374.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="126.0"
                         styleClass="boldButtonWithoutBg" text="Login"/>
                 <Label alignment="CENTER" layoutX="71.0" layoutY="102.0" prefHeight="28.0" prefWidth="259.0"
                        style="-fx-font-size: 18; -fx-font-style: none;" styleClass="italicText" text="choose your security question"/>
@@ -59,6 +73,7 @@
                     <Blend mode="COLOR_BURN" opacity="0.2"/>
                 </effect>
             </Pane>
+
         </Pane>
     </center>
 </BorderPane>
