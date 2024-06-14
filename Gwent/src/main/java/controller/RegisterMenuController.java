@@ -73,8 +73,6 @@ public class RegisterMenuController {
             duplicateUsernameBuilder.append(c);
             int randomInt = random.nextInt(3);
             switch (randomInt){
-                case 0:
-                    break;
                 case 1:
                     int randomNumber = random.nextInt(10);
                     duplicateUsernameBuilder.append(randomNumber);
