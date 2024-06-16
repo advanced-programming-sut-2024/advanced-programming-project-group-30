@@ -4,6 +4,8 @@ import enums.CheckInformationRegex;
 import model.App;
 import model.Result;
 
+import java.util.Random;
+
 public class UserInformationController {
     public Result checkInformation(String username, String password, String passwordConfirm, String nickname, String email) {
         if (!checkUsername(username).isSuccessful()) return new Result(false, "** please check username field");
@@ -18,8 +20,10 @@ public class UserInformationController {
         if (username.isEmpty()) return new Result(false, "** username cannot be empty.");
         else if (!isUsernameFormatValid(username))
             return new Result(false, "** username must only contain letters, numbers and underline.");
-        else if (!isUsernameUnique(username)) return new Result(false, "** this username is already taken.");
-        else return new Result(true, "");
+        else if (!isUsernameUnique(username)) {
+            String uniqueUsername = createUniqueUserName(username);
+            return new Result(false, "** this username is already taken. You can use : " + uniqueUsername + ".");
+        } else return new Result(true, "");
     }
 
     public Result checkPassword(String password) {
@@ -69,5 +73,26 @@ public class UserInformationController {
 
     private boolean isEmailFormatValid(String email) {
         return CheckInformationRegex.VALID_EMAIL.getMatcher(email).matches();
+    }
+
+    private String createUniqueUserName(String duplicateUsername) {
+        Random random = new Random();
+        StringBuilder uniqueUsernameBuilder = new StringBuilder(duplicateUsername);
+        for (char c : duplicateUsername.toCharArray()) {
+            uniqueUsernameBuilder.append(c);
+            int randomInt = random.nextInt(3);
+            switch (randomInt) {
+                case 1:
+                    int randomNumber = random.nextInt(10);
+                    uniqueUsernameBuilder.append(randomNumber);
+                    break;
+                case 2:
+                    uniqueUsernameBuilder.append("_");
+                    break;
+            }
+            if (App.getUserByUsername(duplicateUsername) == null) break;
+        }
+        if (App.getUserByUsername(duplicateUsername) != null) return createUniqueUserName(uniqueUsernameBuilder.toString());
+        return uniqueUsernameBuilder.toString();
     }
 }

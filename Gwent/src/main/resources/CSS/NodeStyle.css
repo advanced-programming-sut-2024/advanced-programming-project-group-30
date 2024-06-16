@@ -47,14 +47,14 @@
     -fx-background-image: url('../Images/Icons/hideIcon.png');
 }
 
-.buttonWithoutBg, .italicText, .simpleText, .brownCheckBox, .boldButtonWithoutBg {
+.buttonWithoutBg, .italicText, .simpleText, .brownCheckBox, .boldButtonWithoutBg, .italicButton {
     -fx-background-color: TRANSPARENT;
     -fx-text-fill: f3d6b0;
     -fx-font-family: "Times New Roman";
     -fx-font-size: 15;
 }
 
-.italicText, .boldButtonWithoutBg {
+.italicText, .boldButtonWithoutBg, .italicButton {
     -fx-font-style: italic;
 }
 
@@ -73,6 +73,10 @@
 .boldButtonWithoutBg {
     -fx-font-size: 20;
     -fx-font-weight: bold;
+}
+
+.boldButtonWithoutBg:hover {
+    -fx-text-fill: #ffca84;
 }
 
 .buttonWithBeigeBg {
@@ -124,4 +128,21 @@
 .blackBgChooseBox .menu-item > .label {
     -fx-text-fill: #C3AE94FF;
     -fx-font-size: 16;
+}
+
+.backIcon {
+    -fx-opacity: 0.8;
+    -fx-background-color: black;
+    -fx-background-image: url('../Images/Icons/backIcon.png');
+    -fx-background-size: 100% 100%;
+    -fx-border-color: black;
+    -fx-border-insets: -3;
+    -fx-border-width: 5;
+    -fx-border-radius: 1.5;
+}
+
+.diceIcon {
+    -fx-background-color: transparent;
+    -fx-background-image: url('../Images/Icons/diceIcon.png');
+    -fx-background-size: 100% 100%;
 }

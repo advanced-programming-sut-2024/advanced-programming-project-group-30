@@ -1,5 +1,8 @@
 package enums;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public enum SecurityQuestion {
     QUESTION_1("What was your first pet's name?"),
     QUESTION_2("What was your favorite sport in high school?"),
@@ -18,8 +21,13 @@ public enum SecurityQuestion {
     }
 
     public static SecurityQuestion getSecurityQuestion(String questionText) {
-       for (SecurityQuestion q : SecurityQuestion.values())
-           if (q.getQuestionText().equals(questionText)) return q;
-       return null;
+        for (SecurityQuestion q : SecurityQuestion.values())
+            if (q.getQuestionText().equals(questionText)) return q;
+        return null;
+    }
+
+    @Override
+    public String toString() {
+        return questionText;
     }
 }

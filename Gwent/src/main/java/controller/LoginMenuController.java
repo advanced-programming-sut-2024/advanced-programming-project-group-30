@@ -1,5 +1,6 @@
 package controller;
 
+import enums.MenuScene;
 import enums.SecurityQuestion;
 import model.App;
 import model.Result;
@@ -39,7 +40,8 @@ public class LoginMenuController {
     }
 
     public void enterRegisterMenu() {
-        // TODO
+        App.setCurrentMenuScene(MenuScene.REGISTER_SCENE);
+        App.getPrimaryStage().setScene(MenuScene.REGISTER_SCENE.getScene());
     }
 
     public Result exitMenu() {
