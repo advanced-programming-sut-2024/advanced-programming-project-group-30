@@ -106,6 +106,13 @@ public class RegisterMenu implements Menu {
     }
 
     @FXML
+    private void generateRandomPassword() {
+        String randomPassword = registerController.createRandomPassword();
+        password.setText(randomPassword);
+        shownPassword.setText(randomPassword);
+    }
+
+    @FXML
     private void goToLoginMenu() {
         resetFields();
         registerController.enterLoginMenu();

@@ -23,11 +23,11 @@
                            prefWidth="325.0" promptText="password" styleClass="bottomBorderField"/>
                 <ToggleButton onAction="#togglePassword" layoutX="328.0" layoutY="149.0" mnemonicParsing="false" prefHeight="28.0"
                               prefWidth="29.0" styleClass="showPasswordButton"/>
+                <Button onAction="#generateRandomPassword" alignment="CENTER_RIGHT" layoutX="253.0" layoutY="185.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="115.0"
+                        style="-fx-font-size: 12;" styleClass="italicButton" text="random generate"/>
                 <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="258.0" layoutY="189.0" pickOnBounds="true" preserveRatio="true">
                     <Image url="@../Images/Icons/diceIcon.png"/>
                 </ImageView>
-                <Button alignment="CENTER_RIGHT" layoutX="253.0" layoutY="185.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="115.0"
-                        style="-fx-font-size: 12;" styleClass="italicButton" text="random generate"/>
                 <Label fx:id="passwordError" layoutX="37.0" layoutY="188.0" prefHeight="17.0" prefWidth="183.0" styleClass="errorMessage"
                        text="** password can't be empty."/>
                 <PasswordField fx:id="passwordConfirm" layoutX="37.0" layoutY="204.0" prefHeight="45.0" prefWidth="325.0"
