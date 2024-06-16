@@ -113,7 +113,8 @@ public class RegisterMenu implements Menu {
 
     @FXML
     private void continueSignUp() {
-        Result result = userInformationController.checkInformation(username.getText(), password.getText(), passwordConfirm.getText(), nickname.getText(), email.getText());
+        Result result = userInformationController.checkInformation(username.getText(),
+                password.getText(), passwordConfirm.getText(), nickname.getText(), email.getText());
         if (!result.isSuccessful()) {
             continueError.setText(result.toString());
             return;

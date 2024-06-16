@@ -5,20 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f1724509-8fa7-4a1d-addf-f9c920333c2d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Icons/backIcon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Icons/diceIcon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/LoginMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/LoginMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/RegisterMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/RegisterMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/UserInformationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/UserInformationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/SecurityQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/SecurityQuestion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/LoginMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/LoginMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/RegisterMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/RegisterMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/CSS/NodeStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/CSS/NodeStyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/LoginMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/LoginMenu.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/RegisterMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/RegisterMenu.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +104,7 @@
       <workItem from="1717526900717" duration="12267000" />
       <workItem from="1717762704150" duration="23000" />
       <workItem from="1717942273660" duration="969000" />
-      <workItem from="1718342417582" duration="23869000" />
+      <workItem from="1718342417582" duration="24171000" />
     </task>
     <servers />
   </component>
