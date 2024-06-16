@@ -14,6 +14,7 @@ import model.Result;
 public class RegisterMenu implements Menu {
     private final RegisterMenuController registerController = new RegisterMenuController();
     private final UserInformationController userInformationController = new UserInformationController();
+
     @FXML
     private Pane firstPage;
     @FXML
@@ -27,11 +28,15 @@ public class RegisterMenu implements Menu {
     @FXML
     private TextField shownPassword;
     @FXML
+    private ToggleButton showPasswordButton;
+    @FXML
     private Label passwordError;
     @FXML
     private PasswordField passwordConfirm;
     @FXML
     private TextField shownPasswordConfirm;
+    @FXML
+    private ToggleButton showPasswordConfirmButton;
     @FXML
     private Label passwordConfirmError;
     @FXML
@@ -88,21 +93,13 @@ public class RegisterMenu implements Menu {
     }
 
     @FXML
-    private void togglePassword(ActionEvent event) {
-        boolean passwordIsShown = !((ToggleButton) event.getSource()).isSelected();
-        password.setDisable(!passwordIsShown);
-        password.setVisible(passwordIsShown);
-        shownPassword.setDisable(passwordIsShown);
-        shownPassword.setVisible(!passwordIsShown);
+    private void togglePassword() {
+        showHidePassword(showPasswordButton.isSelected(), password, shownPassword);
     }
 
     @FXML
     private void togglePasswordConfirm(ActionEvent event) {
-        boolean passwordConfirmIsShown = !((ToggleButton) event.getSource()).isSelected();
-        passwordConfirm.setDisable(!passwordConfirmIsShown);
-        passwordConfirm.setVisible(passwordConfirmIsShown);
-        shownPasswordConfirm.setDisable(passwordConfirmIsShown);
-        shownPasswordConfirm.setVisible(!passwordConfirmIsShown);
+        showHidePassword(showPasswordConfirmButton.isSelected(), passwordConfirm, shownPasswordConfirm);
     }
 
     @FXML
@@ -154,8 +151,13 @@ public class RegisterMenu implements Menu {
     }
 
     private void resetFields() {
+        backToFirstPage();
         username.setText("");
+        showHidePassword(false, password, shownPassword);
+        showPasswordButton.setSelected(false);
         password.setText("");
+        showHidePassword(false, passwordConfirm, shownPasswordConfirm);
+        showPasswordConfirmButton.setSelected(false);
         passwordConfirm.setText("");
         nickname.setText("");
         email.setText("");
@@ -166,5 +168,12 @@ public class RegisterMenu implements Menu {
     private void resetSecondPageFields() {
         questions.setValue("choose a question");
         answer.setText("");
+    }
+
+    private void showHidePassword(boolean isHide, PasswordField password, TextField shownPassword) {
+        password.setDisable(isHide);
+        password.setVisible(!isHide);
+        shownPassword.setDisable(!isHide);
+        shownPassword.setVisible(isHide);
     }
 }

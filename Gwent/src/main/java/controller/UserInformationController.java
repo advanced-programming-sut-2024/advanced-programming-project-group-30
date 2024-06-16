@@ -78,8 +78,8 @@ public class UserInformationController {
     private String createUniqueUserName(String duplicateUsername) {
         Random random = new Random();
         StringBuilder uniqueUsernameBuilder = new StringBuilder(duplicateUsername);
-        for (char c : duplicateUsername.toCharArray()) {
-            uniqueUsernameBuilder.append(c);
+        for (int i = 0; i < duplicateUsername.length(); i++) {
+            uniqueUsernameBuilder.append(duplicateUsername.charAt(i));
             int randomInt = random.nextInt(3);
             switch (randomInt) {
                 case 1:
@@ -90,7 +90,10 @@ public class UserInformationController {
                     uniqueUsernameBuilder.append("_");
                     break;
             }
-            if (App.getUserByUsername(duplicateUsername) == null) break;
+            if (App.getUserByUsername(uniqueUsernameBuilder + duplicateUsername.substring(i)) == null) {
+                uniqueUsernameBuilder.append(duplicateUsername.substring(i));
+                break;
+            }
         }
         if (App.getUserByUsername(duplicateUsername) != null) return createUniqueUserName(uniqueUsernameBuilder.toString());
         return uniqueUsernameBuilder.toString();
