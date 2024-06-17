@@ -2,24 +2,30 @@ package controller;
 
 import enums.MenuScene;
 import enums.SecurityQuestion;
+import javafx.scene.control.PasswordField;
 import model.App;
 import model.Result;
 import model.User;
 
 public class LoginMenuController {
-    public Result login(String username, String password, String stayLoggedInTag) {
+    public void login(String username, String rememberMe) {
         User user = App.getUserByUsername(username);
         App.setLoggedInUser(user);
-        return null;
+        enterMainMenu();
     }
 
-    private static boolean doesUsernameExist(String username) {
-        return (App.getUserByUsername(username) == null);
+    public Result checkInformationForLogin(String username, String password) {
+        if (username.isEmpty()) return new Result(false, "please fill username field.");
+        if (password.isEmpty()) return new Result(false, "please fill password field.");
+        User loggedInUser = App.getUserByUsername(username);
+        if (loggedInUser == null) return new Result(false, "this username does not exist.");
+        if (!password.equals(loggedInUser.getPassword())) return new Result(false, "wrong password.");
+        return new Result(true, "");
     }
 
-    private static boolean isPasswordCorrect(String username, String password) {
-        User user = App.getLoggedInUser();
-        return (password.equals(user.getPassword()));
+    public Result getEmptyError(String string, String name) {
+        if (string.isEmpty()) return new Result(false, "** " + name + " cannot be empty.");
+        return new Result(true, "");
     }
 
     public Result checkUsernameForForgetPassword(String username) {
@@ -44,7 +50,8 @@ public class LoginMenuController {
         App.getPrimaryStage().setScene(MenuScene.REGISTER_SCENE.getScene());
     }
 
-    public Result exitMenu() {
-        return null;
+    private void enterMainMenu() {
+        App.setCurrentMenuScene(MenuScene.MAIN_SCENE);
+        App.getPrimaryStage().setScene(MenuScene.MAIN_SCENE.getScene());
     }
 }

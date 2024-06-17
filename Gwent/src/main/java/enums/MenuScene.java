@@ -9,7 +9,7 @@ import java.io.IOException;
 public enum MenuScene {
     LOGIN_SCENE("/FXML/LoginMenu.fxml"),
     REGISTER_SCENE("/FXML/RegisterMenu.fxml"),
-//    MAIN_SCENE("/FXML/MainMenu.fxml"),
+    MAIN_SCENE("/FXML/MainMenu.fxml"),
 //    PROFILE_SCENE("/FXML/ProfileMenu.fxml"),
     ;
 

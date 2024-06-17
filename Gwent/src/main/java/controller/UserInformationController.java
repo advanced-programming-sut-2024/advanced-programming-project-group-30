@@ -8,11 +8,11 @@ import java.util.Random;
 
 public class UserInformationController {
     public Result checkInformation(String username, String password, String passwordConfirm, String nickname, String email) {
-        if (!checkUsername(username).isSuccessful()) return new Result(false, "** please check username field");
-        if (!checkPassword(password).isSuccessful()) return new Result(false, "** please check password field");
-        if (!checkPasswordConfirm(password, passwordConfirm)) return new Result(false, "** password and confirmation do not match");
-        if (!checkNickname(nickname).isSuccessful()) return new Result(false, "** please fill nickname field");
-        if (!checkEmail(email).isSuccessful()) return new Result(false, "** please check email field");
+        if (!checkUsername(username).isSuccessful()) return new Result(false, "please check username field");
+        if (!checkPassword(password).isSuccessful()) return new Result(false, "please check password field");
+        if (!checkPasswordConfirm(password, passwordConfirm)) return new Result(false, "password and confirmation do not match");
+        if (!checkNickname(nickname).isSuccessful()) return new Result(false, "please fill nickname field");
+        if (!checkEmail(email).isSuccessful()) return new Result(false, "please check email field");
         return new Result(true, "");
     }
 
@@ -22,7 +22,7 @@ public class UserInformationController {
             return new Result(false, "** username must only contain letters, numbers and underline.");
         else if (!isUsernameUnique(username)) {
             String uniqueUsername = createUniqueUserName(username);
-            return new Result(false, "** this username is already taken. You can use : " + uniqueUsername + ".");
+            return new Result(false, "** this username is already taken. suggest: \"" + uniqueUsername + "\".");
         } else return new Result(true, "");
     }
 
@@ -79,23 +79,19 @@ public class UserInformationController {
         Random random = new Random();
         StringBuilder uniqueUsernameBuilder = new StringBuilder(duplicateUsername);
         for (int i = 0; i < duplicateUsername.length(); i++) {
-            uniqueUsernameBuilder.append(duplicateUsername.charAt(i));
             int randomInt = random.nextInt(3);
             switch (randomInt) {
                 case 1:
                     int randomNumber = random.nextInt(10);
-                    uniqueUsernameBuilder.append(randomNumber);
+                    uniqueUsernameBuilder.insert(i, randomNumber);
                     break;
                 case 2:
-                    uniqueUsernameBuilder.append("_");
+                    uniqueUsernameBuilder.insert(i, '_');
                     break;
             }
-            if (App.getUserByUsername(uniqueUsernameBuilder + duplicateUsername.substring(i)) == null) {
-                uniqueUsernameBuilder.append(duplicateUsername.substring(i));
-                break;
-            }
+            if (App.getUserByUsername(uniqueUsernameBuilder.toString()) == null) break;
         }
-        if (App.getUserByUsername(duplicateUsername) != null) return createUniqueUserName(uniqueUsernameBuilder.toString());
+        if (App.getUserByUsername(uniqueUsernameBuilder.toString()) != null) return createUniqueUserName(uniqueUsernameBuilder.toString());
         return uniqueUsernameBuilder.toString();
     }
 }

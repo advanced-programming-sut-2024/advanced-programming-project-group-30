@@ -5,51 +5,81 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane styleClass="MenusBackground" stylesheets="@../CSS/Backgrounds.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.RegisterMenu">
+<BorderPane styleClass="MenusBackground" stylesheets="@../CSS/Backgrounds.css" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.RegisterMenu">
     <center>
         <Pane maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="600.0" stylesheets="@../CSS/NodeStyle.css">
 
-            <Pane fx:id="firstPage" layoutX="100.0" layoutY="30.0" maxHeight="556.0" maxWidth="400.0" minHeight="540.0" minWidth="400.0" styleClass="brownBox">
-                <Label layoutX="135.0" layoutY="26.0" prefHeight="50.0" prefWidth="135.0" styleClass="beigeTitle" text="Sign up" />
-                <TextField fx:id="username" layoutX="37.0" layoutY="74.0" prefHeight="45.0" prefWidth="325.0" promptText="username" styleClass="bottomBorderField" />
-                <Label fx:id="usernameError" layoutX="37.0" layoutY="123.0" prefHeight="17.0" prefWidth="317.0" styleClass="errorMessage" text="** username can't be empty." />
-                <PasswordField fx:id="password" layoutX="37.0" layoutY="139.0" prefHeight="45.0" prefWidth="325.0" promptText="password" styleClass="bottomBorderField" />
-                <TextField fx:id="shownPassword" disable="true" layoutX="37.0" layoutY="139.0" prefHeight="45.0" prefWidth="325.0" promptText="password" styleClass="bottomBorderField" visible="false" />
-                <ToggleButton fx:id="showPasswordButton" layoutX="328.0" layoutY="149.0" mnemonicParsing="false" onAction="#togglePassword" prefHeight="28.0" prefWidth="29.0" styleClass="showPasswordIcon" />
-                <Button alignment="CENTER_RIGHT" layoutX="243.0" layoutY="250.0" mnemonicParsing="false" onAction="#generateRandomPassword" prefHeight="22.0" prefWidth="123.0" style="-fx-font-size: 12;" styleClass="italicButton" text="random password" />
+            <Pane fx:id="firstPage" layoutX="100.0" layoutY="30.0" maxHeight="556.0" maxWidth="400.0" minHeight="540.0" minWidth="400.0"
+                  styleClass="brownBox">
+                <Label layoutX="135.0" layoutY="26.0" prefHeight="50.0" prefWidth="135.0" styleClass="beigeTitle" text="Sign up"/>
+                <TextField fx:id="username" layoutX="37.0" layoutY="74.0" prefHeight="45.0" prefWidth="325.0" promptText="username"
+                           styleClass="bottomBorderField"/>
+                <Label fx:id="usernameError" layoutX="37.0" layoutY="123.0" prefHeight="17.0" prefWidth="317.0" styleClass="errorMessage"
+                       text="** username can't be empty."/>
+                <PasswordField fx:id="password" layoutX="37.0" layoutY="139.0" prefHeight="45.0" prefWidth="325.0" promptText="password"
+                               styleClass="bottomBorderField"/>
+                <TextField fx:id="shownPassword" disable="true" layoutX="37.0" layoutY="139.0" prefHeight="45.0" prefWidth="325.0"
+                           promptText="password" styleClass="bottomBorderField" visible="false"/>
+                <ToggleButton fx:id="showPasswordButton" layoutX="328.0" layoutY="149.0" mnemonicParsing="false" onAction="#togglePassword"
+                              prefHeight="28.0" prefWidth="29.0" styleClass="showPasswordIcon"/>
+                <Label fx:id="passwordError" layoutX="37.0" layoutY="188.0" prefHeight="17.0" prefWidth="322.0" styleClass="errorMessage"
+                       text="** password can't be empty."/>
+                <PasswordField fx:id="passwordConfirm" layoutX="37.0" layoutY="204.0" prefHeight="45.0" prefWidth="325.0"
+                               promptText="password confirm" styleClass="bottomBorderField"/>
+                <TextField fx:id="shownPasswordConfirm" disable="true" layoutX="37.0" layoutY="204" prefHeight="45.0" prefWidth="325.0"
+                           promptText="password confirm" styleClass="bottomBorderField" visible="false"/>
+                <ToggleButton fx:id="showPasswordConfirmButton" layoutX="328.0" layoutY="214.0" mnemonicParsing="false"
+                              onAction="#togglePasswordConfirm" prefHeight="28.0" prefWidth="29.0" styleClass="showPasswordIcon"/>
+                <Button alignment="CENTER_RIGHT" layoutX="243.0" layoutY="250.0" mnemonicParsing="false" onAction="#generateRandomPassword"
+                        prefHeight="22.0" prefWidth="123.0" style="-fx-font-size: 12;" styleClass="italicButton" text="random password"/>
                 <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="251.0" layoutY="254.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@../Images/Icons/diceIcon.png" />
+                    <Image url="@../Images/Icons/diceIcon.png"/>
                 </ImageView>
-                <Label fx:id="passwordError" layoutX="37.0" layoutY="188.0" prefHeight="17.0" prefWidth="322.0" styleClass="errorMessage" text="** password can't be empty." />
-                <PasswordField fx:id="passwordConfirm" layoutX="37.0" layoutY="204.0" prefHeight="45.0" prefWidth="325.0" promptText="password confirm" styleClass="bottomBorderField" />
-                <TextField fx:id="shownPasswordConfirm" disable="true" layoutX="37.0" layoutY="204" prefHeight="45.0" prefWidth="325.0" promptText="password confirm" styleClass="bottomBorderField" visible="false" />
-                <ToggleButton fx:id="showPasswordConfirmButton" layoutX="328.0" layoutY="214.0" mnemonicParsing="false" onAction="#togglePasswordConfirm" prefHeight="28.0" prefWidth="29.0" styleClass="showPasswordIcon" />
-                <Label fx:id="passwordConfirmError" layoutX="37.0" layoutY="252.0" prefHeight="17.0" prefWidth="202.0" styleClass="errorMessage" text="** password confirm can't be empty." />
-                <TextField fx:id="nickname" layoutX="37.0" layoutY="269.0" prefHeight="45.0" prefWidth="325.0" promptText="nickname" styleClass="bottomBorderField" />
-                <Label fx:id="nicknameError" layoutX="37.0" layoutY="317.0" prefHeight="17.0" prefWidth="317.0" styleClass="errorMessage" text="** username can't be empty." />
-                <TextField fx:id="email" layoutX="37.0" layoutY="334.0" prefHeight="45.0" prefWidth="325.0" promptText="email (Example@email.com)" styleClass="bottomBorderField" />
-                <Label fx:id="emailError" layoutX="37.0" layoutY="382.0" prefHeight="17.0" prefWidth="317.0" styleClass="errorMessage" text="** email can't be empty." />
-                <Button layoutX="38.0" layoutY="420.0" onMouseClicked="#continueSignUp" prefHeight="40.0" prefWidth="325.0" styleClass="buttonWithBeigeBg" text="Continue" />
-                <Label fx:id="continueError" alignment="CENTER" layoutX="44.0" layoutY="466.0" prefHeight="17.0" prefWidth="317.0" style="-fx-text-fill: red;" styleClass="errorMessage" />
-                <Label alignment="CENTER" layoutX="64.0" layoutY="485.0" prefHeight="28.0" prefWidth="203.0" style="-fx-font-size: 17;" styleClass="simpleText" text="Already have an account?" />
-                <Button layoutX="229.0" layoutY="481.0" mnemonicParsing="false" onAction="#goToLoginMenu" prefHeight="28.0" prefWidth="126.0" styleClass="boldButtonWithoutBg" text="Login" />
+                <Label fx:id="passwordConfirmError" layoutX="37.0" layoutY="252.0" prefHeight="17.0" prefWidth="202.0"
+                       styleClass="errorMessage" text="** password confirm can't be empty."/>
+                <TextField fx:id="nickname" layoutX="37.0" layoutY="269.0" prefHeight="45.0" prefWidth="325.0" promptText="nickname"
+                           styleClass="bottomBorderField"/>
+                <Label fx:id="nicknameError" layoutX="37.0" layoutY="317.0" prefHeight="17.0" prefWidth="317.0" styleClass="errorMessage"
+                       text="** username can't be empty."/>
+                <TextField fx:id="email" layoutX="37.0" layoutY="334.0" prefHeight="45.0" prefWidth="325.0"
+                           promptText="email (Example@email.com)" styleClass="bottomBorderField"/>
+                <Label fx:id="emailError" layoutX="37.0" layoutY="382.0" prefHeight="17.0" prefWidth="317.0" styleClass="errorMessage"
+                       text="** email can't be empty."/>
+                <Button layoutX="37.0" layoutY="420.0" onAction="#continueSignUp" prefHeight="40.0" prefWidth="325.0"
+                        styleClass="buttonWithBeigeBg" text="Continue"/>
+                <Label fx:id="continueError" alignment="CENTER" layoutX="40.0" layoutY="466.0" prefHeight="17.0" prefWidth="317.0"
+                       style="-fx-text-fill: red;" styleClass="errorMessage"/>
+                <Label alignment="CENTER" layoutX="64.0" layoutY="485.0" prefHeight="28.0" prefWidth="203.0" style="-fx-font-size: 17;"
+                       styleClass="simpleText" text="Already have an account?"/>
+                <Button layoutX="229.0" layoutY="481.0" mnemonicParsing="false" onAction="#goToLoginMenu" prefHeight="28.0"
+                        prefWidth="126.0" styleClass="boldButtonWithoutBg" text="Login"/>
                 <effect>
-                    <Blend mode="COLOR_BURN" opacity="0.2" />
+                    <Blend mode="COLOR_BURN" opacity="0.2"/>
                 </effect>
             </Pane>
 
-            <Pane fx:id="secondPage" disable="true" layoutX="100.0" layoutY="81.0" maxHeight="438.0" maxWidth="400.0" minHeight="438.0" minWidth="400.0" styleClass="brownBox" visible="false">
-                <Button layoutX="25.0" layoutY="23.0" maxHeight="20.0" minHeight="20.0" mnemonicParsing="false" onAction="#backToFirstPage" prefWidth="20.0" styleClass="backIcon" />
-                <Label layoutX="133.0" layoutY="31.0" prefHeight="50.0" prefWidth="135.0" styleClass="beigeTitle" text="Sign up" />
-                <Label alignment="CENTER" layoutX="71.0" layoutY="99.0" prefHeight="28.0" prefWidth="259.0" style="-fx-font-size: 18; -fx-font-style: none;" styleClass="italicText" text="choose your security question" />
-                <ChoiceBox fx:id="questions" layoutX="51.0" layoutY="139.0" prefHeight="38.0" prefWidth="300.0" styleClass="blackBgChooseBox" value="choose a question" />
-                <TextField fx:id="answer" alignment="CENTER" layoutX="51.0" layoutY="199.0" prefHeight="35.0" prefWidth="300.0" promptText="Answer" styleClass="blackBgField" />
-                <Button layoutX="38.0" layoutY="284.0" onAction="#signup" prefHeight="40.0" prefWidth="325.0" styleClass="buttonWithBeigeBg" text="Complete Sign up" />
-                <Label fx:id="completeError" alignment="CENTER" layoutX="43.0" layoutY="259.0" prefHeight="17.0" prefWidth="317.0" style="-fx-text-fill: rgba(239,47,21,0.94);" styleClass="errorMessage" />
-                <Label alignment="CENTER" layoutX="100.0" layoutY="348.0" prefHeight="28.0" prefWidth="203.0" style="-fx-font-size: 17;" styleClass="italicText" text="Already have an account?" />
-                <Button layoutX="138.0" layoutY="376.0" mnemonicParsing="false" onMouseClicked="#goToLoginMenu" prefHeight="28.0" prefWidth="126.0" styleClass="boldButtonWithoutBg" text="Login" />
+            <Pane fx:id="secondPage" disable="true" layoutX="100.0" layoutY="81.0" maxHeight="438.0" maxWidth="400.0" minHeight="438.0"
+                  minWidth="400.0" styleClass="brownBox" visible="false">
+                <Button layoutX="25.0" layoutY="23.0" maxHeight="20.0" minHeight="20.0" mnemonicParsing="false" onAction="#backToFirstPage"
+                        prefWidth="20.0" styleClass="backIcon"/>
+                <Label layoutX="133.0" layoutY="31.0" prefHeight="50.0" prefWidth="135.0" styleClass="beigeTitle" text="Sign up"/>
+                <Label alignment="CENTER" layoutX="71.0" layoutY="99.0" prefHeight="28.0" prefWidth="259.0"
+                       style="-fx-font-size: 18; -fx-font-style: none;" styleClass="italicText" text="choose your security question"/>
+                <ChoiceBox fx:id="questions" layoutX="51.0" layoutY="139.0" prefHeight="38.0" prefWidth="300.0"
+                           styleClass="blackBgChooseBox" value="choose a question"/>
+                <TextField fx:id="answer" alignment="CENTER" layoutX="51.0" layoutY="199.0" prefHeight="35.0" prefWidth="300.0"
+                           promptText="Answer" styleClass="blackBgField"/>
+                <Button layoutX="38.0" layoutY="284.0" onAction="#signup" prefHeight="40.0" prefWidth="325.0" styleClass="buttonWithBeigeBg"
+                        text="Complete Sign up"/>
+                <Label fx:id="completeError" alignment="CENTER" layoutX="43.0" layoutY="259.0" prefHeight="17.0" prefWidth="317.0"
+                       style="-fx-text-fill: rgba(239,47,21,0.94);" styleClass="errorMessage"/>
+                <Label alignment="CENTER" layoutX="100.0" layoutY="348.0" prefHeight="28.0" prefWidth="203.0" style="-fx-font-size: 17;"
+                       styleClass="italicText" text="Already have an account?"/>
+                <Button layoutX="138.0" layoutY="376.0" mnemonicParsing="false" onAction="#goToLoginMenu" prefHeight="28.0"
+                        prefWidth="126.0" styleClass="boldButtonWithoutBg" text="Login"/>
                 <effect>
-                    <Blend mode="COLOR_BURN" opacity="0.2" />
+                    <Blend mode="COLOR_BURN" opacity="0.2"/>
                 </effect>
             </Pane>
 

@@ -4,9 +4,9 @@ public class Result {
     private final boolean isSuccessful;
     private final String message;
 
-    public Result(boolean isSuccessful, String errorCode) {
+    public Result(boolean isSuccessful, String message) {
         this.isSuccessful = isSuccessful;
-        this.message = errorCode;
+        this.message = message;
     }
 
     public boolean isSuccessful() {

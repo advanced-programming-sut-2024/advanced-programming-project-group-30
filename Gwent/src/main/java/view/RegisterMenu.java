@@ -14,7 +14,6 @@ import model.Result;
 public class RegisterMenu implements Menu {
     private final RegisterMenuController registerController = new RegisterMenuController();
     private final UserInformationController userInformationController = new UserInformationController();
-
     @FXML
     private Pane firstPage;
     @FXML
@@ -62,13 +61,10 @@ public class RegisterMenu implements Menu {
     @FXML
     public void initialize() {
         questions.setItems(FXCollections.observableArrayList(SecurityQuestion.values()));
-        username.textProperty().addListener((Void) -> {
-            usernameError.setText(userInformationController.checkUsername(username.getText()).toString());
-            usernameError.setStyle("");
-        });
+        username.textProperty().addListener((Void) ->
+                usernameError.setText(userInformationController.checkUsername(username.getText()).toString()));
         password.textProperty().addListener((Void) -> {
             passwordError.setText(userInformationController.checkPassword(password.getText()).toString());
-            passwordError.setStyle("");
             if (shownPassword.isDisable()) shownPassword.setText(password.getText());
         });
         shownPassword.textProperty().addListener((Void) -> {
@@ -76,20 +72,14 @@ public class RegisterMenu implements Menu {
         });
         passwordConfirm.textProperty().addListener((Void) -> {
             passwordConfirmError.setText(userInformationController.checkPasswordConfirm(passwordConfirm.getText()).toString());
-            passwordConfirmError.setStyle("");
             if (shownPasswordConfirm.isDisable()) shownPasswordConfirm.setText(passwordConfirm.getText());
         });
         shownPasswordConfirm.textProperty().addListener((Void) -> {
             if (passwordConfirm.isDisable()) passwordConfirm.setText(shownPasswordConfirm.getText());
         });
-        nickname.textProperty().addListener((Void) -> {
-            nicknameError.setText(userInformationController.checkNickname(nickname.getText()).toString());
-            nicknameError.setStyle("");
-        });
-        email.textProperty().addListener((Void) -> {
-            emailError.setText(userInformationController.checkEmail(email.getText()).toString());
-            emailError.setStyle("");
-        });
+        nickname.textProperty().addListener((Void) ->
+                nicknameError.setText(userInformationController.checkNickname(nickname.getText()).toString()));
+        email.textProperty().addListener((Void) -> emailError.setText(userInformationController.checkEmail(email.getText()).toString()));
     }
 
     @FXML
@@ -107,6 +97,8 @@ public class RegisterMenu implements Menu {
         String randomPassword = registerController.createRandomPassword();
         password.setText(randomPassword);
         shownPassword.setText(randomPassword);
+        passwordConfirm.setText(randomPassword);
+        shownPasswordConfirm.setText(randomPassword);
     }
 
     @FXML
@@ -136,7 +128,6 @@ public class RegisterMenu implements Menu {
         secondPage.setVisible(false);
         firstPage.setDisable(false);
         firstPage.setVisible(true);
-        resetSecondPageFields();
     }
 
     @FXML
@@ -162,12 +153,10 @@ public class RegisterMenu implements Menu {
         nickname.setText("");
         email.setText("");
         continueError.setText("");
-        resetSecondPageFields();
-    }
-
-    private void resetSecondPageFields() {
         questions.setValue("choose a question");
         answer.setText("");
+        completeError.setText("");
+        username.requestFocus();
     }
 
     private void showHidePassword(boolean isHide, PasswordField password, TextField shownPassword) {
