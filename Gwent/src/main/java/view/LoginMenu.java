@@ -1,14 +1,9 @@
 package view;
 
 import controller.LoginMenuController;
-import enums.MenuScene;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import model.App;
 import model.Result;
-
-import java.util.Scanner;
 
 public class LoginMenu implements Menu {
     private final LoginMenuController controller = new LoginMenuController();
@@ -46,14 +41,14 @@ public class LoginMenu implements Menu {
     }
 
     @FXML
-    private void goToRegisterMenu() {
-        controller.enterRegisterMenu();
-        resetFields();
+    private void togglePassword() {
+        showHidePassword(showPasswordButton.isSelected());
     }
 
     @FXML
-    private void togglePassword() {
-        showHidePassword(showPasswordButton.isSelected());
+    private void goToForgetPasswordMenu() {
+        controller.enterForgetPasswordMenu();
+        resetFields();
     }
 
     @FXML
@@ -64,6 +59,12 @@ public class LoginMenu implements Menu {
             return;
         }
         controller.login(username.getText(), password.getText());
+        resetFields();
+    }
+
+    @FXML
+    private void goToRegisterMenu() {
+        controller.enterRegisterMenu();
         resetFields();
     }
 

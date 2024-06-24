@@ -60,6 +60,13 @@
     -fx-font-style: italic;
 }
 
+.gabriolaText {
+    -fx-text-fill: #f3d6b0;
+    -fx-alignment: CENTER;
+    -fx-font-family: Gabriola;
+    -fx-font-size: 22;
+}
+
 .brownCheckBox .box {
     -fx-background-color: rgb(158, 132, 96);
 }

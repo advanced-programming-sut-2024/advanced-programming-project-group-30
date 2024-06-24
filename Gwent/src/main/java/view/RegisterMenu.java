@@ -14,6 +14,7 @@ import model.Result;
 public class RegisterMenu implements Menu {
     private final RegisterMenuController registerController = new RegisterMenuController();
     private final UserInformationController userInformationController = new UserInformationController();
+
     @FXML
     private Pane firstPage;
     @FXML
@@ -109,8 +110,8 @@ public class RegisterMenu implements Menu {
 
     @FXML
     private void continueSignUp() {
-        Result result = userInformationController.checkInformation(username.getText(),
-                password.getText(), passwordConfirm.getText(), nickname.getText(), email.getText());
+        Result result = userInformationController.checkInformation(username.getText(), password.getText(),
+                passwordConfirm.getText(), nickname.getText(), email.getText());
         if (!result.isSuccessful()) {
             continueError.setText(result.toString());
             return;
@@ -128,6 +129,7 @@ public class RegisterMenu implements Menu {
         secondPage.setVisible(false);
         firstPage.setDisable(false);
         firstPage.setVisible(true);
+        completeError.setText("");
     }
 
     @FXML
@@ -137,7 +139,8 @@ public class RegisterMenu implements Menu {
             completeError.setText(result.toString());
             return;
         }
-        registerController.register(username.getText(), password.getText(), nickname.getText(), email.getText(), questions.getValue().toString(), answer.getText());
+        registerController.register(username.getText(), password.getText(), nickname.getText(), email.getText(),
+                questions.getValue().toString(), answer.getText());
         goToLoginMenu();
     }
 

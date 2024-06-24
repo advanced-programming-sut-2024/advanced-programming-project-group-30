@@ -10,6 +10,7 @@ public enum MenuScene {
     LOGIN_SCENE("/FXML/LoginMenu.fxml"),
     REGISTER_SCENE("/FXML/RegisterMenu.fxml"),
     MAIN_SCENE("/FXML/MainMenu.fxml"),
+    FORGET_PASSWORD_SCENE("/FXML/ForgetPasswordMenu.fxml"),
 //    PROFILE_SCENE("/FXML/ProfileMenu.fxml"),
     ;
 
