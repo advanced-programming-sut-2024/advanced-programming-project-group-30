@@ -8,9 +8,10 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import model.App;
 import model.Result;
 
-public class ForgetPasswordMenu {
+public class ForgetPasswordMenu implements Menu{
     private final ForgetPasswordMenuController controller = new ForgetPasswordMenuController();
 
     @FXML
@@ -39,50 +40,45 @@ public class ForgetPasswordMenu {
 
     @FXML
     private void goToLoginMenu() {
-        controller.goToLoginMenu();
+        App.getSceneManager().goToLoginMenu();
         resetFields();
     }
 
     @FXML
     private void continueForgetPassword() {
         Result result = controller.checkUsername(username.getText());
-        if (!result.isSuccessful()) {
+        if (result.isNotSuccessful()) {
             continueError.setText(result.toString());
             return;
         }
-        firstPage.setDisable(true);
-        firstPage.setVisible(false);
-        secondPage.setDisable(false);
-        secondPage.setVisible(true);
+        changePage(firstPage, secondPage);
         continueError.setText("");
     }
 
     @FXML
     private void backToFirstPage() {
-        secondPage.setDisable(true);
-        secondPage.setVisible(false);
-        firstPage.setDisable(false);
-        firstPage.setVisible(true);
+        changePage(secondPage, firstPage);
         getPasswordError.setText("");
     }
 
     @FXML
     private void getPassword() {
         Result result = controller.getPassword(username.getText(), questions.getValue().toString(), answer.getText());
-        if (!result.isSuccessful()) {
-            getPasswordError.setText(result.toString());
-            return;
-        }
-        showPassword(result.toString());
+        if (result.isNotSuccessful()) getPasswordError.setText(result.toString());
+        else showPassword(result.toString());
     }
 
     private void showPassword(String password) {
         this.password.setText(password);
-        secondPage.setDisable(true);
-        secondPage.setVisible(false);
-        showPasswordPane.setVisible(true);
-        showPasswordPane.setDisable(false);
+        changePage(secondPage, showPasswordPane);
         showPasswordPane.requestFocus();
+    }
+
+    private void changePage(Pane previousPage, Pane destinationPage) {
+        previousPage.setDisable(true);
+        previousPage.setVisible(false);
+        destinationPage.setDisable(false);
+        destinationPage.setVisible(true);
     }
 
     private void resetFields() {

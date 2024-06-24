@@ -1,6 +1,5 @@
 package controller;
 
-import enums.MenuScene;
 import model.App;
 import model.Result;
 import model.User;
@@ -9,7 +8,7 @@ public class LoginMenuController {
     public void login(String username, String rememberMe) {
         User user = App.getUserByUsername(username);
         App.setLoggedInUser(user);
-        enterMainMenu();
+        App.getSceneManager().goToMainMenu();
     }
 
     public Result checkInformationForLogin(String username, String password) {
@@ -24,20 +23,5 @@ public class LoginMenuController {
     public Result getEmptyError(String string, String name) {
         if (string.isEmpty()) return new Result(false, "** " + name + " cannot be empty.");
         return new Result(true, "");
-    }
-
-    public void enterForgetPasswordMenu() {
-        App.setCurrentMenuScene(MenuScene.FORGET_PASSWORD_SCENE);
-        App.getPrimaryStage().setScene(MenuScene.FORGET_PASSWORD_SCENE.getScene());
-    }
-
-    public void enterRegisterMenu() {
-        App.setCurrentMenuScene(MenuScene.REGISTER_SCENE);
-        App.getPrimaryStage().setScene(MenuScene.REGISTER_SCENE.getScene());
-    }
-
-    private void enterMainMenu() {
-        App.setCurrentMenuScene(MenuScene.MAIN_SCENE);
-        App.getPrimaryStage().setScene(MenuScene.MAIN_SCENE.getScene());
     }
 }

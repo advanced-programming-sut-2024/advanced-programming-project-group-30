@@ -8,11 +8,12 @@ import java.util.Random;
 
 public class UserInformationController {
     public Result checkInformation(String username, String password, String passwordConfirm, String nickname, String email) {
-        if (!checkUsername(username).isSuccessful()) return new Result(false, "please check username field");
-        if (!checkPassword(password).isSuccessful()) return new Result(false, "please check password field");
-        if (!checkPasswordConfirm(password, passwordConfirm)) return new Result(false, "password and confirmation do not match");
-        if (!checkNickname(nickname).isSuccessful()) return new Result(false, "please fill nickname field");
-        if (!checkEmail(email).isSuccessful()) return new Result(false, "please check email field");
+        if (checkUsername(username).isNotSuccessful()) return new Result(false, "please check username field");
+        if (checkPassword(password).isNotSuccessful()) return new Result(false, "please check password field");
+        if (!checkPasswordConfirm(password, passwordConfirm))
+            return new Result(false, "password and confirmation do not match");
+        if (checkNickname(nickname).isNotSuccessful()) return new Result(false, "please fill nickname field");
+        if (checkEmail(email).isNotSuccessful()) return new Result(false, "please check email field");
         return new Result(true, "");
     }
 
@@ -81,17 +82,13 @@ public class UserInformationController {
         for (int i = 0; i < duplicateUsername.length(); i++) {
             int randomInt = random.nextInt(3);
             switch (randomInt) {
-                case 1:
-                    int randomNumber = random.nextInt(10);
-                    uniqueUsernameBuilder.insert(i, randomNumber);
-                    break;
-                case 2:
-                    uniqueUsernameBuilder.insert(i, '_');
-                    break;
+                case 1 -> uniqueUsernameBuilder.insert(i, random.nextInt(10));
+                case 2 -> uniqueUsernameBuilder.insert(i, '_');
             }
             if (App.getUserByUsername(uniqueUsernameBuilder.toString()) == null) break;
         }
-        if (App.getUserByUsername(uniqueUsernameBuilder.toString()) != null) return createUniqueUserName(uniqueUsernameBuilder.toString());
+        if (App.getUserByUsername(uniqueUsernameBuilder.toString()) != null)
+            return createUniqueUserName(uniqueUsernameBuilder.toString());
         return uniqueUsernameBuilder.toString();
     }
 }

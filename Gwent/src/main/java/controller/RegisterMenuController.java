@@ -16,11 +16,6 @@ public class RegisterMenuController {
         App.addUser(user);
     }
 
-    public void enterLoginMenu() {
-        App.setCurrentMenuScene(MenuScene.LOGIN_SCENE);
-        App.getPrimaryStage().setScene(MenuScene.LOGIN_SCENE.getScene());
-    }
-
     public Result checkSecurityQuestion(String question, String answer) {
         if (answer.isEmpty()) return new Result(false, "please fill answer field");
         SecurityQuestion securityQuestion = SecurityQuestion.getSecurityQuestion(question);

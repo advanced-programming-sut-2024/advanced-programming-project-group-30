@@ -9,8 +9,8 @@ public class Result {
         this.message = message;
     }
 
-    public boolean isSuccessful() {
-        return isSuccessful;
+    public boolean isNotSuccessful() {
+        return !isSuccessful;
     }
 
     @Override

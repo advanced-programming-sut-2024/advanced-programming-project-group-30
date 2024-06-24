@@ -3,9 +3,10 @@ package view;
 import controller.LoginMenuController;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import model.App;
 import model.Result;
 
-public class LoginMenu implements Menu {
+public class LoginMenu implements Menu{
     private final LoginMenuController controller = new LoginMenuController();
     @FXML
     private Label usernameError;
@@ -23,9 +24,6 @@ public class LoginMenu implements Menu {
     private CheckBox rememberMe;
     @FXML
     private Label loginError;
-
-    public void run() {
-    }
 
     @FXML
     public void initialize() {
@@ -47,14 +45,14 @@ public class LoginMenu implements Menu {
 
     @FXML
     private void goToForgetPasswordMenu() {
-        controller.enterForgetPasswordMenu();
+        App.getSceneManager().goToForgetPasswordMenu();
         resetFields();
     }
 
     @FXML
     private void login() {
         Result result = controller.checkInformationForLogin(username.getText(), password.getText());
-        if (!result.isSuccessful()) {
+        if (result.isNotSuccessful()) {
             loginError.setText(result.toString());
             return;
         }
@@ -64,7 +62,7 @@ public class LoginMenu implements Menu {
 
     @FXML
     private void goToRegisterMenu() {
-        controller.enterRegisterMenu();
+        App.getSceneManager().goToRegisterMenu();
         resetFields();
     }
 

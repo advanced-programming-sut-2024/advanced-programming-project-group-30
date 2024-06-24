@@ -31,7 +31,7 @@
                            promptText="password confirm" styleClass="bottomBorderField" visible="false"/>
                 <ToggleButton fx:id="showPasswordConfirmButton" layoutX="328.0" layoutY="214.0" mnemonicParsing="false"
                               onAction="#togglePasswordConfirm" prefHeight="28.0" prefWidth="29.0" styleClass="showPasswordIcon"/>
-                <Button alignment="CENTER_RIGHT" layoutX="243.0" layoutY="250.0" mnemonicParsing="false" onAction="#generateRandomPassword"
+                <Button alignment="CENTER_RIGHT" layoutX="243.0" layoutY="250.0" mnemonicParsing="false" onAction="#setRandomPassword"
                         prefHeight="22.0" prefWidth="123.0" style="-fx-font-size: 12;" styleClass="italicButton" text="random password"/>
                 <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="251.0" layoutY="254.0" pickOnBounds="true" preserveRatio="true">
                     <Image url="@../Images/Icons/diceIcon.png"/>

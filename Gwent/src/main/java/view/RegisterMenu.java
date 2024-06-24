@@ -8,10 +8,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
+import model.App;
 import model.Result;
 
 
-public class RegisterMenu implements Menu {
+public class RegisterMenu implements Menu{
     private final RegisterMenuController registerController = new RegisterMenuController();
     private final UserInformationController userInformationController = new UserInformationController();
 
@@ -56,8 +57,6 @@ public class RegisterMenu implements Menu {
     @FXML
     private TextField answer;
 
-    public void run() {
-    }
 
     @FXML
     public void initialize() {
@@ -84,6 +83,12 @@ public class RegisterMenu implements Menu {
     }
 
     @FXML
+    private void backToFirstPage() {
+        changePage(secondPage, firstPage);
+        completeError.setText("");
+    }
+
+    @FXML
     private void togglePassword() {
         showHidePassword(showPasswordButton.isSelected(), password, shownPassword);
     }
@@ -94,7 +99,7 @@ public class RegisterMenu implements Menu {
     }
 
     @FXML
-    private void generateRandomPassword() {
+    private void setRandomPassword() {
         String randomPassword = registerController.createRandomPassword();
         password.setText(randomPassword);
         shownPassword.setText(randomPassword);
@@ -105,43 +110,36 @@ public class RegisterMenu implements Menu {
     @FXML
     private void goToLoginMenu() {
         resetFields();
-        registerController.enterLoginMenu();
+        App.getSceneManager().goToLoginMenu();
     }
 
     @FXML
     private void continueSignUp() {
         Result result = userInformationController.checkInformation(username.getText(), password.getText(),
                 passwordConfirm.getText(), nickname.getText(), email.getText());
-        if (!result.isSuccessful()) {
-            continueError.setText(result.toString());
-            return;
+        if (result.isNotSuccessful()) continueError.setText(result.toString());
+        else {
+            changePage(firstPage, secondPage);
+            continueError.setText("");
         }
-        firstPage.setDisable(true);
-        firstPage.setVisible(false);
-        secondPage.setDisable(false);
-        secondPage.setVisible(true);
-        continueError.setText("");
-    }
-
-    @FXML
-    private void backToFirstPage() {
-        secondPage.setDisable(true);
-        secondPage.setVisible(false);
-        firstPage.setDisable(false);
-        firstPage.setVisible(true);
-        completeError.setText("");
     }
 
     @FXML
     private void signup() {
         Result result = registerController.checkSecurityQuestion(questions.getValue().toString(), answer.getText());
-        if (!result.isSuccessful()) {
-            completeError.setText(result.toString());
-            return;
+        if (result.isNotSuccessful()) completeError.setText(result.toString());
+        else {
+            registerController.register(username.getText(), password.getText(), nickname.getText(), email.getText(),
+                    questions.getValue().toString(), answer.getText());
+            goToLoginMenu();
         }
-        registerController.register(username.getText(), password.getText(), nickname.getText(), email.getText(),
-                questions.getValue().toString(), answer.getText());
-        goToLoginMenu();
+    }
+
+    private void changePage(Pane previousPage, Pane destinationPage) {
+        previousPage.setDisable(true);
+        previousPage.setVisible(false);
+        destinationPage.setDisable(false);
+        destinationPage.setVisible(true);
     }
 
     private void resetFields() {

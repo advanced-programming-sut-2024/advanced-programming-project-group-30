@@ -33,8 +33,4 @@ public enum MenuScene {
     public Menu getMenu() {
         return loader.getController();
     }
-
-    public void run(){
-        getMenu().run();
-    }
 }

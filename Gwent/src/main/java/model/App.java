@@ -1,5 +1,6 @@
 package model;
 
+import controller.SceneManager;
 import enums.MenuScene;
 import javafx.stage.Stage;
 
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 public class App {
     private static Stage primaryStage;
     private static MenuScene currentMenuScene = MenuScene.LOGIN_SCENE;
+    private static final SceneManager sceneManager = new SceneManager();
     private static Game currentGame;
     private static User loggedInUser;
     private static final ArrayList<User> allUsers = new ArrayList<>();
@@ -26,6 +28,10 @@ public class App {
 
     public static void setCurrentMenuScene(MenuScene currentMenuScene) {
         App.currentMenuScene = currentMenuScene;
+    }
+
+    public static SceneManager getSceneManager() {
+        return sceneManager;
     }
 
     public static User getLoggedInUser() {
