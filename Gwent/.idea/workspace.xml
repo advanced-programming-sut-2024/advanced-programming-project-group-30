@@ -4,39 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f1724509-8fa7-4a1d-addf-f9c920333c2d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/SceneManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/ForgetPasswordMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ForgetPasswordMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/GameMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/GameMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/LoginMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/LoginMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/MainMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/MainMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/RegisterMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/RegisterMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/UserInformationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/UserInformationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/CheckInformationRegex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/CheckInformationRegex.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/MenuScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/MenuScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/SecurityQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/SecurityQuestion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/commands/GameMenuCommands.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/commands/LoginMenuCommands.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/commands/MainMenuCommands.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/commands/ProfileMenuCommands.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/commands/RegisterMenuCommands.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/commands/StartGameMenuCommands.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Result.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Result.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/ForgetPasswordMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/ForgetPasswordMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/GameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/GameMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/LoginMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/LoginMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/Menu.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/ProfileMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/ProfileMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/RegisterMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/RegisterMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/StartGameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/StartGameMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/ForgetPasswordMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/ForgetPasswordMenu.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/RegisterMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/RegisterMenu.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="f1724509-8fa7-4a1d-addf-f9c920333c2d" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -74,7 +42,7 @@
     "Application.test.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "LoginAndRegisterMenu-Fatemeh",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Fatemeh/Desktop/Uni/AP/tamrin2/AtomicBomber",
