@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane styleClass="MenusBackground" stylesheets="@../CSS/Backgrounds.css" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.LoginMenu">
+    <center>
+        <VBox alignment="CENTER" prefHeight="500.0" prefWidth="850.0">
+            <Pane maxHeight="480.0" maxWidth="400.0" minHeight="459.0" minWidth="400.0" prefHeight="459.0" prefWidth="400.0"
+                  styleClass="brownBox" stylesheets="@../CSS/NodeStyle.css">
+                <Label layoutX="135.0" layoutY="30.0" prefHeight="50.0" prefWidth="135.0" styleClass="beigeTitle" text="Login"/>
+                <TextField fx:id="username" layoutX="37.0" layoutY="96.0" minHeight="45.0" prefHeight="45.0" prefWidth="325.0"
+                           promptText="Enter your username" styleClass="bottomBorderField"/>
+                <Label fx:id="usernameError" layoutX="37.0" layoutY="146.0" prefHeight="17.0" prefWidth="317.0" styleClass="errorMessage"
+                       text="** username can't be empty."/>
+                <PasswordField fx:id="password" layoutX="38.0" layoutY="167.0" minHeight="45.0" prefHeight="45.0" prefWidth="325.0"
+                               promptText="Enter your password" style="-fx-padding: 0 40 0  0;" styleClass="bottomBorderField"/>
+                <TextField fx:id="shownPassword" disable="true" layoutX="38.0" layoutY="168.0" minHeight="45.0" prefHeight="45.0"
+                           prefWidth="325.0" promptText="Enter your password" style="-fx-padding: 0 40 0  0;" styleClass="bottomBorderField"
+                           visible="false"/>
+                <Label fx:id="passwordError" layoutX="37.0" layoutY="217.0" prefHeight="17.0" prefWidth="317.0" styleClass="errorMessage"
+                       text="** password can't be empty."/>
+                <ToggleButton fx:id="showPasswordButton" layoutX="329.0" layoutY="177.0" mnemonicParsing="false" onAction="#togglePassword"
+                              prefHeight="28.0" prefWidth="29.0" styleClass="showPasswordIcon"/>
+                <CheckBox fx:id="rememberMe" layoutX="43.0" layoutY="249.0" styleClass="brownCheckBox" text="remember me"/>
+                <Button onAction="#goToForgetPasswordMenu" layoutX="242.0" layoutY="247.0" mnemonicParsing="false" prefHeight="28.0"
+                        prefWidth="126.0" styleClass="buttonWithoutBg" text="forgot password?"/>
+                <Button onAction="#login" layoutX="38.0" layoutY="297.0" prefHeight="40.0" prefWidth="325.0" styleClass="buttonWithBeigeBg"
+                        text="Login"/>
+                <Label fx:id="loginError" alignment="CENTER" layoutX="42.0" layoutY="346.0" prefHeight="17.0" prefWidth="317.0"
+                       style="-fx-text-fill: rgba(239,47,21,0.94);" styleClass="errorMessage"/>
+                <Label alignment="CENTER" layoutX="101.0" layoutY="368.0" prefHeight="28.0" prefWidth="203.0" style="-fx-font-size: 17;"
+                       styleClass="italicText" text="Don't have an account?"/>
+                <Button layoutX="137.0" layoutY="393.0" mnemonicParsing="false" onAction="#goToRegisterMenu" prefHeight="28.0"
+                        prefWidth="126.0" styleClass="boldButtonWithoutBg" text="Sign up"/>
+                <effect>
+                    <Blend mode="COLOR_BURN" opacity="0.2"/>
+                </effect>
+            </Pane>
+        </VBox>
+    </center>
+</BorderPane>

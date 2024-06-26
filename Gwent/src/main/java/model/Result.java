@@ -1,22 +1,16 @@
 package model;
 
 public class Result {
-    private final String message;
     private final boolean isSuccessful;
-    private final Error error;
+    private final String message;
 
-    public Result(String message, boolean isSuccessful, boolean needFurtherInput, Error error) {
-        this.message = message;
+    public Result(boolean isSuccessful, String message) {
         this.isSuccessful = isSuccessful;
-        this.error = error;
+        this.message = message;
     }
 
-    public boolean isSuccessful() {
-        return isSuccessful;
-    }
-
-    public Error getError() {
-        return error;
+    public boolean isNotSuccessful() {
+        return !isSuccessful;
     }
 
     @Override

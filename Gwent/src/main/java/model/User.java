@@ -19,11 +19,12 @@ public class User {
     private final HashMap<String, Faction> factions = new HashMap<>();
     private Faction selectedFaction;
 
-    public User(String username, String password, String email, String nickName) {
+    public User(String username, String password, String email, String nickName, SecurityQuestion securityQuestion, String securityAnswer) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.nickName = nickName;
+        this.securityQuestions.put(securityQuestion, securityAnswer);
     }
 
     public String getUsername() {
@@ -60,6 +61,10 @@ public class User {
 
     public HashMap<SecurityQuestion, String> getSecurityQuestions() {
         return securityQuestions;
+    }
+
+    public void addToSecurityQuestions(SecurityQuestion securityQuestion, String answer) {
+        securityQuestions.put(securityQuestion, answer);
     }
 
     public int getRank() {

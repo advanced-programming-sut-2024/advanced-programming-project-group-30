@@ -1,21 +1,37 @@
 package model;
 
-import enums.Menu;
+import controller.SceneManager;
+import enums.MenuScene;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
 public class App {
-    private static Menu currentMenu;
+    private static Stage primaryStage;
+    private static MenuScene currentMenuScene = MenuScene.LOGIN_SCENE;
+    private static final SceneManager sceneManager = new SceneManager();
     private static Game currentGame;
     private static User loggedInUser;
     private static final ArrayList<User> allUsers = new ArrayList<>();
 
-    public static Menu getCurrentMenu() {
-        return currentMenu;
+    public static Stage getPrimaryStage() {
+        return primaryStage;
     }
 
-    public static void setCurrentMenu(Menu menu) {
-        currentMenu = menu;
+    public static void setPrimaryStage(Stage primaryStage) {
+        App.primaryStage = primaryStage;
+    }
+
+    public static MenuScene getCurrentMenuScene() {
+        return currentMenuScene;
+    }
+
+    public static void setCurrentMenuScene(MenuScene currentMenuScene) {
+        App.currentMenuScene = currentMenuScene;
+    }
+
+    public static SceneManager getSceneManager() {
+        return sceneManager;
     }
 
     public static User getLoggedInUser() {
@@ -34,15 +50,15 @@ public class App {
         App.currentGame = currentGame;
     }
 
-    public void addUser(User user) {
+    public static void addUser(User user) {
         allUsers.add(user);
     }
 
-    public void removeUser(User user) {
+    public static void removeUser(User user) {
         allUsers.remove(user);
     }
 
-    public User getUserByUsername(String username) {
+    public static User getUserByUsername(String username) {
         for (User user : allUsers)
             if (user.getUsername().equals(username)) return user;
         return null;

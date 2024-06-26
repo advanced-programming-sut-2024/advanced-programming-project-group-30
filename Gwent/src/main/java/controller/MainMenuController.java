@@ -1,17 +1,14 @@
 package controller;
 
-import model.Result;
+import model.App;
+
 
 public class MainMenuController {
-    public Result logout() {
-        return null;
+    public void logout() {
+        App.setLoggedInUser(null);
+        App.getSceneManager().goToLoginMenu();
     }
-
-    public Result enterMenu(String menuName) {
-        return null;
-    }
-
-    public Result exitMenu() {
-        return null;
+    public void createGame() {
+        // TODO
     }
 }
