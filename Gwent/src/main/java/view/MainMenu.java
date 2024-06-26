@@ -13,7 +13,7 @@ import model.App;
 import java.util.Scanner;
 
 public class MainMenu extends Menu{
-    private static MainMenuController mainMenuController;
+    private final MainMenuController mainMenuController = new MainMenuController();
     @FXML
     public Label username;
     @FXML

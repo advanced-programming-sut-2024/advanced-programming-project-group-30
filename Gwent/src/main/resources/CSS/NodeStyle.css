@@ -7,37 +7,27 @@
 }
 .profileMenu-scrollPane{
     -fx-background-color: rgba(21, 17, 15, 0.9);
-    -fx-background-radius: 20;
-    /*-fx-border-width: 1;*/
-    /*-fx-border-color: rgb(101, 88, 71);*/
-    /*-fx-border-radius: 20;*/
+    -fx-background-radius: 30px;
+    -fx-border-radius: 30px
 }
 .profileMenu-scrollPane .viewport{
     -fx-background-color: rgba(21, 17, 15, 0.9);
     -fx-background-radius: 20;
-    /*-fx-border-width: 1;*/
-    /*-fx-border-color: rgb(101, 88, 71);*/
     -fx-border-radius: 20;
 
 }
 
 .profileMenu-scrollPane .scroll-bar:vertical{
     -fx-background-color: rgba(21, 17, 15, 0.9);
-    /*-fx-background-radius: 20px;*/
     -fx-border-radius: 20px;
-    /*-fx-background-radius: 20px;*/
     -fx-border-color: rgb(101, 88, 71);
 }
 .profileMenu-scrollPane .scroll-bar .thumb{
     -fx-background-color: rgba(101, 88, 71, 0.9);
     -fx-background-radius: 20;
     -fx-border-radius: 20;
-    /*-fx-border-color: rgb(101, 88, 71);*/
 }
 
-/*.scroll-bar:vertical, .scroll-bar:horizontal {*/
-/*    -fx-background-color: rgba(101, 88, 71);*/
-/*}*/
 .beigeTitle {
     -fx-alignment: center;
     -fx-text-fill: #f3d6b0;
@@ -67,17 +57,6 @@
     -fx-padding: 0;
 }
 
-/*.showPasswordButton {*/
-/*    -fx-background-color: transparent;*/
-/*    -fx-background-size: 100% 100%;*/
-/*    -fx-background-image: url('../Images/Icons/showIcon.png');*/
-/*}*/
-
-/*.showPasswordButton:selected {*/
-/*    -fx-background-color: TRANSPARENT;*/
-/*    -fx-background-size: 100% 100%;*/
-/*    -fx-background-image: url('../Images/Icons/hideIcon.png');*/
-/*}*/
 
 .buttonWithoutBg, .italicText, .simpleText, .brownCheckBox, .boldButtonWithoutBg {
     -fx-background-color: TRANSPARENT;
@@ -163,7 +142,45 @@
 }
 .profileMenu-edit-button  {
     -fx-background-color: TRANSPARENT;
-    -fx-border-color: TRANSPARENT;
-    -fx-padding: 0;
+    -fx-background-size: 100% 100%;
+    -fx-background-image: url('../Images/pencil.png');
+}
+.profileMenu-check-button {
+    -fx-background-color: TRANSPARENT;
+    -fx-background-size: 100% 100%;
+    -fx-background-image: url('../Images/checked.png');
+}
+.profileMenu-cancel-button {
+    -fx-background-color: TRANSPARENT;
+    -fx-background-size: 100% 100%;
+    -fx-background-image: url('../Images/remove.png');
+}
+.profileMenu-information-label {
+    -fx-font-family: "Brush Script MT";
+    -fx-font-size: 20;
+    -fx-text-fill: #f3d6b0;
+    -fx-font-weight: bold;
+}
+.profileMenu-scrollbar-textArea{
+    -fx-background-color: rgba(21, 17, 15, 0.9);
+    -fx-background-radius: 20;
+    -fx-border-width: 1;
+    -fx-border-color: rgb(101, 88, 71);
+    -fx-border-radius: 20;
+    -fx-text-fill: #f3d6b0;
+    -fx-font-family: "Times New Roman";
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+}
+.profileMenu-gameHistoryCount-Field{
+    -fx-background-color: TRANSPARENT;
+    -fx-background-radius: 20;
+    -fx-border-width: 1;
+    -fx-border-color: rgb(101, 88, 71);
+    -fx-border-radius: 20;
+    -fx-text-fill: #f3d6b0;
+    -fx-font-family: "Times New Roman";
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
 }
 

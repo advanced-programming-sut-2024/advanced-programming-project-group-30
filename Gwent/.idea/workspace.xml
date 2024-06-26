@@ -6,6 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="124b1a9a-c6f6-4977-bbc2-df42d5ff586a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/ProfileMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ProfileMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/RegisterMenuCheck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/RegisterMenuCheck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/GameHistory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/GameHistory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/ProfileMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/ProfileMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/CSS/NodeStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/CSS/NodeStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/ProfileMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/ProfileMenu.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,17 +25,19 @@
       <list>
         <option value="CSS File" />
         <option value="FxmlFile" />
-        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="ProfileMenu-Bahar" />
+        <entry key="$PROJECT_DIR$/.." value="MainMenu-Bahar" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="nhlyhcp9" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
@@ -49,6 +59,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon&quot;: &quot;&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -70,18 +81,16 @@
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="124b1a9a-c6f6-4977-bbc2-df42d5ff586a" name="Changes" comment="" />
-      <created>1717528371258</created>
+      <created>1718699043431</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1717528371258</updated>
-      <workItem from="1717528378063" duration="10944000" />
-      <workItem from="1717572630688" duration="625000" />
-      <workItem from="1717680376243" duration="1020000" />
-      <workItem from="1717765260921" duration="4145000" />
-      <workItem from="1718353647896" duration="603000" />
-      <workItem from="1718355227627" duration="13743000" />
-      <workItem from="1718369824864" duration="16234000" />
-      <workItem from="1718438861540" duration="1572000" />
+      <updated>1718699043431</updated>
+      <workItem from="1718699049990" duration="723000" />
+      <workItem from="1718950355255" duration="546000" />
+      <workItem from="1719145882379" duration="25013000" />
+      <workItem from="1719306831339" duration="16244000" />
+      <workItem from="1719337586712" duration="2768000" />
+      <workItem from="1719380435848" duration="10889000" />
     </task>
     <servers />
   </component>
