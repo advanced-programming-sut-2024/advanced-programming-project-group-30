@@ -1,6 +1,5 @@
 package controller;
 
-import enums.MenuScene;
 import enums.SecurityQuestion;
 import model.App;
 import model.Result;

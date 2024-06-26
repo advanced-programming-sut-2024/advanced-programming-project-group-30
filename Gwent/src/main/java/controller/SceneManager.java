@@ -2,6 +2,7 @@ package controller;
 
 import enums.MenuScene;
 import model.App;
+import view.MainMenu;
 
 public class SceneManager {
     public void goToLoginMenu() {
@@ -20,6 +21,8 @@ public class SceneManager {
     }
 
     public void goToMainMenu() {
+        MainMenu mainMenu = (MainMenu) MenuScene.MAIN_SCENE.getMenu();
+        mainMenu.setFields(App.getLoggedInUser().getUsername(), App.getLoggedInUser().getNickName());
         App.setCurrentMenuScene(MenuScene.MAIN_SCENE);
         App.getPrimaryStage().setScene(MenuScene.MAIN_SCENE.getScene());
     }
