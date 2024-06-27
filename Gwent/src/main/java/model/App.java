@@ -37,15 +37,12 @@ public class App {
     public static User getLoggedInUser() {
         return loggedInUser;
     }
-
     public static void setLoggedInUser(User loggedInUser) {
         App.loggedInUser = loggedInUser;
     }
-
     public static Game getCurrentGame() {
         return currentGame;
     }
-
     public static void setCurrentGame(Game currentGame) {
         App.currentGame = currentGame;
     }
@@ -62,9 +59,7 @@ public class App {
         for (User user : allUsers)
             if (user.getUsername().equals(username)) return user;
         return null;
-
     }
-
     public static int getUserRank() {
         return 1;
     }

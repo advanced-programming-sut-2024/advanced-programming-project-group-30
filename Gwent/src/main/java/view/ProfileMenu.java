@@ -3,98 +3,139 @@ package view;
 import controller.ProfileMenuController;
 import controller.UserInformationController;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 import model.App;
 import model.Result;
 
-import java.util.Objects;
-import java.util.Scanner;
 
-public class ProfileMenu extends Menu{
+public class ProfileMenu implements Menu{
     private final UserInformationController userInformationController = new UserInformationController();
-    private final ProfileMenuController profileMenuController = new ProfileMenuController(this);
+    private final ProfileMenuController profileMenuController = new ProfileMenuController();
     @FXML
-    private Button changePasswordButton, editUsernameButton, editNicknameButton, editEmailButton;
+    private Label passwordConfirmationErrorField;
     @FXML
-    private PasswordField oldPassword, newPassword;
+    private Button changePasswordButton;
+    @FXML
+    private Button editUsernameButton;
+    @FXML
+    private Button editNicknameButton;
+    @FXML
+    private Button editEmailButton;
+    @FXML
+    private PasswordField oldPassword;
+    @FXML
+    private PasswordField newPassword;
     @FXML
     private Pane changePasswordPane;
     @FXML
-    private TextField usernameTextField, nicknameTextField, emailTextField, gameHistoryCount;
+    private TextField usernameTextField;
     @FXML
-    private Label usernameErrorField, emailErrorField, nicknameErrorField, gameHistoryNumberErrorField;
+    private TextField nicknameTextField;
     @FXML
-    private Button setNewUsernameButton, setNewNicknameButton, setNewEmailButton;
+    private TextField emailTextField;
     @FXML
-    private Button cancelChangingUsernameButton, cancelChangingNicknameButton, cancelChangingEmailButton;
+    private TextField gameHistoryCount;
     @FXML
-    private Label rank, highestScore, gameCount, wins, losses, draws;
+    private Label usernameErrorField;
     @FXML
-    private VBox editInformationBox;
+    private Label emailErrorField;
+    @FXML
+    private Label nicknameErrorField;
+    @FXML
+    private Label gameHistoryNumberErrorField;
+    @FXML
+    private Button setNewUsernameButton;
+    @FXML
+    private Button setNewNicknameButton;
+    @FXML
+    private Button setNewEmailButton;
+    @FXML
+    private Button cancelChangingUsernameButton;
+    @FXML
+    private Button cancelChangingNicknameButton;
+    @FXML
+    private Button cancelChangingEmailButton;
+    @FXML
+    private Label rank;
+    @FXML
+    private Label highestScore;
+    @FXML
+    private Label gameCount;
+    @FXML
+    private Label wins;
+    @FXML
+    private Label losses;
+    @FXML
+    private Label draws;
     @FXML
     private Label newPasswordError;
-    @FXML
-    private Label passwordConfirmationErrorField;
     @FXML
     private ScrollPane gameHistoryScrollPane;
     @FXML
     private VBox scrollPaneVbox;
     @FXML
-    private Text gameHistoryText;
+    private VBox editInformationBox;
 
-    @Override
-    public void run(){
-
+    public void setFields(String username, String nickname, String email, int rank, int highestScore, int gameCount, int wins, int losses, int draws){
+        usernameTextField.setPromptText(username);
+        nicknameTextField.setPromptText(nickname);
+        emailTextField.setPromptText(email);
+        setUserInformation(rank, highestScore, gameCount, wins, losses, draws);
+        Result result = profileMenuController.showDefaultGameHistory();
+        if (result.isNotSuccessful()){
+            gameHistoryNumberErrorField.setText(result.toString());
+        }else {
+            Text text = new Text(result.toString());
+            text.getStyleClass().add("profileMenu-scrollbar-textArea");
+            scrollPaneVbox.getChildren().add(text);
+            gameHistoryScrollPane.setContent(scrollPaneVbox);
+        }
     }
-    @FXML
+        @FXML
     public void initialize(){
         gameHistoryCount.setFocusTraversable(false);
         usernameTextField.textProperty().addListener((observableValue, s, t1) -> {
-            if (!editUsernameButton.isVisible()) {
-                usernameErrorField.setVisible(true);
-                usernameErrorField.setText(userInformationController.checkUsername(usernameTextField.getText()).toString());
-            } else usernameErrorField.setText("");
+            handleUsernameError();
+            usernameTextField.setPromptText(App.getLoggedInUser().getUsername());
         });
         nicknameTextField.textProperty().addListener((observableValue, s, t1) -> {
-            nicknameErrorField.setText(userInformationController.checkNickname(nicknameTextField.getText()).toString());
+            handleNicknameError();
+            nicknameTextField.setPromptText(App.getLoggedInUser().getNickName());
         });
         emailTextField.textProperty().addListener((observableValue, s, t1) -> {
-            emailErrorField.setText(userInformationController.checkEmail(emailTextField.getText()).toString());
+            handleEmailError();
+            emailTextField.setPromptText(App.getLoggedInUser().getEmail());
         });
         newPassword.textProperty().addListener((observableValue, s, t1) -> {
+            newPassword.setPromptText("new password");
             newPasswordError.setText(userInformationController.checkPassword(newPassword.getText()).toString());
         });
+        oldPassword.textProperty().addListener((observableValue, s, t1) -> {
+            oldPassword.setPromptText("old password");
+        });
 
-        Text text = new Text(profileMenuController.showDefaultGameHistory().toString());
-        scrollPaneVbox.getChildren().add(text);
-        gameHistoryScrollPane.setContent(scrollPaneVbox);
-//        gameHistoryCount.textProperty().addListener(((observableValue, s, t1) -> {
-//            gameHistoryNumberErrorField.setText(profileMenuController.checkGameHistory(gameHistoryCount.getText()).toString());
-//        }));
-//        Text text = new Text("Game 1: 1000\nGame 2: 900\nGame 3: 800\nGame 4: 700\nGame 5: 600\nGame 6: 500\nGame 7: 400\nGame 8: 300\nGame 9: 200\nGame 10: 100");
-//        gameHistory.getChildren().add(text);
-//        username.textProperty().addListener((observable) -> {
-//            username.setText(App.getLoggedInUser().getUsername());
-//        });
-        //TODO: add listener for prompt texts
-//        username.setPromptText(App.getLoggedInUser().getUsername());
-//        nickname.setPromptText(App.getLoggedInUser().getNickName());
-//        email.setPromptText(App.getLoggedInUser().getEmail());
-//        userInfoTabUsername.setText(App.getLoggedInUser().getUsername());
-//        userInfoTabNickname.setText(App.getLoggedInUser().getNickName());
-//        rank.setText(String.valueOf(App.getLoggedInUser().getRank()));
-//        wins.setText(String.valueOf("Wins: " + App.getLoggedInUser().getWins()));
-//        losses.setText(String.valueOf("Losses" + App.getLoggedInUser().getLosses()));
-//        draws.setText(String.valueOf("Draws" + App.getLoggedInUser().getDraws()));
-        //numberOfPlays.setText(String.valueOf(App.getLoggedInUser().getGameHistories().size()));
+    }
+    private void handleUsernameError(){
+        if (!editUsernameButton.isVisible()) {
+            usernameErrorField.setText(userInformationController.checkUsername(usernameTextField.getText()).toString());
+        } else {
+            usernameErrorField.setText("");
+        }
+    }
+    private void handleNicknameError(){
+        if (!editNicknameButton.isVisible()) {
+            nicknameErrorField.setText(userInformationController.checkNickname(nicknameTextField.getText()).toString());
+        } else {
+            nicknameErrorField.setText("");
+        }
+    }
+    private void handleEmailError(){
+        if (!editEmailButton.isVisible()) {
+            emailErrorField.setText(userInformationController.checkEmail(emailTextField.getText()).toString());
+        } else emailErrorField.setText("");
     }
 
     @FXML
@@ -132,93 +173,47 @@ public class ProfileMenu extends Menu{
     }
     @FXML
     private void checkAndSetNewUsername() {
-        Result result = userInformationController.checkUsername(usernameTextField.getText());
-        if (!result.isSuccessful()){
-            usernameErrorField.setText(result.toString());
-        } else {
-            changeUsername(usernameTextField.getText());
-            usernameTextField.setEditable(false);
-            setNewUsernameButton.setVisible(false);
-            cancelChangingUsernameButton.setVisible(false);
-            editUsernameButton.setVisible(true);
-        }
+        Result result = profileMenuController.changeUsername(usernameTextField.getText());
+        checkAndSetNewInfo(result, usernameTextField, editUsernameButton, cancelChangingUsernameButton, setNewUsernameButton, usernameErrorField);
     }
     @FXML
     private void checkAndSetNewNickname(){
-        Result result = userInformationController.checkNickname(nicknameTextField.getText());
-        if (!result.isSuccessful()){
-            nicknameErrorField.setText(result.toString());
-        } else {
-            changeNickname(nicknameTextField.getText());
-            nicknameTextField.setEditable(false);
-            setNewNicknameButton.setVisible(false);
-            cancelChangingNicknameButton.setVisible(false);
-            editNicknameButton.setVisible(true);
-        }
+        Result result = profileMenuController.changeNickname(nicknameTextField.getText());
+        checkAndSetNewInfo(result, nicknameTextField, editNicknameButton, cancelChangingNicknameButton, setNewNicknameButton, nicknameErrorField);
 
     }
     @FXML
     private void checkAndSetNewEmail(){
-        Result result = userInformationController.checkEmail(emailTextField.getText());
-        if (!result.isSuccessful()){
-            emailErrorField.setText(result.toString());
-        } else {
-            changeEmail(emailTextField.getText());
-            emailTextField.setEditable(false);
-            setNewEmailButton.setVisible(false);
-            cancelChangingEmailButton.setVisible(false);
-            editEmailButton.setVisible(true);
-        }
+        Result result = profileMenuController.changeEmail(emailTextField.getText());
+        checkAndSetNewInfo(result, emailTextField, editEmailButton, cancelChangingEmailButton, setNewEmailButton, emailErrorField);
 
     }
     @FXML
     private void cancelChangingUsername() {
-        setNewUsernameButton.setVisible(false);
-        usernameErrorField.setVisible(false);
-        cancelChangingUsernameButton.setVisible(false);
-        usernameTextField.setEditable(false);
-        editUsernameButton.setVisible(true);
-        usernameTextField.clear();
+        cancelEditingTextField(usernameTextField, editUsernameButton, setNewUsernameButton,
+                    cancelChangingUsernameButton, usernameErrorField, App.getLoggedInUser().getUsername());
     }
     @FXML
     private void cancelChangingEmail(){
-        setNewEmailButton.setVisible(false);
-        emailErrorField.setVisible(false);
-        emailTextField.setEditable(false);
-        cancelChangingEmailButton.setVisible(false);
-        editEmailButton.setVisible(true);
-        emailTextField.clear();
-
+        cancelEditingTextField(emailTextField, editEmailButton, setNewEmailButton,
+                cancelChangingEmailButton, emailErrorField, App.getLoggedInUser().getEmail());
     }
     @FXML
     private void cancelChangingNickname(){
-        setNewNicknameButton.setVisible(false);
-        nicknameTextField.setEditable(false);
-        nicknameErrorField.setVisible(false);
-        cancelChangingNicknameButton.setVisible(false);
-        editNicknameButton.setVisible(true);
-        nicknameTextField.clear();
-    }
-    public void changeUsername(String newUsername){
-            App.getLoggedInUser().setUsername(newUsername);
-    }
-    public void changeNickname(String newNickname){
-        App.getLoggedInUser().setNickName(newNickname);
-    }
-    public void changeEmail(String newEmail){
-        App.getLoggedInUser().setEmail(newEmail);
-    }
-    public void changePassword(String newPassword){
-        App.getLoggedInUser().setPassword(newPassword);
+        cancelEditingTextField(nicknameTextField, editNicknameButton, setNewNicknameButton,
+                cancelChangingNicknameButton, nicknameErrorField, App.getLoggedInUser().getNickName());
     }
 
     @FXML
     private void setNewPassword() {
-        Result result = userInformationController.checkPassword(newPassword.getText());
-        if (!result.isSuccessful()){
+        Result result = profileMenuController.changePassword(newPassword.getText(), oldPassword.getText());
+        if (result.isNotSuccessful()){
             passwordConfirmationErrorField.setText(result.toString());
         } else {
-            changePassword(newPassword.getText());
+            newPassword.clear();
+            oldPassword.clear();
+            passwordConfirmationErrorField.setText("");
+            newPasswordError.setText("");
             changePasswordPane.setVisible(false);
             editInformationBox.setVisible(true);
             changePasswordButton.setVisible(true);
@@ -226,6 +221,10 @@ public class ProfileMenu extends Menu{
     }
     @FXML
     private void backToEditInformation(){
+        newPassword.clear();
+        oldPassword.clear();
+        newPasswordError.setText("");
+        passwordConfirmationErrorField.setText("");
         editInformationBox.setVisible(true);
         changePasswordButton.setVisible(true);
         changePasswordPane.setVisible(false);
@@ -233,13 +232,66 @@ public class ProfileMenu extends Menu{
     @FXML
     private void checkAndSetGameHistoryCount() {
         Result result = profileMenuController.checkGameHistory(gameHistoryCount.getText());
-        if (!result.isSuccessful()){
+        if (result.isNotSuccessful()){
             gameHistoryNumberErrorField.setText(result.toString());
         } else {
+            scrollPaneVbox.getChildren().clear();
             Text text = new Text(profileMenuController.showGameHistoryByUserRequest(gameHistoryCount.getText()).toString());
+            text.getStyleClass().add("profileMenu-scrollbar-textArea");
             scrollPaneVbox.getChildren().add(text);
             gameHistoryScrollPane.setContent(scrollPaneVbox);
             gameHistoryNumberErrorField.setText("");
         }
+    }
+    @FXML
+    private void backToMainMenu() {
+        resetFields();
+        profileMenuController.goToMainMenu();
+    }
+    private void setUserInformation(int rank, int highestScore, int gameCount, int wins, int losses, int draws){
+        this.rank.setText("Rank: " + rank);
+        this.highestScore.setText("Highest Score: " + highestScore);
+        this.gameCount.setText("Games Played: " + gameCount);
+        this.wins.setText("Wins: " + wins);
+        this.losses.setText("Losses: " + losses);
+        this.draws.setText("Draws: " + draws);
+    }
+    private void resetFields(){
+        usernameTextField.clear();
+        nicknameTextField.clear();
+        emailTextField.clear();
+        oldPassword.clear();
+        newPassword.clear();
+        gameHistoryCount.clear();
+        usernameErrorField.setText("");
+        emailErrorField.setText("");
+        nicknameErrorField.setText("");
+        passwordConfirmationErrorField.setText("");
+        newPasswordError.setText("");
+        gameHistoryNumberErrorField.setText("");
+    }
+    private void checkAndSetNewInfo(Result result, TextField textField, Button editButton, Button cancel, Button check,
+                                    Label errorField){
+        if (result.isNotSuccessful()){
+            errorField.setText(result.toString());
+        } else {
+            textField.setEditable(false);
+            check.setVisible(false);
+            textField.clear();
+            errorField.setText("");
+            cancel.setVisible(false);
+            editButton.setVisible(true);
+        }
+    }
+    private void cancelEditingTextField(TextField textField, Button editButton, Button checkButton, Button cancelButton,
+                                        Label errorField, String promptText){
+        textField.setEditable(false);
+        textField.clear();
+        errorField.setText("");
+        textField.setPromptText(promptText);
+        checkButton.setVisible(false);
+        cancelButton.setVisible(false);
+        editButton.setVisible(true);
+
     }
 }

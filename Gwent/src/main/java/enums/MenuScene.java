@@ -11,7 +11,7 @@ public enum MenuScene {
     REGISTER_SCENE("/FXML/RegisterMenu.fxml"),
     MAIN_SCENE("/FXML/MainMenu.fxml"),
     FORGET_PASSWORD_SCENE("/FXML/ForgetPasswordMenu.fxml"),
-//    PROFILE_SCENE("/FXML/ProfileMenu.fxml"),
+    PROFILE_SCENE("/FXML/ProfileMenu.fxml"),
     ;
 
     private final Scene scene;

@@ -16,11 +16,12 @@
 <BorderPane minHeight="500.0" minWidth="800.0" prefHeight="625.0" prefWidth="890.0" stylesheets="@../CSS/BackGrounds.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ProfileMenu">
     <center>
         <VBox alignment="CENTER" prefHeight="500.0" prefWidth="700.0" styleClass="MenusBackground" BorderPane.alignment="CENTER">
-            <Pane maxHeight="534.0" maxWidth="806.0" minHeight="480.0" minWidth="350.0" prefHeight="534.0" prefWidth="806.0" styleClass="brownBox" stylesheets="@../CSS/NodeStyle.css">
-                <ImageView fitHeight="66.0" fitWidth="110.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <Button mnemonicParsing="false" onAction="#backToMainMenu" text="back" />
+            <Pane maxHeight="534.0" maxWidth="700.0" minHeight="480.0" minWidth="350.0" prefHeight="534.0" prefWidth="806.0" styleClass="brownBox" stylesheets="@../CSS/NodeStyle.css">
+                <ImageView fitHeight="66.0" fitWidth="110.0" layoutX="57.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                     <Image url="@../Images/gameAssests/icon_high_score.png" />
                 </ImageView>
-            <VBox fx:id="editInformationBox" layoutX="14.0" layoutY="183.0" maxHeight="900.0" maxWidth="900.0" minHeight="0.0" minWidth="0.0" prefHeight="268.0" prefWidth="366.0" spacing="15.0">
+            <VBox fx:id="editInformationBox" layoutX="14.0" layoutY="183.0" maxHeight="900.0" maxWidth="900.0" minHeight="0.0" minWidth="0.0" prefHeight="202.0" prefWidth="366.0" spacing="15.0">
                <children>
                   <HBox prefHeight="55.0" prefWidth="456.0">
                      <children>
@@ -85,10 +86,9 @@
                         </HBox>
                      </children>
                   </HBox>
-                   <Button fx:id="changePasswordButton" mnemonicParsing="false" onAction="#editPassword" styleClass="buttonWithoutBg" text="change password" />
                </children>
             </VBox>
-            <VBox layoutX="150.0" layoutY="14.0" maxHeight="10000.0" maxWidth="10000.0" minHeight="0.0" minWidth="0.0" prefHeight="101.0" prefWidth="183.0" spacing="18.0">
+            <VBox layoutX="181.0" layoutY="15.0" maxHeight="10000.0" maxWidth="10000.0" minHeight="0.0" minWidth="0.0" prefHeight="101.0" prefWidth="183.0" spacing="18.0">
                <children>
                   <HBox maxHeight="500.0" maxWidth="500.0" minHeight="0.0" minWidth="0.0" prefHeight="42.0" prefWidth="198.0" spacing="2.0">
                      <children>
@@ -122,10 +122,9 @@
                   </HBox>
                </children>
             </VBox>
-            <Label fx:id="gameCount" layoutX="482.0" layoutY="7.0" prefHeight="43.0" prefWidth="150.0" styleClass="profileMenu-information-label" />
-            <Label fx:id="rank" alignment="CENTER" layoutX="3.0" prefHeight="73.0" prefWidth="109.0" style="-fx-font-size: 30" styleClass="profileMenu-information-label" />
-            <Label fx:id="highestScore" layoutX="6.0" layoutY="96.0" prefHeight="39.0" prefWidth="126.0" style="-fx-font-size: 18" styleClass="profileMenu-information-label" />
-            <Pane layoutX="471.0" layoutY="94.0" prefHeight="425.0" prefWidth="296.0">
+            <Label fx:id="gameCount" layoutX="362.0" layoutY="22.0" prefHeight="43.0" prefWidth="150.0" styleClass="profileMenu-information-label" />
+            <Label fx:id="highestScore" layoutX="46.0" layoutY="81.0" prefHeight="31.0" prefWidth="126.0" style="-fx-font-size: 18" styleClass="profileMenu-information-label" />
+            <Pane layoutX="364.0" layoutY="96.0" prefHeight="425.0" prefWidth="296.0">
                <children>
                         <ScrollPane fx:id="gameHistoryScrollPane" accessibleText="" hbarPolicy="NEVER" layoutX="1.0" layoutY="-26.0" prefHeight="426.0" prefWidth="295.0" styleClass="profileMenu-scrollPane" VBox.vgrow="ALWAYS">
                      <content>
@@ -155,13 +154,20 @@
                   <Label fx:id="passwordConfirmationErrorField" layoutX="55.0" layoutY="14.0" prefHeight="34.0" prefWidth="237.0" styleClass="errorMessage" />
                </children>
             </Pane>
-            <Pane layoutX="600.0" layoutY="-4.0" prefHeight="82.0" prefWidth="167.0">
+            <Pane layoutX="499.0" layoutY="2.0" prefHeight="82.0" prefWidth="167.0">
                <children>
                   <TextField fx:id="gameHistoryCount" alignment="CENTER" layoutX="14.0" layoutY="4.0" prefHeight="38.0" prefWidth="149.0" promptText="5" styleClass="bottomBorderField" />
-                  <Label fx:id="gameHistoryNumberErrorField" alignment="CENTER" layoutX="15.0" layoutY="48.0" prefHeight="27.0" prefWidth="141.0" styleClass="errorMessage" />
+                  <Label fx:id="gameHistoryNumberErrorField" alignment="CENTER" layoutX="-3.0" layoutY="39.0" prefHeight="27.0" prefWidth="181.0" styleClass="errorMessage" />
                   <Button fx:id="gameHistoryButton" alignment="CENTER_LEFT" layoutX="142.0" layoutY="14.0" mnemonicParsing="false" onAction="#checkAndSetGameHistoryCount" prefHeight="25.0" prefWidth="23.0" styleClass="profileMenu-check-button" />
                </children>
             </Pane>
+            <ImageView fitHeight="70.0" fitWidth="69.0" layoutX="66.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/profile.png" />
+               </image>
+            </ImageView>
+             <Button fx:id="changePasswordButton" layoutX="20.0" layoutY="377.0" mnemonicParsing="false" onAction="#editPassword" styleClass="buttonWithoutBg" text="change password" />
+            <Label fx:id="rank" layoutX="46.0" layoutY="112.0" prefHeight="31.0" prefWidth="126.0" style="-fx-font-size: 18" styleClass="profileMenu-information-label" />
 
             </Pane>
         </VBox>

@@ -12,9 +12,9 @@ public class Result {
     public boolean isNotSuccessful() {
         return !isSuccessful;
     }
-
     @Override
     public String toString() {
         return message;
     }
+
 }
