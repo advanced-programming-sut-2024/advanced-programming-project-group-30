@@ -11,6 +11,11 @@
     -fx-font-weight: BOLD;
 }
 
+.blackPane {
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+    -fx-background-radius: 10;
+}
+
 .factionName {
     -fx-font-weight: BOLD;
     -fx-font-size: 30;
@@ -24,8 +29,38 @@
     -fx-font-size: 14;
 }
 
+.leaderTitle {
+    -fx-font-size: 14;
+    -fx-scale-x: 1.05;
+}
+
 .buttonWithoutBack {
     -fx-text-fill: #f3d6b0;
     -fx-font-size: 16;
     -fx-background-color: Transparent;
+}
+
+.topicLabel {
+    -fx-text-fill: #f1cc99;
+    -fx-font-size: 12;
+}
+
+.numberLabel {
+    -fx-text-fill: #a6865a;
+    -fx-font-size: 12;
+}
+
+.numberHBox {
+    -fx-max-height: 15;
+    -fx-max-width: 100;
+    -fx-min-height: 15;
+    -fx-min-width: 15;
+    -fx-spacing: 2;
+}
+
+.yellowButton {
+    -fx-opacity: 0.9;
+    -fx-background-color: #d3ac76;
+    -fx-text-fill: #463109;
+    -fx-font-size: 12;
 }

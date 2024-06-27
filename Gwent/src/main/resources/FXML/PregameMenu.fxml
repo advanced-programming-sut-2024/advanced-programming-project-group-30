@@ -1,32 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane styleClass="PregameBackground" stylesheets="@../CSS/Backgrounds.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.StartGameMenu">
+<BorderPane styleClass="PregameBackground" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="view.StartGameMenu">
     <top>
-        <VBox alignment="CENTER" stylesheets="@../CSS/GameNodesStyle.css" BorderPane.alignment="CENTER">
+        <VBox alignment="CENTER" BorderPane.alignment="CENTER">
             <Pane maxWidth="600.0" minWidth="600.0" prefHeight="160.0" prefWidth="600.0">
-                <Label layoutX="211.0" layoutY="38.0" styleClass="factionName" text="Faction Name" />
+                <Label layoutX="211.0" layoutY="38.0" styleClass="factionName" text="Faction Name"/>
                 <ImageView fitHeight="40.0" layoutX="153.0" layoutY="38.0" preserveRatio="true">
-                    <Image url="@../Images/Game/FactionsIcons/Nilfgaard.png" />
+                    <Image url="@../Images/Game/FactionsIcons/Nilfgaard.png"/>
                 </ImageView>
                 <ImageView fitHeight="40.0" layoutX="417.0" layoutY="38.0" preserveRatio="true">
-                    <Image url="@../Images/Game/FactionsIcons/Nilfgaard.png" />
+                    <Image url="@../Images/Game/FactionsIcons/Nilfgaard.png"/>
                 </ImageView>
-                <Label layoutX="127.0" layoutY="87.0" styleClass="descriptions" text="Descriptions about the ability of the Faction are written here"/>
-                <Button layoutX="226" layoutY="111" prefHeight="30" prefWidth="138" text="Change Faction" styleClass="buttonWithoutBack"/>
-                <Button layoutX="358" layoutY="111" prefHeight="30" prefWidth="140" text="Download Deck" styleClass="buttonWithoutBack"/>
-                <Button layoutX="107" layoutY="111" prefHeight="30" prefWidth="118" text="Upload Deck" styleClass="buttonWithoutBack"/>
+                <Label layoutX="127.0" layoutY="87.0" styleClass="descriptions"
+                       text="Descriptions about the ability of the Faction are written here"/>
+                <Button layoutX="226" layoutY="111" prefHeight="30" prefWidth="138" styleClass="buttonWithoutBack" text="Change Faction"/>
+                <Button layoutX="358" layoutY="111" prefHeight="30" prefWidth="140" styleClass="buttonWithoutBack" text="Download Deck"/>
+                <Button layoutX="107" layoutY="111" prefHeight="30" prefWidth="118" styleClass="buttonWithoutBack" text="Upload Deck"/>
             </Pane>
         </VBox>
     </top>
 
     <center>
-        <HBox alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" minWidth="250.0" prefHeight="461.0" prefWidth="1007.0" style="-fx-spacing: 35;" BorderPane.alignment="CENTER">
+        <HBox alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" minWidth="250.0" prefHeight="461.0" prefWidth="1007.0"
+              style="-fx-spacing: 35;" BorderPane.alignment="CENTER">
             <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" maxHeight="460.0" maxWidth="382.0" minWidth="300.0"
                         prefHeight="460.0" prefWidth="380.0" style="-fx-background-color: rgba(0,0,0,0.5);" vbarPolicy="ALWAYS">
                 <GridPane prefHeight="662.0" prefWidth="368.0" style="-fx-background-color: rgba(0,0,0,0.5);">
@@ -44,135 +48,76 @@
                     </rowConstraints>
                 </GridPane>
             </ScrollPane>
-            <Pane maxHeight="460.0" maxWidth="230.0" minWidth="230.0" prefHeight="460.0" prefWidth="230.0" style="-fx-background-color: rgba(0,0,0,0.5); -fx-background-radius: 10;">
-                <Label id="faction-title" layoutX="100.0" layoutY="20.0" style="-fx-scale-x: 1.05;" stylesheets="@../CSS/GameNodesStyle.css" text="Leader" textFill="#f3d6b0">
-                    <font>
-                        <Font name="Cambria" size="14.0" />
-                    </font>
-                </Label>
-                <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#725a3e" height="150.0" layoutX="72.0" layoutY="47.0" stroke="BLACK" strokeLineCap="BUTT" strokeType="INSIDE" width="96.0" />
+
+
+            <Pane maxHeight="460.0" maxWidth="230.0" minWidth="230.0" prefHeight="460.0" styleClass="blackPane">
+                <Label layoutX="100.0" layoutY="20.0" styleClass="leaderTitle" text="Leader"/>
+                <Rectangle arcHeight="20" arcWidth="20" fill="#725a3e" height="150" layoutX="72" layoutY="47" stroke="BLACK" width="96"/>
                 <VBox alignment="CENTER" layoutX="57.0" layoutY="210.0" prefHeight="179.0" prefWidth="126.0" style="-fx-spacing: 4;">
-                    <children>
-                        <Label text="Total cards in deck" textFill="#c9a677">
-                            <font>
-                                <Font name="Cambria" size="12.0" />
-                            </font>
-                        </Label>
-                        <HBox alignment="BOTTOM_CENTER" maxHeight="15.0" maxWidth="100.0" minHeight="15.0" prefHeight="15.0" prefWidth="75.0" style="-fx-background-color: transparent; -fx-spacing: 2;">
-                            <ImageView fitHeight="17.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image url="@../Images/Game/PregameIcons/deck_stats_count.png" />
-                                </image>
-                            </ImageView>
-                            <Label alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" prefHeight="12.0" text="×20" textFill="#816540">
-                                <font>
-                                    <Font name="Cambria" size="12.0" />
-                                </font>
-                            </Label>
-                        </HBox>
-                        <Label layoutX="25.0" layoutY="72.0" text="Number of Unit Cards" textFill="#c9a677">
-                            <font>
-                                <Font name="Cambria" size="12.0" />
-                            </font>
-                        </Label>
-                        <HBox alignment="TOP_CENTER" layoutX="23.0" layoutY="83.0" maxHeight="15.0" maxWidth="100.0" minHeight="15.0" prefHeight="15.0" prefWidth="75.0" style="-fx-background-color: transparent; -fx-spacing: 2;">
-                            <children>
-                                <ImageView fitHeight="15.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../Images/Game/PregameIcons/deck_stats_unit.png" />
-                                    </image>
-                                </ImageView>
-                                <Label alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" prefHeight="12.0" text="×20" textFill="#816540">
-                                    <font>
-                                        <Font name="Cambria" size="12.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                        </HBox>
-                        <Label layoutX="25.0" layoutY="92.0" text="Special Cards" textFill="#c9a677">
-                            <font>
-                                <Font name="Cambria" size="12.0" />
-                            </font>
-                        </Label>
-                        <HBox alignment="TOP_CENTER" layoutX="23.0" layoutY="102.0" maxHeight="15.0" maxWidth="100.0" minHeight="15.0" prefHeight="15.0" prefWidth="75.0" style="-fx-background-color: transparent; -fx-spacing: 2;">
-                            <children>
-                                <ImageView fitHeight="18.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../Images/Game/PregameIcons/deck_stats_special.png" />
-                                    </image>
-                                </ImageView>
-                                <Label alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" prefHeight="12.0" text="5/10" textFill="#816540">
-                                    <font>
-                                        <Font name="Cambria" size="12.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                        </HBox>
-                        <Label layoutX="25.0" layoutY="121.0" text="Total Unit Card Strenght" textFill="#c9a677">
-                            <font>
-                                <Font name="Cambria" size="12.0" />
-                            </font>
-                        </Label>
-                        <HBox alignment="TOP_CENTER" layoutX="23.0" layoutY="131.0" maxHeight="15.0" maxWidth="100.0" minHeight="15.0" prefHeight="15.0" prefWidth="75.0" style="-fx-background-color: transparent; -fx-spacing: 2;">
-                            <children>
-                                <ImageView fitHeight="18.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../Images/Game/PregameIcons/deck_stats_strength.png" />
-                                    </image>
-                                </ImageView>
-                                <Label alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" prefHeight="12.0" text="139" textFill="#816540">
-                                    <font>
-                                        <Font name="Cambria" size="12.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                        </HBox>
-                        <Label layoutX="25.0" layoutY="141.0" text="Hero Cards" textFill="#c9a677">
-                            <font>
-                                <Font name="Cambria" size="12.0" />
-                            </font>
-                        </Label>
-                        <HBox alignment="TOP_CENTER" layoutX="23.0" layoutY="151.0" maxHeight="15.0" maxWidth="100.0" minHeight="15.0" prefHeight="15.0" prefWidth="75.0" style="-fx-background-color: transparent; -fx-spacing: 2;">
-                            <children>
-                                <ImageView fitHeight="17.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../Images/Game/PregameIcons/deck_stats_hero.png" />
-                                    </image>
-                                </ImageView>
-                                <Label alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" prefHeight="12.0" text="9" textFill="#816540">
-                                    <font>
-                                        <Font name="Cambria" size="12.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                        </HBox>
-                    </children>
+                    <Label text="Total cards in deck" styleClass="topicLabel"/>
+                    <HBox styleClass="numberHBox" alignment="BOTTOM_CENTER">
+                        <ImageView fitHeight="17.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../Images/Game/PregameIcons/deck_stats_count.png"/>
+                        </ImageView>
+                        <Label alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" prefHeight="12.0" text="×20" styleClass="numberLabel"/>
+                    </HBox>
+                    <Label text="Number of Unit Cards" styleClass="topicLabel"/>
+                    <HBox styleClass="numberHBox" alignment="BOTTOM_CENTER">
+                        <ImageView fitHeight="15.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../Images/Game/PregameIcons/deck_stats_unit.png"/>
+                        </ImageView>
+                        <Label alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" prefHeight="12.0" text="×20" styleClass="numberLabel"/>
+                    </HBox>
+                    <Label text="Special Cards" styleClass="topicLabel"/>
+                    <HBox styleClass="numberHBox" alignment="BOTTOM_CENTER">
+                        <ImageView fitHeight="18.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../Images/Game/PregameIcons/deck_stats_special.png"/>
+                        </ImageView>
+                        <Label alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" prefHeight="12.0" text="5/10" styleClass="numberLabel"/>
+                    </HBox>
+                    <Label text="Total Unit Card Strength" styleClass="topicLabel"/>
+                    <HBox styleClass="numberHBox" alignment="BOTTOM_CENTER">
+                        <ImageView fitHeight="18.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../Images/Game/PregameIcons/deck_stats_strength.png"/>
+                        </ImageView>
+                        <Label alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" prefHeight="12.0" text="139" styleClass="numberLabel"/>
+                    </HBox>
+                    <Label text="Hero Cards" styleClass="topicLabel"/>
+                    <HBox styleClass="numberHBox" alignment="BOTTOM_CENTER">
+                        <ImageView fitHeight="17.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../Images/Game/PregameIcons/deck_stats_hero.png"/>
+                        </ImageView>
+                        <Label alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" prefHeight="12.0" text="×9" styleClass="numberLabel"/>
+                    </HBox>
                 </VBox>
-                <Button depthTest="DISABLE" layoutX="82.0" layoutY="415.0" minHeight="23.0" mnemonicParsing="false" mouseTransparent="true" pickOnBounds="false" prefHeight="13.0" prefWidth="77.0" style="-fx-background-color: #b19063; -fx-opacity: 0.8;" text="Start game" textFill="#463109">
-                    <font>
-                        <Font name="Cambria Bold" size="12.0" />
-                    </font>
-                </Button>
-                <Rectangle arcHeight="5.0" arcWidth="5.0" disable="true" fill="#1f93ff00" height="23.0" layoutX="82.0" layoutY="415.0" stroke="#36230790" strokeType="INSIDE" width="76.0" />
+                <Button layoutX="82.0" layoutY="415.0" minHeight="23.0" mouseTransparent="true" prefHeight="13.0" prefWidth="77.0"
+                        text="Start game" styleClass="yellowButton"/>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" disable="true" fill="#1f93ff00" height="23.0" layoutX="82.0" layoutY="415.0"
+                           stroke="#36230790" strokeType="INSIDE" width="76.0"/>
             </Pane>
-            <ScrollPane hbarPolicy="NEVER" maxHeight="460.0" maxWidth="527.0" minWidth="300.0" prefHeight="460.0" prefWidth="380.0" style="-fx-background-color: rgba(0,0,0,0.5);" vbarPolicy="ALWAYS">
+            <ScrollPane hbarPolicy="NEVER" maxHeight="460.0" maxWidth="527.0" minWidth="300.0" prefHeight="460.0" prefWidth="380.0"
+                        style="-fx-background-color: rgba(0,0,0,0.5);" vbarPolicy="ALWAYS">
                 <content>
                     <GridPane prefHeight="662.0" prefWidth="363.0" style="-fx-background-color: rgba(0,0,0,0.5);">
                         <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                         </columnConstraints>
                         <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                         </rowConstraints>
                     </GridPane>
                 </content>
             </ScrollPane>
         </HBox>
     </center>
+    <stylesheets>
+        <URL value="@../CSS/Backgrounds.css"/>
+        <URL value="@../CSS/GameNodesStyle.css"/>
+    </stylesheets>
 </BorderPane>
