@@ -36,32 +36,22 @@ public enum EmpireNilfgaardianRegularCardsData {
     VANHEMAR("Vanhemar", null, null, false, 4, 1, RegularCardPositionType.RANGED_COMBAT),
     VREEMDE("Vreemde", null, null, false, 2, 1, RegularCardPositionType.CLOSE_COMBAT);
 
-
-
-
-
-
-
-
-
-
-
     private final String name;
     private final String explanation;
     private final String abilityName;
     private final boolean isHero;
     private final int point;
     private final int numberOfCard;
-    private final RegularCardPositionType positionType;
+    private final RegularCardPositionType cardPositionType;
 
-    EmpireNilfgaardianRegularCardsData(String name, String explanation, String abilityName, boolean isHero, int point, int numberOfCard, RegularCardPositionType positionType) {
+    EmpireNilfgaardianRegularCardsData(String name, String explanation, String abilityName, boolean isHero, int point, int numberOfCard, RegularCardPositionType cardPositionType) {
         this.name = name;
         this.explanation = explanation;
         this.abilityName = abilityName;
         this.isHero = isHero;
         this.point = point;
         this.numberOfCard = numberOfCard;
-        this.positionType = positionType;
+        this.cardPositionType = cardPositionType;
     }
 
     private static RegularCard createCard(EmpireNilfgaardianRegularCardsData data) {
