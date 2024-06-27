@@ -5,21 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f1724509-8fa7-4a1d-addf-f9c920333c2d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/CSS/GameNodesStyle.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/FXML/PregameMenu.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Backgrounds/PregameBackground.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/FactionsIcons/Nilfgaard.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/PregameIcons/deck_stats_count.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/PregameIcons/deck_stats_hero.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/PregameIcons/deck_stats_special.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/PregameIcons/deck_stats_strength.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/PregameIcons/deck_stats_unit.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/realms_foltest_son_of_medell.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/MenuScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/MenuScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/StartGameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/StartGameMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/CSS/Backgrounds.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/CSS/Backgrounds.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/CSS/GameNodesStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/CSS/GameNodesStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/PregameMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/PregameMenu.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +117,7 @@
       <workItem from="1719233515696" duration="5251000" />
       <workItem from="1719238897306" duration="333000" />
       <workItem from="1719239250163" duration="6089000" />
-      <workItem from="1719498770610" duration="1203000" />
+      <workItem from="1719498770610" duration="3012000" />
     </task>
     <servers />
   </component>

@@ -1,3 +1,31 @@
-.leaderImages{
+.label {
+    -fx-text-fill: #f3d6b0;
+    -fx-font-family: Cambria;
+    -fx-text-alignment: CENTER;
+    -fx-scale-x: 1.05;
+}
 
+.button {
+    -fx-font-family: Cambria;
+    -fx-text-alignment: CENTER;
+    -fx-font-weight: BOLD;
+}
+
+.factionName {
+    -fx-font-weight: BOLD;
+    -fx-font-size: 30;
+    -fx-scale-x: 1.05;
+
+}
+
+.descriptions {
+    -fx-text-fill: #bea68a;
+    -fx-font-style: Italic;
+    -fx-font-size: 14;
+}
+
+.buttonWithoutBack {
+    -fx-text-fill: #f3d6b0;
+    -fx-font-size: 16;
+    -fx-background-color: Transparent;
 }
