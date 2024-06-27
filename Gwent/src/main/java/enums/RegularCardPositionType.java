@@ -3,7 +3,8 @@ package enums;
 public enum RegularCardPositionType {
     CLOSE_COMBAT(),
     RANGED_COMBAT(),
-    SIEGE();
+    SIEGE(),
+    AGILE();
 
     public boolean checkPositionCompatibility(String positionName){
         return false;

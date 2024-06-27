@@ -5,6 +5,7 @@ import model.card.RegularCard;
 import java.util.ArrayList;
 
 public enum MonstersRegularCardsData {
+
     CARDS_NAME("card name", "card explanation", "ability name", false, 0, 1);
 
     private final String name;
