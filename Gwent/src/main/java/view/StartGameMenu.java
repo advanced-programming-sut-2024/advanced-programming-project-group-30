@@ -1,4 +1,10 @@
 package view;
 
-public class StartGameMenu implements Menu{
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+
+public class StartGameMenu implements Menu {
+
 }

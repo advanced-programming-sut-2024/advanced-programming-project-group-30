@@ -4,3 +4,10 @@
     -fx-pref-width: 1000;
     -fx-pref-height: 625;
 }
+
+.PregameBackground {
+    -fx-background-image: url(../Images/Backgrounds/PregameBackground.png);
+    -fx-background-size: cover;
+    -fx-pref-width: 1150;
+    -fx-pref-height: 660;
+}
