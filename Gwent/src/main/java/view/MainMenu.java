@@ -1,42 +1,37 @@
 package view;
 
 import controller.MainMenuController;
-import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
-import model.App;
+import javafx.scene.layout.VBox;
 
-import java.util.Scanner;
+public class MainMenu implements Menu{
+    private final MainMenuController controller = new MainMenuController();
+    @FXML
+    private VBox Vbox;
+    @FXML
+    private Label username;
+    @FXML
+    private Label nickname;
 
-public class MainMenu extends Menu{
-    private final MainMenuController mainMenuController = new MainMenuController();
-    @FXML
-    public Label username;
-    @FXML
-    public Label nickname;
-
-    @Override
-    public void run(){
-        username.setText(App.getLoggedInUser().getUsername());
-        nickname.setText(App.getLoggedInUser().getNickName());
-    }
-    @FXML
-    public void goToProfileMenu(){
-        mainMenuController.enterProfileMenu();
+    public void setFields(String username, String nickname){
+        Vbox.requestFocus();
+        this.username.setText(username);
+        this.nickname.setText(nickname);
     }
 
     @FXML
-    public void goToPreGameMenu(){
-        mainMenuController.enterGameMenu();
+    private void goToProfileMenu(){
+        controller.goToProfileMenu();
     }
 
     @FXML
-    public void logout(){
-        mainMenuController.logout();
+    private void createNewGame(){
+        // TODO
     }
 
+    @FXML
+    private void logout(){
+        controller.logout();
+    }
 }
