@@ -1,19 +1,5 @@
-.button, .toggle-button, .check-box .box {
-    -fx-cursor: HAND;
-}
-
-.button:focused, .check-box:focused .box {
-    -fx-scale-x: 0.97;
-    -fx-scale-y: 0.97;
-}
-
-.toggle-button:focused {
-    -fx-scale-x: 0.92;
-    -fx-scale-y: 0.92;
-}
-
 .brownBox {
-    -fx-background-color: rgba(21, 17, 15, 0.9);
+    -fx-background-color: rgba(21, 17, 15, 0.85);
     -fx-background-radius: 20;
     -fx-border-width: 1;
     -fx-border-color: rgb(101, 88, 71);
@@ -28,15 +14,13 @@
     -fx-font-style: italic;
     -fx-font-weight: bold;
 }
-
-.errorMessage {
-    -fx-opacity: 0.75;
-    -fx-font-family: "Droid Serif";
+.userInfoLabel {
+    -fx-alignment: center;
+    -fx-text-fill: #f3d6b0;
+    -fx-font-family: 'Brush Script MT', cursive;
+    -fx-font-size: 28;
     -fx-font-style: italic;
-    -fx-font-size: 11.0;
-    -fx-text-fill: rgba(238, 61, 17, 0.75);
 }
-
 .bottomBorderField {
     -fx-background-color: transparent;
     -fx-border-style: hidden hidden solid hidden;
@@ -44,134 +28,56 @@
     -fx-border-color: rgba(243, 214, 176, 0.6);
     -fx-prompt-text-fill: rgba(243, 214, 176, 0.75);
     -fx-text-fill: rgba(243, 214, 176, 1);
-    -fx-font-family: "Georgia";
-    -fx-font-size: 20;
-    -fx-padding: 0;
+    -fx-font-family: "Gabriola";
+    -fx-font-size: 24;
 }
 
-.buttonWithoutBg, .italicText, .simpleText, .brownCheckBox, .boldButtonWithoutBg, .italicButton {
-    -fx-background-color: TRANSPARENT;
-    -fx-text-fill: f3d6b0;
-    -fx-font-family: "Times New Roman";
-    -fx-font-size: 15;
-}
+/*.showPasswordButton {*/
+/*    -fx-background-color: transparent;*/
+/*    -fx-background-size: 100% 100%;*/
+/*    -fx-background-image: url('../Images/Icons/showIcon.png');*/
+/*}*/
 
-.italicText, .boldButtonWithoutBg, .italicButton {
-    -fx-font-style: italic;
-}
-
-.gabriolaText {
-    -fx-text-fill: #f3d6b0;
-    -fx-alignment: CENTER;
-    -fx-font-family: Gabriola;
-    -fx-font-size: 22;
-}
-
-.brownCheckBox .box {
-    -fx-background-color: rgb(158, 132, 96);
-}
-
-.brownCheckBox:selected .mark {
-    -fx-background-color: #ffddad;
-}
-
-.brownCheckBox:selected .box, .brownCheckBox:hover .box, .brownCheckBox:focused .box {
-    -fx-background-color: #b38d59;
-}
-
-.boldButtonWithoutBg {
-    -fx-font-size: 20;
-    -fx-font-weight: bold;
-}
-
-.boldButtonWithoutBg:focused, .boldButtonWithoutBg:hover, .buttonWithoutBg:focused, .buttonWithoutBg:hover, .italicButton:focused, .italicButton:hover {
-    -fx-text-fill: #dfaf72;
-}
+/*.showPasswordButton:selected {*/
+/*    -fx-background-color: TRANSPARENT;*/
+/*    -fx-background-size: 100% 100%;*/
+/*    -fx-background-image: url('../Images/Icons/hideIcon.png');*/
+/*}*/
 
 .buttonWithBeigeBg {
-    -fx-background-color: #f3d6b0;
+    -fx-background-color: f3d6b0;
     -fx-border-color: rgb(142, 106, 78);
-    -fx-text-fill: rgb(53, 37, 27);
-    -fx-border-radius: 9;
+    -fx-border-radius: 10;
     -fx-background-radius: 10;
     -fx-opacity: 0.85;
     -fx-font-family: "Times New Roman";
     -fx-font-size: 20;
     -fx-font-weight: bold;
 }
-
-.buttonWithBeigeBg:hover, .buttonWithBeigeBg:focused {
-    -fx-background-color: #c5a57c;
-    -fx-border-color: rgb(69, 47, 32);
-    -fx-text-fill: rgb(35, 25, 21);
-    -fx-opacity: 1;
-}
-
-.blackBgField, .blackBgChooseBox {
-    -fx-background-color: black;
-    -fx-background-radius: 10;
-    -fx-border-color: #8a7c69;
-    -fx-border-insets: 3;
-    -fx-border-radius: 10;
-    -fx-border-width: 0.5;
-    -fx-font-family: Gabriola;
-    -fx-font-size: 22;
-}
-
-.blackBgField {
-    -fx-prompt-text-fill: rgba(179, 161, 138, 0.75);
-    -fx-text-fill: rgb(195, 174, 148);
-}
-
-.blackBgChooseBox {
-    -fx-mark-color: #73614d;
-}
-
-.blackBgChooseBox .label {
-    -fx-padding: 8 40 8 15;
-    -fx-text-fill: #C3AE94FF;
-    -fx-alignment: center;
-}
-
-.blackBgChooseBox .context-menu {
-    -fx-background-color: black;
-    -fx-background-radius: 10;
-}
-
-.blackBgChooseBox .menu-item:focused {
-    -fx-background-color: rgba(73, 59, 50, 0.58);
-}
-
-.blackBgChooseBox .menu-item > .label {
-    -fx-text-fill: #C3AE94FF;
-    -fx-font-size: 16;
-}
-
-.showPasswordIcon {
-    -fx-background-color: transparent;
-    -fx-background-size: 100% 100%;
-    -fx-background-image: url('../Images/Icons/showIcon.png');
-}
-
-.showPasswordIcon:selected {
+.buttonWithoutBg, .simpleText, .boldButtonWithBeigeBg {
     -fx-background-color: TRANSPARENT;
-    -fx-background-size: 100% 100%;
-    -fx-background-image: url('../Images/Icons/hideIcon.png');
+    -fx-text-fill: f3d6b0;
+    -fx-font-family: "Times New Roman";
+    -fx-font-size: 15;
 }
 
-.backIcon {
-    -fx-opacity: 0.8;
-    -fx-background-color: black;
-    -fx-background-image: url('../Images/Icons/backIcon.png');
-    -fx-background-size: 100% 100%;
-    -fx-border-color: black;
-    -fx-border-insets: -3;
-    -fx-border-width: 5;
-    -fx-border-radius: 1.5;
+.simpleText, .boldButtonWithBeigeBg {
+    -fx-font-style: italic;
 }
 
-.diceIcon {
-    -fx-background-color: transparent;
-    -fx-background-image: url('../Images/Icons/diceIcon.png');
-    -fx-background-size: 100% 100%;
+.boldButtonWithBeigeBg {
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+}
+
+/*checkBoxStyle*/
+
+.check-box .box {
+    -fx-background-color: rgb(158, 132, 96);
+}
+.check-box:selected .mark {
+    -fx-background-color: #ffddad;
+}
+.check-box:selected .box {
+    -fx-background-color: #b38d59;
 }

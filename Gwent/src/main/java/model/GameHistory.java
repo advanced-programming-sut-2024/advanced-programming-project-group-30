@@ -5,15 +5,19 @@ import java.util.Date;
 public class GameHistory {
     private final User loser;
     private final User winner;
+    private final User opponent;
     private final int[][] roundsScore = new int[2][3];
     private final Date date;
 
-    public GameHistory(Player player1, Player player2, User loser, User winner, Date date) {
+    public GameHistory(Player player1, Player opponent, User loser, User winner, Date date) {
         this.loser = loser;
-        for (int i = 0; i < 3; i++) {
-            roundsScore[0] = player1.getRoundsPoint();
-            roundsScore[1] = player2.getRoundsPoint();
-        }
+//        for (int i = 0; i < 3; i++) {
+//            roundsScore[0] = player1.getRoundsPoint();
+//            roundsScore[1] = opponent.getRoundsPoint();
+//        }
+        roundsScore[0] = player1.getRoundsPoint();
+        roundsScore[1] = opponent.getRoundsPoint();
+        this.opponent = opponent.getUser();
         this.winner = winner;
         this.date = date;
     }
@@ -28,6 +32,9 @@ public class GameHistory {
 
     public int[][] getRoundsScore() {
         return roundsScore;
+    }
+    public User getOpponent() {
+        return opponent;
     }
 
     public Date getDate() {
