@@ -5,9 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="124b1a9a-c6f6-4977-bbc2-df42d5ff586a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/ProfileMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/ProfileMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/MainMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/MainMenu.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/SceneManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/enums/CheckInformationRegex.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/enums/MenuScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/MainMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/MainMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/ProfileMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ProfileMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/RegisterMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/RegisterMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/UserInformationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/UserInformationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/Error.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/Menu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/SecurityQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/SecurityQuestion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/commands/GameMenuCommands.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/commands/LoginMenuCommands.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/commands/MainMenuCommands.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/commands/ProfileMenuCommands.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/commands/RegisterMenuCommands.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/commands/StartGameMenuCommands.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/GameHistory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/GameHistory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Result.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Result.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/ProfileMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/ProfileMenu.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +39,7 @@
       <list>
         <option value="CSS File" />
         <option value="FxmlFile" />
+        <option value="Class" />
       </list>
     </option>
   </component>

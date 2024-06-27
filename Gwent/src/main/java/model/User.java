@@ -15,16 +15,19 @@ public class User {
     private int wins;
     private int losses;
     private int draws;
+    private int highestScore;
     private final ArrayList<GameHistory> gameHistories = new ArrayList<>();
     private final HashMap<String, Faction> factions = new HashMap<>();
     private Faction selectedFaction;
 
-    public User(String username, String password, String email, String nickName) {
+    public User(String username, String password, String email, String nickName, SecurityQuestion securityQuestion, String securityAnswer) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.nickName = nickName;
+        this.securityQuestions.put(securityQuestion, securityAnswer);
     }
+
 
     public String getUsername() {
         return username;
@@ -115,5 +118,11 @@ public class User {
 
     public String getNickname() {
         return nickName;
+    }
+    public int getHighestScore() {
+        return highestScore;
+    }
+    public void setHighestScore(int highestScore) {
+        this.highestScore = highestScore;
     }
 }

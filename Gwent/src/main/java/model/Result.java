@@ -1,26 +1,20 @@
 package model;
 
-import enums.Error;
-
 public class Result {
     private final boolean isSuccessful;
-    private final String errorCode;
-    public Result(boolean isSuccessful, String errorCode) {
+    private final String message;
+
+    public Result(boolean isSuccessful, String message) {
         this.isSuccessful = isSuccessful;
-        this.errorCode = errorCode;
+        this.message = message;
     }
 
-    public String toString(){
-        return errorCode;
+    public boolean isNotSuccessful() {
+        return !isSuccessful;
     }
-
-    public boolean isSuccessful() {
-        return isSuccessful;
+    @Override
+    public String toString() {
+        return message;
     }
-    public String getErrorCode() {
-        return errorCode;
-    }
-
-
 
 }

@@ -10,42 +10,35 @@ import view.ProfileMenu;
 import javax.swing.plaf.IconUIResource;
 
 public class ProfileMenuController {
-    private static final UserInformationController userInformationController = new UserInformationController();
-    private ProfileMenu profileMenu;
-    public ProfileMenuController(ProfileMenu profileMenu) {
-        this.profileMenu = profileMenu;
-    }
+    private final UserInformationController userInformationController = new UserInformationController();
 
     public Result changeUsername(String newUsername) {
         Result result = userInformationController.checkUsername(newUsername);
-        if (result.isSuccessful()) {
+        if (!result.isNotSuccessful()) {
             App.getLoggedInUser().setUsername(newUsername);
-            profileMenu.changeUsername(newUsername);
         }
         return result;
     }
 
     public Result changeNickname(String newNickname) {
         Result result = userInformationController.checkNickname(newNickname);
-        if (result.isSuccessful()) {
+        if (!result.isNotSuccessful()) {
             App.getLoggedInUser().setNickName(newNickname);
-            profileMenu.changeNickname(newNickname);
         }
         return result;
     }
 
-    public Result changePassword(String newPassword) {
-        Result result = userInformationController.checkPassword(newPassword);
-        if (result.isSuccessful())
+    public Result changePassword(String newPassword, String oldPassword) {
+        Result result = userInformationController.checkPasswordForChange(newPassword, oldPassword);
+        if (!result.isNotSuccessful())
             App.getLoggedInUser().setPassword(newPassword);
         return result;
     }
 
     public Result changeEmail(String newEmail) {
         Result result = userInformationController.checkEmail(newEmail);
-        if (result.isSuccessful()){
+        if (!result.isNotSuccessful()){
             App.getLoggedInUser().setEmail(newEmail);
-            profileMenu.changeEmail(newEmail);
         }
         return result;
     }
@@ -88,7 +81,8 @@ public class ProfileMenuController {
         }
         return gameHistoryBuilder.toString();
     }
-    public String showInformation() {
-        return null;
+
+    public void goToMainMenu() {
+
     }
 }
