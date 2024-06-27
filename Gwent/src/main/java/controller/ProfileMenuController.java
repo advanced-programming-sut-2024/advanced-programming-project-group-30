@@ -77,7 +77,24 @@ public class ProfileMenuController {
         for (int i = 0; i < count; i++) {
             gameHistory = user.getGameHistories().get(i);
             gameHistoryBuilder.append(i + 1).append(". ");
+            gameHistoryBuilder.append("Opponent: ").append(gameHistory.getOpponent().getUsername()).append("\n");
             gameHistoryBuilder.append("Winner: ").append(gameHistory.getWinner().getUsername());
+            gameHistoryBuilder.append("Date: ").append(gameHistory.getDate()).append("\n");
+            gameHistoryBuilder.append("Result of the game\n").append("-------------------\n");
+            for (int j = 0; j < 3; j++) {
+                gameHistoryBuilder.append("         round ").append(j + 1).append("       ");
+            }
+            gameHistoryBuilder.append("\n");
+            gameHistoryBuilder.append("You: ");
+            for (int j = 0; j < 3; j++) {
+                gameHistoryBuilder.append(gameHistory.getRoundsScore()[0][j]).append("               ");
+            }
+            gameHistoryBuilder.append("\n");
+            gameHistoryBuilder.append("Opponent: ");
+            for (int j = 0; j < 3; j++) {
+                gameHistoryBuilder.append(gameHistory.getRoundsScore()[1][j]).append("               ");
+            }
+            gameHistoryBuilder.append("\n\n");
         }
         return gameHistoryBuilder.toString();
     }

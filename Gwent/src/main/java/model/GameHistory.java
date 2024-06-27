@@ -11,8 +11,12 @@ public class GameHistory {
 
     public GameHistory(Player player1, Player opponent, User loser, User winner, Date date) {
         this.loser = loser;
-        roundsScore[0] = player1.getRoundsPoint();
-        roundsScore[1] = opponent.getRoundsPoint();
+        int[] player1RoundsPoint = player1.getRoundsPoint();
+        int[] opponentRoundsPoint = opponent.getRoundsPoint();
+        for (int i = 0; i < 3; i++){
+            roundsScore[0][i] = player1RoundsPoint[i];
+            roundsScore[1][i] = opponentRoundsPoint[i];
+        }
         this.opponent = opponent.getUser();
         this.winner = winner;
         this.date = date;
