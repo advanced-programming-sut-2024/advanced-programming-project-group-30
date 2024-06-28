@@ -20,7 +20,12 @@
     -fx-font-weight: BOLD;
     -fx-font-size: 30;
     -fx-scale-x: 1.05;
+}
 
+.cardsTitle {
+    -fx-text-fill: #dab88c;
+    -fx-font-size: 16;
+    -fx-scale-x: 1.05;
 }
 
 .descriptions {

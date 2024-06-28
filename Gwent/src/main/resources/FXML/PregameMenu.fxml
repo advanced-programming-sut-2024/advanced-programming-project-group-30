@@ -9,18 +9,20 @@
 <BorderPane styleClass="PregameBackground" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.StartGameMenu">
     <top>
         <VBox alignment="CENTER" BorderPane.alignment="CENTER">
-            <Pane maxWidth="600.0" minWidth="600.0" prefHeight="160.0" prefWidth="600.0">
-                <Label layoutX="211.0" layoutY="38.0" styleClass="factionName" text="Faction Name" />
-                <ImageView fitHeight="40.0" layoutX="153.0" layoutY="38.0" preserveRatio="true">
+            <Pane maxWidth="1109.0" minWidth="600.0" prefHeight="160.0" prefWidth="1109.0">
+                <Label layoutX="463.0" layoutY="32.0" styleClass="factionName" text="Faction Name" />
+                <ImageView fitHeight="40.0" layoutX="405.0" layoutY="32.0" preserveRatio="true">
                     <Image url="@../Images/Game/FactionsIcons/Nilfgaard.png" />
                 </ImageView>
-                <ImageView fitHeight="40.0" layoutX="417.0" layoutY="38.0" preserveRatio="true">
+                <ImageView fitHeight="40.0" layoutX="669.0" layoutY="32.0" preserveRatio="true">
                     <Image url="@../Images/Game/FactionsIcons/Nilfgaard.png" />
                 </ImageView>
-                <Label layoutX="127.0" layoutY="87.0" styleClass="descriptions" text="Descriptions about the ability of the Faction are written here" />
-                <Button layoutX="226" layoutY="111" prefHeight="30" prefWidth="138" styleClass="buttonWithoutBack" text="Change Faction" />
-                <Button layoutX="358" layoutY="111" prefHeight="30" prefWidth="140" styleClass="buttonWithoutBack" text="Download Deck" />
-                <Button layoutX="107" layoutY="111" prefHeight="30" prefWidth="118" styleClass="buttonWithoutBack" text="Upload Deck" />
+                <Label layoutX="379.0" layoutY="81.0" styleClass="descriptions" text="Descriptions about the ability of the Faction are written here" />
+                <Button layoutX="478.0" layoutY="105.0" prefHeight="30" prefWidth="138" styleClass="buttonWithoutBack" text="Change Faction" />
+                <Button layoutX="610.0" layoutY="105.0" prefHeight="30" prefWidth="140" styleClass="buttonWithoutBack" text="Download Deck" />
+                <Button layoutX="359.0" layoutY="105.0" prefHeight="30" prefWidth="118" styleClass="buttonWithoutBack" text="Upload Deck" />
+            <Label layoutX="37.0" layoutY="129.0" styleClass="cardsTitle" text="Card Collection" />
+            <Label layoutX="959.0" layoutY="129.0" styleClass="cardsTitle" text="Cards in Deck" />
             </Pane>
         </VBox>
     </top>
