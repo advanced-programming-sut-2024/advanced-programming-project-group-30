@@ -1,0 +1,9 @@
+.background-image{
+    -fx-background-image: url('../Images/board.png');
+    -fx-background-size: 100% 100%;
+}
+.rectangle{
+    -fx-background-color: TRANSPARENT;
+    -fx-fill: TRANSPARENT;
+    -fx-stroke: TRANSPARENT;
+}
