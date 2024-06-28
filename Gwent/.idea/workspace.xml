@@ -6,8 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="f1724509-8fa7-4a1d-addf-f9c920333c2d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/CSS/GameNodesStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/CSS/GameNodesStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/RegularCardPositionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/RegularCardPositionType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/NeutralRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/NeutralRegularCardsData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/RealmsNorthernRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/RealmsNorthernRegularCardsData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/ability/RegularCardsAbility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/ability/RegularCardsAbility.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/RegularCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/RegularCard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/PregameMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/PregameMenu.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../advanced-programming-project-group-30" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,7 +124,8 @@
       <workItem from="1719239250163" duration="6089000" />
       <workItem from="1719498770610" duration="7143000" />
       <workItem from="1719505979626" duration="21000" />
-      <workItem from="1719559913775" duration="8645000" />
+      <workItem from="1719559913775" duration="9023000" />
+      <workItem from="1719572167129" duration="3377000" />
     </task>
     <servers />
   </component>

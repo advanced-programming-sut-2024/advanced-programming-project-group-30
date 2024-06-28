@@ -11,13 +11,13 @@ public class RegularCard extends DecksCard {
     private final RegularCardsAbility ability;
     private final RegularCardPositionType positionType;
 
-    public RegularCard(String name, String explanation, Faction faction, boolean itIsLeader, boolean itIsSpecialCard, boolean isHero, int point, RegularCardsAbility ability, String position, RegularCardPositionType position1) {
+    public RegularCard(String name, String explanation, Faction faction, boolean isHero, int point, RegularCardsAbility ability, RegularCardPositionType position) {
         super(name, explanation, faction, false);
         this.isHero = isHero;
         this.point = point;
         this.pointInGame = point;
         this.ability = ability;
-        this.positionType = position1;
+        this.positionType = position;
     }
 
     public RegularCardsAbility getAbility() {
