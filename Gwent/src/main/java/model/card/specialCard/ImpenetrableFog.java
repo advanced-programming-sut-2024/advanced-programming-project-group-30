@@ -1,11 +1,11 @@
 package model.card.specialCard;
 
-import model.Faction;
+import enums.FactionType;
 import model.Game;
 
 public class ImpenetrableFog extends SpecialCard {
-    public ImpenetrableFog(String name, String explanation, Faction faction, boolean discardAfterPlaying) {
-        super(name, explanation, faction, false);
+    public ImpenetrableFog(String name, String explanation, boolean discardAfterPlaying) {
+        super(name, explanation, FactionType.NEUTRAL, false);
     }
 
     public void run(Game game){

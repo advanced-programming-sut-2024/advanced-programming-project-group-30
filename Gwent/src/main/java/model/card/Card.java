@@ -1,12 +1,12 @@
 package model.card;
 
-import model.Faction;
+import enums.FactionType;
 
 abstract class Card {
     private final String name;
-    private final Faction faction;
+    private final FactionType faction;
 
-    public Card(String name, Faction faction) {
+    public Card(String name, FactionType faction) {
         this.name = name;
         this.faction = faction;
     }
@@ -15,7 +15,7 @@ abstract class Card {
         return name;
     }
 
-    public Faction getFaction() {
+    public FactionType getFaction() {
         return faction;
     }
 }

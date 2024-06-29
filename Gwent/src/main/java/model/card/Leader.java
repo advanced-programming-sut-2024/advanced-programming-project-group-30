@@ -1,13 +1,13 @@
 package model.card;
 
-import model.Faction;
+import enums.FactionType;
 import model.ability.LeaderAbility;
 
 public class Leader extends Card {
     private boolean isUsedAbility = false;
     private final LeaderAbility leaderAbility;
 
-    public Leader(String name, Faction faction, LeaderAbility leaderAbility) {
+    public Leader(String name, FactionType faction, LeaderAbility leaderAbility) {
         super(name, faction);
         this.leaderAbility = leaderAbility;
     }
