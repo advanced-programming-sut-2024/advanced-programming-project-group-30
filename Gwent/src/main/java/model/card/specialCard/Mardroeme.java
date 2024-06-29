@@ -1,11 +1,11 @@
-package model.card.specialcard;
+package model.card.specialCard;
 
 import model.Faction;
 import model.Game;
 import model.Row;
 
-public class Mordroeme extends SpecialCard {
-    public Mordroeme(String name, String explanation, Faction faction) {
+public class Mardroeme extends SpecialCard {
+    public Mardroeme(String name, String explanation, Faction faction) {
         super(name, explanation, faction, false);
     }
 

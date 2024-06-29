@@ -11,7 +11,7 @@ public class Faction {
     private final ArrayList<DecksCard> decksCards;
     private final ArrayList<Leader> leaders;
 
-    protected Faction(String name, String explanation, ArrayList<DecksCard> allCards, ArrayList<Leader> leaders) {
+    public Faction(String name, String explanation, ArrayList<DecksCard> allCards, ArrayList<Leader> leaders) {
         this.name = name;
         this.explanation = explanation;
         this.decksCards = allCards;

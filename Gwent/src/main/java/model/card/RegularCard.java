@@ -11,8 +11,8 @@ public class RegularCard extends DecksCard {
     private final RegularCardsAbility ability;
     private final RegularCardPositionType positionType;
 
-    public RegularCard(String name, String explanation, Faction faction, boolean isHero, int point, RegularCardsAbility ability, RegularCardPositionType position) {
-        super(name, explanation, faction, false);
+    public RegularCard(String name, Faction faction, boolean isHero, int point, RegularCardsAbility ability, RegularCardPositionType position) {
+        super(name, faction, false);
         this.isHero = isHero;
         this.point = point;
         this.pointInGame = point;

@@ -1,6 +1,6 @@
 package model;
 
-import model.card.specialcard.SpecialCard;
+import model.card.specialCard.SpecialCard;
 
 import java.util.ArrayList;
 

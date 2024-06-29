@@ -7,8 +7,8 @@ public class Leader extends Card {
     private boolean isUsedAbility = false;
     private final LeaderAbility leaderAbility;
 
-    public Leader(String name, String explanation, Faction faction, LeaderAbility leaderAbility) {
-        super(name, explanation, faction);
+    public Leader(String name, Faction faction, LeaderAbility leaderAbility) {
+        super(name, faction);
         this.leaderAbility = leaderAbility;
     }
 

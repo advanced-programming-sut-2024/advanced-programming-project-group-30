@@ -1,4 +1,4 @@
-package model.card.specialcard;
+package model.card.specialCard;
 
 import model.Faction;
 import model.Game;
