@@ -1,6 +1,5 @@
 package enums.cardsData;
 
-import model.Faction;
 import model.card.specialCard.*;
 
 import java.lang.reflect.InvocationTargetException;
@@ -28,19 +27,19 @@ public enum SpecialCardsData {
         this.numberOfCard = cardsNumber;
     }
 
-    public static ArrayList<SpecialCard> getAllSpecialCard(Faction faction) {
+    public static ArrayList<SpecialCard> getAllSpecialCard() {
         ArrayList<SpecialCard> specialCards = new ArrayList<>();
         for (SpecialCardsData data : SpecialCardsData.values())
             for (int i = 0; i < data.numberOfCard; i++)
-                specialCards.add(createCard(data, faction));
+                specialCards.add(createCard(data));
         return specialCards;
     }
 
-    private static SpecialCard createCard(SpecialCardsData data, Faction faction) {
+    private static SpecialCard createCard(SpecialCardsData data) {
         SpecialCard newSpecialCard;
         try {
             newSpecialCard = (SpecialCard) Class.forName("model.card.specialCard." + data.name)
-                    .getConstructor(String.class, String.class, Faction.class).newInstance(data.name, data.description, faction);
+                    .getConstructor(String.class, String.class).newInstance(data.name, data.description);
         } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | NoSuchMethodException |
                  InvocationTargetException e) {
             throw new RuntimeException(e);

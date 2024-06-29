@@ -1,7 +1,7 @@
 package enums.cardsData;
 
+import enums.FactionType;
 import enums.RegularCardPositionType;
-import model.Faction;
 import model.ability.RegularCardsAbility;
 import model.card.RegularCard;
 
@@ -50,16 +50,16 @@ public enum SkelligeRegularCardsData {
         this.cardPositionType = cardPositionType;
     }
 
-    public static ArrayList<RegularCard> getAllRegularCard(Faction faction) {
+    public static ArrayList<RegularCard> getAllRegularCard() {
         ArrayList<RegularCard> regularCards = new ArrayList<>();
         for (SkelligeRegularCardsData data : SkelligeRegularCardsData.values())
             for (int i = 0; i < data.numberOfCard; i++)
-                regularCards.add(createCard(data, faction));
+                regularCards.add(createCard(data));
         return regularCards;
     }
 
-    private static RegularCard createCard(SkelligeRegularCardsData data, Faction faction) {
+    private static RegularCard createCard(SkelligeRegularCardsData data) {
         RegularCardsAbility ability = RegularCardsAbility.createNewAbilityByName(data.abilityName);
-        return new RegularCard(data.name, faction, data.isHero, data.point, ability, data.cardPositionType);
+        return new RegularCard(data.name, FactionType.SKELLIGE, data.isHero, data.point, ability, data.cardPositionType);
     }
 }
