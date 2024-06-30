@@ -1,5 +1,6 @@
 package model;
 
+import controller.DataSaverController;
 import controller.SceneManager;
 import enums.MenuScene;
 import javafx.stage.Stage;
@@ -13,6 +14,7 @@ public class App {
     private static Game currentGame;
     private static User loggedInUser;
     private static final ArrayList<User> allUsers = new ArrayList<>();
+    private static final DataSaverController dataSaverController = new DataSaverController();
 
     public static Stage getPrimaryStage() {
         return primaryStage;
@@ -63,4 +65,18 @@ public class App {
     public static int getUserRank() {
         return 1;
     }
+    public static void setAllUsers(ArrayList<User> users) {
+        allUsers.clear();
+        allUsers.addAll(users);
+    }
+    public static ArrayList<User> getAllUsers() {
+        return allUsers;
+    }
+    public static void saveUsers() {
+        dataSaverController.saveUsers(allUsers);
+    }
+    public static void loadUsers() {
+        dataSaverController.loadUsers();
+    }
+
 }

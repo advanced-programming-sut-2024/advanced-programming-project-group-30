@@ -13,6 +13,7 @@ public class RegisterMenuController {
     public void register(String username, String password, String nickname, String email, String securityQuestion, String securityAnswer) {
         User user = new User(username, password, email, nickname, SecurityQuestion.getSecurityQuestion(securityQuestion), securityAnswer);
         App.addUser(user);
+        App.saveUsers();
     }
 
     public Result checkSecurityQuestion(String question, String answer) {

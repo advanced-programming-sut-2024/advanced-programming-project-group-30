@@ -1,6 +1,7 @@
 package model;
 
 import enums.SecurityQuestion;
+import model.card.DecksCard;
 
 import java.util.ArrayList;
 import java.util.HashMap;

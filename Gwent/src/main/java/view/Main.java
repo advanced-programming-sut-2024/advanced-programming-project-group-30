@@ -6,6 +6,7 @@ import model.App;
 
 public class Main extends Application {
     public static void main(String[] args) {
+        App.loadUsers();
         launch(args);
     }
 
