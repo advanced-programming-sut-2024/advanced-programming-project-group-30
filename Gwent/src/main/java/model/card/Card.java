@@ -3,6 +3,8 @@ package model.card;
 import enums.FactionType;
 import enums.cardsData.CardData;
 
+import java.util.Objects;
+
 abstract class Card {
     private final String name;
     private final FactionType faction;
@@ -24,5 +26,12 @@ abstract class Card {
 
     public CardData getCardData() {
         return cardData;
+    }
+
+    public boolean sames(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Card card = (Card) o;
+        return cardData == card.cardData;
     }
 }
