@@ -1,27 +1,33 @@
 package enums.cardsData;
 
+import javafx.scene.image.Image;
 import model.card.Leader;
 
 import java.util.ArrayList;
 
-public enum EmpireNilfgaardianLeaderCardsData implements CardData{
+public enum NilfgaardianEmpireLeaderCardsData implements CardData{
     CARDS_NAME("card name", "card explanation", "ability name");
 
     private final String name;
     private final String explanation;
     private final String abilityName;
 
-    EmpireNilfgaardianLeaderCardsData(String name, String explanation, String abilityName) {
+    NilfgaardianEmpireLeaderCardsData(String name, String explanation, String abilityName) {
         this.name = name;
         this.explanation = explanation;
         this.abilityName = abilityName;
     }
 
-    private static Leader createLeader(EmpireNilfgaardianLeaderCardsData data) {
+    private Leader createLeader() {
         return null;
     }
 
     public static ArrayList<Leader> getAllLeader() {
+        return null;
+    }
+
+    @Override
+    public Image getLgImage() {
         return null;
     }
 }

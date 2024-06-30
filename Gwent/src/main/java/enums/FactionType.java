@@ -7,8 +7,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 public enum FactionType {
-    NORTHERN_REALMS("Northern Realms", "", NorthernRealmsRegularCardsData.class, RealmsNorthernLeaderCardsData.class),
-    NILFGAARDIAN_EMPIRE("Nilfgaardian Empire", "", NilfgaardianEmpireRegularCardsData.class, EmpireNilfgaardianLeaderCardsData.class),
+    NORTHERN_REALMS("Northern Realms", "", NorthernRealmsRegularCardsData.class, NorthernRealmsLeaderCardsData.class),
+    NILFGAARDIAN_EMPIRE("Nilfgaardian Empire", "", NilfgaardianEmpireRegularCardsData.class, NilfgaardianEmpireLeaderCardsData.class),
     MONSTERS("Monsters", "", MonstersRegularCardsData.class, MonstersRegularCardsData.class),
     SCOIA_TAEL("Scoia' TAEL", "", ScoiaTaelRegularCardsData.class, ScoiaTaelLeaderCardsData.class),
     SKELLIGE("Skellige", "", SkelligeRegularCardsData.class, SkelligeLeaderCardsData.class),

@@ -1,10 +1,12 @@
 package enums.cardsData;
 
 import enums.RegularCardPositionType;
+import javafx.scene.image.Image;
 import model.ability.RegularCardsAbility;
 import model.card.RegularCard;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public enum NeutralRegularCardsData implements CardData {
     GERALT_OF_RIVIA("Geralt of Rivia", null, true, 15, 1, RegularCardPositionType.CLOSE_COMBAT),
@@ -49,5 +51,11 @@ public enum NeutralRegularCardsData implements CardData {
     private RegularCard createCard() {
         RegularCardsAbility ability = RegularCardsAbility.createNewAbilityByName(this.abilityName);
         return new RegularCard(this.name, null, this, this.isHero, this.point, ability, this.cardPositionType);
+    }
+
+    @Override
+    public Image getLgImage() {
+        String subAddress = this.name.toLowerCase().replaceAll(".*:", "").replace(" ", "_");
+        return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/Images/Game/neutral_" + subAddress)));
     }
 }

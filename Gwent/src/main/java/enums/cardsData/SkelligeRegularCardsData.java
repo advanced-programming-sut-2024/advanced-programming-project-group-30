@@ -2,10 +2,12 @@ package enums.cardsData;
 
 import enums.FactionType;
 import enums.RegularCardPositionType;
+import javafx.scene.image.Image;
 import model.ability.RegularCardsAbility;
 import model.card.RegularCard;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public enum SkelligeRegularCardsData implements CardData {
     VIDKAARL("Vidkaarl", "MoralBoost", false, 14, 0, RegularCardPositionType.CLOSE_COMBAT),
@@ -61,5 +63,11 @@ public enum SkelligeRegularCardsData implements CardData {
     private RegularCard createCard() {
         RegularCardsAbility ability = RegularCardsAbility.createNewAbilityByName(this.abilityName);
         return new RegularCard(this.name, FactionType.SKELLIGE, this, this.isHero, this.point, ability, this.cardPositionType);
+    }
+
+    @Override
+    public Image getLgImage() {
+        String subAddress = this.name.toLowerCase().replaceAll(".*:", "").replace(" ", "_");
+        return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/Images/Game/skellige_" + subAddress)));
     }
 }

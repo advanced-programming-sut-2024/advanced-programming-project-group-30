@@ -1,5 +1,6 @@
 package enums.cardsData;
 
+import javafx.scene.image.Image;
 import model.card.Leader;
 
 import java.util.ArrayList;
@@ -22,6 +23,11 @@ public enum SkelligeLeaderCardsData implements CardData{
     }
 
     public static ArrayList<Leader> getAllLeader() {
+        return null;
+    }
+
+    @Override
+    public Image getLgImage() {
         return null;
     }
 }

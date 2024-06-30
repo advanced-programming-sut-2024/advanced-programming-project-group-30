@@ -1,9 +1,11 @@
 package enums.cardsData;
 
+import javafx.scene.image.Image;
 import model.card.specialCard.*;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.concurrent.atomic.DoubleAccumulator;
 
 public enum SpecialCardsData implements CardData {
@@ -46,5 +48,11 @@ public enum SpecialCardsData implements CardData {
             throw new RuntimeException(e);
         }
         return newSpecialCard;
+    }
+
+    @Override
+    public Image getLgImage() {
+        String subAddress = this.name.toLowerCase().replaceAll(".*:", "").replace(" ", "_");
+        return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/Images/Game/special_" + subAddress)));
     }
 }

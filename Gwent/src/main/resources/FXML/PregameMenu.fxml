@@ -30,10 +30,7 @@
     <center>
         <HBox alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" minWidth="250.0" prefHeight="461.0" prefWidth="1007.0" style="-fx-spacing: 42;" BorderPane.alignment="CENTER">
             <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="cardsScrollPane" vbarPolicy="ALWAYS">
-                <FlowPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="620.0" prefWidth="365.0" style="-fx-hgap: 3; -fx-vgap: 3;">
-               <children>
-                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="200.0" stroke="BLACK" strokeType="INSIDE" width="130.0" />
-               </children></FlowPane>
+                <FlowPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="620.0" prefWidth="365.0" style="-fx-hgap: 3; -fx-vgap: 3; -fx-padding: 3;" />
             </ScrollPane>
             <Pane maxHeight="460.0" maxWidth="230.0" minWidth="230.0" prefHeight="460.0" styleClass="blackPane">
                 <Label layoutX="100.0" layoutY="20.0" styleClass="leaderTitle" text="Leader" />
