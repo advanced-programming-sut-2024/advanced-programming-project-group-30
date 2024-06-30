@@ -71,4 +71,9 @@ public enum NorthernRealmsRegularCardsData implements CardData {
         String address = "/Images/Game/LgCardsImages/realms_" + this.toString().toLowerCase() + ".jpg";
         return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream(address)));
     }
+
+    @Override
+    public int getNumber() {
+        return numberOfCard;
+    }
 }

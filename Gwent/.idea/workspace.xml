@@ -5,86 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f1724509-8fa7-4a1d-addf-f9c920333c2d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/neutral_avallach.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/neutral_bovine_defense_force.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/neutral_cirilla_fiona_elen_riannon.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/neutral_emiel_regis.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/neutral_geralt_of_rivia.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/neutral_olgierd_von_everec.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/neutral_triss_merigold.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/neutral_villentretenmerth.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/neutral_yennefer_of_vengerberg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/neutral_zoltan_chivay.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_blue_stripes_commando.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_catapult.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_dragon_hunter.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_dun_banner_medic.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_esterad_thyssen.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_john_natalis.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_kaedweni_siege_expert.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_keira_metz.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_philippa_eilhart.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_prince_stennis.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_redanian_foot_soldier.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_sabrina_glevissing.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_sheldon_skaggs.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_siegfried_of_denesle.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_sigismund_dijkstra.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_sile_de_tansarville.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_vernon_roche.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_yarpen_zigrin.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/special_biting_frost.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/special_clear_weather.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/special_commander_horn.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/special_impenetrable_fog.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/special_skellige_storm.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/special_torrential_rain.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/PreGameCardView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/PregameIcons/preview_count.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/SizeData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/CardData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/CardData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/MonstersLeaderCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/MonstersLeaderCardsData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/MonstersRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/MonstersRegularCardsData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/NeutralRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/NeutralRegularCardsData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/NilfgaardianEmpireLeaderCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/NilfgaardianEmpireLeaderCardsData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/NilfgaardianEmpireRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/NilfgaardianEmpireRegularCardsData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/NorthernRealmsLeaderCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/NorthernRealmsLeaderCardsData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/NorthernRealmsRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/NorthernRealmsRegularCardsData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/ScoiaTaelLeaderCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/ScoiaTaelLeaderCardsData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/ScoiaTaelRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/ScoiaTaelRegularCardsData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/SkelligeLeaderCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/SkelligeLeaderCardsData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/SkelligeRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/SkelligeRegularCardsData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/SpecialCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/SpecialCardsData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/CardCollection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/CardCollection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/PreGameData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PreGameData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/specialCard/SkelliegeStorm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/specialCard/SkelligeStorm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/LgCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/LgCard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/StartGameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/StartGameMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/PregameMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/PregameMenu.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/neutral_chort.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/neutral_ciri.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/neutral_emiel.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/neutral_geralt.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/neutral_mysterious_elf.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/neutral_olgierd.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/neutral_triss.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/neutral_villen.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/neutral_yennefer.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/neutral_zoltan.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_banner_nurse.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_blue_stripes.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_catapult_1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_crinfrid.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_dijkstra.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_esterad.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_kaedwen_siege.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_keira.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_natalis.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_philippa.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_redania.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_sabrina.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_sheala.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_sheldon.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_siegfried.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_stennis.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_vernon.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_yarpen.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/special_clear.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/special_fog.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/special_frost.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/special_horn.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/special_rain.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/special_storm.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,8 +37,8 @@
         <option value="FxmlFile" />
         <option value="CSS File" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -203,7 +142,7 @@
       <workItem from="1719608395014" duration="636000" />
       <workItem from="1719609069360" duration="3004000" />
       <workItem from="1719647510046" duration="11798000" />
-      <workItem from="1719733488135" duration="10947000" />
+      <workItem from="1719733488135" duration="16871000" />
     </task>
     <servers />
   </component>

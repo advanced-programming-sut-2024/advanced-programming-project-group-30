@@ -7,8 +7,11 @@ import model.User;
 public class StartGameMenu implements Menu {
 
     public ScrollPane cardCollectionScrollPane;
+    public ScrollPane cardInDeckScrollPane;
 
     public void initialize(){
-        cardCollectionScrollPane.setContent(new PreGameData(new User("","","","",null,"")).getCardCollection());
+        PreGameData preGameData = new PreGameData(new User("","","","",null,""));
+        cardCollectionScrollPane.setContent(preGameData.getCardCollection());
+        cardInDeckScrollPane.setContent(preGameData.getCardInDeck());
     }
 }

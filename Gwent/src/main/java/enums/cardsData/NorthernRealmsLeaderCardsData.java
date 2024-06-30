@@ -30,5 +30,10 @@ public enum NorthernRealmsLeaderCardsData implements CardData{
     public Image getLgImage() {
         return null;
     }
+
+    @Override
+    public int getNumber() {
+        return 1;
+    }
 }
 

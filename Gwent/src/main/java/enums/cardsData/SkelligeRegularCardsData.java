@@ -70,4 +70,9 @@ public enum SkelligeRegularCardsData implements CardData {
         String subAddress = this.name.toLowerCase().replaceAll(".*:", "").replace(" ", "_");
         return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/Images/Game/skellige_" + subAddress)));
     }
+
+    @Override
+    public int getNumber() {
+        return numberOfCard;
+    }
 }

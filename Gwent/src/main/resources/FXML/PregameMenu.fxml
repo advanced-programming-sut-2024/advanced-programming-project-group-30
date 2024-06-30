@@ -73,9 +73,7 @@
                 <Button layoutX="82.0" layoutY="415.0" minHeight="23.0" mouseTransparent="true" prefHeight="13.0" prefWidth="77.0" styleClass="yellowButton" text="Start game" />
                 <Rectangle arcHeight="5.0" arcWidth="5.0" disable="true" fill="#1f93ff00" height="23.0" layoutX="82.0" layoutY="415.0" stroke="#36230790" strokeType="INSIDE" width="76.0" />
             </Pane>
-            <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: rgba(0,0,0,0.6);" styleClass="cardsScrollPane" vbarPolicy="ALWAYS">
-                <FlowPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="620.0" prefWidth="365.0" />
-            </ScrollPane>
+            <ScrollPane fx:id="cardInDeckScrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: rgba(0,0,0,0.6);" styleClass="cardsScrollPane" vbarPolicy="ALWAYS" />
         </HBox>
     </center>
     <stylesheets>

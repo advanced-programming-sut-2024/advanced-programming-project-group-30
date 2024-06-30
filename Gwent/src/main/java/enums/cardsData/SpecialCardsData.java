@@ -55,4 +55,9 @@ public enum SpecialCardsData implements CardData {
         String address = "/Images/Game/LgCardsImages/special_" + this.toString().toLowerCase() + ".jpg";
         return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream(address)));
     }
+
+    @Override
+    public int getNumber() {
+        return numberOfCard;
+    }
 }

@@ -74,4 +74,9 @@ public enum NilfgaardianEmpireRegularCardsData implements CardData {
         String subAddress = this.name.toLowerCase().replaceAll(".*:", "").replace(" ", "_");
         return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/Images/Game/nilfgaard_" + subAddress)));
     }
+
+    @Override
+    public int getNumber() {
+        return numberOfCard;
+    }
 }

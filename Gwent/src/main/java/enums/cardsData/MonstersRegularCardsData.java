@@ -81,4 +81,9 @@ public enum MonstersRegularCardsData implements CardData {
         String subAddress = this.name.toLowerCase().replaceAll(".*:", "").replace(" ", "_");
         return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/Images/Game/monsters_" + subAddress)));
     }
+
+    @Override
+    public int getNumber() {
+        return numberOfCard;
+    }
 }
