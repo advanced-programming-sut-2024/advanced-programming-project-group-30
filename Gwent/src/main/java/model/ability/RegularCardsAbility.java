@@ -1,6 +1,10 @@
 package model.ability;
 
 import model.Game;
+import model.Player;
+import model.Row;
+import model.card.RegularCard;
+
 
 public abstract class RegularCardsAbility {
     public RegularCardsAbility createNewAbilityByName(String name) {
@@ -8,6 +12,9 @@ public abstract class RegularCardsAbility {
     }
 
     public abstract void run(Game currentGame);
+    public void Medic(Game currentGame, RegularCard card){
+
+    }
 }
 
 class Decoy extends RegularCardsAbility {
@@ -34,6 +41,8 @@ class Medic extends RegularCardsAbility {
 class MoralBoost extends RegularCardsAbility {
     @Override
     public void run(Game currentGame) {
+        Player currentPlayer = currentGame.getCurrentPlayer();
+
 
     }
 }

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class App {
     private static Stage primaryStage;
-    private static MenuScene currentMenuScene = MenuScene.LOGIN_SCENE;
+    private static MenuScene currentMenuScene = MenuScene.GAME_SCENE;
     private static final SceneManager sceneManager = new SceneManager();
     private static Game currentGame;
     private static User loggedInUser;

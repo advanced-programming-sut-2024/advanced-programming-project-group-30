@@ -13,28 +13,87 @@
 .brownBox {
     -fx-background-color: rgba(23, 18, 16, 0.49);
     -fx-border-width: 1;
+    -fx-box-shadow: 0 0 10px 0 rgb(173, 137, 82);
 }
 .profile-image{
     -fx-image: url('../Images/profile.png');
     -fx-background-size: 100% 100%;
 }
 .gem-on-image{
-    -fx-image: url('../Images/boardImages/icon_gem_on.png');
+    -fx-background-image: url('../Images/Icons/icon_gem_on.png');
     -fx-background-size: 100% 100%;
 }
 .gem-off-image{
-    -fx-image: url('../Images/boardImages/icon_gem_off.png');
+    -fx-background-image: url('../Images/Icons/icon_gem_off.png');
     -fx-background-size: 100% 100%;
 }
 .total-score-opponent{
-    -fx-image: url('../Images/boardImages/score_total_op.png');
+    -fx-image: url('../Images/Icons/score_total_op.png');
     -fx-background-size: 100% 100%;
 }
 .total-score-me{
-    -fx-image: url('../Images/boardImages/score_total_me.png');
+    -fx-image: url('../Images/Icons/score_total_me.png');
     -fx-background-size: 100% 100%;
 }
 .active-leader-image{
-    -fx-image: url('../Images/boardImages/icon_leader_active.png');
+    -fx-background-color: TRANSPARENT;
+    -fx-background-image: url('../Images/Icons/icon_leader_active.png');
     -fx-background-size: 100% 100%;
 }
+.card-number-image{
+    -fx-image: url('../Images/Icons/icon_card_count.png');
+    -fx-background-size: 100% 100%;
+
+}
+.high-score{
+    -fx-background-image: url('../Images/Icons/icon_high_score.png');
+    -fx-background-size: 100% 100%;
+
+}
+.player-border{
+    -fx-background-color: TRANSPARENT;
+    -fx-background-image: url('../Images/Icons/icon_player_border.png');
+    -fx-background-size: 100% 100%;
+
+}
+.monsters-shield-image{
+    -fx-background-color: TRANSPARENT;
+    -fx-background-image: url('../Images/shields/deck_shield_monsters.png');
+    -fx-background-size: 100% 100%;
+
+}
+
+.yellowish-arial-label{
+    -fx-font-size: 18;
+    -fx-font-weight: bold;
+    -fx-font-family: Cambria;
+    -fx-text-fill: rgba(217, 188, 85, 0.87);
+}
+.faction-label{
+    -fx-font-size: 13;
+    -fx-font-family: Cambria;
+    -fx-text-fill: rgba(243, 214, 176, 1);
+}
+.black-bold-arial-label{
+    -fx-font-size: 23;
+    -fx-font-weight: bold;
+    -fx-font-family: Arial;
+    -fx-text-fill: #000000;
+}
+.black-arial-label{
+    -fx-font-size: 18;
+    -fx-font-family: Arial;
+    -fx-text-fill: #000000;
+}
+.pass-button{
+    -fx-background-color: rgba(0, 0, 0, 0.66);
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+    -fx-font-size: 21;
+    -fx-font-weight: bold;
+    -fx-font-family: Cambria;
+    -fx-text-fill: rgb(173, 137, 82);
+    -fx-border-color:  rgb(173, 137, 82);
+}
+
+

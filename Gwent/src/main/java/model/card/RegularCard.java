@@ -4,11 +4,13 @@ import enums.RegularCardPositionType;
 import model.ability.RegularCardsAbility;
 import model.Faction;
 
+import java.lang.reflect.Method;
+
 public class RegularCard extends DecksCard {
     private final boolean isHero;
     private final int point;
     private int pointInGame;
-    private final RegularCardsAbility ability;
+    private final Method ability;
     private final RegularCardPositionType positionType;
 
     public RegularCard(String name, String explanation, Faction faction, boolean itIsLeader, boolean itIsSpecialCard, boolean isHero, int point, RegularCardsAbility ability, String position, RegularCardPositionType position1) {
@@ -16,7 +18,7 @@ public class RegularCard extends DecksCard {
         this.isHero = isHero;
         this.point = point;
         this.pointInGame = point;
-        this.ability = ability;
+        this.ability = ;
         this.positionType = position1;
     }
 
