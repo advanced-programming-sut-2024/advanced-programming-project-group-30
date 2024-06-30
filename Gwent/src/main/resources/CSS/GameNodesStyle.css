@@ -86,6 +86,8 @@
     -fx-border-color: rgba(211, 172, 118, 0.2);
     -fx-border-radius: 3;
     -fx-border-width: 0.5;
+    -fx-pref-width: 365;
+    -fx-pref-height: 620;
 }
 
 .cardsScrollPane .scroll-bar:vertical {
@@ -114,4 +116,11 @@
 
 .cardsScrollPane .scroll-bar:vertical .decrement-arrow:hover, .cardsScrollPane .scroll-bar:vertical .increment-arrow:hover {
     -fx-background-color: #efc286;
+}
+
+.lgCardForPregame{
+    -fx-min-width: 116;
+    -fx-max-width: 116;
+    -fx-min-height: 61;
+    -fx-max-height: 61;
 }

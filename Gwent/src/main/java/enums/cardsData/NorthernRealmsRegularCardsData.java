@@ -7,7 +7,7 @@ import model.card.RegularCard;
 
 import java.util.ArrayList;
 
-public enum NorthernRealmsRegularCardsData {
+public enum NorthernRealmsRegularCardsData implements CardData {
     ESTERAD_THYSSEN("Esterad Thyssen", null, true, 10, 1, RegularCardPositionType.CLOSE_COMBAT),
     JOHN_NATALIS("John Natalis", null, true, 10, 1, RegularCardPositionType.CLOSE_COMBAT),
     PHILIPPA_EILHART("Philippa Eilhart", "TightBond", true, 10, 1, RegularCardPositionType.RANGED_COMBAT),
@@ -55,12 +55,12 @@ public enum NorthernRealmsRegularCardsData {
         ArrayList<RegularCard> regularCards = new ArrayList<>();
         for (NorthernRealmsRegularCardsData data : NorthernRealmsRegularCardsData.values())
             for (int i = 0; i < data.numberOfCard; i++)
-                regularCards.add(createCard(data));
+                regularCards.add(data.createCard());
         return regularCards;
     }
 
-    private static RegularCard createCard(NorthernRealmsRegularCardsData data) {
-        RegularCardsAbility ability = RegularCardsAbility.createNewAbilityByName(data.abilityName);
-        return new RegularCard(data.name, FactionType.NORTHERN_REALMS, data.isHero, data.point, ability, data.cardPositionType);
+    private RegularCard createCard() {
+        RegularCardsAbility ability = RegularCardsAbility.createNewAbilityByName(this.abilityName);
+        return new RegularCard(this.name, FactionType.NORTHERN_REALMS, this, this.isHero, this.point, ability, this.cardPositionType);
     }
 }

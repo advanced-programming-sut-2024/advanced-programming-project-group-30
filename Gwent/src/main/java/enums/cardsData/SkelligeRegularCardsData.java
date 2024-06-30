@@ -7,7 +7,7 @@ import model.card.RegularCard;
 
 import java.util.ArrayList;
 
-public enum SkelligeRegularCardsData {
+public enum SkelligeRegularCardsData implements CardData {
     VIDKAARL("Vidkaarl", "MoralBoost", false, 14, 0, RegularCardPositionType.CLOSE_COMBAT),
     OLAF("Olaf", "MoralBoost", false, 12, 1, RegularCardPositionType.AGILE),
     KAMBI("Kambi", "Transformers", true, 11, 1, RegularCardPositionType.CLOSE_COMBAT),
@@ -54,12 +54,12 @@ public enum SkelligeRegularCardsData {
         ArrayList<RegularCard> regularCards = new ArrayList<>();
         for (SkelligeRegularCardsData data : SkelligeRegularCardsData.values())
             for (int i = 0; i < data.numberOfCard; i++)
-                regularCards.add(createCard(data));
+                regularCards.add(data.createCard());
         return regularCards;
     }
 
-    private static RegularCard createCard(SkelligeRegularCardsData data) {
-        RegularCardsAbility ability = RegularCardsAbility.createNewAbilityByName(data.abilityName);
-        return new RegularCard(data.name, FactionType.SKELLIGE, data.isHero, data.point, ability, data.cardPositionType);
+    private RegularCard createCard() {
+        RegularCardsAbility ability = RegularCardsAbility.createNewAbilityByName(this.abilityName);
+        return new RegularCard(this.name, FactionType.SKELLIGE, this, this.isHero, this.point, ability, this.cardPositionType);
     }
 }

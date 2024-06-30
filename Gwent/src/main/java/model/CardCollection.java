@@ -13,12 +13,13 @@ public class CardCollection {
     private final ArrayList<DecksCard> NeutralCards;
     private final HashMap<FactionType, ArrayList<RegularCard>> FactionsCard;
 
+
     public CardCollection() {
         NeutralCards = new ArrayList<>(NeutralRegularCardsData.getAllRegularCard());
         NeutralCards.addAll(SpecialCardsData.getAllSpecialCard());
         FactionsCard = new HashMap<>();
         for (FactionType type : FactionType.values())
-            FactionsCard.put(type, FactionType.getFactionRegularCards(type));
+            FactionsCard.put(type, type.getFactionRegularCards());
     }
 
     public ArrayList<DecksCard> getCardsByFactionsName(FactionType factionType) {

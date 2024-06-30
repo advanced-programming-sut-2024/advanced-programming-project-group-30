@@ -26,9 +26,9 @@ public enum FactionType {
         this.leaderCardsData = leaderCardsData;
     }
 
-    public static ArrayList<RegularCard> getFactionRegularCards(FactionType factionType) {
+    public ArrayList<RegularCard> getFactionRegularCards() {
         try {
-            return (ArrayList<RegularCard>) factionType.regularCardsData.getDeclaredMethod("getAllRegularCard").invoke(null);
+            return (ArrayList<RegularCard>) this.regularCardsData.getDeclaredMethod("getAllRegularCard").invoke(null);
         } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
             throw new RuntimeException(e);
         }

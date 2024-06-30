@@ -4,8 +4,9 @@ import model.card.specialCard.*;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.concurrent.atomic.DoubleAccumulator;
 
-public enum SpecialCardsData {
+public enum SpecialCardsData implements CardData {
     COMMANDER_HORN("CommanderHorn", "Doubles the strength of all unit cards in that row. Limited to 1 per row.", 3),
     DECOY("Decoy", "Swap with a card on the battlefield to return it to your hand.", 3),
     MARDROEME("Mardroeme", "Triggers transformation of all Berserker cards on the same row.", 3),
@@ -31,15 +32,15 @@ public enum SpecialCardsData {
         ArrayList<SpecialCard> specialCards = new ArrayList<>();
         for (SpecialCardsData data : SpecialCardsData.values())
             for (int i = 0; i < data.numberOfCard; i++)
-                specialCards.add(createCard(data));
+                specialCards.add(data.createCard());
         return specialCards;
     }
 
-    private static SpecialCard createCard(SpecialCardsData data) {
+    private SpecialCard createCard() {
         SpecialCard newSpecialCard;
         try {
-            newSpecialCard = (SpecialCard) Class.forName("model.card.specialCard." + data.name)
-                    .getConstructor(String.class, String.class).newInstance(data.name, data.description);
+            newSpecialCard = (SpecialCard) Class.forName("model.card.specialCard." + this.name)
+                    .getConstructor(String.class, String.class, CardData.class).newInstance(this.name, this.description, this);
         } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | NoSuchMethodException |
                  InvocationTargetException e) {
             throw new RuntimeException(e);

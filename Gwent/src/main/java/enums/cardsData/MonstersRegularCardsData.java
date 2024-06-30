@@ -7,7 +7,7 @@ import model.card.RegularCard;
 
 import java.util.ArrayList;
 
-public enum MonstersRegularCardsData {
+public enum MonstersRegularCardsData implements CardData {
     DRAUG("Draug", null, true, 10, 1, RegularCardPositionType.CLOSE_COMBAT),
     IMLERITH("Imlerith", null, true, 10, 1, RegularCardPositionType.CLOSE_COMBAT),
     LESHEN("Leshen", null, true, 10, 1, RegularCardPositionType.CLOSE_COMBAT),
@@ -65,12 +65,12 @@ public enum MonstersRegularCardsData {
         ArrayList<RegularCard> regularCards = new ArrayList<>();
         for (MonstersRegularCardsData data : MonstersRegularCardsData.values())
             for (int i = 0; i < data.numberOfCard; i++)
-                regularCards.add(createCard(data));
+                regularCards.add(data.createCard());
         return regularCards;
     }
 
-    private static RegularCard createCard(MonstersRegularCardsData data) {
-        RegularCardsAbility ability = RegularCardsAbility.createNewAbilityByName(data.abilityName);
-        return new RegularCard(data.name, FactionType.MONSTERS, data.isHero, data.point, ability, data.cardPositionType);
+    private RegularCard createCard() {
+        RegularCardsAbility ability = RegularCardsAbility.createNewAbilityByName(this.abilityName);
+        return new RegularCard(this.name, FactionType.MONSTERS, this, this.isHero, this.point, ability, this.cardPositionType);
     }
 }

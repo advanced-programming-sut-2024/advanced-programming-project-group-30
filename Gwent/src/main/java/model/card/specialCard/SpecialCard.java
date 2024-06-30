@@ -1,14 +1,15 @@
 package model.card.specialCard;
 
 import enums.FactionType;
+import enums.cardsData.CardData;
 import model.card.DecksCard;
 
 public abstract class SpecialCard extends DecksCard {
     private final String explanation;
     private final boolean discardAfterPlaying;
 
-    public SpecialCard(String name, String explanation, FactionType faction, boolean discardAfterPlaying) {
-        super(name, faction, false);
+    public SpecialCard(String name, String explanation, FactionType faction, CardData cardData, boolean discardAfterPlaying) {
+        super(name, faction, cardData, false);
         this.explanation = explanation;
         this.discardAfterPlaying = discardAfterPlaying;
     }

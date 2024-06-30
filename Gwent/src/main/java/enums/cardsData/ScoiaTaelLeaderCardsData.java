@@ -4,7 +4,7 @@ import model.card.Leader;
 
 import java.util.ArrayList;
 
-public enum ScoiaTaelLeaderCardsData {
+public enum ScoiaTaelLeaderCardsData implements CardData{
     CARDS_NAME("card name", "card explanation", "ability name");
 
     private final String name;
