@@ -117,10 +117,3 @@
 .cardsScrollPane .scroll-bar:vertical .decrement-arrow:hover, .cardsScrollPane .scroll-bar:vertical .increment-arrow:hover {
     -fx-background-color: #efc286;
 }
-
-.lgCardForPregame{
-    -fx-min-width: 116;
-    -fx-max-width: 116;
-    -fx-min-height: 61;
-    -fx-max-height: 61;
-}
