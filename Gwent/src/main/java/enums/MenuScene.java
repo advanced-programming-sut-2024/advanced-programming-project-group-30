@@ -12,7 +12,7 @@ public enum MenuScene {
     MAIN_SCENE("/FXML/MainMenu.fxml"),
     FORGET_PASSWORD_SCENE("/FXML/ForgetPasswordMenu.fxml"),
     PROFILE_SCENE("/FXML/ProfileMenu.fxml"),
-    GAME_SCENE("/FXML/GameMenu.fxml"),
+    GAME_SCENE("/FXML/Game.fxml"),
     ;
 
     private final Scene scene;

@@ -5,9 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="124b1a9a-c6f6-4977-bbc2-df42d5ff586a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/users.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Gwent.zip" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/ProfileMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ProfileMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/GameHistory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/GameHistory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/RegisterMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/RegisterMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/CheckInformationRegex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/CheckInformationRegex.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/MenuScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/MenuScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/GameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/GameMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/CSS/Game.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/CSS/Game.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/Game.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/Game.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/ProfileMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/ProfileMenu.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +32,7 @@
         <option value="CSS File" />
         <option value="FxmlFile" />
         <option value="Class" />
+        <option value="package.json" />
       </list>
     </option>
   </component>
@@ -45,24 +58,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;ProfileMenu-Bahar&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon&quot;: &quot;&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Application.Unnamed.executor": "Run",
+    "database.data.extractors.current.export.id": "JSON-Groovy.json.groovy",
+    "database.data.extractors.current.id": "JSON-Groovy.json.groovy",
+    "git-widget-placeholder": "Game-Bahar",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon": "",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\ASUS\Documents\Uni\AP\Project\Gwent\src\main\resources\Images\Backgrounds" />
       <recent name="C:\Users\ASUS\Documents\Uni\AP\Project\Gwent\src\main\resources" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="view.Main" />
+      <module name="Gwent" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -86,6 +111,12 @@
       <workItem from="1719306831339" duration="16244000" />
       <workItem from="1719337586712" duration="2768000" />
       <workItem from="1719380435848" duration="10889000" />
+      <workItem from="1719571575001" duration="10671000" />
+      <workItem from="1719599827784" duration="3327000" />
+      <workItem from="1719642801848" duration="613000" />
+      <workItem from="1719644767612" duration="41000" />
+      <workItem from="1719644848774" duration="9157000" />
+      <workItem from="1719726873773" duration="5058000" />
     </task>
     <servers />
   </component>
