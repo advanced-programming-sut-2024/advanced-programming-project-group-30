@@ -3,8 +3,8 @@ package model.card.specialCard;
 import enums.cardsData.CardData;
 import model.Game;
 
-public class SkelliegeStorm extends SpecialCard {
-    public SkelliegeStorm(String name, String explanation, CardData cardData) {
+public class SkelligeStorm extends SpecialCard {
+    public SkelligeStorm(String name, String explanation, CardData cardData) {
         super(name, explanation, null, cardData, false);
     }
 

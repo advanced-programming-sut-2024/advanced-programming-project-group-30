@@ -16,7 +16,7 @@ public enum SpecialCardsData implements CardData {
     BITING_FROST("BitingFrost", "Sets the strength of all Close Combat cards to 1 for both players.", 3),
     CLEAR_WEATHER("ClearWeather", "Removes all Weather Cards (Biting Frost, Impenetrable Fog and Torrential Rain) effects.", 2),
     IMPENETRABLE_FOG("ImpenetrableFog", "Sets the strength of all Ranged Combat cards to 1 for both players.", 3),
-    SKELLIEGE_STORM("SkelliegeStorm", "Sets the strength of all Ranged Combat cards to 1 for both players.", 3),
+    SKELLIGE_STORM("SkelligeStorm", "Sets the strength of all Ranged Combat cards to 1 for both players.", 3),
     TORRENTIAL_RAIN("TorrentialRain", "Sets the strength of all Siege Combat cards to 1 for both players.", 3),
     ;
 
@@ -52,7 +52,7 @@ public enum SpecialCardsData implements CardData {
 
     @Override
     public Image getLgImage() {
-        String subAddress = this.name.toLowerCase().replaceAll(".*:", "").replace(" ", "_");
-        return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/Images/Game/special_" + subAddress)));
+        String address = "/Images/Game/LgCardsImages/special_" + this.toString().toLowerCase() + ".jpg";
+        return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream(address)));
     }
 }

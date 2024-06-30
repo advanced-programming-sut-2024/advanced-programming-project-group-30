@@ -15,8 +15,8 @@ public class CardCollection {
 
 
     public CardCollection() {
-        NeutralCards = new ArrayList<>(NeutralRegularCardsData.getAllRegularCard());
-        NeutralCards.addAll(SpecialCardsData.getAllSpecialCard());
+        NeutralCards = new ArrayList<>(SpecialCardsData.getAllSpecialCard());
+        NeutralCards.addAll(NeutralRegularCardsData.getAllRegularCard());
         FactionsCard = new HashMap<>();
         for (FactionType type : FactionType.values())
             FactionsCard.put(type, type.getFactionRegularCards());

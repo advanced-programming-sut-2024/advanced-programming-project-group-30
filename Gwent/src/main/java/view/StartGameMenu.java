@@ -1,10 +1,14 @@
 package view;
 
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
+import javafx.scene.control.ScrollPane;
+import model.PreGameData;
+import model.User;
 
 public class StartGameMenu implements Menu {
 
+    public ScrollPane cardCollectionScrollPane;
+
+    public void initialize(){
+        cardCollectionScrollPane.setContent(new PreGameData(new User("","","","",null,"")).getCardCollection());
+    }
 }

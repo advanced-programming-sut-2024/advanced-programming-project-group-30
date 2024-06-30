@@ -13,7 +13,7 @@ public enum NeutralRegularCardsData implements CardData {
     TRISS_MERIGOLD("Triss Merigold", null, true, 7, 1, RegularCardPositionType.CLOSE_COMBAT),
     VILLENTRETENMERTH("Villentretenmerth", "Scorch", false, 7, 1, RegularCardPositionType.CLOSE_COMBAT),
     YENNEFER_OF_VENGERBERG("Yennefer of Vengerberg", "Medic", true, 7, 1, RegularCardPositionType.RANGED_COMBAT),
-    OLGIERD_VON_EVERC("Olgierd von Everc", "MoralBoost", false, 6, 1, RegularCardPositionType.AGILE),
+    OLGIERD_VON_EVEREC("Olgierd von Everec", "MoralBoost", false, 6, 1, RegularCardPositionType.AGILE),
     VESEMIR("Vesemir", null, false, 6, 1, RegularCardPositionType.CLOSE_COMBAT),
     EMIEL_REGIS("EmielRegis", null, false, 5, 1, RegularCardPositionType.CLOSE_COMBAT),
     ZOLTAN_CHIVAY("Zoltan Chivay", null, false, 5, 1, RegularCardPositionType.CLOSE_COMBAT),
@@ -21,7 +21,7 @@ public enum NeutralRegularCardsData implements CardData {
     DANDELION("Dandelion", "HornCommander", false, 2, 1, RegularCardPositionType.CLOSE_COMBAT),
     GAUNTER_ODIMM("Gaunter O'Dimm", "Muster", false, 2, 1, RegularCardPositionType.SIEGE),
     COW("Cow", "Transformers", false, 0, 1, RegularCardPositionType.RANGED_COMBAT),
-    MYSTERIOUS_ELF("Mysterious Elf", "Spy", true, 0, 1, RegularCardPositionType.CLOSE_COMBAT),
+    AVALLACH("Avallach", "Spy", true, 0, 1, RegularCardPositionType.CLOSE_COMBAT),
     ;
 
     private final String name;
@@ -55,7 +55,7 @@ public enum NeutralRegularCardsData implements CardData {
 
     @Override
     public Image getLgImage() {
-        String subAddress = this.name.toLowerCase().replaceAll(".*:", "").replace(" ", "_");
-        return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/Images/Game/neutral_" + subAddress)));
+        String address = "/Images/Game/LgCardsImages/neutral_" + this.toString().toLowerCase() + ".jpg";
+        return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream(address)));
     }
 }
