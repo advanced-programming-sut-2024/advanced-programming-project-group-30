@@ -15,6 +15,7 @@ public class ProfileMenuController {
         Result result = userInformationController.checkUsername(newUsername);
         if (!result.isNotSuccessful()) {
             App.getLoggedInUser().setUsername(newUsername);
+            App.saveUsers();
         }
         return result;
     }
@@ -23,14 +24,17 @@ public class ProfileMenuController {
         Result result = userInformationController.checkNickname(newNickname);
         if (!result.isNotSuccessful()) {
             App.getLoggedInUser().setNickName(newNickname);
+            App.saveUsers();
         }
         return result;
     }
 
     public Result changePassword(String newPassword, String oldPassword) {
         Result result = userInformationController.checkPasswordForChange(newPassword, oldPassword);
-        if (!result.isNotSuccessful())
+        if (!result.isNotSuccessful()) {
             App.getLoggedInUser().setPassword(newPassword);
+            App.saveUsers();
+        }
         return result;
     }
 
@@ -38,6 +42,7 @@ public class ProfileMenuController {
         Result result = userInformationController.checkEmail(newEmail);
         if (!result.isNotSuccessful()){
             App.getLoggedInUser().setEmail(newEmail);
+            App.saveUsers();
         }
         return result;
     }
