@@ -14,7 +14,6 @@ public class PreGameCardView extends Group {
     private final LgCard card;
     private int number;
     private final Label numberLabel = new Label();
-    private final ImageView numberIcon;
     private final ArrayList<DecksCard> cards;
 
     public PreGameCardView(LgCard card, int number, ArrayList<DecksCard> cards) {
@@ -26,7 +25,7 @@ public class PreGameCardView extends Group {
         numberLabel.setLayoutY(174);
         this.getChildren().add(card);
         this.getChildren().add(numberLabel);
-        numberIcon =new ImageView(new Image(Objects.requireNonNull(
+        ImageView numberIcon = new ImageView(new Image(Objects.requireNonNull(
                 this.getClass().getResourceAsStream("/Images/Game/PregameIcons/preview_count.png"))));
         numberIcon.setFitWidth(10);
         numberIcon.setPreserveRatio(true);

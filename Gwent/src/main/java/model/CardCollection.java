@@ -13,7 +13,6 @@ public class CardCollection {
     private final ArrayList<DecksCard> NeutralCards;
     private final HashMap<FactionType, ArrayList<RegularCard>> FactionsCard;
 
-
     public CardCollection() {
         NeutralCards = new ArrayList<>(SpecialCardsData.getAllSpecialCard());
         NeutralCards.addAll(NeutralRegularCardsData.getAllRegularCard());

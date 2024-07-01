@@ -1,7 +1,5 @@
 package model;
 
-import enums.FactionType;
-import enums.cardsData.CardData;
 import javafx.scene.Node;
 import javafx.scene.layout.FlowPane;
 import model.card.DecksCard;
@@ -9,7 +7,6 @@ import view.LgCard;
 import view.PreGameCardView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
 public class PreGameData {
@@ -62,14 +59,37 @@ public class PreGameData {
             PreGameCardView preGameCardView2 =
                     new PreGameCardView(new LgCard(preGameCardView.getCard().getCardData(),true), 1, new ArrayList<>(Collections.singleton(card)));
             cardInDeck.getChildren().add(preGameCardView2);
+            preGameCardView2.setOnMouseClicked((Void) -> chooseFromDeck(preGameCardView2));
         }
         if (preGameCardView.getNumber() == 0) {
             cardCollection.getChildren().remove(preGameCardView);
         }
     }
 
-    private void createCardCollection(FactionType faction) {
-
+    private void chooseFromDeck(PreGameCardView preGameCardView) {
+        preGameCardView.setNumber(preGameCardView.getNumber() - 1);
+        DecksCard card = preGameCardView.getCards().remove(0);
+        preDeck.remove(card);
+        cardCollectionList.add(card);
+        boolean test = false;
+        for (Node node : cardCollection.getChildren()) {
+            PreGameCardView preGameCardView2 = (PreGameCardView) node;
+            if (preGameCardView2.getCard().getCardData() == card.getCardData()) {
+                test = true;
+                preGameCardView2.getCards().add(card);
+                preGameCardView2.setNumber(preGameCardView2.getNumber() + 1);
+                break;
+            }
+        }
+        if (!test) {
+            PreGameCardView preGameCardView2 =
+                    new PreGameCardView(new LgCard(preGameCardView.getCard().getCardData(),true), 1, new ArrayList<>(Collections.singleton(card)));
+            cardCollection.getChildren().add(preGameCardView2);
+            preGameCardView2.setOnMouseClicked((Void) -> chooseFromDeck(preGameCardView2));
+        }
+        if (preGameCardView.getNumber() == 0) {
+            cardInDeck.getChildren().remove(preGameCardView);
+        }
     }
 
     public FlowPane getCardCollection() {
