@@ -6,7 +6,7 @@ import model.card.Leader;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public enum ScoiaTaelLeaderCardsData implements CardData{
+public enum ScoiaTaelLeaderCardsData{
     CARDS_NAME("card name", "card explanation", "ability name");
 
     private final String name;
@@ -27,16 +27,13 @@ public enum ScoiaTaelLeaderCardsData implements CardData{
         return null;
     }
 
-    @Override
     public Image getLgImage() {
         return null;
     }
-    @Override
     public Image getSmImage() {
         return null;
     }
 
-    @Override
     public int getNumber() {
         return 1;
     }

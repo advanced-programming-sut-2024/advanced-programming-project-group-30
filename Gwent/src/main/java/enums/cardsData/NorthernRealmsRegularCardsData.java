@@ -78,14 +78,14 @@ public enum NorthernRealmsRegularCardsData implements CardData{
     }
     @Override
     public Image getSmImage() {
-        String address;
-        for (NorthernRealmsRegularCardsData data : NorthernRealmsRegularCardsData.values()) {
-               address ="/Images/Game/SmCardsImages/realms_" + data.toString().toLowerCase() + ".jpg";
-            System.out.println(address);
-            new Image(Objects.requireNonNull(this.getClass().getResourceAsStream(address)));
-        }
-//        return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream(address)));
-        return null;
+        String address = "/Images/Game/SmCardsImages/realms_" + this.toString().toLowerCase() + ".jpg";
+        return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream(address)));
+
+    }
+
+    @Override
+    public int getPoint() {
+        return this.point;
     }
 
     @Override

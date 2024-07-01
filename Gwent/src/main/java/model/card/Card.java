@@ -3,12 +3,15 @@ package model.card;
 import enums.FactionType;
 import enums.cardsData.CardData;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import model.Faction;
+import view.CardView;
 
-public abstract class Card {
+public abstract class Card{
     private final String name;
     private final FactionType faction;
     private final CardData cardData;
+    protected CardView cardView;
 
     public Card(String name, FactionType faction, CardData cardData) {
         this.name = name;
@@ -33,5 +36,9 @@ public abstract class Card {
         if (o == null || getClass() != o.getClass()) return false;
         Card card = (Card) o;
         return cardData == card.cardData;
+    }
+
+    public CardView getCardView() {
+        return cardView;
     }
 }

@@ -65,4 +65,9 @@ public enum SpecialCardsData implements CardData{
     public int getNumber() {
         return numberOfCard;
     }
+    @Override
+    public int getPoint(){
+        return 0;
+        //TODO: implement it differently
+    }
 }

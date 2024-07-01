@@ -84,6 +84,26 @@
     -fx-image: url('../Images/Icons/notif_op_turn.png');
     -fx-background-size: 100% 100%;
 }
+.cardSiegeRowIcon{
+    -fx-background-image: url('../Images/Icons/card_row_siege.png');
+    -fx-background-size: 100% 100%;
+}
+.cardRangedCombatRowIcon{
+    -fx-background-image: url('../Images/Icons/card_row_ranged.png');
+    -fx-background-size: 100% 100%;
+}
+.cardCloseCombatRowIcon{
+    -fx-background-image: url('../Images/Icons/card_row_close.png');
+    -fx-background-size: 100% 100%;
+}
+.cardAgileIcon{
+    -fx-background-image: url('../Images/Icons/card_ability_agile.png');
+    -fx-background-size: 100% 100%;
+}
+.smCardPointIcon{
+    -fx-background-image: url('../Images/Icons/power_normal.png');
+    -fx-background-size: 100% 100%;
+}
 .yellowish-arial-label{
     -fx-font-size: 18;
     -fx-font-weight: bold;
@@ -137,7 +157,22 @@
     -fx-font-weight: bold;
     -fx-font-family: Cambria;
     -fx-text-fill: rgba(217, 188, 85, 0.87);
-
 }
+.handCard:hover{
+    -fx-border-width: 3;
+    -fx-scale-y: 1.1;
+    -fx-scale-x: 1.1;
+    -fx-translate-y: -12;
+}
+.smCardPointLabel{
+    -fx-alignment: CENTER;
+    -fx-font-size: 10;
+}
+.medic{
+    -fx-background-image: url('../Images/Icons/card_ability_medic.png');
+    -fx-background-size: 100% 100%;
+}
+
+
 
 

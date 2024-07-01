@@ -70,17 +70,21 @@ public enum SkelligeRegularCardsData implements CardData {
 
     @Override
     public Image getLgImage() {
-        String subAddress = this.name.toLowerCase().replaceAll(".*:", "").replace(" ", "_");
-        return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/Images/Game/skellige_" + subAddress)));
+        String address = "/Images/Game/LgCardsImages/skellige_" + this.toString().toLowerCase() + ".jpg";
+        return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream(address)));
     }
     @Override
     public Image getSmImage() {
         String address = "/Images/Game/SmCardsImages/skellige_" + this.toString().toLowerCase() + ".jpg";
-            return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream(address)));
+        return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream(address)));
     }
 
     @Override
     public int getNumber() {
         return numberOfCard;
+    }
+    @Override
+    public int getPoint(){
+        return this.point;
     }
 }

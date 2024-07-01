@@ -5,6 +5,7 @@ import enums.RegularCardPositionType;
 import enums.cardsData.CardData;
 import model.ability.RegularCardsAbility;
 import model.Faction;
+import view.CardView;
 
 import java.lang.reflect.Method;
 
@@ -22,6 +23,7 @@ public class RegularCard extends DecksCard {
         this.pointInGame = point;
         this.ability = ability;
         this.positionType = position;
+        cardView = new CardView(this);
     }
 
     public Method getAbility() {

@@ -1,5 +1,6 @@
 package view;
 
+import enums.CssAddress;
 import enums.FactionType;
 import enums.cardsData.*;
 import javafx.event.ActionEvent;
@@ -7,12 +8,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import model.App;
+import model.Game;
+import model.card.DecksCard;
 import model.card.RegularCard;
 
 import java.util.ArrayList;
@@ -112,16 +116,20 @@ public class GameMenu implements Menu{
     private Region opponentLeader;
     @FXML
     private Region leader;
-    private static final String GEM_ON_IMAGE_CLASS = "gem-on-image";
-    private static final String GEM_OFF_IMAGE_CLASS = "gem-off-image";
     @FXML
     public void initialize() {
-        opponentRightGem.getStyleClass().add(GEM_ON_IMAGE_CLASS);
-        rightGem.getStyleClass().add(GEM_ON_IMAGE_CLASS);
-        opponentLeftGem.getStyleClass().add(GEM_ON_IMAGE_CLASS);
-        leftGem.getStyleClass().add(GEM_ON_IMAGE_CLASS);
-        ScoiaTaelRegularCardsData.DOL_BLATHANNA_ARCHER.getSmImage();
+        opponentRightGem.getStyleClass().add(CssAddress.GEM_ON_IMAGE.getStyleClass());
+        rightGem.getStyleClass().add(CssAddress.GEM_ON_IMAGE.getStyleClass());
+        opponentLeftGem.getStyleClass().add(CssAddress.GEM_ON_IMAGE.getStyleClass());
+        leftGem.getStyleClass().add(CssAddress.GEM_ON_IMAGE.getStyleClass());
+        hand.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
 
+        });
+        ArrayList<RegularCard> cards = NorthernRealmsRegularCardsData.getAllRegularCard();
+        for (int i = 0; i < 5; i++) {
+            RegularCard card = cards.get(i);
+            hand.getChildren().add(card.getCardView());
+        }
     }
 
     public void passTurn() {
