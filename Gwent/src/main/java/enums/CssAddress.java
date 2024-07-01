@@ -15,15 +15,63 @@ public enum CssAddress {
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     CARD_AGILE_ICON("cardAgileIcon",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
-    SM_CARD_POINT_ICON("smCardPointIcon",
+    NORMAL_CARD_POINT_ICON("normalCardPointIcon",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
-    SM_CARD_POINT_LABEL("smCardPointLabel",
+
+    NORMAL_CARD_POINT_LABEL("normalCardPointLabel",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    HERO_CARD_POINT_LABEL("powerCardPointLabel",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+
     GAME_HAND_SM_CARD("handCard",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     GEM_ON_IMAGE("gem-on-image",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     GEM_OFF_IMAGE("gem-off-image",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    STORM_WEATHER_ICON("stormWeatherIcon",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    SCORCH_ABILITY_ICON("scorchAbilityIcon",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    RAIN_WEATHER_ICON("rainWeatherIcon",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    MUSTER_ABILITY_ICON("musterAbilityIcon",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    MORAL_BOOST_ABILITY_ICON("moralBoostAbilityIcon",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    MARDROEME_ABILITY_ICON("mardroemeAbilityIcon",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    HORN_COMMANDER_ABILITY_ICON("hornCommanderAbilityIcon",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    FROST_WEATHER_ICON("frostWeatherIcon",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    FOG_WEATHER_ICON("fogWeatherIcon",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    DECOY_ABILITY_ICON("decoyAbilityIcon",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    CLEAR_WEATHER_ICON("clearWeatherIcon",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    BERSERKER_ABILITY_ICON("berserkerAbilityIcon",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    AVENGER_ABILITY_ICON("avengerAbilityIcon",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    SPY_ABILITY_ICON("spyAbilityIcon",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    TIGHT_BOND_ABILITY_ICON("tightBondAbilityIcon",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    AGILE_ABILITY_ICON("agileAbilityIcon",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    MEDIC_ABILITY_ICON("medicAbilityIcon",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    POWER_HERO_ICON("powerHeroIcon",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    MONSTERS_FACTION_ICON("monsters-faction",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    NORTHERN_REALMS_FACTION_ICON("northern-realms-faction",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    NILFGAARDIAN_EMPIRE_FACTION_ICON("nilfgaardian-faction",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    SCOIA_TAEL_FACTION_ICON("scoia-tael-faction",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     ;
 
@@ -40,5 +88,14 @@ public enum CssAddress {
     }
     public String getStyleSheet() {
         return styleSheet;
+    }
+    public static String getCssAddress(String styleClass) {
+        for (CssAddress cssAddress : CssAddress.values()) {
+            if (cssAddress.getStyleClass().equals(styleClass)) {
+                System.out.println(cssAddress.styleClass);
+                return cssAddress.styleClass;
+            }
+        }
+        return null;
     }
 }

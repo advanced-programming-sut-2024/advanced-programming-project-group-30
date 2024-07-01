@@ -15,6 +15,12 @@ public class Game {
     private int roundNumber = 1;
     private Card selectedCard;
     private Row selectedRow;
+    public void setOpponentPlayer(Player opponentPlayer) {
+        this.opponentPlayer = opponentPlayer;
+    }
+    public void setCurrentPlayer(Player currentPlayer) {
+        this.currentPlayer = currentPlayer;
+    }
 
     public Player getCurrentPlayer() {
         return currentPlayer;

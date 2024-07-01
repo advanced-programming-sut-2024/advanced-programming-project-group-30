@@ -70,4 +70,8 @@ public enum SpecialCardsData implements CardData{
         return 0;
         //TODO: implement it differently
     }
+    @Override
+    public String getAbilityName() {
+        return null;
+    }
 }

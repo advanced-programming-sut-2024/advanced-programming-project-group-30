@@ -3,8 +3,6 @@ package model.card;
 import enums.FactionType;
 import enums.RegularCardPositionType;
 import enums.cardsData.CardData;
-import model.ability.RegularCardsAbility;
-import model.Faction;
 import view.CardView;
 
 import java.lang.reflect.Method;

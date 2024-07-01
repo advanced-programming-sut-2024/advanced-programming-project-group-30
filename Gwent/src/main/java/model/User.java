@@ -1,5 +1,6 @@
 package model;
 
+import enums.FactionType;
 import enums.SecurityQuestion;
 
 import java.util.ArrayList;
@@ -17,8 +18,8 @@ public class User {
     private int draws;
     private int highestScore;
     private final ArrayList<GameHistory> gameHistories = new ArrayList<>();
-    private final HashMap<String, Faction> factions = new HashMap<>();
-    private Faction selectedFaction;
+//    private final CardCollection cardCollection = new CardCollection();
+    private FactionType selectedFaction = FactionType.NORTHERN_REALMS;
 
     public User(String username, String password, String email, String nickName, SecurityQuestion securityQuestion, String securityAnswer) {
         this.username = username;
@@ -27,7 +28,6 @@ public class User {
         this.nickName = nickName;
         this.securityQuestions.put(securityQuestion, securityAnswer);
     }
-
 
     public String getUsername() {
         return username;
@@ -105,24 +105,19 @@ public class User {
         return gameHistories;
     }
 
-    public Faction getFactionByName(String factionName) {
-        return factions.get(factionName);
-    }
+//    public CardCollection getCardCollection() {
+//        return cardCollection;
+//    }
 
-    public Faction getSelectedFaction() {
+    public FactionType getSelectedFaction() {
         return selectedFaction;
     }
 
-    public void setSelectedFaction(Faction selectedFaction) {
+    public void setSelectedFaction(FactionType selectedFaction) {
         this.selectedFaction = selectedFaction;
     }
-    public String getNickname() {
-        return nickName;
-    }
+
     public int getHighestScore() {
         return highestScore;
-    }
-    public void setHighestScore(int highestScore) {
-        this.highestScore = highestScore;
     }
 }

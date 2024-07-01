@@ -18,9 +18,9 @@ public enum MonstersRegularCardsData implements CardData {
     KAYRAN("Kayran", "moralBoost", true, 8, 1, RegularCardPositionType.AGILE),
     TOAD("Toad", "scorch", false, 7, 1, RegularCardPositionType.RANGED_COMBAT),
     ARACHAS_BEHEMOTH("Arachas Behemoth", "muster", false, 6, 1, RegularCardPositionType.SIEGE),
-//    CRONE_BREWESS("Crone:Brewess", "muster", false, 6, 1, RegularCardPositionType.CLOSE_COMBAT),
-//    CRONE_WEAVESS("Crone:Weavess", "muster", false, 6, 1, RegularCardPositionType.CLOSE_COMBAT),
-//    CRONE_WHISPESS("Crone:Whispess", "muster", false, 6, 1, RegularCardPositionType.CLOSE_COMBAT),
+    CRONE_BREWESS("Crone: Brewess", "muster", false, 6, 1, RegularCardPositionType.CLOSE_COMBAT),
+    CRONE_WEAVESS("Crone: Weavess", "muster", false, 6, 1, RegularCardPositionType.CLOSE_COMBAT),
+    CRONE_WHISPESS("Crone: Whispess", "muster", false, 6, 1, RegularCardPositionType.CLOSE_COMBAT),
     EARTH_ELEMENTAL("Earth Elemental", null, false, 6, 1, RegularCardPositionType.SIEGE),
     FIEND("Fiend", null, false, 6, 1, RegularCardPositionType.CLOSE_COMBAT),
     FIRE_ELEMENTAL("Fire Elemental", null, false, 6, 1, RegularCardPositionType.SIEGE),
@@ -105,5 +105,11 @@ public enum MonstersRegularCardsData implements CardData {
     @Override
     public int getPoint(){
         return this.point;
+    }
+    @Override
+    public String getAbilityName() {
+        if (this.abilityName == null)
+            return "";
+        return this.abilityName;
     }
 }

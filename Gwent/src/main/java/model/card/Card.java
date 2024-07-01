@@ -2,9 +2,6 @@ package model.card;
 
 import enums.FactionType;
 import enums.cardsData.CardData;
-import javafx.scene.Group;
-import javafx.scene.Node;
-import model.Faction;
 import view.CardView;
 
 public abstract class Card{

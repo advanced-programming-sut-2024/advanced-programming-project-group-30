@@ -85,23 +85,23 @@
     -fx-background-size: 100% 100%;
 }
 .cardSiegeRowIcon{
-    -fx-background-image: url('../Images/Icons/card_row_siege.png');
+    -fx-image: url('../Images/Icons/card_row_siege.png');
     -fx-background-size: 100% 100%;
 }
 .cardRangedCombatRowIcon{
-    -fx-background-image: url('../Images/Icons/card_row_ranged.png');
+    -fx-image: url('../Images/Icons/card_row_ranged.png');
     -fx-background-size: 100% 100%;
 }
 .cardCloseCombatRowIcon{
-    -fx-background-image: url('../Images/Icons/card_row_close.png');
+    -fx-image: url('../Images/Icons/card_row_close.png');
     -fx-background-size: 100% 100%;
 }
 .cardAgileIcon{
-    -fx-background-image: url('../Images/Icons/card_ability_agile.png');
+    -fx-image: url('../Images/Icons/card_ability_agile.png');
     -fx-background-size: 100% 100%;
 }
-.smCardPointIcon{
-    -fx-background-image: url('../Images/Icons/power_normal.png');
+.normalCardPointIcon{
+    -fx-image: url('../Images/Icons/power_normal.png');
     -fx-background-size: 100% 100%;
 }
 .yellowish-arial-label{
@@ -111,7 +111,7 @@
     -fx-text-fill: rgba(217, 188, 85, 0.87);
 }
 .faction-label{
-    -fx-font-size: 13;
+    -fx-font-size: 10;
     -fx-font-family: Cambria;
     -fx-text-fill: rgba(243, 214, 176, 1);
 }
@@ -160,18 +160,113 @@
 }
 .handCard:hover{
     -fx-border-width: 3;
-    -fx-scale-y: 1.1;
-    -fx-scale-x: 1.1;
+    /*-fx-border-color: rgba(217, 188, 85, 0.87);*/
     -fx-translate-y: -12;
 }
-.smCardPointLabel{
+.normalCardPointLabel{
     -fx-alignment: CENTER;
-    -fx-font-size: 10;
+    -fx-font-size: 8;
+    -fx-font-weight: bold;
 }
-.medic{
-    -fx-background-image: url('../Images/Icons/card_ability_medic.png');
+.powerCardPointLabel{
+    -fx-alignment: CENTER;
+    -fx-font-size: 8;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+}
+.medicAbilityIcon{
+    -fx-image: url('../Images/Icons/card_ability_medic.png');
     -fx-background-size: 100% 100%;
 }
+.agileAbilityIcon{
+    -fx-image: url('../Images/Icons/card_ability_agile.png');
+    -fx-background-size: 100% 100%;
+}
+.spyAbilityIcon{
+    -fx-image: url('../Images/Icons/card_ability_spy.png');
+    -fx-background-size: 100% 100%;
+}
+.tightBondAbilityIcon{
+    -fx-image: url('../Images/Icons/card_ability_bond.png');
+    -fx-background-size: 100% 100%;
+}
+.avengerAbilityIcon{
+    -fx-image: url('../Images/Icons/card_ability_avenger.png');
+    -fx-background-size: 100% 100%;
+}
+.berserkerAbilityIcon{
+    -fx-image: url('../Images/Icons/card_ability_berserker.png');
+    -fx-background-size: 100% 100%;
+}
+.clearWeatherIcon{
+    -fx-image: url('../Images/Icons/card_ability_clear.png');
+    -fx-background-size: 100% 100%;
+}
+.decoyAbilityIcon{
+    -fx-image: url('../Images/Icons/card_ability_decoy.png');
+    -fx-background-size: 100% 100%;
+}
+.fogWeatherIcon{
+    -fx-image: url('../Images/Icons/card_ability_fog.png');
+    -fx-background-size: 100% 100%;
+}
+.frostWeatherIcon{
+    -fx-image: url('../Images/Icons/card_ability_frost.png');
+    -fx-background-size: 100% 100%;
+}
+.hornCommanderAbilityIcon{
+    -fx-image: url('../Images/Icons/card_ability_horn.png');
+    -fx-background-size: 100% 100%;
+}
+.mardroemeAbilityIcon{
+    -fx-image: url('../Images/Icons/card_ability_mardroeme.png');
+    -fx-background-size: 100% 100%;
+}
+.moralBoostAbilityIcon{
+    -fx-image: url('../Images/Icons/card_ability_morale.png');
+    -fx-background-size: 100% 100%;
+}
+.musterAbilityIcon{
+    -fx-background-image: url('../Images/Icons/card_ability_muster.png');
+    -fx-background-size: 100% 100%;
+}
+.rainWeatherIcon{
+    -fx-image: url('../Images/Icons/card_ability_rain.png');
+    -fx-background-size: 100% 100%;
+}
+.scorchAbilityIcon{
+    -fx-image: url('../Images/Icons/card_ability_scorch.png');
+    -fx-background-size: 100% 100%;
+}
+.stormWeatherIcon{
+    -fx-image: url('../Images/Icons/card_ability_storm.png');
+    -fx-background-size: 100% 100%;
+}
+.powerHeroIcon{
+    -fx-image: url('../Images/Icons/power_hero.png');
+    -fx-background-size: 100% 100%;
+}
+.monsters-faction{
+    -fx-background-image: url('../Images/Icons/monstersFaction.jpg');
+    -fx-background-size: 100% 100%;
+}
+.nilfgaardian-faction{
+    -fx-background-image: url('../Images/Icons/nilfgaardFaction.jpg');
+    -fx-background-size: 100% 100%;
+}
+.northern-realms-faction{
+    -fx-background-image: url('../Images/Icons/realmsFaction.jpg');
+    -fx-background-size: 100% 100%;
+}
+.scoia-tael-faction{
+    -fx-background-image: url('../Images/Icons/scoiataelFaction.jpg');
+    -fx-background-size: 100% 100%;
+}
+.skellige-faction{
+    -fx-background-image: url('../Images/Icons/skelligeFaction.jpg');
+    -fx-background-size: 100% 100%;
+}
+
 
 
 

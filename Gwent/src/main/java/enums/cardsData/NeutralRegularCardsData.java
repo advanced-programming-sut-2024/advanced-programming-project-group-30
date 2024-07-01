@@ -72,4 +72,10 @@ public enum NeutralRegularCardsData implements CardData {
     public int getPoint(){
         return this.point;
     }
+    @Override
+    public String getAbilityName() {
+        if (this.abilityName == null)
+            return "";
+        return this.abilityName;
+    }
 }

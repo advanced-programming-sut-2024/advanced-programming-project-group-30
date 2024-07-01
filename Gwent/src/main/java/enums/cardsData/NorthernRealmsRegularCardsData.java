@@ -92,5 +92,11 @@ public enum NorthernRealmsRegularCardsData implements CardData{
     public int getNumber() {
         return numberOfCard;
     }
+    @Override
+    public String getAbilityName() {
+        if (this.abilityName == null)
+            return "";
+        return this.abilityName;
+    }
 }
 

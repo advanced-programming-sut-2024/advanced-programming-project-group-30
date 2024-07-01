@@ -6,14 +6,11 @@ import enums.SizeData;
 import enums.cardsData.CardData;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import model.card.Card;
 import model.card.RegularCard;
-
-import java.util.Objects;
 
 
 public class CardView extends Pane {
@@ -22,11 +19,16 @@ public class CardView extends Pane {
     private final CardData cardData;
     private final Card card;
     private Group items;
-    private static final double POINT_X = 3;
-    private static final double POINT_Y = 2;
-    private static final double POINT_LABEL_X = 3.5;
-    private static final double POINT_LABEL_Y = 3;
-    private static final double POSITION_X = 37;
+    private static final double HERO_POINT_X = -2;
+    private static final double HERO_POINT_Y = -2;
+    private static final double HERO_POINT_LABEL_X = -1.1;
+    private static final double HERO_POINT_LABEL_Y = 0;
+    private static final double NORMAL_POINT_X = 0;
+    private static final double NORMAL_POINT_Y = -0.3;
+    private static final double NORMAL_POINT_LABEL_X = 1.4;
+    private static final double NORMAL_POINT_LABEL_Y = 2.2;
+
+    private static final double POSITION_X = 39.4;
     private static final double POSITION_Y = 60;
 
     public CardView(Card card) {
@@ -42,15 +44,15 @@ public class CardView extends Pane {
     private void setUpRegularCardView(RegularCard card){
         Rectangle rectangle = new Rectangle();
         point.setText(String.valueOf(card.getPoint()));
-        point.setLayoutX(POINT_LABEL_X);
-        point.setLayoutY(POINT_LABEL_Y);
-        point.setPrefWidth(SizeData.GAME_SMALL_CARD_POSITION.getWidth());
+        point.setPrefWidth(SizeData.GAME_SMALL_CARD_POINT_LABEL.getWidth());
+        point.setText(String.valueOf(card.getPoint()));
         ImageView imageView = getSmCardImage();
         //TODO: separate hand and other cards
         this.getStyleClass().add(CssAddress.GAME_HAND_SM_CARD.getStyleClass());
-        point.setText(String.valueOf(card.getPoint()));
-        point.getStyleClass().add(CssAddress.SM_CARD_POINT_LABEL.getStyleClass());
         items.getChildren().addAll(rectangle, imageView, getPointImage(), getPositionImage(), point);
+        ImageView abilityView = getRegularCardAbilityImage();
+        if (abilityView != null)
+            items.getChildren().add(abilityView);
         this.getChildren().addAll(items);
     }
     private ImageView getSmCardImage(){
@@ -61,11 +63,24 @@ public class CardView extends Pane {
     }
     private ImageView getPointImage(){
         ImageView pointView = new ImageView();
-        pointView.getStyleClass().add(CssAddress.SM_CARD_POINT_ICON.getStyleClass());
+        if (((RegularCard)card).isHero()) {
+            pointView.getStyleClass().add(CssAddress.POWER_HERO_ICON.getStyleClass());
+            pointView.setLayoutX(HERO_POINT_X);
+            pointView.setLayoutY(HERO_POINT_Y);
+            point.setLayoutX(HERO_POINT_LABEL_X);
+            point.setLayoutY(HERO_POINT_LABEL_Y);
+            point.getStyleClass().add(CssAddress.HERO_CARD_POINT_LABEL.getStyleClass());
+        }
+        else {
+            pointView.getStyleClass().add(CssAddress.NORMAL_CARD_POINT_ICON.getStyleClass());
+            pointView.setLayoutX(NORMAL_POINT_X);
+            pointView.setLayoutY(NORMAL_POINT_Y);
+            point.setLayoutX(NORMAL_POINT_LABEL_X);
+            point.setLayoutY(NORMAL_POINT_LABEL_Y);
+            point.getStyleClass().add(CssAddress.NORMAL_CARD_POINT_LABEL.getStyleClass());
+        }
         pointView.setFitHeight(SizeData.GAME_SMALL_CARD_POINT.getHeight());
         pointView.setFitWidth(SizeData.GAME_SMALL_CARD_POINT.getWidth());
-        pointView.setLayoutX(POINT_X);
-        pointView.setLayoutY(POINT_Y);
         return pointView;
     }
     private ImageView getPositionImage(){
@@ -89,5 +104,25 @@ public class CardView extends Pane {
         positionImage.setLayoutX(POSITION_X);
         positionImage.setLayoutY(POSITION_Y);
         return positionImage;
+    }
+    private ImageView getRegularCardAbilityImage(){
+        ImageView abilityImage = new ImageView();
+        String abilityName = cardData.getAbilityName();
+
+        if (abilityName.isEmpty() && !((RegularCard)card).getPositionType().equals(RegularCardPositionType.AGILE)){
+            return null;
+        }
+        if (abilityName.isEmpty() && ((RegularCard)card).getPositionType().equals(RegularCardPositionType.AGILE)) {
+            abilityImage.getStyleClass().add(CssAddress.AGILE_ABILITY_ICON.getStyleClass());
+        }
+        else {
+            System.out.println(abilityName + "AbilityIcon");
+            abilityImage.getStyleClass().add(CssAddress.getCssAddress(abilityName + "AbilityIcon"));
+        }
+        abilityImage.setFitHeight(SizeData.GAME_SMALL_CARD_ABILITY.getHeight());
+        abilityImage.setFitWidth(SizeData.GAME_SMALL_CARD_ABILITY.getWidth());
+        abilityImage.setLayoutX(23);
+        abilityImage.setLayoutY(60);
+        return abilityImage;
     }
 }

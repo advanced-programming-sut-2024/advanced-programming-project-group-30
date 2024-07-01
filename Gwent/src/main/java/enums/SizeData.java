@@ -7,15 +7,16 @@ public enum SizeData {
     GAME_LG_CARD(0, 0, 0),
     GAME_SM_CARD(77,55,0),
     GAME_SMALL_CARD_POSITION(15,15,0),
-    GAME_SMALL_CARD_POINT_LABEL(20,20,0),
-    GAME_SMALL_CARD_POINT(27, 27, 0);
+    GAME_SMALL_CARD_POINT_LABEL(15,15,0),
+    GAME_SMALL_CARD_POINT(27, 27, 0),
+    GAME_SMALL_CARD_ABILITY(15, 15, 0),;
     private final double height;
     private final double width;
-    private final double redius;
-    SizeData(double height, double width, double redius) {
+    private final double radius;
+    SizeData(double height, double width, double radius) {
         this.height = height;
         this.width = width;
-        this.redius = redius;
+        this.radius = radius;
     }
     public double getHeight() {
         return height;
@@ -23,7 +24,7 @@ public enum SizeData {
     public double getWidth() {
         return width;
     }
-    public double getRedius() {
-        return redius;
+    public double getRadius() {
+        return radius;
     }
 }

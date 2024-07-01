@@ -7,5 +7,6 @@ public interface CardData {
     int getNumber();
     Image getSmImage();
     int getPoint();
+    String getAbilityName();
 
 }

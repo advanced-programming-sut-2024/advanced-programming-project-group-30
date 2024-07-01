@@ -2,7 +2,6 @@ package model.card;
 
 import enums.FactionType;
 import enums.cardsData.CardData;
-import model.Faction;
 import model.ability.LeaderAbility;
 
 public class Leader extends Card {
