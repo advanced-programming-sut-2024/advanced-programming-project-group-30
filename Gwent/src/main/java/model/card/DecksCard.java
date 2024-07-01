@@ -1,12 +1,14 @@
 package model.card;
 
+import enums.FactionType;
+import enums.cardsData.CardData;
 import model.Faction;
 
 public abstract class DecksCard extends Card {
     private final boolean isSpecialCard;
 
-    public DecksCard(String name, String explanation, Faction faction, boolean isSpecialCard) {
-        super(name, explanation, faction);
+    public DecksCard(String name, FactionType faction, CardData cardData, boolean isSpecialCard) {
+        super(name, faction, cardData);
         this.isSpecialCard = isSpecialCard;
     }
 

@@ -63,6 +63,18 @@ public class Player {
     public Row getSiege() {
         return siege;
     }
+    public void removeCardFromHand(DecksCard card){
+        hand.remove(card);
+    }
+    public void addCardToHand(DecksCard card){
+        hand.add(card);
+    }
+    public void addCardToDeck(DecksCard card){
+        deck.add(card);
+    }
+    public void removeCardFromDeck(DecksCard card){
+        deck.remove(card);
+    }
 
     public int getPoint() {
         return point;
@@ -76,6 +88,7 @@ public class Player {
         return roundsPoint;
     }
 
+
     public int getLife() {
         return life;
     }
@@ -87,7 +100,6 @@ public class Player {
     public void playCard(DecksCard decksCard) {
 
     }
-
     public void playCard(DecksCard decksCard, Row row) {
 
     }

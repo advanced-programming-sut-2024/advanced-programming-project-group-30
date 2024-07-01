@@ -1,17 +1,33 @@
 package view;
 
+import enums.FactionType;
+import enums.cardsData.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import model.App;
+import model.card.RegularCard;
+
+import java.util.ArrayList;
 
 public class GameMenu implements Menu{
+    @FXML
+    private Pane notifBox;
+    @FXML
+    private ImageView notifImage;
+    @FXML
+    private Label notifTextLabel;
+    @FXML
+    private Label opponentPassedLabel;
+    @FXML
+    private Label passedLabel;
     @FXML
     private Label opponentRangedRowScore;
     @FXML
@@ -104,8 +120,11 @@ public class GameMenu implements Menu{
         rightGem.getStyleClass().add(GEM_ON_IMAGE_CLASS);
         opponentLeftGem.getStyleClass().add(GEM_ON_IMAGE_CLASS);
         leftGem.getStyleClass().add(GEM_ON_IMAGE_CLASS);
+        ScoiaTaelRegularCardsData.DOL_BLATHANNA_ARCHER.getSmImage();
+
     }
 
     public void passTurn() {
     }
+
 }

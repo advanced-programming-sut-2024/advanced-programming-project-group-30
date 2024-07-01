@@ -1,27 +1,37 @@
 package model.card;
 
+import enums.FactionType;
+import enums.cardsData.CardData;
+import javafx.scene.Group;
 import model.Faction;
 
-abstract class Card {
+public abstract class Card {
     private final String name;
-    private final String explanation;
-    private final Faction faction;
+    private final FactionType faction;
+    private final CardData cardData;
 
-    public Card(String name, String explanation, Faction faction) {
+    public Card(String name, FactionType faction, CardData cardData) {
         this.name = name;
-        this.explanation = explanation;
         this.faction = faction;
+        this.cardData = cardData;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getExplanation() {
-        return explanation;
+    public FactionType getFaction() {
+        return faction;
     }
 
-    public Faction getFaction() {
-        return faction;
+    public CardData getCardData() {
+        return cardData;
+    }
+
+    public boolean sames(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Card card = (Card) o;
+        return cardData == card.cardData;
     }
 }

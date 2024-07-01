@@ -1,14 +1,20 @@
 package model;
 
-import model.card.specialcard.SpecialCard;
 
 import java.util.ArrayList;
+
+import model.card.Card;
+import model.card.specialcard.SpecialCard;
+
+
 
 public class Game {
     private Player currentPlayer;
     private Player opponentPlayer;
     private final ArrayList<SpecialCard> specialPosition = new ArrayList<>();
     private int roundNumber = 1;
+    private Card selectedCard;
+    private Row selectedRow;
 
     public Player getCurrentPlayer() {
         return currentPlayer;
@@ -44,5 +50,17 @@ public class Game {
 
     public GameHistory endGame() {
         return null;
+    }
+    public void selectCard(Card card) {
+        selectedCard = card;
+    }
+    public Card getSelectedCard() {
+        return selectedCard;
+    }
+    public void selectRow(Row row) {
+        selectedRow = row;
+    }
+    public Row getSelectedRow() {
+        return selectedRow;
     }
 }
