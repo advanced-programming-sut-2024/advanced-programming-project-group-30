@@ -1,39 +1,32 @@
 package view;
 
+import enums.CssAddress;
+import enums.SizeData;
+import enums.cardsData.CardData;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import model.card.DecksCard;
-
-import java.util.ArrayList;
-import java.util.Objects;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 
 public class PreGameCardView extends Group {
-    private final LgCard card;
+    private final CardData cardData;
     private int number;
-    private final Label numberLabel = new Label();
-    private final ArrayList<DecksCard> cards;
+    private final Label numberLabel;
+    private final Rectangle cardImage;
 
-    public PreGameCardView(LgCard card, int number, ArrayList<DecksCard> cards) {
-        this.card = card;
-        this.number = number;
-        numberLabel.setText("×" + number);
-        numberLabel.setStyle("-fx-font-family: Cambria; -fx-text-alignment: CENTER; -fx-text-fill: #4e3b22; -fx-font-size: 10; -fx-font-weight: bold;");
-        numberLabel.setLayoutX(92);
-        numberLabel.setLayoutY(174);
-        this.getChildren().add(card);
-        this.getChildren().add(numberLabel);
-        ImageView numberIcon = new ImageView(new Image(Objects.requireNonNull(
-                this.getClass().getResourceAsStream("/Images/Game/PregameIcons/preview_count.png"))));
-        numberIcon.setFitWidth(10);
-        numberIcon.setPreserveRatio(true);
-        numberIcon.setY(174);
-        numberIcon.setX(81);
-        this.getChildren().add(numberIcon);
-        this.setCursor(Cursor.HAND);
-        this.cards = new ArrayList<>(cards);
+    public PreGameCardView(CardData cardData) {
+        this.cardData = cardData;
+        this.number = cardData.getNumber();
+        this.numberLabel = createNumberLabel();
+        this.cardImage = createCardImage();
+        addNodes();
+        this.getStyleClass().add(CssAddress.PREGAME_CARD_VIEW.getStyleClass());
+    }
+
+    public CardData getCardData() {
+        return cardData;
     }
 
     public int getNumber() {
@@ -42,14 +35,34 @@ public class PreGameCardView extends Group {
 
     public void setNumber(int number) {
         this.number = number;
-        numberLabel.setText("×" + number);
+        this.numberLabel.setText("×" + number);
     }
 
-    public LgCard getCard() {
-        return card;
+    private Rectangle createCardImage() {
+        Rectangle cardImage = new Rectangle(SizeData.PRE_GAME_CARD.getWidth(), SizeData.PRE_GAME_CARD.getHeight());
+        cardImage.setArcHeight(SizeData.PRE_GAME_CARD.getRadius());
+        cardImage.setArcWidth(SizeData.PRE_GAME_CARD.getRadius());
+        cardImage.setFill(new ImagePattern(cardData.getLgImage()));
+        return cardImage;
     }
 
-    public ArrayList<DecksCard> getCards() {
-        return cards;
+    private Label createNumberLabel() {
+        Label numberLabel = new Label("×" + number);
+        numberLabel.getStyleClass().add(CssAddress.NUMBER_OF_CARD_TYPE_LABEL.getStyleClass());
+        return numberLabel;
+    }
+
+    private ImageView createIcon() {
+        ImageView icon = new ImageView();
+        icon.getStyleClass().add(CssAddress.NUMBER_OF_CARD_TYPE_ICON.getStyleClass());
+        icon.setFitWidth(SizeData.NUMBER_OF_CARD_TYPE.getWidth());
+        icon.setFitHeight(SizeData.NUMBER_OF_CARD_TYPE.getHeight());
+        return icon;
+    }
+
+    private void addNodes() {
+        this.getChildren().add(cardImage);
+        this.getChildren().add(createIcon());
+        this.getChildren().add(numberLabel);
     }
 }

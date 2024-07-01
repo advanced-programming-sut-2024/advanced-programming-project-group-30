@@ -6,78 +6,96 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
-<BorderPane styleClass="PregameBackground" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.StartGameMenu">
-    <top>
-        <VBox alignment="CENTER" BorderPane.alignment="CENTER">
-            <Pane maxWidth="1109.0" minWidth="600.0" prefHeight="160.0" prefWidth="1109.0">
-                <Label layoutX="463.0" layoutY="32.0" styleClass="factionName" text="Faction Name" />
-                <ImageView fitHeight="40.0" layoutX="405.0" layoutY="32.0" preserveRatio="true">
-                    <Image url="@../Images/Game/Factions/Nilfgaard.png" />
-                </ImageView>
-                <ImageView fitHeight="40.0" layoutX="669.0" layoutY="32.0" preserveRatio="true">
-                    <Image url="@../Images/Game/Factions/Nilfgaard.png" />
-                </ImageView>
-                <Label layoutX="379.0" layoutY="81.0" styleClass="descriptions" text="Descriptions about the ability of the Faction are written here" />
-                <Button layoutX="478.0" layoutY="105.0" prefHeight="30" prefWidth="138" styleClass="buttonWithoutBack" text="Change Faction" />
-                <Button layoutX="610.0" layoutY="105.0" prefHeight="30" prefWidth="140" styleClass="buttonWithoutBack" text="Download Deck" />
-                <Button layoutX="359.0" layoutY="105.0" prefHeight="30" prefWidth="118" styleClass="buttonWithoutBack" text="Upload Deck" />
-            <Label layoutX="37.0" layoutY="129.0" styleClass="cardsTitle" text="Card Collection" />
-            <Label layoutX="959.0" layoutY="129.0" styleClass="cardsTitle" text="Cards in Deck" />
-            </Pane>
-        </VBox>
-    </top>
+<VBox fx:id="stage" alignment="CENTER" styleClass="PregameBackground" xmlns="http://javafx.com/javafx/17.0.2-ea"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PregameMenu">
+    <BorderPane fx:id="mainPane" maxHeight="660.0" maxWidth="1150.0" minHeight="660.0" minWidth="1150.0" prefHeight="660.0"
+                prefWidth="1150.0"
+                style="-fx-background-color: rgb(0,0,0,0.65); -fx-background-radius: 8; -fx-scale-y: 0.97; -fx-scale-x: 0.97;">
+        <top>
+            <VBox alignment="CENTER" BorderPane.alignment="CENTER">
+                <Pane maxWidth="1109.0" minWidth="600.0" prefHeight="160.0" prefWidth="1109.0">
+                    <Label layoutX="463.0" layoutY="32.0" styleClass="factionName" text="Faction Name"/>
+                    <ImageView fitHeight="40.0" layoutX="405.0" layoutY="32.0" preserveRatio="true">
+                        <Image url="@../Images/Game/Factions/Nilfgaard.png"/>
+                    </ImageView>
+                    <ImageView fitHeight="40.0" layoutX="669.0" layoutY="32.0" preserveRatio="true">
+                        <Image url="@../Images/Game/Factions/Nilfgaard.png"/>
+                    </ImageView>
+                    <Label layoutX="379.0" layoutY="81.0" styleClass="descriptions"
+                           text="Descriptions about the ability of the Faction are written here"/>
+                    <Button layoutX="478.0" layoutY="105.0" prefHeight="30" prefWidth="138" styleClass="buttonWithoutBack"
+                            text="Change Faction"/>
+                    <Button layoutX="610.0" layoutY="105.0" prefHeight="30" prefWidth="140" styleClass="buttonWithoutBack"
+                            text="Download Deck"/>
+                    <Button layoutX="359.0" layoutY="105.0" prefHeight="30" prefWidth="118" styleClass="buttonWithoutBack"
+                            text="Upload Deck"/>
+                    <Label layoutX="37.0" layoutY="129.0" styleClass="cardsTitle" text="Card Collection"/>
+                    <Label layoutX="959.0" layoutY="129.0" styleClass="cardsTitle" text="Cards in Deck"/>
+                </Pane>
+            </VBox>
+        </top>
 
-    <center>
-        <HBox alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" minWidth="250.0" prefHeight="461.0" prefWidth="1007.0" style="-fx-spacing: 42;" BorderPane.alignment="CENTER">
-            <ScrollPane fx:id="cardCollectionScrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="cardsScrollPane" vbarPolicy="ALWAYS" />
-            <Pane maxHeight="460.0" maxWidth="230.0" minWidth="230.0" prefHeight="460.0" styleClass="blackPane">
-                <Label layoutX="100.0" layoutY="20.0" styleClass="leaderTitle" text="Leader" />
-                <Rectangle arcHeight="20" arcWidth="20" fill="#725a3e" height="150" layoutX="72" layoutY="47" stroke="BLACK" width="96" />
-                <VBox alignment="CENTER" layoutX="57.0" layoutY="210.0" prefHeight="179.0" prefWidth="126.0" style="-fx-spacing: 4;">
-                    <Label styleClass="topicLabel" text="Total cards in deck" />
-                    <HBox alignment="BOTTOM_CENTER" styleClass="numberHBox">
-                        <ImageView fitHeight="17.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                            <Image url="@../Images/Game/PregameIcons/deck_stats_count.png" />
-                        </ImageView>
-                        <Label alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" prefHeight="12.0" styleClass="numberLabel" text="×20" />
-                    </HBox>
-                    <Label styleClass="topicLabel" text="Number of Unit Cards" />
-                    <HBox alignment="BOTTOM_CENTER" styleClass="numberHBox">
-                        <ImageView fitHeight="15.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                            <Image url="@../Images/Game/PregameIcons/deck_stats_unit.png" />
-                        </ImageView>
-                        <Label alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" prefHeight="12.0" styleClass="numberLabel" text="×20" />
-                    </HBox>
-                    <Label styleClass="topicLabel" text="Special Cards" />
-                    <HBox alignment="BOTTOM_CENTER" styleClass="numberHBox">
-                        <ImageView fitHeight="18.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
-                            <Image url="@../Images/Game/PregameIcons/deck_stats_special.png" />
-                        </ImageView>
-                        <Label alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" prefHeight="12.0" styleClass="numberLabel" text="5/10" />
-                    </HBox>
-                    <Label styleClass="topicLabel" text="Total Unit Card Strength" />
-                    <HBox alignment="BOTTOM_CENTER" styleClass="numberHBox">
-                        <ImageView fitHeight="18.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                            <Image url="@../Images/Game/PregameIcons/deck_stats_strength.png" />
-                        </ImageView>
-                        <Label alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" prefHeight="12.0" styleClass="numberLabel" text="139" />
-                    </HBox>
-                    <Label styleClass="topicLabel" text="Hero Cards" />
-                    <HBox alignment="BOTTOM_CENTER" styleClass="numberHBox">
-                        <ImageView fitHeight="17.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
-                            <Image url="@../Images/Game/PregameIcons/deck_stats_hero.png" />
-                        </ImageView>
-                        <Label alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" prefHeight="12.0" styleClass="numberLabel" text="×9" />
-                    </HBox>
-                </VBox>
-                <Button layoutX="82.0" layoutY="415.0" minHeight="23.0" mouseTransparent="true" prefHeight="13.0" prefWidth="77.0" styleClass="yellowButton" text="Start game" />
-                <Rectangle arcHeight="5.0" arcWidth="5.0" disable="true" fill="#1f93ff00" height="23.0" layoutX="82.0" layoutY="415.0" stroke="#36230790" strokeType="INSIDE" width="76.0" />
-            </Pane>
-            <ScrollPane fx:id="cardInDeckScrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: rgba(0,0,0,0.6);" styleClass="cardsScrollPane" vbarPolicy="ALWAYS" />
-        </HBox>
-    </center>
+        <center>
+            <HBox alignment="TOP_CENTER" maxWidth="1.7976931348623157E308" minWidth="250.0" prefHeight="461.0" prefWidth="1007.0"
+                  style="-fx-spacing: 42;" BorderPane.alignment="CENTER">
+                <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="cardsScrollPane" vbarPolicy="ALWAYS">
+                    <FlowPane fx:id="cardCollection" prefHeight="200.0" prefWidth="200.0" styleClass="cardsFlowPane"/>
+                </ScrollPane>
+                <Pane maxHeight="460.0" maxWidth="230.0" minWidth="230.0" prefHeight="460.0" styleClass="blackPane">
+                    <Label layoutX="100.0" layoutY="20.0" styleClass="leaderTitle" text="Leader"/>
+                    <Rectangle arcHeight="20" arcWidth="20" fill="#725a3e" height="150" layoutX="72" layoutY="47" stroke="BLACK"
+                               width="96"/>
+                    <VBox alignment="CENTER" layoutX="57.0" layoutY="210.0" prefHeight="179.0" prefWidth="126.0" style="-fx-spacing: 4;">
+                        <Label styleClass="topicLabel" text="Total cards in deck"/>
+                        <HBox alignment="BOTTOM_CENTER" styleClass="numberHBox">
+                            <ImageView fitHeight="17.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                <Image url="@../Images/Game/PregameIcons/deck_stats_count.png"/>
+                            </ImageView>
+                            <Label alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" prefHeight="12.0" styleClass="numberLabel" text="×20"/>
+                        </HBox>
+                        <Label styleClass="topicLabel" text="Number of Unit Cards"/>
+                        <HBox alignment="BOTTOM_CENTER" styleClass="numberHBox">
+                            <ImageView fitHeight="15.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                <Image url="@../Images/Game/PregameIcons/deck_stats_unit.png"/>
+                            </ImageView>
+                            <Label alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" prefHeight="12.0" styleClass="numberLabel" text="×20"/>
+                        </HBox>
+                        <Label styleClass="topicLabel" text="Special Cards"/>
+                        <HBox alignment="BOTTOM_CENTER" styleClass="numberHBox">
+                            <ImageView fitHeight="18.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                                <Image url="@../Images/Game/PregameIcons/deck_stats_special.png"/>
+                            </ImageView>
+                            <Label alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" prefHeight="12.0" styleClass="numberLabel" text="5/10"/>
+                        </HBox>
+                        <Label styleClass="topicLabel" text="Total Unit Card Strength"/>
+                        <HBox alignment="BOTTOM_CENTER" styleClass="numberHBox">
+                            <ImageView fitHeight="18.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                <Image url="@../Images/Game/PregameIcons/deck_stats_strength.png"/>
+                            </ImageView>
+                            <Label alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" prefHeight="12.0" styleClass="numberLabel" text="139"/>
+                        </HBox>
+                        <Label styleClass="topicLabel" text="Hero Cards"/>
+                        <HBox alignment="BOTTOM_CENTER" styleClass="numberHBox">
+                            <ImageView fitHeight="17.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                <Image url="@../Images/Game/PregameIcons/deck_stats_hero.png"/>
+                            </ImageView>
+                            <Label alignment="BOTTOM_LEFT" contentDisplay="BOTTOM" prefHeight="12.0" styleClass="numberLabel" text="×9"/>
+                        </HBox>
+                    </VBox>
+                    <Button layoutX="82.0" layoutY="415.0" minHeight="23.0" mouseTransparent="true" prefHeight="13.0" prefWidth="77.0"
+                            styleClass="yellowButton" text="Start game"/>
+                    <Rectangle arcHeight="5.0" arcWidth="5.0" disable="true" fill="#1f93ff00" height="23.0" layoutX="82.0" layoutY="415.0"
+                               stroke="#36230790" strokeType="INSIDE" width="76.0"/>
+                </Pane>
+                <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" style="-fx-background-color: rgba(0,0,0,0.6);"
+                            styleClass="cardsScrollPane" vbarPolicy="ALWAYS">
+                    <FlowPane fx:id="cardsInDeck" prefHeight="200.0" prefWidth="200.0" styleClass="cardsFlowPane"/>
+                </ScrollPane>
+            </HBox>
+        </center>
+    </BorderPane>
     <stylesheets>
-        <URL value="@../CSS/Backgrounds.css" />
-        <URL value="@../CSS/GameNodesStyle.css" />
+        <URL value="@../CSS/Backgrounds.css"/>
+        <URL value="@../CSS/GameNodesStyle.css"/>
     </stylesheets>
-</BorderPane>
+</VBox>

@@ -1,30 +1,20 @@
 package controller;
 
+import enums.FactionType;
+import enums.cardsData.CardData;
+import model.PreGameData;
 import model.Result;
+import model.User;
 
 public class PreGameMenuController {
+    public PreGameData preGameData = new PreGameData(new User("","","","",null,""));
+
     public Result createGame(String username) {
         return null;
     }
 
-    public Result showFaction() {
-        return null;
-    }
-
-    public Result selectFaction(String faction) {
-        return null;
-    }
-
-    public Result showCards() {
-        return null;
-    }
-
-    public Result showDeck() {
-        return null;
-    }
-
-    public Result showInformation() {
-        return null;
+    public void selectFaction(FactionType faction) {
+        preGameData.setFaction(faction);
     }
 
     public Result saveDeckWithName(String deckName) {
@@ -35,35 +25,19 @@ public class PreGameMenuController {
         return null;
     }
 
-    public Result showLeaders() {
-        return null;
-    }
-
     public Result selectLeader(String leader) {
         return null;
     }
 
-    public Result addCardToDeck(String cardName, String cardCount) {
-        return null;
+    public void addCardToDeck(CardData card) {
+        preGameData.addToPreDeck(card);
     }
 
-    public Result deleteCardFromDeck(String cardName, String cardCount) {
-        return null;
-    }
-
-    public Result changeTurn() {
-        return null;
+    public void deleteCardFromDeck(CardData card) {
+        preGameData.removeFromPreDeck(card);
     }
 
     public Result startGame() {
-        return null;
-    }
-
-    public Result enterMenu(String menuName) {
-        return null;
-    }
-
-    public Result exitMenu() {
         return null;
     }
 }

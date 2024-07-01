@@ -35,4 +35,9 @@ public enum ScoiaTaelLeaderCardsData implements CardData{
     public int getNumber() {
         return 1;
     }
+
+    @Override
+    public int getPoint() {
+        return 0;
+    }
 }

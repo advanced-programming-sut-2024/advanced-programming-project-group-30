@@ -1,102 +1,53 @@
 package model;
 
-import javafx.scene.Node;
-import javafx.scene.layout.FlowPane;
+import enums.FactionType;
+import enums.cardsData.CardData;
 import model.card.DecksCard;
-import view.LgCard;
-import view.PreGameCardView;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashMap;
+import java.util.TreeMap;
 
 public class PreGameData {
     private final User user;
-    private final ArrayList<DecksCard> cardCollectionList;
-    private final ArrayList<DecksCard> preDeck = new ArrayList<>();
-    private final FlowPane cardCollection = new FlowPane();
-    private final FlowPane cardInDeck = new FlowPane();
+    private final TreeMap<CardData, ArrayList<DecksCard>> cardCollection = new TreeMap<>(CardComparator.getCardComparator());
+    private final HashMap<CardData, ArrayList<DecksCard>> cardsInDeck = new HashMap<>();
 
     public PreGameData(User user) {
         this.user = user;
-        this.cardCollectionList = user.getCardCollection().getCardsByFactionsName(user.getSelectedFaction());
-        cardCollection.setStyle("-fx-padding: 4.72; -fx-vgap: 4.72; -fx-hgap: 4.72");
-        cardInDeck.setStyle("-fx-padding: 4.72; -fx-vgap: 4.72; -fx-hgap: 4.72");
-        ArrayList<DecksCard> cards = new ArrayList<>();
-        outsideFor:
-        for (int i = 0; i < cardCollectionList.size(); i++) {
-            while (i < cardCollectionList.size() - 1 && cardCollectionList.get(i).sames(cardCollectionList.get(i + 1))) {
-                cards.add(cardCollectionList.get(i));
-                continue outsideFor;
-            }
-            cards.add(cardCollectionList.get(i));
-            PreGameCardView preGameCardView = new PreGameCardView(new LgCard(cardCollectionList.get(i).getCardData(), true),
-                    cardCollectionList.get(i).getCardData().getNumber(), cards);
-            cardCollection.getChildren().add(preGameCardView);
-            preGameCardView.setOnMouseClicked((Void) -> {
-                chooseFromCollection(preGameCardView);
-            });
-            cards.clear();
-        }
-
+        setFaction(user.getSelectedFaction());
     }
 
-    private void chooseFromCollection(PreGameCardView preGameCardView) {
-        preGameCardView.setNumber(preGameCardView.getNumber() - 1);
-        DecksCard card = preGameCardView.getCards().remove(0);
-        cardCollectionList.remove(card);
-        preDeck.add(card);
-        boolean test = false;
-        for (Node node : cardInDeck.getChildren()) {
-            PreGameCardView preGameCardView2 = (PreGameCardView) node;
-            if (preGameCardView2.getCard().getCardData() == card.getCardData()) {
-                test = true;
-                preGameCardView2.getCards().add(card);
-                preGameCardView2.setNumber(preGameCardView2.getNumber() + 1);
-                break;
-            }
-        }
-        if (!test) {
-            PreGameCardView preGameCardView2 =
-                    new PreGameCardView(new LgCard(preGameCardView.getCard().getCardData(),true), 1, new ArrayList<>(Collections.singleton(card)));
-            cardInDeck.getChildren().add(preGameCardView2);
-            preGameCardView2.setOnMouseClicked((Void) -> chooseFromDeck(preGameCardView2));
-        }
-        if (preGameCardView.getNumber() == 0) {
-            cardCollection.getChildren().remove(preGameCardView);
-        }
+    public void setFaction(FactionType faction) {
+        user.setSelectedFaction(faction);
+        this.cardCollection.putAll(user.getCardCollection().getCardsMapByFactionsType(faction));
+        cardsInDeck.clear();
+        System.gc();
     }
 
-    private void chooseFromDeck(PreGameCardView preGameCardView) {
-        preGameCardView.setNumber(preGameCardView.getNumber() - 1);
-        DecksCard card = preGameCardView.getCards().remove(0);
-        preDeck.remove(card);
-        cardCollectionList.add(card);
-        boolean test = false;
-        for (Node node : cardCollection.getChildren()) {
-            PreGameCardView preGameCardView2 = (PreGameCardView) node;
-            if (preGameCardView2.getCard().getCardData() == card.getCardData()) {
-                test = true;
-                preGameCardView2.getCards().add(card);
-                preGameCardView2.setNumber(preGameCardView2.getNumber() + 1);
-                break;
+    public void addToPreDeck(CardData chosenCard) {
+        for (CardData cardData : cardCollection.keySet())
+            if (cardData == chosenCard) {
+                DecksCard card = cardCollection.get(cardData).remove(0);
+                cardsInDeck.get(cardData).add(card);
+                return;
             }
-        }
-        if (!test) {
-            PreGameCardView preGameCardView2 =
-                    new PreGameCardView(new LgCard(preGameCardView.getCard().getCardData(),true), 1, new ArrayList<>(Collections.singleton(card)));
-            cardCollection.getChildren().add(preGameCardView2);
-            preGameCardView2.setOnMouseClicked((Void) -> chooseFromDeck(preGameCardView2));
-        }
-        if (preGameCardView.getNumber() == 0) {
-            cardInDeck.getChildren().remove(preGameCardView);
-        }
     }
 
-    public FlowPane getCardCollection() {
+    public void removeFromPreDeck(CardData chosenCard) {
+        for (CardData cardData : cardsInDeck.keySet())
+            if (cardData == chosenCard) {
+                DecksCard card = cardsInDeck.get(cardData).remove(0);
+                cardCollection.get(cardData).add(card);
+                return;
+            }
+    }
+
+    public TreeMap<CardData, ArrayList<DecksCard>> getCardCollection() {
         return cardCollection;
     }
 
-    public FlowPane getCardInDeck() {
-        return cardInDeck;
+    public HashMap<CardData, ArrayList<DecksCard>> getCardsInDeck() {
+        return cardsInDeck;
     }
 }

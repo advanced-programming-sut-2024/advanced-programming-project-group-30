@@ -110,10 +110,37 @@
     -fx-background-color: transparent;
 }
 
-.cardsScrollPane .scroll-bar:vertical .decrement-arrow, .cardsScrollPane .scroll-bar:vertical .increment-arrow{
+.cardsScrollPane .scroll-bar:vertical .decrement-arrow, .cardsScrollPane .scroll-bar:vertical .increment-arrow {
     -fx-background-color: #c19b69;
 }
 
 .cardsScrollPane .scroll-bar:vertical .decrement-arrow:hover, .cardsScrollPane .scroll-bar:vertical .increment-arrow:hover {
     -fx-background-color: #efc286;
+}
+
+.cardsFlowPane {
+    -fx-padding: 4.72;
+    -fx-vgap: 4.72;
+    -fx-hgap: 4.72;
+}
+.preGameCard:hover {
+    -fx-cursor: HAND;
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+}
+
+.numberOfCardTypeIcon {
+    -fx-image: url('../Images/Game/PregameIcons/preview_count.png');
+    -fx-background-size: cover;
+    -fx-translate-x: 80;
+    -fx-translate-y: 172.5;
+}
+
+.numberOfCardTypeLabel {
+    -fx-font-family: Cambria;
+    -fx-text-fill: #4e3b22;
+    -fx-font-size: 10;
+    -fx-font-weight: bold;
+    -fx-translate-x: 92;
+    -fx-translate-y: 173.5;
 }

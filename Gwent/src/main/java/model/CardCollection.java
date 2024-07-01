@@ -1,6 +1,7 @@
 package model;
 
 import enums.FactionType;
+import enums.cardsData.CardData;
 import enums.cardsData.NeutralRegularCardsData;
 import enums.cardsData.SpecialCardsData;
 import model.card.DecksCard;
@@ -8,6 +9,7 @@ import model.card.RegularCard;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.TreeMap;
 
 public class CardCollection {
     private final ArrayList<DecksCard> NeutralCards;
@@ -21,9 +23,18 @@ public class CardCollection {
             FactionsCard.put(type, type.getFactionRegularCards());
     }
 
-    public ArrayList<DecksCard> getCardsByFactionsName(FactionType factionType) {
+    public TreeMap<CardData, ArrayList<DecksCard>> getCardsMapByFactionsType(FactionType factionType) {
         ArrayList<DecksCard> cards = new ArrayList<>(NeutralCards);
         cards.addAll(FactionsCard.get(factionType));
-        return cards;
+        TreeMap<CardData, ArrayList<DecksCard>> cardsMap = new TreeMap<>(CardComparator.getCardComparator());
+        ArrayList<DecksCard> oneTypeCards = new ArrayList<>();
+        for (int i = 0; i < cards.size(); i++) {
+            while (i < cards.size() - 1 && cards.get(i).getCardData() == cards.get(i + 1).getCardData())
+                oneTypeCards.add(cards.get(i++));
+            oneTypeCards.add(cards.get(i));
+            cardsMap.put(cards.get(i).getCardData(), new ArrayList<>(oneTypeCards));
+            oneTypeCards.clear();
+        }
+        return cardsMap;
     }
 }

@@ -1,8 +1,9 @@
 package enums;
 
 public enum SizeData {
-    preGameCard(212, 110, 15),
-    gameLgCard(0, 0, 0),
+    PRE_GAME_CARD(210, 110, 15),
+    GAME_LG_CARD(0, 0, 0),
+    NUMBER_OF_CARD_TYPE(14,11,0)
     ;
 
     private final double height;

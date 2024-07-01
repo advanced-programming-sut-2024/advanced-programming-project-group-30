@@ -86,4 +86,9 @@ public enum MonstersRegularCardsData implements CardData {
     public int getNumber() {
         return numberOfCard;
     }
+
+    @Override
+    public int getPoint() {
+        return this.point;
+    }
 }
