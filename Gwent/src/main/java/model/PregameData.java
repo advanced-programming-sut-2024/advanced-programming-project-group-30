@@ -18,6 +18,7 @@ public class PregameData {
 
     public void setFaction(FactionType faction) {
         user.setSelectedFaction(faction);
+        cardCollection.clear();
         this.cardCollection.putAll(user.getCardCollection().getCardsMapByFactionsType(faction));
         cardsInDeck.clear();
         System.gc();
