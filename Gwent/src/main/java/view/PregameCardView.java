@@ -3,20 +3,19 @@ package view;
 import enums.CssAddress;
 import enums.SizeData;
 import enums.cardsData.CardData;
-import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
-public class PreGameCardView extends Group {
+public class PregameCardView extends Group {
     private final CardData cardData;
     private int number;
     private final Label numberLabel;
     private final Rectangle cardImage;
 
-    public PreGameCardView(CardData cardData) {
+    public PregameCardView(CardData cardData) {
         this.cardData = cardData;
         this.number = cardData.getNumber();
         this.numberLabel = createNumberLabel();

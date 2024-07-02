@@ -7,9 +7,11 @@ import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
+import model.CardComparator;
 import model.card.DecksCard;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.TreeMap;
 
 public class PregameMenu implements Menu {
@@ -24,6 +26,7 @@ public class PregameMenu implements Menu {
     private FlowPane cardsInDeck;
 
     public void initialize() {
+        // TODO : remove
         uploadToCardCollection(controller.pregameData.getCardCollection());
         stage.widthProperty().addListener((Void) -> scaleMainPane());
         stage.heightProperty().addListener((Void) -> scaleMainPane());
@@ -31,26 +34,44 @@ public class PregameMenu implements Menu {
 
     private void uploadToCardCollection(TreeMap<CardData, ArrayList<DecksCard>> collection) {
         for (CardData cardData : collection.keySet()) {
-            PreGameCardView cardView = new PreGameCardView(cardData);
+            PregameCardView cardView = new PregameCardView(cardData);
             cardCollection.getChildren().add(cardView);
             cardView.setOnMouseClicked((Void) -> controller.addCardToDeck(cardView));
         }
     }
 
-    public void removeFromCardCollection(PreGameCardView cardView) {
+    public void addToCardCollection(PregameCardView cardView) {
+        cardCollection.getChildren().add(cardView);
+        cardView.setOnMouseClicked((Void) -> controller.addCardToDeck(cardView));
+    }
+
+    public void removeFromCardCollection(PregameCardView cardView) {
         cardCollection.getChildren().remove(cardView);
     }
 
-    public void addToCardCollection(PreGameCardView cardView) {
-        cardCollection.getChildren().add(cardView);
+    public void addToCardsInDeck(PregameCardView cardView) {
+        cardsInDeck.getChildren().add(cardView);
+        cardView.setOnMouseClicked((Void) -> controller.removeCardFromDeck(cardView));
     }
 
-    public void removeFromCardsInDeck(PreGameCardView cardView) {
+    public void removeFromCardsInDeck(PregameCardView cardView) {
         cardsInDeck.getChildren().remove(cardView);
     }
 
-    public void addToCardsInDeck(PreGameCardView cardView) {
-        cardsInDeck.getChildren().add(cardView);
+    public PregameCardView getCollectionCardView(CardData cardData) {
+        return getCardView(cardData, cardCollection);
+    }
+
+    public PregameCardView getDeckCardView(CardData cardData) {
+        return getCardView(cardData, cardsInDeck);
+    }
+
+    private PregameCardView getCardView(CardData cardData, FlowPane flowPane) {
+        for (Node node : flowPane.getChildren()) {
+            PregameCardView cardView = (PregameCardView) node;
+            if (cardView.getCardData() == cardData) return cardView;
+        }
+        return null;
     }
 
     private void scaleMainPane() {
@@ -61,21 +82,5 @@ public class PregameMenu implements Menu {
         double scale = Math.min(scaleY, scaleX);
         mainPane.setScaleX(scale * 0.97);
         mainPane.setScaleY(scale * 0.97);
-    }
-
-    public PreGameCardView getCollectionCardView(CardData cardData) {
-        return getCardView(cardData, cardCollection);
-    }
-
-    public PreGameCardView getDeckCardView(CardData cardData) {
-        return getCardView(cardData, cardsInDeck);
-    }
-
-    private PreGameCardView getCardView(CardData cardData, FlowPane flowPane) {
-        for (Node node : flowPane.getChildren()) {
-            PreGameCardView cardView = (PreGameCardView) node;
-            if (cardView.getCardData() == cardData) return cardView;
-        }
-        return null;
     }
 }

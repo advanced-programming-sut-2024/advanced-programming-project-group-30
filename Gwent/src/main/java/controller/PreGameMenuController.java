@@ -1,11 +1,10 @@
 package controller;
 
 import enums.FactionType;
-import enums.cardsData.CardData;
 import model.PregameData;
 import model.Result;
 import model.User;
-import view.PreGameCardView;
+import view.PregameCardView;
 import view.PregameMenu;
 
 public class PreGameMenuController {
@@ -36,20 +35,28 @@ public class PreGameMenuController {
         return null;
     }
 
-    public void addCardToDeck(PreGameCardView cardView) {
+    public void addCardToDeck(PregameCardView cardView) {
         pregameData.addToPreDeck(cardView.getCardData());
         cardView.setNumber(cardView.getNumber() - 1);
         if (cardView.getNumber() < 1) menu.removeFromCardCollection(cardView);
-        PreGameCardView deckCardView = menu.getDeckCardView(cardView.getCardData());
+        PregameCardView deckCardView = menu.getDeckCardView(cardView.getCardData());
         if (deckCardView == null) {
-            deckCardView = new PreGameCardView(cardView.getCardData());
+            deckCardView = new PregameCardView(cardView.getCardData());
             deckCardView.setNumber(1);
             menu.addToCardsInDeck(deckCardView);
         } else deckCardView.setNumber(deckCardView.getNumber() + 1);
     }
 
-    public void deleteCardFromDeck(CardData card) {
-        pregameData.removeFromPreDeck(card);
+    public void removeCardFromDeck(PregameCardView cardView) {
+        pregameData.removeFromPreDeck(cardView.getCardData());
+        cardView.setNumber(cardView.getNumber() - 1);
+        if (cardView.getNumber() < 1) menu.removeFromCardsInDeck(cardView);
+        PregameCardView collectionCardView = menu.getCollectionCardView(cardView.getCardData());
+        if (collectionCardView == null) {
+            collectionCardView = new PregameCardView(cardView.getCardData());
+            collectionCardView.setNumber(1);
+            menu.addToCardCollection(collectionCardView);
+        } else collectionCardView.setNumber(collectionCardView.getNumber() + 1);
     }
 
     public Result startGame() {

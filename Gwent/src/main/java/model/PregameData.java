@@ -27,8 +27,8 @@ public class PregameData {
         for (CardData cardData : cardCollection.keySet())
             if (cardData == chosenCard) {
                 DecksCard card = cardCollection.get(cardData).remove(0);
-                if(cardsInDeck.get(cardData) != null) cardsInDeck.get(cardData).add(card);
-                else cardsInDeck.put(cardData,new ArrayList<>(Collections.singletonList(card)));
+                if (cardsInDeck.get(cardData) != null) cardsInDeck.get(cardData).add(card);
+                else cardsInDeck.put(cardData, new ArrayList<>(Collections.singletonList(card)));
                 return;
             }
     }
@@ -37,7 +37,8 @@ public class PregameData {
         for (CardData cardData : cardsInDeck.keySet())
             if (cardData == chosenCard) {
                 DecksCard card = cardsInDeck.get(cardData).remove(0);
-                cardCollection.get(cardData).add(card);
+                if (cardCollection.get(cardData) != null) cardCollection.get(cardData).add(card);
+                else cardCollection.put(cardData, new ArrayList<>(Collections.singletonList(card)));
                 return;
             }
     }
