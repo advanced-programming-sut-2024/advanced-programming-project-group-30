@@ -4,16 +4,14 @@ import enums.FactionType;
 import enums.cardsData.CardData;
 import model.card.DecksCard;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.TreeMap;
+import java.util.*;
 
-public class PreGameData {
+public class PregameData {
     private final User user;
     private final TreeMap<CardData, ArrayList<DecksCard>> cardCollection = new TreeMap<>(CardComparator.getCardComparator());
     private final HashMap<CardData, ArrayList<DecksCard>> cardsInDeck = new HashMap<>();
 
-    public PreGameData(User user) {
+    public PregameData(User user) {
         this.user = user;
         setFaction(user.getSelectedFaction());
     }
@@ -29,7 +27,8 @@ public class PreGameData {
         for (CardData cardData : cardCollection.keySet())
             if (cardData == chosenCard) {
                 DecksCard card = cardCollection.get(cardData).remove(0);
-                cardsInDeck.get(cardData).add(card);
+                if(cardsInDeck.get(cardData) != null) cardsInDeck.get(cardData).add(card);
+                else cardsInDeck.put(cardData,new ArrayList<>(Collections.singletonList(card)));
                 return;
             }
     }
