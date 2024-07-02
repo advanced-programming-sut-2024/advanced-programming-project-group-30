@@ -6,26 +6,27 @@ import model.card.specialCard.*;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.concurrent.atomic.DoubleAccumulator;
 
 public enum SpecialCardsData implements CardData {
-    COMMANDER_HORN("CommanderHorn", "Doubles the strength of all unit cards in that row. Limited to 1 per row.", 3),
-    DECOY("Decoy", "Swap with a card on the battlefield to return it to your hand.", 3),
-    MARDROEME("Mardroeme", "Triggers transformation of all Berserker cards on the same row.", 3),
-    SCORCH("Scorch", "Triggers transformation of all Berserker cards on the same row.", 3),
-    BITING_FROST("BitingFrost", "Sets the strength of all Close Combat cards to 1 for both players.", 3),
-    CLEAR_WEATHER("ClearWeather", "Removes all Weather Cards (Biting Frost, Impenetrable Fog and Torrential Rain) effects.", 2),
-    IMPENETRABLE_FOG("ImpenetrableFog", "Sets the strength of all Ranged Combat cards to 1 for both players.", 3),
-    SKELLIGE_STORM("SkelligeStorm", "Sets the strength of all Ranged Combat cards to 1 for both players.", 3),
-    TORRENTIAL_RAIN("TorrentialRain", "Sets the strength of all Siege Combat cards to 1 for both players.", 3),
+    COMMANDER_HORN("CommanderHorn","commanderHorn", "Doubles the strength of all unit cards in that row. Limited to 1 per row.", 3),
+    DECOY("Decoy", "decoy", "Swap with a card on the battlefield to return it to your hand.", 3),
+    MARDROEME("Mardroeme", "mardroeme", "Triggers transformation of all Berserker cards on the same row.", 3),
+    SCORCH("Scorch", "scorch", "Triggers transformation of all Berserker cards on the same row.", 3),
+    BITING_FROST("BitingFrost", "bitingFrost", "Sets the strength of all Close Combat cards to 1 for both players.", 3),
+    CLEAR_WEATHER("ClearWeather", "clearWeather", "Removes all Weather Cards (Biting Frost, Impenetrable Fog and Torrential Rain) effects.", 2),
+    IMPENETRABLE_FOG("ImpenetrableFog", "impenetrableFog", "Sets the strength of all Ranged Combat cards to 1 for both players.", 3),
+    SKELLIGE_STORM("SkelligeStorm", "skelligeStorm", "Sets the strength of all Ranged Combat cards to 1 for both players.", 3),
+    TORRENTIAL_RAIN("TorrentialRain", "torrentialRain", "Sets the strength of all Siege Combat cards to 1 for both players.", 3),
     ;
 
     private final String name;
+    private final String abilityName;
     private final String description;
     private final int numberOfCard;
 
-    SpecialCardsData(String name, String description, int cardsNumber) {
+    SpecialCardsData(String name, String abilityName, String description, int cardsNumber) {
         this.name = name;
+        this.abilityName = abilityName;
         this.description = description;
         this.numberOfCard = cardsNumber;
     }
@@ -64,5 +65,12 @@ public enum SpecialCardsData implements CardData {
     @Override
     public int getPoint() {
         return 0;
+    }
+
+    public String getAbilityName() {
+        String abilityName = this.abilityName.replaceAll("(?=[A-Z])"," ");
+        abilityName = abilityName.charAt(0) + abilityName.substring(1);
+        if (abilityName.equals("Commander Horn")) abilityName = "Commander's Horn";
+        return abilityName;
     }
 }

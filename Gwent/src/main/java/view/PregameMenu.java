@@ -7,11 +7,13 @@ import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
+import model.CardCollection;
 import model.CardComparator;
 import model.card.DecksCard;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.TreeMap;
 
 public class PregameMenu implements Menu {
@@ -41,7 +43,7 @@ public class PregameMenu implements Menu {
     }
 
     public void addToCardCollection(PregameCardView cardView) {
-        cardCollection.getChildren().add(cardView);
+        cardCollection.getChildren().add(getIndex(cardView, cardCollection.getChildren()), cardView);
         cardView.setOnMouseClicked((Void) -> controller.addCardToDeck(cardView));
     }
 
@@ -50,7 +52,7 @@ public class PregameMenu implements Menu {
     }
 
     public void addToCardsInDeck(PregameCardView cardView) {
-        cardsInDeck.getChildren().add(cardView);
+        cardsInDeck.getChildren().add(getIndex(cardView, cardsInDeck.getChildren()), cardView);
         cardView.setOnMouseClicked((Void) -> controller.removeCardFromDeck(cardView));
     }
 
@@ -82,5 +84,16 @@ public class PregameMenu implements Menu {
         double scale = Math.min(scaleY, scaleX);
         mainPane.setScaleX(scale * 0.97);
         mainPane.setScaleY(scale * 0.97);
+    }
+
+    private int getIndex(PregameCardView cardView, List<Node> nodes) {
+        ArrayList<CardData> list = new ArrayList<>();
+        for (Node node : nodes) {
+            PregameCardView card = (PregameCardView) node;
+            list.add(card.getCardData());
+        }
+        list.add(cardView.getCardData());
+        list.sort(CardComparator.getCardComparator());
+        return list.indexOf(cardView.getCardData());
     }
 }
