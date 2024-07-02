@@ -9,7 +9,7 @@ import model.card.RegularCard;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public enum SkelligeRegularCardsData implements CardData {
+public enum SkelligeRegularCardsData implements RegularCardData {
     VIDKAARL("Vidkaarl", "MoralBoost", false, 14, 0, RegularCardPositionType.CLOSE_COMBAT),
     OLAF("Olaf", "MoralBoost", false, 12, 1, RegularCardPositionType.AGILE),
     KAMBI("Kambi", "Transformers", true, 11, 1, RegularCardPositionType.CLOSE_COMBAT),
@@ -60,11 +60,6 @@ public enum SkelligeRegularCardsData implements CardData {
         return regularCards;
     }
 
-    private RegularCard createCard() {
-        RegularCardsAbility ability = RegularCardsAbility.createNewAbilityByName(this.abilityName);
-        return new RegularCard(this.name, FactionType.SKELLIGE, this, this.isHero, this.point, ability, this.cardPositionType);
-    }
-
     @Override
     public Image getLgImage() {
         String subAddress = this.name.toLowerCase().replaceAll(".*:", "").replace(" ", "_");
@@ -79,5 +74,15 @@ public enum SkelligeRegularCardsData implements CardData {
     @Override
     public int getPoint() {
         return this.point;
+    }
+
+    @Override
+    public boolean isHero() {
+        return isHero;
+    }
+
+    private RegularCard createCard() {
+        RegularCardsAbility ability = RegularCardsAbility.createNewAbilityByName(this.abilityName);
+        return new RegularCard(this.name, FactionType.SKELLIGE, this, this.isHero, this.point, ability, this.cardPositionType);
     }
 }

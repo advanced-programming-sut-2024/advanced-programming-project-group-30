@@ -5,7 +5,7 @@ import model.card.Leader;
 
 import java.util.ArrayList;
 
-public enum NorthernRealmsLeaderCardsData implements CardData{
+public enum NorthernRealmsLeaderCardsData implements LeaderCardData {
     CARDS_NAME("card name", "card explanation", "ability name");
 
     private final String name;
@@ -29,16 +29,6 @@ public enum NorthernRealmsLeaderCardsData implements CardData{
     @Override
     public Image getLgImage() {
         return null;
-    }
-
-    @Override
-    public int getNumber() {
-        return 1;
-    }
-
-    @Override
-    public int getPoint() {
-        return 0;
     }
 }
 

@@ -1,6 +1,7 @@
 package controller;
 
 import enums.cardsData.CardData;
+import enums.cardsData.DeckCardData;
 import javafx.scene.Node;
 import javafx.scene.layout.FlowPane;
 import model.CardComparator;
@@ -14,11 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 
-public class PreGameMenuController {
+public class PregameMenuController {
     private PregameData pregameData = new PregameData(new User("", "", "", "", null, ""));
     private final PregameMenu menu;
 
-    public PreGameMenuController(PregameMenu menu) {
+    public PregameMenuController(PregameMenu menu) {
         this.menu = menu;
     }
 
@@ -30,8 +31,8 @@ public class PreGameMenuController {
         this.pregameData = pregameData;
     }
 
-    public void uploadToCardCollection(TreeMap<CardData, ArrayList<DecksCard>> collection) {
-        for (CardData cardData : collection.keySet())
+    public void uploadToCardCollection(TreeMap<DeckCardData, ArrayList<DecksCard>> collection) {
+        for (DeckCardData cardData : collection.keySet())
             menu.addToCardCollection(new PregameCardView(cardData));
     }
 
@@ -45,6 +46,7 @@ public class PreGameMenuController {
             deckCardView.setNumber(1);
             menu.addToCardsInDeck(deckCardView);
         } else deckCardView.setNumber(deckCardView.getNumber() + 1);
+        menu.setCardsInDeckNumber(pregameData.getCardsInDeckNumber());
     }
 
     public void removeCardFromDeck(PregameCardView cardView) {
@@ -57,6 +59,7 @@ public class PreGameMenuController {
             collectionCardView.setNumber(1);
             menu.addToCardCollection(collectionCardView);
         } else collectionCardView.setNumber(collectionCardView.getNumber() + 1);
+        menu.setCardsInDeckNumber(pregameData.getCardsInDeckNumber());
     }
 
     public PregameCardView getCardView(CardData cardData, FlowPane flowPane) {
@@ -68,7 +71,7 @@ public class PreGameMenuController {
     }
 
     public int getIndex(PregameCardView cardView, List<Node> nodes) {
-        ArrayList<CardData> list = new ArrayList<>();
+        ArrayList<DeckCardData> list = new ArrayList<>();
         for (Node node : nodes) {
             PregameCardView card = (PregameCardView) node;
             list.add(card.getCardData());

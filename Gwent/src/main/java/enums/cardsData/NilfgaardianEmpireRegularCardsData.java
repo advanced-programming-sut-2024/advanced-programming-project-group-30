@@ -9,7 +9,7 @@ import model.card.RegularCard;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public enum NilfgaardianEmpireRegularCardsData implements CardData {
+public enum NilfgaardianEmpireRegularCardsData implements RegularCardData {
     BLACK_INFANTRY_ARCHER("Black Infantry Archer", null, false, 10, 2, RegularCardPositionType.RANGED_COMBAT),
     HEAVY_ZERRIKANIAN_FIRE_SCORPION("Heavy Zerrikanian Fire Scorpio", null, false, 10, 1, RegularCardPositionType.SIEGE),
     LETHO_OF_GULET("Letho of Gulet", null, true, 10, 1, RegularCardPositionType.CLOSE_COMBAT),
@@ -64,11 +64,6 @@ public enum NilfgaardianEmpireRegularCardsData implements CardData {
         return regularCards;
     }
 
-    private RegularCard createCard() {
-        RegularCardsAbility ability = RegularCardsAbility.createNewAbilityByName(this.abilityName);
-        return new RegularCard(this.name, FactionType.NILFGAARDIAN_EMPIRE, this, this.isHero, this.point, ability, this.cardPositionType);
-    }
-
     @Override
     public Image getLgImage() {
         String subAddress = this.name.toLowerCase().replaceAll(".*:", "").replace(" ", "_");
@@ -83,5 +78,15 @@ public enum NilfgaardianEmpireRegularCardsData implements CardData {
     @Override
     public int getPoint() {
         return this.point;
+    }
+
+    @Override
+    public boolean isHero() {
+        return isHero;
+    }
+
+    private RegularCard createCard() {
+        RegularCardsAbility ability = RegularCardsAbility.createNewAbilityByName(this.abilityName);
+        return new RegularCard(this.name, FactionType.NILFGAARDIAN_EMPIRE, this, this.isHero, this.point, ability, this.cardPositionType);
     }
 }

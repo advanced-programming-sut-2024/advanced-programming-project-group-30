@@ -9,7 +9,7 @@ import model.card.RegularCard;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public enum MonstersRegularCardsData implements CardData {
+public enum MonstersRegularCardsData implements RegularCardData {
     DRAUG("Draug", null, true, 10, 1, RegularCardPositionType.CLOSE_COMBAT),
     IMLERITH("Imlerith", null, true, 10, 1, RegularCardPositionType.CLOSE_COMBAT),
     LESHEN("Leshen", null, true, 10, 1, RegularCardPositionType.CLOSE_COMBAT),
@@ -71,11 +71,6 @@ public enum MonstersRegularCardsData implements CardData {
         return regularCards;
     }
 
-    private RegularCard createCard() {
-        RegularCardsAbility ability = RegularCardsAbility.createNewAbilityByName(this.abilityName);
-        return new RegularCard(this.name, FactionType.MONSTERS, this, this.isHero, this.point, ability, this.cardPositionType);
-    }
-
     @Override
     public Image getLgImage() {
         String subAddress = this.name.toLowerCase().replaceAll(".*:", "").replace(" ", "_");
@@ -90,5 +85,15 @@ public enum MonstersRegularCardsData implements CardData {
     @Override
     public int getPoint() {
         return this.point;
+    }
+
+    @Override
+    public boolean isHero() {
+        return isHero;
+    }
+
+    private RegularCard createCard() {
+        RegularCardsAbility ability = RegularCardsAbility.createNewAbilityByName(this.abilityName);
+        return new RegularCard(this.name, FactionType.MONSTERS, this, this.isHero, this.point, ability, this.cardPositionType);
     }
 }

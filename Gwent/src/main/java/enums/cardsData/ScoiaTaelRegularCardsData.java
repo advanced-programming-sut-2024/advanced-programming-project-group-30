@@ -9,7 +9,7 @@ import model.card.RegularCard;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public enum ScoiaTaelRegularCardsData implements CardData {
+public enum ScoiaTaelRegularCardsData implements RegularCardData {
     EITHNE("Eithne", null, true, 10, 1, RegularCardPositionType.RANGED_COMBAT),
     ISENGRIM_FAOLITARNA("Isengrim Faolitarna", "MoralBoost", true, 10, 1, RegularCardPositionType.CLOSE_COMBAT),
     LORVETH("Lorveth", null, true, 10, 1, RegularCardPositionType.RANGED_COMBAT),
@@ -59,11 +59,6 @@ public enum ScoiaTaelRegularCardsData implements CardData {
         return regularCards;
     }
 
-    private RegularCard createCard() {
-        RegularCardsAbility ability = RegularCardsAbility.createNewAbilityByName(this.abilityName);
-        return new RegularCard(this.name, FactionType.SCOIA_TAEL, this, this.isHero, this.point, ability, this.cardPositionType);
-    }
-
     @Override
     public Image getLgImage() {
         String subAddress = this.name.toLowerCase().replaceAll(".*:", "").replace(" ", "_");
@@ -78,5 +73,15 @@ public enum ScoiaTaelRegularCardsData implements CardData {
     @Override
     public int getPoint() {
         return this.point;
+    }
+
+    @Override
+    public boolean isHero() {
+        return isHero;
+    }
+
+    private RegularCard createCard() {
+        RegularCardsAbility ability = RegularCardsAbility.createNewAbilityByName(this.abilityName);
+        return new RegularCard(this.name, FactionType.SCOIA_TAEL, this, this.isHero, this.point, ability, this.cardPositionType);
     }
 }

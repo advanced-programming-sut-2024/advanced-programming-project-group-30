@@ -9,7 +9,7 @@ import model.card.RegularCard;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public enum NorthernRealmsRegularCardsData implements CardData {
+public enum NorthernRealmsRegularCardsData implements RegularCardData {
     ESTERAD_THYSSEN("Esterad Thyssen", null, true, 10, 1, RegularCardPositionType.CLOSE_COMBAT),
     JOHN_NATALIS("John Natalis", null, true, 10, 1, RegularCardPositionType.CLOSE_COMBAT),
     VERNON_ROCHE("Vernon Roche", null, true, 10, 1, RegularCardPositionType.CLOSE_COMBAT),
@@ -61,11 +61,6 @@ public enum NorthernRealmsRegularCardsData implements CardData {
         return regularCards;
     }
 
-    private RegularCard createCard() {
-        RegularCardsAbility ability = RegularCardsAbility.createNewAbilityByName(this.abilityName);
-        return new RegularCard(this.name, FactionType.NORTHERN_REALMS, this, this.isHero, this.point, ability, this.cardPositionType);
-    }
-
     @Override
     public Image getLgImage() {
         String address = "/Images/Game/LgCardsImages/realms_" + this.toString().toLowerCase() + ".jpg";
@@ -80,5 +75,15 @@ public enum NorthernRealmsRegularCardsData implements CardData {
     @Override
     public int getPoint() {
         return this.point;
+    }
+
+    @Override
+    public boolean isHero() {
+        return isHero;
+    }
+
+    private RegularCard createCard() {
+        RegularCardsAbility ability = RegularCardsAbility.createNewAbilityByName(this.abilityName);
+        return new RegularCard(this.name, FactionType.NORTHERN_REALMS, this, this.isHero, this.point, ability, this.cardPositionType);
     }
 }

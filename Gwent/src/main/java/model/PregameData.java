@@ -2,18 +2,37 @@ package model;
 
 import enums.FactionType;
 import enums.cardsData.CardData;
+import enums.cardsData.DeckCardData;
+import enums.cardsData.SpecialCardsData;
 import model.card.DecksCard;
 
 import java.util.*;
 
 public class PregameData {
     private final User user;
-    private final TreeMap<CardData, ArrayList<DecksCard>> cardCollection = new TreeMap<>(CardComparator.getCardComparator());
-    private final HashMap<CardData, ArrayList<DecksCard>> cardsInDeck = new HashMap<>();
+    private final TreeMap<DeckCardData, ArrayList<DecksCard>> cardCollection = new TreeMap<>(CardComparator.getCardComparator());
+    private final HashMap<DeckCardData, ArrayList<DecksCard>> cardsInDeck = new HashMap<>();
+    private int cardsInDeckNumber = 0;
+    private int numberOfUnitCards = 0;
+    private int numberOfSpecialCards = 0;
+    private int totalUnitCardsStrength = 0;
+    private int numberOfHeroCards = 0;
 
     public PregameData(User user) {
         this.user = user;
         setFaction(user.getSelectedFaction());
+    }
+
+    public TreeMap<DeckCardData, ArrayList<DecksCard>> getCardCollection() {
+        return cardCollection;
+    }
+
+    public HashMap<DeckCardData, ArrayList<DecksCard>> getCardsInDeck() {
+        return cardsInDeck;
+    }
+
+    public int getCardsInDeckNumber() {
+        return cardsInDeckNumber;
     }
 
     public void setFaction(FactionType faction) {
@@ -24,8 +43,9 @@ public class PregameData {
         System.gc();
     }
 
-    public void addToPreDeck(CardData chosenCard) {
-        for (CardData cardData : cardCollection.keySet())
+    public void addToPreDeck(DeckCardData chosenCard) {
+        cardsInDeckNumber++;
+        for (DeckCardData cardData : cardCollection.keySet())
             if (cardData == chosenCard) {
                 DecksCard card = cardCollection.get(cardData).remove(0);
                 if (cardsInDeck.get(cardData) != null) cardsInDeck.get(cardData).add(card);
@@ -34,8 +54,9 @@ public class PregameData {
             }
     }
 
-    public void removeFromPreDeck(CardData chosenCard) {
-        for (CardData cardData : cardsInDeck.keySet())
+    public void removeFromPreDeck(DeckCardData chosenCard) {
+        cardsInDeckNumber--;
+        for (DeckCardData cardData : cardsInDeck.keySet())
             if (cardData == chosenCard) {
                 DecksCard card = cardsInDeck.get(cardData).remove(0);
                 if (cardCollection.get(cardData) != null) cardCollection.get(cardData).add(card);
@@ -44,11 +65,11 @@ public class PregameData {
             }
     }
 
-    public TreeMap<CardData, ArrayList<DecksCard>> getCardCollection() {
-        return cardCollection;
-    }
-
-    public HashMap<CardData, ArrayList<DecksCard>> getCardsInDeck() {
-        return cardsInDeck;
+    private void changeNumberData(CardData chosenCard, int sign) {
+        cardsInDeckNumber = cardsInDeckNumber + sign;
+        if (chosenCard instanceof SpecialCardsData) numberOfSpecialCards = numberOfSpecialCards + sign;
+        else {
+            numberOfUnitCards = numberOfHeroCards + sign;
+        }
     }
 }

@@ -3,7 +3,6 @@ package model.card;
 import enums.FactionType;
 import enums.cardsData.CardData;
 
-import java.util.Objects;
 
 abstract class Card {
     private final String name;

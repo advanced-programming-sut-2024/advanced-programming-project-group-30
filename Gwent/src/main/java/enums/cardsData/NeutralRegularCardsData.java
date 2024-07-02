@@ -8,7 +8,7 @@ import model.card.RegularCard;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public enum NeutralRegularCardsData implements CardData {
+public enum NeutralRegularCardsData implements RegularCardData {
     GERALT_OF_RIVIA("Geralt of Rivia", null, true, 15, 1, RegularCardPositionType.CLOSE_COMBAT),
     TRISS_MERIGOLD("Triss Merigold", null, true, 7, 1, RegularCardPositionType.CLOSE_COMBAT),
     VILLENTRETENMERTH("Villentretenmerth", "Scorch", false, 7, 1, RegularCardPositionType.CLOSE_COMBAT),
@@ -67,5 +67,10 @@ public enum NeutralRegularCardsData implements CardData {
     @Override
     public int getPoint() {
         return this.point;
+    }
+
+    @Override
+    public boolean isHero() {
+        return isHero;
     }
 }

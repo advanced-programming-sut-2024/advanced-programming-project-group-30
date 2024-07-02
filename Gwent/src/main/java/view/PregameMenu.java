@@ -1,14 +1,15 @@
 package view;
 
-import controller.PreGameMenuController;
+import controller.PregameMenuController;
 import enums.cardsData.CardData;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 
 public class PregameMenu implements Menu {
-    private final PreGameMenuController controller = new PreGameMenuController(this);
+    private final PregameMenuController controller = new PregameMenuController(this);
     @FXML
     private VBox stage;
     @FXML
@@ -17,6 +18,8 @@ public class PregameMenu implements Menu {
     private FlowPane cardCollection;
     @FXML
     private FlowPane cardsInDeck;
+    @FXML
+    private Label cardsInDeckNumber;
 
     public void initialize() {
         controller.uploadToCardCollection(controller.getPregameData().getCardCollection()); // TODO : remove
@@ -48,6 +51,10 @@ public class PregameMenu implements Menu {
 
     public PregameCardView getDeckCardView(CardData cardData) {
         return controller.getCardView(cardData, cardsInDeck);
+    }
+
+    public void setCardsInDeckNumber(int number) {
+        cardsInDeckNumber.setText("×" + number);
     }
 
     private void scaleMainPane() {

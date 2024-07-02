@@ -2,7 +2,7 @@ package view;
 
 import enums.CssAddress;
 import enums.SizeData;
-import enums.cardsData.CardData;
+import enums.cardsData.DeckCardData;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -10,12 +10,12 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
 public class PregameCardView extends Group {
-    private final CardData cardData;
+    private final DeckCardData cardData;
     private int number;
     private final Label numberLabel;
     private final Rectangle cardImage;
 
-    public PregameCardView(CardData cardData) {
+    public PregameCardView(DeckCardData cardData) {
         this.cardData = cardData;
         this.number = cardData.getNumber();
         this.numberLabel = createNumberLabel();
@@ -24,7 +24,7 @@ public class PregameCardView extends Group {
         this.getStyleClass().add(CssAddress.PREGAME_CARD_VIEW.getStyleClass());
     }
 
-    public CardData getCardData() {
+    public DeckCardData getCardData() {
         return cardData;
     }
 
