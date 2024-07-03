@@ -34,6 +34,7 @@ public class PregameMenuController {
     public void uploadToCardCollection(TreeMap<DeckCardData, ArrayList<DecksCard>> collection) {
         for (DeckCardData cardData : collection.keySet())
             menu.addToCardCollection(new PregameCardView(cardData));
+        menu.updateNumberData();
     }
 
     public void addCardToDeck(PregameCardView cardView) {
@@ -46,7 +47,7 @@ public class PregameMenuController {
             deckCardView.setNumber(1);
             menu.addToCardsInDeck(deckCardView);
         } else deckCardView.setNumber(deckCardView.getNumber() + 1);
-        menu.setCardsInDeckNumber(pregameData.getCardsInDeckNumber());
+        menu.updateNumberData();
     }
 
     public void removeCardFromDeck(PregameCardView cardView) {
@@ -59,7 +60,7 @@ public class PregameMenuController {
             collectionCardView.setNumber(1);
             menu.addToCardCollection(collectionCardView);
         } else collectionCardView.setNumber(collectionCardView.getNumber() + 1);
-        menu.setCardsInDeckNumber(pregameData.getCardsInDeckNumber());
+        menu.updateNumberData();
     }
 
     public PregameCardView getCardView(CardData cardData, FlowPane flowPane) {

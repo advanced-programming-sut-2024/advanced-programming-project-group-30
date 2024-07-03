@@ -1,8 +1,8 @@
 package model;
 
 import enums.FactionType;
-import enums.cardsData.CardData;
 import enums.cardsData.DeckCardData;
+import enums.cardsData.RegularCardData;
 import enums.cardsData.SpecialCardsData;
 import model.card.DecksCard;
 
@@ -13,10 +13,10 @@ public class PregameData {
     private final TreeMap<DeckCardData, ArrayList<DecksCard>> cardCollection = new TreeMap<>(CardComparator.getCardComparator());
     private final HashMap<DeckCardData, ArrayList<DecksCard>> cardsInDeck = new HashMap<>();
     private int cardsInDeckNumber = 0;
-    private int numberOfUnitCards = 0;
-    private int numberOfSpecialCards = 0;
-    private int totalUnitCardsStrength = 0;
-    private int numberOfHeroCards = 0;
+    private int unitCardsNumber = 0;
+    private int specialCardsNumber = 0;
+    private int totalCardsStrength = 0;
+    private int heroCardsNumber = 0;
 
     public PregameData(User user) {
         this.user = user;
@@ -35,6 +35,30 @@ public class PregameData {
         return cardsInDeckNumber;
     }
 
+    public int getUnitCardsNumber() {
+        return unitCardsNumber;
+    }
+
+    public int getSpecialCardsNumber() {
+        return specialCardsNumber;
+    }
+
+    public int getTotalCardsStrength() {
+        return totalCardsStrength;
+    }
+
+    public int getHeroCardsNumber() {
+        return heroCardsNumber;
+    }
+
+    public boolean isUnitCardsNumberValid() {
+        return 22 < unitCardsNumber;
+    }
+
+    public boolean isSpecialCardsNumberValid() {
+        return specialCardsNumber <= 10;
+    }
+
     public void setFaction(FactionType faction) {
         user.setSelectedFaction(faction);
         cardCollection.clear();
@@ -44,7 +68,7 @@ public class PregameData {
     }
 
     public void addToPreDeck(DeckCardData chosenCard) {
-        cardsInDeckNumber++;
+        changeNumberData(chosenCard, 1);
         for (DeckCardData cardData : cardCollection.keySet())
             if (cardData == chosenCard) {
                 DecksCard card = cardCollection.get(cardData).remove(0);
@@ -55,7 +79,7 @@ public class PregameData {
     }
 
     public void removeFromPreDeck(DeckCardData chosenCard) {
-        cardsInDeckNumber--;
+        changeNumberData(chosenCard, -1);
         for (DeckCardData cardData : cardsInDeck.keySet())
             if (cardData == chosenCard) {
                 DecksCard card = cardsInDeck.get(cardData).remove(0);
@@ -65,11 +89,14 @@ public class PregameData {
             }
     }
 
-    private void changeNumberData(CardData chosenCard, int sign) {
+    private void changeNumberData(DeckCardData cardData, int sign) {
         cardsInDeckNumber = cardsInDeckNumber + sign;
-        if (chosenCard instanceof SpecialCardsData) numberOfSpecialCards = numberOfSpecialCards + sign;
+        if (cardData instanceof SpecialCardsData) specialCardsNumber = specialCardsNumber + sign;
         else {
-            numberOfUnitCards = numberOfHeroCards + sign;
+            RegularCardData regularCardData = (RegularCardData) cardData;
+            unitCardsNumber = unitCardsNumber + sign;
+            totalCardsStrength = totalCardsStrength + sign * regularCardData.getPoint();
+            if (regularCardData.isHero()) heroCardsNumber = heroCardsNumber + sign;
         }
     }
 }

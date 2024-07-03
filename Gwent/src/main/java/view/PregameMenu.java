@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
+import model.PregameData;
 
 public class PregameMenu implements Menu {
     private final PregameMenuController controller = new PregameMenuController(this);
@@ -20,6 +21,14 @@ public class PregameMenu implements Menu {
     private FlowPane cardsInDeck;
     @FXML
     private Label cardsInDeckNumber;
+    @FXML
+    private Label unitCardsNumber;
+    @FXML
+    private Label specialCardsNumber;
+    @FXML
+    private Label totalStrength;
+    @FXML
+    private Label heroCardsNumber;
 
     public void initialize() {
         controller.uploadToCardCollection(controller.getPregameData().getCardCollection()); // TODO : remove
@@ -53,8 +62,21 @@ public class PregameMenu implements Menu {
         return controller.getCardView(cardData, cardsInDeck);
     }
 
-    public void setCardsInDeckNumber(int number) {
-        cardsInDeckNumber.setText("×" + number);
+    public void updateNumberData() {
+        PregameData pregameData = controller.getPregameData();
+        cardsInDeckNumber.setText("×" + pregameData.getCardsInDeckNumber());
+        if (pregameData.isUnitCardsNumberValid()) {
+            unitCardsNumber.setText("×" + pregameData.getUnitCardsNumber());
+            unitCardsNumber.setStyle("");
+        } else {
+            this.unitCardsNumber.setText(pregameData.getUnitCardsNumber() + "/22");
+            unitCardsNumber.setStyle("-fx-text-fill: #b83c27;");
+        }
+        if (pregameData.isSpecialCardsNumberValid()) specialCardsNumber.setStyle("");
+        else specialCardsNumber.setStyle("-fx-text-fill: #b83c27;");
+        this.specialCardsNumber.setText(pregameData.getSpecialCardsNumber() + "/10");
+        this.totalStrength.setText(pregameData.getTotalCardsStrength() + "");
+        this.heroCardsNumber.setText("×" + pregameData.getHeroCardsNumber());
     }
 
     private void scaleMainPane() {
