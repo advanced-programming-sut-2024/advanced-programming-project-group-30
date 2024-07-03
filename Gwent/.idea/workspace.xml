@@ -5,13 +5,69 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f1724509-8fa7-4a1d-addf-f9c920333c2d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_kaedweni_siege_expert_1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_kaedweni_siege_expert_2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_barclay_els.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_ciaran_aep_easnillien.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_dennis_cranmer.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_dol_blathanna_archer.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_dol_blathanna_scout.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_dol_blathanna_scout_1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_dol_blathanna_scout_2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_dwarven_skirmisher.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_dwarven_skirmisher_1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_dwarven_skirmisher_2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_elven_skirmisher.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_elven_skirmisher_1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_elven_skirmisher_2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_filavandrel_aen_fidhail.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_havekar_healer.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_havekar_healer_1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_havekar_smuggler.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_havekar_smuggler_1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_havekar_smuggler_2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_ida_emean_aep_sivney.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_isengrim_faolitarna.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_mahakaman_defender.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_mahakaman_defender_1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_mahakaman_defender_2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_mahakaman_defender_3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_mahakaman_defender_4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_saesenthessis.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_vrihedd_brigade_recruit.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_vrihedd_brigade_veteran.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_vrihedd_brigade_veteran_1.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/NorthernRealmsRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/NorthernRealmsRegularCardsData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/ScoiaTaelRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/ScoiaTaelRegularCardsData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_kaedwen_siege_1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_kaedwen_siege_2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_barclay.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_ciaran.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_dennis.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_dol_archer.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_dol_infantry.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_dol_infantry_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_dol_infantry_2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_dwarf.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_dwarf_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_dwarf_2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_elf_skirmisher.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_elf_skirmisher_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_elf_skirmisher_2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_filavandrel.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_havekar_nurse.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_havekar_nurse_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_havekar_support.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_havekar_support_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_havekar_support_2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_ida.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_isengrim.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_mahakam.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_mahakam_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_mahakam_2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_mahakam_3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_mahakam_4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_saskia.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_vrihedd_brigade.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_vrihedd_brigade_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/scoiatael_vrihedd_cadet.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,7 +187,7 @@
       <workItem from="1719609069360" duration="3004000" />
       <workItem from="1719647510046" duration="11798000" />
       <workItem from="1719733488135" duration="45479000" />
-      <workItem from="1719940265883" duration="13385000" />
+      <workItem from="1719940265883" duration="15885000" />
     </task>
     <servers />
   </component>
