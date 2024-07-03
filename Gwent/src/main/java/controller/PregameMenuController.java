@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.TreeMap;
 
 public class PregameMenuController {
+    // TODO: remove
     private PregameData pregameData = new PregameData(new User("", "", "", "", null, ""));
     private final PregameMenu menu;
 

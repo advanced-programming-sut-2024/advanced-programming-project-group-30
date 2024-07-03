@@ -11,7 +11,7 @@ import java.util.*;
 public class PregameData {
     private final User user;
     private final TreeMap<DeckCardData, ArrayList<DecksCard>> cardCollection = new TreeMap<>(CardComparator.getCardComparator());
-    private final HashMap<DeckCardData, ArrayList<DecksCard>> cardsInDeck = new HashMap<>();
+    private final TreeMap<DeckCardData, ArrayList<DecksCard>> cardsInDeck = new TreeMap<>(CardComparator.getCardComparator());
     private int cardsInDeckNumber = 0;
     private int unitCardsNumber = 0;
     private int specialCardsNumber = 0;
@@ -27,7 +27,7 @@ public class PregameData {
         return cardCollection;
     }
 
-    public HashMap<DeckCardData, ArrayList<DecksCard>> getCardsInDeck() {
+    public TreeMap<DeckCardData, ArrayList<DecksCard>> getCardsInDeck() {
         return cardsInDeck;
     }
 

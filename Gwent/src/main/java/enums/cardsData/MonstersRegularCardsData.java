@@ -30,7 +30,9 @@ public enum MonstersRegularCardsData implements RegularCardData {
     PLAGUE_MAIDEN("Plague Maiden", null, false, 5, 1, RegularCardPositionType.CLOSE_COMBAT),
     VAMPIRE_KATAKAN("Vampire:Katakan", "Muster", false, 5, 1, RegularCardPositionType.CLOSE_COMBAT),
     WEREWOLF("Werewolf", null, false, 5, 1, RegularCardPositionType.CLOSE_COMBAT),
-    ARACHAS("Arachas", "Muster", false, 4, 3, RegularCardPositionType.CLOSE_COMBAT),
+    ARACHAS("Arachas", "Muster", false, 4, 1, RegularCardPositionType.CLOSE_COMBAT),
+    ARACHAS_1("Arachas", "muster", false, 4, 1, RegularCardPositionType.CLOSE_COMBAT),
+    ARACHAS_2("Arachas", "muster", false, 4, 1, RegularCardPositionType.CLOSE_COMBAT),
     BOTCHLING("Botchling", null, false, 4, 1, RegularCardPositionType.CLOSE_COMBAT),
     VAMPIRE_BRUXA("Vampire:Bruxa", "Muster", false, 4, 1, RegularCardPositionType.CLOSE_COMBAT),
     VAMPIRE_EKIMMARA("Vampire:Ekimmara", "Muster", false, 4, 1, RegularCardPositionType.CLOSE_COMBAT),
@@ -42,9 +44,13 @@ public enum MonstersRegularCardsData implements RegularCardData {
     FOGLET("Foglet", null, false, 2, 1, RegularCardPositionType.CLOSE_COMBAT),
     GARGOYLE("Gargoyle", null, false, 2, 1, RegularCardPositionType.RANGED_COMBAT),
     HARPY("Harpy", null, false, 2, 1, RegularCardPositionType.AGILE),
-    NEKKER("Nekker", "Muster", false, 2, 3, RegularCardPositionType.CLOSE_COMBAT),
+    NEKKER("Nekker", "Muster", false, 2, 1, RegularCardPositionType.CLOSE_COMBAT),
+    NEKKER_1("Nekker", "muster", false, 2, 1, RegularCardPositionType.CLOSE_COMBAT),
+    NEKKER_2("Nekker", "muster", false, 2, 1, RegularCardPositionType.CLOSE_COMBAT),
     WYVERN("Wyvern", null, false, 2, 1, RegularCardPositionType.RANGED_COMBAT),
-    GHOUL("Ghoul", "Muster", false, 1, 3, RegularCardPositionType.CLOSE_COMBAT),
+    GHOUL("Ghoul", "Muster", false, 1, 1, RegularCardPositionType.CLOSE_COMBAT),
+    GHOUL_1("Ghoul", "muster", false, 1, 1, RegularCardPositionType.CLOSE_COMBAT),
+    GHOUL_2("Ghoul", "muster", false, 1, 1, RegularCardPositionType.CLOSE_COMBAT),
     ;
 
     private final String name;
@@ -73,8 +79,8 @@ public enum MonstersRegularCardsData implements RegularCardData {
 
     @Override
     public Image getLgImage() {
-        String subAddress = this.name.toLowerCase().replaceAll(".*:", "").replace(" ", "_");
-        return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/Images/Game/monsters_" + subAddress)));
+        String address = "/Images/Game/LgCardsImages/monsters_" + this.toString().toLowerCase() + ".jpg";
+        return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream(address)));
     }
 
     @Override

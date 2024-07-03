@@ -18,14 +18,14 @@ public class CardComparator implements Comparator<DeckCardData> {
 
     @Override
     public int compare(DeckCardData a, DeckCardData b) {
+        int nameCompare = a.toString().compareTo(b.toString());
         if (a instanceof SpecialCardsData) {
             if (b instanceof SpecialCardsData)
-                return a.toString().compareTo(b.toString());
+                return nameCompare;
             else return -1;
         }
         if (b instanceof SpecialCardsData) return 1;
         int pointCompare = ((RegularCardData) b).getPoint() - ((RegularCardData) a).getPoint();
-        int nameCompare = b.toString().compareTo(a.toString());
         return (pointCompare == 0) ? nameCompare : pointCompare;
     }
 

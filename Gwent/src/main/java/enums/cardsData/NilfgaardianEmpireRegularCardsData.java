@@ -11,24 +11,26 @@ import java.util.Objects;
 
 public enum NilfgaardianEmpireRegularCardsData implements RegularCardData {
     BLACK_INFANTRY_ARCHER("Black Infantry Archer", null, false, 10, 2, RegularCardPositionType.RANGED_COMBAT),
-    HEAVY_ZERRIKANIAN_FIRE_SCORPION("Heavy Zerrikanian Fire Scorpio", null, false, 10, 1, RegularCardPositionType.SIEGE),
+    BLACK_INFANTRY_ARCHER_1("Black Infantry Archer", null, false, 10, 2, RegularCardPositionType.RANGED_COMBAT),
+    HEAVY_ZERRIKANIAN_FIRE_SCORPION("Heavy Zerrikanian Fire Scorpion", null, false, 10, 1, RegularCardPositionType.SIEGE),
     LETHO_OF_GULET("Letho of Gulet", null, true, 10, 1, RegularCardPositionType.CLOSE_COMBAT),
     MENNO_COEHOORN("Menno Coehoorn", "Medic", true, 10, 1, RegularCardPositionType.CLOSE_COMBAT),
     MORVRAN_VOORHIS("Morvran Voorhis", null, true, 10, 1, RegularCardPositionType.SIEGE),
     TIBOR_EGGEBRACHT("Tibor Eggebracht", null, true, 10, 1, RegularCardPositionType.RANGED_COMBAT),
     STEFAN_SKELLEN("Stefan Skellen", "Spy", false, 9, 1, RegularCardPositionType.CLOSE_COMBAT),
-    SHILARD_FITZ_OSTERLEN("Shilard Fitz-Osterlen", "Spy", false, 7, 1, RegularCardPositionType.CLOSE_COMBAT),
+    SHILARD_FITZ_OESTERLEN("Shilard Fitz-Oesterlen", "Spy", false, 7, 1, RegularCardPositionType.CLOSE_COMBAT),
     ASSIRE_VAR_ANAHID("Assire var Anahid", "Medic", false, 6, 1, RegularCardPositionType.RANGED_COMBAT),
     CAHIR_MAWR_DYFFRYN_AEP_CEALLACH("Cahir Mawr Dyffryn aep Ceallach", null, false, 6, 1, RegularCardPositionType.CLOSE_COMBAT),
-    FRINFILLA_VIGO("Frinfilla Vigo", null, false, 6, 1, RegularCardPositionType.RANGED_COMBAT),
+    FRINGILLA_VIGO("Fringilla Vigo", null, false, 6, 1, RegularCardPositionType.RANGED_COMBAT),
     SIEGE_ENGINEER("Siege Engineer", null, false, 6, 1, RegularCardPositionType.SIEGE),
     VATTIER_DE_RIDEAUX("Vattier de Rideaux", "Spy", false, 6, 1, RegularCardPositionType.CLOSE_COMBAT),
     RENUALD_AEP_MATSEN("Renuald aep Matsen", "Spy", false, 5, 1, RegularCardPositionType.RANGED_COMBAT),
     YOUNG_EMISSARY("Young Emissary", "TightBond", false, 5, 2, RegularCardPositionType.CLOSE_COMBAT),
-    ZERIKANIAN_FIRE_SCORPION("Zerrikanian Fire Scorpion", null, false, 5, 1, RegularCardPositionType.SIEGE),
+    YOUNG_EMISSARY_1("Young Emissary", "tightBond", false, 5, 2, RegularCardPositionType.CLOSE_COMBAT),
+    ZERRIKANIAN_FIRE_SCORPION("Zerrikanian Fire Scorpion", null, false, 5, 1, RegularCardPositionType.SIEGE),
     CYNTHIA("Cynthia", null, false, 4, 1, RegularCardPositionType.RANGED_COMBAT),
     VANHEMAR("Vanhemar", null, false, 4, 1, RegularCardPositionType.RANGED_COMBAT),
-    IMPERA_BRIDGE_GUARD("Impera Brigade Guard", "TightBond", false, 3, 4, RegularCardPositionType.CLOSE_COMBAT),
+    IMPERA_BRIGADE_GUARD("Impera Brigade Guard", "TightBond", false, 3, 4, RegularCardPositionType.CLOSE_COMBAT),
     MORTEISEN("Morteisen", null, false, 3, 1, RegularCardPositionType.SIEGE),
     PUTTKAMMER("Puttkammer", null, false, 3, 1, RegularCardPositionType.RANGED_COMBAT),
     ROTTEN_MANGONEL("Rotten Mangonel", null, false, 3, 1, RegularCardPositionType.SIEGE),
@@ -36,8 +38,9 @@ public enum NilfgaardianEmpireRegularCardsData implements RegularCardData {
     NAUSICAA_CAVALRY_RIDER("Nausicaa Cavalry Rider", "TightBond", false, 2, 3, RegularCardPositionType.CLOSE_COMBAT),
     SWEERS("Sweers", null, false, 2, 1, RegularCardPositionType.RANGED_COMBAT),
     VREEMDE("Vreemde", null, false, 2, 1, RegularCardPositionType.CLOSE_COMBAT),
-    ETOLIAN_AUXILIARY_ARCHER("Etolian Auxiliary Archer", "Medic", false, 1, 2, RegularCardPositionType.RANGED_COMBAT),
-    SEIGE_TECHNICIAN("Seige Technician", "Medic", false, 0, 1, RegularCardPositionType.SIEGE),
+    ETOLIAN_AUXILIARY_ARCHERS("Etolian Auxiliary Archer", "Medic", false, 1, 2, RegularCardPositionType.RANGED_COMBAT),
+    ETOLIAN_AUXILIARY_ARCHERS_1("Etolian Auxiliary Archer", "Medic", false, 1, 2, RegularCardPositionType.RANGED_COMBAT),
+    SIEGE_TECHNICIAN("Siege Technician", "Medic", false, 0, 1, RegularCardPositionType.SIEGE),
     ;
 
     private final String name;
@@ -66,8 +69,8 @@ public enum NilfgaardianEmpireRegularCardsData implements RegularCardData {
 
     @Override
     public Image getLgImage() {
-        String subAddress = this.name.toLowerCase().replaceAll(".*:", "").replace(" ", "_");
-        return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream("/Images/Game/nilfgaard_" + subAddress)));
+        String address = "/Images/Game/LgCardsImages/nilfgaard_" + this.toString().toLowerCase() + ".jpg";
+        return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream(address)));
     }
 
     @Override
