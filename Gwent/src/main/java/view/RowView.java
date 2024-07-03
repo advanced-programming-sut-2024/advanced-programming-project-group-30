@@ -15,11 +15,13 @@ public class RowView extends Pane {
     private final Region specialCardPosition;
     private final Label rowScore;
     private final Group rowItems;
+    private final CoordinateData coordinateData;
     public RowView(Row row, CoordinateData coordinateData){
         this.row = row;
         rowView = new HBox();
         rowScore = new Label();
         rowItems = new Group();
+        this.coordinateData = coordinateData;
         specialCardPosition = new Region();
         setUpRowView();
         this.setLayoutX(coordinateData.getX());
@@ -29,7 +31,7 @@ public class RowView extends Pane {
     }
     private void setUpRowView(){
         rowView.setLayoutX(CoordinateData.ROW.getX());
-        rowView.setLayoutY(CoordinateData.ROW.getY());
+        rowView.setLayoutY(coordinateData.getY());
         rowView.getStyleClass().add(CssAddress.ROW_STYLE.getStyleClass());
         rowScore.setLayoutX(CoordinateData.SCORE_LABEL.getX());
         rowScore.setLayoutY(CoordinateData.SCORE_LABEL.getY());
@@ -40,8 +42,7 @@ public class RowView extends Pane {
         specialCardPosition.setLayoutY(CoordinateData.SPECIAL_CARD_POSITION.getY());
         specialCardPosition.setPrefHeight(SizeData.SPECIAL_CARD_REGION.getHeight());
         specialCardPosition.setPrefWidth(SizeData.SPECIAL_CARD_REGION.getWidth());
-        rowItems.getChildren().addAll(rowView, rowScore, specialCardPosition);
-        this.getChildren().addAll(rowItems);
+        rowItems.getChildren().addAll(rowView,rowScore, specialCardPosition);
     }
 
     public void updateRowScore() {

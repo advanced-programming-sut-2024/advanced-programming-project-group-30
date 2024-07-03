@@ -6,7 +6,7 @@ public enum CoordinateData {
     SPECIAL_CARD_POSITION("specialCardPosition",38, 0),
     RANGED_ROW_PANE("rangedCombat",0, 346),
     CLOSE_COMBAT_ROW_PANE("closeCombat",0, 264),
-    ROW("row",114, 0),
+    ROW("row",114, 100),
     USER_INFORMATION_VBOX("userInformationVBox",105, 7),
     INFORMATION_CARD_NUMBER_IMAGE("informationCardNumberImage",100, 57),
     INFORMATION_CARD_NUMBER_LABEL("informationCardNumberLabel",123, 60),

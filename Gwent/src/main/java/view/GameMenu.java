@@ -96,25 +96,20 @@ public class GameMenu implements Menu{
         pane.getChildren().addAll(playerInformationView,opponentInformationView);
         game.setCurrentPlayer(player);
         game.setOpponentPlayer(opponentPlayer);
-        ArrayList<Row> rows = player.getRows();
-        for (Row row: rows){
-            rowsPane.getChildren().add(row.getRowView());
-        }
+        gameMenuController.setUpBoard(game);
         ArrayList<RegularCard> cards = NorthernRealmsRegularCardsData.getAllRegularCard();
         for (int i = 0; i < 7; i++){
             RegularCard card = cards.get(i);
             player.addCardToHand(card);
             CardView cardView = card.getCardView();
-            gameMenuController.handleRegularCardEvents(card, game);
             hand.getChildren().add(cardView);
+            gameMenuController.handleRegularCardEvents(card, game);
             card.getCardView().getStyleClass().add(CssAddress.GAME_HAND_SM_CARD.getStyleClass());
         }
         setUpDeck(user, deck);
         setUpDeck(user2, opponentDeck);
-
 //        setUpUserInformation(player, username, faction, totalScore, cardNumber, leftGem, rightGem);
 //        setUpUserInformation(opponentPlayer, opponentUsername, opponentFaction, opponentTotalScore, opponentCardNumber, opponentLeftGem, opponentRightGem);
-        gameMenuController.setUpBoard(game);
     }
 
     public void resetRowStyles(RowView rowView) {

@@ -48,13 +48,13 @@ public class GameMenuController {
             switch (position) {
                 case CLOSE_COMBAT:
                     RowView closeCombatRow = player.getCloseCombat().getRowView();
-                    closeCombatRow.getRow().getStyleClass().add(CssAddress.CARD_ROW.getStyleClass());
+                    closeCombatRow.getStyleClass().add(CssAddress.CARD_ROW.getStyleClass());
                     gameMenu.setNodeStyle(closeCombatRow.getRow(), CssAddress.CARD_ROW);
+                    System.out.println("CLOSE_COMBAT row classes: " + closeCombatRow.getRow().getStyleClass());
                     handleRowEvents(card,game ,closeCombatRow.getRow());
                     break;
                 case RANGED_COMBAT:
                     RowView rangedCombatRow = player.getRangedCombat().getRowView();
-                    System.out.println(rangedCombatRow.getRow());
                     gameMenu.setNodeStyle(rangedCombatRow.getRow(), CssAddress.CARD_ROW);
                     handleRowEvents(card,game, rangedCombatRow.getRow());
                     break;
