@@ -18,6 +18,7 @@ public class Player {
     private int point = 0;
     private final int[] roundsPoint = new int[3];
     private int life = 2;
+    private DecksCard selectedCard;
 
     public Player(User user, Game game) {
         this.user = user;
@@ -106,5 +107,18 @@ public class Player {
 
     public void playCard(DecksCard decksCard, DecksCard target) {
 
+    }
+    public ArrayList<Row> getRows(){
+        ArrayList<Row> rows = new ArrayList<>();
+        rows.add(closeCombat);
+        rows.add(rangedCombat);
+        rows.add(siege);
+        return rows;
+    }
+    public void setSelectedCard(DecksCard selectedCard) {
+        this.selectedCard = selectedCard;
+    }
+    public DecksCard getSelectedCard() {
+        return selectedCard;
     }
 }

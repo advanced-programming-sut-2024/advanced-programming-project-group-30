@@ -11,8 +11,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import model.card.Card;
 import model.card.RegularCard;
+import model.card.SpecialCard;
 
-
+//TODO: handle Card and CardView loop in saving
 public class CardView extends Pane {
     private Label point;
     private final Rectangle position;
@@ -27,9 +28,10 @@ public class CardView extends Pane {
     private static final double NORMAL_POINT_Y = -0.3;
     private static final double NORMAL_POINT_LABEL_X = 1.4;
     private static final double NORMAL_POINT_LABEL_Y = 2.2;
-
     private static final double POSITION_X = 39.4;
     private static final double POSITION_Y = 60;
+    private static final double ABILITY_X = 23;
+    private static final double ABILITY_Y = 60;
 
     public CardView(Card card) {
         items = new Group();
@@ -40,6 +42,16 @@ public class CardView extends Pane {
         if (card instanceof RegularCard){
             setUpRegularCardView((RegularCard) card);
         }
+        if (card instanceof SpecialCard){
+            setUpSpecialCardView();
+        }
+    }
+    private void setUpSpecialCardView(){
+        Rectangle rectangle = new Rectangle();
+        ImageView imageView = getSmCardImage();
+        ImageView abilityView = getSpecialCardAbilityView();
+        items.getChildren().addAll(rectangle, imageView, abilityView);
+        this.getChildren().addAll(items);
     }
     private void setUpRegularCardView(RegularCard card){
         Rectangle rectangle = new Rectangle();
@@ -48,7 +60,7 @@ public class CardView extends Pane {
         point.setText(String.valueOf(card.getPoint()));
         ImageView imageView = getSmCardImage();
         //TODO: separate hand and other cards
-        this.getStyleClass().add(CssAddress.GAME_HAND_SM_CARD.getStyleClass());
+//        this.getStyleClass().add(CssAddress.GAME_HAND_SM_CARD.getStyleClass());
         items.getChildren().addAll(rectangle, imageView, getPointImage(), getPositionImage(), point);
         ImageView abilityView = getRegularCardAbilityImage();
         if (abilityView != null)
@@ -116,13 +128,25 @@ public class CardView extends Pane {
             abilityImage.getStyleClass().add(CssAddress.AGILE_ABILITY_ICON.getStyleClass());
         }
         else {
-            System.out.println(abilityName + "AbilityIcon");
             abilityImage.getStyleClass().add(CssAddress.getCssAddress(abilityName + "AbilityIcon"));
         }
         abilityImage.setFitHeight(SizeData.GAME_SMALL_CARD_ABILITY.getHeight());
         abilityImage.setFitWidth(SizeData.GAME_SMALL_CARD_ABILITY.getWidth());
-        abilityImage.setLayoutX(23);
-        abilityImage.setLayoutY(60);
+        abilityImage.setLayoutX(ABILITY_X);
+        abilityImage.setLayoutY(ABILITY_Y);
         return abilityImage;
+    }
+    private ImageView getSpecialCardAbilityView(){
+        ImageView specialAbilityImage = new ImageView();
+        String abilityName = cardData.getAbilityName();
+        char firstChar = abilityName.charAt(0);
+        abilityName = Character.toLowerCase(firstChar) + abilityName.substring(1);
+        System.out.println(abilityName);
+        specialAbilityImage.getStyleClass().add(CssAddress.getCssAddress(abilityName + "AbilityIcon"));
+        specialAbilityImage.setFitHeight(SizeData.GAME_SMALL_CARD_SPECIAL_ABILITY.getHeight());
+        specialAbilityImage.setFitWidth(SizeData.GAME_SMALL_CARD_SPECIAL_ABILITY.getWidth());
+        specialAbilityImage.setLayoutX(NORMAL_POINT_X);
+        specialAbilityImage.setLayoutY(NORMAL_POINT_Y);
+        return specialAbilityImage;
     }
 }

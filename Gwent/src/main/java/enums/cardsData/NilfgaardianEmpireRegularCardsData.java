@@ -37,7 +37,8 @@ public enum NilfgaardianEmpireRegularCardsData implements CardData {
     NAUSICAA_CAVALRY_RIDER("Nausicaa Cavalry Rider", "tightBond", false, 2, 3, RegularCardPositionType.CLOSE_COMBAT),
     SWEERS("Sweers", null, false, 2, 1, RegularCardPositionType.RANGED_COMBAT),
     VREEMDE("Vreemde", null, false, 2, 1, RegularCardPositionType.CLOSE_COMBAT),
-//    ETOLIAN_AUXILIARY_ARCHER("Etolian Auxiliary Archer", "Medic", false, 1, 2, RegularCardPositionType.RANGED_COMBAT),
+    ETOLIAN_AUXILIARY_ARCHER("Etolian Auxiliary Archer", "Medic", false, 1, 2, RegularCardPositionType.RANGED_COMBAT),
+    ETOLIAN_AUXILIARY_ARCHER_1("Etolian Auxiliary Archer", "Medic", false, 1, 2, RegularCardPositionType.RANGED_COMBAT),
     SIEGE_TECHNICIAN("Siege Technician", "medic", false, 0, 1, RegularCardPositionType.SIEGE),
     ;
     private final String name;

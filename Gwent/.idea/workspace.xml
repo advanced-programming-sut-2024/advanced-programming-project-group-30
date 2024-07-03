@@ -5,39 +5,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="124b1a9a-c6f6-4977-bbc2-df42d5ff586a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/enums/CoordinateData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/enums/GameNotification.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/Position.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/SpecialCardPosition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/ability/SpecialCardAbility.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/RowView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/GameMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/GameMenuController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/enums/CssAddress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/CssAddress.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/enums/SizeData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/SizeData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/CardData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/CardData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/MonstersRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/MonstersRegularCardsData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/NeutralRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/NeutralRegularCardsData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/NilfgaardianEmpireRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/NilfgaardianEmpireRegularCardsData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/NorthernRealmsRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/NorthernRealmsRegularCardsData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/ScoiaTaelRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/ScoiaTaelRegularCardsData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/SkelligeRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/SkelligeRegularCardsData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/SpecialCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/SpecialCardsData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Faction.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/Card.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/DecksCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/DecksCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/Leader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/Leader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Row.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Row.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/card/RegularCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/RegularCard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/specialcard/CommanderHorn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/specialcard/CommanderHorn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/specialcard/Decoy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/specialcard/Decoy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/specialcard/SpecialCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/specialcard/SpecialCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/specialcard/BitingFrost.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/specialcard/ClearWeather.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/specialcard/CommanderHorn.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/specialcard/Decoy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/specialcard/ImpenetrableFog.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/specialcard/Mordroeme.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/specialcard/Scorch.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/specialcard/SkelliegeStorm.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/specialcard/SpecialCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/SpecialCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/specialcard/TorrentialRain.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/CardView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/CardView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/GameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/GameMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/CSS/GameNodesStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/CSS/GameNodesStyle.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/Game.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/Game.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/SmCardsImages/monsters_witch_velen.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/SmCardsImages/monsters_witch_velen_1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/SmCardsImages/monsters_witch_velen_2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Icons/deck_back_monsters.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Images/Icons/monstersFaction.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Icons/deck_back_nilfgaard.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Images/Icons/nilfgaardFaction.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Icons/deck_back_realms.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Images/Icons/realmsFaction.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Icons/deck_back_scoiatael.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Images/Icons/scoiataelFaction.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Icons/deck_back_skellige.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Images/Icons/skelligeFaction.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/SmCardsImages/nilfgaard_archer_support.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/SmCardsImages/nilfgaard_archer_support_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/SmCardsImages/weather_clear_weather.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/SmCardsImages/weather_frost.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/SmCardsImages/weather_impenetrable_fog.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/SmCardsImages/weather_rain.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/SmCardsImages/weather_storm.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,8 +55,8 @@
         <option value="FxmlFile" />
         <option value="package.json" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -144,7 +148,12 @@
       <workItem from="1719644848774" duration="9157000" />
       <workItem from="1719726873773" duration="5058000" />
       <workItem from="1719819108707" duration="752000" />
-      <workItem from="1719827276101" duration="31568000" />
+      <workItem from="1719827276101" duration="31793000" />
+      <workItem from="1719899102653" duration="3000" />
+      <workItem from="1719910044750" duration="26000" />
+      <workItem from="1719910268005" duration="1068000" />
+      <workItem from="1719911753811" duration="354000" />
+      <workItem from="1719912140050" duration="40720000" />
     </task>
     <servers />
   </component>

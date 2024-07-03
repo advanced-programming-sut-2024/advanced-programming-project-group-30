@@ -17,23 +17,21 @@ public enum CssAddress {
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     NORMAL_CARD_POINT_ICON("normalCardPointIcon",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
-
     NORMAL_CARD_POINT_LABEL("normalCardPointLabel",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     HERO_CARD_POINT_LABEL("powerCardPointLabel",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
-
     GAME_HAND_SM_CARD("handCard",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     GEM_ON_IMAGE("gem-on-image",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     GEM_OFF_IMAGE("gem-off-image",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
-    STORM_WEATHER_ICON("stormWeatherIcon",
+    STORM_WEATHER_ICON("skelligeStormAbilityIcon",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     SCORCH_ABILITY_ICON("scorchAbilityIcon",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
-    RAIN_WEATHER_ICON("rainWeatherIcon",
+    RAIN_WEATHER_ICON("torrentialRainAbilityIcon",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     MUSTER_ABILITY_ICON("musterAbilityIcon",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
@@ -43,13 +41,15 @@ public enum CssAddress {
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     HORN_COMMANDER_ABILITY_ICON("hornCommanderAbilityIcon",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
-    FROST_WEATHER_ICON("frostWeatherIcon",
+    COMMANDERS_HORN_ABILITY_ICON("commandersHornAbilityIcon",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
-    FOG_WEATHER_ICON("fogWeatherIcon",
+    FROST_WEATHER_ICON("bitingFrostAbilityIcon",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    FOG_WEATHER_ICON("impenetrableFogAbilityIcon",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     DECOY_ABILITY_ICON("decoyAbilityIcon",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
-    CLEAR_WEATHER_ICON("clearWeatherIcon",
+    CLEAR_WEATHER_ICON("clearWeatherAbilityIcon",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     BERSERKER_ABILITY_ICON("berserkerAbilityIcon",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
@@ -73,6 +73,16 @@ public enum CssAddress {
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     SCOIA_TAEL_FACTION_ICON("scoia-tael-faction",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    PASS_TURN_IMAGE("passTurnImage",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    CHOSEN_ROW("chosen-row",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    CARD_ROW("card-available-row",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    ROW_STYLE("rowStyle",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    CARD_IN_ROW("cardInRowStyle" ,
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     ;
 
 
@@ -92,7 +102,6 @@ public enum CssAddress {
     public static String getCssAddress(String styleClass) {
         for (CssAddress cssAddress : CssAddress.values()) {
             if (cssAddress.getStyleClass().equals(styleClass)) {
-                System.out.println(cssAddress.styleClass);
                 return cssAddress.styleClass;
             }
         }

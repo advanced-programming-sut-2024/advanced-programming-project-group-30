@@ -23,7 +23,6 @@ public class RegularCard extends DecksCard {
         this.positionType = position;
         cardView = new CardView(this);
     }
-
     public Method getAbility() {
         return ability;
     }

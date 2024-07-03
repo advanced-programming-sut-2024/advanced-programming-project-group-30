@@ -1,11 +1,14 @@
 package model;
 
+import enums.CoordinateData;
 import model.card.DecksCard;
-import model.card.specialcard.SpecialCard;
+import model.card.SpecialCard;
+import view.RowView;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
-public class Row {
+public class Row extends Position{
     private final String name;
     private final ArrayList<DecksCard> cards = new ArrayList<>();
     private int rowPoint = 0;
@@ -13,9 +16,11 @@ public class Row {
     private boolean hasBonus = false;
     private int extraPoint = 0;
     private boolean isDamaged = false;
+    private RowView rowView;
 
     public Row(String name) {
         this.name = name;
+        rowView = new RowView(this, Objects.requireNonNull(CoordinateData.getCoordinateData(name)));
     }
 
     public String getName() {
@@ -64,5 +69,11 @@ public class Row {
 
     public void setDamaged(boolean damaged) {
         isDamaged = damaged;
+    }
+    public RowView getRowView(){
+        return rowView;
+    }
+    public void updateRowScore(){
+        rowView.updateRowScore();
     }
 }
