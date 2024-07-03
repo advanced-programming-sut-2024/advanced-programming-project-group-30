@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public enum NeutralRegularCardsData implements RegularCardData {
+    CIRILLA_FIONA_ELEN_RIANNON("Cirilla fiona elen riannon", null, true, 15, 1, RegularCardPositionType.CLOSE_COMBAT),
     GERALT_OF_RIVIA("Geralt of Rivia", null, true, 15, 1, RegularCardPositionType.CLOSE_COMBAT),
     TRISS_MERIGOLD("Triss Merigold", null, true, 7, 1, RegularCardPositionType.CLOSE_COMBAT),
     VILLENTRETENMERTH("Villentretenmerth", "Scorch", false, 7, 1, RegularCardPositionType.CLOSE_COMBAT),
