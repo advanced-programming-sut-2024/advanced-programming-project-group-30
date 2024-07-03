@@ -18,7 +18,7 @@ public class User {
     private int draws;
     private final ArrayList<GameHistory> gameHistories = new ArrayList<>();
     private final CardCollection cardCollection = new CardCollection();
-    private FactionType selectedFaction = FactionType.SCOIA_TAEL;
+    private FactionType selectedFaction = FactionType.SKELLIGE;
 
     public User(String username, String password, String email, String nickName, SecurityQuestion securityQuestion, String securityAnswer) {
         this.username = username;
