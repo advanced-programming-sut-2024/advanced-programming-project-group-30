@@ -5,80 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f1724509-8fa7-4a1d-addf-f9c920333c2d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/monsters_botchling.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/monsters_crone_Brewess.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/monsters_crone_weavess.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/monsters_crone_whispess.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/monsters_foglet.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/monsters_grave_hag.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/monsters_griffin.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/monsters_ice_giant.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/monsters_plague_maiden.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/monsters_vampire_bruxa.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/monsters_vampire_ekimmara.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/monsters_vampire_fleder.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/monsters_vampire_garkain.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/monsters_vampire_katakan.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/nilfgaard_assire_var_anahid.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/nilfgaard_black_infantry_archer.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/nilfgaard_black_infantry_archer_1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/nilfgaard_cahir_mawr_dyffryn_aep_ceallach.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/nilfgaard_etolian_auxiliary_archers.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/nilfgaard_fringilla_vigo.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/nilfgaard_heavy_zerrikanian_fire_scorpion.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/nilfgaard_impera_brigade_guard.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/nilfgaard_letho_of_gulet.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/nilfgaard_menno_coehoorn.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/nilfgaard_morvran_voorhis.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/nilfgaard_nausicaa_cavalry_rider.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/nilfgaard_renuald_aep_matsen.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/nilfgaard_rotten_mangonel.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/nilfgaard_shilard_fitz_oesterlen.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/nilfgaard_stefan_skellen.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/nilfgaard_tibor_eggebracht.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/nilfgaard_vattier_de_rideaux.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/nilfgaard_zerrikanian_fire_scorpion.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_kaedweni_siege_expert_1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_kaedweni_siege_expert_2.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/PregameMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/PregameMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/MonstersRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/MonstersRegularCardsData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/NilfgaardianEmpireRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/NilfgaardianEmpireRegularCardsData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/CardComparator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/CardComparator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/PregameData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PregameData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/NorthernRealmsRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/NorthernRealmsRegularCardsData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/monsters_bruxa.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/monsters_ekkima.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/monsters_fleder.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/monsters_fogling.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/monsters_frost_giant.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/monsters_garkain.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/monsters_gravehag.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/monsters_gryffin.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/monsters_katakan.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/monsters_mighty_maiden.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/monsters_poroniec.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/monsters_witch_velen.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/monsters_witch_velen_1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/monsters_witch_velen_2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/nilfgaard_archer_support.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/nilfgaard_archer_support_1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/nilfgaard_assire.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/nilfgaard_black_archer.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/nilfgaard_black_archer_1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/nilfgaard_cahir.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/nilfgaard_fringilla.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/nilfgaard_heavy_zerri.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/nilfgaard_imperal_brigade.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/nilfgaard_letho.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/nilfgaard_menno.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/nilfgaard_moorvran.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/nilfgaard_nauzicaa_2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/nilfgaard_renuald.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/nilfgaard_rotten.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/nilfgaard_shilard.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/nilfgaard_stefan.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/nilfgaard_tibor.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/nilfgaard_vattier.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/nilfgaard_zerri.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_kaedwen_siege_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgCardsImages/realms_kaedwen_siege_2.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,7 +131,7 @@
       <workItem from="1719609069360" duration="3004000" />
       <workItem from="1719647510046" duration="11798000" />
       <workItem from="1719733488135" duration="45479000" />
-      <workItem from="1719940265883" duration="12348000" />
+      <workItem from="1719940265883" duration="13385000" />
     </task>
     <servers />
   </component>

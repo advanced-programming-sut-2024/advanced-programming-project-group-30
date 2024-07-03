@@ -31,10 +31,13 @@ public enum NorthernRealmsRegularCardsData implements RegularCardData {
     SHELDON_SKAGGS("Sheldon Skaggs", null, false, 4, 1, RegularCardPositionType.RANGED_COMBAT),
     SIGISMUND_DIJKSTRA("Sigismund Dijkstra", "Spy", false, 4, 1, RegularCardPositionType.CLOSE_COMBAT),
     YARPEN_ZIGRIN("Yarpen Zigrin", null, false, 2, 1, RegularCardPositionType.CLOSE_COMBAT),
-    KAEDWENI_SIEGE_EXPERT("Kaedweni Siege Expert", "MoralBoost", false, 1, 3, RegularCardPositionType.SIEGE),
-    POOR_INFANTRY("Poor Infantry", "TightBond", false, 1, 4, RegularCardPositionType.CLOSE_COMBAT),
+    KAEDWENI_SIEGE_EXPERT("Kaedweni Siege Expert", "moralBoost", false, 1, 3, RegularCardPositionType.SIEGE),
+    KAEDWENI_SIEGE_EXPERT_1("Kaedweni Siege Expert", "moralBoost", false, 1, 3, RegularCardPositionType.SIEGE),
+    KAEDWENI_SIEGE_EXPERT_2("Kaedweni Siege Expert", "moralBoost", false, 1, 3, RegularCardPositionType.SIEGE),
+    POOR_FUCKING_INFANTRY("Poor fucking Infantry", "tightBond", false, 1, 4, RegularCardPositionType.CLOSE_COMBAT),
     REDANIAN_FOOT_SOLDIER("Redanian Foot Soldier", null, false, 1, 1, RegularCardPositionType.CLOSE_COMBAT),
-    THALER("Thaler", "Spy", false, 1, 1, RegularCardPositionType.SIEGE),
+    REDANIAN_FOOT_SOLDIER_1("Redanian Foot Soldier", null, false, 1, 1, RegularCardPositionType.CLOSE_COMBAT),
+    THALER("Thaler", "spy", false, 1, 1, RegularCardPositionType.SIEGE),
     ;
 
     private final String name;
