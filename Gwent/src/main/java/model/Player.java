@@ -1,7 +1,10 @@
 package model;
 
+import enums.CoordinateData;
+import enums.CssAddress;
 import model.card.DecksCard;
 import model.card.Leader;
+import view.PlayerInformationView;
 
 import java.util.ArrayList;
 
@@ -19,6 +22,7 @@ public class Player {
     private final int[] roundsPoint = new int[3];
     private int life = 2;
     private DecksCard selectedCard;
+    private PlayerInformationView playerInformationView;
 
     public Player(User user, Game game) {
         this.user = user;
@@ -36,7 +40,6 @@ public class Player {
     public Leader getLeader() {
         return leader;
     }
-
     public void setLeader(Leader leader) {
         this.leader = leader;
     }
@@ -120,5 +123,11 @@ public class Player {
     }
     public DecksCard getSelectedCard() {
         return selectedCard;
+    }
+    public void createPlayerInformationView(CoordinateData coordinateData, CssAddress cssAddress){
+        playerInformationView = new PlayerInformationView(this, coordinateData, cssAddress);
+    }
+    public PlayerInformationView getPlayerInformationView() {
+        return playerInformationView;
     }
 }

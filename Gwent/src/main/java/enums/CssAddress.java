@@ -3,10 +3,10 @@ package enums;
 import java.util.Objects;
 
 public enum CssAddress {
-    NUMBER_OF_CARD_TYPE_ICON("numberOfCardTypeIcon",
-            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
-    NUMBER_OF_CARD_TYPE_LABEL("numberOfCardTypeLabel",
-            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+//    NUMBER_OF_CARD_TYPE_ICON("numberOfCardTypeIcon",
+//            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+//    NUMBER_OF_CARD_TYPE_LABEL("numberOfCardTypeLabel",
+//            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     CARD_SIEGE_ROW_ICON("cardSiegeRowIcon",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     CARD_RANGED_COMBAT_ROW_ICON("cardRangedCombatRowIcon",
@@ -83,6 +83,30 @@ public enum CssAddress {
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     CARD_IN_ROW("cardInRowStyle" ,
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    INFORMATION_BOX("brownBox",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    NOTIFICATION_BOX("notificationBoxStyle",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    NOTIFICATION_MESSAGE("notificationMessageStyle",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    PROFILE_IMAGE("profile-image",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    PROFILE_FRAME("player-border",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    CARD_NUMBER_IMAGE("card-number-image",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    CARD_NUMBER_LABEL("yellowish-arial-label",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    INFORMATION_FACTION_LABEL("faction-label",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    CURRENT_PLAYER_TOTAL_SCORE_IMAGE("yellowScoreImage",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    OPPONENT_PLAYER_TOTAL_SCORE_IMAGE("blueScoreImage",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    GEMS_BOX("gemsBox",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    TOTAL_SCORE_LABEL("black-bold-arial-label",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm());
     ;
 
 

@@ -15,7 +15,7 @@ public enum ScoiaTaelRegularCardsData implements CardData {
     ISENGRIM_FAOLITARNA("Isengrim Faolitarna", "moralBoost", true, 10, 1, RegularCardPositionType.CLOSE_COMBAT),
     IORVETH("Iorveth", null, true, 10, 1, RegularCardPositionType.RANGED_COMBAT),
     MILVA("Milva", "moralBoost", false, 10, 1, RegularCardPositionType.CLOSE_COMBAT),
-    SEASENTHESSIS("Seasenthessis", null, true, 10, 1, RegularCardPositionType.RANGED_COMBAT),
+    SAESENTHESSIS("Saesenthessis", null, true, 10, 1, RegularCardPositionType.RANGED_COMBAT),
     SCHIRRU("Schirru", "scorch", false, 8, 1, RegularCardPositionType.SIEGE),
     BARCLAY_ELS("Barclay Els", null, false, 6, 1, RegularCardPositionType.AGILE),
     DENNIS_CRANMER("Dennis Cranmer", null, false, 6, 1, RegularCardPositionType.CLOSE_COMBAT),

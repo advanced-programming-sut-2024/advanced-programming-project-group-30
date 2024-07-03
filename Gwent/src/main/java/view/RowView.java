@@ -8,7 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
-import javafx.scene.shape.Rectangle;
 import model.Row;
 public class RowView extends Pane {
     private final Row row;
@@ -22,12 +21,13 @@ public class RowView extends Pane {
         rowScore = new Label();
         rowItems = new Group();
         specialCardPosition = new Region();
+        setUpRowView();
         this.setLayoutX(coordinateData.getX());
         this.setLayoutY(coordinateData.getY());
-        setUpRowView();
+        this.setPrefHeight(75);
+        this.setPrefWidth(580);
     }
     private void setUpRowView(){
-        Rectangle rectangle = new Rectangle();
         rowView.setLayoutX(CoordinateData.ROW.getX());
         rowView.setLayoutY(CoordinateData.ROW.getY());
         rowView.getStyleClass().add(CssAddress.ROW_STYLE.getStyleClass());
@@ -40,7 +40,7 @@ public class RowView extends Pane {
         specialCardPosition.setLayoutY(CoordinateData.SPECIAL_CARD_POSITION.getY());
         specialCardPosition.setPrefHeight(SizeData.SPECIAL_CARD_REGION.getHeight());
         specialCardPosition.setPrefWidth(SizeData.SPECIAL_CARD_REGION.getWidth());
-        rowItems.getChildren().addAll(rectangle, rowView, rowScore, specialCardPosition);
+        rowItems.getChildren().addAll(rowView, rowScore, specialCardPosition);
         this.getChildren().addAll(rowItems);
     }
 
@@ -48,7 +48,7 @@ public class RowView extends Pane {
         rowScore.setText(String.valueOf(row.getRowPoint()));
         rowScore.getStyleClass().add("scoreLabel");
     }
-    public HBox getRowView(){
+    public HBox getRow(){
         return rowView;
     }
 }

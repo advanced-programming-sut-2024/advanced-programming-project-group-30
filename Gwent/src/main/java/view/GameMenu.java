@@ -20,10 +20,10 @@ import java.util.*;
 
 public class GameMenu implements Menu{
     private final GameMenuController gameMenuController = new GameMenuController(this);
-    public HBox siegeRow;
-    public HBox rangedRow;
-    public HBox closedCombatRow;
-    public Pane rowsPane;
+    @FXML
+    private Pane rowsPane;
+    @FXML
+    private Pane pane;
     @FXML
     private Pane notifBox;
     @FXML
@@ -80,6 +80,8 @@ public class GameMenu implements Menu{
     private Region opponentLeader;
     @FXML
     private Region leader;
+    private PlayerInformationView currentPlayerInformationView;
+    private PlayerInformationView oppoenentPlayerInformationView;
     @FXML
     public void initialize() {
         //TODO: handle initialize
@@ -89,47 +91,40 @@ public class GameMenu implements Menu{
         App.setCurrentGame(game);
         Player player = new Player(user, game);
         Player opponentPlayer = new Player(user2, game);
+        PlayerInformationView playerInformationView = new PlayerInformationView(player, CoordinateData.PLAYER_INFORMATION_BOX, CssAddress.CURRENT_PLAYER_TOTAL_SCORE_IMAGE);
+        PlayerInformationView opponentInformationView = new PlayerInformationView(opponentPlayer, CoordinateData.OPPONENT_INFORMATION_BOX, CssAddress.OPPONENT_PLAYER_TOTAL_SCORE_IMAGE);
+        pane.getChildren().addAll(playerInformationView,opponentInformationView);
         game.setCurrentPlayer(player);
         game.setOpponentPlayer(opponentPlayer);
+        ArrayList<Row> rows = player.getRows();
+        for (Row row: rows){
+            rowsPane.getChildren().add(row.getRowView());
+        }
         ArrayList<RegularCard> cards = NorthernRealmsRegularCardsData.getAllRegularCard();
         for (int i = 0; i < 7; i++){
             RegularCard card = cards.get(i);
             player.addCardToHand(card);
             CardView cardView = card.getCardView();
+            gameMenuController.handleRegularCardEvents(card, game);
             hand.getChildren().add(cardView);
             card.getCardView().getStyleClass().add(CssAddress.GAME_HAND_SM_CARD.getStyleClass());
-            gameMenuController.handleRegularCardEvents(card, game);
         }
         setUpDeck(user, deck);
         setUpDeck(user2, opponentDeck);
-        setUpUserInformation(player, username, faction, totalScore, cardNumber, leftGem, rightGem);
-        setUpUserInformation(opponentPlayer, opponentUsername, opponentFaction, opponentTotalScore, opponentCardNumber, opponentLeftGem, opponentRightGem);
+
+//        setUpUserInformation(player, username, faction, totalScore, cardNumber, leftGem, rightGem);
+//        setUpUserInformation(opponentPlayer, opponentUsername, opponentFaction, opponentTotalScore, opponentCardNumber, opponentLeftGem, opponentRightGem);
         gameMenuController.setUpBoard(game);
     }
 
     public void resetRowStyles(RowView rowView) {
-        rowView.getRowView().getStyleClass().remove(CssAddress.CARD_ROW.getStyleClass());
-    }
-    private void setUpUserInformation(Player player, Label username, Label faction, Label totalScore, Label cardNumber, Region leftGem, Region rightGem) {
-        User user = player.getUser();
-        username.setText(user.getUsername());
-        rightGem.getStyleClass().add(CssAddress.GEM_ON_IMAGE.getStyleClass());
-        leftGem.getStyleClass().add(CssAddress.GEM_ON_IMAGE.getStyleClass());
-        faction.setText(user.getSelectedFaction().toString());
-        totalScore.setText(String.valueOf(player.getPoint()));
-        cardNumber.setText(String.valueOf(player.getHand().size()));
-    }
-
-    private void setUpLeader(User user){
-
+        rowView.getRow().getStyleClass().remove(CssAddress.CARD_ROW.getStyleClass());
     }
     private void setUpDeck(User player, Region deck){
         FactionType factionType = player.getSelectedFaction();
         String factionName = factionType.toString().toLowerCase().replaceAll("_", "-");
         deck.getStyleClass().add(factionName + "-faction");
     }
-
-
     public void setUpScores(ArrayList<Row> allRows){
         for (Row row : allRows){
             row.updateRowScore();
@@ -154,6 +149,18 @@ public class GameMenu implements Menu{
         timeline.play();
     }
     public void setUpBoard(RowView siege, RowView ranged, RowView close){
-        rowsPane.getChildren().addAll(siege.getRowView(), ranged.getRowView(), close.getRowView());
+        rowsPane.getChildren().addAll(siege.getRow(), ranged.getRow(), close.getRow());
     }
+
+    public void setUpUserInformation(Label usernameLabel, String username) {
+        usernameLabel.setText(username);
+    }
+    public void setUpFaction(Region factionRegion, String factionName, Label factionLabel) {
+//        factionRegion.getStyleClass().add(factionName + "-faction");
+        factionLabel.setText(factionName);
+    }
+    public void updateHandCardNumber(Label cardNumber, int number){
+        cardNumber.setText(String.valueOf(number));
+    }
+
 }

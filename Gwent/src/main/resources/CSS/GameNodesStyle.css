@@ -13,6 +13,8 @@
 .brownBox {
     -fx-background-color: rgba(23, 18, 16, 0.49);
     -fx-border-width: 1;
+    -fx-pref-width: 261;
+    -fx-pref-height: 104;
 }
 .brownBoxShadowed{
     -fx-border-width: 2;
@@ -35,19 +37,22 @@
 }
 .gem-on-image{
     -fx-background-image: url('../Images/Icons/icon_gem_on.png');
+    -fx-pref-height: 44;
+    -fx-pref-width: 30;
     -fx-background-size: 100% 100%;
 }
 .gem-off-image{
     -fx-background-image: url('../Images/Icons/icon_gem_off.png');
+    -fx-pref-height: 44;
+    -fx-pref-width: 30;
     -fx-background-size: 100% 100%;
 }
-.total-score-opponent{
-    -fx-image: url('../Images/Icons/score_total_op.png');
-    -fx-background-size: 100% 100%;
-}
-.total-score-me{
-    -fx-image: url('../Images/Icons/score_total_me.png');
-    -fx-background-size: 100% 100%;
+.gemsBox{
+    -fx-max-height: 25;
+    -fx-max-width: 55;
+    -fx-pref-width: 55;
+    -fx-pref-height: 25;
+    -fx-spacing: 2;
 }
 .active-leader-image{
     -fx-background-color: TRANSPARENT;
@@ -57,18 +62,15 @@
 .card-number-image{
     -fx-image: url('../Images/Icons/icon_card_count.png');
     -fx-background-size: 100% 100%;
-
 }
 .high-score{
     -fx-background-image: url('../Images/Icons/icon_high_score.png');
     -fx-background-size: 100% 100%;
-
 }
 .player-border{
     -fx-background-color: TRANSPARENT;
-    -fx-background-image: url('../Images/Icons/icon_player_border.png');
+    -fx-image: url('../Images/Icons/icon_player_border.png');
     -fx-background-size: 100% 100%;
-
 }
 .monsters-shield-image{
     -fx-background-color: TRANSPARENT;
@@ -120,11 +122,18 @@
     -fx-background-size: 100% 100%;
 }
 .yellowish-arial-label{
-    -fx-font-size: 18;
+    -fx-font-size: 20;
     -fx-font-weight: bold;
     -fx-font-family: Cambria;
     -fx-text-fill: rgba(217, 188, 85, 0.87);
 }
+.informationBoxUsername{
+    -fx-font-size: 17;
+    -fx-font-weight: bold;
+    -fx-font-family: Cambria;
+    -fx-text-fill: rgba(217, 188, 85, 0.87);
+}
+
 .faction-label{
     -fx-font-size: 10;
     -fx-font-family: Cambria;
@@ -135,13 +144,14 @@
     -fx-font-weight: bold;
     -fx-font-family: Arial;
     -fx-text-fill: #000000;
+    -fx-alignment: center;
 }
 .black-arial-label{
     -fx-font-size: 18;
     -fx-font-family: Arial;
     -fx-text-fill: #000000;
 }
-.notif-box-style{
+.notificationBoxStyle{
     -fx-background-color: rgba(0, 0, 0, 0.78);
     -fx-background-radius: 4;
     -fx-border-radius: 4;
@@ -150,7 +160,7 @@
     -fx-font-family: Cambria;
     -fx-text-fill: rgb(173, 137, 82);
 }
-.passed-label{
+.notificationMessageStyle{
     -fx-font-size: 20;
     -fx-font-weight: bold;
     -fx-font-family: Cambria;
@@ -174,8 +184,6 @@
     -fx-text-fill: rgba(217, 188, 85, 0.87);
 }
 .handCard:hover{
-    -fx-border-width: 3;
-    /*-fx-border-color: rgba(217, 188, 85, 0.87);*/
     -fx-translate-y: -12;
 }
 .normalCardPointLabel{
@@ -285,10 +293,19 @@
     -fx-image: url('../Images/Icons/notif_round_passed.png');
     -fx-background-size: 100% 100%;
 }
+.blueScoreImage{
+    -fx-image: url('../Images/Icons/score_total_op.png');
+    -fx-background-size: 100% 100%;
+}
+.yellowScoreImage{
+    -fx-image: url('../Images/Icons/score_total_me.png');
+    -fx-background-size: 100% 100%;
+}
 .rowStyle{
     -fx-pref-height: 72;
     -fx-pref-width: 464;
     -fx-alignment: center;
+    -fx-background-color: #ffff;
     -fx-spacing: 0;
 }
 .cardInRowStyle{
