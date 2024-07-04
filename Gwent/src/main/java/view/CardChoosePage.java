@@ -10,10 +10,10 @@ public class CardChoosePage extends HBox {
     private final ImageView rightCard = new ImageView();;
     private final ImageView centerCard = new ImageView();
     private final ImageView leftCard = new ImageView();
-    private final ArrayList<chosenModelView> chosenModelViews;
+    private final ArrayList<ChosenModelView> chosenModelViews;
     private int index;
 
-    public CardChoosePage(ArrayList<chosenModelView> chosenModelViews, int index) {
+    public CardChoosePage(ArrayList<ChosenModelView> chosenModelViews, int index) {
         this.chosenModelViews = chosenModelViews;
         this.index = index;
         rightCard.setFitHeight(270);

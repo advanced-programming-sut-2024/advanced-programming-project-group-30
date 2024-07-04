@@ -4,7 +4,7 @@ import enums.RegularCardPositionType;
 import javafx.scene.image.Image;
 import model.ability.RegularCardsAbility;
 import model.card.RegularCard;
-import view.chosenModelView;
+import view.ChosenModelView;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -72,11 +72,11 @@ public enum NeutralRegularCardsData implements RegularCardData {
     }
 
     @Override
-    public chosenModelView getChooseModelView() {
-        return new chosenModelView<>(Objects.requireNonNull(
+    public ChosenModelView<DeckCardData> getChooseModelView() {
+        return new ChosenModelView<>(Objects.requireNonNull(
                 this.getClass().getResourceAsStream(lgImageAddress)), this, "", abilityName);
     } /* TODO: you can add this method in DeckCard class too:
-        public chosenModelView getLargeCardView() {
+        public ChosenModelView getLargeCardView() {
             return data.getLargeCardView();
         }*/
     // TODO: modify title and description

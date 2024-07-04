@@ -2,7 +2,7 @@ package enums.cardsData;
 
 import javafx.scene.image.Image;
 import model.card.specialCard.*;
-import view.chosenModelView;
+import view.ChosenModelView;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -59,8 +59,8 @@ public enum SpecialCardsData implements DeckCardData {
     }
 
     @Override
-    public chosenModelView getChooseModelView() {
-        return new chosenModelView<>(Objects.requireNonNull(
+    public ChosenModelView getChooseModelView() {
+        return new ChosenModelView<>(Objects.requireNonNull(
                 this.getClass().getResourceAsStream(lgImageAddress)), this, this.description, this.getAbilityName());
     }
 

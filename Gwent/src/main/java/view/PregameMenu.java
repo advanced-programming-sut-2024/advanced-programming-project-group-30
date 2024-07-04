@@ -1,6 +1,7 @@
 package view;
 
 import controller.PregameMenuController;
+import enums.FactionType;
 import enums.cardsData.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -37,13 +38,7 @@ public class PregameMenu implements Menu {
         stage.widthProperty().addListener((Void) -> scaleMainPane());
         stage.heightProperty().addListener((Void) -> scaleMainPane());
         stage.getChildren().remove(mainPane);
-        ArrayList<chosenModelView> chosenModelViews = new ArrayList<>();
-        chosenModelViews.add(NeutralRegularCardsData.AVALLACH.getChooseModelView());
-            chosenModelViews.add(NeutralRegularCardsData.ZOLTAN_CHIVAY.getChooseModelView());
-        chosenModelViews.add(NeutralRegularCardsData.GAUNTER_ODIMM_DARKNESS.getChooseModelView());
-        chosenModelViews.add(NeutralRegularCardsData.EMIEL_REGIS.getChooseModelView());
-        chosenModelViews.add(NeutralRegularCardsData.VESEMIR.getChooseModelView());
-        chosenModelViews.add(NeutralRegularCardsData.OLGIERD_VON_EVEREC.getChooseModelView());
+        ArrayList<ChosenModelView> chosenModelViews = new ArrayList<>(FactionType.getAllChooseModelView());
         stage.getChildren().add(new CardChoosePage(chosenModelViews,2));
     }
 
