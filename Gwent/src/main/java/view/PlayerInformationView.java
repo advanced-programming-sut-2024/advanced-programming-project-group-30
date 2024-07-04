@@ -2,6 +2,7 @@ package view;
 
 import enums.CoordinateData;
 import enums.CssAddress;
+import enums.FactionType;
 import enums.SizeData;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
@@ -36,7 +37,7 @@ public class PlayerInformationView extends Pane {
         items = new Group();
         handCardBox = new HBox();
         design();
-        items.getChildren().addAll(profileImage, profileFrame, handCardImage, handCardNumber,userInfoBox, lives,totalScoreImage,totalScore);
+        items.getChildren().addAll(profileImage, profileFrame, handCardImage, handCardNumber,userInfoBox, lives,totalScoreImage,totalScore, factionImage);
         this.getStyleClass().add(CssAddress.INFORMATION_BOX.getStyleClass());
         this.setLayoutX(coordinateData.getX());
         this.setLayoutY(coordinateData.getY());
@@ -52,9 +53,7 @@ public class PlayerInformationView extends Pane {
     public Label getHandCardNumber(){
         return handCardNumber;
     }
-    public void updateHandCardNumber(){
 
-    }
 
     private void design(){
         setUpProfileImage();
@@ -66,6 +65,16 @@ public class PlayerInformationView extends Pane {
         setUpProfileFrame();
         setUpLives();
         setUpScore();
+        setUpFactionIcon();
+    }
+    private void setUpFactionIcon(){
+        factionImage = new ImageView();
+        FactionType factionType = player.getUser().getSelectedFaction();
+        factionImage.setImage(factionType.getIconImage());
+        factionImage.setLayoutY(CoordinateData.FACTION_ICON.getY());
+        factionImage.setLayoutX(CoordinateData.FACTION_ICON.getX());
+        factionImage.setFitHeight(SizeData.FACTION_ICON.getHeight());
+        factionImage.setFitWidth(SizeData.FACTION_ICON.getWidth());
     }
 
     private void setUpProfileImage(){

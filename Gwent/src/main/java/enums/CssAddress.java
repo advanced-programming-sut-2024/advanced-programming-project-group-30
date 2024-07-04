@@ -108,7 +108,8 @@ public enum CssAddress {
     NOTIF_BOX("notificationBoxStyle",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     NOTIFICATION_LABEL("notificationMessageStyle",
-            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm());
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    ;
     ;
 
 
