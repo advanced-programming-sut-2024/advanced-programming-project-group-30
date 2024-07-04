@@ -123,6 +123,7 @@
     -fx-vgap: 4.72;
     -fx-hgap: 4.72;
 }
+
 .preGameCard:hover {
     -fx-cursor: HAND;
     -fx-scale-x: 0.95;
@@ -143,4 +144,9 @@
     -fx-font-weight: bold;
     -fx-translate-x: 92;
     -fx-translate-y: 173.5;
+}
+
+.chosenCard {
+    -fx-border-color: red;
+    -fx-border-width: 10;
 }

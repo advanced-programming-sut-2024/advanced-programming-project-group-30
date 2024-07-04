@@ -1,52 +1,59 @@
 package view;
 
+import enums.SizeData;
 import javafx.geometry.Pos;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
 
 public class CardChoosePage extends HBox {
-    private final ImageView rightCard = new ImageView();;
-    private final ImageView centerCard = new ImageView();
-    private final ImageView leftCard = new ImageView();
+    private final int number = 5;
+    private final ArrayList<Rectangle> regions;
     private final ArrayList<ChosenModelView> chosenModelViews;
     private int index;
 
     public CardChoosePage(ArrayList<ChosenModelView> chosenModelViews, int index) {
+        setup();
+        this.regions = createRegions();
+        this.getChildren().addAll(regions);
         this.chosenModelViews = chosenModelViews;
-        this.index = index;
-        rightCard.setFitHeight(270);
-        rightCard.setFitWidth(150);
-        leftCard.setFitWidth(150);
-        leftCard.setFitHeight(270);
-        centerCard.setFitHeight(400);
-        centerCard.setFitWidth(220);
-        if (index > 0) rightCard.setImage(this.chosenModelViews.get(index - 1));
-        if (index >= 0) centerCard.setImage(this.chosenModelViews.get(index));
-        if (index < chosenModelViews.size() - 1) leftCard.setImage(this.chosenModelViews.get(index + 1));
-        this.getChildren().add(rightCard);
-        this.getChildren().add(centerCard);
-        this.getChildren().add(leftCard);
-        this.setSpacing(20);
+        setIndex(index);
+    }
+
+    private void setup() {
         this.setAlignment(Pos.CENTER);
-        leftCard.setOnMouseClicked((Void) -> toLeft());
-        rightCard.setOnMouseClicked((Void) -> toRight());
+        this.setSpacing(15);
     }
 
-    public void toRight() {
-        if (index <= 0) return;
-        index--;
-        if (index > 0) rightCard.setImage(this.chosenModelViews.get(index - 1));
-        if (index >= 0) centerCard.setImage(this.chosenModelViews.get(index));
-        if (index < chosenModelViews.size() - 1) leftCard.setImage(this.chosenModelViews.get(index + 1));
+    private ArrayList<Rectangle> createRegions() {
+        ArrayList<Rectangle> regions = new ArrayList<>();
+        int scaleNumber = number / 2;
+        for (int i = 0; i < number; i++) {
+            Rectangle region = new Rectangle();
+            setSize(region, Math.pow(0.8, Math.abs(scaleNumber - i)));
+            regions.add(region);
+            region.setOnMouseClicked((Void) -> {
+                if (region.getFill() != Color.TRANSPARENT) setIndex(index - number / 2 + regions.indexOf(region));
+            });
+        }
+        return regions;
     }
 
-    public void toLeft() {
-        if (chosenModelViews.size() - 1 <= index) return;
-        index++;
-        if (index > 0) rightCard.setImage(this.chosenModelViews.get(index - 1));
-        if (index >= 0) centerCard.setImage(this.chosenModelViews.get(index));
-        if (index < chosenModelViews.size() - 1) leftCard.setImage(this.chosenModelViews.get(index + 1));
+    private void setIndex(int index) {
+        this.index = index;
+        for (int i = 0; i < number; i++) {
+            int j = index + i - number / 2;
+            if (j < 0 || j >= chosenModelViews.size()) regions.get(i).setFill(Color.TRANSPARENT);
+            else regions.get(i).setFill(chosenModelViews.get(j).getImagePattern());
+        }
+    }
+
+    private void setSize(Rectangle region, double scale) {
+        region.setArcHeight(SizeData.GAME_LG_CARD.getRadius() * scale);
+        region.setArcWidth(SizeData.GAME_LG_CARD.getRadius() * scale);
+        region.setHeight(SizeData.GAME_LG_CARD.getHeight() * scale);
+        region.setWidth(SizeData.GAME_LG_CARD.getWidth() * scale);
     }
 }
