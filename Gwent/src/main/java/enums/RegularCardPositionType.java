@@ -4,8 +4,10 @@ public enum RegularCardPositionType {
     CLOSE_COMBAT(),
     RANGED_COMBAT(),
     SIEGE(),
-    AGILE(),;
-
+    AGILE(),
+    OPPONENT_CLOSE_COMBAT(),
+    OPPONENT_RANGED_COMBAT(),
+    OPPONENT_SIEGE(),;
     public boolean checkPositionCompatibility(String positionName){
         return false;
     }

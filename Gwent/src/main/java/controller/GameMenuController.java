@@ -35,14 +35,15 @@ public class GameMenuController {
         gameMenu.setNodeStyle(card.getCardView(), CssAddress.CARD_IN_ROW);
         if (!hbox.getChildren().contains(card.getCardView())) {
             row.addCard(card, !(card instanceof RegularCard));
-            if (player.getRows().contains(row)){
-                player.updatePoint(card.getCardData().getPoint());
-            }else opponentPlayer.updatePoint(card.getCardData().getPoint());
+//            if (player.getRows().contains(row)){
+//                player.updatePoint(card.getCardData().getPoint());
+//            }else opponentPlayer.updatePoint(card.getCardData().getPoint());
             hbox.getChildren().add(card.getCardView());
             gameMenu.handlePassTurn(game);
             updateScores(game);
         }
         player.setSelectedCard(null);
+        player.playCard(card);
         updateHandCardNumber(game);
         resetRowStyles(game);
     }
@@ -105,7 +106,7 @@ public class GameMenuController {
             cardView.setOnMouseClicked(event -> {
                 resetRowStyles(game);
                 for (Row row : player.getRows()) {
-                    if (row.getRowView().getSpecialCardPosition().getChildren().isEmpty()) {
+                    if (row.getRowView().getSpecialCardPosition().getChildren().isEmpty() ) {
                         gameMenu.setNodeStyle(row.getRowView().getSpecialCardPosition(), CssAddress.CARD_ROW);
                         try {
                             handleRowEvents(specialCard, game, method, row);

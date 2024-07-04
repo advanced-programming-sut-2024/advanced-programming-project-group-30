@@ -1,9 +1,11 @@
 package view;
 
+import enums.Ability;
 import enums.CssAddress;
 import enums.RegularCardPositionType;
 import enums.SizeData;
 import enums.cardsData.CardData;
+import enums.cardsData.RegularCardData;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -119,7 +121,7 @@ public class CardView extends Pane {
     }
     private ImageView getRegularCardAbilityImage(){
         ImageView abilityImage = new ImageView();
-        String abilityName = cardData.getAbilityName();
+        String abilityName =((RegularCardData) cardData).getAbilityName();
 
         if (abilityName.isEmpty() && !((RegularCard)card).getPositionType().equals(RegularCardPositionType.AGILE)){
             return null;
@@ -138,10 +140,10 @@ public class CardView extends Pane {
     }
     private ImageView getSpecialCardAbilityView(){
         ImageView specialAbilityImage = new ImageView();
-        String abilityName = cardData.getAbilityName();
-        char firstChar = abilityName.charAt(0);
-        abilityName = Character.toLowerCase(firstChar) + abilityName.substring(1);
-        specialAbilityImage.getStyleClass().add(CssAddress.getCssAddress(abilityName + "AbilityIcon"));
+//        String abilityName = cardData.getAbilityName();
+//        char firstChar = abilityName.charAt(0);
+//        abilityName = Character.toLowerCase(firstChar) + abilityName.substring(1);
+        specialAbilityImage.getStyleClass().add(Ability.getStyleClassByName(((RegularCardData)cardData).getAbilityName());
         specialAbilityImage.setFitHeight(SizeData.GAME_SMALL_CARD_SPECIAL_ABILITY.getHeight());
         specialAbilityImage.setFitWidth(SizeData.GAME_SMALL_CARD_SPECIAL_ABILITY.getWidth());
         specialAbilityImage.setLayoutX(NORMAL_POINT_X);

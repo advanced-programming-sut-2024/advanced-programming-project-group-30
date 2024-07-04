@@ -98,7 +98,7 @@ public class Player {
     }
 
     public void playCard(DecksCard decksCard) {
-
+        hand.remove(decksCard);
     }
     public void playCard(DecksCard decksCard, Row row) {
 

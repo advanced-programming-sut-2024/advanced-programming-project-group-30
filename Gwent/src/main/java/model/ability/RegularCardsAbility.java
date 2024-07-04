@@ -25,7 +25,7 @@ public abstract class RegularCardsAbility {
     private void medic(Game currentGame, RegularCard card){
 
     }
-    private void hornCommander(Game currentGame, RegularCard card){
+    private void commanderHorn(Game currentGame, RegularCard card){
         Row row = currentGame.getSelectedRow();
         ArrayList<DecksCard> cards = row.getCards();
         for(DecksCard decksCard : cards){

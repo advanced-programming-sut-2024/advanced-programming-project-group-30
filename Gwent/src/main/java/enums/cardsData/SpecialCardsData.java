@@ -1,5 +1,6 @@
 package enums.cardsData;
 
+import enums.Ability;
 import javafx.scene.image.Image;
 import model.ability.SpecialCardAbility;
 import model.card.SpecialCard;
@@ -9,29 +10,27 @@ import java.util.ArrayList;
 import java.util.Objects;
 
     public enum SpecialCardsData implements CardData {
-        COMMANDER_HORN("CommanderHorn", "commanderHorn", "Doubles the strength of all unit cards in that row. Limited to 1 per row.", 3, false),
-        DECOY("Decoy", "decoy", "Swap with a card on the battlefield to return it to your hand.", 3, false),
-        MARDROEME("Mardroeme", "mardroeme", "Triggers transformation of all Berserker cards on the same row.", 3,true),
-        SCORCH("Scorch", "scorch", "Triggers transformation of all Berserker cards on the same row.", 3,false),
-        BITING_FROST("BitingFrost", "bitingFrost", "Sets the strength of all Close Combat cards to 1 for both players.", 3,false),
-        CLEAR_WEATHER("ClearWeather", "clearWeather", "Removes all Weather Cards (Biting Frost, Impenetrable Fog and Torrential Rain) effects.", 2,false),
-        IMPENETRABLE_FOG("ImpenetrableFog", "impenetrableFog", "Sets the strength of all Ranged Combat cards to 1 for both players.", 3,false),
-        SKELLIGE_STORM("SkelligeStorm", "skelligeStorm", "Sets the strength of all Ranged Combat cards to 1 for both players.", 3,false),
-        TORRENTIAL_RAIN("TorrentialRain", "torrentialRain", "Sets the strength of all Siege Combat cards to 1 for both players.", 3,false),
+        COMMANDER_HORN("CommanderHorn", Ability.HORN_COMMANDER, 3, false),
+        DECOY("Decoy", Ability.DECOY,  3, false),
+        MARDROEME("Mardroeme", Ability.MARDROEME,  3,true),
+        SCORCH("Scorch", Ability.SCORCH,  3,false),
+        BITING_FROST("BitingFrost", Ability.BITING_FROST,  3,false),
+        CLEAR_WEATHER("ClearWeather", Ability.CLEAR_WEATHER,  2,false),
+        IMPENETRABLE_FOG("ImpenetrableFog", Ability.IMPENETRABLE_FOG,  3,false),
+        SKELLIGE_STORM("SkelligeStorm", Ability.SKELLIGE_STORM,  3,false),
+        TORRENTIAL_RAIN("TorrentialRain", Ability.TORRENTIAL_RAIN,  3,false),
         ;
 
         private final String name;
-        private final String abilityName;
-        private final String description;
+        private final Ability ability;
         private final int numberOfCard;
         private final boolean isDiscardAfterPlaying;
 
 
 
-        SpecialCardsData(String name, String abilityName, String description, int cardsNumber, boolean isDiscardAfterPlaying) {
+        SpecialCardsData(String name, Ability ability,int cardsNumber, boolean isDiscardAfterPlaying) {
             this.name = name;
-            this.abilityName = abilityName;
-            this.description = description;
+            this.ability = ability;
             this.numberOfCard = cardsNumber;
             this.isDiscardAfterPlaying = isDiscardAfterPlaying;
         }
@@ -48,8 +47,7 @@ import java.util.Objects;
         }
 
         private SpecialCard createCard() {
-            Method ability = SpecialCardAbility.createNewAbilityByName(abilityName);
-            return new SpecialCard(name, description, null,this ,this.isDiscardAfterPlaying,ability);
+            return new SpecialCard(name,  null,this ,this.isDiscardAfterPlaying,ability.getAbility());
         }
 
         @Override
@@ -65,23 +63,7 @@ import java.util.Objects;
             return image;
         }
 
-        @Override
-        public int getNumber() {
-            return numberOfCard;
-        }
 
-        @Override
-        public int getPoint() {
-            return 0;
-        }
-
-        public String getAbilityName() {
-//            String abilityName = this.abilityName.replaceAll("(?=[A-Z])", " ");
-//            abilityName = abilityName.charAt(0) + abilityName.substring(1);
-//            if (abilityName.equals("Commander Horn")) abilityName = "Commander's Horn";
-//            return abilityName;
-            return abilityName;
-        }
     }
 
 
