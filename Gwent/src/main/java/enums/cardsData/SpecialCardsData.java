@@ -9,22 +9,19 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Objects;
 
-    public enum SpecialCardsData implements CardData {
+    public enum SpecialCardsData implements DeckCardData {
         COMMANDER_HORN("CommanderHorn", Ability.HORN_COMMANDER, 3, false),
         DECOY("Decoy", Ability.DECOY,  3, false),
         MARDROEME("Mardroeme", Ability.MARDROEME,  3,true),
         SCORCH("Scorch", Ability.SCORCH,  3,false),
-        BITING_FROST("BitingFrost", Ability.BITING_FROST,  3,false),
-        CLEAR_WEATHER("ClearWeather", Ability.CLEAR_WEATHER,  2,false),
-        IMPENETRABLE_FOG("ImpenetrableFog", Ability.IMPENETRABLE_FOG,  3,false),
-        SKELLIGE_STORM("SkelligeStorm", Ability.SKELLIGE_STORM,  3,false),
-        TORRENTIAL_RAIN("TorrentialRain", Ability.TORRENTIAL_RAIN,  3,false),
         ;
 
         private final String name;
         private final Ability ability;
         private final int numberOfCard;
         private final boolean isDiscardAfterPlaying;
+        private final String lgImageAddress = "/Images/Game/LgCardsImages/special_" + this.toString().toLowerCase() + ".jpg";
+        private final String smImageAddress = "/Images/Game/SmCardsImages/special_" + this.toString().toLowerCase() + ".jpg";
 
 
 
@@ -52,18 +49,24 @@ import java.util.Objects;
 
         @Override
         public Image getLgImage() {
-            String address = "/Images/Game/LgCardsImages/special_" + this.toString().toLowerCase() + ".jpg";
-            return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream(address)));
+            return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream(lgImageAddress)));
 
         }
         @Override
         public Image getSmImage() {
-            String address = "/Images/Game/SmCardsImages/special_" + this.toString().toLowerCase() + ".jpg";
-            Image image = new Image(Objects.requireNonNull(this.getClass().getResourceAsStream(address)));
-            return image;
+            return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream(smImageAddress)));
         }
 
 
+        @Override
+        public int getNumber() {
+            return 0;
+        }
+
+        @Override
+        public Ability getAbility() {
+            return this.ability;
+        }
     }
 
 

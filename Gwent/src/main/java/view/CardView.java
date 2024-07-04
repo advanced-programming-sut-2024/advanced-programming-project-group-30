@@ -6,6 +6,7 @@ import enums.RegularCardPositionType;
 import enums.SizeData;
 import enums.cardsData.CardData;
 import enums.cardsData.RegularCardData;
+import enums.cardsData.SpecialCardsData;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -121,16 +122,16 @@ public class CardView extends Pane {
     }
     private ImageView getRegularCardAbilityImage(){
         ImageView abilityImage = new ImageView();
-        String abilityName =((RegularCardData) cardData).getAbilityName();
-
-        if (abilityName.isEmpty() && !((RegularCard)card).getPositionType().equals(RegularCardPositionType.AGILE)){
-            return null;
-        }
-        if (abilityName.isEmpty() && ((RegularCard)card).getPositionType().equals(RegularCardPositionType.AGILE)) {
-            abilityImage.getStyleClass().add(CssAddress.AGILE_ABILITY_ICON.getStyleClass());
-        }
-        else {
-            abilityImage.getStyleClass().add(CssAddress.getCssAddress(abilityName + "AbilityIcon"));
+        Ability ability =((RegularCardData) cardData).getAbility();
+        if (ability != null) {
+            if (!((RegularCard) card).getPositionType().equals(RegularCardPositionType.AGILE)) {
+                return null;
+            }
+            if (((RegularCard) card).getPositionType().equals(RegularCardPositionType.AGILE)) {
+                abilityImage.getStyleClass().add(CssAddress.AGILE_ABILITY_ICON.getStyleClass());
+            } else {
+                abilityImage.getStyleClass().add(ability.getStyleClass());
+            }
         }
         abilityImage.setFitHeight(SizeData.GAME_SMALL_CARD_ABILITY.getHeight());
         abilityImage.setFitWidth(SizeData.GAME_SMALL_CARD_ABILITY.getWidth());
@@ -143,7 +144,7 @@ public class CardView extends Pane {
 //        String abilityName = cardData.getAbilityName();
 //        char firstChar = abilityName.charAt(0);
 //        abilityName = Character.toLowerCase(firstChar) + abilityName.substring(1);
-        specialAbilityImage.getStyleClass().add(Ability.getStyleClassByName(((RegularCardData)cardData).getAbilityName());
+        specialAbilityImage.getStyleClass().add(Ability.getStyleClassByName(((SpecialCardsData)cardData).getAbility().getAbilityName()));
         specialAbilityImage.setFitHeight(SizeData.GAME_SMALL_CARD_SPECIAL_ABILITY.getHeight());
         specialAbilityImage.setFitWidth(SizeData.GAME_SMALL_CARD_SPECIAL_ABILITY.getWidth());
         specialAbilityImage.setLayoutX(NORMAL_POINT_X);

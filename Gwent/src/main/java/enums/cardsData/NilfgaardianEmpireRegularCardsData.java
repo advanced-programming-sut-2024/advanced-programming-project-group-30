@@ -68,7 +68,9 @@ public enum NilfgaardianEmpireRegularCardsData implements RegularCardData {
         return regularCards;
     }
     private RegularCard createCard() {
-        Method ability = this.ability.getAbility();
+        Method ability = null;
+        if (this.ability != null)
+            ability = this.ability.getAbility();
         return new RegularCard(this.name, FactionType.NILFGAARDIAN_EMPIRE, this, this.isHero, this.point, ability, this.cardPositionType);
     }
     @Override
@@ -94,11 +96,14 @@ public enum NilfgaardianEmpireRegularCardsData implements RegularCardData {
         return isHero;
     }
 
-    @Override
-    public Ability getAbility(String name){
+    public static Ability getAbilityByName(String name){
         for (NilfgaardianEmpireRegularCardsData data : NilfgaardianEmpireRegularCardsData.values())
             if (data.name.equals(name))
                 return data.ability;
         return null;
+    }
+    @Override
+    public Ability getAbility(){
+        return this.ability;
     }
 }

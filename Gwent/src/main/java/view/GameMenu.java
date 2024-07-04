@@ -98,7 +98,6 @@ public class GameMenu implements Menu{
     private PlayerInformationView oppoenentPlayerInformationView;
     @FXML
     public void initialize() {
-        //TODO: handle initialize
         User user = new User("bahar", "123", "bahar", "bahar", SecurityQuestion.QUESTION_1, "blue");
         User user2 = new User("fatemeh", "123", "fatemeh", "fatemeh", SecurityQuestion.QUESTION_1, "blue");
         Game game = new Game();
@@ -108,6 +107,7 @@ public class GameMenu implements Menu{
         PlayerInformationView playerInformationView = new PlayerInformationView(player, CoordinateData.PLAYER_INFORMATION_BOX, CssAddress.CURRENT_PLAYER_TOTAL_SCORE_IMAGE);
         player.setInformationView(playerInformationView);
         PlayerInformationView opponentInformationView = new PlayerInformationView(opponentPlayer, CoordinateData.OPPONENT_INFORMATION_BOX, CssAddress.OPPONENT_PLAYER_TOTAL_SCORE_IMAGE);
+        opponentPlayer.setInformationView(opponentInformationView);
         pane.getChildren().addAll(playerInformationView,opponentInformationView);
         game.setCurrentPlayer(player);
         game.setOpponentPlayer(opponentPlayer);
@@ -133,9 +133,6 @@ public class GameMenu implements Menu{
         setUpDeck(user, deck);
         setUpDeck(user2, opponentDeck);
         setUpNotificationBox();
-//        pane.getChildren().remove(notifBox);
-//        setUpUserInformation(player, username, faction, totalScore, cardNumber, leftGem, rightGem);
-//        setUpUserInformation(opponentPlayer, opponentUsername, opponentFaction, opponentTotalScore, opponentCardNumber, opponentLeftGem, opponentRightGem);
     }
     public void resetRowStyles(RowView rowView) {
         rowView.getRow().getStyleClass().remove(CssAddress.CARD_ROW.getStyleClass());

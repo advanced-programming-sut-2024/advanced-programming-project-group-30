@@ -5,15 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="124b1a9a-c6f6-4977-bbc2-df42d5ff586a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/enums/Ability.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/DeckCardData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/LeaderCardData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/RegularCardData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/WeatherCardsData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/GameMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/GameMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/RegularCardPositionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/RegularCardPositionType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/CardData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/CardData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/MonstersLeaderCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/MonstersLeaderCardsData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/Ability.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/Ability.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/DeckCardData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/DeckCardData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/MonstersRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/MonstersRegularCardsData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/NeutralRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/NeutralRegularCardsData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/NilfgaardianEmpireRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/NilfgaardianEmpireRegularCardsData.java" afterDir="false" />
@@ -21,10 +17,13 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/ScoiaTaelRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/ScoiaTaelRegularCardsData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/SkelligeRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/SkelligeRegularCardsData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/SpecialCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/SpecialCardsData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/ability/RegularCardsAbility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/ability/RegularCardsAbility.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/SpecialCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/SpecialCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Row.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Row.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/SpecialCardPosition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/SpecialCardPosition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/WeatherCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/WeatherCard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/CardView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/CardView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/GameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/GameMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/SmCardsImages/neutral_emiel_regis_rohellec_terzieff.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/SmCardsImages/realms_crinfrid_reavers_dragon_hunter.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,8 +37,8 @@
         <option value="package.json" />
         <option value="Interface" />
         <option value="FxmlFile" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -144,7 +143,7 @@
       <workItem from="1720025075243" duration="14388000" />
       <workItem from="1720081168767" duration="318000" />
       <workItem from="1720081585205" duration="1274000" />
-      <workItem from="1720082892906" duration="17730000" />
+      <workItem from="1720082892906" duration="22543000" />
     </task>
     <servers />
   </component>
@@ -161,5 +160,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/controller/GameMenuController.java</url>
+          <line>65</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -4,6 +4,6 @@ import enums.Ability;
 
 public interface DeckCardData extends CardData {
     int getNumber();
-    Ability getAbility(String name);
+    Ability getAbility();
 //    ChosenModelView getChooseModelView();
 }

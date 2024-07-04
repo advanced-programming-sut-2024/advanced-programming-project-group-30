@@ -2,6 +2,8 @@ package controller;
 
 import enums.CssAddress;
 import enums.RegularCardPositionType;
+import enums.cardsData.DeckCardData;
+import enums.cardsData.RegularCardData;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import model.Game;
@@ -35,11 +37,11 @@ public class GameMenuController {
         gameMenu.setNodeStyle(card.getCardView(), CssAddress.CARD_IN_ROW);
         if (!hbox.getChildren().contains(card.getCardView())) {
             row.addCard(card, !(card instanceof RegularCard));
-//            if (player.getRows().contains(row)){
-//                player.updatePoint(card.getCardData().getPoint());
-//            }else opponentPlayer.updatePoint(card.getCardData().getPoint());
-            hbox.getChildren().add(card.getCardView());
-            gameMenu.handlePassTurn(game);
+            if (card instanceof RegularCard) {
+                if (player.getRows().contains(row)) {
+                    player.updatePoint(((RegularCardData) card.getCardData()).getPoint());
+                } else opponentPlayer.updatePoint(((RegularCard) card.getCardData()).getPoint());
+            }
             updateScores(game);
         }
         player.setSelectedCard(null);
@@ -56,6 +58,7 @@ public class GameMenuController {
         Player player = game.getCurrentPlayer();
         Player opponentPlayer = game.getOpponentPlayer();
         gameMenu.setUpScores(player.getRows());
+        gameMenu.setUpScores(opponentPlayer.getRows());
         player.getPlayerInformationView().updateTotalScore();
         opponentPlayer.getPlayerInformationView().updateTotalScore();
     }

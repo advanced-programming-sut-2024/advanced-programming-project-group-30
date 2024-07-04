@@ -109,7 +109,9 @@ public enum MonstersRegularCardsData implements RegularCardData  {
 //    }
 
     private RegularCard createCard() {
-        Method ability = this.ability.getAbility();
+        Method ability = null;
+        if (this.ability != null)
+            ability = this.ability.getAbility();
         return new RegularCard(this.name, FactionType.MONSTERS, this, this.isHero, this.point, ability, this.cardPositionType);
     }
     @Override
@@ -117,7 +119,10 @@ public enum MonstersRegularCardsData implements RegularCardData  {
         return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream(smImageAddress)));
     }
     @Override
-    public Ability getAbility(String name){
+    public Ability getAbility(){
+        return this.ability;
+    }
+    public static Ability getAbilityByName(String name){
         for (MonstersRegularCardsData data : MonstersRegularCardsData.values())
             if (data.name.equals(name))
                 return data.ability;

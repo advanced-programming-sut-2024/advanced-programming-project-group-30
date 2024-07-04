@@ -1,6 +1,7 @@
 package model;
 
 import enums.CoordinateData;
+import enums.cardsData.RegularCardData;
 import model.card.DecksCard;
 import model.card.SpecialCard;
 import view.RowView;
@@ -78,8 +79,12 @@ public class Row extends Position{
     }
     public void addCard(DecksCard card, boolean isSpecial){
         this.cards.add(card);
-        this.rowPoint += card.getCardData().getPoint();
-        rowView.addCardToRow(card, isSpecial);
+        if (!isSpecial){
+            this.rowPoint += ((RegularCardData)(card.getCardData())).getPoint();
+            rowView.addCardToRow(card, isSpecial);
+        } else {
+            rowView.addCardToSpecialPosition(card);
+        }
 
     }
 }

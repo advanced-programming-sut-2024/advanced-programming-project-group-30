@@ -84,18 +84,23 @@ public enum NeutralRegularCardsData implements RegularCardData {
     // TODO: modify title and description
 
     private RegularCard createCard() {
-        Method ability = this.ability.getAbility();
+        Method ability = null;
+        if (this.ability != null)
+            ability = this.ability.getAbility();
         return new RegularCard(this.name, null, this, this.isHero, this.point, ability, this.cardPositionType);
     }
     @Override
     public Image getSmImage() {
         return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream(smImageAddress)));
     }
-    @Override
-    public Ability getAbility(String name){
+    public static Ability getAbilityByName(String name){
         for (NeutralRegularCardsData data : NeutralRegularCardsData.values())
             if (data.name.equals(name))
                 return data.ability;
         return null;
+    }
+    @Override
+    public Ability getAbility(){
+        return this.ability;
     }
 }
