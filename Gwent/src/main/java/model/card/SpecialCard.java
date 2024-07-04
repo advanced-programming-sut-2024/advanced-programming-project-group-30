@@ -12,7 +12,7 @@ public class SpecialCard extends DecksCard {
     private final Method ability;
 
     public SpecialCard(String name, String explanation, FactionType faction, CardData cardData, boolean discardAfterPlaying, Method ability) {
-        super(name, faction, cardData, false);
+        super(name, faction, cardData, true);
         this.explanation = explanation;
         this.discardAfterPlaying = discardAfterPlaying;
         this.ability = ability;

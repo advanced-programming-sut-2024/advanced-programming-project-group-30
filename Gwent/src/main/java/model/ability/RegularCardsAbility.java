@@ -54,7 +54,7 @@ public abstract class RegularCardsAbility {
     private void spy(Game currentGame, RegularCard card){
         Player opponentPlayer = currentGame.getOpponentPlayer();
         Player currentPlayer = currentGame.getCurrentPlayer();
-        opponentPlayer.setPoint(opponentPlayer.getPoint() + card.getPoint());
+        opponentPlayer.updatePoint(card.getPoint());
         Random random = new Random();
         for (int i = 0; i < 2; i++){
             int index = random.nextInt(opponentPlayer.getDeck().size());

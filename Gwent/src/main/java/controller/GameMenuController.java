@@ -2,31 +2,48 @@ package controller;
 
 import enums.CssAddress;
 import enums.RegularCardPositionType;
+import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import model.Game;
 import model.Player;
 import model.Result;
 import model.Row;
+import model.card.DecksCard;
 import model.card.RegularCard;
+import model.card.SpecialCard;
 import view.CardView;
 import view.GameMenu;
 import view.PlayerInformationView;
 import view.RowView;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Objects;
 
 public class GameMenuController {
     private final GameMenu gameMenu;
     public GameMenuController(GameMenu gameMenu) {
         this.gameMenu = gameMenu;
     }
-    public void handleRegularCardMovement(RegularCard card, Game game, HBox box){
+    public void handleRegularCardMovement(DecksCard card, Game game, Row row, Method method) throws InvocationTargetException, IllegalAccessException {
         Player player = game.getCurrentPlayer();
-        gameMenu.removeNodeStyle(box, CssAddress.CARD_ROW);
+        Player opponentPlayer = game.getOpponentPlayer();
+        HBox hbox =(HBox) method.invoke(row.getRowView());
+        resetRowStyles(game);
         gameMenu.removeNodeStyle(card.getCardView(), CssAddress.GAME_HAND_SM_CARD);
         gameMenu.setNodeStyle(card.getCardView(), CssAddress.CARD_IN_ROW);
-        if (!box.getChildren().contains(card.getCardView()))
-            box.getChildren().add(card.getCardView());
+        if (!hbox.getChildren().contains(card.getCardView())) {
+            row.addCard(card, !(card instanceof RegularCard));
+            if (player.getRows().contains(row)){
+                player.updatePoint(card.getCardData().getPoint());
+            }else opponentPlayer.updatePoint(card.getCardData().getPoint());
+            hbox.getChildren().add(card.getCardView());
+            gameMenu.handlePassTurn(game);
+            updateScores(game);
+        }
         player.setSelectedCard(null);
-        updateScores(game);
+        updateHandCardNumber(game);
         resetRowStyles(game);
     }
     public void resetRowStyles(Game game){
@@ -36,7 +53,10 @@ public class GameMenuController {
     }
     public void updateScores(Game game){
         Player player = game.getCurrentPlayer();
+        Player opponentPlayer = game.getOpponentPlayer();
         gameMenu.setUpScores(player.getRows());
+        player.getPlayerInformationView().updateTotalScore();
+        opponentPlayer.getPlayerInformationView().updateTotalScore();
     }
     public void handleRegularCardEvents(RegularCard card, Game game){
         CardView cardView = card.getCardView();
@@ -45,48 +65,101 @@ public class GameMenuController {
             RegularCardPositionType position = card.getPositionType();
             resetRowStyles(game);
             player.setSelectedCard(card);
-            switch (position) {
-                case CLOSE_COMBAT:
-                    RowView closeCombatRow = player.getCloseCombat().getRowView();
-                    closeCombatRow.getStyleClass().add(CssAddress.CARD_ROW.getStyleClass());
-                    gameMenu.setNodeStyle(closeCombatRow.getRow(), CssAddress.CARD_ROW);
-                    System.out.println("CLOSE_COMBAT row classes: " + closeCombatRow.getRow().getStyleClass());
-                    handleRowEvents(card,game ,closeCombatRow.getRow());
-                    break;
-                case RANGED_COMBAT:
-                    RowView rangedCombatRow = player.getRangedCombat().getRowView();
-                    gameMenu.setNodeStyle(rangedCombatRow.getRow(), CssAddress.CARD_ROW);
-                    handleRowEvents(card,game, rangedCombatRow.getRow());
-                    break;
-                case SIEGE:
-                    RowView siegeCombatRow = player.getSiege().getRowView();
-                    gameMenu.setNodeStyle(siegeCombatRow.getRow(), CssAddress.CARD_ROW);
-                    handleRowEvents(card,game, siegeCombatRow.getRow());
-                    break;
-                default:
-                    RowView siegeRow = player.getSiege().getRowView();
-                    RowView closeRow = player.getCloseCombat().getRowView();
-                    gameMenu.setNodeStyle(siegeRow.getRow(), CssAddress.CARD_ROW);
-                    gameMenu.setNodeStyle(closeRow.getRow(), CssAddress.CARD_ROW);
-                    handleRowEvents(card, game,siegeRow.getRow(), closeRow.getRow());
-                    break;
+            try {
+                Method method = RowView.class.getDeclaredMethod("getRow");
+                switch (position) {
+                    case CLOSE_COMBAT:
+                        RowView closeCombatRow = player.getCloseCombat().getRowView();
+                        gameMenu.setNodeStyle(closeCombatRow.getRow(), CssAddress.CARD_ROW);
+                       handleRowEvents(card, game, method,player.getCloseCombat());
+                        break;
+                    case RANGED_COMBAT:
+                        RowView rangedCombatRow = player.getRangedCombat().getRowView();
+                        gameMenu.setNodeStyle(rangedCombatRow.getRow(), CssAddress.CARD_ROW);
+                        handleRowEvents(card, game, method,player.getRangedCombat());
+                        break;
+                    case SIEGE:
+                        RowView siegeCombatRow = player.getSiege().getRowView();
+                        gameMenu.setNodeStyle(siegeCombatRow.getRow(), CssAddress.CARD_ROW);
+                        handleRowEvents(card, game, method,player.getSiege());
+                        break;
+                    default:
+                        RowView siegeRow = player.getSiege().getRowView();
+                        RowView closeRow = player.getCloseCombat().getRowView();
+                        gameMenu.setNodeStyle(siegeRow.getRow(), CssAddress.CARD_ROW);
+                        gameMenu.setNodeStyle(closeRow.getRow(), CssAddress.CARD_ROW);
+                        handleRowEvents(card, game, method, player.getSiege(), player.getCloseCombat());
+                        break;
+                }
+            }catch (Exception e){
+                e.printStackTrace();
             }
         });
     }
-    public void handleRowEvents(RegularCard card, Game game, HBox... boxes){
-        for (HBox box : boxes) {
-            box.setOnMouseClicked(event -> {
-                handleRegularCardMovement(card, game, box);
+    public void handleSpecialCardEvents(SpecialCard specialCard, Game game) {
+        CardView cardView = specialCard.getCardView();
+        Player player = game.getCurrentPlayer();
+        player.setSelectedCard(specialCard);
+        try {
+            Method method = RowView.class.getDeclaredMethod("getSpecialCardPosition");
+            cardView.setOnMouseClicked(event -> {
+                resetRowStyles(game);
+                for (Row row : player.getRows()) {
+                    if (!row.getRowView().getSpecialCardPosition().getChildren().contains(DecksCard.class)) {
+                        gameMenu.setNodeStyle(row.getRowView().getSpecialCardPosition(), CssAddress.CARD_ROW);
+                        try {
+                            handleRowEvents(specialCard, game, method, row);
+                        } catch (InvocationTargetException e) {
+                            throw new RuntimeException(e);
+                        } catch (IllegalAccessException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                }
+            });
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+    public void handleRowEvents(DecksCard card, Game game, Method method , Row... rows) throws InvocationTargetException, IllegalAccessException {
+        for (Row row: rows) {
+            RowView rowView = row.getRowView();
+            Object object = method.invoke(rowView);
+            ((Node)object).setOnMouseClicked(event -> {
+                if (card instanceof SpecialCard) {
+                    try {
+                        handleRegularCardMovement(card, game, row, RowView.class.getDeclaredMethod("getSpecialCardPosition"));
+                    } catch (NoSuchMethodException e) {
+                        throw new RuntimeException(e);
+                    } catch (InvocationTargetException e) {
+                        throw new RuntimeException(e);
+                    } catch (IllegalAccessException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+                else {
+                    try {
+                        handleRegularCardMovement(card, game, row, RowView.class.getDeclaredMethod("getRow"));
+                    } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
             });
         }
     }
     public void setUpBoard(Game game){
         Player player = game.getCurrentPlayer();
+        Player opponentPlayer = game.getOpponentPlayer();
         Row siege = player.getSiege();
         Row ranged = player.getRangedCombat();
         Row close = player.getCloseCombat();
+        Row opSiege = opponentPlayer.getSiege();
+        Row opRanged = opponentPlayer.getRangedCombat();
+        Row opClose = opponentPlayer.getCloseCombat();
         gameMenu.setUpScores(player.getRows());
-        gameMenu.setUpBoard(siege.getRowView(), ranged.getRowView(), close.getRowView());
+        gameMenu.setUpBoard(siege.getRowView(), ranged.getRowView(), close.getRowView(),
+                opSiege.getRowView(), opRanged.getRowView(), opClose.getRowView());
     }
     public void setUpUsername(Game game){
         Player player = game.getCurrentPlayer();
@@ -196,4 +269,5 @@ public class GameMenuController {
     public Result exitMenu() {
         return null;
     }
+
 }

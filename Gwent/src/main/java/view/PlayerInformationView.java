@@ -42,6 +42,20 @@ public class PlayerInformationView extends Pane {
         this.setLayoutY(coordinateData.getY());
         this.getChildren().addAll(items);
     }
+    public void updateTotalScore(){
+        int score = player.getPoint();
+        totalScore.setText(String.valueOf(score));
+    }
+    public Label getUsernameLabel(){
+        return username;
+    }
+    public Label getHandCardNumber(){
+        return handCardNumber;
+    }
+    public void updateHandCardNumber(){
+
+    }
+
     private void design(){
         setUpProfileImage();
         setUpHandCardImage();
@@ -129,13 +143,4 @@ public class PlayerInformationView extends Pane {
         totalScoreImage.setFitHeight(SizeData.TOTAL_SCORE_IMAGE.getHeight());
         totalScoreImage.setFitWidth(SizeData.TOTAL_SCORE_IMAGE.getWidth());
     }
-
-    public Label getUsernameLabel(){
-        return username;
-    }
-    public Label getHandCardNumber(){
-        return handCardNumber;
-    }
-
-
 }

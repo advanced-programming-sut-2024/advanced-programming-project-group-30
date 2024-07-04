@@ -141,7 +141,6 @@ public class CardView extends Pane {
         String abilityName = cardData.getAbilityName();
         char firstChar = abilityName.charAt(0);
         abilityName = Character.toLowerCase(firstChar) + abilityName.substring(1);
-        System.out.println(abilityName);
         specialAbilityImage.getStyleClass().add(CssAddress.getCssAddress(abilityName + "AbilityIcon"));
         specialAbilityImage.setFitHeight(SizeData.GAME_SMALL_CARD_SPECIAL_ABILITY.getHeight());
         specialAbilityImage.setFitWidth(SizeData.GAME_SMALL_CARD_SPECIAL_ABILITY.getWidth());

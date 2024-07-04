@@ -84,10 +84,6 @@ public class Player {
         return point;
     }
 
-    public void setPoint(int point) {
-        this.point = point;
-    }
-
     public int[] getRoundsPoint() {
         return roundsPoint;
     }
@@ -129,5 +125,14 @@ public class Player {
     }
     public PlayerInformationView getPlayerInformationView() {
         return playerInformationView;
+    }
+
+    public void setInformationView(PlayerInformationView playerInformationView) {
+        this.playerInformationView = playerInformationView;
+    }
+
+    public void updatePoint(int point) {
+        this.point += point;
+        playerInformationView.updateTotalScore();
     }
 }

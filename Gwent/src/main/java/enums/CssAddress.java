@@ -41,7 +41,7 @@ public enum CssAddress {
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     HORN_COMMANDER_ABILITY_ICON("hornCommanderAbilityIcon",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
-    COMMANDERS_HORN_ABILITY_ICON("commandersHornAbilityIcon",
+    COMMANDERS_HORN_ABILITY_ICON("commanderHornAbilityIcon",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     FROST_WEATHER_ICON("bitingFrostAbilityIcon",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
@@ -73,7 +73,7 @@ public enum CssAddress {
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     SCOIA_TAEL_FACTION_ICON("scoia-tael-faction",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
-    PASS_TURN_IMAGE("passTurnImage",
+    PASS_TURN_IMAGE("round-passed-image",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     CHOSEN_ROW("chosen-row",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
@@ -106,6 +106,10 @@ public enum CssAddress {
     GEMS_BOX("gemsBox",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     TOTAL_SCORE_LABEL("black-bold-arial-label",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    NOTIF_BOX("notificationBoxStyle",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    NOTIFICATION_LABEL("notificationMessageStyle",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm());
     ;
 
