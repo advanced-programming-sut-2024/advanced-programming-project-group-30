@@ -43,6 +43,7 @@ public class GameMenuController {
                 } else opponentPlayer.updatePoint(((RegularCard) card.getCardData()).getPoint());
             }
             updateScores(game);
+            gameMenu.handlePassTurn(game);
         }
         player.setSelectedCard(null);
         player.playCard(card);

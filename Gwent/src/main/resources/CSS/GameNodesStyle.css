@@ -335,32 +335,20 @@
     -fx-pref-width: 77;
     -fx-alignment: center;
 }
-/*.monsters-faction-icon{*/
-/*    -fx-background-color: TRANSPARENT;*/
-/*    -fx-background-image: url('../Images/Game/Factions/monsters-icon.png');*/
-/*    -fx-background-size: 100% 100%;*/
-/*}*/
-/*.nilfgaardian-faction-icon{*/
-/*    -fx-background-color: TRANSPARENT;*/
-/*    -fx-background-image: url('../Images/Game/Factions/nilfgaardian_empire-icon.png');*/
-/*    -fx-background-size: 100% 100%;*/
-/*}*/
-/*.northern-realms-faction-icon{*/
-/*    -fx-background-color: TRANSPARENT;*/
-/*    -fx-background-image: url('../Images/Game/Factions/northern_realms.jpg');*/
-/*    -fx-background-size: 100% 100%;*/
-/*}*/
-/*.scoia-tael-faction-icon{*/
-/*    -fx-background-color: TRANSPARENT;*/
-/*    -fx-background-image: url('../Images/Game/Factions/scoia_tael-icon.png');*/
-/*    -fx-background-size: 100% 100%;*/
-/*}*/
-/*.skellige-faction-icon{*/
-/*    -fx-background-color: TRANSPARENT;*/
-/*    -fx-background-image: url('../Images/shields/deck_shield_skellige.png');*/
-/*    -fx-background-size: 100% 100%;*/
-/*}*/
-
-
+.leader-position{
+    -fx-pref-width: 56;
+    -fx-pref-height: 80;
+    -fx-alignment: center;
+}
+.deck-position{
+    -fx-pref-width: 60;
+    -fx-pref-height: 91;
+    -fx-alignment: center;
+}
+.discardPile-position{
+    -fx-alignment: center;
+    -fx-pref-width: 50;
+    -fx-pref-height: 72;
+}
 
 

@@ -35,67 +35,13 @@ public class GameMenu implements Menu{
     @FXML
     private VBox opponentRowsArea;
     @FXML
-    private VBox rowsPane;
-    @FXML
     private Pane pane;
     @FXML
     private Pane notifBox;
     @FXML
     private ImageView notifImage;
     @FXML
-    private Label notifTextLabel;
-    @FXML
-    private Label opponentPassedLabel;
-    @FXML
-    private Label passedLabel;
-    @FXML
-    private Region opponentActiveLeaderIcon;
-    @FXML
-    private Region activeLeaderIcon;
-    @FXML
-    private Region highScore;
-    @FXML
-    private Label faction;
-    @FXML
-    private Label username;
-    @FXML
-    private Label cardNumber;
-    @FXML
-    private Region factionRegion;
-    @FXML
-    private Region opponentHighScoreRegion;
-    @FXML
-    private Region specialWeather;
-    @FXML
-    private Label opponentCardNumber;
-    @FXML
-    private Region opponentFactionRegion;
-    @FXML
-    private Label opponentFaction;
-    @FXML
-    private Label opponentTotalScore;
-    @FXML
-    private Label totalScore;
-    @FXML
-    private Label opponentUsername;
-    @FXML
-    private Region opponentLeftGem, opponentRightGem, leftGem, rightGem;
-    @FXML
-    private Region deck;
-    @FXML
-    private Region opponentDeck;
-    @FXML
     private HBox hand;
-    @FXML
-    private Region opponentDiscardPile;
-    @FXML
-    private Region discardPile;
-    @FXML
-    private Region opponentLeader;
-    @FXML
-    private Region leader;
-    private PlayerInformationView currentPlayerInformationView;
-    private PlayerInformationView oppoenentPlayerInformationView;
     @FXML
     public void initialize() {
         User user = new User("bahar", "123", "bahar", "bahar", SecurityQuestion.QUESTION_1, "blue");
@@ -130,8 +76,8 @@ public class GameMenu implements Menu{
             gameMenuController.handleSpecialCardEvents(specialCard, game);
             specialCard.getCardView().getStyleClass().add(CssAddress.GAME_HAND_SM_CARD.getStyleClass());
         }
-        setUpDeck(user, deck);
-        setUpDeck(user2, opponentDeck);
+//        setUpDeck(user, deck);
+//        setUpDeck(user2, opponentDeck);
         setUpNotificationBox();
     }
     public void resetRowStyles(RowView rowView) {
@@ -196,8 +142,8 @@ public class GameMenu implements Menu{
     }
     public void handlePassTurn(Game game){
         passTurn();
-        game.getCurrentPlayer().getPlayerInformationView().getStyleClass().remove("brownBoxShadowed");
-        game.getOpponentPlayer().getPlayerInformationView().getStyleClass().add("brownBoxShadowed");
+        game.getOpponentPlayer().getPlayerInformationView().getStyleClass().remove("brownBoxShadowed");
+        game.getCurrentPlayer().getPlayerInformationView().getStyleClass().add("brownBoxShadowed");
     }
 
 

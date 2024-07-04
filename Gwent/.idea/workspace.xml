@@ -5,16 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="124b1a9a-c6f6-4977-bbc2-df42d5ff586a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/PlayerView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/GameMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/GameMenuController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/enums/CssAddress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/CssAddress.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/FactionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/FactionType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/PlayerInformationView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/PlayerInformationView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/GameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/GameMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/CSS/GameNodesStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/CSS/GameNodesStyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/shields/deck_shield_monsters.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/shields/deck_shield_nilfgaard.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/shields/deck_shield_realms.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/shields/deck_shield_scoiatael.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/shields/deck_shield_skellige.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +131,7 @@
       <workItem from="1720025075243" duration="14388000" />
       <workItem from="1720081168767" duration="318000" />
       <workItem from="1720081585205" duration="1274000" />
-      <workItem from="1720082892906" duration="25491000" />
+      <workItem from="1720082892906" duration="26819000" />
     </task>
     <servers />
   </component>
@@ -152,16 +148,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/controller/GameMenuController.java</url>
-          <line>65</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

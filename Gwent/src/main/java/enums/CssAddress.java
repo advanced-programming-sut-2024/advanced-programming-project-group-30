@@ -109,7 +109,12 @@ public enum CssAddress {
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     NOTIFICATION_LABEL("notificationMessageStyle",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
-    ;
+    DECK_VIEW("deck-position",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    LEADER_POSITION("leader-position",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    DISCARD_PILE_POSITION("discardPile-position",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     ;
 
 
