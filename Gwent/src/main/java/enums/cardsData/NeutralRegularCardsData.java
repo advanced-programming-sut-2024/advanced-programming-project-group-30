@@ -61,10 +61,10 @@ public enum NeutralRegularCardsData implements RegularCardData {
         return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream(address)));
     }
 
-    public LargeCardView getLargeCardView() {
-        String address = "/Images/Game/LgCardsImages/neutral_" + this.toString().toLowerCase() + ".jpg";
-        return new LargeCardView<>(Objects.requireNonNull(this.getClass().getResourceAsStream(address)), this);
-    }
+//    public LargeCardView getLargeCardView() {
+//        String address = "/Images/Game/LgCardsImages/neutral_" + this.toString().toLowerCase() + ".jpg";
+//        return new LargeCardView<>(Objects.requireNonNull(this.getClass().getResourceAsStream(address)), this);
+//    }
 
     @Override
     public int getNumber() {
