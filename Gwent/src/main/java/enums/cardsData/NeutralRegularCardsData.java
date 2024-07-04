@@ -4,6 +4,7 @@ import enums.RegularCardPositionType;
 import javafx.scene.image.Image;
 import model.ability.RegularCardsAbility;
 import model.card.RegularCard;
+import view.LargeCardView;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -58,6 +59,11 @@ public enum NeutralRegularCardsData implements RegularCardData {
     public Image getLgImage() {
         String address = "/Images/Game/LgCardsImages/neutral_" + this.toString().toLowerCase() + ".jpg";
         return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream(address)));
+    }
+
+    public LargeCardView getLargeCardView() {
+        String address = "/Images/Game/LgCardsImages/neutral_" + this.toString().toLowerCase() + ".jpg";
+        return new LargeCardView<>(Objects.requireNonNull(this.getClass().getResourceAsStream(address)), this);
     }
 
     @Override

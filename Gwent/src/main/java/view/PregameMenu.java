@@ -1,13 +1,15 @@
 package view;
 
 import controller.PregameMenuController;
-import enums.cardsData.CardData;
+import enums.cardsData.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import model.PregameData;
+
+import java.util.ArrayList;
 
 public class PregameMenu implements Menu {
     private final PregameMenuController controller = new PregameMenuController(this);
@@ -34,6 +36,15 @@ public class PregameMenu implements Menu {
         controller.uploadToCardCollection(controller.getPregameData().getCardCollection()); // TODO : remove
         stage.widthProperty().addListener((Void) -> scaleMainPane());
         stage.heightProperty().addListener((Void) -> scaleMainPane());
+        stage.getChildren().remove(mainPane);
+        ArrayList<LargeCardView> largeCardViews = new ArrayList<>();
+        largeCardViews.add(NeutralRegularCardsData.AVALLACH.getLargeCardView());
+            largeCardViews.add(NeutralRegularCardsData.ZOLTAN_CHIVAY.getLargeCardView());
+        largeCardViews.add(NeutralRegularCardsData.GAUNTER_ODIMM_DARKNESS.getLargeCardView());
+        largeCardViews.add(NeutralRegularCardsData.EMIEL_REGIS.getLargeCardView());
+        largeCardViews.add(NeutralRegularCardsData.VESEMIR.getLargeCardView());
+        largeCardViews.add(NeutralRegularCardsData.OLGIERD_VON_EVEREC.getLargeCardView());
+        stage.getChildren().add(new CardChoosePage(largeCardViews,2));
     }
 
     public void addToCardCollection(PregameCardView cardView) {
