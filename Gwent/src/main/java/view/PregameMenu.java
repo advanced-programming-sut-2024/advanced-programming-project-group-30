@@ -39,7 +39,7 @@ public class PregameMenu implements Menu {
         stage.heightProperty().addListener((Void) -> scaleMainPane());
         stage.getChildren().remove(mainPane);
         ArrayList<ChosenModelView> chosenModelViews = new ArrayList<>(FactionType.getAllChooseModelView());
-        stage.getChildren().add(new CardChoosePage(chosenModelViews,2));
+        stage.getChildren().add(new CardSelectionPage(chosenModelViews,2));
     }
 
     public void addToCardCollection(PregameCardView cardView) {
