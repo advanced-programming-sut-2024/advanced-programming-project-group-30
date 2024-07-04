@@ -57,7 +57,7 @@ public class RowView extends HBox {
         else rowView.getChildren().add(decksCard.getCardView());
     }
     public void addCardToSpecialPosition(DecksCard decksCard){
-        if (!specialCardPosition.getChildren().contains(DecksCard.class)){
+        if (specialCardPosition.getChildren().isEmpty()){
             specialCardPosition.getChildren().add(decksCard.getCardView());
         }
     }

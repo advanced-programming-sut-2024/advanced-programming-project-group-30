@@ -84,11 +84,11 @@ public class GameMenuController {
                         handleRowEvents(card, game, method,player.getSiege());
                         break;
                     default:
-                        RowView siegeRow = player.getSiege().getRowView();
+                        RowView ranged = player.getRangedCombat().getRowView();
                         RowView closeRow = player.getCloseCombat().getRowView();
-                        gameMenu.setNodeStyle(siegeRow.getRow(), CssAddress.CARD_ROW);
+                        gameMenu.setNodeStyle(ranged.getRow(), CssAddress.CARD_ROW);
                         gameMenu.setNodeStyle(closeRow.getRow(), CssAddress.CARD_ROW);
-                        handleRowEvents(card, game, method, player.getSiege(), player.getCloseCombat());
+                        handleRowEvents(card, game, method, player.getRangedCombat(), player.getCloseCombat());
                         break;
                 }
             }catch (Exception e){
@@ -105,7 +105,7 @@ public class GameMenuController {
             cardView.setOnMouseClicked(event -> {
                 resetRowStyles(game);
                 for (Row row : player.getRows()) {
-                    if (!row.getRowView().getSpecialCardPosition().getChildren().contains(DecksCard.class)) {
+                    if (row.getRowView().getSpecialCardPosition().getChildren().isEmpty()) {
                         gameMenu.setNodeStyle(row.getRowView().getSpecialCardPosition(), CssAddress.CARD_ROW);
                         try {
                             handleRowEvents(specialCard, game, method, row);
@@ -120,7 +120,6 @@ public class GameMenuController {
         }catch (Exception e){
             e.printStackTrace();
         }
-
     }
     public void handleRowEvents(DecksCard card, Game game, Method method , Row... rows) throws InvocationTargetException, IllegalAccessException {
         for (Row row: rows) {
