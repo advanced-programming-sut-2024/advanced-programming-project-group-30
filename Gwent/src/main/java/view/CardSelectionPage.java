@@ -5,29 +5,35 @@ import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.effect.*;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
 
-public class CardSelectionPage extends HBox {
+public class CardSelectionPage extends VBox {
+    private final HBox cardsBox = new HBox();
     private final int number = 5;
     private final ArrayList<Rectangle> regions;
     private final ArrayList<ChosenModelView> chosenModelViews;
     private int index;
 
     public CardSelectionPage(ArrayList<ChosenModelView> chosenModelViews, int index) {
-        setup();
         this.regions = createRegions();
-        regions.get(number / 2).setEffect(createEffect());
-        this.getChildren().addAll(regions);
         this.chosenModelViews = chosenModelViews;
-        setIndex(index);
+        setup();
     }
 
     private void setup() {
+        this.getChildren().add(cardsBox);
+        this.getChildren().add(chosenModelViews.get(index).getDescriptionBox());
         this.setAlignment(Pos.CENTER);
-        this.setSpacing(15);
+        this.setSpacing(20);
+        cardsBox.getChildren().addAll(regions);
+        cardsBox.setAlignment(Pos.CENTER);
+        cardsBox.setSpacing(15);
+        regions.get(number / 2).setEffect(createEffect());
+        setIndex(index);
     }
 
     private ArrayList<Rectangle> createRegions() {
@@ -41,7 +47,6 @@ public class CardSelectionPage extends HBox {
                 if (region.getFill() != Color.TRANSPARENT) setIndex(index - number / 2 + regions.indexOf(region));
             });
         }
-
         return regions;
     }
 
@@ -57,6 +62,8 @@ public class CardSelectionPage extends HBox {
                 regions.get(i).setCursor(Cursor.HAND);
             }
         }
+        this.getChildren().remove(1);
+        this.getChildren().add(chosenModelViews.get(index).getDescriptionBox());
     }
 
     private void setSize(Rectangle region, double scale) {

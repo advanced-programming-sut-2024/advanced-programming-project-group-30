@@ -8,6 +8,12 @@ public enum CssAddress {
     NUMBER_OF_CARD_TYPE_LABEL("numberOfCardTypeLabel",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     PREGAME_CARD_VIEW("preGameCard", Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    DESCRIPTION_BOX("descriptionBox",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    DESCRIPTION_BOX_TEXT("descriptionBoxText",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    DESCRIPTION_BOX_TITLE("descriptionBoxTitle",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     ;
 
     private final String styleClass;

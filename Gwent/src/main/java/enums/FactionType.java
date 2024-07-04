@@ -15,10 +15,10 @@ public enum FactionType {
             NilfgaardianEmpireRegularCardsData.class, NilfgaardianEmpireLeaderCardsData.class),
     MONSTERS("Monsters", "Keeps a random Unit Card out after each round.",
             MonstersRegularCardsData.class, MonstersRegularCardsData.class),
-    SCOIA_TAEL("Scoia' TAEL", "Decides who takes first turn.",
+    SCOIA_TAEL("Scoia'tael", "Decides who takes first turn.",
             ScoiaTaelRegularCardsData.class, ScoiaTaelLeaderCardsData.class),
     SKELLIGE("Skellige",
-            "2 random cards from the graveyard are placed on the battlefield at the start of the third round.",
+            "2 random cards from the graveyard are placed on\n the battlefield at the start of the third round.",
             SkelligeRegularCardsData.class, SkelligeLeaderCardsData.class),
     ;
 
@@ -56,6 +56,6 @@ public enum FactionType {
 
     private ChosenModelView<FactionType> getChooseModelView() {
         return new ChosenModelView<>(Objects.requireNonNull(
-                this.getClass().getResourceAsStream(lgImageAddress)), this, this.description, this.name);
+                this.getClass().getResourceAsStream(lgImageAddress)), this, this.name, this.description);
     }
 }

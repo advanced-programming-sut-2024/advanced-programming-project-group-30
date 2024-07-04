@@ -8,15 +8,13 @@ import java.io.InputStream;
 public class ChosenModelView<T> extends Image {
     private final T model;
     private final ImagePattern imagePattern;
-    private final String descriptionTitle;
-    private final String description;
+    private final DescriptionBox descriptionBox;
 
     public ChosenModelView(InputStream inputStream, T type, String descriptionTitle, String description) {
         super(inputStream);
         this.model = type;
         this.imagePattern = new ImagePattern(this);
-        this.descriptionTitle  = descriptionTitle;
-        this.description = description;
+        this.descriptionBox = new DescriptionBox(descriptionTitle,description);
     }
 
     public T getModel() {
@@ -27,11 +25,7 @@ public class ChosenModelView<T> extends Image {
         return imagePattern;
     }
 
-    public String getDescriptionTitle() {
-        return descriptionTitle;
-    }
-
-    public String getDescription() {
-        return description;
+    public DescriptionBox getDescriptionBox() {
+        return descriptionBox;
     }
 }
