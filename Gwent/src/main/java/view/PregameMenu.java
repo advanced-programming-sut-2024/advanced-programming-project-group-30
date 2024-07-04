@@ -37,14 +37,14 @@ public class PregameMenu implements Menu {
         stage.widthProperty().addListener((Void) -> scaleMainPane());
         stage.heightProperty().addListener((Void) -> scaleMainPane());
         stage.getChildren().remove(mainPane);
-        ArrayList<LargeCardView> largeCardViews = new ArrayList<>();
-        largeCardViews.add(NeutralRegularCardsData.AVALLACH.getLargeCardView());
-            largeCardViews.add(NeutralRegularCardsData.ZOLTAN_CHIVAY.getLargeCardView());
-        largeCardViews.add(NeutralRegularCardsData.GAUNTER_ODIMM_DARKNESS.getLargeCardView());
-        largeCardViews.add(NeutralRegularCardsData.EMIEL_REGIS.getLargeCardView());
-        largeCardViews.add(NeutralRegularCardsData.VESEMIR.getLargeCardView());
-        largeCardViews.add(NeutralRegularCardsData.OLGIERD_VON_EVEREC.getLargeCardView());
-        stage.getChildren().add(new CardChoosePage(largeCardViews,2));
+        ArrayList<chosenModelView> chosenModelViews = new ArrayList<>();
+        chosenModelViews.add(NeutralRegularCardsData.AVALLACH.getChooseModelView());
+            chosenModelViews.add(NeutralRegularCardsData.ZOLTAN_CHIVAY.getChooseModelView());
+        chosenModelViews.add(NeutralRegularCardsData.GAUNTER_ODIMM_DARKNESS.getChooseModelView());
+        chosenModelViews.add(NeutralRegularCardsData.EMIEL_REGIS.getChooseModelView());
+        chosenModelViews.add(NeutralRegularCardsData.VESEMIR.getChooseModelView());
+        chosenModelViews.add(NeutralRegularCardsData.OLGIERD_VON_EVEREC.getChooseModelView());
+        stage.getChildren().add(new CardChoosePage(chosenModelViews,2));
     }
 
     public void addToCardCollection(PregameCardView cardView) {

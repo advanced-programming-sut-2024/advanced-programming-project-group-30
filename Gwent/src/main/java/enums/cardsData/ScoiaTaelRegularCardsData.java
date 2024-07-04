@@ -5,6 +5,7 @@ import enums.RegularCardPositionType;
 import javafx.scene.image.Image;
 import model.ability.RegularCardsAbility;
 import model.card.RegularCard;
+import view.chosenModelView;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -56,6 +57,7 @@ public enum ScoiaTaelRegularCardsData implements RegularCardData {
     private final int point;
     private final int numberOfCard;
     private final RegularCardPositionType cardPositionType;
+    private final String lgImageAddress = "/Images/Game/LgCardsImages/scoiatael_" + this.toString().toLowerCase() + ".jpg";
 
     ScoiaTaelRegularCardsData(String name, String abilityName, boolean isHero, int point, int numberOfCard, RegularCardPositionType cardPositionType) {
         this.name = name;
@@ -75,14 +77,8 @@ public enum ScoiaTaelRegularCardsData implements RegularCardData {
     }
 
     @Override
-    public Image getLgImage() {
-        String address = "/Images/Game/LgCardsImages/scoiatael_" + this.toString().toLowerCase() + ".jpg";
-        return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream(address)));
-    }
-
-    @Override
-    public int getNumber() {
-        return numberOfCard;
+    public boolean isHero() {
+        return isHero;
     }
 
     @Override
@@ -91,8 +87,19 @@ public enum ScoiaTaelRegularCardsData implements RegularCardData {
     }
 
     @Override
-    public boolean isHero() {
-        return isHero;
+    public int getNumber() {
+        return numberOfCard;
+    }
+
+    @Override
+    public Image getLgImage() {
+        return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream(lgImageAddress)));
+    }
+
+    @Override
+    public chosenModelView getChooseModelView() {
+        return new chosenModelView<>(Objects.requireNonNull(
+                this.getClass().getResourceAsStream(lgImageAddress)), this, "", abilityName);
     }
 
     private RegularCard createCard() {

@@ -2,13 +2,14 @@ package enums.cardsData;
 
 import javafx.scene.image.Image;
 import model.card.specialCard.*;
+import view.chosenModelView;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Objects;
 
 public enum SpecialCardsData implements DeckCardData {
-    COMMANDER_HORN("CommanderHorn","commanderHorn", "Doubles the strength of all unit cards in that row. Limited to 1 per row.", 3),
+    COMMANDER_HORN("CommanderHorn", "commanderHorn", "Doubles the strength of all unit cards in that row. Limited to 1 per row.", 3),
     DECOY("Decoy", "decoy", "Swap with a card on the battlefield to return it to your hand.", 3),
     MARDROEME("Mardroeme", "mardroeme", "Triggers transformation of all Berserker cards on the same row.", 3),
     SCORCH("Scorch", "scorch", "Triggers transformation of all Berserker cards on the same row.", 3),
@@ -23,6 +24,7 @@ public enum SpecialCardsData implements DeckCardData {
     private final String abilityName;
     private final String description;
     private final int numberOfCard;
+    private final String lgImageAddress = "/Images/Game/LgCardsImages/special_" + this.toString().toLowerCase() + ".jpg";
 
     SpecialCardsData(String name, String abilityName, String description, int cardsNumber) {
         this.name = name;
@@ -39,14 +41,8 @@ public enum SpecialCardsData implements DeckCardData {
         return specialCards;
     }
 
-    @Override
-    public Image getLgImage() {
-        String address = "/Images/Game/LgCardsImages/special_" + this.toString().toLowerCase() + ".jpg";
-        return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream(address)));
-    }
-
     public String getAbilityName() {
-        String abilityName = this.abilityName.replaceAll("(?=[A-Z])"," ");
+        String abilityName = this.abilityName.replaceAll("(?=[A-Z])", " ");
         abilityName = abilityName.charAt(0) + abilityName.substring(1);
         if (abilityName.equals("Commander Horn")) abilityName = "Commander's Horn";
         return abilityName;
@@ -55,6 +51,17 @@ public enum SpecialCardsData implements DeckCardData {
     @Override
     public int getNumber() {
         return numberOfCard;
+    }
+
+    @Override
+    public Image getLgImage() {
+        return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream(lgImageAddress)));
+    }
+
+    @Override
+    public chosenModelView getChooseModelView() {
+        return new chosenModelView<>(Objects.requireNonNull(
+                this.getClass().getResourceAsStream(lgImageAddress)), this, this.description, this.getAbilityName());
     }
 
     private SpecialCard createCard() {

@@ -5,6 +5,7 @@ import enums.RegularCardPositionType;
 import javafx.scene.image.Image;
 import model.ability.RegularCardsAbility;
 import model.card.RegularCard;
+import view.chosenModelView;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -26,7 +27,7 @@ public enum SkelligeRegularCardsData implements RegularCardData {
     CLAN_DRUMMOND_SHIELD_MAIDEN("Clan Drummond Shieldmaide", "tightBond", false, 4, 1, RegularCardPositionType.CLOSE_COMBAT),
     CLAN_DRUMMOND_SHIELD_MAIDEN_1("Clan Drummond Shieldmaide", "tightBond", false, 4, 1, RegularCardPositionType.CLOSE_COMBAT),
     CLAN_DRUMMOND_SHIELD_MAIDEN_2("Clan Drummond Shieldmaide", "tightBond", false, 4, 1, RegularCardPositionType.CLOSE_COMBAT),
-    CLAN_HEYMAEY_SKALD("Clan Heymaey Skald", null, false,4,1,RegularCardPositionType.CLOSE_COMBAT),
+    CLAN_HEYMAEY_SKALD("Clan Heymaey Skald", null, false, 4, 1, RegularCardPositionType.CLOSE_COMBAT),
     CLAN_TORDARROCH_ARMORSMITH("Clan Tordarroch Armorsmith", null, false, 4, 1, RegularCardPositionType.CLOSE_COMBAT),
     DONAR_AN_HINDAR("Donar an Hindar", null, false, 4, 1, RegularCardPositionType.CLOSE_COMBAT),
     HOLGER_BLACKHAND("Holger Blackhand", null, false, 4, 1, RegularCardPositionType.SIEGE),
@@ -45,6 +46,7 @@ public enum SkelligeRegularCardsData implements RegularCardData {
     private final int point;
     private final int numberOfCard;
     private final RegularCardPositionType cardPositionType;
+    private final String lgImageAddress = "/Images/Game/LgCardsImages/skellige_" + this.toString().toLowerCase() + ".jpg";
 
     SkelligeRegularCardsData(String name, String abilityName, boolean isHero, int point, int numberOfCard, RegularCardPositionType cardPositionType) {
         this.name = name;
@@ -64,14 +66,8 @@ public enum SkelligeRegularCardsData implements RegularCardData {
     }
 
     @Override
-    public Image getLgImage() {
-        String address = "/Images/Game/LgCardsImages/skellige_" + this.toString().toLowerCase() + ".jpg";
-        return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream(address)));
-    }
-
-    @Override
-    public int getNumber() {
-        return numberOfCard;
+    public boolean isHero() {
+        return isHero;
     }
 
     @Override
@@ -80,8 +76,19 @@ public enum SkelligeRegularCardsData implements RegularCardData {
     }
 
     @Override
-    public boolean isHero() {
-        return isHero;
+    public int getNumber() {
+        return numberOfCard;
+    }
+
+    @Override
+    public Image getLgImage() {
+        return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream(lgImageAddress)));
+    }
+
+    @Override
+    public chosenModelView getChooseModelView() {
+        return new chosenModelView<>(Objects.requireNonNull(
+                this.getClass().getResourceAsStream(lgImageAddress)), this, "", abilityName);
     }
 
     private RegularCard createCard() {
