@@ -5,6 +5,7 @@ import enums.FactionType;
 import enums.cardsData.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
@@ -22,6 +23,10 @@ public class PregameMenu implements Menu {
     private Pane helperPane;
     @FXML
     private Label factionLabel;
+    @FXML
+    private ImageView rightFactionIcon;
+    @FXML
+    private ImageView leftFactionIcon;
     @FXML
     private Label descriptionLabel;
     @FXML
@@ -45,12 +50,10 @@ public class PregameMenu implements Menu {
         root.heightProperty().addListener((Void) -> scalePanes());
         helperPane.setOnMouseClicked((Void) -> closeFactionSelectionPage());
         // TODO: in setup ,start
+        updateFactionsFields(controller.getPregameData().getFaction());
         controller.uploadToCardCollection(controller.getPregameData().getCardCollection());
         factionSelectionPage = new SelectionPage<>(FactionType.getAllChooseModelView(), FactionType.getFactionIndex(controller.getPregameData().getFaction()));
-        factionSelectionPage.getMainRegion().setOnMouseClicked((Void) -> {
-            controller.changeFation(factionSelectionPage.getSelectedModel());
-            closeFactionSelectionPage();
-        });
+        factionSelectionPage.getMainRegion().setOnMouseClicked((Void) -> selectFaction());
         factionSelectionPage.setOnMouseClicked((event -> {
             if (!factionSelectionPage.isInTheBoundOfSubRegions(event.getX(), event.getY())) closeFactionSelectionPage();
         }));
@@ -88,6 +91,13 @@ public class PregameMenu implements Menu {
         return controller.getCardView(cardData, cardsInDeck);
     }
 
+    public void updateFactionsFields(FactionType faction) {
+        factionLabel.setText(faction.getName());
+        descriptionLabel.setText(faction.getDescription());
+        rightFactionIcon.setImage(faction.getShieldIcon());
+        leftFactionIcon.setImage(faction.getShieldIcon());
+    }
+
     public void updateNumberData() {
         PregameData pregameData = controller.getPregameData();
         cardsInDeckNumber.setText("×" + pregameData.getCardsInDeckNumber());
@@ -118,6 +128,12 @@ public class PregameMenu implements Menu {
         helperPane.setVisible(false);
         helperPane.setDisable(true);
         root.getChildren().remove(factionSelectionPage);
+    }
+
+    private void selectFaction() {
+        controller.changeFation(factionSelectionPage.getSelectedModel());
+        updateFactionsFields(factionSelectionPage.getSelectedModel());
+        closeFactionSelectionPage();
     }
 
     private void scalePanes() {

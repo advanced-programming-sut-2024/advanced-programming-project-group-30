@@ -1,6 +1,7 @@
 package enums;
 
 import enums.cardsData.*;
+import javafx.scene.image.Image;
 import model.card.RegularCard;
 import view.ChosenModelView;
 
@@ -27,6 +28,7 @@ public enum FactionType {
     private final Class regularCardsData;
     private final Class leaderCardsData;
     private final String lgImageAddress = "/Images/Game/Factions/" + this.toString().toLowerCase() + ".jpg";
+    private final String shieldImageAddress = "/Images/Game/Factions/shield_" + this.toString().toLowerCase() + ".png";
 
     FactionType(String name, String description, Class regularCardsData, Class leaderCardsData) {
         this.name = name;
@@ -51,6 +53,14 @@ public enum FactionType {
 
     public String getName() {
         return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Image getShieldIcon() {
+        return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream(this.shieldImageAddress)));
     }
 
     public ArrayList<RegularCard> getFactionRegularCards() {
