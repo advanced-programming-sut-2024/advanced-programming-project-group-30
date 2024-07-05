@@ -11,22 +11,41 @@ import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
 
-public class CardSelectionPage extends VBox {
+public class SelectionPage<T> extends VBox {
     private final HBox cardsBox = new HBox();
     private final int number = 5;
     private final ArrayList<Rectangle> regions;
-    private final ArrayList<ChosenModelView> chosenModelViews;
+    private final Rectangle mainRegion;
+    private final ArrayList<ChosenModelView<T>> chosenModelViews;
     private int index;
 
-    public CardSelectionPage(ArrayList<ChosenModelView> chosenModelViews, int index) {
+    public SelectionPage(ArrayList<ChosenModelView<T>> chosenModelViews, int index) {
         this.regions = createRegions();
+        mainRegion = regions.get(number / 2);
         this.chosenModelViews = chosenModelViews;
         setup();
+    }
+
+    public Rectangle getMainRegion() {
+        return mainRegion;
+    }
+
+    public boolean isInTheBoundOfSubRegions(double x, double y) {
+        for (Rectangle region : regions) {
+            if (region == mainRegion) continue;
+            if (region.getBoundsInParent().contains(x, y - (mainRegion.getHeight() - region.getHeight()) / 2) &&
+                    region.getFill() != Color.TRANSPARENT) return true;
+        }
+        return false;
     }
 
     private void setup() {
         this.getChildren().add(cardsBox);
         this.getChildren().add(chosenModelViews.get(index).getDescriptionBox());
+        this.setMinWidth(1150);
+        this.setMaxWidth(1150);
+        this.setMinHeight(650);
+        this.setMaxHeight(650);
         this.setAlignment(Pos.CENTER);
         this.setSpacing(20);
         cardsBox.getChildren().addAll(regions);

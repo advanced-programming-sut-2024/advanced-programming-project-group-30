@@ -17,7 +17,8 @@ import java.util.TreeMap;
 
 public class PregameMenuController {
     // TODO: remove
-    private PregameData pregameData = new PregameData(new User("", "", "", "", null, ""));
+    public User user = new User("", "", "", "", null, "");
+    private PregameData pregameData = new PregameData(user);
     private final PregameMenu menu;
 
     public PregameMenuController(PregameMenu menu) {
@@ -83,10 +84,10 @@ public class PregameMenuController {
         return list.indexOf(cardView.getCardData());
     }
 
-    public Double getScale(double stageWidth, double stageHeight, double paneWidth, double paneHeight) {
+    public Double getScale(double stageWidth, double stageHeight, double paneWidth, double paneHeight, double scaleCoef) {
         if (stageWidth < 0.1 || stageHeight < 0.1 || paneWidth < 0.1 || paneHeight < 0.1) return null;
         double scaleX = stageWidth / paneWidth;
         double scaleY = stageHeight / paneHeight;
-        return Math.min(scaleY, scaleX) * 0.97;
+        return Math.min(scaleY, scaleX) * scaleCoef;
     }
 }

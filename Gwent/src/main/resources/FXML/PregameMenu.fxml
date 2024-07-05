@@ -6,20 +6,20 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
-<VBox fx:id="stage" alignment="CENTER" styleClass="pregameBackground" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PregameMenu">
-    <BorderPane fx:id="mainPane" styleClass="pregameMainPain">
+<Pane fx:id="root" prefWidth="1150.0" styleClass="pregameBackground" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PregameMenu">
+    <BorderPane fx:id="mainPane" prefHeight="650.0" prefWidth="1150.0" styleClass="pregameMainPain">
         <top>
             <VBox alignment="CENTER" BorderPane.alignment="CENTER">
                 <Pane maxWidth="1109.0" minWidth="600.0" prefHeight="160.0" prefWidth="1109.0">
                     <Label layoutX="463.0" layoutY="32.0" styleClass="factionName" text="Faction Name" />
-                    <ImageView fitHeight="40.0" layoutX="405.0" layoutY="32.0" preserveRatio="true">
+                    <ImageView fitHeight="40.0" layoutX="405.0" layoutY="32.0" preserveRatio="true" styleClass="node">
                         <Image url="@../Images/Game/Factions/Nilfgaard.png" />
                     </ImageView>
                     <ImageView fitHeight="40.0" layoutX="669.0" layoutY="32.0" preserveRatio="true">
                         <Image url="@../Images/Game/Factions/Nilfgaard.png" />
                     </ImageView>
                     <Label layoutX="379.0" layoutY="81.0" styleClass="descriptions" text="Descriptions about the ability of the Faction are written here" />
-                    <Button layoutX="478.0" layoutY="105.0" prefHeight="30" prefWidth="138" styleClass="buttonWithoutBack" text="Change Faction" />
+                    <Button layoutX="478.0" layoutY="105.0" onAction="#openFactionSelectionPage" prefHeight="30" prefWidth="138" styleClass="buttonWithoutBack" text="Change Faction" />
                     <Button layoutX="610.0" layoutY="105.0" prefHeight="30" prefWidth="140" styleClass="buttonWithoutBack" text="Download Deck" />
                     <Button layoutX="359.0" layoutY="105.0" prefHeight="30" prefWidth="118" styleClass="buttonWithoutBack" text="Upload Deck" />
                     <Label layoutX="37.0" layoutY="129.0" styleClass="cardsTitle" text="Card Collection" />
@@ -82,8 +82,9 @@
             </HBox>
         </center>
     </BorderPane>
+    <Pane fx:id="helperPane" disable="true" opacity="0.7" prefHeight="650.0" prefWidth="1150.0" styleClass="pregameMainPain" visible="false" />
     <stylesheets>
         <URL value="@../CSS/Backgrounds.css" />
         <URL value="@../CSS/GameNodesStyle.css" />
     </stylesheets>
-</VBox>
+</Pane>

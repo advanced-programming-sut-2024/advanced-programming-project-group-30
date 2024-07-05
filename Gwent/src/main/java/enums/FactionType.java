@@ -42,6 +42,13 @@ public enum FactionType {
         return allChooseModelView;
     }
 
+    public static int getFactionIndex(FactionType factionType) {
+        for (int i = 0; i < FactionType.values().length; i++) {
+            if (factionType == FactionType.values()[i]) return i;
+        }
+        return -1;
+    }
+
     public String getName() {
         return name;
     }
