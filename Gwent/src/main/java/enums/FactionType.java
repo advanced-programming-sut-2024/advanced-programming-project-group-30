@@ -57,6 +57,9 @@ public enum FactionType {
     public Image getIconImage(){
         return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream(iconImageAddress)));
     }
+    public Image getLgImage(){
+        return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream(lgImageAddress)));
+    }
 
 //    private ChosenModelView<FactionType> getChooseModelView() {
 //        return new ChosenModelView<>(Objects.requireNonNull(

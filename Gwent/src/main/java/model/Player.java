@@ -3,6 +3,7 @@ package model;
 import enums.CoordinateData;
 import enums.CssAddress;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import model.card.DecksCard;
 import model.card.Leader;
@@ -123,8 +124,8 @@ public class Player {
     public DecksCard getSelectedCard() {
         return selectedCard;
     }
-    public void createPlayerView(VBox boardView, HBox discardPileView, HBox deckView, HBox handView, CoordinateData coordinateData, CssAddress cssAddress){
-        playerView = new PlayerView(this, boardView, discardPileView, deckView, handView,coordinateData, cssAddress);
+    public void createPlayerView(Pane pane, VBox boardView, HBox discardPileView, HBox deckView, HBox handView, HBox leaderView, CoordinateData coordinateData, CssAddress cssAddress){
+        playerView = new PlayerView(this, pane,boardView, discardPileView, deckView, handView, leaderView,coordinateData, cssAddress);
     }
     public PlayerInformationView getPlayerInformationView() {
         return playerView.getPlayerInformationView();

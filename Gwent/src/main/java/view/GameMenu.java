@@ -69,9 +69,9 @@ public class GameMenu implements Menu{
         App.setCurrentGame(game);
         Player player = new Player(user, game);
         Player opponentPlayer = new Player(user2, game);
-        PlayerView playerView = new PlayerView(player, currentRowArea, discardPile, deck,  hand, CoordinateData.PLAYER_INFORMATION_BOX, CssAddress.CURRENT_PLAYER_TOTAL_SCORE_IMAGE);
+        PlayerView playerView = new PlayerView(player, pane,currentRowArea, discardPile, deck,  hand,  leader, CoordinateData.PLAYER_INFORMATION_BOX, CssAddress.CURRENT_PLAYER_TOTAL_SCORE_IMAGE);
         player.setPlayerView(playerView);
-        PlayerView opponentPlayerView = new PlayerView(opponentPlayer, opponentRowsArea, opponentDiscardPile, opponentDeck, hand,CoordinateData.OPPONENT_INFORMATION_BOX, CssAddress.OPPONENT_PLAYER_TOTAL_SCORE_IMAGE);
+        PlayerView opponentPlayerView = new PlayerView(opponentPlayer, pane,opponentRowsArea, opponentDiscardPile, opponentDeck, hand, opponentLeader,CoordinateData.OPPONENT_INFORMATION_BOX, CssAddress.OPPONENT_PLAYER_TOTAL_SCORE_IMAGE);
         opponentPlayer.setPlayerView(opponentPlayerView);
         pane.getChildren().addAll(playerView.getPlayerInformationView(),opponentPlayerView.getPlayerInformationView());
         game.setCurrentPlayer(player);
@@ -104,7 +104,7 @@ public class GameMenu implements Menu{
             card.getCardView().getStyleClass().add(CssAddress.GAME_HAND_SM_CARD.getStyleClass());
         }
         centerPane.getChildren().add(hand);
-        for (int i = j; i < allCards.size(); i++){
+        for (int i = j; i < j + 10; i++){
             DecksCard card = allCards.get(i);
             opponentPlayer.addCardToHand(card);
             CardView cardView = card.getCardView();
@@ -119,9 +119,6 @@ public class GameMenu implements Menu{
         }
         centerPane.getChildren().addAll(playerView.getHandView());
         game.getCurrentPlayer().getPlayerInformationView().getStyleClass().add("brownBoxShadowed");
-
-//        setUpDeck(user, deck);
-//        setUpDeck(user2, opponentDeck);
         setUpNotificationBox();
     }
     public HBox getWeatherCardPosition(){
@@ -148,9 +145,13 @@ public class GameMenu implements Menu{
         pane.getChildren().add(notifPane);
         notifImageView.getStyleClass().add(GameNotification.PASS_TURN.getNotificationImage());
         notifLabel.setText(GameNotification.PASS_TURN.getNotification());
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2),event -> {
+        pane.setDisable(true);
+        pane.getStyleClass().add("rootPaneNotifStyle");
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(4),event -> {
+            pane.getStyleClass().remove("rootPaneNotifStyle");
             notifImageView.getStyleClass().remove(GameNotification.PASS_TURN.getNotificationImage());
             notifLabel.setText("");
+            pane.setDisable(false);
             pane.getChildren().remove(notifPane);
         }));
         timeline.setCycleCount(1);
@@ -171,19 +172,15 @@ public class GameMenu implements Menu{
     public void updateHandCardNumber(Label cardNumber, int number){
         cardNumber.setText(String.valueOf(number));
     }
-    private void setUpNotificationBox(){
-        notifPane.getStyleClass().add(CssAddress.NOTIF_BOX.getStyleClass());
-        notifPane.setLayoutY(notifBox.getLayoutY());
-        notifLabel.getStyleClass().add(CssAddress.NOTIFICATION_LABEL.getStyleClass());
-        notifLabel.setLayoutX(notifText.getLayoutX());
-        notifLabel.setLayoutY(notifText.getLayoutY());
-        notifImageView.setLayoutY(notifImage.getLayoutY());
-        notifImageView.setLayoutX(notifImage.getLayoutX());
-        notifImageView.setFitWidth(notifImage.getFitWidth());
-        notifImageView.setFitHeight(notifImage.getFitHeight());
-        notifPane.getChildren().addAll(notifLabel,notifImageView);
+    public void setUpAfterSwitch(Node pane, Node node1, Node node2){
+        if (pane instanceof HBox)
+            ((HBox) pane).getChildren().addAll(node1, node2);
+        else if (pane instanceof Pane) {
+            ((Pane) pane).getChildren().addAll(node1,node2);
+        }
+
     }
-    public void handlePassTurn(Game game){
+    public void handlePassTurn(Game game) {
         passTurn();
         game.getCurrentPlayer().getPlayerInformationView().getStyleClass().add("brownBoxShadowed");
         game.getOpponentPlayer().getPlayerInformationView().getStyleClass().remove("brownBoxShadowed");
@@ -203,6 +200,18 @@ public class GameMenu implements Menu{
     }
     public Pane getPane(){
         return pane;
+    }
+    private void setUpNotificationBox(){
+        notifPane.getStyleClass().add(CssAddress.NOTIF_BOX.getStyleClass());
+        notifPane.setLayoutY(notifBox.getLayoutY());
+        notifLabel.getStyleClass().add(CssAddress.NOTIFICATION_LABEL.getStyleClass());
+        notifLabel.setLayoutX(notifText.getLayoutX());
+        notifLabel.setLayoutY(notifText.getLayoutY());
+        notifImageView.setLayoutY(notifImage.getLayoutY());
+        notifImageView.setLayoutX(notifImage.getLayoutX());
+        notifImageView.setFitWidth(notifImage.getFitWidth());
+        notifImageView.setFitHeight(notifImage.getFitHeight());
+        notifPane.getChildren().addAll(notifLabel,notifImageView);
     }
 
 }

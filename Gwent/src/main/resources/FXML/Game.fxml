@@ -22,7 +22,7 @@
       <HBox fx:id="opponentDiscardPile" layoutX="891.0" layoutY="52.0" prefHeight="72.0" prefWidth="50.0" />
       <HBox fx:id="discardPile" layoutX="891.0" layoutY="515.0" prefHeight="72.0" prefWidth="50.0" />
       <HBox fx:id="opponentDeck" layoutX="990.0" layoutY="41.0" prefHeight="91.0" prefWidth="60.0" />
-      <HBox fx:id="deck" layoutX="990.0" layoutY="507.0" prefHeight="91.0" prefWidth="60.0" />
+      <HBox fx:id="deck" layoutX="990.0" layoutY="507.0" maxHeight="91.0" maxWidth="60.0" prefHeight="91.0" prefWidth="60.0" />
       <ImageView fitHeight="40.0" fitWidth="33.0" layoutX="245.0" layoutY="431.0" pickOnBounds="true" preserveRatio="true" styleClass="total-score-me" />
       <Region fx:id="highScore" layoutX="231.0" layoutY="430.0" maxWidth="60.0" minWidth="30.0" prefHeight="47.0" prefWidth="60.0" />
       <Label fx:id="totalScore" alignment="CENTER" contentDisplay="CENTER" layoutX="247.0" layoutY="434.0" prefHeight="25.0" prefWidth="30.0" styleClass="black-bold-arial-label" />

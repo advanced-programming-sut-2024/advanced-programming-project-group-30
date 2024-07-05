@@ -71,8 +71,6 @@ public class CardView extends Pane {
         point.setPrefWidth(SizeData.GAME_SMALL_CARD_POINT_LABEL.getWidth());
         point.setText(String.valueOf(card.getPoint()));
         ImageView imageView = getSmCardImage();
-        //TODO: separate hand and other cards
-//        this.getStyleClass().add(CssAddress.GAME_HAND_SM_CARD.getStyleClass());
         items.getChildren().addAll(rectangle, imageView, getPointImage(), getPositionImage(), point);
         ImageView abilityView = getRegularCardAbilityImage();
         if (abilityView != null)

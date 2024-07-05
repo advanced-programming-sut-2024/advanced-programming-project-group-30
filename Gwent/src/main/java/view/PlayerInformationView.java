@@ -31,6 +31,7 @@ public class PlayerInformationView extends Pane {
     private final Player player;
     private ImageView totalScoreImage;
     private CssAddress cssAddress;
+    private Label passedLabel;
     public PlayerInformationView(Player player,CoordinateData coordinateData, CssAddress cssAddress){
         this.player = player;
         this.cssAddress = cssAddress;

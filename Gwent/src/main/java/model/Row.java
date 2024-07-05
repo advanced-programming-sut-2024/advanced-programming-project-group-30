@@ -18,6 +18,7 @@ public class Row extends Position{
     private int extraPoint = 0;
     private boolean isDamaged = false;
     private RowView rowView;
+    private SpecialCardPosition specialCardPosition;
 
     public Row(String name) {
         this.name = name;

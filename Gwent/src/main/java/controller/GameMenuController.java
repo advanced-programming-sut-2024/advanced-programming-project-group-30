@@ -72,6 +72,9 @@ public class GameMenuController {
         for (Row row : game.getCurrentPlayer().getRows()) {
             gameMenu.resetStyles(row.getRowView());
         }
+        for (Row row : game.getOpponentPlayer().getRows()){
+            gameMenu.resetStyles(row.getRowView());
+        }
     }
 
     public void updateScores(Game game) {
@@ -85,12 +88,10 @@ public class GameMenuController {
 
     public void handleRegularCardEvents(RegularCard card, Game game, Player player1, Player player2) {
         CardView cardView = card.getCardView();
-
         cardView.setOnMouseClicked(event -> {
             RegularCardPositionType position = card.getPositionType();
             resetRowStyles(game);
             player1.setSelectedCard(card);
-
             try {
                 Method method = RowView.class.getDeclaredMethod("getRow");
                 switch (position) {
@@ -257,14 +258,14 @@ public class GameMenuController {
         switchNodes(currentPlayerView, opponentPlayerView, PlayerView.class.getDeclaredMethod("getDiscardPileView"),
                 PlayerView.class.getDeclaredMethod("getDeckView"),
                 PlayerView.class.getDeclaredMethod("getPlayerInformationView"));
-        setUpAfterSwitch(gameMenu.getPane(), currentPlayerView.getDeckView(), opponentPlayerView.getDeckView());
-        setUpAfterSwitch(gameMenu.getPane(), currentPlayerView.getDiscardPileView(), opponentPlayerView.getDiscardPileView());
-        setUpAfterSwitch(gameMenu.getPane(), currentPlayerView.getPlayerInformationView(), opponentPlayerView.getPlayerInformationView());
+        gameMenu.setUpAfterSwitch(gameMenu.getPane(), currentPlayerView.getDeckView(), opponentPlayerView.getDeckView());
+        gameMenu.setUpAfterSwitch(gameMenu.getPane(), currentPlayerView.getDiscardPileView(), opponentPlayerView.getDiscardPileView());
+        gameMenu.setUpAfterSwitch(gameMenu.getPane(), currentPlayerView.getPlayerInformationView(), opponentPlayerView.getPlayerInformationView());
         switchRows(currentPlayer, opponentPlayer);
         game.changeTurn();
         gameMenu.handlePassTurn(game);
     }
-    private void setUpAfterSwitch(Node pane, Node node1, Node node2){
+    public void setUpAfterSwitch(Node pane, Node node1, Node node2){
         if (pane instanceof HBox)
             ((HBox) pane).getChildren().addAll(node1, node2);
         else if (pane instanceof Pane) {
