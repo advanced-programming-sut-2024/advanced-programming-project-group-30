@@ -27,18 +27,5 @@ public abstract class SpecialCardAbility {
     private void spy(){
 
     }
-    private void impenetrableFog(){
-
-    }
-    private void bitingFrost(){
-
-    }
-    private void torrentialRain(){
-
-    }
-    private void skelligeStorm(){
-
-    }
-
 
 }

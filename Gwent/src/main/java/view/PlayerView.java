@@ -17,22 +17,34 @@ public class PlayerView {
     private HBox discardPileView;
     private HBox leaderView;
     private VBox boardView;
-    public PlayerView(Player player, VBox boardView, ArrayList<CoordinateData> coordinateDatas, CssAddress cssAddress){
-        playerInformationView = new PlayerInformationView(player, coordinateDatas.get(0), cssAddress);
+    public PlayerView(Player player, VBox boardView, HBox discardPileView, HBox deckView, HBox handView,CoordinateData coordinateData, CssAddress cssAddress){
+        playerInformationView = new PlayerInformationView(player, coordinateData, cssAddress);
         this.boardView = boardView;
-        handView = new HBox();
-        deckView = new HBox();
-        discardPileView = new HBox();
+        this.handView = new HBox(handView);
+        this.handView.getStyleClass().add("hand-padding");
+
+        this.deckView = deckView;
+        this.discardPileView = discardPileView;
         leaderView = new HBox();
     }
-    private void setUp(){
 
+    public HBox getDeckView(){
+        return deckView;
     }
-    private void setUpDeckView(){
-        deckView.getStyleClass().add(CssAddress.DECK_VIEW.getStyleClass());
-
+    public VBox getBoardView(){
+        return boardView;
+    }
+    public HBox getDiscardPileView(){
+        return discardPileView;
+    }
+    public HBox getHandView(){
+        return handView;
+    }
+    public void setBoardView(VBox boardView){
+        this.boardView = boardView;
     }
 
-
-
+    public PlayerInformationView getPlayerInformationView() {
+        return playerInformationView;
+    }
 }

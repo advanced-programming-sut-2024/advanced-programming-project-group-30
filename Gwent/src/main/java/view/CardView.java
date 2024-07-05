@@ -7,6 +7,7 @@ import enums.SizeData;
 import enums.cardsData.CardData;
 import enums.cardsData.RegularCardData;
 import enums.cardsData.SpecialCardsData;
+import enums.cardsData.WeatherCardsData;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -15,6 +16,7 @@ import javafx.scene.shape.Rectangle;
 import model.card.Card;
 import model.card.RegularCard;
 import model.card.SpecialCard;
+import model.card.WeatherCard;
 
 //TODO: handle Card and CardView loop in saving
 public class CardView extends Pane {
@@ -42,12 +44,19 @@ public class CardView extends Pane {
         this.position = new Rectangle();
         this.cardData = card.getCardData();
         this.point = new Label();
-        if (card instanceof RegularCard){
+        if (card instanceof RegularCard)
             setUpRegularCardView((RegularCard) card);
-        }
-        if (card instanceof SpecialCard){
+        if (card instanceof SpecialCard)
             setUpSpecialCardView();
-        }
+        if (card instanceof WeatherCard)
+            setUpWeatherCardView();
+    }
+    private void setUpWeatherCardView(){
+        Rectangle rectangle = new Rectangle();
+        ImageView imageView = getSmCardImage();
+        ImageView abilityView = getWeatherCardAbilityView();
+        items.getChildren().addAll(rectangle, imageView, abilityView);
+        this.getChildren().addAll(items);
     }
     private void setUpSpecialCardView(){
         Rectangle rectangle = new Rectangle();
@@ -138,8 +147,6 @@ public class CardView extends Pane {
         abilityImage.setFitWidth(SizeData.GAME_SMALL_CARD_ABILITY.getWidth());
         abilityImage.setLayoutX(ABILITY_X);
         abilityImage.setLayoutY(ABILITY_Y);
-        System.out.println(ability);
-        System.out.println(abilityImage);
         return abilityImage;
     }
     private ImageView getSpecialCardAbilityView(){
@@ -150,5 +157,14 @@ public class CardView extends Pane {
         specialAbilityImage.setLayoutX(NORMAL_POINT_X);
         specialAbilityImage.setLayoutY(NORMAL_POINT_Y);
         return specialAbilityImage;
+    }
+    private ImageView getWeatherCardAbilityView(){
+        ImageView weatherAbilityImage = new ImageView();
+        weatherAbilityImage.getStyleClass().add(Ability.getStyleClassByName(((WeatherCardsData)cardData).getAbility().getAbilityName()));
+        weatherAbilityImage.setFitHeight(SizeData.GAME_SMALL_CARD_SPECIAL_ABILITY.getHeight());
+        weatherAbilityImage.setFitWidth(SizeData.GAME_SMALL_CARD_SPECIAL_ABILITY.getWidth());
+        weatherAbilityImage.setLayoutX(NORMAL_POINT_X);
+        weatherAbilityImage.setLayoutY(NORMAL_POINT_Y);
+        return weatherAbilityImage;
     }
 }

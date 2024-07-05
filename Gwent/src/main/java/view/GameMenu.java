@@ -8,7 +8,6 @@ import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -16,9 +15,9 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import model.*;
-import model.card.RegularCard;
-import model.card.SpecialCard;
+import model.card.*;
 
+import java.io.IOException;
 import java.util.*;
 
 public class GameMenu implements Menu{
@@ -26,6 +25,26 @@ public class GameMenu implements Menu{
     private static Pane notifPane = new Pane();
     private static Label notifLabel = new Label();
     private static ImageView notifImageView = new ImageView();
+    @FXML
+    private VBox centerPane;
+    @FXML
+    private VBox rowsPane;
+    @FXML
+    private HBox opponentDeck;
+    @FXML
+    private HBox deck;
+    @FXML
+    private Region activeLeaderIcon;
+    @FXML
+    private Region opponentActiveLeaderIcon;
+    @FXML
+    private HBox leader;
+    @FXML
+    private HBox opponentDiscardPile;
+    @FXML
+    private HBox opponentLeader;
+    @FXML
+    private HBox discardPile;
     @FXML
     private Label notifText;
     @FXML
@@ -43,46 +62,75 @@ public class GameMenu implements Menu{
     @FXML
     private HBox hand;
     @FXML
-    public void initialize() {
+    public void initialize() throws IOException {
         User user = new User("bahar", "123", "bahar", "bahar", SecurityQuestion.QUESTION_1, "blue");
         User user2 = new User("fatemeh", "123", "fatemeh", "fatemeh", SecurityQuestion.QUESTION_1, "blue");
         Game game = new Game();
         App.setCurrentGame(game);
         Player player = new Player(user, game);
         Player opponentPlayer = new Player(user2, game);
-        PlayerInformationView playerInformationView = new PlayerInformationView(player, CoordinateData.PLAYER_INFORMATION_BOX, CssAddress.CURRENT_PLAYER_TOTAL_SCORE_IMAGE);
-        player.setInformationView(playerInformationView);
-        PlayerInformationView opponentInformationView = new PlayerInformationView(opponentPlayer, CoordinateData.OPPONENT_INFORMATION_BOX, CssAddress.OPPONENT_PLAYER_TOTAL_SCORE_IMAGE);
-        opponentPlayer.setInformationView(opponentInformationView);
-        pane.getChildren().addAll(playerInformationView,opponentInformationView);
+        PlayerView playerView = new PlayerView(player, currentRowArea, discardPile, deck,  hand, CoordinateData.PLAYER_INFORMATION_BOX, CssAddress.CURRENT_PLAYER_TOTAL_SCORE_IMAGE);
+        player.setPlayerView(playerView);
+        PlayerView opponentPlayerView = new PlayerView(opponentPlayer, opponentRowsArea, opponentDiscardPile, opponentDeck, hand,CoordinateData.OPPONENT_INFORMATION_BOX, CssAddress.OPPONENT_PLAYER_TOTAL_SCORE_IMAGE);
+        opponentPlayer.setPlayerView(opponentPlayerView);
+        pane.getChildren().addAll(playerView.getPlayerInformationView(),opponentPlayerView.getPlayerInformationView());
         game.setCurrentPlayer(player);
         game.setOpponentPlayer(opponentPlayer);
         gameMenuController.setUpBoard(game);
+        System.out.println(player);
+        ArrayList<DecksCard> allCards = new ArrayList<>();
         ArrayList<RegularCard> cards = NeutralRegularCardsData.getAllRegularCard();
-        for (int i = 0; i < 2; i++){
-            RegularCard card = cards.get(i);
+        allCards.addAll(cards);
+        allCards.addAll(MonstersRegularCardsData.getAllRegularCard());
+        allCards.addAll(NorthernRealmsRegularCardsData.getAllRegularCard());
+        allCards.addAll(SkelligeRegularCardsData.getAllRegularCard());
+        allCards.addAll(NeutralRegularCardsData.getAllRegularCard());
+        allCards.addAll(WeatherCardsData.getAllWeatherCards());
+        allCards.addAll(SpecialCardsData.getAllSpecialCard());
+        Random random = new Random();
+        int j = random.nextInt(allCards.size() - 10);
+        for (int i = 0; i < j; i++){
+            DecksCard card = allCards.get(i);
             player.addCardToHand(card);
             CardView cardView = card.getCardView();
+//            player.getPlayerView().getHandView().getChildren().add(cardView);
             hand.getChildren().add(cardView);
-            gameMenuController.handleRegularCardEvents(card, game);
+            if (card instanceof SpecialCard)
+                gameMenuController.handleSpecialCardEvents((SpecialCard) card, game, player, opponentPlayer);
+            if (card instanceof RegularCard)
+                gameMenuController.handleRegularCardEvents((RegularCard) card, game, player, opponentPlayer);
+            if (card instanceof WeatherCard)
+                gameMenuController.handleWeatherCardEvents((WeatherCard) card, game);
             card.getCardView().getStyleClass().add(CssAddress.GAME_HAND_SM_CARD.getStyleClass());
         }
-        ArrayList<SpecialCard> specialCards = SpecialCardsData.getAllSpecialCard();
-        for (int i = 0; i < 8; i++) {
-            SpecialCard specialCard = specialCards.get(i);
-            player.addCardToHand(specialCard);
-            CardView cardView = specialCard.getCardView();
-            hand.getChildren().add(cardView);
-            gameMenuController.handleSpecialCardEvents(specialCard, game);
-            specialCard.getCardView().getStyleClass().add(CssAddress.GAME_HAND_SM_CARD.getStyleClass());
+        centerPane.getChildren().add(hand);
+        for (int i = j; i < allCards.size(); i++){
+            DecksCard card = allCards.get(i);
+            opponentPlayer.addCardToHand(card);
+            CardView cardView = card.getCardView();
+//            player.getPlayerView().getHandView().getChildren().add(cardView);
+            if (card instanceof SpecialCard)
+                gameMenuController.handleSpecialCardEvents((SpecialCard) card, game, opponentPlayer, player);
+            if (card instanceof RegularCard)
+                gameMenuController.handleRegularCardEvents((RegularCard) card, game, opponentPlayer, player);
+            if (card instanceof WeatherCard)
+                gameMenuController.handleWeatherCardEvents((WeatherCard) card, game);
+            card.getCardView().getStyleClass().add(CssAddress.GAME_HAND_SM_CARD.getStyleClass());
         }
+        centerPane.getChildren().addAll(playerView.getHandView());
+        game.getCurrentPlayer().getPlayerInformationView().getStyleClass().add("brownBoxShadowed");
+
 //        setUpDeck(user, deck);
 //        setUpDeck(user2, opponentDeck);
         setUpNotificationBox();
     }
-    public void resetRowStyles(RowView rowView) {
+    public HBox getWeatherCardPosition(){
+        return weatherCardPosition;
+    }
+    public void resetStyles(RowView rowView) {
         rowView.getRow().getStyleClass().remove(CssAddress.CARD_ROW.getStyleClass());
         rowView.getSpecialCardPosition().getStyleClass().remove(CssAddress.CARD_ROW.getStyleClass());
+        weatherCardPosition.getStyleClass().remove(CssAddress.CARD_ROW.getStyleClass());
     }
     public void setUpScores(ArrayList<Row> allRows){
         for (Row row : allRows){
@@ -135,16 +183,26 @@ public class GameMenu implements Menu{
         notifImageView.setFitHeight(notifImage.getFitHeight());
         notifPane.getChildren().addAll(notifLabel,notifImageView);
     }
-    private void setUpDeck(User player, Region deck){
-        FactionType factionType = player.getSelectedFaction();
-        String factionName = factionType.toString().toLowerCase().replaceAll("_", "-");
-        deck.getStyleClass().add(factionName + "-faction");
-    }
     public void handlePassTurn(Game game){
         passTurn();
-        game.getOpponentPlayer().getPlayerInformationView().getStyleClass().remove("brownBoxShadowed");
         game.getCurrentPlayer().getPlayerInformationView().getStyleClass().add("brownBoxShadowed");
-    }
+        game.getOpponentPlayer().getPlayerInformationView().getStyleClass().remove("brownBoxShadowed");
+        hand.getChildren().clear();
+        for (DecksCard card : game.getCurrentPlayer().getHand())
+            hand.getChildren().add(card.getCardView());
 
+    }
+    public VBox getCurrentRowArea(){
+        return currentRowArea;
+    }
+    public VBox getOpponentRowsArea(){
+        return opponentRowsArea;
+    }
+    public VBox getRowsPane(){
+        return rowsPane;
+    }
+    public Pane getPane(){
+        return pane;
+    }
 
 }

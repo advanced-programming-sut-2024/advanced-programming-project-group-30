@@ -45,8 +45,10 @@ public class Game {
         specialPosition.clear();
     }
 
-    public boolean changeTurn() {
-        return true;
+    public void changeTurn() {
+        Player temp = currentPlayer;
+        currentPlayer = opponentPlayer;
+        opponentPlayer = temp;
     }
 
     public void endRound() {

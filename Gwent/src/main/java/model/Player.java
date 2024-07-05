@@ -2,9 +2,12 @@ package model;
 
 import enums.CoordinateData;
 import enums.CssAddress;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import model.card.DecksCard;
 import model.card.Leader;
 import view.PlayerInformationView;
+import view.PlayerView;
 
 import java.util.ArrayList;
 
@@ -22,7 +25,7 @@ public class Player {
     private final int[] roundsPoint = new int[3];
     private int life = 2;
     private DecksCard selectedCard;
-    private PlayerInformationView playerInformationView;
+    private PlayerView playerView;
 
     public Player(User user, Game game) {
         this.user = user;
@@ -120,19 +123,21 @@ public class Player {
     public DecksCard getSelectedCard() {
         return selectedCard;
     }
-    public void createPlayerInformationView(CoordinateData coordinateData, CssAddress cssAddress){
-        playerInformationView = new PlayerInformationView(this, coordinateData, cssAddress);
+    public void createPlayerView(VBox boardView, HBox discardPileView, HBox deckView, HBox handView, CoordinateData coordinateData, CssAddress cssAddress){
+        playerView = new PlayerView(this, boardView, discardPileView, deckView, handView,coordinateData, cssAddress);
     }
     public PlayerInformationView getPlayerInformationView() {
-        return playerInformationView;
+        return playerView.getPlayerInformationView();
+    }
+    public void setPlayerView(PlayerView playerView){
+        this.playerView = playerView;
     }
 
-    public void setInformationView(PlayerInformationView playerInformationView) {
-        this.playerInformationView = playerInformationView;
+    public PlayerView getPlayerView(){
+        return playerView;
     }
-
     public void updatePoint(int point) {
         this.point += point;
-        playerInformationView.updateTotalScore();
+        playerView.getPlayerInformationView().updateTotalScore();
     }
 }

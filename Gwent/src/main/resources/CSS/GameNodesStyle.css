@@ -350,5 +350,9 @@
     -fx-pref-width: 50;
     -fx-pref-height: 72;
 }
+.hand-padding{
+    -fx-padding: 0 0 0 50;
+    -fx-alignment: center;
+}
 
 

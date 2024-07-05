@@ -11,18 +11,18 @@
 
 <Pane fx:id="pane" minHeight="500.0" minWidth="800.0" prefHeight="660" prefWidth="1100" styleClass="background-image" stylesheets="@../CSS/GameNodesStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.GameMenu">
    <children>
-      <Region fx:id="opponentLeader" layoutX="80.0" layoutY="50.0" prefHeight="80.0" prefWidth="56.0" />
+      <HBox fx:id="opponentLeader" layoutX="80.0" layoutY="50.0" prefHeight="80.0" prefWidth="56.0" />
       <Region fx:id="opponentSiegeSideCardPosition" layoutX="337.0" layoutY="10.0" prefHeight="72.0" prefWidth="50.0" />
       <Region fx:id="opponentRangeSideCardPosition" layoutX="337.0" layoutY="90.0" prefHeight="72.0" prefWidth="50.0" />
       <Region fx:id="opponentCloseSideCardPosition" layoutX="337.0" layoutY="174.0" prefHeight="72.0" prefWidth="50.0" />
       <Region fx:id="closeSideCardPosition" layoutX="337.0" layoutY="265.0" prefHeight="72.0" prefWidth="50.0" />
       <Region fx:id="rangedSideCardPosition" layoutX="337.0" layoutY="346.0" prefHeight="72.0" prefWidth="50.0" />
       <Region fx:id="siegeSideCardPosition" layoutX="337.0" layoutY="431.0" prefHeight="72.0" prefWidth="50.0" />
-      <Region fx:id="leader" layoutX="80.0" layoutY="510.5" prefHeight="80.0" prefWidth="56.0" />
-      <Region fx:id="opponentDiscardPile" layoutX="891.0" layoutY="52.0" prefHeight="72.0" prefWidth="50.0" />
-      <Region fx:id="discardPile" layoutX="891.0" layoutY="515.0" prefHeight="72.0" prefWidth="50.0" />
-      <Region fx:id="opponentDeck" layoutX="990.0" layoutY="41.0" prefHeight="91.0" prefWidth="60.0" />
-      <Region fx:id="deck" layoutX="990.0" layoutY="507.0" prefHeight="91.0" prefWidth="60.0" />
+      <HBox fx:id="leader" layoutX="80.0" layoutY="510.5" prefHeight="80.0" prefWidth="56.0" />
+      <HBox fx:id="opponentDiscardPile" layoutX="891.0" layoutY="52.0" prefHeight="72.0" prefWidth="50.0" />
+      <HBox fx:id="discardPile" layoutX="891.0" layoutY="515.0" prefHeight="72.0" prefWidth="50.0" />
+      <HBox fx:id="opponentDeck" layoutX="990.0" layoutY="41.0" prefHeight="91.0" prefWidth="60.0" />
+      <HBox fx:id="deck" layoutX="990.0" layoutY="507.0" prefHeight="91.0" prefWidth="60.0" />
       <ImageView fitHeight="40.0" fitWidth="33.0" layoutX="245.0" layoutY="431.0" pickOnBounds="true" preserveRatio="true" styleClass="total-score-me" />
       <Region fx:id="highScore" layoutX="231.0" layoutY="430.0" maxWidth="60.0" minWidth="30.0" prefHeight="47.0" prefWidth="60.0" />
       <Label fx:id="totalScore" alignment="CENTER" contentDisplay="CENTER" layoutX="247.0" layoutY="434.0" prefHeight="25.0" prefWidth="30.0" styleClass="black-bold-arial-label" />
@@ -30,9 +30,9 @@
       <Region fx:id="opponentActiveLeaderIcon" layoutX="146.0" layoutY="78.0" prefHeight="24.0" prefWidth="24.0" />
       <Button layoutX="170.0" layoutY="578.0" mnemonicParsing="false" onAction="#passTurn" prefHeight="34.0" prefWidth="75.0" styleClass="pass-button" text="Pass" />
       <Label fx:id="passedLabel" alignment="CENTER" layoutX="224.0" layoutY="390.0" prefHeight="32.0" prefWidth="70.0" styleClass="passed-label" text="Passed" visible="false" />
-      <VBox fx:id="rowsPane" layoutX="291.0" layoutY="6.0" prefHeight="651.0" prefWidth="582.0" spacing="9.0">
+      <VBox fx:id="centerPane" layoutX="291.0" layoutY="6.0" prefHeight="651.0" prefWidth="582.0" spacing="9.0">
          <children>
-            <VBox prefHeight="498.0" prefWidth="582.0" spacing="10.0">
+            <VBox fx:id="rowsPane" prefHeight="498.0" prefWidth="582.0" spacing="10.0">
                <children>
                   <VBox fx:id="opponentRowsArea" prefHeight="251.0" prefWidth="582.0" spacing="8.0" />
                   <VBox fx:id="currentRowArea" prefHeight="251.0" prefWidth="583.0" spacing="8" />
@@ -44,7 +44,7 @@
             </HBox>
          </children>
       </VBox>
-      <HBox fx:id="weatherCardPosition" layoutX="82.0" layoutY="274.0" prefHeight="80.0" prefWidth="160.0" />
+      <HBox fx:id="weatherCardPosition" alignment="CENTER" layoutX="82.0" layoutY="274.0" prefHeight="88.0" prefWidth="160.0" />
       <Pane fx:id="notifBox" layoutY="232.0" prefHeight="169.0" prefWidth="1100.0" styleClass="notif-box" visible="false">
          <children>
             <ImageView fx:id="notifImage" fitHeight="200.0" fitWidth="300.0" layoutX="264.0" layoutY="-31.0" pickOnBounds="true" preserveRatio="true" />

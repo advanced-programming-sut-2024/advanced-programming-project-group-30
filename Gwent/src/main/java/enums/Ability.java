@@ -2,6 +2,7 @@ package enums;
 
 import model.ability.RegularCardsAbility;
 import model.ability.SpecialCardAbility;
+import model.ability.WeatherCardAbility;
 
 import java.lang.reflect.Method;
 
@@ -10,11 +11,11 @@ public enum Ability {
     DECOY("decoy", "Swap with a card on the battlefield to return it to your hand.", SpecialCardAbility.createNewAbilityByName("decoy"), CssAddress.DECOY_ABILITY_ICON),
     MARDROEME("mardroeme", "Triggers transformation of all Berserker cards on the same row..", RegularCardsAbility.createNewAbilityByName("mardroeme"), CssAddress.MARDROEME_ABILITY_ICON),
     SCORCH("scorch", "Discard after playing. Kills the strongest card(s) on the battlefield. ", SpecialCardAbility.createNewAbilityByName("scorch"), CssAddress.SCORCH_ABILITY_ICON),
-    BITING_FROST("bitingFrost", "Sets the strength of all Close Combat cards to 1 for both players.", SpecialCardAbility.createNewAbilityByName("bitingFrost"), CssAddress.FROST_WEATHER_ICON),
-    CLEAR_WEATHER("clearWeather", "Removes all Weather Cards (Biting Frost, Impenetrable Fog and Torrential Rain) effects.", SpecialCardAbility.createNewAbilityByName("clearWeather"), CssAddress.CLEAR_WEATHER_ICON),
-    IMPENETRABLE_FOG("impenetrableFog", "Sets the strength of all Ranged Combat cards to 1 for both players.", SpecialCardAbility.createNewAbilityByName("impenetrableFog"), CssAddress.FOG_WEATHER_ICON),
-    SKELLIGE_STORM("skelligeStorm", "Sets the strength of all Ranged Combat cards to 1 for both players.", SpecialCardAbility.createNewAbilityByName("skelligeStorm"), CssAddress.STORM_WEATHER_ICON),
-    TORRENTIAL_RAIN("torrentialRain", "Sets the strength of all Siege Combat cards to 1 for both players.", SpecialCardAbility.createNewAbilityByName("torrentialRain"), CssAddress.RAIN_WEATHER_ICON),
+    BITING_FROST("bitingFrost", "Sets the strength of all Close Combat cards to 1 for both players.", WeatherCardAbility.createNewAbilityByName("bitingFrost"), CssAddress.FROST_WEATHER_ICON),
+    CLEAR_WEATHER("clearWeather", "Removes all Weather Cards (Biting Frost, Impenetrable Fog and Torrential Rain) effects.", WeatherCardAbility.createNewAbilityByName("clearWeather"), CssAddress.CLEAR_WEATHER_ICON),
+    IMPENETRABLE_FOG("impenetrableFog", "Sets the strength of all Ranged Combat cards to 1 for both players.", WeatherCardAbility.createNewAbilityByName("impenetrableFog"), CssAddress.FOG_WEATHER_ICON),
+    SKELLIGE_STORM("skelligeStorm", "Sets the strength of all Ranged Combat cards to 1 for both players.", WeatherCardAbility.createNewAbilityByName("skelligeStorm"), CssAddress.STORM_WEATHER_ICON),
+    TORRENTIAL_RAIN("torrentialRain", "Sets the strength of all Siege Combat cards to 1 for both players.", WeatherCardAbility.createNewAbilityByName("torrentialRain"), CssAddress.RAIN_WEATHER_ICON),
     SPY("spy", "Place on your opponent's battlefield (counts towards your opponent's total) and draw 2 cards from your deck. Not affected by any Special Cards or abilities.", RegularCardsAbility.createNewAbilityByName("spy"), CssAddress.SPY_ABILITY_ICON),
     TIGHT_BOND("tightBond", "Place next to a card with the same name to double the strength of both cards.", RegularCardsAbility.createNewAbilityByName("tightBond"), CssAddress.TIGHT_BOND_ABILITY_ICON),
     MUSTER("muster", "Find any cards with the same name in your deck and play them instantly.", RegularCardsAbility.createNewAbilityByName("muster"), CssAddress.MUSTER_ABILITY_ICON),

@@ -2,7 +2,6 @@ package enums.cardsData;
 
 import enums.Ability;
 import javafx.scene.image.Image;
-import model.card.SpecialCard;
 import model.card.WeatherCard;
 
 import java.util.ArrayList;
@@ -27,7 +26,7 @@ public enum WeatherCardsData implements DeckCardData{
         this.numberOfCard = cardsNumber;
         this.isDiscardAfterPlaying = isDiscardAfterPlaying;
     }
-    public static ArrayList<WeatherCard> getAllWeatherCard() {
+    public static ArrayList<WeatherCard> getAllWeatherCards() {
         ArrayList<WeatherCard> weatherCards = new ArrayList<>();
         for (enums.cardsData.WeatherCardsData data : enums.cardsData.WeatherCardsData.values()) {
             for (int i = 0; i < data.numberOfCard; i++)
