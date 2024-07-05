@@ -49,6 +49,13 @@
     -fx-background-color: Transparent;
 }
 
+.buttonWithoutBack:hover {
+    -fx-cursor: Hand;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.05;
+    -fx-text-fill: #d3a35a;
+}
+
 .topicLabel {
     -fx-text-fill: #f1cc99;
     -fx-font-size: 12;

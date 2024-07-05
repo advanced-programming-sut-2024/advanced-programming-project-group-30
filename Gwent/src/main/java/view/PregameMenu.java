@@ -21,6 +21,10 @@ public class PregameMenu implements Menu {
     @FXML
     private Pane helperPane;
     @FXML
+    private Label factionLabel;
+    @FXML
+    private Label descriptionLabel;
+    @FXML
     private FlowPane cardCollection;
     @FXML
     private FlowPane cardsInDeck;
@@ -128,6 +132,6 @@ public class PregameMenu implements Menu {
         pane.setScaleX(scale);
         pane.setScaleY(scale);
         pane.setLayoutX((root.getWidth() - 1150) / 2);
-        pane.setLayoutY((root.getHeight() - 660) / 2);
+        pane.setLayoutY((root.getHeight() - 660) / 2 + 5 * scaleCoef);
     }
 }
