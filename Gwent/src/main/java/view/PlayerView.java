@@ -6,6 +6,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.Player;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class PlayerView {
     private Player player;
     private PlayerInformationView playerInformationView;
@@ -14,8 +17,8 @@ public class PlayerView {
     private HBox discardPileView;
     private HBox leaderView;
     private VBox boardView;
-    public PlayerView(Player player,VBox boardView,CoordinateData coordinateData, CssAddress cssAddress){
-        playerInformationView = new PlayerInformationView(player, coordinateData, cssAddress);
+    public PlayerView(Player player, VBox boardView, ArrayList<CoordinateData> coordinateDatas, CssAddress cssAddress){
+        playerInformationView = new PlayerInformationView(player, coordinateDatas.get(0), cssAddress);
         this.boardView = boardView;
         handView = new HBox();
         deckView = new HBox();

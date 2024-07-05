@@ -39,7 +39,7 @@
                </children></VBox>
             <HBox fx:id="hand" alignment="CENTER" prefHeight="80.0" prefWidth="582.0" spacing="2">
                <padding>
-                  <Insets left="45" right="10" />
+                  <Insets left="45" right="14" />
                </padding>
             </HBox>
          </children>

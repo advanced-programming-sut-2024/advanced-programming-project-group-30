@@ -69,7 +69,7 @@ public abstract class RegularCardsAbility {
     private void mardroeme(Game currentGame, RegularCard card){
 
     }
-    private void transformers(Game currentGame, RegularCard card){
+    private void transformer(Game currentGame, RegularCard card){
 
     }
 

@@ -117,7 +117,7 @@
     -fx-background-size: 100% 100%;
 }
 .cardAgileIcon{
-    -fx-image: url('../Images/Icons/card_ability_agile.png');
+    -fx-image: url('../Images/Icons/card_row_agile.png');
     -fx-background-size: 100% 100%;
 }
 .normalCardPointIcon{
@@ -252,7 +252,7 @@
     -fx-background-size: 100% 100%;
 }
 .musterAbilityIcon{
-    -fx-background-image: url('../Images/Icons/card_ability_muster.png');
+    -fx-image: url('../Images/Icons/card_ability_muster.png');
     -fx-background-size: 100% 100%;
 }
 .torrentialRainAbilityIcon{
@@ -260,7 +260,7 @@
     -fx-background-size: 100% 100%;
 }
 .scorchAbilityIcon{
-    -fx-image: url('../Images/Icons/power_scorch.png');
+    -fx-image: url('../Images/Icons/card_ability_scorch.png');
     -fx-background-size: 100% 100%;
 }
 .skelligeStormAbilityIcon{

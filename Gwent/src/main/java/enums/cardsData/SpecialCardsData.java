@@ -35,7 +35,6 @@ import java.util.Objects;
         public static ArrayList<SpecialCard> getAllSpecialCard() {
             ArrayList<SpecialCard> specialCards = new ArrayList<>();
             for (enums.cardsData.SpecialCardsData data : enums.cardsData.SpecialCardsData.values()) {
-                System.out.println(data);
                 for (int i = 0; i < data.numberOfCard; i++)
                     specialCards.add(data.createCard());
             }

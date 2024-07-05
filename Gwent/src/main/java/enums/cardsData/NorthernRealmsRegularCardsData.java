@@ -103,7 +103,6 @@ public enum NorthernRealmsRegularCardsData implements RegularCardData{
     }
     @Override
     public Image getSmImage() {
-        System.out.println(smImageAddress);;
         return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream(smImageAddress)));
     }
 

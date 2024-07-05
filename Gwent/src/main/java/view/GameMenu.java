@@ -58,8 +58,8 @@ public class GameMenu implements Menu{
         game.setCurrentPlayer(player);
         game.setOpponentPlayer(opponentPlayer);
         gameMenuController.setUpBoard(game);
-        ArrayList<RegularCard> cards = NorthernRealmsRegularCardsData.getAllRegularCard();
-        for (int i = 0; i < 4; i++){
+        ArrayList<RegularCard> cards = NeutralRegularCardsData.getAllRegularCard();
+        for (int i = 0; i < 2; i++){
             RegularCard card = cards.get(i);
             player.addCardToHand(card);
             CardView cardView = card.getCardView();

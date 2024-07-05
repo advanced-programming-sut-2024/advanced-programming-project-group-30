@@ -123,27 +123,27 @@ public class CardView extends Pane {
     private ImageView getRegularCardAbilityImage(){
         ImageView abilityImage = new ImageView();
         Ability ability =((RegularCardData) cardData).getAbility();
-        if (ability != null) {
+        if (ability == null){
             if (!((RegularCard) card).getPositionType().equals(RegularCardPositionType.AGILE)) {
                 return null;
             }
-            if (((RegularCard) card).getPositionType().equals(RegularCardPositionType.AGILE)) {
+            if (((RegularCard) card).getPositionType().equals(RegularCardPositionType.AGILE) ) {
                 abilityImage.getStyleClass().add(CssAddress.AGILE_ABILITY_ICON.getStyleClass());
-            } else {
-                abilityImage.getStyleClass().add(ability.getStyleClass());
             }
+        }
+        else {
+            abilityImage.getStyleClass().add(ability.getStyleClass());
         }
         abilityImage.setFitHeight(SizeData.GAME_SMALL_CARD_ABILITY.getHeight());
         abilityImage.setFitWidth(SizeData.GAME_SMALL_CARD_ABILITY.getWidth());
         abilityImage.setLayoutX(ABILITY_X);
         abilityImage.setLayoutY(ABILITY_Y);
+        System.out.println(ability);
+        System.out.println(abilityImage);
         return abilityImage;
     }
     private ImageView getSpecialCardAbilityView(){
         ImageView specialAbilityImage = new ImageView();
-//        String abilityName = cardData.getAbilityName();
-//        char firstChar = abilityName.charAt(0);
-//        abilityName = Character.toLowerCase(firstChar) + abilityName.substring(1);
         specialAbilityImage.getStyleClass().add(Ability.getStyleClassByName(((SpecialCardsData)cardData).getAbility().getAbilityName()));
         specialAbilityImage.setFitHeight(SizeData.GAME_SMALL_CARD_SPECIAL_ABILITY.getHeight());
         specialAbilityImage.setFitWidth(SizeData.GAME_SMALL_CARD_SPECIAL_ABILITY.getWidth());

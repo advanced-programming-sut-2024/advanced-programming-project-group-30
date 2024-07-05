@@ -5,12 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="124b1a9a-c6f6-4977-bbc2-df42d5ff586a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/view/PlayerView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/GameMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/GameMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/CssAddress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/CssAddress.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/NeutralRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/NeutralRegularCardsData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/NorthernRealmsRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/NorthernRealmsRegularCardsData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/SpecialCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/SpecialCardsData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/WeatherCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/WeatherCardsData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/ability/RegularCardsAbility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/ability/RegularCardsAbility.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/CardView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/CardView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/GameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/GameMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/PlayerView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/PlayerView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/CSS/GameNodesStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/CSS/GameNodesStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/Game.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/Game.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/SmCardsImages/neutral_ciri.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Icons/card_ability_scorch.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +67,7 @@
     "database.data.extractors.current.id": "JSON-Groovy.json.groovy",
     "git-widget-placeholder": "Game-Bahar",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/ASUS/Documents/Uni/AP/Project/Gwent/src/main/resources/Images/Game/SmCardsImages/Factions",
+    "last_opened_file_path": "C:/Users/ASUS/Documents/Uni/AP/Project/Gwent/target/classes/Images/Icons",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -74,6 +82,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ASUS\Documents\Uni\AP\Project\Gwent\target\classes\Images\Icons" />
       <recent name="C:\Users\ASUS\Documents\Uni\AP\Project\Gwent\src\main\resources\Images\Game\SmCardsImages\Factions" />
       <recent name="C:\Users\ASUS\Documents\Uni\AP\Project\Gwent\target\classes\CSS" />
     </key>
@@ -131,7 +140,7 @@
       <workItem from="1720025075243" duration="14388000" />
       <workItem from="1720081168767" duration="318000" />
       <workItem from="1720081585205" duration="1274000" />
-      <workItem from="1720082892906" duration="26819000" />
+      <workItem from="1720082892906" duration="30920000" />
     </task>
     <servers />
   </component>
