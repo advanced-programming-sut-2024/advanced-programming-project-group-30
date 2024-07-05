@@ -5,15 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f1724509-8fa7-4a1d-addf-f9c920333c2d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/PregameMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/PregameMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/CssAddress.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/CssAddress.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/FactionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/FactionType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/CardSelectionPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/SelectionPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/PregameData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PregameData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/PregameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/PregameMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/CSS/GameNodesStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/CSS/GameNodesStyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/PregameMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/PregameMenu.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/test.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/SelectionPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/SelectionPage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,7 +129,7 @@
       <workItem from="1719647510046" duration="11798000" />
       <workItem from="1719733488135" duration="45479000" />
       <workItem from="1719940265883" duration="60097000" />
-      <workItem from="1720152813277" duration="16242000" />
+      <workItem from="1720152813277" duration="17049000" />
     </task>
     <servers />
   </component>

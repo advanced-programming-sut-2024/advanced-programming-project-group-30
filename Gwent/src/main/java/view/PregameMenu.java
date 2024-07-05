@@ -40,18 +40,17 @@ public class PregameMenu implements Menu {
         root.widthProperty().addListener((Void) -> scalePanes());
         root.heightProperty().addListener((Void) -> scalePanes());
         helperPane.setOnMouseClicked((Void) -> closeFactionSelectionPage());
-
-        // TODO: in setup start
+        // TODO: in setup ,start
         controller.uploadToCardCollection(controller.getPregameData().getCardCollection());
-        factionSelectionPage = new SelectionPage<>(FactionType.getAllChooseModelView(), FactionType.getFactionIndex(controller.user.getSelectedFaction()));
+        factionSelectionPage = new SelectionPage<>(FactionType.getAllChooseModelView(), FactionType.getFactionIndex(controller.getPregameData().getFaction()));
         factionSelectionPage.getMainRegion().setOnMouseClicked((Void) -> {
-            // TODO: change faction
+            controller.changeFation(factionSelectionPage.getSelectedModel());
             closeFactionSelectionPage();
         });
         factionSelectionPage.setOnMouseClicked((event -> {
             if (!factionSelectionPage.isInTheBoundOfSubRegions(event.getX(), event.getY())) closeFactionSelectionPage();
         }));
-        // TODO: in setup end
+        // TODO: in setup ,end
     }
 
     public void addToCardCollection(PregameCardView cardView) {
@@ -106,12 +105,14 @@ public class PregameMenu implements Menu {
     private void openFactionSelectionPage() {
         mainPane.setDisable(true);
         helperPane.setVisible(true);
+        helperPane.setDisable(false);
         root.getChildren().add(factionSelectionPage);
     }
 
     private void closeFactionSelectionPage() {
         mainPane.setDisable(false);
         helperPane.setVisible(false);
+        helperPane.setDisable(true);
         root.getChildren().remove(factionSelectionPage);
     }
 

@@ -1,5 +1,6 @@
 package controller;
 
+import enums.FactionType;
 import enums.cardsData.CardData;
 import enums.cardsData.DeckCardData;
 import javafx.scene.Node;
@@ -16,9 +17,8 @@ import java.util.List;
 import java.util.TreeMap;
 
 public class PregameMenuController {
-    // TODO: remove
-    public User user = new User("", "", "", "", null, "");
-    private PregameData pregameData = new PregameData(user);
+    // TODO: remove copy to setup
+    private PregameData pregameData = new PregameData(new User("", "", "", "", null, ""));
     private final PregameMenu menu;
 
     public PregameMenuController(PregameMenu menu) {
@@ -29,11 +29,8 @@ public class PregameMenuController {
         return pregameData;
     }
 
-    public void setPregameData(PregameData pregameData) {
-        this.pregameData = pregameData;
-    }
-
     public void uploadToCardCollection(TreeMap<DeckCardData, ArrayList<DecksCard>> collection) {
+        menu.clearCardsPane();
         for (DeckCardData cardData : collection.keySet())
             menu.addToCardCollection(new PregameCardView(cardData));
         menu.updateNumberData();
@@ -63,6 +60,11 @@ public class PregameMenuController {
             menu.addToCardCollection(collectionCardView);
         } else collectionCardView.setNumber(collectionCardView.getNumber() + 1);
         menu.updateNumberData();
+    }
+
+    public void changeFation(FactionType faction) {
+        pregameData.setFaction(faction);
+        uploadToCardCollection(pregameData.getCardCollection());
     }
 
     public PregameCardView getCardView(CardData cardData, FlowPane flowPane) {

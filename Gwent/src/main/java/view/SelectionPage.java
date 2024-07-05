@@ -26,6 +26,10 @@ public class SelectionPage<T> extends VBox {
         setup();
     }
 
+    public T getSelectedModel() {
+        return chosenModelViews.get(index).getModel();
+    }
+
     public Rectangle getMainRegion() {
         return mainRegion;
     }

@@ -59,6 +59,10 @@ public class PregameData {
         return specialCardsNumber <= 10;
     }
 
+    public FactionType getFaction() {
+        return user.getSelectedFaction();
+    }
+
     public void setFaction(FactionType faction) {
         user.setSelectedFaction(faction);
         cardCollection.clear();
