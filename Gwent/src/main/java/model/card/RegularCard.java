@@ -1,8 +1,9 @@
 package model.card;
 
+import enums.FactionType;
 import enums.RegularCardPositionType;
+import enums.cardsData.CardData;
 import model.ability.RegularCardsAbility;
-import model.Faction;
 
 public class RegularCard extends DecksCard {
     private final boolean isHero;
@@ -11,13 +12,13 @@ public class RegularCard extends DecksCard {
     private final RegularCardsAbility ability;
     private final RegularCardPositionType positionType;
 
-    public RegularCard(String name, String explanation, Faction faction, boolean itIsLeader, boolean itIsSpecialCard, boolean isHero, int point, RegularCardsAbility ability, String position, RegularCardPositionType position1) {
-        super(name, explanation, faction, false);
+    public RegularCard(String name, FactionType faction, CardData cardData, boolean isHero, int point, RegularCardsAbility ability, RegularCardPositionType position) {
+        super(name, faction,cardData, false);
         this.isHero = isHero;
         this.point = point;
         this.pointInGame = point;
         this.ability = ability;
-        this.positionType = position1;
+        this.positionType = position;
     }
 
     public RegularCardsAbility getAbility() {

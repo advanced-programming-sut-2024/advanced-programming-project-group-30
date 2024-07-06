@@ -3,7 +3,7 @@ package model.ability;
 import model.Game;
 
 public abstract class RegularCardsAbility {
-    public RegularCardsAbility createNewAbilityByName(String name) {
+    public static RegularCardsAbility createNewAbilityByName(String name) {
         return null;
     }
 

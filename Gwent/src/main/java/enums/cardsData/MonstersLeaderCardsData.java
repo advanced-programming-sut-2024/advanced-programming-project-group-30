@@ -1,10 +1,11 @@
 package enums.cardsData;
 
+import javafx.scene.image.Image;
 import model.card.Leader;
 
 import java.util.ArrayList;
 
-public enum MonstersLeaderCardsData {
+public enum MonstersLeaderCardsData implements LeaderCardData {
     CARDS_NAME("card name", "card explanation", "ability name");
 
     private final String name;
@@ -22,6 +23,11 @@ public enum MonstersLeaderCardsData {
     }
 
     public static ArrayList<Leader> getAllLeader() {
+        return null;
+    }
+
+    @Override
+    public Image getLgImage() {
         return null;
     }
 }

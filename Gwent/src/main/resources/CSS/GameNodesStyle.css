@@ -1,0 +1,183 @@
+.label {
+    -fx-text-fill: #f3d6b0;
+    -fx-font-family: Cambria;
+    -fx-text-alignment: CENTER;
+    -fx-scale-x: 1.05;
+}
+
+.button {
+    -fx-font-family: Cambria;
+    -fx-text-alignment: CENTER;
+    -fx-font-weight: BOLD;
+}
+
+.button:disabled {
+    -fx-opacity: 0.4;
+}
+
+.blackPane, .cardsScrollPane {
+    -fx-background-color: rgba(0, 0, 0, 0.55);
+    -fx-background-radius: 10;
+}
+
+.factionName {
+    -fx-font-weight: BOLD;
+    -fx-font-size: 30;
+    -fx-scale-x: 1.05;
+}
+
+.cardsTitle {
+    -fx-text-fill: #dab88c;
+    -fx-font-size: 16;
+    -fx-scale-x: 1.05;
+}
+
+.descriptions {
+    -fx-text-fill: #bea68a;
+    -fx-font-style: Italic;
+    -fx-font-size: 14;
+}
+
+.leaderTitle {
+    -fx-font-size: 14;
+    -fx-scale-x: 1.05;
+}
+
+.buttonWithoutBack {
+    -fx-text-fill: #f3d6b0;
+    -fx-font-size: 16;
+    -fx-background-color: Transparent;
+}
+
+.buttonWithoutBack:hover {
+    -fx-cursor: Hand;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.05;
+    -fx-text-fill: #d3a35a;
+}
+
+.topicLabel {
+    -fx-text-fill: #f1cc99;
+    -fx-font-size: 12;
+}
+
+.numberLabel {
+    -fx-text-fill: #a6865a;
+    -fx-font-size: 12;
+}
+
+.numberHBox {
+    -fx-max-height: 15;
+    -fx-max-width: 100;
+    -fx-min-height: 15;
+    -fx-min-width: 15;
+    -fx-spacing: 2;
+}
+
+.yellowButton {
+    -fx-opacity: 0.9;
+    -fx-background-color: #d3ac76;
+    -fx-text-fill: #463109;
+    -fx-font-size: 12;
+}
+
+.cardsScrollPane {
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+    -fx-background-radius: 10;
+    -fx-max-height: 460;
+    -fx-min-height: 460;
+    -fx-max-width: 380;
+    -fx-min-width: 380;
+    -fx-padding: 8;
+}
+
+.cardsScrollPane .viewport {
+    -fx-background-color: rgba(0, 0, 0, 0.25);
+    -fx-background-radius: 3;
+    -fx-border-color: rgba(211, 172, 118, 0.2);
+    -fx-border-radius: 3;
+    -fx-border-width: 0.5;
+    -fx-pref-width: 365;
+    -fx-pref-height: 620;
+}
+
+.cardsScrollPane .scroll-bar:vertical {
+    -fx-background-color: rgba(23, 19, 13, 0.9);
+    -fx-background-radius: 5;
+    -fx-pref-width: 15;
+    -fx-translate-x: -2.5;
+    -fx-scale-y: 0.97;
+    -fx-padding: 5 0 5 0;
+}
+
+.cardsScrollPane .scroll-bar .thumb {
+    -fx-background-color: rgba(85, 68, 46, 0.7);
+    -fx-background-radius: 3;
+    -fx-translate-x: -0.5;
+    -fx-scale-y: 0.99;
+}
+
+.cardsScrollPane .scroll-bar:vertical .decrement-button, .cardsScrollPane .scroll-bar:vertical .increment-button {
+    -fx-background-color: transparent;
+}
+
+.cardsScrollPane .scroll-bar:vertical .decrement-arrow, .cardsScrollPane .scroll-bar:vertical .increment-arrow {
+    -fx-background-color: #c19b69;
+}
+
+.cardsScrollPane .scroll-bar:vertical .decrement-arrow:hover, .cardsScrollPane .scroll-bar:vertical .increment-arrow:hover {
+    -fx-background-color: #efc286;
+}
+
+.cardsFlowPane {
+    -fx-padding: 4.72;
+    -fx-vgap: 4.72;
+    -fx-hgap: 4.72;
+}
+
+.preGameCard:hover {
+    -fx-cursor: HAND;
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+}
+
+.numberOfCardTypeIcon {
+    -fx-image: url('../Images/Game/PregameIcons/preview_count.png');
+    -fx-background-size: cover;
+    -fx-translate-x: 80;
+    -fx-translate-y: 172.5;
+}
+
+.numberOfCardTypeLabel {
+    -fx-font-family: Cambria;
+    -fx-text-fill: #4e3b22;
+    -fx-font-size: 10;
+    -fx-font-weight: bold;
+    -fx-translate-x: 92;
+    -fx-translate-y: 173.5;
+}
+
+.descriptionBox {
+    -fx-max-height: 120;
+    -fx-min-height: 120;
+    -fx-max-width: 400;
+    -fx-min-width: 400;
+    -fx-alignment: Center;
+    -fx-spacing: 8;
+    -fx-background-color: rgb(0, 0, 0, 0.75);
+    -fx-border-color: #dfb174;
+    -fx-border-width: 1.5 0 1.5 0;
+}
+
+.descriptionBoxTitle {
+    -fx-font-size: 18;
+    -fx-font-weight: Bold;
+}
+
+.descriptionBoxText {
+    -fx-font-size: 13;
+}
+
+.node:disabled {
+    -fx-opacity: 0.4;
+}

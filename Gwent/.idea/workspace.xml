@@ -4,14 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="124b1a9a-c6f6-4977-bbc2-df42d5ff586a" name="Changes" comment="">
+    <list default="true" id="f1724509-8fa7-4a1d-addf-f9c920333c2d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/DataSaverController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/DataSaverController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/ForgetPasswordMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ForgetPasswordMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/SecurityQuestion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/SecurityQuestion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/ProfileMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/ProfileMenu.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/json/users.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/json/users.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/PregameMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/PregameMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/SceneManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/SceneManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/PregameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/PregameMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/CSS/NodeStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/CSS/NodeStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/MainMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/MainMenu.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,22 +22,17 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="module-info" />
         <option value="CSS File" />
+        <option value="Enum" />
+        <option value="Interface" />
         <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$/.." value="PreGameMenu-Bahar" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
-  </component>
-  <component name="MacroExpansionManager">
-    <option name="directoryName" value="nhlyhcp9" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
@@ -51,28 +47,47 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "Application.Main.executor": "Run",
-    "Application.Unnamed.executor": "Run",
-    "git-widget-placeholder": "main",
+    "Application.test.executor": "Run",
+    "JavaMethodFindUsagesOptions.isSearchForTextOccurrences": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Pregame-Fatemeh",
+    "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Fatemeh/Desktop/Uni/AP/ApProject/Gwent/src/main/resources/FXML",
+    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon": "",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\ASUS\Documents\Uni\AP\Project\Gwent\src\main\resources\Images\Backgrounds" />
-      <recent name="C:\Users\ASUS\Documents\Uni\AP\Project\Gwent\src\main\resources" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Fatemeh\Desktop\Uni\AP\ApProject\Gwent\src\main\resources\FXML" />
+      <recent name="C:\Users\Fatemeh\Desktop\Uni\AP\ApProject\Gwent\src\main\java\view" />
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+    <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="view.Main" />
       <module name="Gwent" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -89,21 +104,55 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="124b1a9a-c6f6-4977-bbc2-df42d5ff586a" name="Changes" comment="" />
-      <created>1718699043431</created>
+      <changelist id="f1724509-8fa7-4a1d-addf-f9c920333c2d" name="Changes" comment="" />
+      <created>1714132697832</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1718699043431</updated>
-      <workItem from="1718699049990" duration="723000" />
-      <workItem from="1718950355255" duration="546000" />
-      <workItem from="1719145882379" duration="25013000" />
-      <workItem from="1719306831339" duration="16244000" />
-      <workItem from="1719337586712" duration="2768000" />
-      <workItem from="1719380435848" duration="10889000" />
+      <updated>1714132697832</updated>
+      <workItem from="1716717638958" duration="1314000" />
+      <workItem from="1716798562429" duration="5307000" />
+      <workItem from="1717410570450" duration="20155000" />
+      <workItem from="1717434733973" duration="571000" />
+      <workItem from="1717435476810" duration="67000" />
+      <workItem from="1717435546106" duration="14000" />
+      <workItem from="1717436114333" duration="8100000" />
+      <workItem from="1717446746677" duration="1557000" />
+      <workItem from="1717526900717" duration="12267000" />
+      <workItem from="1717762704150" duration="23000" />
+      <workItem from="1717942273660" duration="969000" />
+      <workItem from="1718342417582" duration="28524000" />
+      <workItem from="1719231523611" duration="1983000" />
+      <workItem from="1719233515696" duration="5251000" />
+      <workItem from="1719238897306" duration="333000" />
+      <workItem from="1719239250163" duration="6089000" />
+      <workItem from="1719498770610" duration="7143000" />
+      <workItem from="1719505979626" duration="21000" />
+      <workItem from="1719559913775" duration="9023000" />
+      <workItem from="1719572167129" duration="3377000" />
+      <workItem from="1719608395014" duration="636000" />
+      <workItem from="1719609069360" duration="3004000" />
+      <workItem from="1719647510046" duration="11798000" />
+      <workItem from="1719733488135" duration="45479000" />
+      <workItem from="1719940265883" duration="60097000" />
+      <workItem from="1720152813277" duration="42344000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

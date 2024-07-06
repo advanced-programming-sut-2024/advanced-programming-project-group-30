@@ -56,7 +56,7 @@ public class LoginMenu implements Menu{
             loginError.setText(result.toString());
             return;
         }
-        controller.login(username.getText(), password.getText());
+        controller.login(username.getText(), rememberMe.isSelected());
         resetFields();
     }
 

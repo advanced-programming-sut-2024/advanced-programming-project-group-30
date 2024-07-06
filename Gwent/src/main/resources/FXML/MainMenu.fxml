@@ -1,38 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import java.net.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 
-<BorderPane minHeight="500.0" minWidth="800.0" prefHeight="625.0" prefWidth="890.0" stylesheets="@../CSS/Backgrounds.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainMenu">
-    <center>
-        <VBox fx:id="Vbox" alignment="CENTER" prefHeight="500.0" prefWidth="700.0" styleClass="MenusBackground" BorderPane.alignment="CENTER">
-            <Pane maxHeight="480.0" maxWidth="350.0" minHeight="480.0" minWidth="350.0" prefHeight="480.0" prefWidth="400.0" styleClass="brownBox" stylesheets="@../CSS/NodeStyle.css">
-                <Label alignment="CENTER" layoutX="108.0" layoutY="46.0" prefHeight="46.0" prefWidth="135.0" style="-fx-font-size: 45" styleClass="beigeTitle" text="Gwent" textFill="#f3d6b0" />
-                <HBox alignment="CENTER" layoutX="48.0" layoutY="117.0">
-                    <Label fx:id="username" alignment="CENTER" layoutX="30.0" layoutY="200.0" prefHeight="46.0" prefWidth="135.0" styleClass="userInfoLabel" text="Username" textFill="#f3d6b0" />
-                    <Label fx:id="nickname" alignment="CENTER" layoutX="110.0" layoutY="200.0" prefHeight="46.0" prefWidth="135.0" styleClass="userInfoLabel" text="Nickname" textFill="#f3d6b0" />
-                </HBox>
-                <Button layoutX="37.0" layoutY="200.0" mnemonicParsing="false" onAction="#goToProfileMenu" prefHeight="41.0" prefWidth="278.0" styleClass="buttonWithBeigeBg" text="Profile Menu">
-                    <font>
-                        <Font name="Times New Roman Bold" size="20.0" />
-                    </font>
-                </Button>
-                <Button layoutX="37.0" layoutY="280.0" mnemonicParsing="false" onAction="#createNewGame" prefHeight="41.0" prefWidth="278.0" styleClass="buttonWithBeigeBg" text="Pregame Menu">
-                    <font>
-                        <Font name="Times New Roman Bold" size="20.0" />
-                    </font>
-                </Button>
-                <Button layoutX="37.0" layoutY="360.0" mnemonicParsing="false" onAction="#logout" prefHeight="41.0" prefWidth="278.0" styleClass="buttonWithBeigeBg" text="Logout">
-                    <font>
-                        <Font name="Times New Roman Bold" size="20.0" />
-                    </font>
-                </Button>
-            </Pane>
+<VBox fx:id="root" alignment="CENTER" prefHeight="625.0" prefWidth="1000.0" style="-fx-padding: -40 0 0 0;" styleClass="mainMenuBackground" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainMenu">
+    <VBox fx:id="mainPane" alignment="CENTER" maxHeight="672.0" maxWidth="1000" minHeight="625" minWidth="1000" prefHeight="672.0" prefWidth="1000.0" style="-fx-spacing: -18;">
+        <Group layoutX="289.0" layoutY="25.0">
+            <ImageView fitHeight="200.0" fitWidth="416.0" layoutX="1.0" layoutY="2.0" opacity="0.71" pickOnBounds="true" preserveRatio="true">
+                <effect>
+                    <ColorAdjust brightness="0.53" contrast="0.29" hue="0.02" saturation="1.0">
+                        <input>
+                            <BoxBlur height="0.0" width="0.0">
+                                <input>
+                                    <BoxBlur width="3.55" />
+                                </input>
+                            </BoxBlur>
+                        </input>
+                    </ColorAdjust>
+                </effect>
+                <Image url="@../Images/Icons/glowGwentLabel.png" />
+            </ImageView>
+            <ImageView fitHeight="105.0" fitWidth="364.0" layoutX="30.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@../Images/Icons/gwentLabel.png" />
+            </ImageView>
+        </Group>
+        <VBox alignment="CENTER" style="-fx-spacing: 13;">
+            <VBox styleClass="mainMenuBox">
+                <Button layoutX="135.0" layoutY="26.0" styleClass="playButton" />
+                <Button layoutX="152.0" layoutY="129.0" minHeight="10.0" mnemonicParsing="false" onAction="#goToProfileMenu" prefHeight="36.0" prefWidth="143.0" style="-fx-font-size: 30;" styleClass="mainMenuButtonWithoutBack" text="Profile Menu" />
+                <Button layoutX="186.0" layoutY="180.0" minHeight="10.0" mnemonicParsing="false" onAction="#logout" prefHeight="31.0" prefWidth="75.0" style="-fx-font-size: 27;" styleClass="mainMenuButtonWithoutBack" text="logout" />
+                <effect>
+                    <SepiaTone level="0.27" />
+                </effect>
+            </VBox>
+            <Label fx:id="infoLabel" prefHeight="36.0" styleClass="mainMenuInfoLabel" text="welcome" />
+            <Button mnemonicParsing="false" onAction="#goToProfileMenu" prefHeight="24.0" prefWidth="189.0" styleClass="scoreBoardButton" text="check Scoreboard" />
         </VBox>
-    </center>
-</BorderPane>
+    </VBox>
+    <stylesheets>
+        <URL value="@../CSS/Backgrounds.css" />
+        <URL value="@../CSS/NodeStyle.css" />
+    </stylesheets>
+</VBox>
