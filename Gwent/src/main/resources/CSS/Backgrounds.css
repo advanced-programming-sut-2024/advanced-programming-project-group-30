@@ -5,6 +5,13 @@
     -fx-pref-height: 625;
 }
 
+.mainMenuBackground {
+    -fx-background-image: url(../Images/Backgrounds/MainMenuBackground.jpg);
+    -fx-background-size: cover;
+    -fx-pref-width: 1000;
+    -fx-pref-height: 625;
+}
+
 .pregameBackground {
     -fx-background-image: url(../Images/Backgrounds/PregameBackground.png);
     -fx-background-size: cover;

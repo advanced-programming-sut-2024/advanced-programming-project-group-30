@@ -20,6 +20,66 @@
     -fx-border-radius: 20;
 }
 
+.mainMenuBox {
+    -fx-min-width: 450;
+    -fx-max-width: 450;
+    -fx-min-height: 240;
+    -fx-max-height: 240;
+    -fx-alignment: Center;
+    -fx-spacing: 16;
+    -fx-background-color: rgb(0, 0, 0, 0.6);
+    -fx-border-color: #ffae52;
+    -fx-border-insets: 6;
+    -fx-border-width: 0.5;
+}
+
+.playButton {
+    -fx-background-color: transparent;
+    -fx-background-image: url('../Images/Icons/playButton.png');
+    -fx-background-size: 100% 100%;
+    -fx-pref-width: 162;
+    -fx-pref-height: 78;
+}
+
+.mainMenuButtonWithoutBack {
+    -fx-font-family: Gabriola;
+    -fx-background-color: transparent;
+    -fx-padding: -12 0 -10 0;
+    -fx-border-width: 0.5 0 0.5 0;
+    -fx-border-color: #f7b55e;
+    -fx-text-fill: #f7b55e;
+}
+
+.mainMenuButtonWithoutBack:hover {
+    -fx-text-fill: #fbd19e;
+}
+
+.mainMenuInfoLabel {
+    -fx-background-color: rgb(0, 0, 0, 0.65);
+    -fx-text-fill: #f7b55e;
+    -fx-font-size: 19;
+    -fx-font-family: "Times New Roman";
+    -fx-font-style: italic;
+    -fx-alignment: Center;
+}
+
+.scoreBoardButton {
+    -fx-background-color: rgb(0, 0, 0, 0.75);
+    -fx-background-radius: 10;
+    -fx-border-color: #f7b55e;
+    -fx-border-width: 0.4;
+    -fx-border-radius: 10;
+    -fx-text-fill: #f7b55e;
+    -fx-font-family: "Times New Roman";
+    -fx-font-style: italic;
+    -fx-font-size: 19;
+}
+
+.scoreBoardButton:hover {
+    -fx-background-color: rgb(0, 0, 0, 0.85);
+    -fx-text-fill: #fad5a0;
+}
+
 .beigeTitle {
     -fx-alignment: center;
     -fx-text-fill: #f3d6b0;

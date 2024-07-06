@@ -29,7 +29,7 @@ public class SceneManager {
     public void goToMainMenu() {
         stageSizeData sizeData = getStageSizeData();
         MainMenu mainMenu = (MainMenu) MenuScene.MAIN_SCENE.getMenu();
-        mainMenu.setFields(App.getLoggedInUser().getUsername(), App.getLoggedInUser().getNickName());
+        mainMenu.setUserInfo(App.getLoggedInUser().getUsername(), App.getLoggedInUser().getNickName());
         App.setCurrentMenuScene(MenuScene.MAIN_SCENE);
         App.getPrimaryStage().setScene(MenuScene.MAIN_SCENE.getScene());
         setupStage(sizeData);
