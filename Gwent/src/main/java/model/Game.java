@@ -17,6 +17,7 @@ public class Game {
     private Row selectedRow;
     private DecksCard selectedCard;
     private ArrayList<WeatherCard> weatherCards = new ArrayList<>();
+    private boolean roundIsPassed = false;
     public void setOpponentPlayer(Player opponentPlayer) {
         this.opponentPlayer = opponentPlayer;
     }
@@ -69,8 +70,13 @@ public class Game {
     public Row getSelectedRow() {
         return selectedRow;
     }
-
     public ArrayList<WeatherCard> getWeatherCards() {
         return weatherCards;
+    }
+    public boolean isRoundIsPassed() {
+        return roundIsPassed;
+    }
+    public void setRoundIsPassed(boolean roundIsPassed) {
+        this.roundIsPassed = roundIsPassed;
     }
 }

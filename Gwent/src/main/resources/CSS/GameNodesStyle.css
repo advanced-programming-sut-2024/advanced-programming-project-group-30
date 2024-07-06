@@ -370,7 +370,7 @@
     -fx-background-size: 100% 100%;
 }
 .fogEffect{
-    -fx-background-image: url('../Images/Icons/overlay_frost.png');
+    -fx-background-image: url('../Images/Icons/overlay_fog.png');
     -fx-background-size: 100% 100%;
 }
 

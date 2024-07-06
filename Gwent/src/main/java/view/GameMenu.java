@@ -149,7 +149,7 @@ public class GameMenu implements Menu{
         notifLabel.setText(GameNotification.PASS_TURN.getNotification());
         pane.setDisable(true);
         pane.getStyleClass().add("rootPaneNotifStyle");
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(4),event -> {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2),event -> {
             pane.getStyleClass().remove("rootPaneNotifStyle");
             notifImageView.getStyleClass().remove(GameNotification.PASS_TURN.getNotificationImage());
             notifLabel.setText("");

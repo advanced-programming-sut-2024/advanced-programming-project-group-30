@@ -9,6 +9,7 @@ import model.card.WeatherCard;
 
 import javax.swing.text.html.CSS;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 
 public class WeatherCardAbility {
     private static final WeatherCardAbility instance = new WeatherCardAbility();
@@ -33,23 +34,68 @@ public class WeatherCardAbility {
     }
 
     public void impenetrableFog(Game game) {
+        ArrayList<CssAddress> cssAddresses = new ArrayList<>();
+        cssAddresses.add(CssAddress.getCssAddress(WeatherCardsData.IMPENETRABLE_FOG.toString().toLowerCase()));
+        try {
+            setEffects(cssAddresses, findRows(Player.class.getMethod("getCloseCombat"), game));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void bitingFrost(Game game) {
-        String effectStyle = CssAddress.getCssAddress(WeatherCardsData.BITING_FROST.toString().toLowerCase());
-        Player currentPlayer = game.getCurrentPlayer();
-        Player opponentPlayer = game.getOpponentPlayer();
-        Row closeCombat = currentPlayer.getCloseCombat();
-        Row opCloseCombat = opponentPlayer.getCloseCombat();
-        closeCombat.getRowView().getRow().getStyleClass().add(effectStyle);
-        opCloseCombat.getRowView().getRow().getStyleClass().add(effectStyle);
-
-
+        ArrayList<CssAddress> cssAddresses = new ArrayList<>();
+        cssAddresses.add(CssAddress.getCssAddress(WeatherCardsData.BITING_FROST.toString().toLowerCase()));
+        try {
+            setEffects(cssAddresses, findRows(Player.class.getMethod("getCloseCombat"), game));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void torrentialRain(Game game) {
+        ArrayList<CssAddress> cssAddresses = new ArrayList<>();
+        cssAddresses.add(CssAddress.getCssAddress(WeatherCardsData.TORRENTIAL_RAIN.toString().toLowerCase()));
+        try {
+            setEffects(cssAddresses, findRows(Player.class.getMethod("getCloseCombat"), game));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void skelligeStorm(Game game) {
+        ArrayList<CssAddress> cssAddresses = new ArrayList<>();
+        cssAddresses.add(CssAddress.getCssAddress(WeatherCardsData.IMPENETRABLE_FOG.toString().toLowerCase()));
+        cssAddresses.add(CssAddress.getCssAddress(WeatherCardsData.TORRENTIAL_RAIN.toString().toLowerCase()));
+        ArrayList<Row> rows = new ArrayList<>();
+        try {
+            rows.addAll(findRows(Player.class.getMethod("getRangedCombat"), game));
+            rows.addAll(findRows(Player.class.getMethod("getSiege"), game));
+            setEffects(cssAddresses, rows);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+    private ArrayList<Row> findRows(Method method, Game game){
+        Player currentPlayer = game.getCurrentPlayer();
+        Player opponetPlayer = game.getOpponentPlayer();
+        ArrayList<Row> rows = new ArrayList<>();
+        try {
+            rows.add((Row) method.invoke(currentPlayer));
+            rows.add((Row) method.invoke(opponetPlayer));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return rows;
+    }
+    private void setPoints(){}
+    private void setEffects(ArrayList<CssAddress> styles, ArrayList<Row> rows){
+        int i = 0;
+        for (Row row : rows){
+            row.getRowView().getRow().getStyleClass().add(styles.get(i).getStyleClass());
+            i++;
+            i /= 2;
+        }
+    }
+
 }

@@ -140,10 +140,10 @@ public enum CssAddress {
     public String getStyleSheet() {
         return styleSheet;
     }
-    public static String getCssAddress(String name) {
+    public static CssAddress getCssAddress(String name) {
         for (CssAddress cssAddress : CssAddress.values()) {
             if (cssAddress.toString().toLowerCase().equals(name)) {
-                return cssAddress.styleClass;
+                return cssAddress;
             }
         }
         return null;
