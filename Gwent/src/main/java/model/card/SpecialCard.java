@@ -16,6 +16,7 @@ public class SpecialCard extends DecksCard {
         this.ability = ability;
         super.cardView = new CardView(this);
     }
+
     public void run(){
 
     }

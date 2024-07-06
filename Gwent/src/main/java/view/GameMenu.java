@@ -62,7 +62,7 @@ public class GameMenu implements Menu{
     @FXML
     private HBox hand;
     @FXML
-    public void initialize() throws IOException {
+    public void initialize(){
         User user = new User("bahar", "123", "bahar", "bahar", SecurityQuestion.QUESTION_1, "blue");
         User user2 = new User("fatemeh", "123", "fatemeh", "fatemeh", SecurityQuestion.QUESTION_1, "blue");
         Game game = new Game();

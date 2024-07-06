@@ -79,6 +79,7 @@ public class GameMenuController {
         gameMenu.setNodeStyle(weatherCard.getCardView(), CssAddress.CARD_IN_ROW);
         gameMenu.setNodeStyle(gameMenu.getWeatherCardPosition(), CssAddress.CARD_ROW);
         cardPlaceAnimation(weatherCard,gameMenu.getWeatherCardPosition(), player.getPlayerView().getHandView(), game);
+        game.addWeatherCard(weatherCard);
         player.playCard(weatherCard);
         updateHandCardNumber(game);
         checkPassTurn(weatherCard, game);
@@ -88,7 +89,6 @@ public class GameMenuController {
         Bounds nodeBounds = card.getCardView().localToScene(card.getCardView().getBoundsInLocal());
         double startX = nodeBounds.getMinX();
         double startY = nodeBounds.getMinY();
-        // Calculate the target position to be the center of the destination HBox
         Bounds destinationBounds = destinationHBox.localToScene(destinationHBox.getBoundsInLocal());
         double targetX = destinationBounds.getMinX() + (destinationBounds.getWidth() - card.getCardView().getWidth()) / 2;
         double targetY = destinationBounds.getMinY() + (destinationBounds.getHeight() - card.getCardView().getHeight()) / 2;
@@ -102,6 +102,9 @@ public class GameMenuController {
             destinationHBox.getChildren().add(card.getCardView());
             card.getCardView().setTranslateX(0);
             card.getCardView().setTranslateY(0);
+            if (card instanceof WeatherCard weatherCard) {
+                weatherCard.run(game);
+            }
         });
         translate.play();
 

@@ -361,4 +361,16 @@
     -fx-image: url('../Images/Icons/power_scorch.png');
     -fx-background-size: 100% 100%;
 }
+.bitingFrostEffect{
+    -fx-background-image: url('../Images/Icons/overlay_frost.png');
+    -fx-background-size: 100% 100%;
+}
+.rainEffect{
+    -fx-background-image: url('../Images/Icons/overlay_rain.png');
+    -fx-background-size: 100% 100%;
+}
+.fogEffect{
+    -fx-background-image: url('../Images/Icons/overlay_frost.png');
+    -fx-background-size: 100% 100%;
+}
 

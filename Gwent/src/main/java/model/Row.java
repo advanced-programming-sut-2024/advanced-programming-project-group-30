@@ -77,14 +77,7 @@ public class Row extends Position{
     public void updateRowScore(){
         rowView.updateRowScore();
     }
-    public void addCard(DecksCard card, boolean isSpecial){
-        this.cards.add(card);
-        if (!isSpecial){
-            this.rowPoint += ((RegularCardData)(card.getCardData())).getPoint();
-            rowView.addCardToRow(card, isSpecial);
-        } else {
-            rowView.addCardToSpecialPosition(card);
-        }
-    }
+
+
 
 }

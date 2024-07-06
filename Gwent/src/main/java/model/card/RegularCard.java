@@ -46,5 +46,8 @@ public class RegularCard extends DecksCard {
     public RegularCardPositionType getPositionType() {
         return positionType;
     }
+    public void run(){
+
+    }
 }
 

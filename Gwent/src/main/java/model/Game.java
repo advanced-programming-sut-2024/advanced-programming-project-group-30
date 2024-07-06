@@ -4,8 +4,9 @@ package model;
 import java.util.ArrayList;
 
 import model.card.Card;
+import model.card.DecksCard;
 import model.card.SpecialCard;
-
+import model.card.WeatherCard;
 
 
 public class Game {
@@ -14,6 +15,8 @@ public class Game {
     private final ArrayList<SpecialCard> specialPosition = new ArrayList<>();
     private int roundNumber = 1;
     private Row selectedRow;
+    private DecksCard selectedCard;
+    private ArrayList<WeatherCard> weatherCards = new ArrayList<>();
     public void setOpponentPlayer(Player opponentPlayer) {
         this.opponentPlayer = opponentPlayer;
     }
@@ -24,7 +27,9 @@ public class Game {
     public Player getCurrentPlayer() {
         return currentPlayer;
     }
-
+    public void addWeatherCard(WeatherCard weatherCard) {
+        weatherCards.add(weatherCard);
+    }
     public Player getOpponentPlayer() {
         return opponentPlayer;
     }
@@ -63,5 +68,9 @@ public class Game {
     }
     public Row getSelectedRow() {
         return selectedRow;
+    }
+
+    public ArrayList<WeatherCard> getWeatherCards() {
+        return weatherCards;
     }
 }

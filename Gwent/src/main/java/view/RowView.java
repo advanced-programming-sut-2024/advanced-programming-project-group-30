@@ -28,6 +28,15 @@ public class RowView extends HBox {
         setUpRowView();
         this.getStyleClass().add("rowPaneStyle");
     }
+    public void updateRowScore() {
+        rowScore.setText(String.valueOf(row.getRowPoint()));
+    }
+    public HBox getRow(){
+        return rowView;
+    }
+    public HBox getSpecialCardPosition(){
+        return specialCardPosition;
+    }
     private void setUpRowView(){
         rowView.getStyleClass().add(CssAddress.ROW_STYLE.getStyleClass());
         setUpRowScore();
@@ -41,24 +50,5 @@ public class RowView extends HBox {
         rowScore.setPrefHeight(SizeData.SCORE_LABEL.getHeight());
         rowScoreRegion.getChildren().add(rowScore);
         rowScore.getStyleClass().add("scoreLabel");
-    }
-
-    public void updateRowScore() {
-        rowScore.setText(String.valueOf(row.getRowPoint()));
-    }
-    public HBox getRow(){
-        return rowView;
-    }
-    public HBox getSpecialCardPosition(){
-        return specialCardPosition;
-    }
-    public void addCardToRow(DecksCard decksCard, boolean isSpecial){
-        if (isSpecial) addCardToSpecialPosition(decksCard);
-        else rowView.getChildren().add(decksCard.getCardView());
-    }
-    public void addCardToSpecialPosition(DecksCard decksCard){
-        if (specialCardPosition.getChildren().isEmpty()){
-            specialCardPosition.getChildren().add(decksCard.getCardView());
-        }
     }
 }

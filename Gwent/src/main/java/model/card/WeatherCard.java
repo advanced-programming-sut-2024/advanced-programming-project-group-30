@@ -2,6 +2,8 @@ package model.card;
 
 import enums.FactionType;
 import enums.cardsData.CardData;
+import model.Game;
+import model.ability.WeatherCardAbility;
 import view.CardView;
 
 import java.lang.reflect.InvocationTargetException;
@@ -17,8 +19,13 @@ public class WeatherCard extends DecksCard{
         super.cardView = this.cardView;
 
     }
-    public void run() throws InvocationTargetException, IllegalAccessException {
-        ability.invoke(this);
+    public void run(Game game) {
+        try {
+            WeatherCardAbility weatherCardAbility = new WeatherCardAbility();
+            ability.invoke(weatherCardAbility,game);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
     }
 
 }

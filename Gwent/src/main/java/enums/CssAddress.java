@@ -117,6 +117,13 @@ public enum CssAddress {
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     SPECIAL_SCORCH_ICON("specialScorchIcon",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    BITING_FROST("bitingFrostEffect",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    IMPENETRABLE_FOG("fogEffect",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    TORRENTIAL_RAIN("rainEffect",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+
     ;
 
 
@@ -133,9 +140,9 @@ public enum CssAddress {
     public String getStyleSheet() {
         return styleSheet;
     }
-    public static String getCssAddress(String styleClass) {
+    public static String getCssAddress(String name) {
         for (CssAddress cssAddress : CssAddress.values()) {
-            if (cssAddress.getStyleClass().equals(styleClass)) {
+            if (cssAddress.toString().toLowerCase().equals(name)) {
                 return cssAddress.styleClass;
             }
         }

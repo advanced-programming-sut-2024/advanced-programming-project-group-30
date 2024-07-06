@@ -1,31 +1,51 @@
 package model.ability;
 
+import enums.CssAddress;
+import enums.cardsData.WeatherCardsData;
+import model.Game;
+import model.Player;
 import model.card.WeatherCard;
 
+import javax.swing.text.html.CSS;
 import java.lang.reflect.Method;
 
-public abstract class WeatherCardAbility {
+public class WeatherCardAbility {
+    private static final WeatherCardAbility instance = new WeatherCardAbility();
+    public static WeatherCardAbility getInstance(){
+        if (instance == null) {
+            return new WeatherCardAbility();
+        } return instance;
+    }
     public static Method createNewAbilityByName(String name) {
         Method method = null;
         try {
-            method = WeatherCardAbility.class.getDeclaredMethod(name);
+            method = WeatherCardAbility.class.getMethod(name, Game.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return method;
     }
-    private void clearWeather() {
+    public void clearWeather(Game game) {
+        for (WeatherCard weatherCard : game.getWeatherCards()) {
+
+        }
     }
 
-    private void impenetrableFog() {
+    public void impenetrableFog(Game game) {
     }
 
-    private void bitingFrost() {
+    public void bitingFrost(Game game) {
+        String effectStyle = CssAddress.getCssAddress(WeatherCardsData.BITING_FROST.toString().toLowerCase());
+        Player currentPlayer = game.getCurrentPlayer();
+        Player opponentPlayer = game.getOpponentPlayer();
+        game.getCurrentPlayer().getCloseCombat().getRowView().getRow().getStyleClass().add(effectStyle);
+        game.getOpponentPlayer().getCloseCombat().getRowView().getRow().getStyleClass().add(effectStyle);
+
     }
 
-    private void torrentialRain() {
+    public void torrentialRain(Game game) {
     }
 
-    private void skelligeStorm() {
+    public void skelligeStorm(Game game) {
     }
 }
