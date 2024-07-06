@@ -28,7 +28,7 @@ public class MainMenu implements Menu {
 
     @FXML
     private void goToProfileMenu() {
-        // TODO
+        controller.goToProfileMenu();
     }
 
     @FXML

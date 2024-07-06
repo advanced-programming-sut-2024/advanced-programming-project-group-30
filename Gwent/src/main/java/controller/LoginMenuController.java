@@ -1,7 +1,6 @@
 package controller;
 
 import model.App;
-import model.Faction;
 import model.Result;
 import model.User;
 

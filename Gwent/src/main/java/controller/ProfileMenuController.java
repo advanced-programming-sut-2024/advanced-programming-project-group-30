@@ -4,9 +4,7 @@ import model.App;
 import model.GameHistory;
 import model.Result;
 import model.User;
-import view.ProfileMenu;
 
-import javax.swing.plaf.IconUIResource;
 
 public class ProfileMenuController {
     private final UserInformationController userInformationController = new UserInformationController();

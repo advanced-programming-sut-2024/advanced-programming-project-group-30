@@ -2,7 +2,9 @@ package controller;
 
 import enums.MenuScene;
 import model.App;
+import model.User;
 import view.MainMenu;
+import view.ProfileMenu;
 
 public class SceneManager {
     public Double getScale(double stageWidth, double stageHeight, double paneWidth, double paneHeight, double scaleCoef) {
