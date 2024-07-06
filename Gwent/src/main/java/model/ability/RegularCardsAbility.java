@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 
-public abstract class RegularCardsAbility {
+public class RegularCardsAbility {
     public static Method createNewAbilityByName(String name) {
         Method method = null;
         try {

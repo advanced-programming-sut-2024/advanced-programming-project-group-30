@@ -80,7 +80,7 @@ public class GameMenu implements Menu{
         System.out.println(player);
         ArrayList<DecksCard> allCards = new ArrayList<>();
         ArrayList<RegularCard> cards = NeutralRegularCardsData.getAllRegularCard();
-//        allCards.addAll(cards);
+        allCards.addAll(cards);
 //        allCards.addAll(MonstersRegularCardsData.getAllRegularCard());
 //        allCards.addAll(NorthernRealmsRegularCardsData.getAllRegularCard());
 //        allCards.addAll(SkelligeRegularCardsData.getAllRegularCard());
@@ -125,8 +125,10 @@ public class GameMenu implements Menu{
         return weatherCardPosition;
     }
     public void resetStyles(RowView rowView) {
-        rowView.getRow().getStyleClass().remove(CssAddress.CARD_ROW.getStyleClass());
-        rowView.getSpecialCardPosition().getStyleClass().remove(CssAddress.CARD_ROW.getStyleClass());
+        for (CssAddress cssAddress : rowView.getStyles()){
+            rowView.getRow().getStyleClass().remove(cssAddress.getStyleClass());
+            rowView.getSpecialCardPosition().getStyleClass().remove(cssAddress.getStyleClass());
+        }
         weatherCardPosition.getStyleClass().remove(CssAddress.CARD_ROW.getStyleClass());
     }
     public void setUpScores(ArrayList<Row> allRows){

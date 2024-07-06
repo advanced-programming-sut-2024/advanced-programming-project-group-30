@@ -3,13 +3,13 @@ package model.card;
 import enums.FactionType;
 import enums.RegularCardPositionType;
 import enums.cardsData.CardData;
+import enums.cardsData.RegularCardData;
 import view.CardView;
 
 import java.lang.reflect.Method;
 
 public class RegularCard extends DecksCard {
     private final boolean isHero;
-    private final int point;
     private int pointInGame;
     private final Method ability;
     private final RegularCardPositionType positionType;
@@ -17,7 +17,6 @@ public class RegularCard extends DecksCard {
     public RegularCard(String name, FactionType faction, CardData cardData, boolean isHero, int point, Method ability, RegularCardPositionType position) {
         super(name, faction,cardData, false);
         this.isHero = isHero;
-        this.point = point;
         this.pointInGame = point;
         this.ability = ability;
         this.positionType = position;
@@ -31,10 +30,9 @@ public class RegularCard extends DecksCard {
         return isHero;
     }
 
-    public int getPoint() {
-        return point;
+    public void resetPoint(){
+        pointInGame = ((RegularCardData)getCardData()).getPoint();
     }
-
     public int getPointInGame() {
         return pointInGame;
     }
@@ -48,6 +46,10 @@ public class RegularCard extends DecksCard {
     }
     public void run(){
 
+    }
+
+    public int getPoint() {
+        return ((RegularCardData)getCardData()).getPoint();
     }
 }
 

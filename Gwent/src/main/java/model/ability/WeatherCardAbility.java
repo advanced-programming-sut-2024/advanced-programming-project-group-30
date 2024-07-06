@@ -4,6 +4,7 @@ import enums.CssAddress;
 import enums.cardsData.WeatherCardsData;
 import model.Game;
 import model.Player;
+import model.Row;
 import model.card.WeatherCard;
 
 import javax.swing.text.html.CSS;
@@ -38,8 +39,11 @@ public class WeatherCardAbility {
         String effectStyle = CssAddress.getCssAddress(WeatherCardsData.BITING_FROST.toString().toLowerCase());
         Player currentPlayer = game.getCurrentPlayer();
         Player opponentPlayer = game.getOpponentPlayer();
-        game.getCurrentPlayer().getCloseCombat().getRowView().getRow().getStyleClass().add(effectStyle);
-        game.getOpponentPlayer().getCloseCombat().getRowView().getRow().getStyleClass().add(effectStyle);
+        Row closeCombat = currentPlayer.getCloseCombat();
+        Row opCloseCombat = opponentPlayer.getCloseCombat();
+        closeCombat.getRowView().getRow().getStyleClass().add(effectStyle);
+        opCloseCombat.getRowView().getRow().getStyleClass().add(effectStyle);
+
 
     }
 

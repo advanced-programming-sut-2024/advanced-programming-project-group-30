@@ -24,6 +24,7 @@ import view.*;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 
 public class GameMenuController {
     private final GameMenu gameMenu;
@@ -147,50 +148,81 @@ public class GameMenuController {
             resetRowStyles(game);
             player1.setSelectedCard(card);
             try {
+                Player player = player1;
                 Method method = RowView.class.getDeclaredMethod("getRow");
+                ArrayList<Method> getRow = new ArrayList<>();
+                RowView rowView;
                 switch (position) {
                     case CLOSE_COMBAT:
-                        RowView closeCombatRow = player1.getCloseCombat().getRowView();
-                        gameMenu.setNodeStyle(closeCombatRow.getRow(), CssAddress.CARD_ROW);
-                        handleRowEvents(card, game, method, player1.getCloseCombat());
+                        getRow.add(Player.class.getDeclaredMethod("getCloseCombat"));
+//                        RowView closeCombatRow = player1.getCloseCombat().getRowView();
+//                        gameMenu.setNodeStyle(closeCombatRow.getRow(), CssAddress.CARD_ROW);
+//                        closeCombatRow.addStyle(CssAddress.CARD_ROW);
+//                        handleRowEvents(card, game, method, player1.getCloseCombat());
                         break;
                     case RANGED_COMBAT:
-                        RowView rangedCombatRow = player1.getRangedCombat().getRowView();
-                        gameMenu.setNodeStyle(rangedCombatRow.getRow(), CssAddress.CARD_ROW);
-                        handleRowEvents(card, game, method, player1.getRangedCombat());
+                        getRow.add(Player.class.getDeclaredMethod("getRangedCombat"));
+//                        RowView rangedCombatRow = player1.getRangedCombat().getRowView();
+//                        gameMenu.setNodeStyle(rangedCombatRow.getRow(), CssAddress.CARD_ROW);
+
+//                        handleRowEvents(card, game, method, player1.getRangedCombat());
                         break;
                     case SIEGE:
-                        RowView siegeCombatRow = player1.getSiege().getRowView();
-                        gameMenu.setNodeStyle(siegeCombatRow.getRow(), CssAddress.CARD_ROW);
-                        handleRowEvents(card, game, method, player1.getSiege());
+                        getRow.add(Player.class.getDeclaredMethod("getSiege"));
+//                        RowView siegeCombatRow = player1.getSiege().getRowView();
+//                        gameMenu.setNodeStyle(siegeCombatRow.getRow(), CssAddress.CARD_ROW);
+//                        handleRowEvents(card, game, method, player1.getSiege());
                         break;
                     case AGILE:
-                        RowView ranged = player1.getRangedCombat().getRowView();
-                        RowView closeRow = player1.getCloseCombat().getRowView();
-                        gameMenu.setNodeStyle(ranged.getRow(), CssAddress.CARD_ROW);
-                        gameMenu.setNodeStyle(closeRow.getRow(), CssAddress.CARD_ROW);
-                        handleRowEvents(card, game, method, player1.getRangedCombat(), player1.getCloseCombat());
+                        getRow.add(Player.class.getDeclaredMethod("getRangedCombat"));
+                        getRow.add(Player.class.getDeclaredMethod("getCloseCombat"));
+//                        RowView ranged = player1.getRangedCombat().getRowView();
+//                        RowView closeRow = player1.getCloseCombat().getRowView();
+//                        gameMenu.setNodeStyle(ranged.getRow(), CssAddress.CARD_ROW);
+//                        gameMenu.setNodeStyle(closeRow.getRow(), CssAddress.CARD_ROW);
+//                        handleRowEvents(card, game, method, player1.getRangedCombat(), player1.getCloseCombat());
                         break;
                     case OPPONENT_CLOSE_COMBAT:
-                        RowView opponentCloseCombatRow = player2.getCloseCombat().getRowView();
-                        gameMenu.setNodeStyle(opponentCloseCombatRow.getRow(), CssAddress.CARD_ROW);
-                        handleRowEvents(card, game, method, player2.getCloseCombat());
+                        getRow.add(Player.class.getDeclaredMethod("getCloseCombat"));
+                        player = player2;
+//                        RowView opponentCloseCombatRow = player2.getCloseCombat().getRowView();
+//                        gameMenu.setNodeStyle(opponentCloseCombatRow.getRow(), CssAddress.CARD_ROW);
+//                        handleRowEvents(card, game, method, player2.getCloseCombat());
                         break;
                     case OPPONENT_RANGED_COMBAT:
-                        RowView opponentRangedCombatRow = player2.getRangedCombat().getRowView();
-                        gameMenu.setNodeStyle(opponentRangedCombatRow.getRow(), CssAddress.CARD_ROW);
-                        handleRowEvents(card, game, method, player2.getRangedCombat());
+                        getRow.add(Player.class.getDeclaredMethod("getRangedCombat"));
+                        player = player2;
+//                        RowView opponentRangedCombatRow = player2.getRangedCombat().getRowView();
+//                        gameMenu.setNodeStyle(opponentRangedCombatRow.getRow(), CssAddress.CARD_ROW);
+//                        handleRowEvents(card, game, method, player2.getRangedCombat());
                         break;
-                    case OPPONENT_SIEGE:
-                        RowView opponentSiegeCombatRow = player2.getSiege().getRowView();
-                        gameMenu.setNodeStyle(opponentSiegeCombatRow.getRow(), CssAddress.CARD_ROW);
-                        handleRowEvents(card, game, method, player2.getSiege());
+                    default:
+                        getRow.add(Player.class.getDeclaredMethod("getSiege"));
+                        player = player2;
+//                        RowView opponentSiegeCombatRow = player2.getSiege().getRowView();
+//                        gameMenu.setNodeStyle(opponentSiegeCombatRow.getRow(), CssAddress.CARD_ROW);
+//                        handleRowEvents(card, game, method, player2.getSiege());
                         break;
+                }
+                if (getRow.size() == 2){
+                    Row row1 =(Row) getRow.get(0).invoke(player);
+                    Row row2 =(Row) getRow.get(1).invoke(player);
+                    row1.getRowView().addStyle(CssAddress.CARD_ROW);
+                    row2.getRowView().addStyle(CssAddress.CARD_ROW);
+                    gameMenu.setNodeStyle(row1.getRowView().getRow(), CssAddress.CARD_ROW);
+                    gameMenu.setNodeStyle(row2.getRowView().getRow(), CssAddress.CARD_ROW);
+                    handleRowEvents(card, game, method, row1, row2);
+                }else {
+                    Row row = (Row) getRow.get(0).invoke(player);
+                    row.getRowView().addStyle(CssAddress.CARD_ROW);
+                    gameMenu.setNodeStyle(row.getRowView().getRow(), CssAddress.CARD_ROW);
+                    handleRowEvents(card,game,method,row);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
+
     }
 
     public void handleWeatherCardEvents(WeatherCard weatherCard, Game game){

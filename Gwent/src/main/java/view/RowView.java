@@ -13,20 +13,34 @@ import model.Row;
 import model.card.DecksCard;
 import model.card.SpecialCard;
 
+import java.util.ArrayList;
+
 public class RowView extends HBox {
     private final Row row;
     private final HBox rowView;
     private final HBox specialCardPosition;
     private final Label rowScore;
     private final VBox rowScoreRegion;
+    private ArrayList<CssAddress> styles;
     public RowView(Row row, CoordinateData coordinateData){
         this.row = row;
         rowView = new HBox();
         rowScore = new Label();
         rowScoreRegion = new VBox();
         specialCardPosition = new HBox();
+        styles = new ArrayList<>();
         setUpRowView();
         this.getStyleClass().add("rowPaneStyle");
+    }
+    public ArrayList<CssAddress> getStyles(){
+        return this.styles;
+    }
+    public void addStyle(CssAddress cssAddress){
+        this.styles.add(cssAddress);
+    }
+    public void removeStyle(CssAddress cssAddress){
+        this.styles.remove(cssAddress);
+        this.getStyleClass().remove(cssAddress.getStyleClass());
     }
     public void updateRowScore() {
         rowScore.setText(String.valueOf(row.getRowPoint()));

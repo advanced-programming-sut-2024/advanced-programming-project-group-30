@@ -2,7 +2,7 @@ package model.ability;
 
 import java.lang.reflect.Method;
 
-public abstract class SpecialCardAbility {
+public class SpecialCardAbility {
     public static Method createNewAbilityByName(String name) {
         Method method = null;
         try {

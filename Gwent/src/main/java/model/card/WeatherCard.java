@@ -21,8 +21,7 @@ public class WeatherCard extends DecksCard{
     }
     public void run(Game game) {
         try {
-            WeatherCardAbility weatherCardAbility = new WeatherCardAbility();
-            ability.invoke(weatherCardAbility,game);
+            ability.invoke(WeatherCardAbility.getInstance(),game);
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
