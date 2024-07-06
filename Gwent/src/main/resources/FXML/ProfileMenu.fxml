@@ -1,196 +1,141 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Text?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane styleClass="MenusBackground" stylesheets="@../CSS/Backgrounds.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ProfileMenu">
+<BorderPane styleClass="mainMenuBackground" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ProfileMenu">
     <center>
         <VBox alignment="CENTER" prefHeight="500.0" prefWidth="700.0" BorderPane.alignment="CENTER">
-            <Pane maxHeight="534.0" maxWidth="700.0" minHeight="480.0" minWidth="350.0" prefHeight="534.0" prefWidth="806.0" styleClass="brownBox" stylesheets="@../CSS/NodeStyle.css">
-                <ImageView fitHeight="66.0" fitWidth="110.0" layoutX="57.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@../Images/gameAssests/icon_high_score.png" />
-                </ImageView>
-                <VBox fx:id="editInformationBox" layoutX="14.0" layoutY="183.0" maxHeight="900.0" maxWidth="900.0" minHeight="0.0"
-                      minWidth="0.0" prefHeight="202.0" prefWidth="366.0" spacing="15.0">
+            <Pane maxHeight="534.0" maxWidth="810.0" minHeight="480.0" minWidth="350.0" prefHeight="534.0" prefWidth="810.0" style="-fx-background-color: rgba(14,10,8,0.8); -fx-background-radius: 10; -fx-border-color: #b88c42; -fx-border-width: 0.5; -fx-border-insets: 5; -fx-border-radius: 5;">
+                <VBox layoutX="181.0" layoutY="25.0" prefHeight="161.0" prefWidth="157.0" spacing="18.0" style="-fx-spacing: 5;">
+                   <Label fx:id="gameCount" prefHeight="31.0" prefWidth="150.0" style="-fx-font-weight: bold;" styleClass="profileMenu-info-label" text="Games Played: 0" />
+                    <HBox alignment="CENTER_LEFT" maxHeight="500.0" maxWidth="500.0" minHeight="0.0" minWidth="0.0" prefHeight="30.0" prefWidth="198.0" spacing="2.0" style="-fx-spacing: 8;">
+                        <ImageView fitHeight="30.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../Images/gameAssests/notif_win_round.png" />
+                        </ImageView>
+                        <Label fx:id="wins" prefHeight="37.0" prefWidth="127.0" styleClass="profileMenu-info-label" text="Win : 20" />
+                    </HBox>
+                    <HBox alignment="CENTER_LEFT" maxHeight="500.0" maxWidth="500.0" minHeight="0.0" minWidth="0.0" prefHeight="30.0" prefWidth="198.0" spacing="2.0" style="-fx-spacing: 8;">
+                        <ImageView fitHeight="30.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../Images/gameAssests/notif_draw_round.png" />
+                        </ImageView>
+                        <Label fx:id="draws" minHeight="35.0" prefHeight="37.0" prefWidth="139.0" styleClass="profileMenu-info-label" text="Draws : 20" />
+                    </HBox>
+                    <HBox alignment="CENTER_LEFT" maxHeight="500.0" maxWidth="500.0" minHeight="0.0" minWidth="0.0" prefHeight="30.0" prefWidth="202.0" spacing="2.0" style="-fx-spacing: 14; -fx-padding: 0 0 0 8;">
+                        <ImageView fitHeight="30.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../Images/gameAssests/notif_lose_round.png" />
+                        </ImageView>
+                        <Label fx:id="losses" alignment="TOP_LEFT" prefHeight="30.0" prefWidth="140.0" styleClass="profileMenu-info-label" text="Losses: 20" />
+                    </HBox>
+                </VBox>
+                <VBox fx:id="editInformationBox" layoutX="19.0" layoutY="222.0" maxHeight="900.0" maxWidth="900.0" minHeight="0.0" minWidth="0.0" prefHeight="202.0" prefWidth="366.0" spacing="15.0">
                     <HBox prefHeight="55.0" prefWidth="456.0">
                         <HBox prefHeight="55.0" prefWidth="501.0" spacing="13.0">
-                            <children>
-                                <VBox maxWidth="500.0" prefHeight="55.0" prefWidth="362.0">
-                                    <children>
-                                        <TextField fx:id="usernameTextField" editable="false" maxWidth="500.0" minHeight="0.0"
-                                                   minWidth="0.0" prefHeight="25.0" prefWidth="200.0" styleClass="bottomBorderField"/>
-                                        <Label fx:id="usernameErrorField" prefHeight="17.0" prefWidth="328.0"
-                                               styleClass="errorMessage"/>
-                                    </children>
-                                </VBox>
-                                <HBox prefHeight="55.0" prefWidth="244.0" spacing="5.0">
-                                    <children>
-                                        <Button fx:id="editUsernameButton" mnemonicParsing="false" onAction="#editUsername"
-                                                prefHeight="25.0" prefWidth="22.0" styleClass="profileMenu-edit-button"/>
-                                        <Button fx:id="setNewUsernameButton" mnemonicParsing="false" onAction="#checkAndSetNewUsername"
-                                                prefHeight="11.0" prefWidth="23.0" styleClass="profileMenu-check-button"
-                                                translateX="-25.0" visible="false"/>
-                                        <Button fx:id="cancelChangingUsernameButton" maxWidth="500.0" minWidth="0.0"
-                                                mnemonicParsing="false" onAction="#cancelChangingUsername" prefHeight="25.0"
-                                                prefWidth="25.0" styleClass="profileMenu-cancel-button" translateX="-25.0"
-                                                visible="false"/>
-                                    </children>
-                                </HBox>
-                            </children>
+                            <VBox maxWidth="500.0" prefHeight="55.0" prefWidth="362.0">
+                                <TextField fx:id="usernameTextField" editable="false" maxWidth="500.0" minHeight="0.0" minWidth="0.0" prefHeight="25.0" prefWidth="200.0" styleClass="bottomBorderField" />
+                                <Label fx:id="usernameErrorField" prefHeight="17.0" prefWidth="328.0" styleClass="errorMessage" />
+                            </VBox>
+                            <HBox prefHeight="55.0" prefWidth="244.0" spacing="5.0">
+                                <Button fx:id="editUsernameButton" mnemonicParsing="false" onAction="#editUsername" prefHeight="25.0" prefWidth="22.0" styleClass="profileMenu-edit-button" />
+                                <Button fx:id="setNewUsernameButton" mnemonicParsing="false" onAction="#checkAndSetNewUsername" prefHeight="11.0" prefWidth="23.0" styleClass="profileMenu-check-button" translateX="-25.0" visible="false" />
+                                <Button fx:id="cancelChangingUsernameButton" maxWidth="500.0" minWidth="0.0" mnemonicParsing="false" onAction="#cancelChangingUsername" prefHeight="25.0" prefWidth="25.0" styleClass="profileMenu-cancel-button" translateX="-25.0" visible="false" />
+                            </HBox>
                         </HBox>
                     </HBox>
                     <HBox prefHeight="55.0" prefWidth="456.0">
-                        <children>
-                            <HBox prefHeight="55.0" prefWidth="501.0" spacing="13.0">
-                                <children>
-                                    <VBox maxWidth="500.0" prefHeight="55.0" prefWidth="362.0">
-                                        <children>
-                                            <TextField fx:id="nicknameTextField" editable="false" maxWidth="500.0" minHeight="0.0"
-                                                       minWidth="0.0" prefHeight="25.0" prefWidth="200.0" styleClass="bottomBorderField"/>
-                                            <Label fx:id="nicknameErrorField" prefHeight="17.0" prefWidth="328.0"
-                                                   styleClass="errorMessage"/>
-                                        </children>
-                                    </VBox>
-                                    <HBox prefHeight="55.0" prefWidth="244.0" spacing="5.0">
-                                        <children>
-                                            <Button fx:id="editNicknameButton" mnemonicParsing="false" onAction="#editNickname"
-                                                    prefHeight="25.0" prefWidth="22.0" styleClass="profileMenu-edit-button"/>
-                                            <Button fx:id="setNewNicknameButton" mnemonicParsing="false" onAction="#checkAndSetNewNickname"
-                                                    prefHeight="11.0" prefWidth="23.0" styleClass="profileMenu-check-button"
-                                                    translateX="-25.0" visible="false"/>
-                                            <Button fx:id="cancelChangingNicknameButton" maxWidth="500.0" minWidth="0.0"
-                                                    mnemonicParsing="false" onAction="#cancelChangingNickname" prefHeight="25.0"
-                                                    prefWidth="25.0" styleClass="profileMenu-cancel-button" translateX="-25.0"
-                                                    visible="false"/>
-                                        </children>
-                                    </HBox>
-                                </children>
+                        <HBox prefHeight="55.0" prefWidth="501.0" spacing="13.0">
+                            <VBox maxWidth="500.0" prefHeight="55.0" prefWidth="362.0">
+                                <TextField fx:id="nicknameTextField" editable="false" maxWidth="500.0" minHeight="0.0" minWidth="0.0" prefHeight="25.0" prefWidth="200.0" styleClass="bottomBorderField" />
+                                <Label fx:id="nicknameErrorField" prefHeight="17.0" prefWidth="328.0" styleClass="errorMessage" />
+                            </VBox>
+                            <HBox prefHeight="55.0" prefWidth="244.0" spacing="5.0">
+                                <Button fx:id="editNicknameButton" mnemonicParsing="false" onAction="#editNickname" prefHeight="25.0" prefWidth="22.0" styleClass="profileMenu-edit-button" />
+                                <Button fx:id="setNewNicknameButton" mnemonicParsing="false" onAction="#checkAndSetNewNickname" prefHeight="11.0" prefWidth="23.0" styleClass="profileMenu-check-button" translateX="-25.0" visible="false" />
+                                <Button fx:id="cancelChangingNicknameButton" maxWidth="500.0" minWidth="0.0" mnemonicParsing="false" onAction="#cancelChangingNickname" prefHeight="25.0" prefWidth="25.0" styleClass="profileMenu-cancel-button" translateX="-25.0" visible="false" />
                             </HBox>
-                        </children>
+                        </HBox>
                     </HBox>
                     <HBox prefHeight="55.0" prefWidth="456.0">
-                        <children>
-                            <HBox prefHeight="55.0" prefWidth="501.0" spacing="13.0">
-                                <children>
-                                    <VBox maxWidth="500.0" prefHeight="55.0" prefWidth="362.0">
-                                        <children>
-                                            <TextField fx:id="emailTextField" editable="false" maxWidth="500.0" minHeight="0.0"
-                                                       minWidth="0.0" prefHeight="25.0" prefWidth="200.0" styleClass="bottomBorderField"/>
-                                            <Label fx:id="emailErrorField" prefHeight="17.0" prefWidth="328.0" styleClass="errorMessage"/>
-                                        </children>
-                                    </VBox>
-                                    <HBox prefHeight="55.0" prefWidth="244.0" spacing="5.0">
-                                        <children>
-                                            <Button fx:id="editEmailButton" mnemonicParsing="false" onAction="#editEmail" prefHeight="25.0"
-                                                    prefWidth="22.0" styleClass="profileMenu-edit-button"/>
-                                            <Button fx:id="setNewEmailButton" mnemonicParsing="false" onAction="#checkAndSetNewEmail"
-                                                    prefHeight="11.0" prefWidth="23.0" styleClass="profileMenu-check-button"
-                                                    translateX="-25.0" visible="false"/>
-                                            <Button fx:id="cancelChangingEmailButton" maxWidth="500.0" minWidth="0.0"
-                                                    mnemonicParsing="false" onAction="#cancelChangingEmail" prefHeight="25.0"
-                                                    prefWidth="25.0" styleClass="profileMenu-cancel-button" translateX="-25.0"
-                                                    visible="false"/>
-                                        </children>
-                                    </HBox>
-                                </children>
+                        <HBox prefHeight="55.0" prefWidth="501.0" spacing="13.0">
+                            <VBox maxWidth="500.0" prefHeight="55.0" prefWidth="362.0">
+                                <TextField fx:id="emailTextField" editable="false" maxWidth="500.0" minHeight="0.0" minWidth="0.0" prefHeight="25.0" prefWidth="200.0" styleClass="bottomBorderField" />
+                                <Label fx:id="emailErrorField" prefHeight="17.0" prefWidth="328.0" styleClass="errorMessage" />
+                            </VBox>
+                            <HBox prefHeight="55.0" prefWidth="244.0" spacing="5.0">
+                                <Button fx:id="editEmailButton" mnemonicParsing="false" onAction="#editEmail" prefHeight="25.0" prefWidth="22.0" styleClass="profileMenu-edit-button" />
+                                <Button fx:id="setNewEmailButton" mnemonicParsing="false" onAction="#checkAndSetNewEmail" prefHeight="11.0" prefWidth="23.0" styleClass="profileMenu-check-button" translateX="-25.0" visible="false" />
+                                <Button fx:id="cancelChangingEmailButton" maxWidth="500.0" minWidth="0.0" mnemonicParsing="false" onAction="#cancelChangingEmail" prefHeight="25.0" prefWidth="25.0" styleClass="profileMenu-cancel-button" translateX="-25.0" visible="false" />
                             </HBox>
-                        </children>
+                        </HBox>
                     </HBox>
                 </VBox>
-            <VBox layoutX="181.0" layoutY="15.0" maxHeight="10000.0" maxWidth="10000.0" minHeight="0.0" minWidth="0.0" prefHeight="101.0" prefWidth="183.0" spacing="18.0">
-               <children>
-                  <HBox maxHeight="500.0" maxWidth="500.0" minHeight="0.0" minWidth="0.0" prefHeight="42.0" prefWidth="198.0" spacing="2.0">
-                     <children>
-                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Images/gameAssests/notif_win_round.png" />
-                           </image>
-                        </ImageView>
-                        <Label fx:id="wins" alignment="TOP_LEFT" prefHeight="46.0" prefWidth="158.0" styleClass="profileMenu-information-label" />
-                     </children>
-                  </HBox>
-                  <HBox maxHeight="500.0" maxWidth="500.0" minHeight="0.0" minWidth="0.0" prefHeight="42.0" prefWidth="198.0" spacing="2.0">
-                     <children>
-                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Images/gameAssests/notif_draw_round.png" />
-                           </image>
-                        </ImageView>
-                        <Label fx:id="draws" alignment="TOP_LEFT" prefHeight="46.0" prefWidth="158.0" styleClass="profileMenu-information-label" />
-                     </children>
-                  </HBox>
-                  <HBox maxHeight="500.0" maxWidth="500.0" minHeight="0.0" minWidth="0.0" prefHeight="42.0" prefWidth="202.0" spacing="2.0">
-                     <children>
-                        <ImageView fitHeight="27.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" translateX="-3.0">
-                           <image>
-                              <Image url="@../Images/gameAssests/notif_lose_round.png" />
-                           </image>
-                        </ImageView>
-                        <Label fx:id="losses" alignment="TOP_LEFT" prefHeight="46.0" prefWidth="158.0" styleClass="profileMenu-information-label" />
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-            <Label fx:id="gameCount" layoutX="362.0" layoutY="22.0" prefHeight="43.0" prefWidth="150.0" styleClass="profileMenu-information-label" />
-            <Label fx:id="highestScore" layoutX="46.0" layoutY="81.0" prefHeight="31.0" prefWidth="126.0" style="-fx-font-size: 18" styleClass="profileMenu-information-label" />
-            <Pane layoutX="364.0" layoutY="96.0" prefHeight="425.0" prefWidth="296.0">
-               <children>
-                        <ScrollPane fx:id="gameHistoryScrollPane" accessibleText="" hbarPolicy="NEVER" layoutX="1.0" layoutY="-26.0" prefHeight="426.0" prefWidth="295.0" styleClass="profileMenu-scrollPane" VBox.vgrow="ALWAYS">
-                     <content>
-                        <Pane prefHeight="426.0" prefWidth="278.0">
-                           <children>
-                              <VBox fx:id="scrollPaneVbox" accessibleText="" layoutY="16.0" prefHeight="404.0" prefWidth="278.0" spacing="20.0" style="-fx-border-radius: 32px;">
-                                  <children>
-                                      <Text fx:id="gameHistoryText" styleClass="profileMenu-scrollbar-textArea" />
-                                  </children>
-                              </VBox>
-                           </children>
+                <Label fx:id="highestScore" contentDisplay="CENTER" layoutX="22.0" layoutY="174.0" prefHeight="17.0" prefWidth="159.0" style="-fx-font-size: 12; -fx-alignment: center;" styleClass="profileMenu-info-label" text="100 is your best score" textAlignment="CENTER" />
+                <Pane layoutX="466.0" layoutY="75.0" prefHeight="425.0" prefWidth="296.0">
+                    <ScrollPane fx:id="gameHistoryScrollPane" accessibleText="" hbarPolicy="NEVER" layoutX="-68.0" layoutY="-16.0" prefHeight="426.0" prefWidth="389.0" styleClass="profileMenu-scrollPane" VBox.vgrow="ALWAYS">
+                        <Pane prefHeight="426.0" prefWidth="324.0">
+                            <VBox fx:id="scrollPaneVbox" accessibleText="" layoutX="-42.0" layoutY="16.0" prefHeight="404.0" prefWidth="320.0" spacing="20.0" style="-fx-border-radius: 32px;">
+                                <Text fx:id="gameHistoryText" styleClass="profileMenu-scrollbar-textArea" />
+                            </VBox>
                         </Pane>
-                     </content></ScrollPane>
-               </children>
-            </Pane>
-            <Pane fx:id="changePasswordPane" layoutX="20.0" layoutY="143.0" prefHeight="248.0" prefWidth="342.0" styleClass="brownBox" visible="false">
-               <children>
-                            <PasswordField fx:id="oldPassword" layoutX="71.0" layoutY="64.0" maxWidth="300.0" prefWidth="200.0" promptText="old password" styleClass="bottomBorderField" />
-                            <PasswordField fx:id="newPassword" layoutX="71.0" layoutY="124.0" prefHeight="26.0" prefWidth="200.0" promptText="new password" styleClass="bottomBorderField" />
-                  <HBox alignment="CENTER" layoutX="33.0" layoutY="183.0" prefHeight="28.0" prefWidth="277.0">
-                     <children>
-                                  <Button mnemonicParsing="false" onAction="#setNewPassword" styleClass="buttonWithoutBg" text="confirm" />
-                                  <Button mnemonicParsing="false" onAction="#backToEditInformation" styleClass="buttonWithoutBg" text="cancel" />
-                     </children>
-                  </HBox>
-                            <Label fx:id="newPasswordError" layoutX="71.0" layoutY="150.0" prefHeight="17.0" prefWidth="200.0" styleClass="errorMessage" />
-                  <Label fx:id="passwordConfirmationErrorField" layoutX="55.0" layoutY="14.0" prefHeight="34.0" prefWidth="237.0" styleClass="errorMessage" />
-               </children>
-            </Pane>
-            <Pane layoutX="499.0" layoutY="2.0" prefHeight="82.0" prefWidth="167.0">
-               <children>
-                  <TextField fx:id="gameHistoryCount" alignment="CENTER" layoutX="14.0" layoutY="4.0" prefHeight="38.0" prefWidth="149.0" promptText="5" styleClass="bottomBorderField" />
-                  <Label fx:id="gameHistoryNumberErrorField" alignment="CENTER" layoutX="-3.0" layoutY="39.0" prefHeight="27.0" prefWidth="181.0" styleClass="errorMessage" />
-                  <Button fx:id="gameHistoryButton" alignment="CENTER_LEFT" layoutX="142.0" layoutY="14.0" mnemonicParsing="false" onAction="#checkAndSetGameHistoryCount" prefHeight="25.0" prefWidth="23.0" styleClass="profileMenu-check-button" />
-               </children>
-            </Pane>
-            <ImageView fitHeight="70.0" fitWidth="69.0" layoutX="66.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../Images/profile.png" />
-               </image>
-            </ImageView>
-             <Button fx:id="changePasswordButton" layoutX="20.0" layoutY="377.0" mnemonicParsing="false" onAction="#editPassword" styleClass="buttonWithoutBg" text="change password" />
-            <Label fx:id="rank" layoutX="46.0" layoutY="112.0" prefHeight="31.0" prefWidth="126.0" style="-fx-font-size: 18" styleClass="profileMenu-information-label" />
-            <Button layoutX="6.0" layoutY="8.0" mnemonicParsing="false" onAction="#backToMainMenu" prefHeight="29.0" prefWidth="29.0" style="-fx-border-radius: 32px; -fx-background-radius: 32px;" styleClass="backIcon" />
+                    </ScrollPane>
+                </Pane>
+                <Pane fx:id="changePasswordPane" layoutX="24.0" layoutY="208.0" prefHeight="248.0" prefWidth="342.0" styleClass="brownBox" visible="false">
+                    <PasswordField fx:id="oldPassword" layoutX="71.0" layoutY="64.0" maxWidth="300.0" prefWidth="200.0" promptText="old password" styleClass="bottomBorderField" />
+                    <PasswordField fx:id="newPassword" layoutX="71.0" layoutY="124.0" prefHeight="26.0" prefWidth="200.0" promptText="new password" styleClass="bottomBorderField" />
+                    <HBox alignment="CENTER" layoutX="33.0" layoutY="183.0" prefHeight="28.0" prefWidth="277.0">
+                        <Button mnemonicParsing="false" onAction="#setNewPassword" styleClass="buttonWithoutBg" text="confirm" />
+                        <Button mnemonicParsing="false" onAction="#backToEditInformation" styleClass="buttonWithoutBg" text="cancel" />
+                    </HBox>
+                    <Label fx:id="newPasswordError" layoutX="71.0" layoutY="150.0" prefHeight="17.0" prefWidth="200.0" styleClass="errorMessage" />
+                    <Label fx:id="passwordConfirmationErrorField" layoutX="55.0" layoutY="14.0" prefHeight="34.0" prefWidth="237.0" styleClass="errorMessage" />
+                </Pane>
+                <Pane layoutX="595.0" layoutY="2.0" prefHeight="82.0" prefWidth="167.0">
+                    <TextField fx:id="gameHistoryCount" alignment="CENTER" layoutX="14.0" layoutY="4.0" prefHeight="38.0" prefWidth="149.0" promptText="5" styleClass="bottomBorderField" />
+                    <Label fx:id="gameHistoryNumberErrorField" alignment="CENTER" layoutX="-3.0" layoutY="39.0" prefHeight="27.0" prefWidth="181.0" styleClass="errorMessage" />
+                    <Button layoutX="142.0" layoutY="14.0" mnemonicParsing="false" onAction="#checkAndSetGameHistoryCount" prefHeight="25.0" prefWidth="23.0" styleClass="profileMenu-check-button" />
+                </Pane>
+                <ImageView fitHeight="119.0" fitWidth="97.0" layoutX="52.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@../Images/profile.png" />
+                </ImageView>
+                <ImageView fitHeight="92.0" fitWidth="108.0" layoutX="48.0" layoutY="51.0" pickOnBounds="true">
+                    <Image url="@../Images/gameAssests/icon_high_score.png" />
+                </ImageView>
+                <Button fx:id="changePasswordButton" layoutX="22.0" layoutY="424.0" mnemonicParsing="false" onAction="#editPassword" styleClass="buttonWithoutBg" text="change password" />
+                <Label fx:id="rank" alignment="CENTER" layoutX="38.0" layoutY="151.0" maxHeight="17.0" prefHeight="17.0" prefWidth="126.0" styleClass="profileMenu-rank-label" text="19TH" />
+                <Button layoutX="18.0" layoutY="16.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onAction="#backToMainMenu" prefHeight="25.0" prefWidth="25.0" style="-fx-border-radius: 32px; -fx-background-radius: 32px;" styleClass="backIcon">
+               <effect>
+                  <Lighting diffuseConstant="1.7" specularConstant="0.0" specularExponent="40.0" surfaceScale="0.0">
+                     <bumpInput>
+                        <Shadow height="150.69" radius="42.4225">
+                           <color>
+                              <Color red="1.0" green="0.7018312215805054" blue="0.03999999910593033" />
+                           </color>
+                        </Shadow>
+                     </bumpInput>
+                     <light>
+                        <Light.Distant>
+                           <color>
+                              <Color red="1.0" green="0.7229539155960083" blue="0.25999999046325684" />
+                           </color>
+                        </Light.Distant>
+                     </light>
+                  </Lighting>
+               </effect></Button>
+                <effect>
+                    <Blend mode="SRC_ATOP" />
+                </effect>
 
             </Pane>
         </VBox>
     </center>
+    <stylesheets>
+        <URL value="@../CSS/Backgrounds.css" />
+        <URL value="@../CSS/NodeStyle.css" />
+    </stylesheets>
 
 </BorderPane>

@@ -249,8 +249,8 @@ public class ProfileMenu implements Menu{
         profileMenuController.goToMainMenu();
     }
     private void setUserInformation(int rank, int highestScore, int gameCount, int wins, int losses, int draws){
-        this.rank.setText("Rank: " + rank);
-        this.highestScore.setText("Highest Score: " + highestScore);
+        this.rank.setText(rank + "TH");
+        this.highestScore.setText(highestScore + "is your best score");
         this.gameCount.setText("Games Played: " + gameCount);
         this.wins.setText("Wins: " + wins);
         this.losses.setText("Losses: " + losses);

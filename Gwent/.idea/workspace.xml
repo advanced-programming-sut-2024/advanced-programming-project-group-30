@@ -5,14 +5,106 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f1724509-8fa7-4a1d-addf-f9c920333c2d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/Icons/rankBg.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/PregameMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/PregameMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/SceneManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/SceneManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/PregameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/PregameMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/ProfileMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/ProfileMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/CSS/NodeStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/CSS/NodeStyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/MainMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/MainMenu.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/ProfileMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/ProfileMenu.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/frame.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/gameAssests/notif_lose_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Images/gameAssests/notif_lose_round.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/152790072" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/app_assets_modules_github_behaviors_ajax-error_ts-app_assets_modules_github_behaviors_include-467754-0b06f9573e1c.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/app_assets_modules_github_behaviors_commenting_edit_ts-app_assets_modules_github_behaviors_ht-83c235-5276a3faf037.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/app_assets_modules_github_behaviors_task-list_ts-app_assets_modules_github_onfocus_ts-app_ass-421cec-d3af2356fb47.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/app_assets_modules_github_blob-anchor_ts-app_assets_modules_github_filter-sort_ts-app_assets_-c96432-b934f03f8602.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/app_assets_modules_github_onfocus_ts-ui_packages_trusted-types-policies_policy_ts-ui_packages-6fe316-4083e7233d28.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/app_assets_modules_github_ref-selector_ts-fa04da463305.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/app_assets_modules_github_repositories_get-repo-element_ts-e21ae6671295.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/app_assets_modules_github_sticky-scroll-into-view_ts-3dc342dedcb0.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/app_assets_modules_github_updatable-content_ts-7fcc5f2841d8.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/behaviors-4a2e178d5769.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/code-c1319e071dda.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/code-menu-67595c3a6d0c.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/codespaces-e5084321c6dd.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/command-palette-a99cf9e9f4ca.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/dark_tritanopia-1911f0cf0db4.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/element-registry-d895c841bd92.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/environment-65dcc25bed15.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/github-5948a5a1f8dc.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/github-elements-c9cd2492b1b3.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/global-526475a50099.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/global-create-menu-13d11aff58d2.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/global-user-nav-drawer-0c525e38a296.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/global-user-nav-drawer.c80e6513685ad96a3f54.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/gravatar-user-420.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/icon_high_score.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/keyboard-shortcuts-dialog-a295f4fdc247.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/light_tritanopia-fe4137b54b26.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/notifications-global-0409f6303340.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/primer-f9b5bfe6b656.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/primer-primitives-8500c2c7ce5f.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/react-code-view-98341cd1283a.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/react-code-view.d681f610b9fbc233f6e5.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/react-lib-dc88c1a68b28.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/repositories-1d69946468f7.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/repository-a21555e5abb4.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/ui_packages_code-view-shared_components_files-search_FileResultsList_tsx-c58157244fbb.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/ui_packages_code-view-shared_hooks_shortcuts_ts-ui_packages_code-view-shared_utilities_web-wo-02859b-9ab39a48c0f9.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/ui_packages_code-view-shared_hooks_use-canonical-object_ts-ui_packages_code-view-shared_hooks-5efa81-354e6a50d2b7.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/ui_packages_code-view-shared_hooks_use-file-page-payload_ts-ui_packages_code-view-shared_util-0109ca-fb536cc4ade2.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/ui_packages_react-core_create-browser-history_ts-ui_packages_safe-storage_safe-storage_ts-ui_-682c2c-44ed51a2083d.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/ui_packages_react-core_register-app_ts-a7b9de7616e6.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/ui_packages_react-core_register-partial_ts-ui_packages_global-create-menu_GlobalCreateMenu_tsx-d903ed65506a.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/ui_packages_ref-selector_RefSelector_tsx-84a0dce6bcb2.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/ui_packages_repos-file-tree-view_repos-file-tree-view_ts-ui_packages_react-core_JsonRoute_tsx-cdf9ad5903ec.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_braintree_browser-detection_dist_browser-detection_js-node_modules_githu-fd5530-79ffdad54bcd.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_color-convert_index_js-cdd1e82b3795.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_delegated-events_dist_index_js-node_modules_github_catalyst_lib_index_js-06ff531-2ea61fcc9a71.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_dompurify_dist_purify_js-810e4b1b9abd.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_github_auto-complete-element_dist_index_js-node_modules_github_catalyst_-392fe4-5df1d85d02da.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_github_clipboard-copy-element_dist_index_esm_js-node_modules_delegated-e-b37f7d-cb3d06ead51a.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_github_combobox-nav_dist_index_js-node_modules_github_markdown-toolbar-e-820fc0-1176135e4d90.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_github_file-attachment-element_dist_index_js-node_modules_github_mini-th-9dbbd2-dba0157157f7.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_github_file-attachment-element_dist_index_js-node_modules_primer_view-co-3959a9-1ccb1cef5682.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_github_filter-input-element_dist_index_js-node_modules_github_mini-throt-1f9a80-bb6794a6e5c6.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_github_filter-input-element_dist_index_js-node_modules_github_remote-inp-b7d8f4-6e6f83bcc978.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_github_mini-throttle_dist_index_js-node_modules_delegated-events_dist_in-b63d41-1e3984e4dd2f.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_github_quote-selection_dist_index_js-node_modules_github_textarea-autosi-9e0349-7c78ee755ad3.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_github_remote-form_dist_index_js-node_modules_delegated-events_dist_inde-893f9f-880ac2bbb719.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_github_remote-form_dist_index_js-node_modules_delegated-events_dist_inde-e53a3f-52039a64560e.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_github_selector-observer_dist_index_esm_js-9f960d9b217c.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_github_session-resume_dist_index_js-node_modules_primer_behaviors_dist_e-da6ec6-77ce2f267f4e.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_github_text-expander-element_dist_index_js-b2135edb5ced.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_github_turbo_dist_turbo_es2017-esm_js-1cea0f5eff45.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_lit-html_lit-html_js-cc7cb714ead5.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_morphdom_dist_morphdom-esm_js-node_modules_github_memoize_dist_esm_index_js-8d7117d67c36.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_oddbird_popover-polyfill_dist_popover_js-4ac41d0a76fd.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_primer_behaviors_dist_esm_dimensions_js-node_modules_github_jtml_lib_index_js-b1947a1d4855.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_primer_behaviors_dist_esm_focus-zone_js-03bcda509ec9.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_primer_octicons-react_dist_index_esm_js-node_modules_primer_react_lib-es-541a38-2ad77ede4dad.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_primer_react_lib-esm_ActionList_index_js-a2fe8fc7236e.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_primer_react_lib-esm_ActionMenu_ActionMenu_js-node_modules_primer_react_-5b2420-3d111386e1c1.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_primer_react_lib-esm_AvatarStack_AvatarStack_js-node_modules_primer_reac-b27144-74a13f323a4c.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_primer_react_lib-esm_Box_Box_js-5a335cbe71ad.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_primer_react_lib-esm_Button_Button_js-618154c88198.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_primer_react_lib-esm_Button_IconButton_js-node_modules_primer_react_lib--1cd808-94bb79d8a6de.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_primer_react_lib-esm_Button_LinkButton_js-node_modules_primer_react_lib--a52ff3-7e9e67a2b35e.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_primer_react_lib-esm_ConfirmationDialog_ConfirmationDialog_js-1811321a7c22.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_primer_react_lib-esm_FeatureFlags_FeatureFlags_js-node_modules_github_ca-9009bd-47065f21e9ac.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_primer_react_lib-esm_Flash_Flash_js-node_modules_primer_react_lib-esm_La-0046ca-f78267fddf9f.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_primer_react_lib-esm_FormControl_FormControl_js-61ac46c67a7e.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_primer_react_lib-esm_Heading_Heading_js-node_modules_primer_react_lib-es-d8d6f0-041d9de40b9a.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_primer_react_lib-esm_Heading_Heading_js-node_modules_primer_react_lib-es-fb1d41-3656792e8019.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_primer_react_lib-esm_Link_Link_js-node_modules_primer_react_lib-esm_Rela-a903d7-17c01d44f123.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_primer_react_lib-esm_TextInput_TextInput_js-57e9c5f82efe.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_primer_react_lib-esm_TooltipV2_Tooltip_js-98aea6945770.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_primer_react_lib-esm_TreeView_TreeView_js-9456d871c361.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_primer_react_node_modules_primer_octicons-react_dist_index_esm_mjs-dc98a76c65d6.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_react-router-dom_dist_index_js-2b1dbeadb6d4.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_scroll-anchoring_dist_scroll-anchoring_esm_js-node_modules_github_hotkey-1a1d91-1bb71f3f93c2.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_smoothscroll-polyfill_dist_smoothscroll_js-node_modules_stacktrace-parse-a448e4-bdc28e06dc01.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/vendors-node_modules_virtualized-list_es_index_js-node_modules_github_template-parts_lib_index_js-878844713bc9.js.download" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/highScore_files/wp-runtime-c0c64939821f.js.download" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +145,7 @@
     "JavaMethodFindUsagesOptions.isSearchForTextOccurrences": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Pregame-Fatemeh",
+    "git-widget-placeholder": "Merge-Fatemeh",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Fatemeh/Desktop/Uni/AP/ApProject/Gwent/src/main/resources/FXML",
