@@ -44,7 +44,7 @@ public class GameMenu implements Menu{
     @FXML
     private HBox opponentLeader;
     @FXML
-    private Pane discardPile;
+    private HBox discardPile;
     @FXML
     private Label notifText;
     @FXML

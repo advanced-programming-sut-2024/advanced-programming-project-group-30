@@ -13,7 +13,7 @@ public class Row extends Position{
     private final String name;
     private final ArrayList<DecksCard> cards = new ArrayList<>();
     private int rowPoint = 0;
-    private boolean hasBonus = false;
+    private int bonus = 1;
     private int extraPoint = 0;
     private boolean isDamaged = false;
     private RowView rowView;
@@ -48,12 +48,12 @@ public class Row extends Position{
         this.specialCardPosition.setCard(specialCard);
     }
 
-    public boolean hasBonus() {
-        return hasBonus;
+    public int getBonus() {
+        return bonus;
     }
 
-    public void setBonus(boolean hasBonus) {
-        this.hasBonus = hasBonus;
+    public void setBonus(int bonus) {
+        this.bonus = bonus;
     }
 
     public int getExtraPoint() {
