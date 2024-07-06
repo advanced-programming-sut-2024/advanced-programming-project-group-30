@@ -9,12 +9,16 @@ import java.lang.reflect.Method;
 
 public class WeatherCard extends DecksCard{
     private final Method ability;
+    private final CardView cardView;
     public WeatherCard(String name, FactionType factionType, CardData cardData, boolean isSpecialCard, Method ability){
         super(name, factionType , cardData, isSpecialCard);
         this.ability = ability;
-        super.cardView = new CardView(this);
+        this.cardView = new CardView(this);
+        super.cardView = this.cardView;
+
     }
     public void run() throws InvocationTargetException, IllegalAccessException {
         ability.invoke(this);
     }
+
 }

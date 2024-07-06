@@ -4,7 +4,7 @@ import model.card.Card;
 import model.card.SpecialCard;
 
 public class SpecialCardPosition extends Position{
-    private Card card;
+    private SpecialCard card;
     public SpecialCardPosition(){
     }
     public void setCard(SpecialCard specialCard){
@@ -13,4 +13,9 @@ public class SpecialCardPosition extends Position{
     public void removeCard(){
         card = null;
     }
+
+    public SpecialCard getSpecialCard() {
+        return card;
+    }
+
 }

@@ -51,6 +51,9 @@ public class CardView extends Pane {
         if (card instanceof WeatherCard)
             setUpWeatherCardView();
     }
+    public Card getCard() {
+        return card;
+    }
     private void setUpWeatherCardView(){
         Rectangle rectangle = new Rectangle();
         ImageView imageView = getSmCardImage();
@@ -59,10 +62,9 @@ public class CardView extends Pane {
         this.getChildren().addAll(items);
     }
     private void setUpSpecialCardView(){
-        Rectangle rectangle = new Rectangle();
         ImageView imageView = getSmCardImage();
         ImageView abilityView = getSpecialCardAbilityView();
-        items.getChildren().addAll(rectangle, imageView, abilityView);
+        items.getChildren().addAll(imageView, abilityView);
         this.getChildren().addAll(items);
     }
     private void setUpRegularCardView(RegularCard card){

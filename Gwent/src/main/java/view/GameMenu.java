@@ -80,15 +80,15 @@ public class GameMenu implements Menu{
         System.out.println(player);
         ArrayList<DecksCard> allCards = new ArrayList<>();
         ArrayList<RegularCard> cards = NeutralRegularCardsData.getAllRegularCard();
-        allCards.addAll(cards);
-        allCards.addAll(MonstersRegularCardsData.getAllRegularCard());
-        allCards.addAll(NorthernRealmsRegularCardsData.getAllRegularCard());
-        allCards.addAll(SkelligeRegularCardsData.getAllRegularCard());
-        allCards.addAll(NeutralRegularCardsData.getAllRegularCard());
+//        allCards.addAll(cards);
+//        allCards.addAll(MonstersRegularCardsData.getAllRegularCard());
+//        allCards.addAll(NorthernRealmsRegularCardsData.getAllRegularCard());
+//        allCards.addAll(SkelligeRegularCardsData.getAllRegularCard());
+//        allCards.addAll(NeutralRegularCardsData.getAllRegularCard());
         allCards.addAll(WeatherCardsData.getAllWeatherCards());
         allCards.addAll(SpecialCardsData.getAllSpecialCard());
         Random random = new Random();
-        int j = random.nextInt(allCards.size() - 10);
+        int j = random.nextInt(allCards.size() - 2);
         for (int i = 0; i < j; i++){
             DecksCard card = allCards.get(i);
             player.addCardToHand(card);
@@ -104,7 +104,7 @@ public class GameMenu implements Menu{
             card.getCardView().getStyleClass().add(CssAddress.GAME_HAND_SM_CARD.getStyleClass());
         }
         centerPane.getChildren().add(hand);
-        for (int i = j; i < j + 10; i++){
+        for (int i = j; i < allCards.size(); i++){
             DecksCard card = allCards.get(i);
             opponentPlayer.addCardToHand(card);
             CardView cardView = card.getCardView();

@@ -141,4 +141,8 @@ public class Player {
         this.point += point;
         playerView.getPlayerInformationView().updateTotalScore();
     }
+    public void discardCard(DecksCard decksCard){
+        discardPile.add(decksCard);
+        playerView.discardCard(decksCard);
+    }
 }

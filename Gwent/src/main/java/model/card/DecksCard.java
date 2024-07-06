@@ -15,4 +15,5 @@ public abstract class DecksCard extends Card {
     public boolean isSpecialCard() {
         return isSpecialCard;
     }
+
 }

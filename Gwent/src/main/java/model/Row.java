@@ -13,7 +13,6 @@ public class Row extends Position{
     private final String name;
     private final ArrayList<DecksCard> cards = new ArrayList<>();
     private int rowPoint = 0;
-    private SpecialCard specialCard = null;
     private boolean hasBonus = false;
     private int extraPoint = 0;
     private boolean isDamaged = false;
@@ -42,11 +41,11 @@ public class Row extends Position{
     }
 
     public SpecialCard getSpecialCard() {
-        return specialCard;
+        return this.specialCardPosition.getSpecialCard();
     }
 
     public void setSpecialCard(SpecialCard specialCard) {
-        this.specialCard = specialCard;
+        this.specialCardPosition.setCard(specialCard);
     }
 
     public boolean hasBonus() {
@@ -86,6 +85,6 @@ public class Row extends Position{
         } else {
             rowView.addCardToSpecialPosition(card);
         }
-
     }
+
 }

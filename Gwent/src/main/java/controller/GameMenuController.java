@@ -1,11 +1,17 @@
 package controller;
 
+import enums.Ability;
 import enums.CssAddress;
 import enums.RegularCardPositionType;
+import enums.cardsData.DeckCardData;
 import enums.cardsData.RegularCardData;
+import enums.cardsData.WeatherCardsData;
+import javafx.animation.*;
+import javafx.geometry.Bounds;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 import model.Game;
 import model.Player;
 import model.Result;
@@ -26,15 +32,13 @@ public class GameMenuController {
         this.gameMenu = gameMenu;
     }
 
-    private static String showPlayerInfo(Player player) {
-        return null;
+    public Player checkForHigherScore(Game game){
+        if (game.getCurrentPlayer().getPoint() > game.getOpponentPlayer().getPoint())
+            return game.getCurrentPlayer();
+        else return game.getOpponentPlayer();
     }
 
-    private static int showPlayerTotalScore(Player player) {
-        return 1;
-    }
-
-    public void handleRegularCardMovement(DecksCard card, Game game, Row row, Method method) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+    private void handleRegularCardMovement(DecksCard card, Game game, Row row, Method method) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
         Player player = game.getCurrentPlayer();
         Player opponentPlayer = game.getOpponentPlayer();
         HBox hbox = (HBox) method.invoke(row.getRowView());
@@ -42,30 +46,77 @@ public class GameMenuController {
         gameMenu.removeNodeStyle(card.getCardView(), CssAddress.GAME_HAND_SM_CARD);
         gameMenu.setNodeStyle(card.getCardView(), CssAddress.CARD_IN_ROW);
         if (!hbox.getChildren().contains(card.getCardView())) {
-            if (card instanceof RegularCard) {
-                row.addCard(card, false);
-                if (player.getRows().contains(row)) {
-                    player.updatePoint(((RegularCardData) card.getCardData()).getPoint());
-                } else opponentPlayer.updatePoint(((RegularCardData) card.getCardData()).getPoint());
-            } else if (!card.getName().equals("Decoy")) {
-                row.addCard(card, true);
-            }
+            if (player.getRows().contains(row)) {
+                player.updatePoint(((RegularCardData) card.getCardData()).getPoint());
+            } else opponentPlayer.updatePoint(((RegularCardData) card.getCardData()).getPoint());
+            cardPlaceAnimation(card, row.getRowView().getRow(), player.getPlayerView().getHandView(), game);
             updateScores(game);
         }
-        passTurn(game);
+        checkPassTurn(card, game);
         player.playCard(card);
         updateHandCardNumber(game);
         resetRowStyles(game);
     }
-    public void handleWeatherCardMovement(WeatherCard weatherCard, Game game){
+    private void handleSpecialCardMovement(SpecialCard card, Game game, Row row){
+        resetRowStyles(game);
+        gameMenu.removeNodeStyle(card.getCardView(), CssAddress.GAME_HAND_SM_CARD);
+        gameMenu.setNodeStyle(card.getCardView(), CssAddress.CARD_IN_ROW);
+        game.getCurrentPlayer().playCard(card);
+        cardPlaceAnimation(card, row.getRowView().getSpecialCardPosition(), game.getCurrentPlayer().getPlayerView().getHandView(), game);
+        if (card.isDiscardAfterPlaying()) {
+            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), actionEvent -> {
+                cardPlaceAnimation(card, game.getCurrentPlayer().getPlayerView().getDiscardPileView(),  row.getRowView().getSpecialCardPosition(),game);
+            }));
+            timeline.setCycleCount(1);
+            timeline.play();
+        }
+        checkPassTurn(card, game);
+
+    }
+    private void handleWeatherCardMovement(WeatherCard weatherCard, Game game){
         Player player = game.getCurrentPlayer();
         gameMenu.removeNodeStyle(weatherCard.getCardView(), CssAddress.GAME_HAND_SM_CARD);
         gameMenu.setNodeStyle(weatherCard.getCardView(), CssAddress.CARD_IN_ROW);
         gameMenu.setNodeStyle(gameMenu.getWeatherCardPosition(), CssAddress.CARD_ROW);
-        gameMenu.getWeatherCardPosition().getChildren().add(weatherCard.getCardView());
+        cardPlaceAnimation(weatherCard,gameMenu.getWeatherCardPosition(), player.getPlayerView().getHandView(), game);
         player.playCard(weatherCard);
         updateHandCardNumber(game);
+        checkPassTurn(weatherCard, game);
         resetRowStyles(game);
+    }
+    private void cardPlaceAnimation(DecksCard card, HBox destinationHBox, HBox sourceHBox, Game game){
+        Bounds nodeBounds = card.getCardView().localToScene(card.getCardView().getBoundsInLocal());
+        double startX = nodeBounds.getMinX();
+        double startY = nodeBounds.getMinY();
+        // Calculate the target position to be the center of the destination HBox
+        Bounds destinationBounds = destinationHBox.localToScene(destinationHBox.getBoundsInLocal());
+        double targetX = destinationBounds.getMinX() + (destinationBounds.getWidth() - card.getCardView().getWidth()) / 2;
+        double targetY = destinationBounds.getMinY() + (destinationBounds.getHeight() - card.getCardView().getHeight()) / 2;
+        TranslateTransition translate = new TranslateTransition(Duration.seconds(0.6), card.getCardView());
+        translate.setFromX(0);
+        translate.setFromY(0);
+        translate.setToX(targetX - startX);
+        translate.setToY(targetY - startY);
+        translate.setOnFinished(event -> {
+            sourceHBox.getChildren().remove(card.getCardView());
+            destinationHBox.getChildren().add(card.getCardView());
+            card.getCardView().setTranslateX(0);
+            card.getCardView().setTranslateY(0);
+        });
+        translate.play();
+
+    }
+    private void checkPassTurn(DecksCard card, Game game){
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2),actionEvent -> {
+            try {
+                gameMenu.getPane().setDisable(true);
+                passTurn(game);
+            } catch (NoSuchMethodException e) {
+                throw new RuntimeException(e);
+            }
+        }));
+        timeline.setCycleCount(1);
+        timeline.play();
     }
 
     public void resetRowStyles(Game game) {
@@ -139,29 +190,14 @@ public class GameMenuController {
         });
     }
 
-    //TODO: complete this
-//    public void test(RegularCard card, Game game){
-//        CardView cardView = card.getCardView();
-//        Player player = game.getCurrentPlayer();
-//
-//        cardView.setOnMouseClicked(event -> {
-//            ArrayList<String> methodNames = new ArrayList<>();
-//            RegularCardPositionType position = card.getPositionType();
-//            switch (position){
-//                case CLOSE_COMBAT -> methodNames.add("getCloseCombat");
-//                case RANGED_COMBAT -> methodNames.add("getRangedCombat");
-//                case SIEGE ->  methodNames.add("getSiege");
-//                case AGILE -> {
-//                    methodNames.add("getCloseCombat");
-//                    methodNames.add("getRangedCombat");
-//                }
-//            }
-//        });
-//    }
     public void handleWeatherCardEvents(WeatherCard weatherCard, Game game){
         CardView cardView = weatherCard.getCardView();
         cardView.setOnMouseClicked(event -> {
             resetRowStyles(game);
+            for (Node card :gameMenu.getWeatherCardPosition().getChildren()){
+                if ((((DeckCardData)(((CardView)card).getCard().getCardData())).getAbility().equals(((WeatherCardsData)weatherCard.getCardData()).getAbility())))
+                    return;
+            }
             gameMenu.setNodeStyle(gameMenu.getWeatherCardPosition(), CssAddress.CARD_ROW);
             gameMenu.getWeatherCardPosition().setOnMouseClicked(event1 -> {
                 handleWeatherCardMovement(weatherCard, game);
@@ -175,7 +211,7 @@ public class GameMenuController {
             Method method = RowView.class.getDeclaredMethod("getSpecialCardPosition");
             cardView.setOnMouseClicked(event -> {
                 resetRowStyles(game);
-                for (Row row : player2.getRows()) {
+                for (Row row : player1.getRows()) {
                     if (!specialCard.getName().equals("Decoy") && row.getRowView().getSpecialCardPosition().getChildren().isEmpty()) {
                         gameMenu.setNodeStyle(row.getRowView().getSpecialCardPosition(), CssAddress.CARD_ROW);
                         try {
@@ -199,15 +235,7 @@ public class GameMenuController {
             Object object = method.invoke(rowView);
             ((Node) object).setOnMouseClicked(event -> {
                 if (card instanceof SpecialCard) {
-                    try {
-                        handleRegularCardMovement(card, game, row, RowView.class.getDeclaredMethod("getSpecialCardPosition"));
-                    } catch (NoSuchMethodException e) {
-                        throw new RuntimeException(e);
-                    } catch (InvocationTargetException e) {
-                        throw new RuntimeException(e);
-                    } catch (IllegalAccessException e) {
-                        throw new RuntimeException(e);
-                    }
+                    handleSpecialCardMovement((SpecialCard) card, game, row);
                 } else {
                     try {
                         handleRegularCardMovement(card, game, row, RowView.class.getDeclaredMethod("getRow"));
@@ -264,14 +292,6 @@ public class GameMenuController {
         switchRows(currentPlayer, opponentPlayer);
         game.changeTurn();
         gameMenu.handlePassTurn(game);
-    }
-    public void setUpAfterSwitch(Node pane, Node node1, Node node2){
-        if (pane instanceof HBox)
-            ((HBox) pane).getChildren().addAll(node1, node2);
-        else if (pane instanceof Pane) {
-            ((Pane) pane).getChildren().addAll(node1,node2);
-        }
-
     }
     private void switchRows(Player currentPlayer, Player opponentPlayer){
         switchCoordinate(currentPlayer.getCloseCombat().getRowView(), opponentPlayer.getCloseCombat().getRowView());

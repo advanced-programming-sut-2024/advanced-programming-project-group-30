@@ -9,6 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import model.Player;
+import model.card.DecksCard;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -28,12 +29,11 @@ public class PlayerView {
         this.pane = pane;
         this.player = player;
         this.handView = new HBox(handView);
-        this.handView.getStyleClass().add("hand-padding");
         this.leaderView = new HBox(leaderView);
         this.deckView = new HBox(deckView);
-        System.out.println(this.deckView.getLayoutX());
         this.discardPileView = new HBox(discardPileView);
         setUpDeck(deckView);
+        setUpDiscardPile(discardPileView);
     }
     public HBox getDeckView(){
         return deckView;
@@ -49,6 +49,15 @@ public class PlayerView {
     }
     public PlayerInformationView getPlayerInformationView() {
         return playerInformationView;
+    }
+
+    public void discardCard(DecksCard decksCard) {
+        discardPileView.getChildren().clear();
+        discardPileView.getChildren().add(decksCard.getCardView());
+    }
+    private void setUpDiscardPile(HBox discardPile){
+        clone(discardPileView, discardPile);
+        pane.getChildren().add(discardPileView);
     }
     private void setUpDeck(HBox deck){
         clone(deckView, deck);
@@ -70,4 +79,6 @@ public class PlayerView {
         node1.setPrefHeight(node2.getPrefHeight());
         return node1;
     }
+
+
 }
