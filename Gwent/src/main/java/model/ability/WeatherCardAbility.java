@@ -2,6 +2,7 @@ package model.ability;
 
 import enums.CssAddress;
 import enums.cardsData.WeatherCardsData;
+import javafx.scene.layout.HBox;
 import model.Game;
 import model.Player;
 import model.Row;
@@ -10,6 +11,7 @@ import model.card.WeatherCard;
 import javax.swing.text.html.CSS;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class WeatherCardAbility {
     private static WeatherCardAbility instance;
@@ -28,10 +30,22 @@ public class WeatherCardAbility {
         return method;
     }
     public void clearWeather(Game game) {
-        for (WeatherCard weatherCard : game.getWeatherCards()) {
-
-        }
+        Player currentPlayer = game.getCurrentPlayer();
+        Player opponentPlayer = game.getOpponentPlayer();
+        clearEffect(currentPlayer);
+        clearEffect(opponentPlayer);
         game.getWeatherCards().clear();
+    }
+
+    private void clearEffect(Player player) {
+        for (Row row : player.getRows()){
+            row.getRowView().getRow().getStyleClass().
+                    remove(Objects.requireNonNull(CssAddress.getCssAddress(WeatherCardsData.IMPENETRABLE_FOG.toString().toLowerCase())).getStyleClass());
+            row.getRowView().getRow().getStyleClass().
+                    remove(Objects.requireNonNull(CssAddress.getCssAddress(WeatherCardsData.BITING_FROST.toString().toLowerCase())).getStyleClass());
+            row.getRowView().getRow().getStyleClass().
+                    remove(Objects.requireNonNull(CssAddress.getCssAddress(WeatherCardsData.TORRENTIAL_RAIN.toString().toLowerCase())).getStyleClass());
+        }
     }
 
     public void impenetrableFog(Game game) {
@@ -58,7 +72,7 @@ public class WeatherCardAbility {
         ArrayList<CssAddress> cssAddresses = new ArrayList<>();
         cssAddresses.add(CssAddress.getCssAddress(WeatherCardsData.TORRENTIAL_RAIN.toString().toLowerCase()));
         try {
-            setEffects(cssAddresses, findRows(Player.class.getMethod("getCloseCombat"), game));
+            setEffects(cssAddresses, findRows(Player.class.getMethod("getSiege"), game));
         } catch (Exception e) {
             e.printStackTrace();
         }

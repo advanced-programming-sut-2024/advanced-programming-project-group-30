@@ -21,10 +21,8 @@ import model.card.WeatherCard;
 //TODO: handle Card and CardView loop in saving
 public class CardView extends Pane {
     private Label point;
-    private final Rectangle position;
     private final CardData cardData;
     private final Card card;
-    private Group items;
     private static final double HERO_POINT_X = -2;
     private static final double HERO_POINT_Y = -2;
     private static final double HERO_POINT_LABEL_X = -1.1;
@@ -39,9 +37,7 @@ public class CardView extends Pane {
     private static final double ABILITY_Y = 60;
 
     public CardView(Card card) {
-        items = new Group();
         this.card = card;
-        this.position = new Rectangle();
         this.cardData = card.getCardData();
         this.point = new Label();
         if (card instanceof RegularCard)
@@ -54,30 +50,31 @@ public class CardView extends Pane {
     public Card getCard() {
         return card;
     }
+    public void updatePoint(){
+        this.getChildren().remove(point);
+        point.setText(String.valueOf(((RegularCard)card).getPointInGame()));
+        this.getChildren().add(point);
+
+    }
     private void setUpWeatherCardView(){
-        Rectangle rectangle = new Rectangle();
         ImageView imageView = getSmCardImage();
         ImageView abilityView = getWeatherCardAbilityView();
-        items.getChildren().addAll(rectangle, imageView, abilityView);
-        this.getChildren().addAll(items);
+        this.getChildren().addAll(imageView, abilityView);
     }
     private void setUpSpecialCardView(){
         ImageView imageView = getSmCardImage();
         ImageView abilityView = getSpecialCardAbilityView();
-        items.getChildren().addAll(imageView, abilityView);
-        this.getChildren().addAll(items);
+        this.getChildren().addAll(imageView, abilityView);
     }
     private void setUpRegularCardView(RegularCard card){
-        Rectangle rectangle = new Rectangle();
         point.setText(String.valueOf(card.getPoint()));
         point.setPrefWidth(SizeData.GAME_SMALL_CARD_POINT_LABEL.getWidth());
         point.setText(String.valueOf(card.getPoint()));
         ImageView imageView = getSmCardImage();
-        items.getChildren().addAll(rectangle, imageView, getPointImage(), getPositionImage(), point);
+        this.getChildren().addAll(imageView, getPointImage(), getPositionImage(), point);
         ImageView abilityView = getRegularCardAbilityImage();
         if (abilityView != null)
-            items.getChildren().add(abilityView);
-        this.getChildren().addAll(items);
+            this.getChildren().add(abilityView);
     }
     private ImageView getSmCardImage(){
         ImageView imageView = new ImageView(cardData.getSmImage());

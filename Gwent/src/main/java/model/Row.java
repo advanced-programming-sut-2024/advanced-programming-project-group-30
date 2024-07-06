@@ -3,6 +3,7 @@ package model;
 import enums.CoordinateData;
 import enums.cardsData.RegularCardData;
 import model.card.DecksCard;
+import model.card.RegularCard;
 import model.card.SpecialCard;
 import view.RowView;
 
@@ -11,16 +12,17 @@ import java.util.Objects;
 
 public class Row extends Position{
     private final String name;
-    private final ArrayList<DecksCard> cards = new ArrayList<>();
+    private final ArrayList<RegularCard> cards = new ArrayList<>();
     private int rowPoint = 0;
-    private int bonus = 1;
-    private int extraPoint = 0;
-    private boolean isDamaged = false;
+    private int bonus = 1; //coefficient of tight bonds
+    private int extraPoint = 0; //
+    private boolean isDamaged = false; //weather card effects
     private RowView rowView;
     private SpecialCardPosition specialCardPosition;
 
     public Row(String name) {
         this.name = name;
+        specialCardPosition = new SpecialCardPosition();
         rowView = new RowView(this, Objects.requireNonNull(CoordinateData.getCoordinateData(name)));
     }
 
@@ -28,11 +30,16 @@ public class Row extends Position{
         return name;
     }
 
-    public ArrayList<DecksCard> getCards() {
+    public ArrayList<RegularCard> getCards() {
         return cards;
     }
-
+    public void addCardToRow(RegularCard card){
+        cards.add(card);
+    }
     public int getRowPoint() {
+        for (RegularCard card : cards){
+            rowPoint += card.getPointInGame();
+        }
         return rowPoint;
     }
 

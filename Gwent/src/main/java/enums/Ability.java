@@ -15,7 +15,7 @@ public enum Ability {
     BITING_FROST("bitingFrost", "Sets the strength of all Close Combat cards to 1 for both players.", WeatherCardAbility.createNewAbilityByName("bitingFrost"), CssAddress.FROST_WEATHER_ICON),
     CLEAR_WEATHER("clearWeather", "Removes all Weather Cards (Biting Frost, Impenetrable Fog and Torrential Rain) effects.", WeatherCardAbility.createNewAbilityByName("clearWeather"), CssAddress.CLEAR_WEATHER_ICON),
     IMPENETRABLE_FOG("impenetrableFog", "Sets the strength of all Ranged Combat cards to 1 for both players.", WeatherCardAbility.createNewAbilityByName("impenetrableFog"), CssAddress.FOG_WEATHER_ICON),
-    SKELLIGE_STORM("skelligeStorm", "Sets the strength of all Ranged Combat cards to 1 for both players.", WeatherCardAbility.createNewAbilityByName("skelligeStorm"), CssAddress.STORM_WEATHER_ICON),
+    SKELLIGE_STORM("skelligeStorm", "Sets the strength of all Ranged Combat cards to 1 for both players.\nSets the strength of all Siege Combat cards to 1 for both players. ", WeatherCardAbility.createNewAbilityByName("skelligeStorm"), CssAddress.STORM_WEATHER_ICON),
     TORRENTIAL_RAIN("torrentialRain", "Sets the strength of all Siege Combat cards to 1 for both players.", WeatherCardAbility.createNewAbilityByName("torrentialRain"), CssAddress.RAIN_WEATHER_ICON),
     SPY("spy", "Place on your opponent's battlefield (counts towards your opponent's total) and draw 2 cards from your deck. Not affected by any Special Cards or abilities.", RegularCardsAbility.createNewAbilityByName("spy"), CssAddress.SPY_ABILITY_ICON),
     TIGHT_BOND("tightBond", "Place next to a card with the same name to double the strength of both cards.", RegularCardsAbility.createNewAbilityByName("tightBond"), CssAddress.TIGHT_BOND_ABILITY_ICON),

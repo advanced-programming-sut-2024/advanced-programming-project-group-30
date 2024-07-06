@@ -5,6 +5,7 @@ module Gwent {
     requires javafx.media;
     requires java.desktop;
     requires jdk.compiler;
+    requires java.sql;
 
     exports view;
     opens view to javafx.fxml;

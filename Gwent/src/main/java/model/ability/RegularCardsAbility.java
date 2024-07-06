@@ -27,18 +27,18 @@ public class RegularCardsAbility {
     }
     private void commanderHorn(Game currentGame, RegularCard card){
         Row row = currentGame.getSelectedRow();
-        ArrayList<DecksCard> cards = row.getCards();
-        for(DecksCard decksCard : cards){
-            if (decksCard instanceof RegularCard)
-                ((RegularCard) decksCard).setPointInGame(((RegularCard)decksCard).getPoint() * 2);
+        ArrayList<RegularCard> cards = row.getCards();
+        for(RegularCard decksCard : cards){
+            if (decksCard != null)
+                decksCard.setPointInGame(decksCard.getPoint() * 2);
         }
     }
     private void moralBoost(Game currentGame, RegularCard card){
         Row row = currentGame.getSelectedRow();
-        ArrayList<DecksCard> cards = row.getCards();
-        for(DecksCard decksCard : cards){
-            if (decksCard instanceof RegularCard)
-                ((RegularCard) decksCard).setPointInGame(((RegularCard)decksCard).getPoint() + 1);
+        ArrayList<RegularCard> cards = row.getCards();
+        for(RegularCard decksCard : cards){
+            if (decksCard != null)
+                decksCard.setPointInGame(decksCard.getPoint() + 1);
         }
     }
     private void muster(Game currentGame, RegularCard card){

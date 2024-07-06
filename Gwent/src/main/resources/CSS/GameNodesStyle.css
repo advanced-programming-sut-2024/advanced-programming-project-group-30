@@ -356,6 +356,7 @@
 }
 .rootPaneNotifStyle{
     -fx-background-color: rgba(23, 18, 16, 0.4);
+    -fx-background-size: 100% 100%;
 }
 .specialScorchIcon{
     -fx-image: url('../Images/Icons/power_scorch.png');

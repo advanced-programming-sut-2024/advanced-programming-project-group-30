@@ -3,7 +3,6 @@ package model;
 
 import java.util.ArrayList;
 
-import model.card.Card;
 import model.card.DecksCard;
 import model.card.SpecialCard;
 import model.card.WeatherCard;
@@ -73,7 +72,7 @@ public class Game {
     public ArrayList<WeatherCard> getWeatherCards() {
         return weatherCards;
     }
-    public boolean isRoundIsPassed() {
+    public boolean isRoundPassed() {
         return roundIsPassed;
     }
     public void setRoundIsPassed(boolean roundIsPassed) {

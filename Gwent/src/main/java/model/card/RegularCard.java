@@ -39,6 +39,7 @@ public class RegularCard extends DecksCard {
 
     public void setPointInGame(int pointInGame) {
         this.pointInGame = pointInGame;
+        this.cardView.updatePoint();
     }
 
     public RegularCardPositionType getPositionType() {

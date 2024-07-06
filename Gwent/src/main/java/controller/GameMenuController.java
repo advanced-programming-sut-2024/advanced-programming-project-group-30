@@ -10,7 +10,6 @@ import javafx.animation.*;
 import javafx.geometry.Bounds;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import model.Game;
 import model.Player;
@@ -39,10 +38,10 @@ public class GameMenuController {
         else return game.getOpponentPlayer();
     }
 
-    private void handleRegularCardMovement(DecksCard card, Game game, Row row, Method method) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+    private void handleRegularCardMovement(DecksCard card, Game game, Row row) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
         Player player = game.getCurrentPlayer();
         Player opponentPlayer = game.getOpponentPlayer();
-        HBox hbox = (HBox) method.invoke(row.getRowView());
+        HBox hbox = row.getRowView().getRow();
         resetRowStyles(game);
         gameMenu.removeNodeStyle(card.getCardView(), CssAddress.GAME_HAND_SM_CARD);
         gameMenu.setNodeStyle(card.getCardView(), CssAddress.CARD_IN_ROW);
@@ -52,9 +51,12 @@ public class GameMenuController {
             } else opponentPlayer.updatePoint(((RegularCardData) card.getCardData()).getPoint());
             AnimationMaker.getInstance().cardPlaceAnimation(card, row.getRowView().getRow(),
                     player.getPlayerView().getHandView(), game);
+            row.addCardToRow((RegularCard) card);
             updateScores(game);
         }
-        checkPassTurn(card, game);
+        if (!game.isRoundPassed()){
+            checkPassTurn(card, game);
+        }
         player.playCard(card);
         updateHandCardNumber(game);
         resetRowStyles(game);
@@ -72,7 +74,7 @@ public class GameMenuController {
             }));
             timeline.setCycleCount(1);
             timeline.play();
-        }
+        }else row.setSpecialCard(card);
         checkPassTurn(card, game);
 
     }
@@ -92,8 +94,7 @@ public class GameMenuController {
         resetRowStyles(game);
     }
     private void checkPassTurn(DecksCard card, Game game){
-        gameMenu.getPane().setDisable(true);
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2),actionEvent -> {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1.5),actionEvent -> {
             try {
                 passTurn(game);
             } catch (NoSuchMethodException e) {
@@ -112,14 +113,39 @@ public class GameMenuController {
             gameMenu.resetStyles(row.getRowView());
         }
     }
-
-    public void updateScores(Game game) {
+    //TODO: complete row point checking
+    private void updateScores(Game game){
         Player player = game.getCurrentPlayer();
         Player opponentPlayer = game.getOpponentPlayer();
+        for (Row row : game.getCurrentPlayer().getRows()){
+            setRowCardsPoint(row);
+        }
+        for (Row row : game.getOpponentPlayer().getRows()){
+            setRowCardsPoint(row);
+        }
         gameMenu.setUpScores(player.getRows());
         gameMenu.setUpScores(opponentPlayer.getRows());
         player.getPlayerInformationView().updateTotalScore();
         opponentPlayer.getPlayerInformationView().updateTotalScore();
+    }
+    private void setRowCardsPoint(Row row){
+        int point;
+        boolean hasCommanderHorn = false;
+        for (RegularCard regularCard : row.getCards()){
+            if (((DeckCardData)regularCard.getCardData()).getAbility() != null && ((DeckCardData)regularCard.getCardData()).getAbility().equals(Ability.HORN_COMMANDER))
+                hasCommanderHorn = true;
+        }
+       for (RegularCard regularCard : row.getCards()){
+           if (regularCard.isHero()) continue;
+           point = regularCard.getPointInGame();
+           if (row.isDamaged()) point = 1;
+           if (row.getSpecialCard() != null)
+               if (((DeckCardData)row.getSpecialCard().getCardData()).getAbility().equals(Ability.SPECIAL_COMMANDER_HORN))
+                point *= 2;
+           if (hasCommanderHorn && !((DeckCardData)regularCard.getCardData()).getAbility().equals(Ability.HORN_COMMANDER))
+               point *= 2;
+           regularCard.setPointInGame(point);
+       }
     }
 
     public void handleRegularCardEvents(RegularCard card, Game game, Player player1, Player player2) {
@@ -231,7 +257,7 @@ public class GameMenuController {
                     handleSpecialCardMovement((SpecialCard) card, game, row);
                 } else {
                     try {
-                        handleRegularCardMovement(card, game, row, RowView.class.getDeclaredMethod("getRow"));
+                        handleRegularCardMovement(card, game, row);
                     } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
                         throw new RuntimeException(e);
                     }
@@ -265,6 +291,7 @@ public class GameMenuController {
         PlayerInformationView playerInformationView = player.getPlayerInformationView();
         gameMenu.updateHandCardNumber(playerInformationView.getHandCardNumber(), player.getHand().size());
     }
+    //TODO: implement it with reflection
     private void passTurn(Game game) throws NoSuchMethodException {
         Player currentPlayer = game.getCurrentPlayer();
         Player opponentPlayer = game.getOpponentPlayer();
@@ -318,8 +345,8 @@ public class GameMenuController {
         component2.setLayoutY(tempY);
     }
     private void clearWeather(WeatherCard card, Game game, HBox sourceHBox, HBox destinationHBox){
-            Bounds nodeBounds = card.getCardView().localToScene(card.getCardView().getBoundsInLocal());
-        TranslateTransition translate = AnimationMaker.getTranslate(card, nodeBounds, destinationHBox);
+        Bounds nodeBounds = card.getCardView().localToScene(card.getCardView().getBoundsInLocal());
+        TranslateTransition translate = AnimationMaker.getInstance().getTranslate(card, nodeBounds, destinationHBox);
         translate.setOnFinished(event -> {
                 sourceHBox.getChildren().remove(card.getCardView());
                 destinationHBox.getChildren().add(card.getCardView());
@@ -330,7 +357,8 @@ public class GameMenuController {
                             sourceHBox, game);
                 }
             });
-            translate.play();
+        translate.play();
+        card.run(game);
     }
     public Result vetoCard(String cardName) {
         return null;
