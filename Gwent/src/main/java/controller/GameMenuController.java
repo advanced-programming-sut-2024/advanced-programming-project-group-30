@@ -50,7 +50,8 @@ public class GameMenuController {
             if (player.getRows().contains(row)) {
                 player.updatePoint(((RegularCardData) card.getCardData()).getPoint());
             } else opponentPlayer.updatePoint(((RegularCardData) card.getCardData()).getPoint());
-            cardPlaceAnimation(card, row.getRowView().getRow(), player.getPlayerView().getHandView(), game);
+            AnimationMaker.getInstance().cardPlaceAnimation(card, row.getRowView().getRow(),
+                    player.getPlayerView().getHandView(), game);
             updateScores(game);
         }
         checkPassTurn(card, game);
@@ -63,10 +64,11 @@ public class GameMenuController {
         gameMenu.removeNodeStyle(card.getCardView(), CssAddress.GAME_HAND_SM_CARD);
         gameMenu.setNodeStyle(card.getCardView(), CssAddress.CARD_IN_ROW);
         game.getCurrentPlayer().playCard(card);
-        cardPlaceAnimation(card, row.getRowView().getSpecialCardPosition(), game.getCurrentPlayer().getPlayerView().getHandView(), game);
+        AnimationMaker.getInstance().cardPlaceAnimation(card, row.getRowView().getSpecialCardPosition(), game.getCurrentPlayer().getPlayerView().getHandView(), game);
         if (card.isDiscardAfterPlaying()) {
             Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), actionEvent -> {
-                cardPlaceAnimation(card, game.getCurrentPlayer().getPlayerView().getDiscardPileView(),  row.getRowView().getSpecialCardPosition(),game);
+                AnimationMaker.getInstance().cardPlaceAnimation(card, game.getCurrentPlayer().getPlayerView().getDiscardPileView(),
+                        row.getRowView().getSpecialCardPosition(),game);
             }));
             timeline.setCycleCount(1);
             timeline.play();
@@ -79,40 +81,19 @@ public class GameMenuController {
         gameMenu.removeNodeStyle(weatherCard.getCardView(), CssAddress.GAME_HAND_SM_CARD);
         gameMenu.setNodeStyle(weatherCard.getCardView(), CssAddress.CARD_IN_ROW);
         gameMenu.setNodeStyle(gameMenu.getWeatherCardPosition(), CssAddress.CARD_ROW);
-        cardPlaceAnimation(weatherCard,gameMenu.getWeatherCardPosition(), player.getPlayerView().getHandView(), game);
+        if (((WeatherCardsData)weatherCard.getCardData()).getAbility().equals(Ability.CLEAR_WEATHER)) {
+            clearWeather(weatherCard, game, player.getPlayerView().getHandView(), gameMenu.getWeatherCardPosition());
+            game.getWeatherCards().clear();
+        }else AnimationMaker.getInstance().cardPlaceAnimation(weatherCard,gameMenu.getWeatherCardPosition(), player.getPlayerView().getHandView(), game);
         game.addWeatherCard(weatherCard);
         player.playCard(weatherCard);
         updateHandCardNumber(game);
         checkPassTurn(weatherCard, game);
         resetRowStyles(game);
     }
-    private void cardPlaceAnimation(DecksCard card, HBox destinationHBox, HBox sourceHBox, Game game){
-        Bounds nodeBounds = card.getCardView().localToScene(card.getCardView().getBoundsInLocal());
-        double startX = nodeBounds.getMinX();
-        double startY = nodeBounds.getMinY();
-        Bounds destinationBounds = destinationHBox.localToScene(destinationHBox.getBoundsInLocal());
-        double targetX = destinationBounds.getMinX() + (destinationBounds.getWidth() - card.getCardView().getWidth()) / 2;
-        double targetY = destinationBounds.getMinY() + (destinationBounds.getHeight() - card.getCardView().getHeight()) / 2;
-        TranslateTransition translate = new TranslateTransition(Duration.seconds(0.4), card.getCardView());
-        translate.setFromX(0);
-        translate.setFromY(0);
-        translate.setToX(targetX - startX);
-        translate.setToY(targetY - startY);
-        translate.setOnFinished(event -> {
-            sourceHBox.getChildren().remove(card.getCardView());
-            destinationHBox.getChildren().add(card.getCardView());
-            card.getCardView().setTranslateX(0);
-            card.getCardView().setTranslateY(0);
-            if (card instanceof WeatherCard weatherCard) {
-                weatherCard.run(game);
-            }
-        });
-        translate.play();
-
-    }
     private void checkPassTurn(DecksCard card, Game game){
         gameMenu.getPane().setDisable(true);
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1),actionEvent -> {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2),actionEvent -> {
             try {
                 passTurn(game);
             } catch (NoSuchMethodException e) {
@@ -204,6 +185,7 @@ public class GameMenuController {
         CardView cardView = weatherCard.getCardView();
         cardView.setOnMouseClicked(event -> {
             resetRowStyles(game);
+            game.getCurrentPlayer().setSelectedCard(weatherCard);
             for (Node card :gameMenu.getWeatherCardPosition().getChildren()){
                 if ((((DeckCardData)(((CardView)card).getCard().getCardData())).getAbility().equals(((WeatherCardsData)weatherCard.getCardData()).getAbility())))
                     return;
@@ -334,6 +316,21 @@ public class GameMenuController {
         component1.setLayoutX(component2.getLayoutX());
         component2.setLayoutY(tempX);
         component2.setLayoutY(tempY);
+    }
+    private void clearWeather(WeatherCard card, Game game, HBox sourceHBox, HBox destinationHBox){
+            Bounds nodeBounds = card.getCardView().localToScene(card.getCardView().getBoundsInLocal());
+        TranslateTransition translate = AnimationMaker.getTranslate(card, nodeBounds, destinationHBox);
+        translate.setOnFinished(event -> {
+                sourceHBox.getChildren().remove(card.getCardView());
+                destinationHBox.getChildren().add(card.getCardView());
+                card.getCardView().setTranslateX(0);
+                card.getCardView().setTranslateY(0);
+                for (Node cardView : gameMenu.getWeatherCardPosition().getChildren()) {
+                    AnimationMaker.getInstance().discardAnimation((DecksCard) ((CardView) cardView).getCard(),
+                            sourceHBox, game);
+                }
+            });
+            translate.play();
     }
     public Result vetoCard(String cardName) {
         return null;

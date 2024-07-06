@@ -12,7 +12,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 
 public class WeatherCardAbility {
-    private static final WeatherCardAbility instance = new WeatherCardAbility();
+    private static WeatherCardAbility instance;
     public static WeatherCardAbility getInstance(){
         if (instance == null) {
             return new WeatherCardAbility();
@@ -31,6 +31,7 @@ public class WeatherCardAbility {
         for (WeatherCard weatherCard : game.getWeatherCards()) {
 
         }
+        game.getWeatherCards().clear();
     }
 
     public void impenetrableFog(Game game) {
@@ -92,9 +93,11 @@ public class WeatherCardAbility {
     private void setEffects(ArrayList<CssAddress> styles, ArrayList<Row> rows){
         int i = 0;
         for (Row row : rows){
-            row.getRowView().getRow().getStyleClass().add(styles.get(i).getStyleClass());
+            if (i <= 1)
+             row.getRowView().getRow().getStyleClass().add(styles.get(0).getStyleClass());
+            else row.getRowView().getRow().getStyleClass().add(styles.get(1).getStyleClass());
             i++;
-            i /= 2;
+
         }
     }
 

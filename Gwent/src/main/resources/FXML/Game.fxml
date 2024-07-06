@@ -20,7 +20,7 @@
       <Region fx:id="siegeSideCardPosition" layoutX="337.0" layoutY="431.0" prefHeight="72.0" prefWidth="50.0" />
       <HBox fx:id="leader" layoutX="80.0" layoutY="510.5" prefHeight="80.0" prefWidth="56.0" />
       <HBox fx:id="opponentDiscardPile" layoutX="891.0" layoutY="52.0" prefHeight="72.0" prefWidth="50.0" />
-      <HBox fx:id="discardPile" layoutX="891.0" layoutY="515.0" prefHeight="72.0" prefWidth="50.0" />
+      <HBox fx:id="discardPile" layoutX="891.0" layoutY="515.0" prefHeight="72.0" prefWidth="50.0" maxWidth="50"/>
       <HBox fx:id="opponentDeck" layoutX="990.0" layoutY="41.0" prefHeight="91.0" prefWidth="60.0" />
       <HBox fx:id="deck" layoutX="990.0" layoutY="507.0" maxHeight="91.0" maxWidth="60.0" prefHeight="91.0" prefWidth="60.0" />
       <ImageView fitHeight="40.0" fitWidth="33.0" layoutX="245.0" layoutY="431.0" pickOnBounds="true" preserveRatio="true" styleClass="total-score-me" />

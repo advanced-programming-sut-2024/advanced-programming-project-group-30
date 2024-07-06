@@ -143,6 +143,5 @@ public class Player {
     }
     public void discardCard(DecksCard decksCard){
         discardPile.add(decksCard);
-        playerView.discardCard(decksCard);
     }
 }
