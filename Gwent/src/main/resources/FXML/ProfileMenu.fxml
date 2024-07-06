@@ -13,80 +13,100 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane minHeight="500.0" minWidth="800.0" prefHeight="625.0" prefWidth="890.0" stylesheets="@../CSS/BackGrounds.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ProfileMenu">
+<BorderPane styleClass="MenusBackground" stylesheets="@../CSS/Backgrounds.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ProfileMenu">
     <center>
-        <VBox alignment="CENTER" prefHeight="500.0" prefWidth="700.0" styleClass="MenusBackground" BorderPane.alignment="CENTER">
+        <VBox alignment="CENTER" prefHeight="500.0" prefWidth="700.0" BorderPane.alignment="CENTER">
             <Pane maxHeight="534.0" maxWidth="700.0" minHeight="480.0" minWidth="350.0" prefHeight="534.0" prefWidth="806.0" styleClass="brownBox" stylesheets="@../CSS/NodeStyle.css">
                 <ImageView fitHeight="66.0" fitWidth="110.0" layoutX="57.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                     <Image url="@../Images/gameAssests/icon_high_score.png" />
                 </ImageView>
-            <VBox fx:id="editInformationBox" layoutX="14.0" layoutY="183.0" maxHeight="900.0" maxWidth="900.0" minHeight="0.0" minWidth="0.0" prefHeight="202.0" prefWidth="366.0" spacing="15.0">
-               <children>
-                  <HBox prefHeight="55.0" prefWidth="456.0">
-                     <children>
+                <VBox fx:id="editInformationBox" layoutX="14.0" layoutY="183.0" maxHeight="900.0" maxWidth="900.0" minHeight="0.0"
+                      minWidth="0.0" prefHeight="202.0" prefWidth="366.0" spacing="15.0">
+                    <HBox prefHeight="55.0" prefWidth="456.0">
                         <HBox prefHeight="55.0" prefWidth="501.0" spacing="13.0">
-                           <children>
-                              <VBox maxWidth="500.0" prefHeight="55.0" prefWidth="362.0">
-                                 <children>
-                                    <TextField fx:id="usernameTextField" editable="false" maxWidth="500.0" minHeight="0.0" minWidth="0.0" prefHeight="25.0" prefWidth="200.0" styleClass="bottomBorderField" />
-                                    <Label fx:id="usernameErrorField" prefHeight="17.0" prefWidth="328.0" styleClass="errorMessage" />
-                                 </children>
-                              </VBox>
-                              <HBox prefHeight="55.0" prefWidth="244.0" spacing="5.0">
-                                 <children>
-                                    <Button fx:id="editUsernameButton" mnemonicParsing="false" onAction="#editUsername" prefHeight="25.0" prefWidth="22.0" styleClass="profileMenu-edit-button" />
-                                    <Button fx:id="setNewUsernameButton" mnemonicParsing="false" onAction="#checkAndSetNewUsername" prefHeight="11.0" prefWidth="23.0" styleClass="profileMenu-check-button" translateX="-25.0" visible="false" />
-                                    <Button fx:id="cancelChangingUsernameButton" maxWidth="500.0" minWidth="0.0" mnemonicParsing="false" onAction="#cancelChangingUsername" prefHeight="25.0" prefWidth="25.0" styleClass="profileMenu-cancel-button" translateX="-25.0" visible="false" />
-                                 </children>
-                              </HBox>
-                           </children>
+                            <children>
+                                <VBox maxWidth="500.0" prefHeight="55.0" prefWidth="362.0">
+                                    <children>
+                                        <TextField fx:id="usernameTextField" editable="false" maxWidth="500.0" minHeight="0.0"
+                                                   minWidth="0.0" prefHeight="25.0" prefWidth="200.0" styleClass="bottomBorderField"/>
+                                        <Label fx:id="usernameErrorField" prefHeight="17.0" prefWidth="328.0"
+                                               styleClass="errorMessage"/>
+                                    </children>
+                                </VBox>
+                                <HBox prefHeight="55.0" prefWidth="244.0" spacing="5.0">
+                                    <children>
+                                        <Button fx:id="editUsernameButton" mnemonicParsing="false" onAction="#editUsername"
+                                                prefHeight="25.0" prefWidth="22.0" styleClass="profileMenu-edit-button"/>
+                                        <Button fx:id="setNewUsernameButton" mnemonicParsing="false" onAction="#checkAndSetNewUsername"
+                                                prefHeight="11.0" prefWidth="23.0" styleClass="profileMenu-check-button"
+                                                translateX="-25.0" visible="false"/>
+                                        <Button fx:id="cancelChangingUsernameButton" maxWidth="500.0" minWidth="0.0"
+                                                mnemonicParsing="false" onAction="#cancelChangingUsername" prefHeight="25.0"
+                                                prefWidth="25.0" styleClass="profileMenu-cancel-button" translateX="-25.0"
+                                                visible="false"/>
+                                    </children>
+                                </HBox>
+                            </children>
                         </HBox>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="55.0" prefWidth="456.0">
-                     <children>
-                        <HBox prefHeight="55.0" prefWidth="501.0" spacing="13.0">
-                           <children>
-                              <VBox maxWidth="500.0" prefHeight="55.0" prefWidth="362.0">
-                                 <children>
-                                    <TextField fx:id="nicknameTextField" editable="false" maxWidth="500.0" minHeight="0.0" minWidth="0.0" prefHeight="25.0" prefWidth="200.0" styleClass="bottomBorderField" />
-                                    <Label fx:id="nicknameErrorField" prefHeight="17.0" prefWidth="328.0" styleClass="errorMessage" />
-                                 </children>
-                              </VBox>
-                              <HBox prefHeight="55.0" prefWidth="244.0" spacing="5.0">
-                                 <children>
-                                    <Button fx:id="editNicknameButton" mnemonicParsing="false" onAction="#editNickname" prefHeight="25.0" prefWidth="22.0" styleClass="profileMenu-edit-button" />
-                                    <Button fx:id="setNewNicknameButton" mnemonicParsing="false" onAction="#checkAndSetNewNickname" prefHeight="11.0" prefWidth="23.0" styleClass="profileMenu-check-button" translateX="-25.0" visible="false" />
-                                    <Button fx:id="cancelChangingNicknameButton" maxWidth="500.0" minWidth="0.0" mnemonicParsing="false" onAction="#cancelChangingNickname" prefHeight="25.0" prefWidth="25.0" styleClass="profileMenu-cancel-button" translateX="-25.0" visible="false" />
-                                 </children>
-                              </HBox>
-                           </children>
-                        </HBox>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="55.0" prefWidth="456.0">
-                     <children>
-                        <HBox prefHeight="55.0" prefWidth="501.0" spacing="13.0">
-                           <children>
-                              <VBox maxWidth="500.0" prefHeight="55.0" prefWidth="362.0">
-                                 <children>
-                                    <TextField fx:id="emailTextField" editable="false" maxWidth="500.0" minHeight="0.0" minWidth="0.0" prefHeight="25.0" prefWidth="200.0" styleClass="bottomBorderField" />
-                                    <Label fx:id="emailErrorField" prefHeight="17.0" prefWidth="328.0" styleClass="errorMessage" />
-                                 </children>
-                              </VBox>
-                              <HBox prefHeight="55.0" prefWidth="244.0" spacing="5.0">
-                                 <children>
-                                    <Button fx:id="editEmailButton" mnemonicParsing="false" onAction="#editEmail" prefHeight="25.0" prefWidth="22.0" styleClass="profileMenu-edit-button" />
-                                    <Button fx:id="setNewEmailButton" mnemonicParsing="false" onAction="#checkAndSetNewEmail" prefHeight="11.0" prefWidth="23.0" styleClass="profileMenu-check-button" translateX="-25.0" visible="false" />
-                                    <Button fx:id="cancelChangingEmailButton" maxWidth="500.0" minWidth="0.0" mnemonicParsing="false" onAction="#cancelChangingEmail" prefHeight="25.0" prefWidth="25.0" styleClass="profileMenu-cancel-button" translateX="-25.0" visible="false" />
-                                 </children>
-                              </HBox>
-                           </children>
-                        </HBox>
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
+                    </HBox>
+                    <HBox prefHeight="55.0" prefWidth="456.0">
+                        <children>
+                            <HBox prefHeight="55.0" prefWidth="501.0" spacing="13.0">
+                                <children>
+                                    <VBox maxWidth="500.0" prefHeight="55.0" prefWidth="362.0">
+                                        <children>
+                                            <TextField fx:id="nicknameTextField" editable="false" maxWidth="500.0" minHeight="0.0"
+                                                       minWidth="0.0" prefHeight="25.0" prefWidth="200.0" styleClass="bottomBorderField"/>
+                                            <Label fx:id="nicknameErrorField" prefHeight="17.0" prefWidth="328.0"
+                                                   styleClass="errorMessage"/>
+                                        </children>
+                                    </VBox>
+                                    <HBox prefHeight="55.0" prefWidth="244.0" spacing="5.0">
+                                        <children>
+                                            <Button fx:id="editNicknameButton" mnemonicParsing="false" onAction="#editNickname"
+                                                    prefHeight="25.0" prefWidth="22.0" styleClass="profileMenu-edit-button"/>
+                                            <Button fx:id="setNewNicknameButton" mnemonicParsing="false" onAction="#checkAndSetNewNickname"
+                                                    prefHeight="11.0" prefWidth="23.0" styleClass="profileMenu-check-button"
+                                                    translateX="-25.0" visible="false"/>
+                                            <Button fx:id="cancelChangingNicknameButton" maxWidth="500.0" minWidth="0.0"
+                                                    mnemonicParsing="false" onAction="#cancelChangingNickname" prefHeight="25.0"
+                                                    prefWidth="25.0" styleClass="profileMenu-cancel-button" translateX="-25.0"
+                                                    visible="false"/>
+                                        </children>
+                                    </HBox>
+                                </children>
+                            </HBox>
+                        </children>
+                    </HBox>
+                    <HBox prefHeight="55.0" prefWidth="456.0">
+                        <children>
+                            <HBox prefHeight="55.0" prefWidth="501.0" spacing="13.0">
+                                <children>
+                                    <VBox maxWidth="500.0" prefHeight="55.0" prefWidth="362.0">
+                                        <children>
+                                            <TextField fx:id="emailTextField" editable="false" maxWidth="500.0" minHeight="0.0"
+                                                       minWidth="0.0" prefHeight="25.0" prefWidth="200.0" styleClass="bottomBorderField"/>
+                                            <Label fx:id="emailErrorField" prefHeight="17.0" prefWidth="328.0" styleClass="errorMessage"/>
+                                        </children>
+                                    </VBox>
+                                    <HBox prefHeight="55.0" prefWidth="244.0" spacing="5.0">
+                                        <children>
+                                            <Button fx:id="editEmailButton" mnemonicParsing="false" onAction="#editEmail" prefHeight="25.0"
+                                                    prefWidth="22.0" styleClass="profileMenu-edit-button"/>
+                                            <Button fx:id="setNewEmailButton" mnemonicParsing="false" onAction="#checkAndSetNewEmail"
+                                                    prefHeight="11.0" prefWidth="23.0" styleClass="profileMenu-check-button"
+                                                    translateX="-25.0" visible="false"/>
+                                            <Button fx:id="cancelChangingEmailButton" maxWidth="500.0" minWidth="0.0"
+                                                    mnemonicParsing="false" onAction="#cancelChangingEmail" prefHeight="25.0"
+                                                    prefWidth="25.0" styleClass="profileMenu-cancel-button" translateX="-25.0"
+                                                    visible="false"/>
+                                        </children>
+                                    </HBox>
+                                </children>
+                            </HBox>
+                        </children>
+                    </HBox>
+                </VBox>
             <VBox layoutX="181.0" layoutY="15.0" maxHeight="10000.0" maxWidth="10000.0" minHeight="0.0" minWidth="0.0" prefHeight="101.0" prefWidth="183.0" spacing="18.0">
                <children>
                   <HBox maxHeight="500.0" maxWidth="500.0" minHeight="0.0" minWidth="0.0" prefHeight="42.0" prefWidth="198.0" spacing="2.0">

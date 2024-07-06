@@ -18,7 +18,7 @@ public class ForgetPasswordMenuController {
         if (answer.isEmpty()) return new Result(false, "please enter your answer");
         SecurityQuestion securityQuestion = SecurityQuestion.getSecurityQuestion(question);
         if (securityQuestion == null) return new Result(false, "please choose a question");
-        if (!answer.equals(user.getSecurityQuestions().get(securityQuestion)))
+        if (!answer.equals(user.getSecurityAnswer()) || !securityQuestion.equals(user.getSecurityQuestion()))
             return new Result(false, "incorrect credentials!");
         return new Result(true, user.getPassword());
     }

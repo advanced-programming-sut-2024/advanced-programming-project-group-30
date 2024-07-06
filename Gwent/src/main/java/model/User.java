@@ -1,7 +1,6 @@
 package model;
 
 import enums.SecurityQuestion;
-import model.card.DecksCard;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,7 +10,8 @@ public class User {
     private String password;
     private String email;
     private String nickName;
-    private final HashMap<SecurityQuestion, String> securityQuestions = new HashMap<>();
+    private final SecurityQuestion securityQuestion;
+    private final String securityAnswer;
     private int rank;
     private int wins;
     private int losses;
@@ -26,7 +26,8 @@ public class User {
         this.password = password;
         this.email = email;
         this.nickName = nickName;
-        this.securityQuestions.put(securityQuestion, securityAnswer);
+        this.securityQuestion = securityQuestion;
+        this.securityAnswer = securityAnswer;
     }
 
 
@@ -62,12 +63,12 @@ public class User {
         this.nickName = nickName;
     }
 
-    public HashMap<SecurityQuestion, String> getSecurityQuestions() {
-        return securityQuestions;
+    public SecurityQuestion getSecurityQuestion() {
+        return securityQuestion;
     }
 
-    public void addToSecurityQuestions(SecurityQuestion securityQuestion, String answer) {
-        securityQuestions.put(securityQuestion, answer);
+    public String getSecurityAnswer() {
+        return securityAnswer;
     }
 
     public int getRank() {
@@ -117,12 +118,15 @@ public class User {
     public void setSelectedFaction(Faction selectedFaction) {
         this.selectedFaction = selectedFaction;
     }
+
     public String getNickname() {
         return nickName;
     }
+
     public int getHighestScore() {
         return highestScore;
     }
+
     public void setHighestScore(int highestScore) {
         this.highestScore = highestScore;
     }

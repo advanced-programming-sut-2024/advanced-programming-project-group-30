@@ -1,12 +1,11 @@
 [
   {
-    "username": "bahar",
-    "password": "#0Tx2U5Hq",
-    "email": "adfa@fawfd",
-    "nickName": "bahar",
-    "securityQuestions": {
-      "null": "mocha"
-    },
+    "username": "fatemeh",
+    "password": "ueqZk$E6A",
+    "email": "fatemeh@gmail.com",
+    "nickName": "fatemeh",
+    "securityQuestion": "QUESTION_1",
+    "securityAnswer": "jojo",
     "rank": 0,
     "wins": 0,
     "losses": 0,
@@ -14,49 +13,5 @@
     "highestScore": 0,
     "gameHistories": [],
     "factions": {}
-  },
-  {
-    "username": "ali",
-    "password": "!NPc@2YeR8x",
-    "email": "adfa@afe",
-    "nickName": "ali",
-    "securityQuestions": {
-      "null": "bahd"
-    },
-    "rank": 0,
-    "wins": 0,
-    "losses": 0,
-    "draws": 0,
-    "highestScore": 0,
-    "gameHistories": [],
-    "factions": {},
-    "selectedFaction": {
-      "name": "a",
-      "explanation": "a",
-      "decksCards": [],
-      "leaders": []
-    }
-  },
-  {
-    "username": "parsa",
-    "password": "i^7Jo\u0026!%NI",
-    "email": "asda@aefa",
-    "nickName": "parsa",
-    "securityQuestions": {
-      "What was your favorite sport in high school?": "asd"
-    },
-    "rank": 0,
-    "wins": 0,
-    "losses": 0,
-    "draws": 0,
-    "highestScore": 0,
-    "gameHistories": [],
-    "factions": {},
-    "selectedFaction": {
-      "name": "a",
-      "explanation": "a",
-      "decksCards": [],
-      "leaders": []
-    }
   }
 ]
