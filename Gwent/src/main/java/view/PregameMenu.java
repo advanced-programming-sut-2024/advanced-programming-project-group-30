@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
+import model.App;
 import model.PregameData;
 
 
@@ -143,7 +144,7 @@ public class PregameMenu implements Menu {
     }
 
     private void scalePane(Pane pane, double scaleCoef) {
-        Double scale = controller.getScale(root.getWidth(), root.getHeight(), 1150, 660, scaleCoef);
+        Double scale = App.getSceneManager().getScale(root.getWidth(), root.getHeight(), 1150, 660, scaleCoef);
         if (scale == null) return;
         pane.setScaleX(scale);
         pane.setScaleY(scale);

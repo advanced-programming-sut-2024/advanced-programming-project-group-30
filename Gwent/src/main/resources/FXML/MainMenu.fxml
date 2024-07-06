@@ -7,8 +7,8 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" styleClass="mainMenuBackground" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainMenu">
-    <Pane prefHeight="639.0" prefWidth="1000.0">
+<VBox fx:id="root" alignment="CENTER" prefHeight="625.0" prefWidth="1000.0" style="-fx-padding: -40 0 0 0;" styleClass="mainMenuBackground" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainMenu">
+    <VBox fx:id="mainPane" alignment="CENTER" maxHeight="672.0" maxWidth="1000" minHeight="625" minWidth="1000" prefHeight="672.0" prefWidth="1000.0" style="-fx-spacing: -18;">
         <Group layoutX="289.0" layoutY="25.0">
             <ImageView fitHeight="200.0" fitWidth="416.0" layoutX="1.0" layoutY="2.0" opacity="0.71" pickOnBounds="true" preserveRatio="true">
                 <effect>
@@ -28,17 +28,19 @@
                 <Image url="@../Images/Icons/gwentLabel.png" />
             </ImageView>
         </Group>
-        <VBox layoutX="277.0" layoutY="195.0" styleClass="mainMenuBox">
-            <Button layoutX="135.0" layoutY="26.0" styleClass="playButton" />
-            <Button layoutX="152.0" layoutY="129.0" minHeight="10.0" mnemonicParsing="false" onAction="#goToProfileMenu" prefHeight="36.0" prefWidth="143.0" style="-fx-font-size: 30;" styleClass="mainMenuButtonWithoutBack" text="Profile Menu" />
-            <Button layoutX="186.0" layoutY="180.0" minHeight="10.0" mnemonicParsing="false" onAction="#logout" prefHeight="31.0" prefWidth="75.0" style="-fx-font-size: 27;" styleClass="mainMenuButtonWithoutBack" text="logout" />
-            <effect>
-                <SepiaTone level="0.27" />
-            </effect>
+        <VBox alignment="CENTER" style="-fx-spacing: 13;">
+            <VBox styleClass="mainMenuBox">
+                <Button layoutX="135.0" layoutY="26.0" styleClass="playButton" />
+                <Button layoutX="152.0" layoutY="129.0" minHeight="10.0" mnemonicParsing="false" onAction="#goToProfileMenu" prefHeight="36.0" prefWidth="143.0" style="-fx-font-size: 30;" styleClass="mainMenuButtonWithoutBack" text="Profile Menu" />
+                <Button layoutX="186.0" layoutY="180.0" minHeight="10.0" mnemonicParsing="false" onAction="#logout" prefHeight="31.0" prefWidth="75.0" style="-fx-font-size: 27;" styleClass="mainMenuButtonWithoutBack" text="logout" />
+                <effect>
+                    <SepiaTone level="0.27" />
+                </effect>
+            </VBox>
+            <Label fx:id="infoLabel" prefHeight="36.0" styleClass="mainMenuInfoLabel" text="welcome" />
+            <Button mnemonicParsing="false" onAction="#goToProfileMenu" prefHeight="24.0" prefWidth="189.0" styleClass="scoreBoardButton" text="check Scoreboard" />
         </VBox>
-        <Label fx:id="infoLabel" layoutY="451.0" prefHeight="36.0" prefWidth="1000.0" styleClass="mainMenuInfoLabel" text="welcome" />
-        <Button layoutX="407.0" layoutY="502.0" mnemonicParsing="false" onAction="#goToProfileMenu" prefHeight="24.0" prefWidth="189.0" styleClass="scoreBoardButton" text="check Scoreboard" />
-    </Pane>
+    </VBox>
     <stylesheets>
         <URL value="@../CSS/Backgrounds.css" />
         <URL value="@../CSS/NodeStyle.css" />
