@@ -5,9 +5,9 @@ import model.Result;
 import model.User;
 
 public class LoginMenuController {
-    public void login(String username, String rememberMe) {
+    public void login(String username, boolean stayLoggedIn) {
         User user = App.getUserByUsername(username);
-        App.setLoggedInUser(user);
+        App.setLoggedInUser(user, stayLoggedIn);
         App.getSceneManager().goToMainMenu();
     }
 

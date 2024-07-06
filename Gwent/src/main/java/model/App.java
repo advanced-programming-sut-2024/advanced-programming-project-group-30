@@ -11,7 +11,7 @@ public class App {
     private static MenuScene currentMenuScene = MenuScene.LOGIN_SCENE;
     private static final SceneManager sceneManager = new SceneManager();
     private static Game currentGame;
-    private static User loggedInUser;
+    private static LoggedInUser loggedInUser;
     private static final ArrayList<User> allUsers = new ArrayList<>();
 
     public static Stage getPrimaryStage() {
@@ -35,11 +35,12 @@ public class App {
     }
 
     public static User getLoggedInUser() {
-        return loggedInUser;
+        return loggedInUser.user();
     }
 
-    public static void setLoggedInUser(User loggedInUser) {
-        App.loggedInUser = loggedInUser;
+    public static void setLoggedInUser(User user, boolean stayLoggedIn) {
+        if (user == null) loggedInUser = null;
+        else loggedInUser = new LoggedInUser(user, stayLoggedIn);
     }
 
     public static Game getCurrentGame() {
@@ -68,4 +69,7 @@ public class App {
     public static int getUserRank() {
         return 1;
     }
+}
+
+record LoggedInUser(User user, boolean stayLoggedIn) {
 }
