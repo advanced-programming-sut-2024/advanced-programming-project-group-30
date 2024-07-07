@@ -12,7 +12,6 @@ import javafx.scene.layout.Pane;
 import model.App;
 import model.PregameData;
 
-
 public class PregameMenu implements Menu {
     private final PregameMenuController controller = new PregameMenuController(this);
     @FXML
@@ -45,7 +44,7 @@ public class PregameMenu implements Menu {
     @FXML
     private Label heroCardsNumber;
 
-
+    @FXML
     public void initialize() {
         root.widthProperty().addListener((Void) -> scalePanes());
         root.heightProperty().addListener((Void) -> scalePanes());

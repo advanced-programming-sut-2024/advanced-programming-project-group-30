@@ -326,3 +326,15 @@
     -fx-font-size: 20;
     -fx-font-weight: bold;
 }
+
+.changePasswordButton {
+    -fx-background-color: rgba(251, 202, 127, 0.8);
+    -fx-font-family: "Times New Roman";
+    -fx-font-size: 17;
+    -fx-padding: -5;
+    -fx-font-weight: Bold;
+    -fx-border-color: rgba(21, 17, 15, 0.9);
+    -fx-border-insets: 1 1 0 1;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
