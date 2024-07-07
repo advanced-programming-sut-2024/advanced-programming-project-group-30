@@ -97,8 +97,8 @@
 .cardsScrollPane {
     -fx-background-color: rgba(0, 0, 0, 0.5);
     -fx-background-radius: 10;
-    -fx-max-height: 460;
-    -fx-min-height: 460;
+    -fx-max-height: 465;
+    -fx-min-height: 465;
     -fx-max-width: 380;
     -fx-min-width: 380;
     -fx-padding: 8;
@@ -190,6 +190,15 @@
 .descriptionBoxText {
     -fx-font-size: 13;
 }
+
+.errorMessage {
+    -fx-opacity: 0.75;
+    -fx-font-family: "Droid Serif";
+    -fx-font-style: italic;
+    -fx-font-size: 10.0;
+    -fx-text-fill: rgba(238, 61, 17, 0.85);
+}
+
 
 .node:disabled {
     -fx-opacity: 0.4;

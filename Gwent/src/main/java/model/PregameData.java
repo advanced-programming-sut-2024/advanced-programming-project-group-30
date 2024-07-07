@@ -23,6 +23,10 @@ public class PregameData {
         anotherData = temp;
     }
 
+    public User getUser() {
+        return currentData.user;
+    }
+
     public TreeMap<DeckCardData, ArrayList<DecksCard>> getCardCollection() {
         return currentData.cardCollection;
     }

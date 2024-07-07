@@ -7,12 +7,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import model.App;
 import model.PregameData;
+import model.Result;
 
 public class PregameMenu implements Menu {
     private final PregameMenuController controller = new PregameMenuController(this);
@@ -49,6 +49,10 @@ public class PregameMenu implements Menu {
     private Button changeTurnButton;
     @FXML
     private Button startGameButton;
+    @FXML
+    private Label errorMessage;
+    @FXML
+    private Label nicknameLabel;
 
     @FXML
     public void initialize() {
@@ -64,6 +68,10 @@ public class PregameMenu implements Menu {
         changeTurnButton.setVisible(true);
         startGameButton.setVisible(false);
         controller.setup(pregameData);
+    }
+
+    public void setNickname(String nickname) {
+        nicknameLabel.setText("hi " + nickname + ". please choose your deck.");
     }
 
     public void setFactionSelectionPage(SelectionPage<FactionType> selectionPage) {
@@ -138,8 +146,10 @@ public class PregameMenu implements Menu {
     }
 
     private void changeTurn() {
+        Result changeTurnResult = controller.changeTurn();
+        errorMessage.setText(changeTurnResult.toString());
+        if (changeTurnResult.isNotSuccessful()) return;
         changeTurnButton.setDisable(true);
-        controller.changeTurn();
         changeTurnButton.setVisible(false);
         startGameButton.setVisible(true);
         startGameButton.setDisable(false);

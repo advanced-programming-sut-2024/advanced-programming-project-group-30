@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.FlowPane;
 import model.CardComparator;
 import model.PregameData;
+import model.Result;
 import model.card.DecksCard;
 import view.PregameCardView;
 import view.PregameMenu;
@@ -31,6 +32,7 @@ public class PregameMenuController {
 
     private void setup() {
         menu.updateFactionsFields(pregameData.getFaction());
+        menu.setNickname(pregameData.getUser().getNickname());
         uploadToCardCollection(pregameData.getCardCollection());
         SelectionPage<FactionType> selectionPage = new SelectionPage<>(FactionType.getAllChooseModelView(),
                 FactionType.getFactionIndex(pregameData.getFaction()));
@@ -41,9 +43,13 @@ public class PregameMenuController {
         return pregameData;
     }
 
-    public void changeTurn() {
+    public Result changeTurn() {
+        if (!pregameData.isUnitCardsNumberValid()) return new Result(false, "choose at least 22 unit cards");
+        if (!pregameData.isSpecialCardsNumberValid())
+            return new Result(false, "you can't choose more than 10 special cards");
         pregameData.changeTurn();
         setup();
+        return new Result(true, "");
     }
 
     public void uploadToCardCollection(TreeMap<DeckCardData, ArrayList<DecksCard>> collection) {
