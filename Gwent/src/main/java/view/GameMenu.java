@@ -77,7 +77,6 @@ public class GameMenu implements Menu{
         game.setCurrentPlayer(player);
         game.setOpponentPlayer(opponentPlayer);
         gameMenuController.setUpBoard(game);
-        System.out.println(player);
         ArrayList<DecksCard> allCards = new ArrayList<>();
         ArrayList<RegularCard> cards = NeutralRegularCardsData.getAllRegularCard();
         allCards.addAll(cards);
@@ -144,21 +143,12 @@ public class GameMenu implements Menu{
     public void removeNodeStyle(Node node, CssAddress cssAddress){
         node.getStyleClass().remove(cssAddress.getStyleClass());
     }
-    @FXML
-    private void passTurn() {
-        Timeline timeline = AnimationMaker.getInstance().getNotificationTimeline(pane, notifPane, notifImageView, notifLabel, GameNotification.PASS_TURN);
-        timeline.play();
-    }
-
     public void setUpBoard(RowView siege, RowView ranged, RowView close, RowView opSiege, RowView opRanged, RowView opClose){
         opponentRowsArea.getChildren().addAll(opSiege, opRanged, opClose);
         currentRowArea.getChildren().addAll(close, ranged, siege);
     }
     public void setUpUserInformation(Label usernameLabel, String username) {
         usernameLabel.setText(username);
-    }
-    public void setUpFaction(Region factionRegion, String factionName, Label factionLabel) {
-        factionLabel.setText(factionName);
     }
     public void updateHandCardNumber(Label cardNumber, int number){
         cardNumber.setText(String.valueOf(number));
@@ -169,6 +159,8 @@ public class GameMenu implements Menu{
         else if (pane instanceof Pane) {
             ((Pane) pane).getChildren().addAll(node1,node2);
         }
+    }
+    public void endRound(Game game) throws NoSuchMethodException {
 
     }
     public void handlePassTurn(Game game) {
@@ -180,7 +172,7 @@ public class GameMenu implements Menu{
         for (DecksCard card : game.getCurrentPlayer().getHand()) {
             hand.getChildren().add(card.getCardView());
         }
-        passTurn();
+        showPassTurnNotification();
 
     }
     public VBox getRowsPane(){
@@ -189,6 +181,19 @@ public class GameMenu implements Menu{
     public Pane getPane(){
         return pane;
     }
+    @FXML
+    private void passTurn() throws NoSuchMethodException {
+        gameMenuController.passTurn(App.getCurrentGame());
+    }
+    private void  showPassTurnNotification(){
+        Timeline timeline = AnimationMaker.getInstance().getNotificationTimeline(pane, notifPane, notifImageView, notifLabel, GameNotification.PASS_TURN);
+        timeline.play();
+    }
+//    private void showWhosTurnNotification(){
+//        Timeline timeline = AnimationMaker.getInstance().getNotificationTimeline(pane, notifPane, notifImageView, notifLabel, GameNotification.WHOS_TURN);
+//        timeline.play();
+//    }
+
     private void setUpNotificationBox(){
         notifPane.getStyleClass().add(CssAddress.NOTIF_BOX.getStyleClass());
         notifPane.setLayoutY(notifBox.getLayoutY());

@@ -13,6 +13,14 @@ import java.util.Random;
 
 
 public class RegularCardsAbility {
+    private static RegularCardsAbility instance;
+    private RegularCardsAbility(){}
+    public static RegularCardsAbility getInstance(){
+        if (instance == null){
+            instance = new RegularCardsAbility();
+        }
+        return instance;
+    }
     public static Method createNewAbilityByName(String name) {
         Method method = null;
         try {
@@ -29,6 +37,7 @@ public class RegularCardsAbility {
 
     }
     private void moralBoost(Game currentGame, RegularCard card){
+
 
     }
     private void muster(Game currentGame, RegularCard card){

@@ -21,9 +21,11 @@ import model.card.SpecialCard;
 import model.card.WeatherCard;
 import view.*;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.List;
 
 public class GameMenuController {
     private final GameMenu gameMenu;
@@ -254,11 +256,12 @@ public class GameMenuController {
             Ability ability = ((DeckCardData) card.getCardData()).getAbility();
             SpecialCard specialCard = row.getSpecialCard();
             Ability specialCardAbility = ((DeckCardData) card.getCardData()).getAbility();
+
             if (ability != null) {
                 if (ability.equals(Ability.MORAL_BOOST)) point--;
                 if (hasCommanderHorn && !ability.equals(Ability.HORN_COMMANDER)) point *= 2;
             }
-            if (hasCommanderHorn) point *= 2;
+            else if (hasCommanderHorn) point *= 2;
             if (specialCard != null) {
                 if (specialCardAbility.equals(Ability.SPECIAL_COMMANDER_HORN)) point *= 2;
             }
@@ -308,59 +311,131 @@ public class GameMenuController {
         PlayerInformationView playerInformationView = player.getPlayerInformationView();
         gameMenu.updateHandCardNumber(playerInformationView.getHandCardNumber(), player.getHand().size());
     }
-
-    //TODO: implement it with reflection
-    private void passTurn(Game game) throws NoSuchMethodException {
+    public void passTurn(Game game) throws NoSuchMethodException {
         Player currentPlayer = game.getCurrentPlayer();
         Player opponentPlayer = game.getOpponentPlayer();
         PlayerView currentPlayerView = currentPlayer.getPlayerView();
         PlayerView opponentPlayerView = opponentPlayer.getPlayerView();
-        gameMenu.getRowsPane().getChildren().removeAll(currentPlayerView.getBoardView(), opponentPlayerView.getBoardView());
-        switchCoordinate(currentPlayerView.getBoardView(), opponentPlayerView.getBoardView());
-        gameMenu.getRowsPane().getChildren().addAll(currentPlayerView.getBoardView(), opponentPlayerView.getBoardView());
-        currentPlayerView.getBoardView().getChildren().clear();
-        opponentPlayerView.getBoardView().getChildren().clear();
-        switchNodes(currentPlayerView, opponentPlayerView, PlayerView.class.getDeclaredMethod("getDiscardPileView"), PlayerView.class.getDeclaredMethod("getDeckView"), PlayerView.class.getDeclaredMethod("getPlayerInformationView"));
-        gameMenu.setUpAfterSwitch(gameMenu.getPane(), currentPlayerView.getDeckView(), opponentPlayerView.getDeckView());
-        gameMenu.setUpAfterSwitch(gameMenu.getPane(), currentPlayerView.getDiscardPileView(), opponentPlayerView.getDiscardPileView());
-        gameMenu.setUpAfterSwitch(gameMenu.getPane(), currentPlayerView.getPlayerInformationView(), opponentPlayerView.getPlayerInformationView());
-        switchRows(currentPlayer, opponentPlayer);
+
+        swapBoardViews(currentPlayerView, opponentPlayerView);
+        clearBoardViews(currentPlayerView, opponentPlayerView);
+
+        swapPlayerViews(currentPlayerView, opponentPlayerView,
+                PlayerView.class.getDeclaredMethod("getDiscardPileView"),
+                PlayerView.class.getDeclaredMethod("getDeckView"),
+                PlayerView.class.getDeclaredMethod("getPlayerInformationView"));
+
+        setupViewsAfterSwitch(currentPlayerView, opponentPlayerView);
+
+        swapRows(currentPlayer, opponentPlayer);
+
         game.changeTurn();
         gameMenu.handlePassTurn(game);
     }
 
-    private void switchRows(Player currentPlayer, Player opponentPlayer) {
-        switchCoordinate(currentPlayer.getCloseCombat().getRowView(), opponentPlayer.getCloseCombat().getRowView());
-        switchCoordinate(currentPlayer.getRangedCombat().getRowView(), opponentPlayer.getRangedCombat().getRowView());
-        switchCoordinate(currentPlayer.getSiege().getRowView(), opponentPlayer.getSiege().getRowView());
+    private void swapBoardViews(PlayerView currentPlayerView, PlayerView opponentPlayerView) {
+        gameMenu.getRowsPane().getChildren().removeAll(currentPlayerView.getBoardView(), opponentPlayerView.getBoardView());
+        switchCoordinates(currentPlayerView.getBoardView(), opponentPlayerView.getBoardView());
+        gameMenu.getRowsPane().getChildren().addAll(currentPlayerView.getBoardView(), opponentPlayerView.getBoardView());
+    }
+
+    private void clearBoardViews(PlayerView currentPlayerView, PlayerView opponentPlayerView) {
+        currentPlayerView.getBoardView().getChildren().clear();
+        opponentPlayerView.getBoardView().getChildren().clear();
+    }
+
+    private void swapPlayerViews(PlayerView currentPlayerView, PlayerView opponentPlayerView, Method... methods) {
+        try {
+            for (Method method : methods) {
+                Node node1 = (Node) method.invoke(currentPlayerView);
+                Node node2 = (Node) method.invoke(opponentPlayerView);
+                gameMenu.getPane().getChildren().removeAll(node1, node2);
+                switchCoordinates(node1, node2);
+            }
+        } catch (InvocationTargetException | IllegalAccessException e) {
+            throw new RuntimeException("Failed to switch player views", e);
+        }
+    }
+
+    private void setupViewsAfterSwitch(PlayerView currentPlayerView, PlayerView opponentPlayerView) {
+        gameMenu.setUpAfterSwitch(gameMenu.getPane(), currentPlayerView.getDeckView(), opponentPlayerView.getDeckView());
+        gameMenu.setUpAfterSwitch(gameMenu.getPane(), currentPlayerView.getDiscardPileView(), opponentPlayerView.getDiscardPileView());
+        gameMenu.setUpAfterSwitch(gameMenu.getPane(), currentPlayerView.getPlayerInformationView(), opponentPlayerView.getPlayerInformationView());
+    }
+
+    private void swapRows(Player currentPlayer, Player opponentPlayer) {
+        switchCoordinates(currentPlayer.getCloseCombat().getRowView(), opponentPlayer.getCloseCombat().getRowView());
+        switchCoordinates(currentPlayer.getRangedCombat().getRowView(), opponentPlayer.getRangedCombat().getRowView());
+        switchCoordinates(currentPlayer.getSiege().getRowView(), opponentPlayer.getSiege().getRowView());
         currentPlayer.getPlayerView().getBoardView().getChildren().addAll(currentPlayer.getSiege().getRowView(), currentPlayer.getRangedCombat().getRowView(), currentPlayer.getCloseCombat().getRowView());
         opponentPlayer.getPlayerView().getBoardView().getChildren().addAll(opponentPlayer.getCloseCombat().getRowView(), opponentPlayer.getRangedCombat().getRowView(), opponentPlayer.getSiege().getRowView());
     }
 
-    private void switchNodes(PlayerView currentPlayerView, PlayerView opponentPlayerView, Method... method) {
-        Node node1, node2;
-        try {
-            for (Method m : method) {
-                node1 = (Node) m.invoke(currentPlayerView);
-                node2 = (Node) m.invoke(opponentPlayerView);
-                gameMenu.getPane().getChildren().removeAll(node1, node2);
-                switchCoordinate(node1, node2);
-            }
-        } catch (InvocationTargetException e) {
-            throw new RuntimeException(e);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private void switchCoordinate(Node component1, Node component2) {
+    private void switchCoordinates(Node component1, Node component2) {
         double tempX = component1.getLayoutX();
         double tempY = component1.getLayoutY();
-        component1.setLayoutY(component2.getLayoutY());
         component1.setLayoutX(component2.getLayoutX());
-        component2.setLayoutY(tempX);
+        component1.setLayoutY(component2.getLayoutY());
+        component2.setLayoutX(tempX);
         component2.setLayoutY(tempY);
     }
+
+//
+//    //TODO: implement it with reflection
+//    public void passTurn(Game game) throws NoSuchMethodException {
+//        Player currentPlayer = game.getCurrentPlayer();
+//        Player opponentPlayer = game.getOpponentPlayer();
+//        PlayerView currentPlayerView = currentPlayer.getPlayerView();
+//        PlayerView opponentPlayerView = opponentPlayer.getPlayerView();
+//        gameMenu.getRowsPane().getChildren().removeAll(currentPlayerView.getBoardView(), opponentPlayerView.getBoardView());
+//        switchCoordinate(currentPlayerView.getBoardView(), opponentPlayerView.getBoardView());
+//        gameMenu.getRowsPane().getChildren().addAll(currentPlayerView.getBoardView(), opponentPlayerView.getBoardView());
+//        currentPlayerView.getBoardView().getChildren().clear();
+//        opponentPlayerView.getBoardView().getChildren().clear();
+//        switchNodes(currentPlayerView, opponentPlayerView,
+//                PlayerView.class.getDeclaredMethod("getDiscardPileView"),
+//                PlayerView.class.getDeclaredMethod("getDeckView"),
+//                PlayerView.class.getDeclaredMethod("getPlayerInformationView"));
+//        gameMenu.setUpAfterSwitch(gameMenu.getPane(), currentPlayerView.getDeckView(), opponentPlayerView.getDeckView());
+//        gameMenu.setUpAfterSwitch(gameMenu.getPane(), currentPlayerView.getDiscardPileView(), opponentPlayerView.getDiscardPileView());
+//        gameMenu.setUpAfterSwitch(gameMenu.getPane(), currentPlayerView.getPlayerInformationView(), opponentPlayerView.getPlayerInformationView());
+//        switchRows(currentPlayer, opponentPlayer);
+//        game.changeTurn();
+//        gameMenu.handlePassTurn(game);
+//    }
+//
+//    private void switchRows(Player currentPlayer, Player opponentPlayer) {
+//        switchCoordinate(currentPlayer.getCloseCombat().getRowView(), opponentPlayer.getCloseCombat().getRowView());
+//        switchCoordinate(currentPlayer.getRangedCombat().getRowView(), opponentPlayer.getRangedCombat().getRowView());
+//        switchCoordinate(currentPlayer.getSiege().getRowView(), opponentPlayer.getSiege().getRowView());
+//        currentPlayer.getPlayerView().getBoardView().getChildren().addAll(currentPlayer.getSiege().getRowView(), currentPlayer.getRangedCombat().getRowView(), currentPlayer.getCloseCombat().getRowView());
+//        opponentPlayer.getPlayerView().getBoardView().getChildren().addAll(opponentPlayer.getCloseCombat().getRowView(), opponentPlayer.getRangedCombat().getRowView(), opponentPlayer.getSiege().getRowView());
+//    }
+//
+//    private void switchNodes(PlayerView currentPlayerView, PlayerView opponentPlayerView, Method... method) {
+//        Node node1, node2;
+//        try {
+//            for (Method m : method) {
+//                node1 = (Node) m.invoke(currentPlayerView);
+//                node2 = (Node) m.invoke(opponentPlayerView);
+//                gameMenu.getPane().getChildren().removeAll(node1, node2);
+//                switchCoordinate(node1, node2);
+//            }
+//        } catch (InvocationTargetException e) {
+//            throw new RuntimeException(e);
+//        } catch (IllegalAccessException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
+//
+//    private void switchCoordinate(Node component1, Node component2) {
+//        double tempX = component1.getLayoutX();
+//        double tempY = component1.getLayoutY();
+//        component1.setLayoutY(component2.getLayoutY());
+//        component1.setLayoutX(component2.getLayoutX());
+//        component2.setLayoutX(tempX);
+//        component2.setLayoutY(tempY);
+//    }
 
     private void clearWeather(WeatherCard card, Game game, HBox sourceHBox, HBox destinationHBox) {
         Bounds nodeBounds = card.getCardView().localToScene(card.getCardView().getBoundsInLocal());

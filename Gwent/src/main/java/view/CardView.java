@@ -57,8 +57,6 @@ public class CardView extends Pane {
     private void setPointColor(){
         int point = ((RegularCard)card).getPoint();
         int pointInGame = ((RegularCard)card).getPointInGame();
-        System.out.println("point " + point);
-        System.out.println("point in game " + pointInGame);
         if (pointInGame > point)
             this.point.getStyleClass().add(CssAddress.EXTRA_POINT.getStyleClass());
         if (pointInGame < point) {
