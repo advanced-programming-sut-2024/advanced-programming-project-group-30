@@ -4,7 +4,6 @@ import enums.MenuScene;
 import model.App;
 import model.PregameData;
 import model.User;
-import view.Main;
 import view.MainMenu;
 import view.PregameMenu;
 import view.ProfileMenu;
@@ -67,12 +66,11 @@ public class SceneManager {
     }
 
     public void goToPregameMenu(PregameData pregameData) {
-        stageSizeData sizeData = getStageSizeData();
         PregameMenu pregameMenu = (PregameMenu) MenuScene.PREGAME_SCENE.getMenu();
         pregameMenu.setup(pregameData);
         App.setCurrentMenuScene(MenuScene.PREGAME_SCENE);
         App.getPrimaryStage().setScene(MenuScene.PREGAME_SCENE.getScene());
-        setupStage(sizeData);
+        App.getPrimaryStage().setMaximized(true);
     }
 
     private stageSizeData getStageSizeData() {

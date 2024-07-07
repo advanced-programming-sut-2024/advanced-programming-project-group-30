@@ -31,7 +31,6 @@ public class User {
         this.securityAnswer = securityAnswer;
     }
 
-
     public String getUsername() {
         return username;
     }

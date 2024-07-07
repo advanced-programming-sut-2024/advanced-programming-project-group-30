@@ -26,6 +26,10 @@ public class PregameMenuController {
 
     public void setup(PregameData pregameData) {
         this.pregameData = pregameData;
+        setup();
+    }
+
+    private void setup() {
         menu.updateFactionsFields(pregameData.getFaction());
         uploadToCardCollection(pregameData.getCardCollection());
         SelectionPage<FactionType> selectionPage = new SelectionPage<>(FactionType.getAllChooseModelView(),
@@ -35,6 +39,11 @@ public class PregameMenuController {
 
     public PregameData getPregameData() {
         return pregameData;
+    }
+
+    public void changeTurn() {
+        pregameData.changeTurn();
+        setup();
     }
 
     public void uploadToCardCollection(TreeMap<DeckCardData, ArrayList<DecksCard>> collection) {

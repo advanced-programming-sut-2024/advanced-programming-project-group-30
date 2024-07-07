@@ -4,8 +4,10 @@ import controller.PregameMenuController;
 import enums.FactionType;
 import enums.cardsData.*;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
@@ -43,15 +45,24 @@ public class PregameMenu implements Menu {
     private Label totalStrength;
     @FXML
     private Label heroCardsNumber;
+    @FXML
+    private Button changeTurnButton;
+    @FXML
+    private Button startGameButton;
 
     @FXML
     public void initialize() {
         root.widthProperty().addListener((Void) -> scalePanes());
         root.heightProperty().addListener((Void) -> scalePanes());
         helperPane.setOnMouseClicked((Void) -> closeFactionSelectionPage());
+        changeTurnButton.setOnMouseClicked((Void) -> changeTurn());
     }
 
     public void setup(PregameData pregameData) {
+        startGameButton.setDisable(true);
+        changeTurnButton.setDisable(false);
+        changeTurnButton.setVisible(true);
+        startGameButton.setVisible(false);
         controller.setup(pregameData);
     }
 
@@ -124,6 +135,14 @@ public class PregameMenu implements Menu {
         helperPane.setVisible(true);
         helperPane.setDisable(false);
         root.getChildren().add(factionSelectionPage);
+    }
+
+    private void changeTurn() {
+        changeTurnButton.setDisable(true);
+        controller.changeTurn();
+        changeTurnButton.setVisible(false);
+        startGameButton.setVisible(true);
+        startGameButton.setDisable(false);
     }
 
     private void closeFactionSelectionPage() {

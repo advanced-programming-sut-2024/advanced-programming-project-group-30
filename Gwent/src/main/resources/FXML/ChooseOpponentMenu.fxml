@@ -4,25 +4,18 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" prefHeight="650.0" prefWidth="1150.0" styleClass="pregameBackground" xmlns="http://javafx.com/javafx/17.0.2-ea"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ChooseOpponentMenu">
-    <Pane maxWidth="492.0" minWidth="100.0" prefHeight="305.0" prefWidth="536.0" style="-fx-scale-x: 1.15; -fx-scale-y: 1.15;"
-          styleClass="blackPaneForChooseOpponent">
-        <Button layoutX="18.0" layoutY="18.0" minHeight="20.0" mnemonicParsing="false" onMouseClicked="#backToMainMenu" prefHeight="20.0"
-                prefWidth="20.0" styleClass="backIcon"/>
-        <Label layoutX="70.0" layoutY="39.0" style="-fx-font-size: 26;" styleClass="bigTitle" text="You can play with your friend"/>
-        <PasswordField fx:id="opponentPassword" alignment="CENTER" layoutX="71.0" layoutY="152.0" prefHeight="49.0" prefWidth="350.0"
-                       promptText="Please enter your friends password" styleClass="blackBgField"/>
-        <TextField fx:id="opponentUsername" alignment="CENTER" layoutX="71.0" layoutY="92.0" prefHeight="49.0" prefWidth="350.0"
-                   promptText="Please enter your friends username" styleClass="blackBgField"/>
-        <Button layoutX="174.0" layoutY="227.0" mnemonicParsing="false" onAction="#chooseOpponent" prefHeight="38.0" prefWidth="144.0"
-                style="-fx-background-color: #ffd4a0;" styleClass="buttonWithBeigeBg" text="Let's Play"/>
-        <Label fx:id="errorLabel" alignment="CENTER" layoutX="85.0" layoutY="205.0" prefHeight="14.0" prefWidth="321.0"
-               styleClass="errorMessage"/>
+<VBox alignment="CENTER" prefHeight="650.0" prefWidth="1150.0" styleClass="pregameBackground" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ChooseOpponentMenu">
+    <Pane maxWidth="492.0" minWidth="100.0" prefHeight="305.0" prefWidth="536.0" style="-fx-scale-x: 1.15; -fx-scale-y: 1.15;" styleClass="blackPaneForChooseOpponent">
+        <Button layoutX="18.0" layoutY="18.0" minHeight="20.0" mnemonicParsing="false" onMouseClicked="#backToMainMenu" prefHeight="20.0" prefWidth="20.0" styleClass="backIcon" />
+        <Label layoutX="70.0" layoutY="41.0" style="-fx-font-size: 26;" styleClass="bigTitle" text="You can play with your friend" />
+        <PasswordField fx:id="opponentPassword" alignment="CENTER" layoutX="88.0" layoutY="154.0" prefHeight="49.0" prefWidth="310.0" promptText="Please enter your friends password" style="-fx-font-family: &quot;Times New Roman&quot;; -fx-font-size: 17;" styleClass="blackBgField" />
+        <TextField fx:id="opponentUsername" alignment="CENTER" layoutX="88.0" layoutY="92.0" prefHeight="49.0" prefWidth="310.0" promptText="Please enter your friends username" style="-fx-font-family: &quot;Times New Roman&quot;; -fx-font-size: 17;" styleClass="blackBgField" />
+        <Button layoutX="185.0" layoutY="228.0" mnemonicParsing="false" onAction="#chooseOpponent" prefHeight="33.0" prefWidth="120.0" style="-fx-background-color: #ffd4a0; -fx-font-size: 17;" styleClass="buttonWithBeigeBg" text="Let's Play" />
+        <Label fx:id="errorLabel" alignment="CENTER" layoutX="85.0" layoutY="207.0" prefHeight="14.0" prefWidth="321.0" style="-fx-text-fill: #ac0001;" styleClass="errorMessage" />
     </Pane>
     <stylesheets>
-        <URL value="@../CSS/NodeStyle.css"/>
-        <URL value="@../CSS/GameNodesStyle.css"/>
-        <URL value="@../CSS/Backgrounds.css"/>
+        <URL value="@../CSS/NodeStyle.css" />
+        <URL value="@../CSS/GameNodesStyle.css" />
+        <URL value="@../CSS/Backgrounds.css" />
     </stylesheets>
 </VBox>

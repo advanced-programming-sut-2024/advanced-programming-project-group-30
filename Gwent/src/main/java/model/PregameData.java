@@ -17,6 +17,12 @@ public class PregameData {
         anotherData = new PregameUserData(anotherUser);
     }
 
+    public void changeTurn() {
+        PregameUserData temp = currentData;
+        currentData = anotherData;
+        anotherData = temp;
+    }
+
     public TreeMap<DeckCardData, ArrayList<DecksCard>> getCardCollection() {
         return currentData.cardCollection;
     }
