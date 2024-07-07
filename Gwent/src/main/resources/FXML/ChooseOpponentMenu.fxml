@@ -15,7 +15,7 @@
     </Pane>
     <stylesheets>
         <URL value="@../CSS/NodeStyle.css" />
-        <URL value="@../CSS/GameNodesStyle.css" />
+        <URL value="@../CSS/PregameNodesStyle.css" />
         <URL value="@../CSS/Backgrounds.css" />
     </stylesheets>
 </VBox>

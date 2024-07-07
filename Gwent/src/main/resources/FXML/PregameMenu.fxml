@@ -91,6 +91,6 @@
     <Pane fx:id="helperPane" disable="true" opacity="0.7" prefHeight="650.0" prefWidth="1150.0" styleClass="pregameMainPain" visible="false" />
     <stylesheets>
         <URL value="@../CSS/Backgrounds.css" />
-        <URL value="@../CSS/GameNodesStyle.css" />
+        <URL value="@../CSS/PregameNodesStyle.css" />
     </stylesheets>
 </Pane>
