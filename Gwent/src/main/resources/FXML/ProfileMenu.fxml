@@ -26,8 +26,8 @@
                         </ImageView>
                         <Label fx:id="draws" minHeight="35.0" prefHeight="37.0" prefWidth="139.0" styleClass="profileMenu-info-label" text="Draws : 20" />
                     </HBox>
-                    <HBox alignment="CENTER_LEFT" maxHeight="500.0" maxWidth="500.0" minHeight="0.0" minWidth="0.0" prefHeight="30.0" prefWidth="202.0" spacing="2.0" style="-fx-spacing: 14; -fx-padding: 0 0 0 8;">
-                        <ImageView fitHeight="30.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                    <HBox alignment="CENTER_LEFT" maxHeight="500.0" maxWidth="500.0" minHeight="0.0" minWidth="0.0" prefHeight="30.0" prefWidth="202.0" spacing="2.0" style="-fx-spacing: 13; -fx-padding: 0 0 0 8;">
+                        <ImageView fitHeight="28.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                             <Image url="@../Images/gameAssests/notif_lose_round.png" />
                         </ImageView>
                         <Label fx:id="losses" alignment="TOP_LEFT" prefHeight="30.0" prefWidth="140.0" styleClass="profileMenu-info-label" text="Losses: 20" />

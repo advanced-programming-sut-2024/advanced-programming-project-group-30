@@ -16,7 +16,7 @@
                             <ImageView fx:id="rightFactionIcon" fitHeight="40.0" preserveRatio="true" styleClass="node">
                                 <Image url="@../Images/Game/Factions/Nilfgaard.png" />
                             </ImageView>
-                            <Label fx:id="factionLabel" styleClass="factionName" text="Faction Name" />
+                            <Label fx:id="factionLabel" styleClass="bigTitle" text="Faction Name" />
                             <ImageView fx:id="leftFactionIcon" fitHeight="40.0" preserveRatio="true">
                                 <Image url="@../Images/Game/Factions/Nilfgaard.png" />
                             </ImageView>

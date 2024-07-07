@@ -20,7 +20,15 @@
     -fx-background-radius: 10;
 }
 
-.factionName {
+.blackPaneForChooseOpponent {
+    -fx-background-color: rgba(0, 0, 0, 0.8);
+    -fx-border-color: #f3d6b0;
+    -fx-border-radius: 5;
+    -fx-border-insets: 7;
+    -fx-border-width: 0.5;
+}
+
+.bigTitle {
     -fx-font-weight: BOLD;
     -fx-font-size: 30;
     -fx-scale-x: 1.05;

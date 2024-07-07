@@ -18,7 +18,7 @@ import java.util.TreeMap;
 
 public class PregameMenuController {
     // TODO: remove copy to setup
-    private PregameData pregameData = new PregameData(new User("", "", "", "", null, ""));
+    private PregameData pregameData = new PregameData(new User("", "", "", "", null, ""), new User("", "", "", "", null, ""));
     private final PregameMenu menu;
 
     public PregameMenuController(PregameMenu menu) {
