@@ -6,13 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="f1724509-8fa7-4a1d-addf-f9c920333c2d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/SceneManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/SceneManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/PregameData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PregameData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/PregameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/PregameMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/ProfileMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/ProfileMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/PregameMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/PregameMenu.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/CSS/NodeStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/CSS/NodeStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/ProfileMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/ProfileMenu.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Icons/rankBg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/gameAssests/end_draw.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/gameAssests/end_lose.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/gameAssests/end_win.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/gameAssests/icon_high_score.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Images/Icons/icon_high_score.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/gameAssests/notif_draw_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Images/Icons/notif_draw_round.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/gameAssests/notif_lose_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Images/Icons/notif_lose_round.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/gameAssests/notif_win_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Images/Icons/notif_win_round.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,28 +49,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.Main.executor": "Run",
-    "Application.test.executor": "Run",
-    "JavaMethodFindUsagesOptions.isSearchForTextOccurrences": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Merge-Fatemeh",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Fatemeh/Desktop/Uni/AP/ApProject/Gwent/src/main/resources/FXML",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.test.executor&quot;: &quot;Run&quot;,
+    &quot;JavaMethodFindUsagesOptions.isSearchForTextOccurrences&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Merge-Fatemeh&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Fatemeh/Desktop/Uni/AP/ApProject/Gwent/src/main/resources/FXML&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Fatemeh\Desktop\Uni\AP\ApProject\Gwent\src\main\resources\FXML" />
@@ -135,6 +139,8 @@
       <workItem from="1719733488135" duration="45479000" />
       <workItem from="1719940265883" duration="60097000" />
       <workItem from="1720152813277" duration="42344000" />
+      <workItem from="1720367085931" duration="1676000" />
+      <workItem from="1720368765723" duration="9284000" />
     </task>
     <servers />
   </component>
