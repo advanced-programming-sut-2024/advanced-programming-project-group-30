@@ -16,7 +16,7 @@ public enum NeutralRegularCardsData implements RegularCardData {
     TRISS_MERIGOLD("Triss Merigold", null, true, 7, 1, RegularCardPositionType.CLOSE_COMBAT),
     VILLENTRETENMERTH("Villentretenmerth", Ability.SCORCH, false, 7, 1, RegularCardPositionType.CLOSE_COMBAT),
     YENNEFER_OF_VENGERBERG("Yennefer of Vengerberg", Ability.MEDIC, true, 7, 1, RegularCardPositionType.RANGED_COMBAT),
-    OLGIERD_VON_EVEREC("Olgierd von Everec", Ability.MEDIC, false, 6, 1, RegularCardPositionType.AGILE),
+    OLGIERD_VON_EVEREC("Olgierd von Everec", Ability.MORAL_BOOST, false, 6, 1, RegularCardPositionType.AGILE),
     VESEMIR("Vesemir", null, false, 6, 1, RegularCardPositionType.CLOSE_COMBAT),
     EMIEL_REGIS("EmielRegis", null, false, 5, 1, RegularCardPositionType.CLOSE_COMBAT),
     ZOLTAN_CHIVAY("Zoltan Chivay", null, false, 5, 1, RegularCardPositionType.CLOSE_COMBAT),

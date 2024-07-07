@@ -108,7 +108,6 @@ public class WeatherCardAbility {
         }
         return rows;
     }
-    private void setPoints(){}
     private void setEffects(ArrayList<CssAddress> styles, ArrayList<Row> rows){
         int i = 0;
         for (Row row : rows){

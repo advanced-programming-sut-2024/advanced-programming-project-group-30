@@ -1,6 +1,7 @@
 package model;
 
 import enums.CoordinateData;
+import enums.cardsData.CardData;
 import enums.cardsData.RegularCardData;
 import model.card.DecksCard;
 import model.card.RegularCard;
@@ -8,6 +9,7 @@ import model.card.SpecialCard;
 import view.RowView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class Row extends Position{
@@ -19,6 +21,7 @@ public class Row extends Position{
     private boolean isDamaged = false; //weather card effects
     private RowView rowView;
     private SpecialCardPosition specialCardPosition;
+    private HashMap<CardData, ArrayList<RegularCard>> cardDataMap = new HashMap<>();
 
     public Row(String name) {
         this.name = name;
@@ -71,6 +74,9 @@ public class Row extends Position{
     public void setExtraPoint(int extraPoint) {
         this.extraPoint = extraPoint;
     }
+    public void addExtraPoint(){
+        this.extraPoint++;
+    }
 
     public boolean isDamaged() {
         return isDamaged;
@@ -85,7 +91,16 @@ public class Row extends Position{
     public void updateRowScore(){
         rowView.updateRowScore();
     }
-
+    public void addToCardDataMap(RegularCard card){
+        CardData cardData = card.getCardData();
+        if (cardDataMap.containsKey(cardData)){
+            cardDataMap.get(cardData).add(card);
+        }else {
+            ArrayList<RegularCard> cards = new ArrayList<>();
+            cards.add(card);
+            cardDataMap.put(cardData, cards);
+        }
+    }
 
 
 }

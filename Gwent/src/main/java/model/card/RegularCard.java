@@ -4,8 +4,12 @@ import enums.FactionType;
 import enums.RegularCardPositionType;
 import enums.cardsData.CardData;
 import enums.cardsData.RegularCardData;
+import model.Game;
+import model.ability.RegularCardsAbility;
+import model.ability.WeatherCardAbility;
 import view.CardView;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class RegularCard extends DecksCard {
@@ -20,7 +24,7 @@ public class RegularCard extends DecksCard {
         this.pointInGame = point;
         this.ability = ability;
         this.positionType = position;
-        cardView = new CardView(this);
+        this.cardView = new CardView(this);
     }
     public Method getAbility() {
         return ability;
@@ -45,8 +49,13 @@ public class RegularCard extends DecksCard {
     public RegularCardPositionType getPositionType() {
         return positionType;
     }
-    public void run(){
-
+    public void run(Game game) {
+        try {
+            System.out.println(ability);
+            ability.invoke(RegularCardsAbility.getInstance(),game);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
     }
 
     public int getPoint() {

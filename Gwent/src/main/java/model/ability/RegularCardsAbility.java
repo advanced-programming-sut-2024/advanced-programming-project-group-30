@@ -24,51 +24,52 @@ public class RegularCardsAbility {
     public static Method createNewAbilityByName(String name) {
         Method method = null;
         try {
-            method = RegularCardsAbility.class.getDeclaredMethod(name, Game.class, RegularCard.class);
+            method = RegularCardsAbility.class.getDeclaredMethod(name, Game.class);
+            method.setAccessible(true);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return method;
     }
-    private void medic(Game currentGame, RegularCard card){
+    public void medic(Game currentGame){
 
     }
-    private void commanderHorn(Game currentGame, RegularCard card){
+    public void commanderHorn(Game currentGame){
 
     }
-    private void moralBoost(Game currentGame, RegularCard card){
+    public void moralBoost(Game currentGame){
+        Row row = currentGame.getSelectedRow();
+        row.addExtraPoint();
+    }
+    private void muster(Game currentGame){
+
+    }
+    public void scorch(Game currentGame){
+
+    }
+    public void tightBond(Game currentGame){
 
 
     }
-    private void muster(Game currentGame, RegularCard card){
-
-    }
-    private void scorch(Game currentGame, RegularCard card){
-
-    }
-    private void tightBond(Game currentGame, RegularCard card){
-
-
-    }
-    private void spy(Game currentGame, RegularCard card){
-        Player opponentPlayer = currentGame.getOpponentPlayer();
+    public void spy(Game currentGame){
         Player currentPlayer = currentGame.getCurrentPlayer();
-        opponentPlayer.updatePoint(card.getPoint());
+        ArrayList<DecksCard> hand = currentPlayer.getDiscardPile();
         Random random = new Random();
-        for (int i = 0; i < 2; i++){
-            int index = random.nextInt(opponentPlayer.getDeck().size());
-            DecksCard decksCard = currentPlayer.getDeck().get(index);
-            currentPlayer.addCardToHand(decksCard);
-            currentPlayer.removeCardFromDeck(decksCard);
+        int firstCardIndex = random.nextInt(hand.size());
+        int secondCardIndex = random.nextInt(hand.size());
+        while (firstCardIndex == secondCardIndex){
+            secondCardIndex = random.nextInt(hand.size());
         }
+        DecksCard firstCard = hand.get(firstCardIndex);
+        DecksCard secondCard = hand.get(secondCardIndex);
     }
-    private void berserker(Game currentGame, RegularCard card){
+    public void berserker(Game currentGame){
 
     }
-    private void mardroeme(Game currentGame, RegularCard card){
+    public void mardroeme(Game currentGame){
 
     }
-    private void transformer(Game currentGame, RegularCard card){
+    public void transformer(Game currentGame){
 
     }
 

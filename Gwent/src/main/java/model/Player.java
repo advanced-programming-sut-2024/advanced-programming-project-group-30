@@ -7,6 +7,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import model.card.DecksCard;
 import model.card.Leader;
+import model.card.SpecialCard;
 import view.PlayerInformationView;
 import view.PlayerView;
 
@@ -37,9 +38,6 @@ public class Player {
         return user;
     }
 
-    public Game getGame() {
-        return game;
-    }
 
     public Leader getLeader() {
         return leader;
@@ -70,9 +68,6 @@ public class Player {
 
     public Row getSiege() {
         return siege;
-    }
-    public void removeCardFromHand(DecksCard card){
-        hand.remove(card);
     }
     public void addCardToHand(DecksCard card){
         hand.add(card);
@@ -147,5 +142,9 @@ public class Player {
     }
     public void discardCard(DecksCard decksCard){
         discardPile.add(decksCard);
+    }
+
+    public void addToDiscardPile(DecksCard card) {
+        discardPile.add(card);
     }
 }

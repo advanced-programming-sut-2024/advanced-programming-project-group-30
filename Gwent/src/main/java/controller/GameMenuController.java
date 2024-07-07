@@ -2,6 +2,7 @@ package controller;
 
 import enums.Ability;
 import enums.CssAddress;
+import enums.GameNotification;
 import enums.RegularCardPositionType;
 import enums.cardsData.DeckCardData;
 import enums.cardsData.WeatherCardsData;
@@ -12,6 +13,7 @@ import javafx.geometry.Bounds;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.util.Duration;
+import model.App;
 import model.Game;
 import model.Player;
 import model.Row;
@@ -26,6 +28,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class GameMenuController {
     private final GameMenu gameMenu;
@@ -36,7 +39,8 @@ public class GameMenuController {
 
     public Player checkForHigherScore(Game game) {
         if (game.getCurrentPlayer().getPoint() > game.getOpponentPlayer().getPoint()) return game.getCurrentPlayer();
-        else return game.getOpponentPlayer();
+        else if (game.getCurrentPlayer().getPoint() < game.getOpponentPlayer().getPoint()) return game.getOpponentPlayer();
+        else return null;
     }
 
     public void handleRegularCardEvents(RegularCard card, Game game, Player player1, Player player2) {
@@ -93,9 +97,7 @@ public class GameMenuController {
             AnimationMaker.getInstance().cardPlaceAnimation(card, row.getRowView().getRow(), player.getPlayerView().getHandView(), game, gameMenu);
             row.addCardToRow((RegularCard) card);
         }
-        if (!game.isRoundPassed()) {
-            checkPassTurn(card, game);
-        }
+        passTurn(game);
         player.playCard(card);
         updateHandCardNumber(game);
         resetRowStyles(game);
@@ -113,8 +115,9 @@ public class GameMenuController {
             }));
             timeline.setCycleCount(1);
             timeline.play();
+            game.getCurrentPlayer().addToDiscardPile(card);
         } else row.setSpecialCard(card);
-        checkPassTurn(card, game);
+        passTurn(game);
         game.getCurrentPlayer().playCard(card);
         updateHandCardNumber(game);
 
@@ -133,21 +136,8 @@ public class GameMenuController {
         game.addWeatherCard(weatherCard);
         player.playCard(weatherCard);
         updateHandCardNumber(game);
-        checkPassTurn(weatherCard, game);
+        passTurn(game);
         resetRowStyles(game);
-    }
-
-    private void handleRepeatedWeatherCard(WeatherCard weatherCard, Game game, CardView card) {
-        TranslateTransition translate = AnimationMaker.getInstance().getTranslate(weatherCard, weatherCard.getCardView().localToScene(weatherCard.getCardView().getBoundsInLocal()), gameMenu.getWeatherCardPosition());
-        translate.setOnFinished(event1 -> {
-            game.getCurrentPlayer().getPlayerView().getHandView().getChildren().remove(card);
-            gameMenu.getWeatherCardPosition().getChildren().add(card);
-            card.setTranslateX(0);
-            card.setTranslateY(0);
-            AnimationMaker.getInstance().discardAnimation((DecksCard) card.getCard(), gameMenu.getWeatherCardPosition(), game.getCurrentPlayer().getPlayerView().getDiscardPileView(), game, gameMenu);
-
-        });
-        translate.play();
     }
     public void handleWeatherCardEvents(WeatherCard weatherCard, Game game) {
         CardView cardView = weatherCard.getCardView();
@@ -161,7 +151,7 @@ public class GameMenuController {
         });
     }
 
-    public void handleSpecialCardEvents(SpecialCard specialCard, Game game, Player player1, Player player2) {
+    public void handleSpecialCardEvents(SpecialCard specialCard, Game game, Player player1) {
         CardView cardView = specialCard.getCardView();
         player1.setSelectedCard(specialCard);
         try {
@@ -191,6 +181,7 @@ public class GameMenuController {
         for (Row row : rows) {
             RowView rowView = row.getRowView();
             Object object = method.invoke(rowView);
+            game.selectRow(row);
             ((Node) object).setOnMousePressed(event -> {
                 if (card instanceof SpecialCard) {
                     handleSpecialCardMovement((SpecialCard) card, game, row);
@@ -205,16 +196,21 @@ public class GameMenuController {
         }
     }
 
-    private void checkPassTurn(DecksCard card, Game game) {
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1.5), actionEvent -> {
-            try {
-                passTurn(game);
-            } catch (NoSuchMethodException e) {
-                throw new RuntimeException(e);
-            }
-        }));
-        timeline.setCycleCount(1);
-        timeline.play();
+    private void passTurn(Game game) {
+        if (!game.isRoundPassed()) {
+            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1.5), actionEvent -> {
+                try {
+                    switchBoard(game);
+                    game.changeTurn();
+                    gameMenu.handlePassTurn(game);
+                } catch (NoSuchMethodException e) {
+                    throw new RuntimeException(e);
+                }
+            }));
+
+            timeline.setCycleCount(1);
+            timeline.play();
+        }
     }
 
     public void resetRowStyles(Game game) {
@@ -242,12 +238,7 @@ public class GameMenuController {
 
     private void setRowCardsPoint(Row row) {
         int point;
-        boolean hasCommanderHorn = false;
-        for (RegularCard regularCard : row.getCards()) {
-            if (regularCard.isHero()) continue;
-            if (((DeckCardData) regularCard.getCardData()).getAbility() != null && ((DeckCardData) regularCard.getCardData()).getAbility().equals(Ability.HORN_COMMANDER))
-                hasCommanderHorn = true;
-        }
+        boolean hasCommanderHorn = hasRegularCommanderHorn(row);
         for (RegularCard card : row.getCards()) {
             if (card.isHero()) continue;
             point = card.getPoint();
@@ -256,9 +247,8 @@ public class GameMenuController {
             Ability ability = ((DeckCardData) card.getCardData()).getAbility();
             SpecialCard specialCard = row.getSpecialCard();
             Ability specialCardAbility = ((DeckCardData) card.getCardData()).getAbility();
-
             if (ability != null) {
-                if (ability.equals(Ability.MORAL_BOOST)) point--;
+                if (ability.equals(Ability.MORAL_BOOST) && !(row.getCards().size() == 1)) point--;
                 if (hasCommanderHorn && !ability.equals(Ability.HORN_COMMANDER)) point *= 2;
             }
             else if (hasCommanderHorn) point *= 2;
@@ -269,7 +259,15 @@ public class GameMenuController {
         }
 
     }
-
+    private boolean hasRegularCommanderHorn(Row row){
+        for (RegularCard regularCard : row.getCards()) {
+            if (regularCard.isHero()) continue;
+            if (((DeckCardData) regularCard.getCardData()).getAbility() != null && ((DeckCardData) regularCard.getCardData()).getAbility().equals(Ability.HORN_COMMANDER)) {
+                return true;
+            }
+        }
+        return false;
+    }
     private void setRowEvent(DecksCard card, Game game, Method method, ArrayList<Method> methods, Player player) throws InvocationTargetException, IllegalAccessException {
         if (methods.size() == 2) {
             Row row1 = (Row) methods.get(0).invoke(player);
@@ -311,7 +309,7 @@ public class GameMenuController {
         PlayerInformationView playerInformationView = player.getPlayerInformationView();
         gameMenu.updateHandCardNumber(playerInformationView.getHandCardNumber(), player.getHand().size());
     }
-    public void passTurn(Game game) throws NoSuchMethodException {
+    public void switchBoard(Game game) throws NoSuchMethodException {
         Player currentPlayer = game.getCurrentPlayer();
         Player opponentPlayer = game.getOpponentPlayer();
         PlayerView currentPlayerView = currentPlayer.getPlayerView();
@@ -328,11 +326,13 @@ public class GameMenuController {
         setupViewsAfterSwitch(currentPlayerView, opponentPlayerView);
 
         swapRows(currentPlayer, opponentPlayer);
-
-        game.changeTurn();
-        gameMenu.handlePassTurn(game);
     }
-
+    public void checkRound(Game game){
+        if (game.isRoundPassed()){
+            endRound(game);
+        }else passTurn(game);
+        //TODO: leader abilities should be considered
+    }
     private void swapBoardViews(PlayerView currentPlayerView, PlayerView opponentPlayerView) {
         gameMenu.getRowsPane().getChildren().removeAll(currentPlayerView.getBoardView(), opponentPlayerView.getBoardView());
         switchCoordinates(currentPlayerView.getBoardView(), opponentPlayerView.getBoardView());
@@ -379,78 +379,35 @@ public class GameMenuController {
         component2.setLayoutX(tempX);
         component2.setLayoutY(tempY);
     }
-
-//
-//    //TODO: implement it with reflection
-//    public void passTurn(Game game) throws NoSuchMethodException {
-//        Player currentPlayer = game.getCurrentPlayer();
-//        Player opponentPlayer = game.getOpponentPlayer();
-//        PlayerView currentPlayerView = currentPlayer.getPlayerView();
-//        PlayerView opponentPlayerView = opponentPlayer.getPlayerView();
-//        gameMenu.getRowsPane().getChildren().removeAll(currentPlayerView.getBoardView(), opponentPlayerView.getBoardView());
-//        switchCoordinate(currentPlayerView.getBoardView(), opponentPlayerView.getBoardView());
-//        gameMenu.getRowsPane().getChildren().addAll(currentPlayerView.getBoardView(), opponentPlayerView.getBoardView());
-//        currentPlayerView.getBoardView().getChildren().clear();
-//        opponentPlayerView.getBoardView().getChildren().clear();
-//        switchNodes(currentPlayerView, opponentPlayerView,
-//                PlayerView.class.getDeclaredMethod("getDiscardPileView"),
-//                PlayerView.class.getDeclaredMethod("getDeckView"),
-//                PlayerView.class.getDeclaredMethod("getPlayerInformationView"));
-//        gameMenu.setUpAfterSwitch(gameMenu.getPane(), currentPlayerView.getDeckView(), opponentPlayerView.getDeckView());
-//        gameMenu.setUpAfterSwitch(gameMenu.getPane(), currentPlayerView.getDiscardPileView(), opponentPlayerView.getDiscardPileView());
-//        gameMenu.setUpAfterSwitch(gameMenu.getPane(), currentPlayerView.getPlayerInformationView(), opponentPlayerView.getPlayerInformationView());
-//        switchRows(currentPlayer, opponentPlayer);
-//        game.changeTurn();
-//        gameMenu.handlePassTurn(game);
-//    }
-//
-//    private void switchRows(Player currentPlayer, Player opponentPlayer) {
-//        switchCoordinate(currentPlayer.getCloseCombat().getRowView(), opponentPlayer.getCloseCombat().getRowView());
-//        switchCoordinate(currentPlayer.getRangedCombat().getRowView(), opponentPlayer.getRangedCombat().getRowView());
-//        switchCoordinate(currentPlayer.getSiege().getRowView(), opponentPlayer.getSiege().getRowView());
-//        currentPlayer.getPlayerView().getBoardView().getChildren().addAll(currentPlayer.getSiege().getRowView(), currentPlayer.getRangedCombat().getRowView(), currentPlayer.getCloseCombat().getRowView());
-//        opponentPlayer.getPlayerView().getBoardView().getChildren().addAll(opponentPlayer.getCloseCombat().getRowView(), opponentPlayer.getRangedCombat().getRowView(), opponentPlayer.getSiege().getRowView());
-//    }
-//
-//    private void switchNodes(PlayerView currentPlayerView, PlayerView opponentPlayerView, Method... method) {
-//        Node node1, node2;
-//        try {
-//            for (Method m : method) {
-//                node1 = (Node) m.invoke(currentPlayerView);
-//                node2 = (Node) m.invoke(opponentPlayerView);
-//                gameMenu.getPane().getChildren().removeAll(node1, node2);
-//                switchCoordinate(node1, node2);
-//            }
-//        } catch (InvocationTargetException e) {
-//            throw new RuntimeException(e);
-//        } catch (IllegalAccessException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-//
-//    private void switchCoordinate(Node component1, Node component2) {
-//        double tempX = component1.getLayoutX();
-//        double tempY = component1.getLayoutY();
-//        component1.setLayoutY(component2.getLayoutY());
-//        component1.setLayoutX(component2.getLayoutX());
-//        component2.setLayoutX(tempX);
-//        component2.setLayoutY(tempY);
-//    }
-
     private void clearWeather(WeatherCard card, Game game, HBox sourceHBox, HBox destinationHBox) {
         Bounds nodeBounds = card.getCardView().localToScene(card.getCardView().getBoundsInLocal());
+        game.getCurrentPlayer().addToDiscardPile(card);
         TranslateTransition translate = AnimationMaker.getInstance().getTranslate(card, nodeBounds, destinationHBox);
         translate.setOnFinished(event -> {
             sourceHBox.getChildren().remove(card.getCardView());
             destinationHBox.getChildren().add(card.getCardView());
             card.getCardView().setTranslateX(0);
             card.getCardView().setTranslateY(0);
-            for (Node cardView : gameMenu.getWeatherCardPosition().getChildren()) {
-                AnimationMaker.getInstance().discardAnimation((DecksCard) ((CardView) cardView).getCard(), destinationHBox, game.getCurrentPlayer().getPlayerView().getDiscardPileView(), game, gameMenu);
+            ArrayList<Node> nodes = new ArrayList<>(gameMenu.getWeatherCardPosition().getChildren());
+            for (Node cardView : nodes) {
+                game.getCurrentPlayer().addToDiscardPile((DecksCard) ((CardView) cardView).getCard());
+                AnimationMaker.getInstance().discardAnimation((DecksCard) ((CardView) cardView).getCard(),
+                        destinationHBox, game.getCurrentPlayer().getPlayerView().getDiscardPileView(),
+                        game, gameMenu);
+
             }
+            game.getWeatherCards().clear();
             card.run(game);
         });
         translate.play();
+    }
+    //TODO: complete endRound method
+    public GameNotification endRound(Game game) {
+        Player winner = checkForHigherScore(game);
+        if (winner == null) return GameNotification.DRAW_ROUND;
+        else if (winner.equals(App.getCurrentGame().getCurrentPlayer())) return GameNotification.WIN_ROUND;
+        else return GameNotification.LOSE_ROUND;
+
     }
 
 }

@@ -8,7 +8,6 @@ public abstract class Card{
     private final String name;
     private final FactionType faction;
     private final CardData cardData;
-    protected CardView cardView;
 
     public Card(String name, FactionType faction, CardData cardData) {
         this.name = name;
@@ -33,9 +32,5 @@ public abstract class Card{
         if (o == null || getClass() != o.getClass()) return false;
         Card card = (Card) o;
         return cardData == card.cardData;
-    }
-
-    public CardView getCardView() {
-        return cardView;
     }
 }

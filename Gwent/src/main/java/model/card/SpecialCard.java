@@ -14,7 +14,7 @@ public class SpecialCard extends DecksCard {
         super(name, faction, cardData, true);
         this.discardAfterPlaying = discardAfterPlaying;
         this.ability = ability;
-        super.cardView = new CardView(this);
+        this.cardView = new CardView(this);
     }
 
     public void run(){

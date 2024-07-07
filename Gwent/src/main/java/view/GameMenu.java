@@ -95,7 +95,7 @@ public class GameMenu implements Menu{
 //            player.getPlayerView().getHandView().getChildren().add(cardView);
             hand.getChildren().add(cardView);
             if (card instanceof SpecialCard)
-                gameMenuController.handleSpecialCardEvents((SpecialCard) card, game, player, opponentPlayer);
+                gameMenuController.handleSpecialCardEvents((SpecialCard) card, game, player);
             if (card instanceof RegularCard)
                 gameMenuController.handleRegularCardEvents((RegularCard) card, game, player, opponentPlayer);
             if (card instanceof WeatherCard)
@@ -109,7 +109,7 @@ public class GameMenu implements Menu{
             CardView cardView = card.getCardView();
 //            player.getPlayerView().getHandView().getChildren().add(cardView);
             if (card instanceof SpecialCard)
-                gameMenuController.handleSpecialCardEvents((SpecialCard) card, game, opponentPlayer, player);
+                gameMenuController.handleSpecialCardEvents((SpecialCard) card, game, opponentPlayer);
             if (card instanceof RegularCard)
                 gameMenuController.handleRegularCardEvents((RegularCard) card, game, opponentPlayer, player);
             if (card instanceof WeatherCard)
@@ -161,7 +161,7 @@ public class GameMenu implements Menu{
         }
     }
     public void endRound(Game game) throws NoSuchMethodException {
-
+        showRoundEndNotification(gameMenuController.endRound(game));
     }
     public void handlePassTurn(Game game) {
         game.getCurrentPlayer().getPlayerInformationView().getStyleClass().add("brownBoxShadowed");
@@ -183,10 +183,14 @@ public class GameMenu implements Menu{
     }
     @FXML
     private void passTurn() throws NoSuchMethodException {
-        gameMenuController.passTurn(App.getCurrentGame());
+        gameMenuController.checkRound(App.getCurrentGame());
     }
-    private void  showPassTurnNotification(){
+    private void showPassTurnNotification(){
         Timeline timeline = AnimationMaker.getInstance().getNotificationTimeline(pane, notifPane, notifImageView, notifLabel, GameNotification.PASS_TURN);
+        timeline.play();
+    }
+    private void showRoundEndNotification(GameNotification notification){
+        Timeline timeline = AnimationMaker.getInstance().getNotificationTimeline(pane, notifPane, notifImageView, notifLabel, notification);
         timeline.play();
     }
 //    private void showWhosTurnNotification(){
@@ -205,6 +209,10 @@ public class GameMenu implements Menu{
         notifImageView.setFitWidth(notifImage.getFitWidth());
         notifImageView.setFitHeight(notifImage.getFitHeight());
         notifPane.getChildren().addAll(notifLabel,notifImageView);
+    }
+
+    public void showResult(Player winner, GameNotification gameNotification) {
+        showRoundEndNotification(gameNotification);
     }
 
 }

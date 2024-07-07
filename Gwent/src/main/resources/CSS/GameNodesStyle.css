@@ -100,10 +100,6 @@
     -fx-image: url('../Images/Icons/notif_lose_round.png');
     -fx-background-size: 100% 100%;
 }
-.opponent_turn-image{
-    -fx-image: url('../Images/Icons/notif_op_turn.png');
-    -fx-background-size: 100% 100%;
-}
 .cardSiegeRowIcon{
     -fx-image: url('../Images/Icons/siege.png');
     -fx-background-size: 100% 100%;
@@ -382,5 +378,13 @@
 }
 .regularPoint{
     -fx-text-fill: rgba(0, 0, 0, 0.98);
+}
+.notifOppTurn{
+    -fx-image: url('../Images/Icons/notif_op_turn.png');
+    -fx-background-size: 100% 100%
+}
+.notifMeTurn{
+    -fx-image: url('../Images/Icons/notif_me_turn.png');
+    -fx-background-size: 100% 100%;
 }
 

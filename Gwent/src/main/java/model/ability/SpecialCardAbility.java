@@ -12,19 +12,16 @@ public class SpecialCardAbility {
         }
         return method;
     }
-    private void clearWeather(){
-
-    }
     private void commanderHorn(){
 
     }
-    private void decoy(){
+    public void decoy(){
 
     }
-    private void scorch(){
+    public void scorch(){
 
     }
-    private void spy(){
+    public void spy(){
 
     }
 

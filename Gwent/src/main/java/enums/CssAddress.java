@@ -121,6 +121,16 @@ public enum CssAddress {
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     REGULAR_POINT("regularPoint",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    NOTIF_ME_TURN("notifMeTurn",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    NOTIF_OPP_TURN("notifOppTurn",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    NOTIF_WIN_ROUND("win-round-image",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    NOTIF_LOSE_ROUND("lose-round-image",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    NOTIF_DRAW_ROUND("draw-round-image",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     ;
 
 
