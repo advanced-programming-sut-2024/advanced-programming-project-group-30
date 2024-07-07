@@ -10,7 +10,7 @@ public enum Ability {
     SPECIAL_COMMANDER_HORN("commanderHorn", "Doubles the strength of all unit cards in that row. Limited to 1 per row.", SpecialCardAbility.createNewAbilityByName("commanderHorn"), CssAddress.COMMANDERS_HORN_ABILITY_ICON),
     DECOY("decoy", "Swap with a card on the battlefield to return it to your hand.", SpecialCardAbility.createNewAbilityByName("decoy"), CssAddress.DECOY_ABILITY_ICON),
     MARDROEME("mardroeme", "Triggers transformation of all Berserker cards on the same row..", RegularCardsAbility.createNewAbilityByName("mardroeme"), CssAddress.MARDROEME_ABILITY_ICON),
-    SCORCH("scorch", "Discard after playing. Kills the strongest card(s) on the battlefield. ", SpecialCardAbility.createNewAbilityByName("scorch"), CssAddress.SCORCH_ABILITY_ICON),
+    SCORCH("scorch", "Discard after playing. Kills the strongest card(s) on the battlefield. ", RegularCardsAbility.createNewAbilityByName("scorch"), CssAddress.SCORCH_ABILITY_ICON),
     SPECIAL_SCORCH("specialScorch", "Discard after playing. Kills the strongest card(s) on the battlefield. ", SpecialCardAbility.createNewAbilityByName("scorch"), CssAddress.SPECIAL_SCORCH_ICON),
     BITING_FROST("bitingFrost", "Sets the strength of all Close Combat cards to 1 for both players.", WeatherCardAbility.createNewAbilityByName("bitingFrost"), CssAddress.FROST_WEATHER_ICON),
     CLEAR_WEATHER("clearWeather", "Removes all Weather Cards (Biting Frost, Impenetrable Fog and Torrential Rain) effects.", WeatherCardAbility.createNewAbilityByName("clearWeather"), CssAddress.CLEAR_WEATHER_ICON),

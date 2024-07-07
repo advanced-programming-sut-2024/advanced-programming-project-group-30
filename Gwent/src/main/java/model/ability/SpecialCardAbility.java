@@ -12,7 +12,7 @@ public class SpecialCardAbility {
         }
         return method;
     }
-    private void commanderHorn(){
+    public void commanderHorn(){
 
     }
     public void decoy(){

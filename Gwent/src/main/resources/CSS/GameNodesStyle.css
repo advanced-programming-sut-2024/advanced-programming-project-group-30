@@ -371,7 +371,7 @@
     -fx-background-size: 100% 100%;
 }
 .extraPoint{
-    -fx-text-fill: rgba(239, 195, 46, 0.98);
+    -fx-text-fill: rgba(196, 187, 46, 0.98);
 }
 .pointLoss{
     -fx-text-fill: rgba(201, 50, 50, 0.98);

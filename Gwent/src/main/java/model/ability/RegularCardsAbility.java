@@ -41,7 +41,7 @@ public class RegularCardsAbility {
         Row row = currentGame.getSelectedRow();
         row.addExtraPoint();
     }
-    private void muster(Game currentGame){
+    public void muster(Game currentGame){
 
     }
     public void scorch(Game currentGame){

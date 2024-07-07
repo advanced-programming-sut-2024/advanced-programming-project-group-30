@@ -2,8 +2,9 @@ package view;
 
 import controller.GameMenuController;
 import enums.*;
-import enums.cardsData.*;
-import javafx.animation.KeyFrame;
+import enums.cardsData.NeutralRegularCardsData;
+import enums.cardsData.SpecialCardsData;
+import enums.cardsData.WeatherCardsData;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -13,18 +14,20 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.util.Duration;
 import model.*;
-import model.card.*;
+import model.card.DecksCard;
+import model.card.RegularCard;
+import model.card.SpecialCard;
+import model.card.WeatherCard;
 
-import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Random;
 
-public class GameMenu implements Menu{
-    private final GameMenuController gameMenuController = new GameMenuController(this);
+public class GameMenu implements Menu {
     private static final Pane notifPane = new Pane();
     private static final Label notifLabel = new Label();
     private static final ImageView notifImageView = new ImageView();
+    private final GameMenuController gameMenuController = new GameMenuController(this);
     @FXML
     private VBox centerPane;
     @FXML
@@ -61,19 +64,20 @@ public class GameMenu implements Menu{
     private ImageView notifImage;
     @FXML
     private HBox hand;
+
     @FXML
-    public void initialize(){
+    public void initialize() {
         User user = new User("bahar", "123", "bahar", "bahar", SecurityQuestion.QUESTION_1, "blue");
         User user2 = new User("fatemeh", "123", "fatemeh", "fatemeh", SecurityQuestion.QUESTION_1, "blue");
         Game game = new Game();
         App.setCurrentGame(game);
         Player player = new Player(user, game);
         Player opponentPlayer = new Player(user2, game);
-        PlayerView playerView = new PlayerView(player, pane,currentRowArea, discardPile, deck,  hand,  leader, CoordinateData.PLAYER_INFORMATION_BOX, CssAddress.CURRENT_PLAYER_TOTAL_SCORE_IMAGE);
+        PlayerView playerView = new PlayerView(player, pane, currentRowArea, discardPile, deck, hand, leader, CoordinateData.PLAYER_INFORMATION_BOX, CssAddress.CURRENT_PLAYER_TOTAL_SCORE_IMAGE);
         player.setPlayerView(playerView);
-        PlayerView opponentPlayerView = new PlayerView(opponentPlayer, pane,opponentRowsArea, opponentDiscardPile, opponentDeck, hand, opponentLeader,CoordinateData.OPPONENT_INFORMATION_BOX, CssAddress.OPPONENT_PLAYER_TOTAL_SCORE_IMAGE);
+        PlayerView opponentPlayerView = new PlayerView(opponentPlayer, pane, opponentRowsArea, opponentDiscardPile, opponentDeck, hand, opponentLeader, CoordinateData.OPPONENT_INFORMATION_BOX, CssAddress.OPPONENT_PLAYER_TOTAL_SCORE_IMAGE);
         opponentPlayer.setPlayerView(opponentPlayerView);
-        pane.getChildren().addAll(playerView.getPlayerInformationView(),opponentPlayerView.getPlayerInformationView());
+        pane.getChildren().addAll(playerView.getPlayerInformationView(), opponentPlayerView.getPlayerInformationView());
         game.setCurrentPlayer(player);
         game.setOpponentPlayer(opponentPlayer);
         gameMenuController.setUpBoard(game);
@@ -88,7 +92,7 @@ public class GameMenu implements Menu{
         allCards.addAll(SpecialCardsData.getAllSpecialCard());
         Random random = new Random();
         int j = random.nextInt(allCards.size() - 2);
-        for (int i = 0; i < j; i++){
+        for (int i = 0; i < j; i++) {
             DecksCard card = allCards.get(i);
             player.addCardToHand(card);
             CardView cardView = card.getCardView();
@@ -98,12 +102,11 @@ public class GameMenu implements Menu{
                 gameMenuController.handleSpecialCardEvents((SpecialCard) card, game, player);
             if (card instanceof RegularCard)
                 gameMenuController.handleRegularCardEvents((RegularCard) card, game, player, opponentPlayer);
-            if (card instanceof WeatherCard)
-                gameMenuController.handleWeatherCardEvents((WeatherCard) card, game);
+            if (card instanceof WeatherCard) gameMenuController.handleWeatherCardEvents((WeatherCard) card, game);
             card.getCardView().getStyleClass().add(CssAddress.GAME_HAND_SM_CARD.getStyleClass());
         }
         centerPane.getChildren().add(hand);
-        for (int i = j; i < allCards.size(); i++){
+        for (int i = j; i < allCards.size(); i++) {
             DecksCard card = allCards.get(i);
             opponentPlayer.addCardToHand(card);
             CardView cardView = card.getCardView();
@@ -112,61 +115,70 @@ public class GameMenu implements Menu{
                 gameMenuController.handleSpecialCardEvents((SpecialCard) card, game, opponentPlayer);
             if (card instanceof RegularCard)
                 gameMenuController.handleRegularCardEvents((RegularCard) card, game, opponentPlayer, player);
-            if (card instanceof WeatherCard)
-                gameMenuController.handleWeatherCardEvents((WeatherCard) card, game);
+            if (card instanceof WeatherCard) gameMenuController.handleWeatherCardEvents((WeatherCard) card, game);
             card.getCardView().getStyleClass().add(CssAddress.GAME_HAND_SM_CARD.getStyleClass());
         }
         setUpNotificationBox();
     }
-    public HBox getWeatherCardPosition(){
+
+    public HBox getWeatherCardPosition() {
         return weatherCardPosition;
     }
+
     public void resetStyles(RowView rowView) {
-        for (CssAddress cssAddress : rowView.getStyles()){
+        for (CssAddress cssAddress : rowView.getStyles()) {
             rowView.getRow().getStyleClass().remove(cssAddress.getStyleClass());
             rowView.getSpecialCardPosition().getStyleClass().remove(cssAddress.getStyleClass());
         }
         weatherCardPosition.getStyleClass().remove(CssAddress.CARD_ROW.getStyleClass());
     }
-    public void setUpScores(Game game){
+
+    public void setUpScores(Game game) {
         gameMenuController.updateScores(game);
         ArrayList<Row> allRows = new ArrayList<>();
         allRows.addAll(game.getCurrentPlayer().getRows());
         allRows.addAll(game.getOpponentPlayer().getRows());
-        for (Row row : allRows){
+        for (Row row : allRows) {
             row.updateRowScore();
         }
     }
-    public void setNodeStyle(Node node, CssAddress cssAddress){
+
+    public void setNodeStyle(Node node, CssAddress cssAddress) {
         node.getStyleClass().add(cssAddress.getStyleClass());
     }
-    public void removeNodeStyle(Node node, CssAddress cssAddress){
+
+    public void removeNodeStyle(Node node, CssAddress cssAddress) {
         node.getStyleClass().remove(cssAddress.getStyleClass());
     }
-    public void setUpBoard(RowView siege, RowView ranged, RowView close, RowView opSiege, RowView opRanged, RowView opClose){
+
+    public void setUpBoard(RowView siege, RowView ranged, RowView close, RowView opSiege, RowView opRanged, RowView opClose) {
         opponentRowsArea.getChildren().addAll(opSiege, opRanged, opClose);
         currentRowArea.getChildren().addAll(close, ranged, siege);
     }
+
     public void setUpUserInformation(Label usernameLabel, String username) {
         usernameLabel.setText(username);
     }
-    public void updateHandCardNumber(Label cardNumber, int number){
+
+    public void updateHandCardNumber(Label cardNumber, int number) {
         cardNumber.setText(String.valueOf(number));
     }
-    public void setUpAfterSwitch(Node pane, Node node1, Node node2){
-        if (pane instanceof HBox)
-            ((HBox) pane).getChildren().addAll(node1, node2);
+
+    public void setUpAfterSwitch(Node pane, Node node1, Node node2) {
+        if (pane instanceof HBox) ((HBox) pane).getChildren().addAll(node1, node2);
         else if (pane instanceof Pane) {
-            ((Pane) pane).getChildren().addAll(node1,node2);
+            ((Pane) pane).getChildren().addAll(node1, node2);
         }
     }
+
     public void endRound(Game game) throws NoSuchMethodException {
         showRoundEndNotification(gameMenuController.endRound(game));
     }
+
     public void handlePassTurn(Game game) {
         game.getCurrentPlayer().getPlayerInformationView().getStyleClass().add("brownBoxShadowed");
         game.getOpponentPlayer().getPlayerInformationView().getStyleClass().remove("brownBoxShadowed");
-        for (DecksCard card: game.getOpponentPlayer().getHand()){
+        for (DecksCard card : game.getOpponentPlayer().getHand()) {
             hand.getChildren().remove(card.getCardView());
         }
         for (DecksCard card : game.getCurrentPlayer().getHand()) {
@@ -175,21 +187,27 @@ public class GameMenu implements Menu{
         showPassTurnNotification();
 
     }
-    public VBox getRowsPane(){
+
+    public VBox getRowsPane() {
         return rowsPane;
     }
-    public Pane getPane(){
+
+    public Pane getPane() {
         return pane;
     }
+
     @FXML
-    private void passTurn() throws NoSuchMethodException {
+    private void passTurn(){
         gameMenuController.checkRound(App.getCurrentGame());
+        App.getCurrentGame().setRoundIsPassed(true);
     }
-    private void showPassTurnNotification(){
+
+    private void showPassTurnNotification() {
         Timeline timeline = AnimationMaker.getInstance().getNotificationTimeline(pane, notifPane, notifImageView, notifLabel, GameNotification.PASS_TURN);
         timeline.play();
     }
-    private void showRoundEndNotification(GameNotification notification){
+
+    private void showRoundEndNotification(GameNotification notification) {
         Timeline timeline = AnimationMaker.getInstance().getNotificationTimeline(pane, notifPane, notifImageView, notifLabel, notification);
         timeline.play();
     }
@@ -198,7 +216,7 @@ public class GameMenu implements Menu{
 //        timeline.play();
 //    }
 
-    private void setUpNotificationBox(){
+    private void setUpNotificationBox() {
         notifPane.getStyleClass().add(CssAddress.NOTIF_BOX.getStyleClass());
         notifPane.setLayoutY(notifBox.getLayoutY());
         notifLabel.getStyleClass().add(CssAddress.NOTIFICATION_LABEL.getStyleClass());
@@ -208,7 +226,7 @@ public class GameMenu implements Menu{
         notifImageView.setLayoutX(notifImage.getLayoutX());
         notifImageView.setFitWidth(notifImage.getFitWidth());
         notifImageView.setFitHeight(notifImage.getFitHeight());
-        notifPane.getChildren().addAll(notifLabel,notifImageView);
+        notifPane.getChildren().addAll(notifLabel, notifImageView);
     }
 
     public void showResult(Player winner, GameNotification gameNotification) {

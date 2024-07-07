@@ -1,13 +1,7 @@
 package view;
 
-import com.sun.source.tree.BreakTree;
-import controller.GameMenuController;
-import enums.Ability;
-import enums.CssAddress;
 import enums.GameNotification;
 import enums.cardsData.DeckCardData;
-import enums.cardsData.WeatherCardsData;
-import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
@@ -22,42 +16,39 @@ import model.card.DecksCard;
 import model.card.RegularCard;
 import model.card.WeatherCard;
 
-import java.sql.Time;
-import java.util.DuplicateFormatFlagsException;
-import java.util.logging.ErrorManager;
-
 public class AnimationMaker {
     private static AnimationMaker animationMaker;
-    public static AnimationMaker getInstance(){
-        if (animationMaker == null){
+
+    public static AnimationMaker getInstance() {
+        if (animationMaker == null) {
             animationMaker = new AnimationMaker();
         }
         return animationMaker;
     }
-    public void cardPlaceAnimation(DecksCard card, HBox destinationHBox, HBox sourceHBox, Game game, GameMenu gameMenu){
+
+    public void cardPlaceAnimation(DecksCard card, HBox destinationHBox, HBox sourceHBox, Game game, GameMenu gameMenu) {
         Bounds nodeBounds = card.getCardView().localToScene(card.getCardView().getBoundsInLocal());
         try {
             TranslateTransition translate = getTranslate(card, nodeBounds, destinationHBox);
             translate.setOnFinished(event -> {
                 sourceHBox.getChildren().remove(card.getCardView());
                 destinationHBox.getChildren().add(card.getCardView());
-                System.out.println(card.getCardView());
                 card.getCardView().setTranslateX(0);
                 card.getCardView().setTranslateY(0);
                 if (card instanceof WeatherCard weatherCard) {
                     weatherCard.run(game);
                 } else if (card instanceof RegularCard regularCard) {
-                    if (((DeckCardData) card.getCardData()).getAbility() != null)
-                        regularCard.run(game);
+                    if (((DeckCardData) card.getCardData()).getAbility() != null) regularCard.run(game);
                 }
                 gameMenu.setUpScores(game);
             });
             translate.play();
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             System.err.println("duplicate children in cardPlaceAnimation method");
         }
     }
-    public void discardAnimation(DecksCard card, HBox source, HBox destinationHBox , Game game, GameMenu gameMenu){
+
+    public void discardAnimation(DecksCard card, HBox source, HBox destinationHBox, Game game, GameMenu gameMenu) {
         Bounds nodeBounds = card.getCardView().localToScene(card.getCardView().getBoundsInLocal());
         TranslateTransition translate = getTranslate(card, nodeBounds, destinationHBox);
         try {
@@ -70,7 +61,7 @@ public class AnimationMaker {
                 game.getCurrentPlayer().discardCard(card);
             });
             translate.play();
-        }catch (RuntimeException e){
+        } catch (RuntimeException e) {
             System.err.println("duplicate children in discardAnimation method");
         }
     }
@@ -88,7 +79,8 @@ public class AnimationMaker {
         translate.setToY(targetY - startY);
         return translate;
     }
-    public Timeline getNotificationTimeline(Pane pane, Pane notifPane, ImageView notifImageView, Label notifLabel,GameNotification gameNotification){
+
+    public Timeline getNotificationTimeline(Pane pane, Pane notifPane, ImageView notifImageView, Label notifLabel, GameNotification gameNotification) {
         notifImageView.getStyleClass().add(gameNotification.getNotificationImage());
         notifLabel.setText(gameNotification.getNotification());
         pane.getChildren().add(notifPane);
