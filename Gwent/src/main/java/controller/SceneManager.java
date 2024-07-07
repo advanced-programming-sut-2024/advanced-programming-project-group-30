@@ -4,7 +4,9 @@ import enums.MenuScene;
 import model.App;
 import model.PregameData;
 import model.User;
+import view.Main;
 import view.MainMenu;
+import view.PregameMenu;
 import view.ProfileMenu;
 
 public class SceneManager {
@@ -57,11 +59,20 @@ public class SceneManager {
         setupStage(sizeData);
     }
 
-    public void goToChooseOpponentMenu(){
-
+    public void goToChooseOpponentMenu() {
+        stageSizeData sizeData = getStageSizeData();
+        App.setCurrentMenuScene(MenuScene.CHOOSE_OPPONENT_SCENE);
+        App.getPrimaryStage().setScene(MenuScene.CHOOSE_OPPONENT_SCENE.getScene());
+        setupStage(sizeData);
     }
 
     public void goToPregameMenu(PregameData pregameData) {
+        stageSizeData sizeData = getStageSizeData();
+        PregameMenu pregameMenu = (PregameMenu) MenuScene.PREGAME_SCENE.getMenu();
+        pregameMenu.setup(pregameData);
+        App.setCurrentMenuScene(MenuScene.PREGAME_SCENE);
+        App.getPrimaryStage().setScene(MenuScene.PREGAME_SCENE.getScene());
+        setupStage(sizeData);
     }
 
     private stageSizeData getStageSizeData() {

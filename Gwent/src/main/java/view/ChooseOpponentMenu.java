@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import model.App;
@@ -24,7 +25,13 @@ public class ChooseOpponentMenu implements Menu {
     @FXML
     private Label errorLabel;
 
-    public void chooseOpponent() {
+    @FXML
+    private void backToMainMenu() {
+        App.getSceneManager().goToMainMenu();
+    }
+
+    @FXML
+    private void chooseOpponent() {
         Result result = controller.checkOpponentInformation(opponentUsername.getText(), opponentPassword.getText());
         errorLabel.setText(result.toString());
         if (result.isNotSuccessful()) return;

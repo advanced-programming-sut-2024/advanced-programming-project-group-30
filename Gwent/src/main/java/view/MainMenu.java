@@ -1,6 +1,7 @@
 package view;
 
 import controller.MainMenuController;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
@@ -31,9 +32,8 @@ public class MainMenu implements Menu {
         controller.goToProfileMenu();
     }
 
-    @FXML
-    private void createNewGame() {
-        // TODO
+    public void goToChooseOpponentMenu() {
+        App.getSceneManager().goToChooseOpponentMenu();
     }
 
     @FXML

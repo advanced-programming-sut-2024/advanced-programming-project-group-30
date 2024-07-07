@@ -50,15 +50,18 @@ public class PregameMenu implements Menu {
         root.widthProperty().addListener((Void) -> scalePanes());
         root.heightProperty().addListener((Void) -> scalePanes());
         helperPane.setOnMouseClicked((Void) -> closeFactionSelectionPage());
-        // TODO: in setup ,start
-        updateFactionsFields(controller.getPregameData().getFaction());
-        controller.uploadToCardCollection(controller.getPregameData().getCardCollection());
-        factionSelectionPage = new SelectionPage<>(FactionType.getAllChooseModelView(), FactionType.getFactionIndex(controller.getPregameData().getFaction()));
-        factionSelectionPage.getMainRegion().setOnMouseClicked((Void) -> selectFaction());
-        factionSelectionPage.setOnMouseClicked((event -> {
-            if (!factionSelectionPage.isInTheBoundOfSubRegions(event.getX(), event.getY())) closeFactionSelectionPage();
+    }
+
+    public void setup(PregameData pregameData) {
+        controller.setup(pregameData);
+    }
+
+    public void setFactionSelectionPage(SelectionPage<FactionType> selectionPage) {
+        factionSelectionPage = selectionPage;
+        selectionPage.getMainRegion().setOnMouseClicked((Void) -> selectFaction());
+        selectionPage.setOnMouseClicked((event -> {
+            if (!selectionPage.isInTheBoundOfSubRegions(event.getX(), event.getY())) closeFactionSelectionPage();
         }));
-        // TODO: in setup ,end
     }
 
     public void addToCardCollection(PregameCardView cardView) {

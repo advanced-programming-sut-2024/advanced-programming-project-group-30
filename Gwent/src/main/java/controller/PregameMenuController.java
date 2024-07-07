@@ -7,22 +7,30 @@ import javafx.scene.Node;
 import javafx.scene.layout.FlowPane;
 import model.CardComparator;
 import model.PregameData;
-import model.User;
 import model.card.DecksCard;
 import view.PregameCardView;
 import view.PregameMenu;
+import view.SelectionPage;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 
 public class PregameMenuController {
-    // TODO: remove copy to setup
-    private PregameData pregameData = new PregameData(new User("", "", "", "", null, ""), new User("", "", "", "", null, ""));
+    private PregameData pregameData;
     private final PregameMenu menu;
 
     public PregameMenuController(PregameMenu menu) {
         this.menu = menu;
+    }
+
+    public void setup(PregameData pregameData) {
+        this.pregameData = pregameData;
+        menu.updateFactionsFields(pregameData.getFaction());
+        uploadToCardCollection(pregameData.getCardCollection());
+        SelectionPage<FactionType> selectionPage = new SelectionPage<>(FactionType.getAllChooseModelView(),
+                FactionType.getFactionIndex(pregameData.getFaction()));
+        menu.setFactionSelectionPage(selectionPage);
     }
 
     public PregameData getPregameData() {
