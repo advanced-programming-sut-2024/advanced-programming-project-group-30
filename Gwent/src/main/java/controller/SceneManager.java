@@ -70,7 +70,8 @@ public class SceneManager {
         pregameMenu.setup(pregameData);
         App.setCurrentMenuScene(MenuScene.PREGAME_SCENE);
         App.getPrimaryStage().setScene(MenuScene.PREGAME_SCENE.getScene());
-        App.getPrimaryStage().setMaximized(true);
+        App.getPrimaryStage().sizeToScene();
+        App.getPrimaryStage().centerOnScreen();
     }
 
     public void goToGame() {

@@ -11,7 +11,7 @@ import java.util.*;
 public class PregameData {
     private PregameUserData currentData;
     private PregameUserData anotherData;
-    private int randomStart = new Random().nextInt(2);
+    private final int randomStart = new Random().nextInt(2);
 
     public PregameData(User currentUser, User anotherUser) {
         currentData = new PregameUserData(currentUser);
@@ -119,6 +119,11 @@ class PregameUserData {
         cardCollection.clear();
         this.cardCollection.putAll(user.getCardCollection().getCardsMapByFactionsType(faction));
         cardsInDeck.clear();
+        cardsInDeckNumber = 0;
+        unitCardsNumber = 0;
+        specialCardsNumber = 0;
+        totalCardsStrength = 0;
+        heroCardsNumber = 0;
         System.gc();
     }
 

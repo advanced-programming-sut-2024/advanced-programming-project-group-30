@@ -60,14 +60,16 @@ public class PregameMenu implements Menu {
         root.heightProperty().addListener((Void) -> scalePanes());
         helperPane.setOnMouseClicked((Void) -> closeFactionSelectionPage());
         changeTurnButton.setOnMouseClicked((Void) -> changeTurn());
-        startGameButton.setOnMouseEntered((Void) -> startGame());
+        startGameButton.setOnMouseClicked((Void) -> startGame());
     }
 
     public void setup(PregameData pregameData) {
+        scalePanes();
         startGameButton.setDisable(true);
         changeTurnButton.setDisable(false);
         changeTurnButton.setVisible(true);
         startGameButton.setVisible(false);
+        errorMessage.setText("");
         controller.setup(pregameData);
     }
 
@@ -122,6 +124,7 @@ public class PregameMenu implements Menu {
     }
 
     public void updateNumberData() {
+        errorMessage.setText("");
         PregameData pregameData = controller.getPregameData();
         cardsInDeckNumber.setText("×" + pregameData.getCardsInDeckNumber());
         if (pregameData.isUnitCardsNumberValid()) {
@@ -151,6 +154,7 @@ public class PregameMenu implements Menu {
         errorMessage.setText(changeTurnResult.toString());
         if (changeTurnResult.isNotSuccessful()) return;
         changeTurnButton.setDisable(true);
+        errorMessage.setText("");
         changeTurnButton.setVisible(false);
         startGameButton.setVisible(true);
         startGameButton.setDisable(false);

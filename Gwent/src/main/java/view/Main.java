@@ -13,6 +13,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
         App.setPrimaryStage(stage);
+        App.testSetup();
         stage.setScene(App.getCurrentMenuScene().getScene());
         stage.setTitle("Gwent");
         stage.show();

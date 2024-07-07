@@ -3,18 +3,28 @@ package model;
 import controller.DataSaverController;
 import controller.SceneManager;
 import enums.MenuScene;
+import enums.SecurityQuestion;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
 public class App {
     private static Stage primaryStage;
-    private static MenuScene currentMenuScene = MenuScene.PREGAME_SCENE;
+    private static MenuScene currentMenuScene = MenuScene.LOGIN_SCENE;
     private static final SceneManager sceneManager = new SceneManager();
     private static Game currentGame;
     private static LoggedInUser loggedInUser;
     private static final ArrayList<User> allUsers = new ArrayList<>();
     private static final DataSaverController dataSaverController = new DataSaverController();
+
+    public static void testSetup() {
+        User testUser1 = new User("jojo", "j",
+                "jojo@gmail.com", "jojo", SecurityQuestion.QUESTION_1, "j");
+        User testUser2 = new User("pishi", "p",
+                "pishi@gmail.com", "pishi", SecurityQuestion.QUESTION_1, "p");
+        allUsers.add(testUser1);
+        allUsers.add(testUser2);
+    }
 
     public static Stage getPrimaryStage() {
         return primaryStage;
