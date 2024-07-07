@@ -15,7 +15,7 @@ public class Row extends Position{
     private final ArrayList<RegularCard> cards = new ArrayList<>();
     private int rowPoint = 0;
     private int bonus = 1; //coefficient of tight bonds
-    private int extraPoint = 0; //
+    private int extraPoint = 0; //moral boost
     private boolean isDamaged = false; //weather card effects
     private RowView rowView;
     private SpecialCardPosition specialCardPosition;
@@ -37,6 +37,7 @@ public class Row extends Position{
         cards.add(card);
     }
     public int getRowPoint() {
+        rowPoint = 0;
         for (RegularCard card : cards){
             rowPoint += card.getPointInGame();
         }

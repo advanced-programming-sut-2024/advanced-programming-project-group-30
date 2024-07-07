@@ -30,24 +30,27 @@ public class AnimationMaker {
         }
         return animationMaker;
     }
-    public void cardPlaceAnimation(DecksCard card, HBox destinationHBox, HBox sourceHBox, Game game){
+    public void cardPlaceAnimation(DecksCard card, HBox destinationHBox, HBox sourceHBox, Game game, GameMenu gameMenu){
         Bounds nodeBounds = card.getCardView().localToScene(card.getCardView().getBoundsInLocal());
         TranslateTransition translate = getTranslate(card, nodeBounds, destinationHBox);
         translate.setOnFinished(event -> {
             sourceHBox.getChildren().remove(card.getCardView());
             destinationHBox.getChildren().add(card.getCardView());
+            System.out.println(card);
+            System.out.println(destinationHBox.getChildren());
+            System.out.println(sourceHBox);
             card.getCardView().setTranslateX(0);
             card.getCardView().setTranslateY(0);
             if (card instanceof WeatherCard weatherCard) {
                 weatherCard.run(game);
             }
+            gameMenu.setUpScores(game);
 
         });
         translate.play();
     }
-    public void discardAnimation(DecksCard card, HBox source, Game game){
+    public void discardAnimation(DecksCard card, HBox source, HBox destinationHBox , Game game, GameMenu gameMenu){
         Bounds nodeBounds = card.getCardView().localToScene(card.getCardView().getBoundsInLocal());
-        HBox destinationHBox = game.getCurrentPlayer().getPlayerView().getDiscardPileView();
         TranslateTransition translate = getTranslate(card, nodeBounds, destinationHBox);
         translate.setOnFinished(event -> {
             destinationHBox.getChildren().clear();
@@ -55,8 +58,8 @@ public class AnimationMaker {
             destinationHBox.getChildren().add(card.getCardView());
             card.getCardView().setTranslateX(0);
             card.getCardView().setTranslateY(0);
+            gameMenu.setUpScores(game);
             game.getCurrentPlayer().discardCard(card);
-
         });
         translate.play();
     }

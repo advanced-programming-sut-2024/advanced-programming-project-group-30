@@ -105,19 +105,19 @@
     -fx-background-size: 100% 100%;
 }
 .cardSiegeRowIcon{
-    -fx-image: url('../Images/Icons/card_row_siege.png');
+    -fx-image: url('../Images/Icons/siege.png');
     -fx-background-size: 100% 100%;
 }
 .cardRangedCombatRowIcon{
-    -fx-image: url('../Images/Icons/card_row_ranged.png');
+    -fx-image: url('../Images/Icons/ranged_combat.png');
     -fx-background-size: 100% 100%;
 }
 .cardCloseCombatRowIcon{
-    -fx-image: url('../Images/Icons/card_row_close.png');
+    -fx-image: url('../Images/Icons/close_combat.png');
     -fx-background-size: 100% 100%;
 }
 .cardAgileIcon{
-    -fx-image: url('../Images/Icons/card_row_agile.png');
+    -fx-image: url('../Images/Icons/agile.png');
     -fx-background-size: 100% 100%;
 }
 .normalCardPointIcon{
@@ -373,5 +373,14 @@
 .fogEffect{
     -fx-background-image: url('../Images/Icons/overlay_fog.png');
     -fx-background-size: 100% 100%;
+}
+.extraPoint{
+    -fx-text-fill: rgba(239, 195, 46, 0.98);
+}
+.pointLoss{
+    -fx-text-fill: rgba(201, 50, 50, 0.98);
+}
+.regularPoint{
+    -fx-text-fill: rgba(0, 0, 0, 0.98);
 }
 

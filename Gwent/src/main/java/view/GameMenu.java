@@ -63,6 +63,62 @@ public class GameMenu implements Menu{
     private HBox hand;
     @FXML
     public void initialize(){
+        User user = new User("bahar", "123", "bahar", "bahar", SecurityQuestion.QUESTION_1, "blue");
+        User user2 = new User("fatemeh", "123", "fatemeh", "fatemeh", SecurityQuestion.QUESTION_1, "blue");
+        Game game = new Game();
+        App.setCurrentGame(game);
+        Player player = new Player(user, game);
+        Player opponentPlayer = new Player(user2, game);
+        PlayerView playerView = new PlayerView(player, pane,currentRowArea, discardPile, deck,  hand,  leader, CoordinateData.PLAYER_INFORMATION_BOX, CssAddress.CURRENT_PLAYER_TOTAL_SCORE_IMAGE);
+        player.setPlayerView(playerView);
+        PlayerView opponentPlayerView = new PlayerView(opponentPlayer, pane,opponentRowsArea, opponentDiscardPile, opponentDeck, hand, opponentLeader,CoordinateData.OPPONENT_INFORMATION_BOX, CssAddress.OPPONENT_PLAYER_TOTAL_SCORE_IMAGE);
+        opponentPlayer.setPlayerView(opponentPlayerView);
+        pane.getChildren().addAll(playerView.getPlayerInformationView(),opponentPlayerView.getPlayerInformationView());
+        game.setCurrentPlayer(player);
+        game.setOpponentPlayer(opponentPlayer);
+        gameMenuController.setUpBoard(game);
+        System.out.println(player);
+        ArrayList<DecksCard> allCards = new ArrayList<>();
+        ArrayList<RegularCard> cards = NeutralRegularCardsData.getAllRegularCard();
+        allCards.addAll(cards);
+//        allCards.addAll(MonstersRegularCardsData.getAllRegularCard());
+//        allCards.addAll(NorthernRealmsRegularCardsData.getAllRegularCard());
+//        allCards.addAll(SkelligeRegularCardsData.getAllRegularCard());
+//        allCards.addAll(NeutralRegularCardsData.getAllRegularCard());
+        allCards.addAll(WeatherCardsData.getAllWeatherCards());
+        allCards.addAll(SpecialCardsData.getAllSpecialCard());
+        Random random = new Random();
+        int j = random.nextInt(allCards.size() - 2);
+        for (int i = 0; i < j; i++){
+            DecksCard card = allCards.get(i);
+            player.addCardToHand(card);
+            CardView cardView = card.getCardView();
+//            player.getPlayerView().getHandView().getChildren().add(cardView);
+            hand.getChildren().add(cardView);
+            if (card instanceof SpecialCard)
+                gameMenuController.handleSpecialCardEvents((SpecialCard) card, game, player, opponentPlayer);
+            if (card instanceof RegularCard)
+                gameMenuController.handleRegularCardEvents((RegularCard) card, game, player, opponentPlayer);
+            if (card instanceof WeatherCard)
+                gameMenuController.handleWeatherCardEvents((WeatherCard) card, game);
+            card.getCardView().getStyleClass().add(CssAddress.GAME_HAND_SM_CARD.getStyleClass());
+        }
+        centerPane.getChildren().add(hand);
+        for (int i = j; i < allCards.size(); i++){
+            DecksCard card = allCards.get(i);
+            opponentPlayer.addCardToHand(card);
+            CardView cardView = card.getCardView();
+//            player.getPlayerView().getHandView().getChildren().add(cardView);
+            if (card instanceof SpecialCard)
+                gameMenuController.handleSpecialCardEvents((SpecialCard) card, game, opponentPlayer, player);
+            if (card instanceof RegularCard)
+                gameMenuController.handleRegularCardEvents((RegularCard) card, game, opponentPlayer, player);
+            if (card instanceof WeatherCard)
+                gameMenuController.handleWeatherCardEvents((WeatherCard) card, game);
+            card.getCardView().getStyleClass().add(CssAddress.GAME_HAND_SM_CARD.getStyleClass());
+        }
+        centerPane.getChildren().addAll(playerView.getHandView());
+
         setUpNotificationBox();
     }
     public HBox getWeatherCardPosition(){
@@ -75,7 +131,11 @@ public class GameMenu implements Menu{
         }
         weatherCardPosition.getStyleClass().remove(CssAddress.CARD_ROW.getStyleClass());
     }
-    public void setUpScores(ArrayList<Row> allRows){
+    public void setUpScores(Game game){
+        gameMenuController.updateScores(game);
+        ArrayList<Row> allRows = new ArrayList<>();
+        allRows.addAll(game.getCurrentPlayer().getRows());
+        allRows.addAll(game.getOpponentPlayer().getRows());
         for (Row row : allRows){
             row.updateRowScore();
         }

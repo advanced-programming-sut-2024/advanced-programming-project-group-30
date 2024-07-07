@@ -7,14 +7,6 @@ public enum CssAddress {
 //            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
 //    NUMBER_OF_CARD_TYPE_LABEL("numberOfCardTypeLabel",
 //            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
-    CARD_SIEGE_ROW_ICON("cardSiegeRowIcon",
-            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
-    CARD_RANGED_COMBAT_ROW_ICON("cardRangedCombatRowIcon",
-            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
-    CARD_CLOSE_COMBAT_ROW_ICON("cardCloseCombatRowIcon",
-            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
-    CARD_AGILE_ICON("cardAgileIcon",
-            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     NORMAL_CARD_POINT_ICON("normalCardPointIcon",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     NORMAL_CARD_POINT_LABEL("normalCardPointLabel",
@@ -123,7 +115,12 @@ public enum CssAddress {
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     TORRENTIAL_RAIN("rainEffect",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
-
+    EXTRA_POINT("extraPoint",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    POINT_LOSS("pointLoss",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    REGULAR_POINT("regularPoint",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     ;
 
 

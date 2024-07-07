@@ -39,20 +39,25 @@ public class WeatherCardAbility {
 
     private void clearEffect(Player player) {
         for (Row row : player.getRows()){
-            row.getRowView().getRow().getStyleClass().
-                    remove(Objects.requireNonNull(CssAddress.getCssAddress(WeatherCardsData.IMPENETRABLE_FOG.toString().toLowerCase())).getStyleClass());
-            row.getRowView().getRow().getStyleClass().
-                    remove(Objects.requireNonNull(CssAddress.getCssAddress(WeatherCardsData.BITING_FROST.toString().toLowerCase())).getStyleClass());
-            row.getRowView().getRow().getStyleClass().
-                    remove(Objects.requireNonNull(CssAddress.getCssAddress(WeatherCardsData.TORRENTIAL_RAIN.toString().toLowerCase())).getStyleClass());
+            clean(Objects.requireNonNull(CssAddress.getCssAddress(
+                    WeatherCardsData.IMPENETRABLE_FOG.toString().toLowerCase())), row.getRowView().getRow());
+            clean(Objects.requireNonNull(CssAddress.getCssAddress(
+                    WeatherCardsData.BITING_FROST.toString().toLowerCase())), row.getRowView().getRow());
+            clean(Objects.requireNonNull(CssAddress.getCssAddress(
+                    WeatherCardsData.TORRENTIAL_RAIN.toString().toLowerCase())), row.getRowView().getRow());
+            row.setDamaged(false);
         }
+    }
+    private void clean(CssAddress cssAddress, HBox hBox){
+        while (hBox.getStyleClass().contains(cssAddress.getStyleClass()))
+            hBox.getStyleClass().remove(cssAddress.getStyleClass());
     }
 
     public void impenetrableFog(Game game) {
         ArrayList<CssAddress> cssAddresses = new ArrayList<>();
         cssAddresses.add(CssAddress.getCssAddress(WeatherCardsData.IMPENETRABLE_FOG.toString().toLowerCase()));
         try {
-            setEffects(cssAddresses, findRows(Player.class.getMethod("getCloseCombat"), game));
+            setEffects(cssAddresses, findRows(Player.class.getMethod("getRangedCombat"), game));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -111,7 +116,7 @@ public class WeatherCardAbility {
              row.getRowView().getRow().getStyleClass().add(styles.get(0).getStyleClass());
             else row.getRowView().getRow().getStyleClass().add(styles.get(1).getStyleClass());
             i++;
-
+            row.setDamaged(true);
         }
     }
 

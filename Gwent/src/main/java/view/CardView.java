@@ -51,10 +51,21 @@ public class CardView extends Pane {
         return card;
     }
     public void updatePoint(){
-        this.getChildren().remove(point);
         point.setText(String.valueOf(((RegularCard)card).getPointInGame()));
-        this.getChildren().add(point);
-
+        setPointColor();
+    }
+    private void setPointColor(){
+        int point = ((RegularCard)card).getPoint();
+        int pointInGame = ((RegularCard)card).getPointInGame();
+        System.out.println("point " + point);
+        System.out.println("point in game " + pointInGame);
+        if (pointInGame > point)
+            this.point.getStyleClass().add(CssAddress.EXTRA_POINT.getStyleClass());
+        if (pointInGame < point) {
+            this.point.getStyleClass().add(CssAddress.POINT_LOSS.getStyleClass());
+        }
+        if (pointInGame == point)
+            this.point.getStyleClass().add(CssAddress.REGULAR_POINT.getStyleClass());
     }
     private void setUpWeatherCardView(){
         ImageView imageView = getSmCardImage();
@@ -67,7 +78,6 @@ public class CardView extends Pane {
         this.getChildren().addAll(imageView, abilityView);
     }
     private void setUpRegularCardView(RegularCard card){
-        point.setText(String.valueOf(card.getPoint()));
         point.setPrefWidth(SizeData.GAME_SMALL_CARD_POINT_LABEL.getWidth());
         point.setText(String.valueOf(card.getPoint()));
         ImageView imageView = getSmCardImage();
@@ -106,20 +116,7 @@ public class CardView extends Pane {
     }
     private ImageView getPositionImage(){
         RegularCardPositionType positionType = ((RegularCard)card).getPositionType();
-        ImageView positionImage = new ImageView();
-        switch (positionType){
-            case CLOSE_COMBAT:
-                positionImage.getStyleClass().add(CssAddress.CARD_CLOSE_COMBAT_ROW_ICON.getStyleClass());
-                break;
-            case RANGED_COMBAT:
-                positionImage.getStyleClass().add(CssAddress.CARD_RANGED_COMBAT_ROW_ICON.getStyleClass());
-                break;
-            case SIEGE:
-                positionImage.getStyleClass().add(CssAddress.CARD_SIEGE_ROW_ICON.getStyleClass());
-                break;
-            default:
-                positionImage.getStyleClass().add(CssAddress.CARD_AGILE_ICON.getStyleClass());
-        }
+        ImageView positionImage = new ImageView(positionType.getIconImage());
         positionImage.setFitHeight(SizeData.GAME_SMALL_CARD_POSITION.getHeight());
         positionImage.setFitWidth(SizeData.GAME_SMALL_CARD_POSITION.getWidth());
         positionImage.setLayoutX(POSITION_X);

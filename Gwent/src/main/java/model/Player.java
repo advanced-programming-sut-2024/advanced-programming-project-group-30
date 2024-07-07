@@ -85,6 +85,10 @@ public class Player {
     }
 
     public int getPoint() {
+        point = 0;
+        for (Row row : getRows()){
+            point += row.getRowPoint();
+        }
         return point;
     }
 

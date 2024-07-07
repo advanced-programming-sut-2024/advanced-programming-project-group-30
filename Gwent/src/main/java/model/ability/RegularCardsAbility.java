@@ -26,20 +26,10 @@ public class RegularCardsAbility {
 
     }
     private void commanderHorn(Game currentGame, RegularCard card){
-        Row row = currentGame.getSelectedRow();
-        ArrayList<RegularCard> cards = row.getCards();
-        for(RegularCard decksCard : cards){
-            if (decksCard != null)
-                decksCard.setPointInGame(decksCard.getPoint() * 2);
-        }
+
     }
     private void moralBoost(Game currentGame, RegularCard card){
-        Row row = currentGame.getSelectedRow();
-        ArrayList<RegularCard> cards = row.getCards();
-        for(RegularCard decksCard : cards){
-            if (decksCard != null)
-                decksCard.setPointInGame(decksCard.getPoint() + 1);
-        }
+
     }
     private void muster(Game currentGame, RegularCard card){
 
