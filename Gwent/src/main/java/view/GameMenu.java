@@ -117,8 +117,6 @@ public class GameMenu implements Menu{
                 gameMenuController.handleWeatherCardEvents((WeatherCard) card, game);
             card.getCardView().getStyleClass().add(CssAddress.GAME_HAND_SM_CARD.getStyleClass());
         }
-        centerPane.getChildren().addAll(playerView.getHandView());
-
         setUpNotificationBox();
     }
     public HBox getWeatherCardPosition(){
@@ -174,12 +172,15 @@ public class GameMenu implements Menu{
 
     }
     public void handlePassTurn(Game game) {
-        passTurn();
         game.getCurrentPlayer().getPlayerInformationView().getStyleClass().add("brownBoxShadowed");
         game.getOpponentPlayer().getPlayerInformationView().getStyleClass().remove("brownBoxShadowed");
-        hand.getChildren().clear();
-        for (DecksCard card : game.getCurrentPlayer().getHand())
+        for (DecksCard card: game.getOpponentPlayer().getHand()){
+            hand.getChildren().remove(card.getCardView());
+        }
+        for (DecksCard card : game.getCurrentPlayer().getHand()) {
             hand.getChildren().add(card.getCardView());
+        }
+        passTurn();
 
     }
     public VBox getRowsPane(){

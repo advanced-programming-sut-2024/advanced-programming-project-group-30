@@ -36,9 +36,6 @@ public class AnimationMaker {
         translate.setOnFinished(event -> {
             sourceHBox.getChildren().remove(card.getCardView());
             destinationHBox.getChildren().add(card.getCardView());
-            System.out.println(card);
-            System.out.println(destinationHBox.getChildren());
-            System.out.println(sourceHBox);
             card.getCardView().setTranslateX(0);
             card.getCardView().setTranslateY(0);
             if (card instanceof WeatherCard weatherCard) {

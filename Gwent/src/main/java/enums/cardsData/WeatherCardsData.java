@@ -29,8 +29,15 @@ public enum WeatherCardsData implements DeckCardData{
     public static ArrayList<WeatherCard> getAllWeatherCards() {
         ArrayList<WeatherCard> weatherCards = new ArrayList<>();
         for (enums.cardsData.WeatherCardsData data : enums.cardsData.WeatherCardsData.values()) {
-            for (int i = 0; i < data.numberOfCard; i++)
+            for (int i = 0; i < data.numberOfCard; i++) {
+                WeatherCard card = data.createCard();
+                System.out.println("weather: " + card + " weather name " + data.name);
+                if (weatherCards.contains(card)) {
+                    i--;
+                    continue;
+                }
                 weatherCards.add(data.createCard());
+            }
         }
         return weatherCards;
 
