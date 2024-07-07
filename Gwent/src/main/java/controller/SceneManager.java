@@ -73,6 +73,12 @@ public class SceneManager {
         App.getPrimaryStage().setMaximized(true);
     }
 
+    public void goToGame() {
+        // TODO : setup
+        App.setCurrentMenuScene(MenuScene.GAME_SCENE);
+        App.getPrimaryStage().setScene(MenuScene.GAME_SCENE.getScene());
+    }
+
     private stageSizeData getStageSizeData() {
         boolean isMaximized = App.getPrimaryStage().isMaximized();
         double height = App.getPrimaryStage().getHeight();

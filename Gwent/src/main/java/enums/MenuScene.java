@@ -14,7 +14,7 @@ public enum MenuScene {
     PROFILE_SCENE("/FXML/ProfileMenu.fxml"),
     CHOOSE_OPPONENT_SCENE("/FXML/ChooseOpponentMenu.fxml"),
     PREGAME_SCENE("/FXML/PregameMenu.fxml"),
-    ;
+    GAME_SCENE("/FXML/Game.fxml");
 
     private final Scene scene;
     private final FXMLLoader loader;

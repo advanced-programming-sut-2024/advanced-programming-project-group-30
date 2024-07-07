@@ -94,6 +94,15 @@
     -fx-padding: -1 0 0 0;
 }
 
+.yellowButton:hover {
+    -fx-background-color: #e8b570;
+}
+
+.yellowButton:focused, .yellowButton:hover {
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
 .cardsScrollPane {
     -fx-background-color: rgba(0, 0, 0, 0.5);
     -fx-background-radius: 10;
@@ -198,7 +207,6 @@
     -fx-font-size: 10.0;
     -fx-text-fill: rgba(238, 61, 17, 0.85);
 }
-
 
 .node:disabled {
     -fx-opacity: 0.4;

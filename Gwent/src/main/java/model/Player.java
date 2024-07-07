@@ -4,12 +4,12 @@ import model.card.DecksCard;
 import model.card.Leader;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Player {
     private final User user;
-    private final Game game;
     private Leader leader;
-    private final ArrayList<DecksCard> deck = new ArrayList<>();
+    private final ArrayList<DecksCard> deck;
     private final ArrayList<DecksCard> hand = new ArrayList<>();
     private final ArrayList<DecksCard> discardPile = new ArrayList<>();
     private final Row closeCombat = new Row("closeCombat");
@@ -19,17 +19,16 @@ public class Player {
     private final int[] roundsPoint = new int[3];
     private int life = 2;
 
-    public Player(User user, Game game) {
+    public Player(User user, ArrayList<DecksCard> deck) {
         this.user = user;
-        this.game = game;
+        this.deck = deck;
+        Random random = new Random();
+        for (int i = 0; i < 10; i++)
+            hand.add(deck.remove(random.nextInt(deck.size())));
     }
 
     public User getUser() {
         return user;
-    }
-
-    public Game getGame() {
-        return game;
     }
 
     public Leader getLeader() {

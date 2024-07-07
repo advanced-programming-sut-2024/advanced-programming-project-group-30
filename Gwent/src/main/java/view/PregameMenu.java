@@ -60,6 +60,7 @@ public class PregameMenu implements Menu {
         root.heightProperty().addListener((Void) -> scalePanes());
         helperPane.setOnMouseClicked((Void) -> closeFactionSelectionPage());
         changeTurnButton.setOnMouseClicked((Void) -> changeTurn());
+        startGameButton.setOnMouseEntered((Void) -> startGame());
     }
 
     public void setup(PregameData pregameData) {
@@ -153,6 +154,11 @@ public class PregameMenu implements Menu {
         changeTurnButton.setVisible(false);
         startGameButton.setVisible(true);
         startGameButton.setDisable(false);
+    }
+
+    private void startGame() {
+        Result startGameResult = controller.startGame();
+        errorMessage.setText(startGameResult.toString());
     }
 
     private void closeFactionSelectionPage() {

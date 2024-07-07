@@ -5,10 +5,15 @@ import model.card.specialCard.SpecialCard;
 import java.util.ArrayList;
 
 public class Game {
-    private Player currentPlayer;
-    private Player opponentPlayer;
+    private final Player currentPlayer;
+    private final Player opponentPlayer;
     private final ArrayList<SpecialCard> specialPosition = new ArrayList<>();
     private int roundNumber = 1;
+
+    public Game(PregameData gameData) {
+        currentPlayer = gameData.getCurrentPlayer();
+        opponentPlayer = gameData.getOpponentPlayer();
+    }
 
     public Player getCurrentPlayer() {
         return currentPlayer;

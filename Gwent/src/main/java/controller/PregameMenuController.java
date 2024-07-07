@@ -5,9 +5,7 @@ import enums.cardsData.CardData;
 import enums.cardsData.DeckCardData;
 import javafx.scene.Node;
 import javafx.scene.layout.FlowPane;
-import model.CardComparator;
-import model.PregameData;
-import model.Result;
+import model.*;
 import model.card.DecksCard;
 import view.PregameCardView;
 import view.PregameMenu;
@@ -49,6 +47,17 @@ public class PregameMenuController {
             return new Result(false, "you can't choose more than 10 special cards");
         pregameData.changeTurn();
         setup();
+        return new Result(true, "");
+    }
+
+    public Result startGame() {
+        if (!pregameData.isUnitCardsNumberValid()) return new Result(false, "choose at least 22 unit cards");
+        if (!pregameData.isSpecialCardsNumberValid())
+            return new Result(false, "you can't choose more than 10 special cards");
+        Game newGame = new Game(pregameData);
+        App.setCurrentGame(newGame);
+        // TODO : setup game menu;
+        App.getSceneManager().goToGame();
         return new Result(true, "");
     }
 

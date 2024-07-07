@@ -11,6 +11,7 @@ import java.util.*;
 public class PregameData {
     private PregameUserData currentData;
     private PregameUserData anotherData;
+    private int randomStart = new Random().nextInt(2);
 
     public PregameData(User currentUser, User anotherUser) {
         currentData = new PregameUserData(currentUser);
@@ -79,6 +80,16 @@ public class PregameData {
         currentData.removeFromPreDeck(chosenCard);
     }
 
+    public Player getCurrentPlayer() {
+        if (randomStart == 1) return currentData.createPlayer();
+        else return anotherData.createPlayer();
+    }
+
+    public Player getOpponentPlayer() {
+        if (randomStart == 0) return currentData.createPlayer();
+        else return anotherData.createPlayer();
+    }
+
     private void changeNumberData(DeckCardData cardData, int sign) {
         currentData.changeNumberData(cardData, sign);
     }
@@ -142,5 +153,16 @@ class PregameUserData {
             totalCardsStrength = totalCardsStrength + sign * regularCardData.getPoint();
             if (regularCardData.isHero()) heroCardsNumber = heroCardsNumber + sign;
         }
+    }
+
+    Player createPlayer() {
+        return new Player(user, getDeck());
+    }
+
+    private ArrayList<DecksCard> getDeck() {
+        ArrayList<DecksCard> deck = new ArrayList<>();
+        for (DeckCardData cardData : cardsInDeck.keySet())
+            deck.addAll(cardsInDeck.get(cardData));
+        return deck;
     }
 }
