@@ -66,9 +66,12 @@ public class Player {
     public Row getSiege() {
         return siege;
     }
+    //TODO: changed this
     public void addCardToHand(DecksCard card){
+        card.getCardView().getStyleClass().add(CssAddress.GAME_HAND_SM_CARD.getStyleClass());
         hand.add(card);
     }
+    //TODO: changed this
     public void addCardToDeck(DecksCard card){
         deck.add(card);
     }

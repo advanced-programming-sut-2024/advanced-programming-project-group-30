@@ -19,14 +19,16 @@ import model.card.SpecialCard;
 import model.card.WeatherCard;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Random;
 
 public class GameMenu implements Menu {
     private static final Pane notifPane = new Pane();
     private static final Label notifLabel = new Label();
     private static final ImageView notifImageView = new ImageView();
     private final GameMenuController gameMenuController = new GameMenuController(this);
+    @FXML
+    private HBox decksCardNumber;
+    @FXML
+    private HBox opponentDecksCardNumber;
     @FXML
     private VBox centerPane;
     @FXML
@@ -87,7 +89,6 @@ public class GameMenu implements Menu {
         allCards.addAll(SkelligeRegularCardsData.getAllRegularCard());
         allCards.addAll(WeatherCardsData.getAllWeatherCards());
         allCards.addAll(SpecialCardsData.getAllSpecialCard());
-
         for (int i = 4; i < 14; i++) {
             DecksCard card = allCards.get(i);
             player.addCardToHand(card);
@@ -99,9 +100,7 @@ public class GameMenu implements Menu {
             if (card instanceof RegularCard)
                 gameMenuController.handleRegularCardEvents((RegularCard) card, game, player, opponentPlayer);
             if (card instanceof WeatherCard) gameMenuController.handleWeatherCardEvents((WeatherCard) card, game);
-            card.getCardView().getStyleClass().add(CssAddress.GAME_HAND_SM_CARD.getStyleClass());
         }
-        centerPane.getChildren().add(hand);
         for (int i = 14; i < 24; i++) {
             DecksCard card = allCards.get(i);
             opponentPlayer.addCardToHand(card);
@@ -112,7 +111,12 @@ public class GameMenu implements Menu {
             if (card instanceof RegularCard)
                 gameMenuController.handleRegularCardEvents((RegularCard) card, game, opponentPlayer, player);
             if (card instanceof WeatherCard) gameMenuController.handleWeatherCardEvents((WeatherCard) card, game);
-            card.getCardView().getStyleClass().add(CssAddress.GAME_HAND_SM_CARD.getStyleClass());
+        }
+        for (int i = 24; i < 44; i++) {
+            player.addCardToDeck(allCards.get(i));
+        }
+        for (int i = 44; i < 55; i++){
+            opponentPlayer.addCardToDeck(allCards.get(i));
         }
         setUpNotificationBox();
     }

@@ -1,7 +1,9 @@
 package view;
 
+import enums.Ability;
 import enums.GameNotification;
 import enums.cardsData.DeckCardData;
+import enums.cardsData.RegularCardData;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
@@ -30,7 +32,7 @@ public class AnimationMaker {
         Bounds nodeBounds = card.getCardView().localToScene(card.getCardView().getBoundsInLocal());
         gameMenu.getPane().setDisable(true);
         try {
-            TranslateTransition translate = getTranslate(card, nodeBounds, destinationHBox);
+            TranslateTransition translate = getTranslate(card, nodeBounds, destinationHBox, 0.4);
             translate.setOnFinished(event -> {
                 sourceHBox.getChildren().remove(card.getCardView());
                 destinationHBox.getChildren().add(card.getCardView());
@@ -39,7 +41,9 @@ public class AnimationMaker {
                 if (card instanceof WeatherCard weatherCard) {
                     weatherCard.run(game);
                 } else if (card instanceof RegularCard regularCard) {
-                    if (((DeckCardData) card.getCardData()).getAbility() != null) regularCard.run(game);
+                    if (((DeckCardData) card.getCardData()).getAbility() != null) {
+                         regularCard.run(game);
+                    }
                 }
                 gameMenu.updateGame(game);
             });
@@ -52,7 +56,7 @@ public class AnimationMaker {
 
     public void discardAnimation(DecksCard card, HBox source, HBox destinationHBox, Game game, GameMenu gameMenu) {
         Bounds nodeBounds = card.getCardView().localToScene(card.getCardView().getBoundsInLocal());
-        TranslateTransition translate = getTranslate(card, nodeBounds, destinationHBox);
+        TranslateTransition translate = getTranslate(card, nodeBounds, destinationHBox, 0.4);
         try {
             translate.setOnFinished(event -> {
                 destinationHBox.getChildren().clear();
@@ -68,13 +72,13 @@ public class AnimationMaker {
         }
     }
 
-    public TranslateTransition getTranslate(DecksCard card, Bounds nodeBounds, HBox destinationHBox) {
+    public TranslateTransition getTranslate(DecksCard card, Bounds nodeBounds, HBox destinationHBox, double time) {
         double startX = nodeBounds.getMinX();
         double startY = nodeBounds.getMinY();
         Bounds destinationBounds = destinationHBox.localToScene(destinationHBox.getBoundsInLocal());
         double targetX = destinationBounds.getMinX() + (destinationBounds.getWidth() - card.getCardView().getWidth()) / 2;
         double targetY = destinationBounds.getMinY() + (destinationBounds.getHeight() - card.getCardView().getHeight()) / 2;
-        TranslateTransition translate = new TranslateTransition(Duration.seconds(0.3), card.getCardView());
+        TranslateTransition translate = new TranslateTransition(Duration.seconds(time), card.getCardView());
         translate.setFromX(0);
         translate.setFromY(0);
         translate.setToX(targetX - startX);

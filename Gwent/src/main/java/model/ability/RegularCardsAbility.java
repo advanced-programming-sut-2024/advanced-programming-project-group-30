@@ -1,13 +1,21 @@
 package model.ability;
 
+import enums.Ability;
 import enums.cardsData.CardData;
+import javafx.animation.TranslateTransition;
+import javafx.geometry.Bounds;
+import javafx.scene.Node;
 import model.Game;
 import model.Player;
 import model.Row;
 import model.card.Card;
 import model.card.DecksCard;
 import model.card.RegularCard;
+import view.AnimationMaker;
+import view.CardView;
+import view.PlayerView;
 
+import javax.swing.text.PlainView;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -55,15 +63,34 @@ public class RegularCardsAbility {
     }
     public void spy(Game currentGame){
         Player currentPlayer = currentGame.getCurrentPlayer();
-        ArrayList<DecksCard> hand = currentPlayer.getDiscardPile();
+        PlayerView playerView  = currentPlayer.getPlayerView();
+        ArrayList<DecksCard> deck = currentPlayer.getDeck();
+        ArrayList<DecksCard> cards = new ArrayList<>();
         Random random = new Random();
-        int firstCardIndex = random.nextInt(hand.size());
-        int secondCardIndex = random.nextInt(hand.size());
-        while (firstCardIndex == secondCardIndex){
-            secondCardIndex = random.nextInt(hand.size());
+        int index = random.nextInt(deck.size());
+        if (deck.isEmpty()) return;
+        if (deck.size() == 1){
+            cards.add(deck.get(index));
+        }else {
+            cards.add(deck.get(index));
+            int secondIndex = random.nextInt(deck.size());
+            while (secondIndex == index){
+                secondIndex = random.nextInt(deck.size());
+            }
+            cards.add(deck.get(secondIndex));
         }
-        DecksCard firstCard = hand.get(firstCardIndex);
-        DecksCard secondCard = hand.get(secondCardIndex);
+        for (DecksCard decksCard : cards){
+            currentPlayer.addCardToHand(decksCard);
+            Bounds nodeBounds = decksCard.getCardView().localToScene(decksCard.getCardView().getBoundsInLocal());
+            TranslateTransition translate = AnimationMaker.getInstance().getTranslate(decksCard, nodeBounds,
+                    currentGame.getCurrentPlayer().getPlayerView().getHandView(), 0.6);
+            translate.setOnFinished(event -> {
+                playerView.getHandView().getChildren().add(decksCard.getCardView());
+                decksCard.getCardView().setTranslateX(0);
+                decksCard.getCardView().setTranslateY(0);
+            });
+            translate.play();
+        }
     }
     public void berserker(Game currentGame){
 

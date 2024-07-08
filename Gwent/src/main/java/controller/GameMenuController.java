@@ -403,7 +403,7 @@ public class GameMenuController {
     private void clearWeather(WeatherCard card, Game game, HBox sourceHBox, HBox destinationHBox) {
         Bounds nodeBounds = card.getCardView().localToScene(card.getCardView().getBoundsInLocal());
         game.getCurrentPlayer().addToDiscardPile(card);
-        TranslateTransition translate = AnimationMaker.getInstance().getTranslate(card, nodeBounds, destinationHBox);
+        TranslateTransition translate = AnimationMaker.getInstance().getTranslate(card, nodeBounds, destinationHBox, 0.4);
         translate.setOnFinished(event -> {
             sourceHBox.getChildren().remove(card.getCardView());
             destinationHBox.getChildren().add(card.getCardView());

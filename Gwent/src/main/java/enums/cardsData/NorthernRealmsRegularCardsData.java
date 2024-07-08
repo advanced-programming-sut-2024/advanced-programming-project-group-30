@@ -15,7 +15,7 @@ public enum NorthernRealmsRegularCardsData implements RegularCardData{
     ESTERAD_THYSSEN("Esterad Thyssen", null, true, 10, 1, RegularCardPositionType.CLOSE_COMBAT),
     JOHN_NATALIS("John Natalis", null, true, 10, 1, RegularCardPositionType.CLOSE_COMBAT),
     VERNON_ROCHE("Vernon Roche", null, true, 10, 1, RegularCardPositionType.CLOSE_COMBAT),
-    PHILIPPA_EILHART("Philippa Eilhart", Ability.TIGHT_BOND, true, 10, 1, RegularCardPositionType.RANGED_COMBAT),
+    PHILIPPA_EILHART("Philippa Eilhart", null, true, 10, 1, RegularCardPositionType.RANGED_COMBAT),
     CATAPULT("Catapult", Ability.TIGHT_BOND, false, 8, 2, RegularCardPositionType.SIEGE),
     BALLISTA("Ballista", null, false, 6, 1, RegularCardPositionType.SIEGE),
     DETHMOLD("Dethmold", null, false, 6, 1, RegularCardPositionType.RANGED_COMBAT),

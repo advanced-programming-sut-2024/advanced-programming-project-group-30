@@ -3,6 +3,7 @@ package view;
 import enums.CoordinateData;
 import enums.CssAddress;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -10,9 +11,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import model.Player;
 import model.card.DecksCard;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 
 public class PlayerView {
     private Player player;
@@ -23,15 +21,18 @@ public class PlayerView {
     private HBox leaderView;
     private VBox boardView;
     private Pane pane;
-    public PlayerView(Player player, Pane pane, VBox boardView, HBox discardPileView, HBox deckView, HBox handView, HBox leaderView, CoordinateData coordinateData, CssAddress cssAddress){
+    private Label deckNumber;
+    public PlayerView(Player player, Pane pane, VBox boardView, HBox discardPileView, HBox deckView,
+                      HBox handView, HBox leaderView, CoordinateData coordinateData, CssAddress cssAddress){
         playerInformationView = new PlayerInformationView(player, coordinateData, cssAddress);
         this.boardView = boardView;
         this.pane = pane;
         this.player = player;
-        this.handView = new HBox(handView);
+        this.handView = handView;
         this.leaderView = new HBox(leaderView);
         this.deckView = new HBox(deckView);
         this.discardPileView = new HBox(discardPileView);
+        this.deckNumber = new Label();
         setUpDeck(deckView);
         setUpDiscardPile(discardPileView);
     }
@@ -66,7 +67,10 @@ public class PlayerView {
         deckView.getChildren().add(imageView);
         imageView.setFitHeight(90);
         imageView.setFitWidth(61);
-        pane.getChildren().add(deckView);
+        deckNumber.setLayoutY(imageView.getFitHeight() - 10);
+        deckNumber.setLayoutX(imageView.getFitWidth() + 5);
+        deckNumber.setText(String.valueOf(player.getDeck().size()));
+        pane.getChildren().addAll(deckView, deckNumber);
     }
     private HBox clone(HBox node1, HBox node2){
         node1.getChildren().clear();
