@@ -15,7 +15,6 @@ import java.util.ArrayList;
 
 public class Player {
     private final User user;
-    private final Game game;
     private Leader leader;
     private final ArrayList<DecksCard> deck = new ArrayList<>();
     private final ArrayList<DecksCard> hand = new ArrayList<>();
@@ -26,12 +25,10 @@ public class Player {
     private int point = 0;
     private final int[] roundsPoint = new int[3];
     private int life = 2;
-    private DecksCard selectedCard;
     private PlayerView playerView;
 
-    public Player(User user, Game game) {
+    public Player(User user) {
         this.user = user;
-        this.game = game;
     }
 
     public User getUser() {
@@ -116,12 +113,6 @@ public class Player {
         rows.add(rangedCombat);
         rows.add(siege);
         return rows;
-    }
-    public void setSelectedCard(DecksCard selectedCard) {
-        this.selectedCard = selectedCard;
-    }
-    public DecksCard getSelectedCard() {
-        return selectedCard;
     }
     public void createPlayerView(Pane pane, VBox boardView, HBox discardPileView, HBox deckView, HBox handView, HBox leaderView, CoordinateData coordinateData, CssAddress cssAddress){
         playerView = new PlayerView(this, pane,boardView, discardPileView, deckView, handView, leaderView,coordinateData, cssAddress);

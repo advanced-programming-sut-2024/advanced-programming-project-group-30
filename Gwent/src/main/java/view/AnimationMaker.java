@@ -25,9 +25,10 @@ public class AnimationMaker {
         }
         return animationMaker;
     }
-
+    //TODO: changed this
     public void cardPlaceAnimation(DecksCard card, HBox destinationHBox, HBox sourceHBox, Game game, GameMenu gameMenu) {
         Bounds nodeBounds = card.getCardView().localToScene(card.getCardView().getBoundsInLocal());
+        gameMenu.getPane().setDisable(true);
         try {
             TranslateTransition translate = getTranslate(card, nodeBounds, destinationHBox);
             translate.setOnFinished(event -> {
@@ -40,13 +41,14 @@ public class AnimationMaker {
                 } else if (card instanceof RegularCard regularCard) {
                     if (((DeckCardData) card.getCardData()).getAbility() != null) regularCard.run(game);
                 }
-                gameMenu.setUpScores(game);
+                gameMenu.updateGame(game);
             });
             translate.play();
         } catch (RuntimeException e) {
             System.err.println("duplicate children in cardPlaceAnimation method");
         }
     }
+    //TODO:changed this
 
     public void discardAnimation(DecksCard card, HBox source, HBox destinationHBox, Game game, GameMenu gameMenu) {
         Bounds nodeBounds = card.getCardView().localToScene(card.getCardView().getBoundsInLocal());
@@ -57,7 +59,7 @@ public class AnimationMaker {
                 destinationHBox.getChildren().add(card.getCardView());
                 card.getCardView().setTranslateX(0);
                 card.getCardView().setTranslateY(0);
-                gameMenu.setUpScores(game);
+                gameMenu.updateGame(game);
                 game.getCurrentPlayer().discardCard(card);
             });
             translate.play();

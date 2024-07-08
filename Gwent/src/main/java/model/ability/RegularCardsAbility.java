@@ -1,5 +1,6 @@
 package model.ability;
 
+import enums.cardsData.CardData;
 import model.Game;
 import model.Player;
 import model.Row;
@@ -9,6 +10,7 @@ import model.card.RegularCard;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 
@@ -47,9 +49,9 @@ public class RegularCardsAbility {
     public void scorch(Game currentGame){
 
     }
+    //TODO: added this method
     public void tightBond(Game currentGame){
-
-
+        currentGame.getSelectedRow().addToCardDataMap((RegularCard) currentGame.getSelectedCard());
     }
     public void spy(Game currentGame){
         Player currentPlayer = currentGame.getCurrentPlayer();

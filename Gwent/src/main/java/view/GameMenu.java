@@ -2,9 +2,7 @@ package view;
 
 import controller.GameMenuController;
 import enums.*;
-import enums.cardsData.NeutralRegularCardsData;
-import enums.cardsData.SpecialCardsData;
-import enums.cardsData.WeatherCardsData;
+import enums.cardsData.*;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -21,6 +19,7 @@ import model.card.SpecialCard;
 import model.card.WeatherCard;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class GameMenu implements Menu {
@@ -64,15 +63,15 @@ public class GameMenu implements Menu {
     private ImageView notifImage;
     @FXML
     private HBox hand;
-
+    //TODO: ignore initialize method
     @FXML
     public void initialize() {
         User user = new User("bahar", "123", "bahar", "bahar", SecurityQuestion.QUESTION_1, "blue");
         User user2 = new User("fatemeh", "123", "fatemeh", "fatemeh", SecurityQuestion.QUESTION_1, "blue");
         Game game = new Game();
         App.setCurrentGame(game);
-        Player player = new Player(user, game);
-        Player opponentPlayer = new Player(user2, game);
+        Player player = new Player(user);
+        Player opponentPlayer = new Player(user2);
         PlayerView playerView = new PlayerView(player, pane, currentRowArea, discardPile, deck, hand, leader, CoordinateData.PLAYER_INFORMATION_BOX, CssAddress.CURRENT_PLAYER_TOTAL_SCORE_IMAGE);
         player.setPlayerView(playerView);
         PlayerView opponentPlayerView = new PlayerView(opponentPlayer, pane, opponentRowsArea, opponentDiscardPile, opponentDeck, hand, opponentLeader, CoordinateData.OPPONENT_INFORMATION_BOX, CssAddress.OPPONENT_PLAYER_TOTAL_SCORE_IMAGE);
@@ -84,15 +83,12 @@ public class GameMenu implements Menu {
         ArrayList<DecksCard> allCards = new ArrayList<>();
         ArrayList<RegularCard> cards = NeutralRegularCardsData.getAllRegularCard();
         allCards.addAll(cards);
-//        allCards.addAll(MonstersRegularCardsData.getAllRegularCard());
-//        allCards.addAll(NorthernRealmsRegularCardsData.getAllRegularCard());
-//        allCards.addAll(SkelligeRegularCardsData.getAllRegularCard());
-//        allCards.addAll(NeutralRegularCardsData.getAllRegularCard());
+        allCards.addAll(NorthernRealmsRegularCardsData.getAllRegularCard());
+        allCards.addAll(SkelligeRegularCardsData.getAllRegularCard());
         allCards.addAll(WeatherCardsData.getAllWeatherCards());
         allCards.addAll(SpecialCardsData.getAllSpecialCard());
-        Random random = new Random();
-        int j = random.nextInt(allCards.size() - 2);
-        for (int i = 0; i < j; i++) {
+
+        for (int i = 4; i < 14; i++) {
             DecksCard card = allCards.get(i);
             player.addCardToHand(card);
             CardView cardView = card.getCardView();
@@ -106,7 +102,7 @@ public class GameMenu implements Menu {
             card.getCardView().getStyleClass().add(CssAddress.GAME_HAND_SM_CARD.getStyleClass());
         }
         centerPane.getChildren().add(hand);
-        for (int i = j; i < allCards.size(); i++) {
+        for (int i = 14; i < 24; i++) {
             DecksCard card = allCards.get(i);
             opponentPlayer.addCardToHand(card);
             CardView cardView = card.getCardView();
@@ -132,12 +128,10 @@ public class GameMenu implements Menu {
         }
         weatherCardPosition.getStyleClass().remove(CssAddress.CARD_ROW.getStyleClass());
     }
-
-    public void setUpScores(Game game) {
-        gameMenuController.updateScores(game);
-        ArrayList<Row> allRows = new ArrayList<>();
-        allRows.addAll(game.getCurrentPlayer().getRows());
-        allRows.addAll(game.getOpponentPlayer().getRows());
+    public void updateGame(Game game){
+        gameMenuController.updateGame(game);
+    }
+    public void updateScores(ArrayList<Row> allRows) {
         for (Row row : allRows) {
             row.updateRowScore();
         }
@@ -171,7 +165,7 @@ public class GameMenu implements Menu {
         }
     }
 
-    public void endRound(Game game) throws NoSuchMethodException {
+    public void endRound(Game game) {
         showRoundEndNotification(gameMenuController.endRound(game));
     }
 

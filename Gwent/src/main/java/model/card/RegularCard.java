@@ -49,14 +49,15 @@ public class RegularCard extends DecksCard {
     public RegularCardPositionType getPositionType() {
         return positionType;
     }
+    //TODO: changed this
     public void run(Game game) {
         try {
-            System.out.println(ability);
             ability.invoke(RegularCardsAbility.getInstance(),game);
         } catch (IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();
+            System.err.println("ability " + ability.getName() + " not found");
         }
     }
+    //TODO: change this
 
     public int getPoint() {
         return ((RegularCardData)getCardData()).getPoint();

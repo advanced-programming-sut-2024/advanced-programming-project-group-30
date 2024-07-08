@@ -91,6 +91,7 @@ public class Row extends Position{
     public void updateRowScore(){
         rowView.updateRowScore();
     }
+    //TODO:added these
     public void addToCardDataMap(RegularCard card){
         CardData cardData = card.getCardData();
         if (cardDataMap.containsKey(cardData)){
@@ -101,6 +102,10 @@ public class Row extends Position{
             cardDataMap.put(cardData, cards);
         }
     }
+    public HashMap<CardData, ArrayList<RegularCard>> getCardDataMap(){
+        return this.cardDataMap;
+    }
+    //TODO: added these
 
 
 }

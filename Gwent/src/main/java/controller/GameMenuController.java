@@ -4,7 +4,9 @@ import enums.Ability;
 import enums.CssAddress;
 import enums.GameNotification;
 import enums.RegularCardPositionType;
+import enums.cardsData.CardData;
 import enums.cardsData.DeckCardData;
+import enums.cardsData.RegularCardData;
 import enums.cardsData.WeatherCardsData;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -26,6 +28,7 @@ import view.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class GameMenuController {
     private final GameMenu gameMenu;
@@ -46,7 +49,7 @@ public class GameMenuController {
         cardView.setOnMouseClicked(event -> {
             RegularCardPositionType position = card.getPositionType();
             resetRowStyles(game);
-            player1.setSelectedCard(card);
+            game.selectCard(card);
             try {
                 Player player = player1;
                 Method method = RowView.class.getDeclaredMethod("getRow");
@@ -95,10 +98,7 @@ public class GameMenuController {
             row.addCardToRow((RegularCard) card);
             AnimationMaker.getInstance().cardPlaceAnimation(card, row.getRowView().getRow(), player.getPlayerView().getHandView(), game, gameMenu);
         }
-        passTurn(game);
         player.playCard(card);
-        updateHandCardNumber(game);
-        resetRowStyles(game);
     }
 
     private void handleSpecialCardMovement(SpecialCard card, Game game, Row row) {
@@ -115,10 +115,7 @@ public class GameMenuController {
             timeline.play();
             game.getCurrentPlayer().addToDiscardPile(card);
         } else row.setSpecialCard(card);
-        passTurn(game);
         game.getCurrentPlayer().playCard(card);
-        updateHandCardNumber(game);
-
     }
 
     private void handleWeatherCardMovement(WeatherCard weatherCard, Game game) {
@@ -133,8 +130,6 @@ public class GameMenuController {
         }
         game.addWeatherCard(weatherCard);
         player.playCard(weatherCard);
-        updateHandCardNumber(game);
-        passTurn(game);
         resetRowStyles(game);
     }
 
@@ -142,7 +137,7 @@ public class GameMenuController {
         CardView cardView = weatherCard.getCardView();
         cardView.setOnMouseClicked(event -> {
             resetRowStyles(game);
-            game.getCurrentPlayer().setSelectedCard(weatherCard);
+            game.selectCard(weatherCard);
             gameMenu.setNodeStyle(gameMenu.getWeatherCardPosition(), CssAddress.CARD_ROW);
             gameMenu.getWeatherCardPosition().setOnMouseClicked(event1 -> {
                 handleWeatherCardMovement(weatherCard, game);
@@ -152,7 +147,7 @@ public class GameMenuController {
 
     public void handleSpecialCardEvents(SpecialCard specialCard, Game game, Player player1) {
         CardView cardView = specialCard.getCardView();
-        player1.setSelectedCard(specialCard);
+        game.selectCard(specialCard);
         try {
             Method method = RowView.class.getDeclaredMethod("getSpecialCardPosition");
             cardView.setOnMouseClicked(event -> {
@@ -203,15 +198,26 @@ public class GameMenuController {
             gameMenu.resetStyles(row.getRowView());
         }
     }
+    //TODO: added this;
+    public void updateGame(Game game){
+        updateScores(game);
+        updateHandCardNumber(game);
+        ArrayList<Row> allRows = new ArrayList<>();
+        allRows.addAll(game.getCurrentPlayer().getRows());
+        allRows.addAll(game.getOpponentPlayer().getRows());
+        gameMenu.updateScores(allRows);
+        checkRound(game);
+    }
+    //TODO: added this
 
     public void updateScores(Game game) {
         Player player = game.getCurrentPlayer();
         Player opponentPlayer = game.getOpponentPlayer();
         for (Row row : game.getCurrentPlayer().getRows()) {
-            setRowCardsPoint(row);
+            setCardsPoint(row);
         }
         for (Row row : game.getOpponentPlayer().getRows()) {
-            setRowCardsPoint(row);
+            setCardsPoint(row);
         }
         player.getPlayerInformationView().updateTotalScore();
         opponentPlayer.getPlayerInformationView().updateTotalScore();
@@ -226,7 +232,6 @@ public class GameMenuController {
         Row opSiege = opponentPlayer.getSiege();
         Row opRanged = opponentPlayer.getRangedCombat();
         Row opClose = opponentPlayer.getCloseCombat();
-        gameMenu.setUpScores(game);
         gameMenu.setUpBoard(siege.getRowView(), ranged.getRowView(), close.getRowView(), opSiege.getRowView(), opRanged.getRowView(), opClose.getRowView());
     }
 
@@ -242,22 +247,6 @@ public class GameMenuController {
         gameMenu.updateHandCardNumber(playerInformationView.getHandCardNumber(), player.getHand().size());
     }
 
-    public void switchBoard(Game game) throws NoSuchMethodException {
-        Player currentPlayer = game.getCurrentPlayer();
-        Player opponentPlayer = game.getOpponentPlayer();
-        PlayerView currentPlayerView = currentPlayer.getPlayerView();
-        PlayerView opponentPlayerView = opponentPlayer.getPlayerView();
-
-        swapBoardViews(currentPlayerView, opponentPlayerView);
-        clearBoardViews(currentPlayerView, opponentPlayerView);
-
-        swapPlayerViews(currentPlayerView, opponentPlayerView, PlayerView.class.getDeclaredMethod("getDiscardPileView"), PlayerView.class.getDeclaredMethod("getDeckView"), PlayerView.class.getDeclaredMethod("getPlayerInformationView"));
-
-        setupViewsAfterSwitch(currentPlayerView, opponentPlayerView);
-
-        swapRows(currentPlayer, opponentPlayer);
-    }
-
     public void checkRound(Game game) {
         if (game.isRoundPassed()) {
             endRound(game);
@@ -271,7 +260,6 @@ public class GameMenuController {
         if (winner == null) return GameNotification.DRAW_ROUND;
         else if (winner.equals(App.getCurrentGame().getCurrentPlayer())) return GameNotification.WIN_ROUND;
         else return GameNotification.LOSE_ROUND;
-
     }
 
     private void passTurn(Game game) {
@@ -290,14 +278,23 @@ public class GameMenuController {
             timeline.play();
         }
     }
-
-    private void setRowCardsPoint(Row row) {
+    //TODO: editing this
+    private void setCardsPoint(Row row) {
         int point;
         boolean hasCommanderHorn = hasRegularCommanderHorn(row);
+        HashMap<CardData, ArrayList<RegularCard>> cardMap = row.getCardDataMap();
         for (RegularCard card : row.getCards()) {
             if (card.isHero()) continue;
+            RegularCardData regularCardData = (RegularCardData)card.getCardData();
             point = card.getPoint();
             if (row.isDamaged()) point = 1;
+            if (cardMap.containsKey(regularCardData)){
+                ArrayList<RegularCard> cards = cardMap.get(regularCardData);
+                int coef = cards.size();
+                if (coef > 1){
+                    point *= coef;
+                }
+            }
             point += row.getExtraPoint();
             Ability ability = ((DeckCardData) card.getCardData()).getAbility();
             SpecialCard specialCard = row.getSpecialCard();
@@ -311,7 +308,22 @@ public class GameMenuController {
             }
             card.setPointInGame(point);
         }
+    }
+    //TODO: editing this
+    private void switchBoard(Game game) throws NoSuchMethodException {
+        Player currentPlayer = game.getCurrentPlayer();
+        Player opponentPlayer = game.getOpponentPlayer();
+        PlayerView currentPlayerView = currentPlayer.getPlayerView();
+        PlayerView opponentPlayerView = opponentPlayer.getPlayerView();
 
+        swapBoardViews(currentPlayerView, opponentPlayerView);
+        clearBoardViews(currentPlayerView, opponentPlayerView);
+
+        swapPlayerViews(currentPlayerView, opponentPlayerView, PlayerView.class.getDeclaredMethod("getDiscardPileView"), PlayerView.class.getDeclaredMethod("getDeckView"), PlayerView.class.getDeclaredMethod("getPlayerInformationView"));
+
+        setupViewsAfterSwitch(currentPlayerView, opponentPlayerView);
+
+        swapRows(currentPlayer, opponentPlayer);
     }
 
     private boolean hasRegularCommanderHorn(Row row) {

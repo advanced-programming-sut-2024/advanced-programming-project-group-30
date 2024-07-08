@@ -40,7 +40,7 @@ public enum NorthernRealmsRegularCardsData implements RegularCardData{
     POOR_FUCKING_INFANTRY("Poor fucking Infantry", Ability.TIGHT_BOND, false, 1, 4, RegularCardPositionType.CLOSE_COMBAT),
     REDANIAN_FOOT_SOLDIER("Redanian Foot Soldier", null, false, 1, 1, RegularCardPositionType.CLOSE_COMBAT),
     REDANIAN_FOOT_SOLDIER_1("Redanian Foot Soldier", null, false, 1, 1, RegularCardPositionType.CLOSE_COMBAT),
-    THALER("Thaler", Ability.SPY, false, 1, 1, RegularCardPositionType.SIEGE),
+    THALER("Thaler", Ability.SPY, false, 1, 1, RegularCardPositionType.OPPONENT_SIEGE),
     ;
 
     private final String name;
