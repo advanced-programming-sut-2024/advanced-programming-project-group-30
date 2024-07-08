@@ -81,6 +81,7 @@ public class RegularCardsAbility {
             cards.add(deck.get(secondIndex));
         }
         for (DecksCard decksCard : cards){
+            //TODO: need access to game controller
             currentPlayer.addCardToHand(decksCard);
             currentPlayer.getPlayerView().addCardToDeck(decksCard);
             Bounds nodeBounds = decksCard.getCardView().localToScene(decksCard.getCardView().getBoundsInLocal());

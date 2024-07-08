@@ -71,6 +71,30 @@ public class Player {
         card.getCardView().getStyleClass().add(CssAddress.GAME_HAND_SM_CARD.getStyleClass());
         hand.add(card);
     }
+    public void resetRound(){
+        resetLives();
+        resetPoints();
+        for (Row row : getRows()) {
+            evacuateRow(row);
+            row.resetRow();
+        }
+    }
+    private void evacuateRow(Row row){
+        for(DecksCard decksCard : row.getCards()){
+            discardPile.add(decksCard);
+            playerView.discardCard(decksCard);
+        }
+    }
+    private void resetLives(){
+        life = 2;
+    }
+    public void setRoundPoint(int round, int point){
+        roundsPoint[round] = point;
+    }
+    private void resetPoints(){
+        point = 0;
+        getPlayerInformationView().resetRound();
+    }
     //TODO: changed this
     public void addCardToDeck(DecksCard card){
         deck.add(card);

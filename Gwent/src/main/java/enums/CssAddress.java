@@ -131,6 +131,8 @@ public enum CssAddress {
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     NOTIF_DRAW_ROUND("draw-round-image",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    NOTIF_ROUND_START("notifRoundStart",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     ;
 
 

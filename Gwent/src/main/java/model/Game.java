@@ -42,6 +42,7 @@ public class Game {
         Player temp = currentPlayer;
         currentPlayer = opponentPlayer;
         opponentPlayer = temp;
+        System.out.println("in game change turn");
     }
 
     public void endRound() {
@@ -71,5 +72,23 @@ public class Game {
     }
     public void selectCard(DecksCard card) {
         selectedCard = card;
+    }
+    //TODO:added this
+    public void resetGame(){
+        currentPlayer.resetRound();
+        opponentPlayer.resetRound();
+        selectedRow = null;
+        selectedCard = null;
+        weatherCards.clear();
+        this.roundIsPassed = false;
+    }
+    public void roundFinished(){
+        currentPlayer.setRoundPoint(roundNumber - 1, currentPlayer.getPoint());
+        opponentPlayer.setRoundPoint(roundNumber - 1, opponentPlayer.getPoint());
+        if (roundNumber == 3){
+            endGame();
+        }else {
+            endRound();
+        }
     }
 }

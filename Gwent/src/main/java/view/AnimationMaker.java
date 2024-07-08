@@ -42,6 +42,7 @@ public class AnimationMaker {
                 card.getCardView().setTranslateY(0);
                 runAbility(card, game);
                 gameMenu.updateGame(game);
+                gameMenu.getPane().setDisable(false);
             });
             sequentialTransition.play();
         } catch (RuntimeException e) {
@@ -85,18 +86,26 @@ public class AnimationMaker {
     public Timeline getNotificationTimeline(Pane pane, Pane notifPane, ImageView notifImageView, Label notifLabel, GameNotification gameNotification) {
         notifImageView.getStyleClass().add(gameNotification.getNotificationImage());
         notifLabel.setText(gameNotification.getNotification());
+        if (pane.getChildren().contains(notifPane)) {
+            pane.getChildren().remove(notifPane);
+        }
         pane.getChildren().add(notifPane);
         pane.setDisable(true);
         pane.getStyleClass().add("rootPaneNotifStyle");
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), event -> {
-            pane.getStyleClass().remove("rootPaneNotifStyle");
-            notifImageView.getStyleClass().remove(gameNotification.getNotification());
-            notifLabel.setText("");
-            pane.setDisable(false);
-            pane.getChildren().remove(notifPane);
-        }));
-        timeline.setCycleCount(1);
-        return timeline;
+        try {
+            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), event -> {
+                pane.getStyleClass().remove("rootPaneNotifStyle");
+                notifImageView.getStyleClass().remove(gameNotification.getNotification());
+                notifLabel.setText("");
+                pane.setDisable(false);
+                pane.getChildren().remove(notifPane);
+            }));
+            timeline.setCycleCount(1);
+            return timeline;
+        }catch (IllegalArgumentException e){
+            System.err.println("duplicate children in getNotificationTimeline method");
+        }
+        return null;
     }
     private void runAbility(DecksCard card, Game game){
         if (((DeckCardData)card.getCardData()).getAbility() == null) return;

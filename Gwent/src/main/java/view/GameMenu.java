@@ -1,17 +1,19 @@
 package view;
 
 import controller.GameMenuController;
-import enums.*;
+import enums.CoordinateData;
+import enums.CssAddress;
+import enums.GameNotification;
+import enums.SecurityQuestion;
 import enums.cardsData.*;
+import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.util.Duration;
 import model.*;
 import model.card.DecksCard;
 import model.card.RegularCard;
@@ -65,6 +67,7 @@ public class GameMenu implements Menu {
     private ImageView notifImage;
     @FXML
     private HBox hand;
+
     //TODO: ignore initialize method
     @FXML
     public void initialize() {
@@ -115,7 +118,7 @@ public class GameMenu implements Menu {
         for (int i = 24; i < 44; i++) {
             player.addCardToDeck(allCards.get(i));
         }
-        for (int i = 44; i < 55; i++){
+        for (int i = 44; i < 55; i++) {
             opponentPlayer.addCardToDeck(allCards.get(i));
         }
         setUpNotificationBox();
@@ -132,9 +135,11 @@ public class GameMenu implements Menu {
         }
         weatherCardPosition.getStyleClass().remove(CssAddress.CARD_ROW.getStyleClass());
     }
-    public void updateGame(Game game){
+
+    public void updateGame(Game game) {
         gameMenuController.updateGame(game);
     }
+
     public void updateScores(ArrayList<Row> allRows) {
         for (Row row : allRows) {
             row.updateRowScore();
@@ -168,9 +173,17 @@ public class GameMenu implements Menu {
             ((Pane) pane).getChildren().addAll(node1, node2);
         }
     }
-
-    public void endRound(Game game) {
-        showRoundEndNotification(gameMenuController.endRound(game));
+    //TODO: added these
+    public void endRound(GameNotification gameNotification) {
+        showRoundEndNotification(gameNotification);
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), actionEvent -> {
+            showRoundStart();
+        }));
+        timeline.play();
+    }
+    private void showRoundStart(){
+        Timeline timeline = AnimationMaker.getInstance().getNotificationTimeline(pane, notifPane, notifImageView, notifLabel, GameNotification.ROUND_STARTS);
+        timeline.play();
     }
 
     public void handlePassTurn(Game game) {
@@ -183,7 +196,6 @@ public class GameMenu implements Menu {
             hand.getChildren().add(card.getCardView());
         }
         showPassTurnNotification();
-
     }
 
     public VBox getRowsPane() {
@@ -195,7 +207,8 @@ public class GameMenu implements Menu {
     }
 
     @FXML
-    private void passTurn(){
+    private void passTurn() {
+        System.out.println(App.getCurrentGame().isRoundPassed());
         gameMenuController.checkRound(App.getCurrentGame());
         App.getCurrentGame().setRoundIsPassed(true);
     }

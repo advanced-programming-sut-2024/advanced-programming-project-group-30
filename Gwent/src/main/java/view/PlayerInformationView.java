@@ -54,6 +54,19 @@ public class PlayerInformationView extends Pane {
     public Label getHandCardNumber(){
         return handCardNumber;
     }
+    //TODO:added these
+    public void setFirstRoundOfLoss(){
+        rightGem.getStyleClass().remove(CssAddress.GEM_ON_IMAGE.getStyleClass());
+        rightGem.getStyleClass().add(CssAddress.GEM_OFF_IMAGE.getStyleClass());
+    }
+    public void setSecondRoundOfLoss(){
+        leftGem.getStyleClass().remove(CssAddress.GEM_ON_IMAGE.getStyleClass());
+        leftGem.getStyleClass().add(CssAddress.GEM_OFF_IMAGE.getStyleClass());
+    }
+    public void resetRound(){
+        totalScore.setText("0");
+    }
+    //TODO: added these
 
 
     private void design(){

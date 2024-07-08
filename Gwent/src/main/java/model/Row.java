@@ -108,6 +108,17 @@ public class Row extends Position{
     public HashMap<CardData, ArrayList<RegularCard>> getCardDataMap(){
         return this.cardDataMap;
     }
+
+    public void resetRow() {
+        cards.clear();
+        rowPoint = 0;
+        bonus = 1;
+        extraPoint = 0;
+        isDamaged = false;
+        specialCardPosition.setCard(null);
+        cardDataMap.clear();
+        rowView.resetRow();
+    }
     //TODO: added these
 
 

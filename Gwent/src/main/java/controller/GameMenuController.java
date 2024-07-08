@@ -29,6 +29,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 public class GameMenuController {
     private final GameMenu gameMenu;
@@ -155,8 +156,8 @@ public class GameMenuController {
                 for (Row row : player1.getRows()) {
                     if (row.getRowView().getSpecialCardPosition().getChildren().isEmpty()) {
                         if (specialCard.getName().equals("Decoy")) {
-                            handleDecoy(game,specialCard);
-                        }else {
+                            handleDecoy(game, specialCard);
+                        } else {
                             gameMenu.setNodeStyle(row.getRowView().getSpecialCardPosition(), CssAddress.CARD_ROW);
                             row.getRowView().addStyle(CssAddress.CARD_ROW);
                             try {
@@ -211,7 +212,7 @@ public class GameMenuController {
         allRows.addAll(game.getCurrentPlayer().getRows());
         allRows.addAll(game.getOpponentPlayer().getRows());
         gameMenu.updateScores(allRows);
-        checkRound(game);
+        if (!game.isRoundPassed()) passTurn(game);
     }
     //TODO: added this
 
@@ -260,16 +261,100 @@ public class GameMenuController {
     }
 
     //TODO: complete endRound method
-    public GameNotification endRound(Game game) {
+    public void endRound(Game game) {
         Player winner = checkForHigherScore(game);
-        if (winner == null) return GameNotification.DRAW_ROUND;
-        else if (winner.equals(App.getCurrentGame().getCurrentPlayer())) return GameNotification.WIN_ROUND;
-        else return GameNotification.LOSE_ROUND;
+        Player loser = null;
+        Player beginner = setBeginnerOfTheRound(game);
+        GameNotification gameNotification;
+        if (winner == null) {
+            gameNotification = GameNotification.DRAW_ROUND;
+            game.getOpponentPlayer().reduceLife();
+            game.getCurrentPlayer().reduceLife();
+        } else if (winner.equals(App.getCurrentGame().getCurrentPlayer())) {
+            gameNotification = GameNotification.WIN_ROUND;
+            loser = game.getOpponentPlayer();
+            game.getCurrentPlayer().reduceLife();
+        } else {
+            game.getOpponentPlayer().reduceLife();
+            loser = game.getCurrentPlayer();
+            gameNotification = GameNotification.LOSE_ROUND;
+        }
+        if (gameIsOver(game)) endGame(game);
+        else {
+            setUpNextRound(game, loser);
+            boolean isBeginnerYou = (beginner == game.getCurrentPlayer());
+            resetRound(game, isBeginnerYou);
+            try {
+                if (!(beginner == game.getCurrentPlayer())) {
+                    switchBoard(game);
+                    game.changeTurn();
+                    gameMenu.handlePassTurn(game);
+                }
+            } catch (NoSuchMethodException e) {
+                System.err.println("error in switch board in end round method in game controller");
+                throw new RuntimeException(e);
+            }
+            game.roundFinished();
+            gameMenu.endRound(gameNotification);
+        }
+    }
+
+    private void resetRound(Game game, boolean isBeginnerYou) {
+//        for (Row row : game.getCurrentPlayer().getRows()) {
+//            for (DecksCard decksCard : row.getCards()) {
+//                AnimationMaker.getInstance().discardAnimation(decksCard, row.getRowView().getRow(),
+//                        game.getCurrentPlayer().getPlayerView().getDiscardPileView(), game, gameMenu);
+//            }
+//        }
+//        for (Row row : game.getOpponentPlayer().getRows()) {
+//            for (DecksCard decksCard : row.getCards()) {
+//                AnimationMaker.getInstance().discardAnimation(decksCard, row.getRowView().getRow(),
+//                        game.getCurrentPlayer().getPlayerView().getDiscardPileView(), game, gameMenu);
+//            }
+//        }
+        game.resetGame();
+        //TODO: add the animation of cards being added to discard
+    }
+
+    private Player setBeginnerOfTheRound(Game game) {
+        Random random = new Random();
+        int randomInt = random.nextInt(2);
+        if (randomInt == 0) return game.getCurrentPlayer();
+        else return game.getOpponentPlayer();
+    }
+
+    private boolean gameIsOver(Game game) {
+        return game.getCurrentPlayer().getLife() == 0 || game.getOpponentPlayer().getLife() == 0;
+    }
+
+    private void endGame(Game game) {
+
+        //TODO: complete this method
+    }
+
+    private void setUpNextRound(Game game, Player loser) {
+        if (loser == null) {
+            setLoserOfTheRound(game.getOpponentPlayer());
+            setLoserOfTheRound(game.getCurrentPlayer());
+        } else {
+
+            setLoserOfTheRound(loser);
+        }
+    }
+
+    private void setLoserOfTheRound(Player loser) {
+        if (loser.getLife() == 1) setUpLoserCrystal(loser, 1);
+        else if (loser.getLife() == 0) setUpLoserCrystal(loser, 2);
+    }
+
+    private void setUpLoserCrystal(Player player, int roundNumber) {
+        if (roundNumber == 1) player.getPlayerView().getPlayerInformationView().setFirstRoundOfLoss();
+        else if (roundNumber == 2) player.getPlayerView().getPlayerInformationView().setSecondRoundOfLoss();
     }
 
     private void passTurn(Game game) {
         if (!game.isRoundPassed()) {
-            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1.5), actionEvent -> {
+            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), actionEvent -> {
                 try {
                     switchBoard(game);
                     game.changeTurn();
@@ -290,8 +375,7 @@ public class GameMenuController {
         boolean hasCommanderHorn = hasRegularCommanderHorn(row);
         HashMap<CardData, ArrayList<RegularCard>> cardMap = row.getCardDataMap();
         for (DecksCard decksCard : row.getCards()) {
-            if (!(decksCard instanceof RegularCard)) continue;
-            RegularCard card = (RegularCard) decksCard;
+            if (!(decksCard instanceof RegularCard card)) continue;
             if (card.isHero()) continue;
             RegularCardData regularCardData = (RegularCardData) card.getCardData();
             point = card.getPoint();
@@ -324,6 +408,7 @@ public class GameMenuController {
         Player opponentPlayer = game.getOpponentPlayer();
         PlayerView currentPlayerView = currentPlayer.getPlayerView();
         PlayerView opponentPlayerView = opponentPlayer.getPlayerView();
+        resetRowStyles(game);
 
         swapBoardViews(currentPlayerView, opponentPlayerView);
         clearBoardViews(currentPlayerView, opponentPlayerView);
@@ -429,13 +514,14 @@ public class GameMenuController {
         });
         translate.play();
     }
-    private void handleDecoy(Game game, SpecialCard decoy){
+
+    private void handleDecoy(Game game, SpecialCard decoy) {
         Row row = game.getSelectedRow();
-        for (DecksCard decksCard : row.getCards()){
+        for (DecksCard decksCard : row.getCards()) {
             decksCard.getCardView().getStyleClass().add(CssAddress.GAME_HAND_SM_CARD.getStyleClass());
             decksCard.getCardView().setOnMousePressed(mouseEvent -> {
-               game.getCurrentPlayer().getPlayerView().getHandView().getChildren().remove(decoy.getCardView());
-               game.getSelectedRow().getRowView().getRow().getChildren().add(decoy.getCardView());
+                game.getCurrentPlayer().getPlayerView().getHandView().getChildren().remove(decoy.getCardView());
+                game.getSelectedRow().getRowView().getRow().getChildren().add(decoy.getCardView());
 
 
             });
