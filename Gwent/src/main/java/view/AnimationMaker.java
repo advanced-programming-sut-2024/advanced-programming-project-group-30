@@ -5,6 +5,7 @@ import enums.GameNotification;
 import enums.cardsData.DeckCardData;
 import enums.cardsData.RegularCardData;
 import javafx.animation.KeyFrame;
+import javafx.animation.SequentialTransition;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.geometry.Bounds;
@@ -33,21 +34,16 @@ public class AnimationMaker {
         gameMenu.getPane().setDisable(true);
         try {
             TranslateTransition translate = getTranslate(card, nodeBounds, destinationHBox, 0.4);
-            translate.setOnFinished(event -> {
+            SequentialTransition sequentialTransition = new SequentialTransition(translate);
+            sequentialTransition.setOnFinished(event -> {
                 sourceHBox.getChildren().remove(card.getCardView());
                 destinationHBox.getChildren().add(card.getCardView());
                 card.getCardView().setTranslateX(0);
                 card.getCardView().setTranslateY(0);
-                if (card instanceof WeatherCard weatherCard) {
-                    weatherCard.run(game);
-                } else if (card instanceof RegularCard regularCard) {
-                    if (((DeckCardData) card.getCardData()).getAbility() != null) {
-                         regularCard.run(game);
-                    }
-                }
+                runAbility(card, game);
                 gameMenu.updateGame(game);
             });
-            translate.play();
+            sequentialTransition.play();
         } catch (RuntimeException e) {
             System.err.println("duplicate children in cardPlaceAnimation method");
         }
@@ -102,6 +98,11 @@ public class AnimationMaker {
         timeline.setCycleCount(1);
         return timeline;
     }
+    private void runAbility(DecksCard card, Game game){
+        if (((DeckCardData)card.getCardData()).getAbility() == null) return;
+        if (card instanceof RegularCard regularCard) regularCard.run(game);
+        else if (card instanceof WeatherCard weatherCard) weatherCard.run(game);
 
+    }
 
 }

@@ -153,15 +153,19 @@ public class GameMenuController {
             cardView.setOnMouseClicked(event -> {
                 resetRowStyles(game);
                 for (Row row : player1.getRows()) {
-                    if (!specialCard.getName().equals("Decoy") && row.getRowView().getSpecialCardPosition().getChildren().isEmpty()) {
-                        gameMenu.setNodeStyle(row.getRowView().getSpecialCardPosition(), CssAddress.CARD_ROW);
-                        row.getRowView().addStyle(CssAddress.CARD_ROW);
-                        try {
-                            handleRowEvents(specialCard, game, method, row);
-                        } catch (InvocationTargetException e) {
-                            throw new RuntimeException(e);
-                        } catch (IllegalAccessException e) {
-                            throw new RuntimeException(e);
+                    if (row.getRowView().getSpecialCardPosition().getChildren().isEmpty()) {
+                        if (specialCard.getName().equals("Decoy")) {
+                            handleDecoy(game,specialCard);
+                        }else {
+                            gameMenu.setNodeStyle(row.getRowView().getSpecialCardPosition(), CssAddress.CARD_ROW);
+                            row.getRowView().addStyle(CssAddress.CARD_ROW);
+                            try {
+                                handleRowEvents(specialCard, game, method, row);
+                            } catch (InvocationTargetException e) {
+                                throw new RuntimeException(e);
+                            } catch (IllegalAccessException e) {
+                                throw new RuntimeException(e);
+                            }
                         }
                     }
                 }
@@ -198,8 +202,9 @@ public class GameMenuController {
             gameMenu.resetStyles(row.getRowView());
         }
     }
+
     //TODO: added this;
-    public void updateGame(Game game){
+    public void updateGame(Game game) {
         updateScores(game);
         updateHandCardNumber(game);
         ArrayList<Row> allRows = new ArrayList<>();
@@ -278,20 +283,23 @@ public class GameMenuController {
             timeline.play();
         }
     }
+
     //TODO: editing this
     private void setCardsPoint(Row row) {
         int point;
         boolean hasCommanderHorn = hasRegularCommanderHorn(row);
         HashMap<CardData, ArrayList<RegularCard>> cardMap = row.getCardDataMap();
-        for (RegularCard card : row.getCards()) {
+        for (DecksCard decksCard : row.getCards()) {
+            if (!(decksCard instanceof RegularCard)) continue;
+            RegularCard card = (RegularCard) decksCard;
             if (card.isHero()) continue;
-            RegularCardData regularCardData = (RegularCardData)card.getCardData();
+            RegularCardData regularCardData = (RegularCardData) card.getCardData();
             point = card.getPoint();
             if (row.isDamaged()) point = 1;
-            if (cardMap.containsKey(regularCardData)){
+            if (cardMap.containsKey(regularCardData)) {
                 ArrayList<RegularCard> cards = cardMap.get(regularCardData);
                 int coef = cards.size();
-                if (coef > 1){
+                if (coef > 1) {
                     point *= coef;
                 }
             }
@@ -309,6 +317,7 @@ public class GameMenuController {
             card.setPointInGame(point);
         }
     }
+
     //TODO: editing this
     private void switchBoard(Game game) throws NoSuchMethodException {
         Player currentPlayer = game.getCurrentPlayer();
@@ -327,7 +336,8 @@ public class GameMenuController {
     }
 
     private boolean hasRegularCommanderHorn(Row row) {
-        for (RegularCard regularCard : row.getCards()) {
+        for (DecksCard decksCard : row.getCards()) {
+            if (!(decksCard instanceof RegularCard regularCard)) continue;
             if (regularCard.isHero()) continue;
             if (((DeckCardData) regularCard.getCardData()).getAbility() != null && ((DeckCardData) regularCard.getCardData()).getAbility().equals(Ability.HORN_COMMANDER)) {
                 return true;
@@ -413,12 +423,24 @@ public class GameMenuController {
             for (Node cardView : nodes) {
                 game.getCurrentPlayer().addToDiscardPile((DecksCard) ((CardView) cardView).getCard());
                 AnimationMaker.getInstance().discardAnimation((DecksCard) ((CardView) cardView).getCard(), destinationHBox, game.getCurrentPlayer().getPlayerView().getDiscardPileView(), game, gameMenu);
-
             }
             game.getWeatherCards().clear();
             card.run(game);
         });
         translate.play();
     }
+    private void handleDecoy(Game game, SpecialCard decoy){
+        Row row = game.getSelectedRow();
+        for (DecksCard decksCard : row.getCards()){
+            decksCard.getCardView().getStyleClass().add(CssAddress.GAME_HAND_SM_CARD.getStyleClass());
+            decksCard.getCardView().setOnMousePressed(mouseEvent -> {
+               game.getCurrentPlayer().getPlayerView().getHandView().getChildren().remove(decoy.getCardView());
+               game.getSelectedRow().getRowView().getRow().getChildren().add(decoy.getCardView());
 
+
+            });
+        }
+
+
+    }
 }

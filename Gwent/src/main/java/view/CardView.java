@@ -50,6 +50,7 @@ public class CardView extends Pane {
     public void updatePoint() {
         setPointColor();
         point.setText(String.valueOf(((RegularCard) card).getPointInGame()));
+        setPointColor();
     }
 
     private void setPointColor() {

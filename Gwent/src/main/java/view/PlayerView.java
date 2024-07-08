@@ -56,6 +56,12 @@ public class PlayerView {
         discardPileView.getChildren().clear();
         discardPileView.getChildren().add(decksCard.getCardView());
     }
+    public void addCardToHand(DecksCard decksCard){
+        handView.getChildren().add(decksCard.getCardView());
+    }
+    public void addCardToDeck(DecksCard decksCard){
+        deckView.getChildren().add(decksCard.getCardView());
+    }
     private void setUpDiscardPile(HBox discardPile){
         clone(discardPileView, discardPile);
         pane.getChildren().add(discardPileView);

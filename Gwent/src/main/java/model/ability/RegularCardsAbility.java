@@ -2,6 +2,7 @@ package model.ability;
 
 import enums.Ability;
 import enums.cardsData.CardData;
+import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
 import javafx.geometry.Bounds;
 import javafx.scene.Node;
@@ -81,15 +82,17 @@ public class RegularCardsAbility {
         }
         for (DecksCard decksCard : cards){
             currentPlayer.addCardToHand(decksCard);
+            currentPlayer.getPlayerView().addCardToDeck(decksCard);
             Bounds nodeBounds = decksCard.getCardView().localToScene(decksCard.getCardView().getBoundsInLocal());
             TranslateTransition translate = AnimationMaker.getInstance().getTranslate(decksCard, nodeBounds,
-                    currentGame.getCurrentPlayer().getPlayerView().getHandView(), 0.6);
-            translate.setOnFinished(event -> {
+                    currentGame.getCurrentPlayer().getPlayerView().getHandView(), 0.4);
+            SequentialTransition sequentialTransition = new SequentialTransition(translate);
+            sequentialTransition.setOnFinished(event -> {
                 playerView.getHandView().getChildren().add(decksCard.getCardView());
                 decksCard.getCardView().setTranslateX(0);
                 decksCard.getCardView().setTranslateY(0);
             });
-            translate.play();
+            sequentialTransition.play();
         }
     }
     public void berserker(Game currentGame){
