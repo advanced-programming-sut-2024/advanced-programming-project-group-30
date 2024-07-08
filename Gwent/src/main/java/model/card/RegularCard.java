@@ -2,26 +2,28 @@ package model.card;
 
 import enums.FactionType;
 import enums.RegularCardPositionType;
-import enums.cardsData.CardData;
+import enums.cardsData.RegularCardData;
+import model.Game;
 import model.ability.RegularCardsAbility;
+import view.CardView;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 public class RegularCard extends DecksCard {
     private final boolean isHero;
-    private final int point;
     private int pointInGame;
-    private final RegularCardsAbility ability;
     private final RegularCardPositionType positionType;
 
-    public RegularCard(String name, FactionType faction, CardData cardData, boolean isHero, int point, RegularCardsAbility ability, RegularCardPositionType position) {
-        super(name, faction,cardData, false);
+    public RegularCard(String name, FactionType faction, RegularCardData cardData, boolean isHero, Method ability, RegularCardPositionType position) {
+        super(name, faction, cardData, ability, false);
         this.isHero = isHero;
-        this.point = point;
-        this.pointInGame = point;
-        this.ability = ability;
+        this.pointInGame = cardData.getPoint();
         this.positionType = position;
+        this.cardView = new CardView(this);
     }
 
-    public RegularCardsAbility getAbility() {
+    public Method getAbility() {
         return ability;
     }
 
@@ -29,8 +31,8 @@ public class RegularCard extends DecksCard {
         return isHero;
     }
 
-    public int getPoint() {
-        return point;
+    public void resetPoint() {
+        pointInGame = ((RegularCardData) getCardData()).getPoint();
     }
 
     public int getPointInGame() {
@@ -39,9 +41,23 @@ public class RegularCard extends DecksCard {
 
     public void setPointInGame(int pointInGame) {
         this.pointInGame = pointInGame;
+        this.cardView.updatePoint();
     }
 
     public RegularCardPositionType getPositionType() {
         return positionType;
+    }
+
+    public void run(Game game) {
+        try {
+            System.out.println(ability);
+            ability.invoke(RegularCardsAbility.getInstance(), game);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public int getPoint() {
+        return ((RegularCardData) getCardData()).getPoint();
     }
 }

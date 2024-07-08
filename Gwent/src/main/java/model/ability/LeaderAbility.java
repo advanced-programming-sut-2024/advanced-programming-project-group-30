@@ -2,171 +2,115 @@ package model.ability;
 
 import model.Game;
 
-public abstract class LeaderAbility {
-    public LeaderAbility createNewAbilityByName(String name) {
-        return null;
+import java.lang.reflect.Method;
+
+public class LeaderAbility {
+    private static LeaderAbility instance;
+
+    private LeaderAbility() {
     }
 
-    public abstract void run(Game currentGame);
-}
+    public static LeaderAbility getInstance() {
+        if (instance == null) instance = new LeaderAbility();
+        return instance;
+    }
 
-class TheSiegemasterAbility extends LeaderAbility {
-    @Override
-    public void run(Game currentGame) {
+    public static Method createNewAbilityByName(String name) {
+        Method method = null;
+        try {
+            method = LeaderAbility.class.getDeclaredMethod(name, Game.class);
+            method.setAccessible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return method;
+    }
+
+    public void theSiegemasterAbility(Game currentGame) {
 
     }
-}
 
-class TheSteelForgedAbility extends LeaderAbility {
-    @Override
-    public void run(Game currentGame) {
+    public void theSteelForgedAbility(Game currentGame) {
 
     }
-}
 
-class KingOfTemeriaAbility extends LeaderAbility {
-    @Override
-    public void run(Game currentGame) {
+    public void kingOfTemeriaAbility(Game currentGame) {
 
     }
-}
 
-class TheWhiteFlameAbility extends LeaderAbility {
-    @Override
-    public void run(Game currentGame) {
+    public void theWhiteFlameAbility(Game currentGame) {
 
     }
-}
 
-class LordCommanderOfTheNorthAbility extends LeaderAbility {
-    @Override
-    public void run(Game currentGame) {
+    public void lordCommanderOfTheNorthAbility(Game currentGame) {
 
     }
-}
 
-class SonOfMedellAbility extends LeaderAbility {
-    @Override
-    public void run(Game currentGame) {
+    public void sonOfMedellAbility(Game currentGame) {
 
     }
-}
 
-class TheWhiteFalmeAbility extends LeaderAbility {
-    @Override
-    public void run(Game currentGame) {
+    public void hisImperialMajestyAbility(Game currentGame) {
 
     }
-}
 
-class HisImperialMajestyAbility extends LeaderAbility {
-    @Override
-    public void run(Game currentGame) {
+    public void emporerOfNilfgaardAbility(Game currentGame) {
 
     }
-}
 
-class EmporerOfNilfgaardAbility extends LeaderAbility {
-    @Override
-    public void run(Game currentGame) {
+    public void theRelentlessAbility(Game currentGame) {
 
     }
-}
 
-class TheRelentlessAbility extends LeaderAbility {
-    @Override
-    public void run(Game currentGame) {
+    public void invaderOfTheNorthAbility(Game currentGame) {
 
     }
-}
 
-class InvaderOfTheNorthAbility extends LeaderAbility {
-    @Override
-    public void run(Game currentGame) {
+    public void bringerOfDeathAbility(Game currentGame) {
 
     }
-}
 
-class BringerOfDeathAbility extends LeaderAbility {
-    @Override
-    public void run(Game currentGame) {
+    public void kingOfTheWildHuntAbility(Game currentGame) {
 
     }
-}
 
-class KingOfTheWildHuntAbility extends LeaderAbility {
-    @Override
-    public void run(Game currentGame) {
+    public void destroyerOfWorldsAbility(Game currentGame) {
 
     }
-}
 
-class DestroyerOfWorldsAbility extends LeaderAbility {
-    @Override
-    public void run(Game currentGame) {
+    public void commanderOfTheRedRidersAbility(Game currentGame) {
 
     }
-}
 
-class CommanderOfTheRedRidersAbility extends LeaderAbility {
-    @Override
-    public void run(Game currentGame) {
+    public void theTreacherousAbility(Game currentGame) {
 
     }
-}
 
-class TheTreacherousAbility extends LeaderAbility {
-    @Override
-    public void run(Game currentGame) {
+    public void queenOfDolBlathannaAbility(Game currentGame) {
 
     }
-}
 
-class QueenOfDolBlathannaAbility extends LeaderAbility {
-    @Override
-    public void run(Game currentGame) {
+    public void theBeautifulAbility(Game currentGame) {
 
     }
-}
 
-class TheBeautifulAbility extends LeaderAbility {
-    @Override
-    public void run(Game currentGame) {
+    public void daisyOfTheValleyAbility(Game currentGame) {
 
     }
-}
 
-class DaisyOfTheValleyAbility extends LeaderAbility {
-    @Override
-    public void run(Game currentGame) {
+    public void pureBloodElfAbility(Game currentGame) {
 
     }
-}
 
-class PureBloodElfAbility extends LeaderAbility {
-    @Override
-    public void run(Game currentGame) {
+    public void hopeOfTheAenSeidheAbility(Game currentGame) {
 
     }
-}
 
-class HopeOfTheAenSeidheAbility extends LeaderAbility {
-    @Override
-    public void run(Game currentGame) {
+    public void crachAnCraiteAbility(Game currentGame) {
 
     }
-}
 
-class CrachAnCraiteAbility extends LeaderAbility {
-    @Override
-    public void run(Game currentGame) {
-
-    }
-}
-
-class KingBran extends LeaderAbility {
-    @Override
-    public void run(Game currentGame) {
+    public void kingBranAbility(Game currentGame) {
 
     }
 }

@@ -11,30 +11,27 @@ import java.util.Objects;
 
 public enum FactionType {
     NORTHERN_REALMS("Northern Realms", "Draw a card from your deck whenever you win a round.",
-            NorthernRealmsRegularCardsData.class, NorthernRealmsLeaderCardsData.class),
+            NorthernRealmsRegularCardsData.class),
     NILFGAARDIAN_EMPIRE("Nilfgaardian Empire", "Wins any round that ends in a draw.",
-            NilfgaardianEmpireRegularCardsData.class, NilfgaardianEmpireLeaderCardsData.class),
+            NilfgaardianEmpireRegularCardsData.class),
     MONSTERS("Monsters", "Keeps a random Unit Card out after each round.",
-            MonstersRegularCardsData.class, MonstersRegularCardsData.class),
+            MonstersRegularCardsData.class),
     SCOIA_TAEL("Scoia'tael", "Decides who takes first turn.",
-            ScoiaTaelRegularCardsData.class, ScoiaTaelLeaderCardsData.class),
+            ScoiaTaelRegularCardsData.class),
     SKELLIGE("Skellige",
             "2 random cards from the graveyard are placed on\n the battlefield at the start of the third round.",
-            SkelligeRegularCardsData.class, SkelligeLeaderCardsData.class),
-    ;
+            SkelligeRegularCardsData.class),;
 
     private final String name;
     private final String description;
     private final Class regularCardsData;
-    private final Class leaderCardsData;
     private final String lgImageAddress = "/Images/Game/Factions/" + this.toString().toLowerCase() + ".jpg";
     private final String shieldImageAddress = "/Images/Game/Factions/shield_" + this.toString().toLowerCase() + ".png";
 
-    FactionType(String name, String description, Class regularCardsData, Class leaderCardsData) {
+    FactionType(String name, String description, Class regularCardsData) {
         this.name = name;
         this.description = description;
         this.regularCardsData = regularCardsData;
-        this.leaderCardsData = leaderCardsData;
     }
 
     public static ArrayList<ChosenModelView<FactionType>> getAllChooseModelView() {
@@ -57,6 +54,10 @@ public enum FactionType {
 
     public String getDescription() {
         return description;
+    }
+
+    public Image getLgImage() {
+        return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream(lgImageAddress)));
     }
 
     public Image getShieldIcon() {

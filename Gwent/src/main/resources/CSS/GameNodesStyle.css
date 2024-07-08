@@ -1,0 +1,390 @@
+.background-image{
+    -fx-background-image: url('../Images/board.png');
+    -fx-background-size: 100% 100%;
+}
+.rectangle{
+    -fx-background-color: TRANSPARENT;
+    -fx-fill: TRANSPARENT;
+    -fx-stroke: TRANSPARENT;
+    -fx-border-radius: 16px;
+    -fx-pref-width: 56;
+    -fx-pref-height: 79;
+}
+.brownBox {
+    -fx-background-color: rgba(23, 18, 16, 0.49);
+    -fx-border-width: 1;
+    -fx-pref-width: 261;
+    -fx-pref-height: 104;
+}
+.notif-box{
+    -fx-background-color: rgba(23, 18, 16, 0.75);
+    -fx-pref-height: 169;
+    -fx-pref-width: 1100;
+}
+.brownBoxShadowed{
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(three-pass-box, rgb(210, 181, 97), 10, 0, 0, 0);
+    -fx-background-color: rgba(23, 18, 16, 0.49);
+}
+.card-available-row{
+    -fx-background-color: rgba(217, 188, 85, 0.23);
+    -fx-background-size: 100% 100%;
+    -fx-background-radius: 3px;
+}
+.card-available-row:hover{
+    -fx-background-color: rgba(217, 188, 85, 0.23);
+    -fx-background-size: 100% 100%;
+    -fx-background-radius: 3px;
+    -fx-border-radius: 4px;
+    -fx-border-color: rgba(217, 188, 85, 0.64);
+    -fx-border-width: 1;
+}
+.profile-image{
+    -fx-image: url('../Images/Icons/profile.png');
+    -fx-background-size: 100% 100%;
+}
+.gem-on-image{
+    -fx-background-image: url('../Images/Icons/icon_gem_on.png');
+    -fx-pref-height: 44;
+    -fx-pref-width: 30;
+    -fx-background-size: 100% 100%;
+}
+.gem-off-image{
+    -fx-background-image: url('../Images/Icons/icon_gem_off.png');
+    -fx-pref-height: 44;
+    -fx-pref-width: 30;
+    -fx-background-size: 100% 100%;
+}
+.gemsBox{
+    -fx-max-height: 25;
+    -fx-max-width: 55;
+    -fx-pref-width: 55;
+    -fx-pref-height: 25;
+    -fx-spacing: 2;
+}
+.active-leader-image{
+    -fx-background-color: TRANSPARENT;
+    -fx-background-image: url('../Images/Icons/icon_leader_active.png');
+    -fx-background-size: 100% 100%;
+}
+.card-number-image{
+    -fx-image: url('../Images/Icons/icon_card_count.png');
+    -fx-background-size: 100% 100%;
+}
+.high-score{
+    -fx-background-image: url('../Images/Icons/icon_high_score.png');
+    -fx-background-size: 100% 100%;
+}
+.player-border{
+    -fx-background-color: TRANSPARENT;
+    -fx-image: url('../Images/Icons/icon_player_border.png');
+    -fx-background-size: 100% 100%;
+}
+.round-passed-image{
+    -fx-image: url('../Images/Icons/notif_round_passed.png');
+    -fx-background-size: 100% 100%;
+}
+.round-starts-image{
+    -fx-image: url('../Images/Icons/notif_round_start.png');
+    -fx-background-size: 100% 100%;
+}
+.draw-round-image{
+    -fx-image: url('../Images/Icons/notif_draw_round.png');
+    -fx-background-size: 100% 100%;
+}
+.win-round-image{
+    -fx-image: url('../Images/Icons/notif_win_round.png');
+    -fx-background-size: 100% 100%;
+}
+.lose-round-image{
+    -fx-image: url('../Images/Icons/notif_lose_round.png');
+    -fx-background-size: 100% 100%;
+}
+.cardSiegeRowIcon{
+    -fx-image: url('../Images/Icons/siege.png');
+    -fx-background-size: 100% 100%;
+}
+.cardRangedCombatRowIcon{
+    -fx-image: url('../Images/Icons/ranged_combat.png');
+    -fx-background-size: 100% 100%;
+}
+.cardCloseCombatRowIcon{
+    -fx-image: url('../Images/Icons/close_combat.png');
+    -fx-background-size: 100% 100%;
+}
+.cardAgileIcon{
+    -fx-image: url('../Images/Icons/agile.png');
+    -fx-background-size: 100% 100%;
+}
+.normalCardPointIcon{
+    -fx-image: url('../Images/Icons/power_normal.png');
+    -fx-background-size: 100% 100%;
+}
+.yellowish-arial-label{
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+    -fx-font-family: Cambria;
+    -fx-text-fill: rgba(217, 188, 85, 0.87);
+}
+.informationBoxUsername{
+    -fx-font-size: 17;
+    -fx-font-weight: bold;
+    -fx-font-family: Cambria;
+    -fx-text-fill: rgba(217, 188, 85, 0.87);
+}
+
+.faction-label{
+    -fx-font-size: 10;
+    -fx-font-family: Cambria;
+    -fx-text-fill: rgba(243, 214, 176, 1);
+}
+.black-bold-arial-label{
+    -fx-font-size: 23;
+    -fx-font-weight: bold;
+    -fx-font-family: Arial;
+    -fx-text-fill: #000000;
+    -fx-alignment: center;
+    -fx-pref-width: 30;
+    -fx-pref-height: 30;
+}
+.black-arial-label{
+    -fx-font-size: 18;
+    -fx-font-family: Arial;
+    -fx-text-fill: #000000;
+}
+.notificationBoxStyle{
+    -fx-background-color: rgba(0, 0, 0, 0.78);
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+    -fx-font-size: 21;
+    -fx-font-weight: bold;
+    -fx-font-family: Cambria;
+    -fx-text-fill: rgb(173, 137, 82);
+    -fx-pref-width: 1100;
+    -fx-pref-height: 169;
+}
+.notificationMessageStyle{
+    -fx-font-size: 25;
+    -fx-font-weight: bold;
+    -fx-font-family: Cambria;
+    -fx-pref-height: 101;
+    -fx-pref-width: 223;
+    -fx-text-fill: rgba(243, 214, 176, 1);
+}
+.pass-button{
+    -fx-background-color: rgba(0, 0, 0, 0.66);
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+    -fx-font-size: 21;
+    -fx-font-weight: bold;
+    -fx-font-family: Cambria;
+    -fx-text-fill: rgb(173, 137, 82);
+    -fx-border-color:  rgb(173, 137, 82);
+}
+.handCard:hover{
+    -fx-translate-y: -12;
+}
+.normalCardPointLabel{
+    -fx-alignment: CENTER;
+    -fx-font-size: 8;
+    -fx-font-weight: bold;
+}
+.powerCardPointLabel{
+    -fx-alignment: CENTER;
+    -fx-font-size: 8;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+}
+.medicAbilityIcon{
+    -fx-image: url('../Images/Icons/card_ability_medic.png');
+    -fx-background-size: 100% 100%;
+}
+.agileAbilityIcon{
+    -fx-image: url('../Images/Icons/card_ability_agile.png');
+    -fx-background-size: 100% 100%;
+}
+.spyAbilityIcon{
+    -fx-image: url('../Images/Icons/card_ability_spy.png');
+    -fx-background-size: 100% 100%;
+}
+.tightBondAbilityIcon{
+    -fx-image: url('../Images/Icons/card_ability_bond.png');
+    -fx-background-size: 100% 100%;
+}
+.avengerAbilityIcon{
+    -fx-image: url('../Images/Icons/card_ability_avenger.png');
+    -fx-background-size: 100% 100%;
+}
+.berserkerAbilityIcon{
+    -fx-image: url('../Images/Icons/card_ability_berserker.png');
+    -fx-background-size: 100% 100%;
+}
+.clearWeatherAbilityIcon{
+    -fx-image: url('../Images/Icons/power_clear.png');
+    -fx-background-size: 100% 100%;
+}
+.decoyAbilityIcon{
+    -fx-image: url('../Images/Icons/power_decoy.png');
+    -fx-background-size: 100% 100%;
+}
+.impenetrableFogAbilityIcon{
+    -fx-image: url('../Images/Icons/power_fog.png');
+    -fx-background-size: 100% 100%;
+}
+.bitingFrostAbilityIcon{
+    -fx-image: url('../Images/Icons/power_frost.png');
+    -fx-background-size: 100% 100%;
+}
+.commanderHornAbilityIcon{
+    -fx-image: url('../Images/Icons/power_horn.png');
+    -fx-background-size: 100% 100%;
+}
+.mardroemeAbilityIcon{
+    -fx-image: url('../Images/Icons/power_mardroeme.png');
+    -fx-background-size: 100% 100%;
+}
+.moralBoostAbilityIcon{
+    -fx-image: url('../Images/Icons/card_ability_morale.png');
+    -fx-background-size: 100% 100%;
+}
+.musterAbilityIcon{
+    -fx-image: url('../Images/Icons/card_ability_muster.png');
+    -fx-background-size: 100% 100%;
+}
+.torrentialRainAbilityIcon{
+    -fx-image: url('../Images/Icons/power_rain.png');
+    -fx-background-size: 100% 100%;
+}
+.scorchAbilityIcon{
+    -fx-image: url('../Images/Icons/ability_scorch.png');
+}
+.skelligeStormAbilityIcon{
+    -fx-image: url('../Images/Icons/power_storm.png');
+    -fx-background-size: 100% 100%;
+}
+.powerHeroIcon{
+    -fx-image: url('../Images/Icons/power_hero.png');
+    -fx-background-size: 100% 100%;
+}
+.monsters-faction{
+    -fx-background-image: url('../Images/Icons/monstersFaction.jpg');
+    -fx-background-size: 100% 100%;
+}
+.nilfgaardian-faction{
+    -fx-background-image: url('../Images/Icons/nilfgaardFaction.jpg');
+    -fx-background-size: 100% 100%;
+}
+.northern-realms-faction{
+    -fx-background-image: url('../Images/Icons/realmsFaction.jpg');
+    -fx-background-size: 100% 100%;
+}
+.scoia-tael-faction{
+    -fx-background-image: url('../Images/Icons/scoiataelFaction.jpg');
+    -fx-background-size: 100% 100%;
+}
+.skellige-faction{
+    -fx-background-image: url('../Images/Icons/skelligeFaction.jpg');
+    -fx-background-size: 100% 100%;
+}
+.passTurnImage{
+    -fx-image: url('../Images/Icons/notif_round_passed.png');
+    -fx-background-size: 100% 100%;
+}
+.blueScoreImage{
+    -fx-image: url('../Images/Icons/score_total_op.png');
+    -fx-background-size: 100% 100%;
+}
+.yellowScoreImage{
+    -fx-image: url('../Images/Icons/score_total_me.png');
+    -fx-background-size: 100% 100%;
+}
+.rowStyle{
+    -fx-pref-height: 82;
+    -fx-pref-width: 469;
+    -fx-alignment: center;
+    -fx-spacing: 0;
+}
+.rowPaneStyle{
+    -fx-spacing: 2.8;
+    -fx-pref-height: 80;
+    -fx-pref-width:582;
+}
+.rowSideScoreLabelArea{
+    -fx-alignment: center;
+    -fx-pref-height: 66;
+    -fx-pref-width: 32;
+}
+.cardInRowStyle{
+    -fx-scale-x: 0.9;
+    -fx-scale-y: 0.9;
+}
+.scoreLabel{
+    -fx-text-fill: rgba(0, 0, 0, 0.78);
+    -fx-font-weight: bold;
+    -fx-font-size: 20;
+    -fx-alignment: center;
+    -fx-font-family: Cambria;
+}
+.specialCardPosition{
+    -fx-pref-height: 82;
+    -fx-pref-width: 77;
+    -fx-alignment: center;
+}
+.leader-position{
+    -fx-pref-width: 56;
+    -fx-pref-height: 80;
+    -fx-alignment: center;
+}
+.deck-position{
+    -fx-pref-width: 60;
+    -fx-pref-height: 91;
+    -fx-alignment: center;
+}
+.discardPile-position{
+    -fx-alignment: center;
+    -fx-pref-width: 50;
+    -fx-pref-height: 72;
+}
+.hand-padding{
+    -fx-padding: 0 0 0 50;
+    -fx-alignment: center;
+    -fx-max-width: 582;
+}
+.rootPaneNotifStyle{
+    -fx-background-color: rgba(23, 18, 16, 0.4);
+    -fx-background-size: 100% 100%;
+}
+.specialScorchIcon{
+    -fx-image: url('../Images/Icons/power_scorch.png');
+    -fx-background-size: 100% 100%;
+}
+.bitingFrostEffect{
+    -fx-background-image: url('../Images/Icons/overlay_frost.png');
+    -fx-background-size: 100% 100%;
+}
+.rainEffect{
+    -fx-background-image: url('../Images/Icons/overlay_rain.png');
+    -fx-background-size: 100% 100%;
+}
+.fogEffect{
+    -fx-background-image: url('../Images/Icons/overlay_fog.png');
+    -fx-background-size: 100% 100%;
+}
+.extraPoint{
+    -fx-text-fill: rgba(196, 187, 46, 0.98);
+}
+.pointLoss{
+    -fx-text-fill: rgba(201, 50, 50, 0.98);
+}
+.regularPoint{
+    -fx-text-fill: rgba(0, 0, 0, 0.98);
+}
+.notifOppTurn{
+    -fx-image: url('../Images/Icons/notif_op_turn.png');
+    -fx-background-size: 100% 100%
+}
+.notifMeTurn{
+    -fx-image: url('../Images/Icons/notif_me_turn.png');
+    -fx-background-size: 100% 100%;
+}
+

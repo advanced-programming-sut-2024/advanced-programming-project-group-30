@@ -1,9 +1,9 @@
 package enums.cardsData;
 
-import view.ChosenModelView;
+import enums.Ability;
 
 public interface DeckCardData extends CardData {
     int getNumber();
 
-    ChosenModelView getChooseModelView();
+    Ability getAbility();
 }

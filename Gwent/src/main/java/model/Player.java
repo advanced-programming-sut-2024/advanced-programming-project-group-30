@@ -1,14 +1,21 @@
 package model;
 
+import enums.CoordinateData;
+import enums.CssAddress;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import enums.cardsData.LeaderCardData;
 import model.card.DecksCard;
-import model.card.Leader;
+import view.PlayerView;
+import view.PlayerInformationView;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Player {
     private final User user;
-    private Leader leader;
+    private LeaderCardData leader;
     private final ArrayList<DecksCard> deck;
     private final ArrayList<DecksCard> hand = new ArrayList<>();
     private final ArrayList<DecksCard> discardPile = new ArrayList<>();
@@ -18,6 +25,8 @@ public class Player {
     private int point = 0;
     private final int[] roundsPoint = new int[3];
     private int life = 2;
+    private DecksCard selectedCard;
+    private PlayerView playerView;
 
     public Player(User user, ArrayList<DecksCard> deck) {
         this.user = user;
@@ -31,11 +40,11 @@ public class Player {
         return user;
     }
 
-    public Leader getLeader() {
+    public LeaderCardData getLeader() {
         return leader;
     }
 
-    public void setLeader(Leader leader) {
+    public void setLeader(LeaderCardData leader) {
         this.leader = leader;
     }
 
@@ -63,12 +72,23 @@ public class Player {
         return siege;
     }
 
-    public int getPoint() {
-        return point;
+    public void addCardToHand(DecksCard card) {
+        hand.add(card);
     }
 
-    public void setPoint(int point) {
-        this.point = point;
+    public void addCardToDeck(DecksCard card) {
+        deck.add(card);
+    }
+
+    public void removeCardFromDeck(DecksCard card) {
+        deck.remove(card);
+    }
+
+    public int getPoint() {
+        point = 0;
+        for (Row row : getRows())
+            point += row.getRowPoint();
+        return point;
     }
 
     public int[] getRoundsPoint() {
@@ -84,7 +104,7 @@ public class Player {
     }
 
     public void playCard(DecksCard decksCard) {
-
+        hand.remove(decksCard);
     }
 
     public void playCard(DecksCard decksCard, Row row) {
@@ -93,5 +113,50 @@ public class Player {
 
     public void playCard(DecksCard decksCard, DecksCard target) {
 
+    }
+
+    public ArrayList<Row> getRows() {
+        ArrayList<Row> rows = new ArrayList<>();
+        rows.add(closeCombat);
+        rows.add(rangedCombat);
+        rows.add(siege);
+        return rows;
+    }
+
+    public void setSelectedCard(DecksCard selectedCard) {
+        this.selectedCard = selectedCard;
+    }
+
+    public DecksCard getSelectedCard() {
+        return selectedCard;
+    }
+
+    public void createPlayerView(Pane pane, VBox boardView, HBox discardPileView, HBox deckView, HBox handView, HBox leaderView, CoordinateData coordinateData, CssAddress cssAddress) {
+        playerView = new PlayerView(this, pane, boardView, discardPileView, deckView, handView, leaderView, coordinateData, cssAddress);
+    }
+
+    public PlayerInformationView getPlayerInformationView() {
+        return playerView.getPlayerInformationView();
+    }
+
+    public void setPlayerView(PlayerView playerView) {
+        this.playerView = playerView;
+    }
+
+    public PlayerView getPlayerView() {
+        return playerView;
+    }
+
+    public void updatePoint(int point) {
+        this.point += point;
+        playerView.getPlayerInformationView().updateTotalScore();
+    }
+
+    public void discardCard(DecksCard decksCard) {
+        discardPile.add(decksCard);
+    }
+
+    public void addToDiscardPile(DecksCard card) {
+        discardPile.add(card);
     }
 }

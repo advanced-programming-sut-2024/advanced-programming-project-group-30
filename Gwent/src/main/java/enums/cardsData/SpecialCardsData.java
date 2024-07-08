@@ -1,36 +1,33 @@
 package enums.cardsData;
 
+import enums.Ability;
 import javafx.scene.image.Image;
-import model.card.specialCard.*;
+import model.card.SpecialCard;
 import view.ChosenModelView;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Objects;
 
 public enum SpecialCardsData implements DeckCardData {
-    COMMANDER_HORN("CommanderHorn", "commanderHorn", "Doubles the strength of all unit cards in that row. Limited to 1 per row.", 3),
-    DECOY("Decoy", "decoy", "Swap with a card on the battlefield to return it to your hand.", 3),
-    MARDROEME("Mardroeme", "mardroeme", "Triggers transformation of all Berserker cards on the same row.", 3),
-    SCORCH("Scorch", "scorch", "Triggers transformation of all Berserker cards on the same row.", 3),
-    BITING_FROST("BitingFrost", "bitingFrost", "Sets the strength of all Close Combat cards to 1 for both players.", 2),
-    CLEAR_WEATHER("ClearWeather", "clearWeather", "Removes all Weather Cards (Biting Frost, Impenetrable Fog and Torrential Rain) effects.", 2),
-    IMPENETRABLE_FOG("ImpenetrableFog", "impenetrableFog", "Sets the strength of all Ranged Combat cards to 1 for both players.", 3),
-    SKELLIGE_STORM("SkelligeStorm", "skelligeStorm", "Sets the strength of all Ranged Combat cards to 1 for both players.", 3),
-    TORRENTIAL_RAIN("TorrentialRain", "torrentialRain", "Sets the strength of all Siege Combat cards to 1 for both players.", 2),
+    COMMANDER_HORN("Commander Horn", Ability.HORN_COMMANDER, 3, false),
+    DECOY("Decoy", Ability.DECOY, 3, false),
+    MARDROEME("Mardroeme", Ability.MARDROEME, 3, false),
+    SCORCH("Scorch", Ability.SCORCH, 3, true),
     ;
 
     private final String name;
-    private final String abilityName;
-    private final String description;
+    private final Ability ability;
     private final int numberOfCard;
+    private final boolean isDiscardAfterPlaying;
     private final String lgImageAddress = "/Images/Game/LgCardsImages/special_" + this.toString().toLowerCase() + ".jpg";
+    private final String smImageAddress = "/Images/Game/SmCardsImages/special_" + this.toString().toLowerCase() + ".jpg";
 
-    SpecialCardsData(String name, String abilityName, String description, int cardsNumber) {
+
+    SpecialCardsData(String name, Ability ability, int cardsNumber, boolean isDiscardAfterPlaying) {
         this.name = name;
-        this.abilityName = abilityName;
-        this.description = description;
+        this.ability = ability;
         this.numberOfCard = cardsNumber;
+        this.isDiscardAfterPlaying = isDiscardAfterPlaying;
     }
 
     public static ArrayList<SpecialCard> getAllSpecialCard() {
@@ -41,16 +38,14 @@ public enum SpecialCardsData implements DeckCardData {
         return specialCards;
     }
 
-    public String getAbilityName() {
-        String abilityName = this.abilityName.replaceAll("(?=[A-Z])", " ");
-        abilityName = abilityName.charAt(0) + abilityName.substring(1);
-        if (abilityName.equals("Commander Horn")) abilityName = "Commander's Horn";
-        return abilityName;
-    }
-
     @Override
     public int getNumber() {
         return numberOfCard;
+    }
+
+    @Override
+    public Ability getAbility() {
+        return this.ability;
     }
 
     @Override
@@ -59,20 +54,17 @@ public enum SpecialCardsData implements DeckCardData {
     }
 
     @Override
+    public Image getSmImage() {
+        return new Image(Objects.requireNonNull(this.getClass().getResourceAsStream(smImageAddress)));
+    }
+
+    @Override
     public ChosenModelView getChooseModelView() {
         return new ChosenModelView<>(Objects.requireNonNull(
-                this.getClass().getResourceAsStream(lgImageAddress)), this, this.description, this.getAbilityName());
+                this.getClass().getResourceAsStream(lgImageAddress)), this, ability.getExplanation(), ability.getAbilityMethodName());
     }
 
     private SpecialCard createCard() {
-        SpecialCard newSpecialCard;
-        try {
-            newSpecialCard = (SpecialCard) Class.forName("model.card.specialCard." + this.name)
-                    .getConstructor(String.class, String.class, CardData.class).newInstance(this.name, this.description, this);
-        } catch (InstantiationException | IllegalAccessException | ClassNotFoundException | NoSuchMethodException |
-                 InvocationTargetException e) {
-            throw new RuntimeException(e);
-        }
-        return newSpecialCard;
+        return new SpecialCard(name, null, this, isDiscardAfterPlaying, ability.getAbility());
     }
 }

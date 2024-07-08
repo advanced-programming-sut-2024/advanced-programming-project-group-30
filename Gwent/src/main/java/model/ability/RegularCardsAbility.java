@@ -1,88 +1,85 @@
 package model.ability;
 
 import model.Game;
+import model.Player;
+import model.Row;
+import model.card.DecksCard;
 
-public abstract class RegularCardsAbility {
-    public static RegularCardsAbility createNewAbilityByName(String name) {
-        return null;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Random;
+
+
+public class RegularCardsAbility {
+    private static RegularCardsAbility instance;
+
+    private RegularCardsAbility() {
     }
 
-    public abstract void run(Game currentGame);
-}
+    public static RegularCardsAbility getInstance() {
+        if (instance == null) instance = new RegularCardsAbility();
+        return instance;
+    }
 
-class Decoy extends RegularCardsAbility {
-    @Override
-    public void run(Game currentGame) {
+    public static Method createNewAbilityByName(String name) {
+        Method method = null;
+        try {
+            method = RegularCardsAbility.class.getDeclaredMethod(name, Game.class);
+            method.setAccessible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return method;
+    }
+
+    public void medic(Game currentGame) {
 
     }
-}
 
-class HornCommander extends RegularCardsAbility {
-    @Override
-    public void run(Game currentGame) {
+    public void commanderHorn(Game currentGame) {
 
     }
-}
 
-class Medic extends RegularCardsAbility {
-    @Override
-    public void run(Game currentGame) {
+    public void moralBoost(Game currentGame) {
+        Row row = currentGame.getSelectedRow();
+        row.addExtraPoint();
+    }
+
+    public void muster(Game currentGame) {
 
     }
-}
 
-class MoralBoost extends RegularCardsAbility {
-    @Override
-    public void run(Game currentGame) {
+    public void scorch(Game currentGame) {
 
     }
-}
 
-class Muster extends RegularCardsAbility {
-    @Override
-    public void run(Game currentGame) {
+    public void tightBond(Game currentGame) {
+
 
     }
-}
 
-class Scorch extends RegularCardsAbility {
-    @Override
-    public void run(Game currentGame) {
+    public void spy(Game currentGame) {
+        Player currentPlayer = currentGame.getCurrentPlayer();
+        ArrayList<DecksCard> hand = currentPlayer.getDiscardPile();
+        Random random = new Random();
+        int firstCardIndex = random.nextInt(hand.size());
+        int secondCardIndex = random.nextInt(hand.size());
+        while (firstCardIndex == secondCardIndex) {
+            secondCardIndex = random.nextInt(hand.size());
+        }
+        DecksCard firstCard = hand.get(firstCardIndex);
+        DecksCard secondCard = hand.get(secondCardIndex);
+    }
+
+    public void berserker(Game currentGame) {
 
     }
-}
 
-class TightBond extends RegularCardsAbility {
-    @Override
-    public void run(Game currentGame) {
+    public void mardroeme(Game currentGame) {
 
     }
-}
 
-class Spy extends RegularCardsAbility {
-    @Override
-    public void run(Game currentGame) {
-
-    }
-}
-
-class Berserker extends RegularCardsAbility {
-    @Override
-    public void run(Game currentGame) {
-
-    }
-}
-
-class Mardroeme extends RegularCardsAbility {
-    @Override
-    public void run(Game currentGame) {
-
-    }
-}
-
-class Transformers extends RegularCardsAbility {
-    @Override
-    public void run(Game currentGame) {
+    public void transformer(Game currentGame) {
 
     }
 }

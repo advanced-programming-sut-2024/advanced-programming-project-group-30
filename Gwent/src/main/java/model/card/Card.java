@@ -4,7 +4,7 @@ import enums.FactionType;
 import enums.cardsData.CardData;
 
 
-abstract class Card {
+public abstract class Card{
     private final String name;
     private final FactionType faction;
     private final CardData cardData;
@@ -25,12 +25,5 @@ abstract class Card {
 
     public CardData getCardData() {
         return cardData;
-    }
-
-    public boolean sames(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Card card = (Card) o;
-        return cardData == card.cardData;
     }
 }

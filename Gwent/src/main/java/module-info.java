@@ -5,6 +5,8 @@ module Gwent {
     requires javafx.media;
     requires java.desktop;
     requires com.google.gson;
+    requires jdk.compiler;
+    requires java.sql;
 
     exports view;
     exports model;
@@ -14,5 +16,4 @@ module Gwent {
     opens model.card to com.google.gson;
     opens model.ability to com.google.gson;
     opens enums to com.google.gson;
-
 }
