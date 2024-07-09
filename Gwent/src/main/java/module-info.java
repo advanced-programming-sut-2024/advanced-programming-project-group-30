@@ -11,7 +11,7 @@ module Gwent {
     exports view;
     exports model;
     exports enums;
-    opens view to javafx.fxml;
+    opens view to javafx.fxml, com.google.gson;
     opens model to com.google.gson;
     opens model.card to com.google.gson;
     opens model.ability to com.google.gson;

@@ -71,8 +71,10 @@ public class GameMenu implements Menu {
     }
 
     public void setHand(ArrayList<DecksCard> hand) {
-        for (DecksCard card : hand)
+        for (DecksCard card : hand) {
             this.hand.getChildren().add(card.getCardView());
+            card.getCardView().getStyleClass().add(CssAddress.GAME_HAND_SM_CARD.getStyleClass());
+        }
     }
 
     public Node[] getCurrentPlayerViewField() {
@@ -169,7 +171,6 @@ public class GameMenu implements Menu {
 
     @FXML
     private void passTurn() {
-        System.out.println(App.getCurrentGame().isRoundPassed());
         gameMenuController.checkRound(App.getCurrentGame());
         App.getCurrentGame().setRoundIsPassed(true);
     }

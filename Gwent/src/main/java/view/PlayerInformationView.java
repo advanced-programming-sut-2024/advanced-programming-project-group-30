@@ -128,7 +128,7 @@ public class PlayerInformationView extends Pane {
         handCardNumber.setLayoutX(CoordinateData.INFORMATION_CARD_NUMBER_LABEL.getX());
         handCardNumber.setLayoutY(CoordinateData.INFORMATION_CARD_NUMBER_LABEL.getY());
         handCardNumber.getStyleClass().add(CssAddress.CARD_NUMBER_LABEL.getStyleClass());
-        handCardNumber.setText("28");
+        handCardNumber.setText(String.valueOf(player.getHand().size()));
     }
 
     private void setUpInformationVbox() {
