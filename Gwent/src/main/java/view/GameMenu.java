@@ -1,11 +1,8 @@
 package view;
 
 import controller.GameMenuController;
-import enums.CoordinateData;
 import enums.CssAddress;
 import enums.GameNotification;
-import enums.SecurityQuestion;
-import enums.cardsData.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -16,9 +13,6 @@ import javafx.scene.layout.*;
 import javafx.util.Duration;
 import model.*;
 import model.card.DecksCard;
-import model.card.RegularCard;
-import model.card.SpecialCard;
-import model.card.WeatherCard;
 
 import java.util.ArrayList;
 
@@ -68,8 +62,8 @@ public class GameMenu implements Menu {
     @FXML
     private ImageView notifImage;
 
-    public GameMenuController getController() {
-        return gameMenuController;
+    public void setup() {
+        gameMenuController.setup();
     }
 
     public void addInformationViews(Pane currentPlayerInfo, Pane opponentPlayerInfo) {
@@ -81,12 +75,20 @@ public class GameMenu implements Menu {
             this.hand.getChildren().add(card.getCardView());
     }
 
-    public Node[] getPlayerViewField() {
+    public Node[] getCurrentPlayerViewField() {
         return new Node[]{pane, currentRowArea, discardPile, deck, hand, leader};
+    }
+
+    public Node[] getOpponentPlayerViewField() {
+        return new Node[]{pane, opponentRowsArea, opponentDiscardPile, opponentDeck, hand, opponentLeader};
     }
 
     public HBox getWeatherCardPosition() {
         return weatherCardPosition;
+    }
+
+    public void disablePane() {
+        pane.setDisable(true);
     }
 
     public void resetStyles(RowView rowView) {
@@ -152,12 +154,10 @@ public class GameMenu implements Menu {
     public void handlePassTurn(Game game) {
         game.getCurrentPlayer().getPlayerInformationView().getStyleClass().add("brownBoxShadowed");
         game.getOpponentPlayer().getPlayerInformationView().getStyleClass().remove("brownBoxShadowed");
-        for (DecksCard card : game.getOpponentPlayer().getHand()) {
+        for (DecksCard card : game.getOpponentPlayer().getHand())
             hand.getChildren().remove(card.getCardView());
-        }
-        for (DecksCard card : game.getCurrentPlayer().getHand()) {
+        for (DecksCard card : game.getCurrentPlayer().getHand())
             hand.getChildren().add(card.getCardView());
-        }
         showPassTurnNotification();
     }
 
@@ -171,9 +171,7 @@ public class GameMenu implements Menu {
 
     @FXML
     private void passTurn() {
-        System.out.println(App.getCurrentGame().isRoundPassed());
         gameMenuController.checkRound(App.getCurrentGame());
-        App.getCurrentGame().setRoundIsPassed(true);
     }
 
     private void showPassTurnNotification() {

@@ -1,12 +1,10 @@
 package model;
 
 import enums.FactionType;
-import enums.cardsData.CardData;
-import enums.cardsData.DeckCardData;
-import enums.cardsData.NeutralRegularCardsData;
-import enums.cardsData.SpecialCardsData;
+import enums.cardsData.*;
 import model.card.DecksCard;
 import model.card.RegularCard;
+import model.card.WeatherCard;
 
 import java.util.ArrayList;
 import java.util.HashMap;

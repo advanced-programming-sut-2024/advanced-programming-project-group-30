@@ -7,8 +7,13 @@ import enums.MenuScene;
 import enums.cardsData.DeckCardData;
 import enums.cardsData.RegularCardData;
 import enums.cardsData.SpecialCardsData;
+import javafx.scene.Node;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import model.card.DecksCard;
 import view.GameMenu;
+import view.PlayerView;
 
 import java.util.*;
 
@@ -86,16 +91,16 @@ public class PregameData {
 
     public Player getCurrentPlayer() {
         if (randomStart == 1)
-            return currentData.createPlayer(CoordinateData.PLAYER_INFORMATION_BOX, CssAddress.CURRENT_PLAYER_TOTAL_SCORE_IMAGE);
+            return currentData.createPlayer(CoordinateData.PLAYER_INFORMATION_BOX, CssAddress.CURRENT_PLAYER_TOTAL_SCORE_IMAGE, false);
         else
-            return anotherData.createPlayer(CoordinateData.PLAYER_INFORMATION_BOX, CssAddress.CURRENT_PLAYER_TOTAL_SCORE_IMAGE);
+            return anotherData.createPlayer(CoordinateData.PLAYER_INFORMATION_BOX, CssAddress.CURRENT_PLAYER_TOTAL_SCORE_IMAGE, false);
     }
 
     public Player getOpponentPlayer() {
         if (randomStart == 0)
-            return currentData.createPlayer(CoordinateData.OPPONENT_INFORMATION_BOX, CssAddress.OPPONENT_PLAYER_TOTAL_SCORE_IMAGE);
+            return currentData.createPlayer(CoordinateData.OPPONENT_INFORMATION_BOX, CssAddress.OPPONENT_PLAYER_TOTAL_SCORE_IMAGE, true);
         else
-            return anotherData.createPlayer(CoordinateData.OPPONENT_INFORMATION_BOX, CssAddress.OPPONENT_PLAYER_TOTAL_SCORE_IMAGE);
+            return anotherData.createPlayer(CoordinateData.OPPONENT_INFORMATION_BOX, CssAddress.OPPONENT_PLAYER_TOTAL_SCORE_IMAGE, true);
     }
 
     private void changeNumberData(DeckCardData cardData, int sign) {
@@ -168,8 +173,8 @@ class PregameUserData {
         }
     }
 
-    Player createPlayer(CoordinateData coordinate, CssAddress cssAddress) {
-        return new Player(user, getDeck(), (GameMenu) MenuScene.GAME_SCENE.getMenu(), coordinate, cssAddress);
+    Player createPlayer(CoordinateData coordinate, CssAddress cssAddress, boolean isOpponent) {
+        return new Player(user, getDeck(), (GameMenu) MenuScene.GAME_SCENE.getMenu(), coordinate, cssAddress, isOpponent);
     }
 
     private ArrayList<DecksCard> getDeck() {

@@ -12,7 +12,7 @@ public enum SpecialCardsData implements DeckCardData {
     COMMANDER_HORN("Commander Horn", Ability.HORN_COMMANDER, 3, false),
     DECOY("Decoy", Ability.DECOY, 3, false),
     MARDROEME("Mardroeme", Ability.MARDROEME, 3, false),
-    SCORCH("Scorch", Ability.SCORCH, 3, true),
+    SCORCH("Scorch", Ability.SPECIAL_SCORCH, 3, true),
     ;
 
     private final String name;

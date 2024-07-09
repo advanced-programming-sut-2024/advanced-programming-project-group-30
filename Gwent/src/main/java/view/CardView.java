@@ -49,8 +49,9 @@ public class CardView extends Pane {
 
     public void updatePoint() {
         setPointColor();
+        this.getChildren().remove(point);
         point.setText(String.valueOf(((RegularCard) card).getPointInGame()));
-        setPointColor();
+        this.getChildren().add(point);
     }
 
     private void setPointColor() {

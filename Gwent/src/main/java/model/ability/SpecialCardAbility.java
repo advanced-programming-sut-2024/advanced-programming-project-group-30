@@ -1,5 +1,7 @@
 package model.ability;
 
+import enums.MenuScene;
+
 import java.lang.reflect.Method;
 
 public class SpecialCardAbility {

@@ -30,13 +30,16 @@ public class Player {
     private int life = 2;
     private final PlayerView playerView;
 
-    public Player(User user, ArrayList<DecksCard> deck, GameMenu gameMenu, CoordinateData coordinateData, CssAddress cssAddress) {
+    public Player(User user, ArrayList<DecksCard> deck, GameMenu gameMenu, CoordinateData coordinateData,
+                  CssAddress cssAddress, boolean isOpponent) {
         this.user = user;
         this.deck = deck;
         Random random = new Random();
         for (int i = 0; i < 10; i++)
-            hand.add(deck.remove(random.nextInt(deck.size())));
-        playerView = createPlayerView(gameMenu.getPlayerViewField(), coordinateData, cssAddress);
+            addCardToHand(deck.remove(random.nextInt(deck.size())));
+        if (isOpponent)
+            this.playerView = createPlayerView(gameMenu.getOpponentPlayerViewField(), coordinateData, cssAddress);
+        else this.playerView = createPlayerView(gameMenu.getCurrentPlayerViewField(), coordinateData, cssAddress);
     }
 
     public PlayerView createPlayerView(Node[] nodes, CoordinateData coordinateData, CssAddress cssAddress) {

@@ -32,7 +32,7 @@ public enum NorthernRealmsRegularCardsData implements RegularCardData {
     BLUE_STRIPES_COMMANDO("Blue Stripes Commando", Ability.TIGHT_BOND, false, 4, 3, RegularCardPositionType.CLOSE_COMBAT),
     SABRINA_GLEVISSING("Sabrina Glevissing", null, false, 4, 1, RegularCardPositionType.RANGED_COMBAT),
     SHELDON_SKAGGS("Sheldon Skaggs", null, false, 4, 1, RegularCardPositionType.RANGED_COMBAT),
-    SIGISMUND_DIJKSTRA("Sigismund Dijkstra", Ability.SPY, false, 4, 1, RegularCardPositionType.CLOSE_COMBAT),
+    SIGISMUND_DIJKSTRA("Sigismund Dijkstra", Ability.SPY, false, 4, 1, RegularCardPositionType.OPPONENT_CLOSE_COMBAT),
     YARPEN_ZIGRIN("Yarpen Zigrin", null, false, 2, 1, RegularCardPositionType.CLOSE_COMBAT),
     KAEDWENI_SIEGE_EXPERT("Kaedweni Siege Expert", Ability.MORAL_BOOST, false, 1, 1, RegularCardPositionType.SIEGE),
     KAEDWENI_SIEGE_EXPERT_1("Kaedweni Siege Expert", Ability.MORAL_BOOST, false, 1, 1, RegularCardPositionType.SIEGE),

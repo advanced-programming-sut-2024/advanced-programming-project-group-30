@@ -25,6 +25,7 @@ import model.card.SpecialCard;
 import model.card.WeatherCard;
 import view.*;
 
+import java.awt.event.MouseEvent;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -46,6 +47,7 @@ public class GameMenuController {
         setupRows(player, opponentPlayer);
         handelHandsCardEvent(player.getHand(), game, player, opponentPlayer);
         handelHandsCardEvent(opponentPlayer.getHand(), game, opponentPlayer, player);
+        menu.setHand(player.getHand());
         menu.setUpNotificationBox();
     }
 
@@ -275,7 +277,10 @@ public class GameMenuController {
     public void checkRound(Game game) {
         if (game.isRoundPassed()) {
             endRound(game);
-        } else passTurn(game);
+        } else {
+            passTurn(game);
+            game.setRoundIsPassed(true);
+        }
         //TODO: leader abilities should be considered
     }
 
@@ -356,7 +361,6 @@ public class GameMenuController {
             setLoserOfTheRound(game.getOpponentPlayer());
             setLoserOfTheRound(game.getCurrentPlayer());
         } else {
-
             setLoserOfTheRound(loser);
         }
     }
@@ -372,6 +376,7 @@ public class GameMenuController {
     }
 
     private void passTurn(Game game) {
+        menu.disablePane();
         if (!game.isRoundPassed()) {
             Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), actionEvent -> {
                 try {
@@ -382,7 +387,6 @@ public class GameMenuController {
                     throw new RuntimeException(e);
                 }
             }));
-
             timeline.setCycleCount(1);
             timeline.play();
         }
@@ -421,7 +425,6 @@ public class GameMenuController {
         }
     }
 
-    //TODO: editing this
     private void switchBoard(Game game) throws NoSuchMethodException {
         Player currentPlayer = game.getCurrentPlayer();
         Player opponentPlayer = game.getOpponentPlayer();
@@ -526,7 +529,8 @@ public class GameMenuController {
             ArrayList<Node> nodes = new ArrayList<>(menu.getWeatherCardPosition().getChildren());
             for (Node cardView : nodes) {
                 game.getCurrentPlayer().discardCard((DecksCard) ((CardView) cardView).getCard());
-                AnimationMaker.getInstance().discardAnimation((DecksCard) ((CardView) cardView).getCard(), destinationHBox, game.getCurrentPlayer().getPlayerView().getDiscardPileView(), game, menu);
+                AnimationMaker.getInstance().discardAnimation((DecksCard) ((CardView) cardView).getCard(),
+                        destinationHBox, game.getCurrentPlayer().getPlayerView().getDiscardPileView(), game, menu);
             }
             game.getWeatherCards().clear();
             card.run(game);
@@ -541,11 +545,7 @@ public class GameMenuController {
             decksCard.getCardView().setOnMousePressed(mouseEvent -> {
                 game.getCurrentPlayer().getPlayerView().getHandView().getChildren().remove(decoy.getCardView());
                 game.getSelectedRow().getRowView().getRow().getChildren().add(decoy.getCardView());
-
-
             });
         }
-
-
     }
 }
