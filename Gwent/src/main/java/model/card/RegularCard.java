@@ -5,6 +5,7 @@ import enums.RegularCardPositionType;
 import enums.cardsData.RegularCardData;
 import model.Game;
 import model.ability.RegularCardsAbility;
+import model.ability.WeatherCardAbility;
 import view.CardView;
 
 import java.lang.reflect.InvocationTargetException;
@@ -13,11 +14,13 @@ import java.lang.reflect.Method;
 public class RegularCard extends DecksCard {
     private final boolean isHero;
     private int pointInGame;
+    private final Method ability;
     private final RegularCardPositionType positionType;
 
     public RegularCard(String name, FactionType faction, RegularCardData cardData, boolean isHero, Method ability, RegularCardPositionType position) {
         super(name, faction, cardData, ability, false);
         this.isHero = isHero;
+        this.ability = ability;
         this.pointInGame = cardData.getPoint();
         this.positionType = position;
         this.cardView = new CardView(this);
@@ -50,10 +53,9 @@ public class RegularCard extends DecksCard {
 
     public void run(Game game) {
         try {
-            System.out.println(ability);
-            ability.invoke(RegularCardsAbility.getInstance(), game);
+            ability.invoke(RegularCardsAbility.getInstance(),game);
         } catch (IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();
+            System.err.println("ability " + ability.getName() + " not found");
         }
     }
 

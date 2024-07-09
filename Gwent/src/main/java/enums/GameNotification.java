@@ -7,11 +7,9 @@ public enum GameNotification {
     WIN_ROUND("You Won The Round", CssAddress.NOTIF_WIN_ROUND),
     LOSE_ROUND("You Lost The Round", CssAddress.NOTIF_LOSE_ROUND),
     DRAW_ROUND("Draw", CssAddress.NOTIF_DRAW_ROUND),
-    ;
-
+    ROUND_STARTS("Round Starts", CssAddress.NOTIF_ROUND_START);
     private final String notification;
     private final CssAddress notificationImage;
-
 
     GameNotification(String notification, CssAddress notificationImage) {
         this.notification = notification;

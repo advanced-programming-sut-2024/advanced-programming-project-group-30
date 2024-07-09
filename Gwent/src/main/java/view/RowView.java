@@ -28,6 +28,12 @@ public class RowView extends HBox {
         setUpRowView();
         this.getStyleClass().add("rowPaneStyle");
     }
+    //TODO: added this
+    public void resetRow() {
+        rowView.getChildren().clear();
+        rowScore.setText("0");
+        specialCardPosition.getChildren().clear();
+    }
 
     public ArrayList<CssAddress> getStyles() {
         return this.styles;

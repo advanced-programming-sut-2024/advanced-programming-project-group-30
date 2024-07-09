@@ -55,9 +55,7 @@ public class PregameMenuController {
         if (!pregameData.isSpecialCardsNumberValid())
             return new Result(false, "you can't choose more than 10 special cards");
         Game newGame = new Game(pregameData);
-        App.setCurrentGame(newGame);
-        // TODO : setup game menu;
-        App.getSceneManager().goToGame();
+        App.getSceneManager().goToGame(newGame);
         return new Result(true, "");
     }
 

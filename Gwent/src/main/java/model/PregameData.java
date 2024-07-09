@@ -1,10 +1,14 @@
 package model;
 
+import enums.CoordinateData;
+import enums.CssAddress;
 import enums.FactionType;
+import enums.MenuScene;
 import enums.cardsData.DeckCardData;
 import enums.cardsData.RegularCardData;
 import enums.cardsData.SpecialCardsData;
 import model.card.DecksCard;
+import view.GameMenu;
 
 import java.util.*;
 
@@ -81,13 +85,17 @@ public class PregameData {
     }
 
     public Player getCurrentPlayer() {
-        if (randomStart == 1) return currentData.createPlayer();
-        else return anotherData.createPlayer();
+        if (randomStart == 1)
+            return currentData.createPlayer(CoordinateData.PLAYER_INFORMATION_BOX, CssAddress.CURRENT_PLAYER_TOTAL_SCORE_IMAGE);
+        else
+            return anotherData.createPlayer(CoordinateData.PLAYER_INFORMATION_BOX, CssAddress.CURRENT_PLAYER_TOTAL_SCORE_IMAGE);
     }
 
     public Player getOpponentPlayer() {
-        if (randomStart == 0) return currentData.createPlayer();
-        else return anotherData.createPlayer();
+        if (randomStart == 0)
+            return currentData.createPlayer(CoordinateData.OPPONENT_INFORMATION_BOX, CssAddress.OPPONENT_PLAYER_TOTAL_SCORE_IMAGE);
+        else
+            return anotherData.createPlayer(CoordinateData.OPPONENT_INFORMATION_BOX, CssAddress.OPPONENT_PLAYER_TOTAL_SCORE_IMAGE);
     }
 
     private void changeNumberData(DeckCardData cardData, int sign) {
@@ -160,8 +168,8 @@ class PregameUserData {
         }
     }
 
-    Player createPlayer() {
-        return new Player(user, getDeck());
+    Player createPlayer(CoordinateData coordinate, CssAddress cssAddress) {
+        return new Player(user, getDeck(), (GameMenu) MenuScene.GAME_SCENE.getMenu(), coordinate, cssAddress);
     }
 
     private ArrayList<DecksCard> getDeck() {

@@ -299,6 +299,10 @@
     -fx-image: url('../Images/Icons/score_total_me.png');
     -fx-background-size: 100% 100%;
 }
+.hornCommanderAbilityIcon{
+    -fx-image: url('../Images/Icons/card_ability_horn.png');
+    -fx-background-size: 100% 100%;
+}
 .rowStyle{
     -fx-pref-height: 82;
     -fx-pref-width: 469;
@@ -388,4 +392,7 @@
     -fx-image: url('../Images/Icons/notif_me_turn.png');
     -fx-background-size: 100% 100%;
 }
-
+.notifRoundStart{
+    -fx-image: url('../Images/Icons/notif_round_start.png');
+    -fx-background-size: 100% 100%;
+}

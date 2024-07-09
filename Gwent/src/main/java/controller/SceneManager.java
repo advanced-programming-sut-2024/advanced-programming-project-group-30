@@ -2,8 +2,10 @@ package controller;
 
 import enums.MenuScene;
 import model.App;
+import model.Game;
 import model.PregameData;
 import model.User;
+import view.GameMenu;
 import view.MainMenu;
 import view.PregameMenu;
 import view.ProfileMenu;
@@ -74,8 +76,10 @@ public class SceneManager {
         App.getPrimaryStage().centerOnScreen();
     }
 
-    public void goToGame() {
-        // TODO : setup
+    public void goToGame(Game game) {
+        App.setCurrentGame(game);
+        GameMenu menu = (GameMenu) MenuScene.GAME_SCENE.getMenu();
+        menu.getController().setup();
         App.setCurrentMenuScene(MenuScene.GAME_SCENE);
         App.getPrimaryStage().setScene(MenuScene.GAME_SCENE.getScene());
     }

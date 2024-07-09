@@ -14,13 +14,12 @@ import javafx.scene.layout.VBox;
 import model.Player;
 
 public class PlayerInformationView extends Pane {
-    private Group items;
+    private final Player player;
+    private final CssAddress cssAddress;
     private ImageView profileImage;
     private ImageView handCardImage;
-    private HBox handCardBox;
     private Label handCardNumber;
     private Label username;
-    private Label faction;
     private HBox lives;
     private Region rightGem;
     private Region leftGem;
@@ -28,35 +27,52 @@ public class PlayerInformationView extends Pane {
     private VBox userInfoBox;
     private Label totalScore;
     private ImageView factionImage;
-    private final Player player;
     private ImageView totalScoreImage;
-    private CssAddress cssAddress;
     private Label passedLabel;
-    public PlayerInformationView(Player player,CoordinateData coordinateData, CssAddress cssAddress){
+
+    public PlayerInformationView(Player player, CoordinateData coordinateData, CssAddress cssAddress) {
         this.player = player;
         this.cssAddress = cssAddress;
-        items = new Group();
-        handCardBox = new HBox();
+        Group items = new Group();
         design();
-        items.getChildren().addAll(profileImage, profileFrame, handCardImage, handCardNumber,userInfoBox, lives,totalScoreImage,totalScore, factionImage);
+        items.getChildren().addAll(profileImage, profileFrame, handCardImage, handCardNumber, userInfoBox, lives, totalScoreImage, totalScore, factionImage);
         this.getStyleClass().add(CssAddress.INFORMATION_BOX.getStyleClass());
         this.setLayoutX(coordinateData.getX());
         this.setLayoutY(coordinateData.getY());
         this.getChildren().addAll(items);
     }
-    public void updateTotalScore(){
+
+    public void updateTotalScore() {
         int score = player.getPoint();
         totalScore.setText(String.valueOf(score));
     }
-    public Label getUsernameLabel(){
+
+    public Label getUsernameLabel() {
         return username;
     }
-    public Label getHandCardNumber(){
+
+    public Label getHandCardNumber() {
         return handCardNumber;
     }
 
+    //TODO:added these
+    public void setFirstRoundOfLoss() {
+        rightGem.getStyleClass().remove(CssAddress.GEM_ON_IMAGE.getStyleClass());
+        rightGem.getStyleClass().add(CssAddress.GEM_OFF_IMAGE.getStyleClass());
+    }
 
-    private void design(){
+    public void setSecondRoundOfLoss() {
+        leftGem.getStyleClass().remove(CssAddress.GEM_ON_IMAGE.getStyleClass());
+        leftGem.getStyleClass().add(CssAddress.GEM_OFF_IMAGE.getStyleClass());
+    }
+
+    public void resetRound() {
+        totalScore.setText("0");
+    }
+    //TODO: added these
+
+
+    private void design() {
         setUpProfileImage();
         setUpHandCardImage();
         setUpHandCardNumber();
@@ -68,7 +84,8 @@ public class PlayerInformationView extends Pane {
         setUpScore();
         setUpFactionIcon();
     }
-    private void setUpFactionIcon(){
+
+    private void setUpFactionIcon() {
         factionImage = new ImageView();
         FactionType factionType = player.getUser().getSelectedFaction();
         factionImage.setImage(factionType.getShieldIcon());
@@ -78,7 +95,7 @@ public class PlayerInformationView extends Pane {
         factionImage.setFitWidth(SizeData.FACTION_ICON.getWidth());
     }
 
-    private void setUpProfileImage(){
+    private void setUpProfileImage() {
         profileImage = new ImageView();
         profileImage.setLayoutX(CoordinateData.INFORMATION_BOX_PROFILE_IMAGE.getX());
         profileImage.setLayoutY(CoordinateData.INFORMATION_BOX_PROFILE_IMAGE.getY());
@@ -86,7 +103,8 @@ public class PlayerInformationView extends Pane {
         profileImage.setFitHeight(SizeData.PROFILE_MENU_IMAGE.getHeight());
         profileImage.getStyleClass().add(CssAddress.PROFILE_IMAGE.getStyleClass());
     }
-    private void setUpProfileFrame(){
+
+    private void setUpProfileFrame() {
         profileFrame = new ImageView();
         profileFrame.setLayoutX(CoordinateData.PROFILE_FRAME.getX());
         profileFrame.setLayoutY(CoordinateData.PROFILE_FRAME.getY());
@@ -94,7 +112,8 @@ public class PlayerInformationView extends Pane {
         profileFrame.setFitHeight(SizeData.PROFILE_FRAME.getHeight());
         profileFrame.getStyleClass().add(CssAddress.PROFILE_FRAME.getStyleClass());
     }
-    private void setUpHandCardImage(){
+
+    private void setUpHandCardImage() {
         handCardImage = new ImageView();
         handCardImage.getStyleClass().add(CssAddress.CARD_NUMBER_IMAGE.getStyleClass());
         handCardImage.setLayoutX(CoordinateData.INFORMATION_CARD_NUMBER_IMAGE.getX());
@@ -103,14 +122,16 @@ public class PlayerInformationView extends Pane {
         handCardImage.setFitHeight(SizeData.CARD_NUMBER_IMAGE.getHeight());
         handCardImage.getStyleClass().add(CssAddress.CARD_NUMBER_IMAGE.getStyleClass());
     }
-    private void setUpHandCardNumber(){
+
+    private void setUpHandCardNumber() {
         handCardNumber = new Label();
         handCardNumber.setLayoutX(CoordinateData.INFORMATION_CARD_NUMBER_LABEL.getX());
         handCardNumber.setLayoutY(CoordinateData.INFORMATION_CARD_NUMBER_LABEL.getY());
         handCardNumber.getStyleClass().add(CssAddress.CARD_NUMBER_LABEL.getStyleClass());
         handCardNumber.setText("28");
     }
-    private void setUpInformationVbox(){
+
+    private void setUpInformationVbox() {
         userInfoBox = new VBox();
         userInfoBox.setPrefHeight(SizeData.USER_INFORMATION_VBOX.getHeight());
         userInfoBox.setPrefWidth(SizeData.USER_INFORMATION_VBOX.getWidth());
@@ -118,19 +139,21 @@ public class PlayerInformationView extends Pane {
         userInfoBox.setLayoutY(CoordinateData.USER_INFORMATION_VBOX.getY());
     }
 
-    private void setUpUsername(){
+    private void setUpUsername() {
         username = new Label();
         username.setText(player.getUser().getUsername());
         username.getStyleClass().add(CssAddress.CARD_NUMBER_LABEL.getStyleClass());
         userInfoBox.getChildren().add(username);
     }
-    private void setUpFaction(){
-        faction = new Label();
+
+    private void setUpFaction() {
+        Label faction = new Label();
         faction.setText(player.getUser().getSelectedFaction().toString());
         faction.getStyleClass().add(CssAddress.INFORMATION_FACTION_LABEL.getStyleClass());
         userInfoBox.getChildren().add(faction);
     }
-    private void setUpLives(){
+
+    private void setUpLives() {
         lives = new HBox();
         lives.getStyleClass().add(CssAddress.GEMS_BOX.getStyleClass());
         lives.setLayoutX(CoordinateData.LIVES_HBOX.getX());
@@ -139,9 +162,10 @@ public class PlayerInformationView extends Pane {
         leftGem = new Region();
         rightGem.getStyleClass().add(CssAddress.GEM_ON_IMAGE.getStyleClass());
         leftGem.getStyleClass().add(CssAddress.GEM_ON_IMAGE.getStyleClass());
-        lives.getChildren().addAll(rightGem,leftGem);
+        lives.getChildren().addAll(rightGem, leftGem);
     }
-    private void setUpScore(){
+
+    private void setUpScore() {
         totalScore = new Label("0");
         totalScore.getStyleClass().add(CssAddress.TOTAL_SCORE_LABEL.getStyleClass());
         totalScore.setLayoutX(CoordinateData.TOTAL_SCORE_LABEL.getX());

@@ -14,7 +14,8 @@ import java.util.Objects;
 
 public class Row extends Position{
     private final String name;
-    private final ArrayList<RegularCard> cards = new ArrayList<>();
+    //TODO:changed this from RegularCard to DecksCard
+    private final ArrayList<DecksCard> cards = new ArrayList<>();
     private int rowPoint = 0;
     private int bonus = 1; //coefficient of tight bonds
     private int extraPoint = 0; //moral boost
@@ -33,15 +34,17 @@ public class Row extends Position{
         return name;
     }
 
-    public ArrayList<RegularCard> getCards() {
+    public ArrayList<DecksCard> getCards() {
         return cards;
     }
     public void addCardToRow(RegularCard card){
         cards.add(card);
     }
+    //TODO: changed this
     public int getRowPoint() {
         rowPoint = 0;
-        for (RegularCard card : cards){
+        for (DecksCard decksCard : cards){
+            if (!(decksCard instanceof RegularCard card)) continue;
             rowPoint += card.getPointInGame();
         }
         return rowPoint;
@@ -91,6 +94,7 @@ public class Row extends Position{
     public void updateRowScore(){
         rowView.updateRowScore();
     }
+    //TODO:added these
     public void addToCardDataMap(RegularCard card){
         CardData cardData = card.getCardData();
         if (cardDataMap.containsKey(cardData)){
@@ -101,6 +105,21 @@ public class Row extends Position{
             cardDataMap.put(cardData, cards);
         }
     }
+    public HashMap<CardData, ArrayList<RegularCard>> getCardDataMap(){
+        return this.cardDataMap;
+    }
+
+    public void resetRow() {
+        cards.clear();
+        rowPoint = 0;
+        bonus = 1;
+        extraPoint = 0;
+        isDamaged = false;
+        specialCardPosition.setCard(null);
+        cardDataMap.clear();
+        rowView.resetRow();
+    }
+    //TODO: added these
 
 
 }

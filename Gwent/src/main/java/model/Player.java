@@ -2,19 +2,22 @@ package model;
 
 import enums.CoordinateData;
 import enums.CssAddress;
+import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import enums.cardsData.LeaderCardData;
 import model.card.DecksCard;
-import view.PlayerView;
+import view.GameMenu;
 import view.PlayerInformationView;
+import view.PlayerView;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Player {
     private final User user;
+    // TODO: make final and get it from pregame data.
     private LeaderCardData leader;
     private final ArrayList<DecksCard> deck;
     private final ArrayList<DecksCard> hand = new ArrayList<>();
@@ -25,15 +28,20 @@ public class Player {
     private int point = 0;
     private final int[] roundsPoint = new int[3];
     private int life = 2;
-    private DecksCard selectedCard;
-    private PlayerView playerView;
+    private final PlayerView playerView;
 
-    public Player(User user, ArrayList<DecksCard> deck) {
+    public Player(User user, ArrayList<DecksCard> deck, GameMenu gameMenu, CoordinateData coordinateData, CssAddress cssAddress) {
         this.user = user;
         this.deck = deck;
         Random random = new Random();
         for (int i = 0; i < 10; i++)
             hand.add(deck.remove(random.nextInt(deck.size())));
+        playerView = createPlayerView(gameMenu.getPlayerViewField(), coordinateData, cssAddress);
+    }
+
+    public PlayerView createPlayerView(Node[] nodes, CoordinateData coordinateData, CssAddress cssAddress) {
+        return new PlayerView(this, (Pane) nodes[0], (VBox) nodes[1], (HBox) nodes[2], (HBox) nodes[3], (HBox) nodes[4],
+                (HBox) nodes[5], coordinateData, cssAddress);
     }
 
     public User getUser() {
@@ -44,20 +52,33 @@ public class Player {
         return leader;
     }
 
-    public void setLeader(LeaderCardData leader) {
-        this.leader = leader;
-    }
-
     public ArrayList<DecksCard> getDeck() {
         return deck;
+    }
+
+    public void addCardToDeck(DecksCard card) {
+        deck.add(card);
+    }
+
+    public void removeCardFromDeck(DecksCard card) {
+        deck.remove(card);
     }
 
     public ArrayList<DecksCard> getHand() {
         return hand;
     }
 
+    public void addCardToHand(DecksCard card) {
+        card.getCardView().getStyleClass().add(CssAddress.GAME_HAND_SM_CARD.getStyleClass());
+        hand.add(card);
+    }
+
     public ArrayList<DecksCard> getDiscardPile() {
         return discardPile;
+    }
+
+    public void discardCard(DecksCard card) {
+        discardPile.add(card);
     }
 
     public Row getCloseCombat() {
@@ -72,18 +93,6 @@ public class Player {
         return siege;
     }
 
-    public void addCardToHand(DecksCard card) {
-        hand.add(card);
-    }
-
-    public void addCardToDeck(DecksCard card) {
-        deck.add(card);
-    }
-
-    public void removeCardFromDeck(DecksCard card) {
-        deck.remove(card);
-    }
-
     public int getPoint() {
         point = 0;
         for (Row row : getRows())
@@ -91,28 +100,22 @@ public class Player {
         return point;
     }
 
+    public void updatePoint(int point) {
+        this.point += point;
+        playerView.getPlayerInformationView().updateTotalScore();
+    }
+
+    private void resetPoints() {
+        point = 0;
+        getPlayerInformationView().resetRound();
+    }
+
     public int[] getRoundsPoint() {
         return roundsPoint;
     }
 
-    public int getLife() {
-        return life;
-    }
-
-    public void reduceLife() {
-        life--;
-    }
-
-    public void playCard(DecksCard decksCard) {
-        hand.remove(decksCard);
-    }
-
-    public void playCard(DecksCard decksCard, Row row) {
-
-    }
-
-    public void playCard(DecksCard decksCard, DecksCard target) {
-
+    public void setRoundPoint(int round, int point) {
+        roundsPoint[round] = point;
     }
 
     public ArrayList<Row> getRows() {
@@ -123,40 +126,51 @@ public class Player {
         return rows;
     }
 
-    public void setSelectedCard(DecksCard selectedCard) {
-        this.selectedCard = selectedCard;
+    public int getLife() {
+        return life;
     }
 
-    public DecksCard getSelectedCard() {
-        return selectedCard;
-    }
-
-    public void createPlayerView(Pane pane, VBox boardView, HBox discardPileView, HBox deckView, HBox handView, HBox leaderView, CoordinateData coordinateData, CssAddress cssAddress) {
-        playerView = new PlayerView(this, pane, boardView, discardPileView, deckView, handView, leaderView, coordinateData, cssAddress);
-    }
-
-    public PlayerInformationView getPlayerInformationView() {
-        return playerView.getPlayerInformationView();
-    }
-
-    public void setPlayerView(PlayerView playerView) {
-        this.playerView = playerView;
+    public void reduceLife() {
+        life--;
     }
 
     public PlayerView getPlayerView() {
         return playerView;
     }
 
-    public void updatePoint(int point) {
-        this.point += point;
-        playerView.getPlayerInformationView().updateTotalScore();
+    public PlayerInformationView getPlayerInformationView() {
+        return playerView.getPlayerInformationView();
     }
 
-    public void discardCard(DecksCard decksCard) {
-        discardPile.add(decksCard);
+    public void playCard(DecksCard decksCard) {
+        hand.remove(decksCard);
     }
 
-    public void addToDiscardPile(DecksCard card) {
-        discardPile.add(card);
+    public void playCard(DecksCard decksCard, Row row) {
+        // for agile
+    }
+
+    public void playCard(DecksCard decksCard, DecksCard target) {
+        // for decoy
+    }
+
+    public void resetRound() {
+        resetLives();
+        resetPoints();
+        for (Row row : getRows()) {
+            evacuateRow(row);
+            row.resetRow();
+        }
+    }
+
+    private void evacuateRow(Row row) {
+        for (DecksCard decksCard : row.getCards()) {
+            discardPile.add(decksCard);
+            playerView.discardCard(decksCard);
+        }
+    }
+
+    private void resetLives() {
+        life = 2;
     }
 }
