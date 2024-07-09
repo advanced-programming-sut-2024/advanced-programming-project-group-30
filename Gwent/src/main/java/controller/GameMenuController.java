@@ -337,8 +337,8 @@ public class GameMenuController {
             setLoserOfTheRound(game.getOpponentPlayer());
             setLoserOfTheRound(game.getCurrentPlayer());
         } else {
-
-            setLoserOfTheRound(loser);
+            if (loser.equals(game.getCurrentPlayer())) setLoserOfTheRound(game.getCurrentPlayer());
+            else if (loser.equals(game.getOpponentPlayer())) setLoserOfTheRound(game.getOpponentPlayer());
         }
     }
 
@@ -522,7 +522,16 @@ public class GameMenuController {
             decksCard.getCardView().setOnMousePressed(mouseEvent -> {
                 game.getCurrentPlayer().getPlayerView().getHandView().getChildren().remove(decoy.getCardView());
                 game.getSelectedRow().getRowView().getRow().getChildren().add(decoy.getCardView());
-
+                game.getCurrentPlayer().addCardToHand(decksCard);
+                if (decksCard instanceof RegularCard) {
+                    try {
+                        handleRegularCardMovement(decksCard, game, row);
+                    } catch (InvocationTargetException | IllegalAccessException | NoSuchMethodException e) {
+                        throw new RuntimeException(e);
+                    }
+                } else {
+                    handleSpecialCardMovement((SpecialCard) decksCard, game, row);
+                }
 
             });
         }

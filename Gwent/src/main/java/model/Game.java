@@ -42,7 +42,6 @@ public class Game {
         Player temp = currentPlayer;
         currentPlayer = opponentPlayer;
         opponentPlayer = temp;
-        System.out.println("in game change turn");
     }
 
     public void endRound() {
