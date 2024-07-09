@@ -175,9 +175,10 @@
     -fx-background-color: rgba(0, 0, 0, 0.66);
     -fx-background-radius: 4;
     -fx-border-radius: 4;
-    -fx-font-size: 21;
+    -fx-font-size: 20;
     -fx-font-weight: bold;
-    -fx-font-family: Cambria;
+    -fx-font-family: "Times New Roman";
+    -fx-padding: -1 0 0 0;
     -fx-text-fill: rgb(173, 137, 82);
     -fx-border-color:  rgb(173, 137, 82);
 }

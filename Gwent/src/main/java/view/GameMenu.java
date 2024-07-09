@@ -71,7 +71,7 @@ public class GameMenu implements Menu {
 //        User user2 = new User("fatemeh", "123", "fatemeh", "fatemeh", SecurityQuestion.QUESTION_1, "blue");
 //        Game game = new Game();
 //        App.setCurrentGame(game);
-//        Player player = new Player(user);
+//        Player player = new Player(user, game);
 //        Player opponentPlayer = new Player(user2, game);
 //        PlayerView playerView = new PlayerView(player, pane, currentRowArea, discardPile, deck, hand, leader, CoordinateData.PLAYER_INFORMATION_BOX, CssAddress.CURRENT_PLAYER_TOTAL_SCORE_IMAGE);
 //        player.setPlayerView(playerView);
