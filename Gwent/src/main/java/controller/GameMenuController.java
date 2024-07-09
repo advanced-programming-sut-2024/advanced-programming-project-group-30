@@ -357,7 +357,6 @@ public class GameMenuController {
             setLoserOfTheRound(game.getOpponentPlayer());
             setLoserOfTheRound(game.getCurrentPlayer());
         } else {
-
             setLoserOfTheRound(loser);
         }
     }
@@ -383,7 +382,6 @@ public class GameMenuController {
                     throw new RuntimeException(e);
                 }
             }));
-
             timeline.setCycleCount(1);
             timeline.play();
         }

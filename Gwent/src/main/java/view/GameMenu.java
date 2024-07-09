@@ -173,7 +173,6 @@ public class GameMenu implements Menu {
     @FXML
     private void passTurn() {
         gameMenuController.checkRound(App.getCurrentGame());
-        App.getCurrentGame().setRoundIsPassed(true);
     }
 
     private void showPassTurnNotification() {
