@@ -57,7 +57,6 @@ public class AnimationMaker {
                 destinationHBox.getChildren().add(card.getCardView());
                 card.getCardView().setTranslateX(0);
                 card.getCardView().setTranslateY(0);
-                gameMenu.updateGame(game);
                 game.getCurrentPlayer().discardCard(card);
             });
             translate.play();

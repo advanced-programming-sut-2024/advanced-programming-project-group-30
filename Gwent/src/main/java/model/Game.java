@@ -78,7 +78,6 @@ public class Game {
 
     public void setRoundIsPassed(boolean roundIsPassed) {
         this.roundIsPassed = roundIsPassed;
-        System.out.println(roundIsPassed);
     }
 
     public DecksCard getSelectedCard() {

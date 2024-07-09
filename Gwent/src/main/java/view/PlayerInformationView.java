@@ -59,6 +59,7 @@ public class PlayerInformationView extends Pane {
     public void setFirstRoundOfLoss() {
         rightGem.getStyleClass().remove(CssAddress.GEM_ON_IMAGE.getStyleClass());
         rightGem.getStyleClass().add(CssAddress.GEM_OFF_IMAGE.getStyleClass());
+        System.out.println("in");
     }
 
     public void setSecondRoundOfLoss() {
