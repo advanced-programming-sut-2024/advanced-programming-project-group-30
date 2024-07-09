@@ -182,8 +182,8 @@
 .descriptionBox {
     -fx-max-height: 120;
     -fx-min-height: 120;
-    -fx-max-width: 400;
-    -fx-min-width: 400;
+    -fx-max-width: 480;
+    -fx-min-width: 480;
     -fx-alignment: Center;
     -fx-spacing: 8;
     -fx-background-color: rgb(0, 0, 0, 0.75);

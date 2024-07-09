@@ -6,11 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="124b1a9a-c6f6-4977-bbc2-df42d5ff586a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/GameMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/GameMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/SceneManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/SceneManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/AnimationMaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/AnimationMaker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/GameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/GameMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/PregameMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/PregameMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/SizeData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/SizeData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/LeaderCardData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/LeaderCardData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/PregameData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/PregameData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/PregameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/PregameMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/SelectionPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/SelectionPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/CSS/PregameNodesStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/CSS/PregameNodesStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/PregameMenu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/PregameMenu.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Images/Game/LgLeadersImages/scoiatael_francesca_hope_of_the_aen_seidhe.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,28 +58,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
-    &quot;database.data.extractors.current.export.id&quot;: &quot;JSON-Groovy.json.groovy&quot;,
-    &quot;database.data.extractors.current.id&quot;: &quot;JSON-Groovy.json.groovy&quot;,
-    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;merge-Bahar&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/ASUS/Documents/Uni/AP/Project/Gwent/src/main/resources/Images/Icons&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon&quot;: &quot;&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;http.proxy&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Application.Unnamed.executor": "Run",
+    "database.data.extractors.current.export.id": "JSON-Groovy.json.groovy",
+    "database.data.extractors.current.id": "JSON-Groovy.json.groovy",
+    "extract.method.default.visibility": "private",
+    "git-widget-placeholder": "leader-Fatemeh",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/ASUS/Documents/Uni/AP/Project/Gwent/src/main/resources/Images/Icons",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon": "",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "http.proxy",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\ASUS\Documents\Uni\AP\Project\Gwent\src\main\resources\Images\Icons" />
