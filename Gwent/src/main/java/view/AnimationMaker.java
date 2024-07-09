@@ -40,7 +40,6 @@ public class AnimationMaker {
                 card.getCardView().setTranslateY(0);
                 runAbility(card, game);
                 gameMenu.updateGame(game);
-                gameMenu.getPane().setDisable(false);
             });
             sequentialTransition.play();
         } catch (RuntimeException e) {

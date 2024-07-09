@@ -372,6 +372,8 @@ public class GameMenuController {
     }
 
     private void passTurn(Game game) {
+        System.out.println("Salam");
+        menu.disablePane();
         if (!game.isRoundPassed()) {
             Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), actionEvent -> {
                 try {

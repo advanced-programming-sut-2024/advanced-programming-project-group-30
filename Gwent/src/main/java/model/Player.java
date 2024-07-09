@@ -36,7 +36,7 @@ public class Player {
         this.deck = deck;
         Random random = new Random();
         for (int i = 0; i < 10; i++)
-            hand.add(deck.remove(random.nextInt(deck.size())));
+            addCardToHand(deck.remove(random.nextInt(deck.size())));
         if (isOpponent)
             this.playerView = createPlayerView(gameMenu.getOpponentPlayerViewField(), coordinateData, cssAddress);
         else this.playerView = createPlayerView(gameMenu.getCurrentPlayerViewField(), coordinateData, cssAddress);
