@@ -1,8 +1,10 @@
 package controller;
 
 import enums.FactionType;
+import enums.SizeData;
 import enums.cardsData.CardData;
 import enums.cardsData.DeckCardData;
+import enums.cardsData.LeaderCardData;
 import javafx.scene.Node;
 import javafx.scene.layout.FlowPane;
 import model.*;
@@ -32,9 +34,13 @@ public class PregameMenuController {
         menu.updateFactionsFields(pregameData.getFaction());
         menu.setNickname(pregameData.getUser().getNickname());
         uploadToCardCollection(pregameData.getCardCollection());
-        SelectionPage<FactionType> selectionPage = new SelectionPage<>(FactionType.getAllChooseModelView(),
-                FactionType.getFactionIndex(pregameData.getFaction()));
-        menu.setFactionSelectionPage(selectionPage);
+        SelectionPage<FactionType> factionSelectionPage = new SelectionPage<>(FactionType.getAllChooseModelView(),
+                FactionType.getFactionIndex(pregameData.getFaction()), SizeData.FATION_CARD);
+        menu.setFactionSelectionPage(factionSelectionPage);
+        SelectionPage<LeaderCardData> leaderSelectionPage = new SelectionPage<>(LeaderCardData.getFactionsLeaderChooseView(pregameData.getFaction()),
+                0, SizeData.GAME_LG_CARD);
+        pregameData.setLeader(leaderSelectionPage.getSelectedModel());
+        menu.setLeaderSelectionPage(leaderSelectionPage);
     }
 
     public PregameData getPregameData() {
@@ -94,7 +100,15 @@ public class PregameMenuController {
 
     public void changeFation(FactionType faction) {
         pregameData.setFaction(faction);
+        SelectionPage<LeaderCardData> leaderSelectionPage = new SelectionPage<>(LeaderCardData.getFactionsLeaderChooseView(pregameData.getFaction()),
+                0, SizeData.GAME_LG_CARD);
+        menu.setLeaderSelectionPage(leaderSelectionPage);
+        pregameData.setLeader(leaderSelectionPage.getSelectedModel());
         uploadToCardCollection(pregameData.getCardCollection());
+    }
+
+    public void selectLeader(LeaderCardData leaderCardData) {
+        pregameData.setLeader(leaderCardData);
     }
 
     public PregameCardView getCardView(CardData cardData, FlowPane flowPane) {

@@ -5,6 +5,7 @@ import enums.CssAddress;
 import enums.FactionType;
 import enums.MenuScene;
 import enums.cardsData.DeckCardData;
+import enums.cardsData.LeaderCardData;
 import enums.cardsData.RegularCardData;
 import enums.cardsData.SpecialCardsData;
 import javafx.scene.Node;
@@ -43,6 +44,10 @@ public class PregameData {
 
     public TreeMap<DeckCardData, ArrayList<DecksCard>> getCardsInDeck() {
         return currentData.cardCollection;
+    }
+
+    public void setLeader(LeaderCardData leader) {
+        currentData.leader = leader;
     }
 
     public int getCardsInDeckNumber() {
@@ -112,6 +117,7 @@ class PregameUserData {
     final User user;
     final TreeMap<DeckCardData, ArrayList<DecksCard>> cardCollection = new TreeMap<>(CardComparator.getCardComparator());
     final TreeMap<DeckCardData, ArrayList<DecksCard>> cardsInDeck = new TreeMap<>(CardComparator.getCardComparator());
+    LeaderCardData leader;
     int cardsInDeckNumber = 0;
     int unitCardsNumber = 0;
     int specialCardsNumber = 0;
@@ -174,7 +180,7 @@ class PregameUserData {
     }
 
     Player createPlayer(CoordinateData coordinate, CssAddress cssAddress, boolean isOpponent) {
-        return new Player(user, getDeck(), (GameMenu) MenuScene.GAME_SCENE.getMenu(), coordinate, cssAddress, isOpponent);
+        return new Player(user, leader, getDeck(), (GameMenu) MenuScene.GAME_SCENE.getMenu(), coordinate, cssAddress, isOpponent);
     }
 
     private ArrayList<DecksCard> getDeck() {

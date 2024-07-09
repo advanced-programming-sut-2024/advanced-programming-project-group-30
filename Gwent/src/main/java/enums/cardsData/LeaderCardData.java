@@ -30,8 +30,8 @@ public enum LeaderCardData implements CardData {
             "theRelentlessAbility", false),
     NILFGAARD_EMHYR_INVADER_OF_THE_NORTH(FactionType.NILFGAARDIAN_EMPIRE, "Abilities that restore a unit to the battlefield\n" +
             " restore a randomly-chosen unit. Affects both players.", "invaderOfTheNorthAbility", false),
-    MONSTERS_EREDIN_SILVER(FactionType.MONSTERS, "Double the strength of all your Close Combat units (unless a" +
-            " Commander's horn is \talso present on that row).", "bringerOfDeathAbility", true),
+    MONSTERS_EREDIN_SILVER(FactionType.MONSTERS, "Double the strength of all your Close Combat units\n (unless a" +
+            " Commander's horn is also present on that row).", "bringerOfDeathAbility", true),
     MONSTERS_EREDIN_BRONZE(FactionType.MONSTERS, "Restore a card from your discard pile to your hand.",
             "kingOfTheWildHuntAbility", true),
     MONSTERS_EREDIN_GOLD(FactionType.MONSTERS, "Discard 2 card and draw 1 card of your choice from your deck.",
@@ -40,8 +40,8 @@ public enum LeaderCardData implements CardData {
             "commanderOfTheRedRidersAbility", true),
     MONSTERS_EREDIN_THE_TREACHEROUS(FactionType.MONSTERS, "Doubles the strength of all spy cards (affects both players).",
             "theTreacherousAbility", false),
-    SCOIATAEL_FRANCESCA_SILVER(FactionType.SCOIA_TAEL, "Destroy your enemy's strongest Close Combat unit(s) if\n" +
-            " the combined strength of all his or her\n Close Combat units is 10 or more.", "queenOfDolBlathannaAbility", true),
+    SCOIATAEL_FRANCESCA_SILVER(FactionType.SCOIA_TAEL, "Destroy your enemy's strongest Close Combat unit(s) if" +
+            " the combined \nstrength of all his or her Close Combat units is 10 or more.", "queenOfDolBlathannaAbility", true),
     SCOIATAEL_FRANCESCA_GOLD(FactionType.SCOIA_TAEL, "Doubles the strength of all your Ranged Combat units\n" +
             " (unless a Commander's Horn is also present on that row).", "theBeautifulAbility", true),
     SCOIATAEL_FRANCESCA_COPPER(FactionType.SCOIA_TAEL, "Draw an extra card at the beginning of the battle.",
@@ -70,10 +70,10 @@ public enum LeaderCardData implements CardData {
         this.isAbilityOneTime = isAbilityOneTime;
     }
 
-    public static ArrayList<LeaderCardData> getFactionsLeader(FactionType faction) {
-        ArrayList<LeaderCardData> leaderCards = new ArrayList<>();
+    public static ArrayList<ChosenModelView<LeaderCardData>> getFactionsLeaderChooseView(FactionType faction) {
+        ArrayList<ChosenModelView<LeaderCardData>> leaderCards = new ArrayList<>();
         for (LeaderCardData leaderCard : LeaderCardData.values())
-            if (faction.equals(leaderCard.faction)) leaderCards.add(leaderCard);
+            if (faction.equals(leaderCard.faction)) leaderCards.add(leaderCard.getChooseModelView());
         return leaderCards;
     }
 

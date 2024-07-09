@@ -17,8 +17,7 @@ import java.util.Random;
 
 public class Player {
     private final User user;
-    // TODO: make final and get it from pregame data.
-    private LeaderCardData leader;
+    private final LeaderCardData leader;
     private final ArrayList<DecksCard> deck;
     private final ArrayList<DecksCard> hand = new ArrayList<>();
     private final ArrayList<DecksCard> discardPile = new ArrayList<>();
@@ -30,13 +29,14 @@ public class Player {
     private int life = 2;
     private final PlayerView playerView;
 
-    public Player(User user, ArrayList<DecksCard> deck, GameMenu gameMenu, CoordinateData coordinateData,
+    public Player(User user, LeaderCardData leader, ArrayList<DecksCard> deck, GameMenu gameMenu, CoordinateData coordinateData,
                   CssAddress cssAddress, boolean isOpponent) {
         this.user = user;
         this.deck = deck;
+        this.leader = leader;
         Random random = new Random();
         for (int i = 0; i < 10; i++)
-            hand.add(deck.remove(random.nextInt(deck.size())));
+            addCardToHand(deck.remove(random.nextInt(deck.size())));
         if (isOpponent)
             this.playerView = createPlayerView(gameMenu.getOpponentPlayerViewField(), coordinateData, cssAddress);
         else this.playerView = createPlayerView(gameMenu.getCurrentPlayerViewField(), coordinateData, cssAddress);

@@ -33,13 +33,11 @@ public class PlayerInformationView extends Pane {
     public PlayerInformationView(Player player, CoordinateData coordinateData, CssAddress cssAddress) {
         this.player = player;
         this.cssAddress = cssAddress;
-        Group items = new Group();
         design();
-        items.getChildren().addAll(profileImage, profileFrame, handCardImage, handCardNumber, userInfoBox, lives, totalScoreImage, totalScore, factionImage);
         this.getStyleClass().add(CssAddress.INFORMATION_BOX.getStyleClass());
         this.setLayoutX(coordinateData.getX());
         this.setLayoutY(coordinateData.getY());
-        this.getChildren().addAll(items);
+        this.getChildren().addAll(profileImage, profileFrame, handCardImage, handCardNumber, userInfoBox, lives, totalScoreImage, totalScore, factionImage);
     }
 
     public void updateTotalScore() {
@@ -55,15 +53,19 @@ public class PlayerInformationView extends Pane {
         return handCardNumber;
     }
 
-    //TODO:added these
+    //TODO:needs debug
     public void setFirstRoundOfLoss() {
+        lives.getChildren().remove(rightGem);
         rightGem.getStyleClass().remove(CssAddress.GEM_ON_IMAGE.getStyleClass());
         rightGem.getStyleClass().add(CssAddress.GEM_OFF_IMAGE.getStyleClass());
+        lives.getChildren().add(rightGem);
     }
 
     public void setSecondRoundOfLoss() {
+        lives.getChildren().remove(leftGem);
         leftGem.getStyleClass().remove(CssAddress.GEM_ON_IMAGE.getStyleClass());
         leftGem.getStyleClass().add(CssAddress.GEM_OFF_IMAGE.getStyleClass());
+        lives.getChildren().add(leftGem);
     }
 
     public void resetRound() {
@@ -128,7 +130,7 @@ public class PlayerInformationView extends Pane {
         handCardNumber.setLayoutX(CoordinateData.INFORMATION_CARD_NUMBER_LABEL.getX());
         handCardNumber.setLayoutY(CoordinateData.INFORMATION_CARD_NUMBER_LABEL.getY());
         handCardNumber.getStyleClass().add(CssAddress.CARD_NUMBER_LABEL.getStyleClass());
-        handCardNumber.setText("28");
+        handCardNumber.setText(String.valueOf(player.getHand().size()));
     }
 
     private void setUpInformationVbox() {

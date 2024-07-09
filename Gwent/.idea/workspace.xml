@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="124b1a9a-c6f6-4977-bbc2-df42d5ff586a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/GameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/GameMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/CSS/GameNodesStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/CSS/GameNodesStyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/FXML/Game.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/FXML/Game.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/PregameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/PregameMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +57,7 @@
     "database.data.extractors.current.export.id": "JSON-Groovy.json.groovy",
     "database.data.extractors.current.id": "JSON-Groovy.json.groovy",
     "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "leader-Fatemeh",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/ASUS/Documents/Uni/AP/Project/Gwent/src/main/resources/Images/Icons",
     "node.js.detected.package.eslint": "true",
@@ -140,7 +137,13 @@
       <workItem from="1720162860583" duration="24600000" />
       <workItem from="1720200401991" duration="23209000" />
       <workItem from="1720334437734" duration="10054000" />
-      <workItem from="1720348564947" duration="31738000" />
+      <workItem from="1720348564947" duration="31840000" />
+      <workItem from="1720422625102" duration="7168000" />
+      <workItem from="1720436609081" duration="9377000" />
+      <workItem from="1720449226196" duration="5146000" />
+      <workItem from="1720464090091" duration="5000" />
+      <workItem from="1720464683755" duration="2219000" />
+      <workItem from="1720468209347" duration="11737000" />
     </task>
     <servers />
   </component>

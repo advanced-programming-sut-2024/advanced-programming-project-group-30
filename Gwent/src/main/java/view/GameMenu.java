@@ -70,10 +70,6 @@ public class GameMenu implements Menu {
         root.heightProperty().addListener((Void) -> scalePanes());
     }
 
-    public GameMenuController getController() {
-        return gameMenuController;
-    }
-
     public void addInformationViews(Pane currentPlayerInfo, Pane opponentPlayerInfo) {
         pane.getChildren().addAll(currentPlayerInfo, opponentPlayerInfo);
     }
@@ -93,6 +89,10 @@ public class GameMenu implements Menu {
 
     public HBox getWeatherCardPosition() {
         return weatherCardPosition;
+    }
+
+    public void disablePane() {
+        pane.setDisable(true);
     }
 
     public void resetStyles(RowView rowView) {
@@ -158,12 +158,10 @@ public class GameMenu implements Menu {
     public void handlePassTurn(Game game) {
         game.getCurrentPlayer().getPlayerInformationView().getStyleClass().add("brownBoxShadowed");
         game.getOpponentPlayer().getPlayerInformationView().getStyleClass().remove("brownBoxShadowed");
-        for (DecksCard card : game.getOpponentPlayer().getHand()) {
+        for (DecksCard card : game.getOpponentPlayer().getHand())
             hand.getChildren().remove(card.getCardView());
-        }
-        for (DecksCard card : game.getCurrentPlayer().getHand()) {
+        for (DecksCard card : game.getCurrentPlayer().getHand())
             hand.getChildren().add(card.getCardView());
-        }
         showPassTurnNotification();
     }
 
@@ -177,9 +175,7 @@ public class GameMenu implements Menu {
 
     @FXML
     private void passTurn() {
-        System.out.println(App.getCurrentGame().isRoundPassed());
         gameMenuController.checkRound(App.getCurrentGame());
-        App.getCurrentGame().setRoundIsPassed(true);
     }
 
     private void showPassTurnNotification() {

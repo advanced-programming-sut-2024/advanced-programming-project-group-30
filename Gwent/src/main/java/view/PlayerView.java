@@ -89,7 +89,7 @@ public class PlayerView {
         deckView.getChildren().add(decksCard.getCardView());
     }
 
-    private HBox clone(HBox node1, HBox node2) {
+    private void clone(HBox node1, HBox node2) {
         node1.getChildren().clear();
         for (Node node : node2.getChildren())
             node1.getChildren().add(node);
@@ -97,6 +97,5 @@ public class PlayerView {
         node1.setLayoutY(node2.getLayoutY());
         node1.setPrefWidth(node2.getPrefWidth());
         node1.setPrefHeight(node2.getPrefHeight());
-        return node1;
     }
 }

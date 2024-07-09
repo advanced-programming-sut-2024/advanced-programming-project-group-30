@@ -10,6 +10,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 import model.App;
 import model.PregameData;
 import model.Result;
@@ -21,6 +23,7 @@ public class PregameMenu implements Menu {
     @FXML
     private BorderPane mainPane;
     private SelectionPage<FactionType> factionSelectionPage;
+    private SelectionPage<LeaderCardData> leaderSelectionPage;
     @FXML
     private Pane helperPane;
     @FXML
@@ -35,6 +38,8 @@ public class PregameMenu implements Menu {
     private FlowPane cardCollection;
     @FXML
     private FlowPane cardsInDeck;
+    @FXML
+    private Rectangle leaderRegion;
     @FXML
     private Label cardsInDeckNumber;
     @FXML
@@ -82,6 +87,16 @@ public class PregameMenu implements Menu {
         selectionPage.getMainRegion().setOnMouseClicked((Void) -> selectFaction());
         selectionPage.setOnMouseClicked((event -> {
             if (!selectionPage.isInTheBoundOfSubRegions(event.getX(), event.getY())) closeFactionSelectionPage();
+        }));
+    }
+
+    public void setLeaderSelectionPage(SelectionPage<LeaderCardData> selectionPage) {
+        leaderSelectionPage = selectionPage;
+        scalePane(leaderSelectionPage, 0.93);
+        leaderRegion.setFill(new ImagePattern(selectionPage.getSelectedModel().getLgImage()));
+        selectionPage.getMainRegion().setOnMouseClicked((Void) -> selectLeader());
+        selectionPage.setOnMouseClicked((event -> {
+            if (!selectionPage.isInTheBoundOfSubRegions(event.getX(), event.getY())) closeLeaderSelectionPage();
         }));
     }
 
@@ -149,6 +164,14 @@ public class PregameMenu implements Menu {
         root.getChildren().add(factionSelectionPage);
     }
 
+    @FXML
+    private void openLeaderSelectionPage() {
+        mainPane.setDisable(true);
+        helperPane.setVisible(true);
+        helperPane.setDisable(false);
+        root.getChildren().add(leaderSelectionPage);
+    }
+
     private void changeTurn() {
         Result changeTurnResult = controller.changeTurn();
         errorMessage.setText(changeTurnResult.toString());
@@ -172,16 +195,30 @@ public class PregameMenu implements Menu {
         root.getChildren().remove(factionSelectionPage);
     }
 
+    private void closeLeaderSelectionPage() {
+        mainPane.setDisable(false);
+        helperPane.setVisible(false);
+        helperPane.setDisable(true);
+        root.getChildren().remove(leaderSelectionPage);
+    }
+
     private void selectFaction() {
         controller.changeFation(factionSelectionPage.getSelectedModel());
+        leaderRegion.setFill(new ImagePattern(leaderSelectionPage.getSelectedModel().getLgImage()));
         updateFactionsFields(factionSelectionPage.getSelectedModel());
         closeFactionSelectionPage();
+    }
+
+    private void selectLeader() {
+        controller.selectLeader(leaderSelectionPage.getSelectedModel());
+        leaderRegion.setFill(new ImagePattern(leaderSelectionPage.getSelectedModel().getLgImage()));
     }
 
     private void scalePanes() {
         scalePane(mainPane, 0.97);
         scalePane(helperPane, 0.97);
         scalePane(factionSelectionPage, 0.9);
+        scalePane(leaderSelectionPage, 0.93);
     }
 
     private void scalePane(Pane pane, double scaleCoef) {
