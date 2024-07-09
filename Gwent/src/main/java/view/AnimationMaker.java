@@ -1,5 +1,6 @@
 package view;
 
+import enums.CssAddress;
 import enums.GameNotification;
 import enums.cardsData.DeckCardData;
 import javafx.animation.KeyFrame;
@@ -15,6 +16,7 @@ import javafx.util.Duration;
 import model.Game;
 import model.card.DecksCard;
 import model.card.RegularCard;
+import model.card.SpecialCard;
 import model.card.WeatherCard;
 
 public class AnimationMaker {
@@ -39,7 +41,12 @@ public class AnimationMaker {
                 card.getCardView().setTranslateX(0);
                 card.getCardView().setTranslateY(0);
                 runAbility(card, game);
-                gameMenu.updateGame(game);
+                if (card instanceof SpecialCard specialCard){
+                    if (!specialCard.isDiscardAfterPlaying()) {
+                        gameMenu.updateGame(game);
+                    }
+                }else gameMenu.updateGame(game);
+                card.getCardView().removeEventHandling();
             });
             sequentialTransition.play();
         } catch (RuntimeException e) {
@@ -58,6 +65,9 @@ public class AnimationMaker {
                 card.getCardView().setTranslateX(0);
                 card.getCardView().setTranslateY(0);
                 game.getCurrentPlayer().discardCard(card);
+                gameMenu.updateGame(game);
+                card.getCardView().getStyleClass().remove(CssAddress.EXTRA_POINT.getStyleClass());
+                card.getCardView().getStyleClass().remove(CssAddress.POINT_LOSS.getStyleClass());
             });
             translate.play();
         } catch (RuntimeException e) {

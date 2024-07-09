@@ -11,6 +11,7 @@ import enums.cardsData.WeatherCardsData;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
+import javafx.event.EventType;
 import javafx.geometry.Bounds;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
@@ -26,10 +27,13 @@ import model.card.WeatherCard;
 import view.*;
 
 import java.awt.event.MouseEvent;
+import java.beans.EventHandler;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 public class GameMenuController {
@@ -227,7 +231,17 @@ public class GameMenuController {
             });
         }
     }
+    public void removeCardEventHandler(Node node) {
 
+//        removeEventHandlers(node, MouseEvent.MOUSE_PRESSED);
+        // Add more event types as needed
+    }
+
+//    private <T extends javafx.event.Event> void removeEventHandlers(Node node, EventType<T> eventType) {
+//        EventHandler<T> dummyHandler = event -> {};
+//        node.addEventHandler(eventType, dummyHandler);
+//        node.removeEventHandler(eventType, dummyHandler);
+//    }
     public void resetRowStyles(Game game) {
         for (Row row : game.getCurrentPlayer().getRows()) {
             menu.resetStyles(row.getRowView());
@@ -236,8 +250,6 @@ public class GameMenuController {
             menu.resetStyles(row.getRowView());
         }
     }
-
-    //TODO: added this;
     public void updateGame(Game game) {
         updateScores(game);
         updateHandCardNumber(game);
@@ -247,8 +259,6 @@ public class GameMenuController {
         menu.updateScores(allRows);
         if (!game.isRoundPassed()) passTurn(game);
     }
-    //TODO: added this
-
     public void updateScores(Game game) {
         Player player = game.getCurrentPlayer();
         Player opponentPlayer = game.getOpponentPlayer();
@@ -391,8 +401,6 @@ public class GameMenuController {
             timeline.play();
         }
     }
-
-    //TODO: editing this
     private void setCardsPoint(Row row) {
         int point;
         boolean hasCommanderHorn = hasRegularCommanderHorn(row);

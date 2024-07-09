@@ -50,7 +50,7 @@ public class RegularCard extends DecksCard {
     public RegularCardPositionType getPositionType() {
         return positionType;
     }
-
+    @Override
     public void run(Game game) {
         try {
             ability.invoke(RegularCardsAbility.getInstance(),game);

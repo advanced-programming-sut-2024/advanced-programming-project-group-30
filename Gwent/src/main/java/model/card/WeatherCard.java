@@ -14,7 +14,7 @@ public class WeatherCard extends DecksCard {
         super(name, factionType, cardData, ability, isSpecialCard);
         this.cardView = new CardView(this);
     }
-
+    @Override
     public void run(Game game) {
         try {
             ability.invoke(WeatherCardAbility.getInstance(), game);

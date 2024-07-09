@@ -2,6 +2,7 @@ package model.card;
 
 import enums.FactionType;
 import enums.cardsData.CardData;
+import model.Game;
 import view.CardView;
 
 import java.lang.reflect.Method;
@@ -17,6 +18,7 @@ public abstract class DecksCard extends Card {
         this.isSpecialCard = isSpecialCard;
         this.ability = ability;
     }
+    public abstract void run(Game game);
 
     public boolean isSpecialCard() {
         return isSpecialCard;

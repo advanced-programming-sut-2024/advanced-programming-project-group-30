@@ -2,6 +2,7 @@ package model.card;
 
 import enums.FactionType;
 import enums.cardsData.CardData;
+import model.Game;
 import view.CardView;
 
 import java.lang.reflect.Method;
@@ -14,8 +15,8 @@ public class SpecialCard extends DecksCard {
         this.discardAfterPlaying = discardAfterPlaying;
         this.cardView = new CardView(this);
     }
-
-    public void run() {
+    @Override
+    public void run(Game game) {
 
     }
 

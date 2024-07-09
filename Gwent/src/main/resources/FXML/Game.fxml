@@ -48,7 +48,7 @@
       <Pane fx:id="notifBox" layoutY="232.0" prefHeight="169.0" prefWidth="1100.0" styleClass="notif-box" visible="false">
          <ImageView fx:id="notifImage" fitHeight="200.0" fitWidth="300.0" layoutX="264.0" layoutY="-31.0" pickOnBounds="true"
                     preserveRatio="true"/>
-         <Label fx:id="notifText" layoutX="554.0" layoutY="27.0" prefHeight="101.0" prefWidth="223.0" styleClass="notif-text"/>
+         <Label fx:id="notifText" layoutX="554.0" layoutY="27.0" prefHeight="101.0" prefWidth="300.0" styleClass="notif-text"/>
       </Pane>
       <HBox fx:id="decksCardNumber" alignment="CENTER" layoutX="995.0" layoutY="591.0" prefWidth="50.0"/>
       <HBox fx:id="opponentDecksCardNumber" alignment="CENTER" layoutX="995.0" layoutY="132.0" prefWidth="50.0"/>
