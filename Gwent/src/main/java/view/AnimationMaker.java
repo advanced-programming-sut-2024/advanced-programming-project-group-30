@@ -30,7 +30,6 @@ public class AnimationMaker {
     //TODO: changed this
     public void cardPlaceAnimation(DecksCard card, HBox destinationHBox, HBox sourceHBox, Game game, GameMenu gameMenu) {
         Bounds nodeBounds = card.getCardView().localToScene(card.getCardView().getBoundsInLocal());
-        gameMenu.getPane().setDisable(true);
         try {
             TranslateTransition translate = getTranslate(card, nodeBounds, destinationHBox, 0.4);
             SequentialTransition sequentialTransition = new SequentialTransition(translate);
@@ -41,7 +40,6 @@ public class AnimationMaker {
                 card.getCardView().setTranslateY(0);
                 runAbility(card, game);
                 gameMenu.updateGame(game);
-                gameMenu.getPane().setDisable(false);
             });
             sequentialTransition.play();
         } catch (RuntimeException e) {
@@ -89,7 +87,6 @@ public class AnimationMaker {
             pane.getChildren().remove(notifPane);
         }
         pane.getChildren().add(notifPane);
-        pane.setDisable(true);
         pane.getStyleClass().add("rootPaneNotifStyle");
         try {
             Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), event -> {

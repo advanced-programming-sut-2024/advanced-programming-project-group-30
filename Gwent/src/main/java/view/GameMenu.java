@@ -62,8 +62,8 @@ public class GameMenu implements Menu {
     @FXML
     private ImageView notifImage;
 
-    public GameMenuController getController() {
-        return gameMenuController;
+    public void setup() {
+        gameMenuController.setup();
     }
 
     public void addInformationViews(Pane currentPlayerInfo, Pane opponentPlayerInfo) {
@@ -71,10 +71,8 @@ public class GameMenu implements Menu {
     }
 
     public void setHand(ArrayList<DecksCard> hand) {
-        for (DecksCard card : hand) {
+        for (DecksCard card : hand)
             this.hand.getChildren().add(card.getCardView());
-            card.getCardView().getStyleClass().add(CssAddress.GAME_HAND_SM_CARD.getStyleClass());
-        }
     }
 
     public Node[] getCurrentPlayerViewField() {
@@ -87,6 +85,10 @@ public class GameMenu implements Menu {
 
     public HBox getWeatherCardPosition() {
         return weatherCardPosition;
+    }
+
+    public void disablePane() {
+        pane.setDisable(true);
     }
 
     public void resetStyles(RowView rowView) {
@@ -152,13 +154,10 @@ public class GameMenu implements Menu {
     public void handlePassTurn(Game game) {
         game.getCurrentPlayer().getPlayerInformationView().getStyleClass().add("brownBoxShadowed");
         game.getOpponentPlayer().getPlayerInformationView().getStyleClass().remove("brownBoxShadowed");
-        for (DecksCard card : game.getOpponentPlayer().getHand()) {
+        for (DecksCard card : game.getOpponentPlayer().getHand())
             hand.getChildren().remove(card.getCardView());
-        }
-        for (DecksCard card : game.getCurrentPlayer().getHand()) {
+        for (DecksCard card : game.getCurrentPlayer().getHand())
             hand.getChildren().add(card.getCardView());
-            card.getCardView().getStyleClass().add(CssAddress.GAME_HAND_SM_CARD.getStyleClass());
-        }
         showPassTurnNotification();
     }
 
