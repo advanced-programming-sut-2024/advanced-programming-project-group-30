@@ -23,22 +23,32 @@ import model.card.WeatherCard;
 import java.util.ArrayList;
 
 public class GameMenu implements Menu {
-    private static final Pane notifPane = new Pane();
-    private static final Label notifLabel = new Label();
-    private static final ImageView notifImageView = new ImageView();
+    private final Pane notifPane = new Pane();
+    private final Label notifLabel = new Label();
+    private final ImageView notifImageView = new ImageView();
     private final GameMenuController gameMenuController = new GameMenuController(this);
     @FXML
-    private HBox decksCardNumber;
-    @FXML
-    private HBox opponentDecksCardNumber;
+    private Pane pane;
     @FXML
     private VBox centerPane;
     @FXML
     private VBox rowsPane;
     @FXML
-    private HBox opponentDeck;
+    private VBox currentRowArea;
+    @FXML
+    private VBox opponentRowsArea;
+    @FXML
+    private HBox weatherCardPosition;
+    @FXML
+    private HBox hand;
     @FXML
     private HBox deck;
+    @FXML
+    private HBox decksCardNumber;
+    @FXML
+    private HBox opponentDeck;
+    @FXML
+    private HBox opponentDecksCardNumber;
     @FXML
     private Region activeLeaderIcon;
     @FXML
@@ -46,82 +56,33 @@ public class GameMenu implements Menu {
     @FXML
     private HBox leader;
     @FXML
-    private HBox opponentDiscardPile;
-    @FXML
     private HBox opponentLeader;
     @FXML
     private HBox discardPile;
     @FXML
+    private HBox opponentDiscardPile;
+    @FXML
     private Label notifText;
-    @FXML
-    private HBox weatherCardPosition;
-    @FXML
-    private VBox currentRowArea;
-    @FXML
-    private VBox opponentRowsArea;
-    @FXML
-    private Pane pane;
     @FXML
     private Pane notifBox;
     @FXML
     private ImageView notifImage;
-    @FXML
-    private HBox hand;
 
-    //TODO: ignore initialize method
-    @FXML
-    public void initialize() {
-        User user = new User("bahar", "123", "bahar", "bahar", SecurityQuestion.QUESTION_1, "blue");
-        User user2 = new User("fatemeh", "123", "fatemeh", "fatemeh", SecurityQuestion.QUESTION_1, "blue");
-        Game game = new Game();
-        App.setCurrentGame(game);
-        Player player = new Player(user);
-        Player opponentPlayer = new Player(user2);
-        PlayerView playerView = new PlayerView(player, pane, currentRowArea, discardPile, deck, hand, leader, CoordinateData.PLAYER_INFORMATION_BOX, CssAddress.CURRENT_PLAYER_TOTAL_SCORE_IMAGE);
-        player.setPlayerView(playerView);
-        PlayerView opponentPlayerView = new PlayerView(opponentPlayer, pane, opponentRowsArea, opponentDiscardPile, opponentDeck, hand, opponentLeader, CoordinateData.OPPONENT_INFORMATION_BOX, CssAddress.OPPONENT_PLAYER_TOTAL_SCORE_IMAGE);
-        opponentPlayer.setPlayerView(opponentPlayerView);
-        pane.getChildren().addAll(playerView.getPlayerInformationView(), opponentPlayerView.getPlayerInformationView());
-        game.setCurrentPlayer(player);
-        game.setOpponentPlayer(opponentPlayer);
-        gameMenuController.setUpBoard(game);
-        ArrayList<DecksCard> allCards = new ArrayList<>();
-        ArrayList<RegularCard> cards = NeutralRegularCardsData.getAllRegularCard();
-        allCards.addAll(cards);
-        allCards.addAll(NorthernRealmsRegularCardsData.getAllRegularCard());
-        allCards.addAll(SkelligeRegularCardsData.getAllRegularCard());
-        allCards.addAll(WeatherCardsData.getAllWeatherCards());
-        allCards.addAll(SpecialCardsData.getAllSpecialCard());
-        for (int i = 4; i < 14; i++) {
-            DecksCard card = allCards.get(i);
-            player.addCardToHand(card);
-            CardView cardView = card.getCardView();
-//            player.getPlayerView().getHandView().getChildren().add(cardView);
-            hand.getChildren().add(cardView);
-            if (card instanceof SpecialCard)
-                gameMenuController.handleSpecialCardEvents((SpecialCard) card, game, player);
-            if (card instanceof RegularCard)
-                gameMenuController.handleRegularCardEvents((RegularCard) card, game, player, opponentPlayer);
-            if (card instanceof WeatherCard) gameMenuController.handleWeatherCardEvents((WeatherCard) card, game);
-        }
-        for (int i = 14; i < 24; i++) {
-            DecksCard card = allCards.get(i);
-            opponentPlayer.addCardToHand(card);
-            CardView cardView = card.getCardView();
-//            player.getPlayerView().getHandView().getChildren().add(cardView);
-            if (card instanceof SpecialCard)
-                gameMenuController.handleSpecialCardEvents((SpecialCard) card, game, opponentPlayer);
-            if (card instanceof RegularCard)
-                gameMenuController.handleRegularCardEvents((RegularCard) card, game, opponentPlayer, player);
-            if (card instanceof WeatherCard) gameMenuController.handleWeatherCardEvents((WeatherCard) card, game);
-        }
-        for (int i = 24; i < 44; i++) {
-            player.addCardToDeck(allCards.get(i));
-        }
-        for (int i = 44; i < 55; i++) {
-            opponentPlayer.addCardToDeck(allCards.get(i));
-        }
-        setUpNotificationBox();
+    public GameMenuController getController() {
+        return gameMenuController;
+    }
+
+    public void addInformationViews(Pane currentPlayerInfo, Pane opponentPlayerInfo) {
+        pane.getChildren().addAll(currentPlayerInfo, opponentPlayerInfo);
+    }
+
+    public void setHand(ArrayList<DecksCard> hand) {
+        for (DecksCard card : hand)
+            this.hand.getChildren().add(card.getCardView());
+    }
+
+    public Node[] getPlayerViewField() {
+        return new Node[]{pane, currentRowArea, discardPile, deck, hand, leader};
     }
 
     public HBox getWeatherCardPosition() {
@@ -173,6 +134,7 @@ public class GameMenu implements Menu {
             ((Pane) pane).getChildren().addAll(node1, node2);
         }
     }
+
     //TODO: added these
     public void endRound(GameNotification gameNotification) {
         showRoundEndNotification(gameNotification);
@@ -181,7 +143,8 @@ public class GameMenu implements Menu {
         }));
         timeline.play();
     }
-    private void showRoundStart(){
+
+    private void showRoundStart() {
         Timeline timeline = AnimationMaker.getInstance().getNotificationTimeline(pane, notifPane, notifImageView, notifLabel, GameNotification.ROUND_STARTS);
         timeline.play();
     }
@@ -208,6 +171,7 @@ public class GameMenu implements Menu {
 
     @FXML
     private void passTurn() {
+        System.out.println(App.getCurrentGame().isRoundPassed());
         gameMenuController.checkRound(App.getCurrentGame());
         App.getCurrentGame().setRoundIsPassed(true);
     }
@@ -221,12 +185,8 @@ public class GameMenu implements Menu {
         Timeline timeline = AnimationMaker.getInstance().getNotificationTimeline(pane, notifPane, notifImageView, notifLabel, notification);
         timeline.play();
     }
-//    private void showWhosTurnNotification(){
-//        Timeline timeline = AnimationMaker.getInstance().getNotificationTimeline(pane, notifPane, notifImageView, notifLabel, GameNotification.WHOS_TURN);
-//        timeline.play();
-//    }
 
-    private void setUpNotificationBox() {
+    public void setUpNotificationBox() {
         notifPane.getStyleClass().add(CssAddress.NOTIF_BOX.getStyleClass());
         notifPane.setLayoutY(notifBox.getLayoutY());
         notifLabel.getStyleClass().add(CssAddress.NOTIFICATION_LABEL.getStyleClass());
@@ -242,5 +202,4 @@ public class GameMenu implements Menu {
     public void showResult(Player winner, GameNotification gameNotification) {
         showRoundEndNotification(gameNotification);
     }
-
 }
