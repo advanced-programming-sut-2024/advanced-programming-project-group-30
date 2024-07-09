@@ -11,19 +11,20 @@ import java.util.HashMap;
 import java.util.TreeMap;
 
 public class CardCollection {
-    private final ArrayList<DecksCard> NeutralCards;
+    private final ArrayList<DecksCard> decksCards;
     private final HashMap<FactionType, ArrayList<RegularCard>> FactionsCard;
 
     public CardCollection() {
-        NeutralCards = new ArrayList<>(SpecialCardsData.getAllSpecialCard());
-        NeutralCards.addAll(NeutralRegularCardsData.getAllRegularCard());
+        decksCards = new ArrayList<>(SpecialCardsData.getAllSpecialCard());
+        decksCards.addAll(WeatherCardsData.getAllWeatherCards());
+        decksCards.addAll(NeutralRegularCardsData.getAllRegularCard());
         FactionsCard = new HashMap<>();
         for (FactionType type : FactionType.values())
             FactionsCard.put(type, type.getFactionRegularCards());
     }
 
     public TreeMap<DeckCardData, ArrayList<DecksCard>> getCardsMapByFactionsType(FactionType factionType) {
-        ArrayList<DecksCard> cards = new ArrayList<>(NeutralCards);
+        ArrayList<DecksCard> cards = new ArrayList<>(decksCards);
         cards.addAll(FactionsCard.get(factionType));
         TreeMap<DeckCardData, ArrayList<DecksCard>> cardsMap = new TreeMap<>(CardComparator.getCardComparator());
         ArrayList<DecksCard> oneTypeCards = new ArrayList<>();

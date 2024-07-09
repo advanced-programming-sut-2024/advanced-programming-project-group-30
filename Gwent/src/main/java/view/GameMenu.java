@@ -22,6 +22,8 @@ public class GameMenu implements Menu {
     private final ImageView notifImageView = new ImageView();
     private final GameMenuController gameMenuController = new GameMenuController(this);
     @FXML
+    private VBox root;
+    @FXML
     private Pane pane;
     @FXML
     private VBox centerPane;
@@ -61,6 +63,12 @@ public class GameMenu implements Menu {
     private Pane notifBox;
     @FXML
     private ImageView notifImage;
+
+    @FXML
+    public void initialize() {
+        root.widthProperty().addListener((Void) -> scalePanes());
+        root.heightProperty().addListener((Void) -> scalePanes());
+    }
 
     public void setup() {
         gameMenuController.setup();
@@ -199,5 +207,18 @@ public class GameMenu implements Menu {
 
     public void showResult(Player winner, GameNotification gameNotification) {
         showRoundEndNotification(gameNotification);
+    }
+
+    private void scalePanes() {
+        scalePane(pane, 1);
+    }
+
+    private void scalePane(Pane pane, double scaleCoef) {
+        Double scale = App.getSceneManager().getScale(root.getWidth(), root.getHeight(), 1100, 660, scaleCoef);
+        if (scale == null) return;
+        pane.setScaleX(scale);
+        pane.setScaleY(scale);
+        pane.setLayoutX((root.getWidth() - 1100) / 2);
+        pane.setLayoutY((root.getHeight() - 660) / 2 + 5 * scaleCoef);
     }
 }

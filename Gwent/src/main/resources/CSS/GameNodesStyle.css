@@ -1,6 +1,10 @@
 .background-image{
     -fx-background-image: url('../Images/board.png');
     -fx-background-size: 100% 100%;
+    -fx-min-width: 1100;
+    -fx-max-width: 1100;
+    -fx-min-height: 660;
+    -fx-max-height: 660;
 }
 .rectangle{
     -fx-background-color: TRANSPARENT;
