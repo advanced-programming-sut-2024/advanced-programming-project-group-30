@@ -1,11 +1,8 @@
 package view;
 
 import controller.GameMenuController;
-import enums.CoordinateData;
 import enums.CssAddress;
 import enums.GameNotification;
-import enums.SecurityQuestion;
-import enums.cardsData.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -16,9 +13,6 @@ import javafx.scene.layout.*;
 import javafx.util.Duration;
 import model.*;
 import model.card.DecksCard;
-import model.card.RegularCard;
-import model.card.SpecialCard;
-import model.card.WeatherCard;
 
 import java.util.ArrayList;
 
@@ -81,8 +75,12 @@ public class GameMenu implements Menu {
             this.hand.getChildren().add(card.getCardView());
     }
 
-    public Node[] getPlayerViewField() {
+    public Node[] getCurrentPlayerViewField() {
         return new Node[]{pane, currentRowArea, discardPile, deck, hand, leader};
+    }
+
+    public Node[] getOpponentPlayerViewField() {
+        return new Node[]{pane, opponentRowsArea, opponentDiscardPile, opponentDeck, hand, opponentLeader};
     }
 
     public HBox getWeatherCardPosition() {

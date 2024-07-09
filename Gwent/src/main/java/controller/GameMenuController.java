@@ -46,6 +46,7 @@ public class GameMenuController {
         setupRows(player, opponentPlayer);
         handelHandsCardEvent(player.getHand(), game, player, opponentPlayer);
         handelHandsCardEvent(opponentPlayer.getHand(), game, opponentPlayer, player);
+        menu.setHand(player.getHand());
         menu.setUpNotificationBox();
     }
 
@@ -421,7 +422,6 @@ public class GameMenuController {
         }
     }
 
-    //TODO: editing this
     private void switchBoard(Game game) throws NoSuchMethodException {
         Player currentPlayer = game.getCurrentPlayer();
         Player opponentPlayer = game.getOpponentPlayer();
@@ -545,7 +545,5 @@ public class GameMenuController {
 
             });
         }
-
-
     }
 }
