@@ -12,6 +12,8 @@ public enum Ability {
     DECOY("Decoy", "Swap with a card on the battlefield to return it to your hand.",
             SpecialCardAbility.createNewAbilityByName("decoy"), CssAddress.DECOY_ABILITY_ICON),
     MARDROEME("Mardroeme", "Triggers transformation of all Berserker cards on the same row..",
+            RegularCardsAbility.createNewAbilityByName("mardroeme"), CssAddress.SPECIAL_MARDROEME_ICON),
+    SPECIAL_MARDROEME("Mardroeme", "Triggers transformation of all Berserker cards on the same row..",
             RegularCardsAbility.createNewAbilityByName("mardroeme"), CssAddress.MARDROEME_ABILITY_ICON),
     SCORCH("Scorch", "Discard after playing. Kills the strongest card(s) on the battlefield. ",
             RegularCardsAbility.createNewAbilityByName("scorch"), CssAddress.SCORCH_ABILITY_ICON),

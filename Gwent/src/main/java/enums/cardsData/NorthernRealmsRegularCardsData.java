@@ -25,7 +25,7 @@ public enum NorthernRealmsRegularCardsData implements RegularCardData {
     DRAGON_HUNTER("Dragon Hunter", Ability.TIGHT_BOND, false, 5, 3, RegularCardPositionType.RANGED_COMBAT),
     DUN_BANNER_MEDIC("Dun Banner Medic", Ability.MEDIC, false, 5, 1, RegularCardPositionType.SIEGE),
     KEIRA_METZ("Keira Metz", null, false, 5, 1, RegularCardPositionType.RANGED_COMBAT),
-    PRINCE_STENNIS("Prince Stennis", Ability.SPY, false, 5, 1, RegularCardPositionType.CLOSE_COMBAT),
+    PRINCE_STENNIS("Prince Stennis", Ability.SPY, false, 5, 1, RegularCardPositionType.OPPONENT_CLOSE_COMBAT),
     SIEGFRIED_OF_DENESLE("Siegfried of Denesle", null, false, 5, 1, RegularCardPositionType.CLOSE_COMBAT),
     SILE_DE_TANSARVILLE("Sile de Tansarville", null, false, 5, 1, RegularCardPositionType.RANGED_COMBAT),
     VES("Ves", null, false, 5, 1, RegularCardPositionType.CLOSE_COMBAT),

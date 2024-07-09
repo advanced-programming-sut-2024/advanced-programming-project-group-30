@@ -39,6 +39,8 @@ public enum CssAddress {
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     MARDROEME_ABILITY_ICON("mardroemeAbilityIcon",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
+    SPECIAL_MARDROEME_ICON("specialMardroemeIcon",
+            Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     HORN_COMMANDER_ABILITY_ICON("hornCommanderAbilityIcon",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     COMMANDERS_HORN_ABILITY_ICON("commanderHornAbilityIcon",
@@ -142,7 +144,6 @@ public enum CssAddress {
     NOTIF_ROUND_START("notifRoundStart",
             Objects.requireNonNull(CssAddress.class.getResource("/CSS/GameNodesStyle.css")).toExternalForm()),
     ;
-
     private final String styleClass;
     private final String styleSheet;
 
