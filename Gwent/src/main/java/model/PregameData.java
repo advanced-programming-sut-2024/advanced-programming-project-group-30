@@ -180,7 +180,7 @@ class PregameUserData {
     }
 
     Player createPlayer(CoordinateData coordinate, CssAddress cssAddress, boolean isOpponent) {
-        return new Player(user, getDeck(), (GameMenu) MenuScene.GAME_SCENE.getMenu(), coordinate, cssAddress, isOpponent);
+        return new Player(user, leader, getDeck(), (GameMenu) MenuScene.GAME_SCENE.getMenu(), coordinate, cssAddress, isOpponent);
     }
 
     private ArrayList<DecksCard> getDeck() {
