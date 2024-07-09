@@ -92,6 +92,7 @@ public class PregameMenu implements Menu {
 
     public void setLeaderSelectionPage(SelectionPage<LeaderCardData> selectionPage) {
         leaderSelectionPage = selectionPage;
+        scalePane(leaderSelectionPage, 0.93);
         leaderRegion.setFill(new ImagePattern(selectionPage.getSelectedModel().getLgImage()));
         selectionPage.getMainRegion().setOnMouseClicked((Void) -> selectLeader());
         selectionPage.setOnMouseClicked((event -> {
@@ -217,6 +218,7 @@ public class PregameMenu implements Menu {
         scalePane(mainPane, 0.97);
         scalePane(helperPane, 0.97);
         scalePane(factionSelectionPage, 0.9);
+        scalePane(leaderSelectionPage, 0.93);
     }
 
     private void scalePane(Pane pane, double scaleCoef) {
