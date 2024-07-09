@@ -70,6 +70,10 @@ public class GameMenu implements Menu {
         root.heightProperty().addListener((Void) -> scalePanes());
     }
 
+    public void setup() {
+        gameMenuController.setup();
+    }
+
     public void addInformationViews(Pane currentPlayerInfo, Pane opponentPlayerInfo) {
         pane.getChildren().addAll(currentPlayerInfo, opponentPlayerInfo);
     }
