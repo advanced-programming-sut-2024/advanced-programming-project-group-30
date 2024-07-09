@@ -157,6 +157,7 @@ public class GameMenu implements Menu {
         }
         for (DecksCard card : game.getCurrentPlayer().getHand()) {
             hand.getChildren().add(card.getCardView());
+            card.getCardView().getStyleClass().add(CssAddress.GAME_HAND_SM_CARD.getStyleClass());
         }
         showPassTurnNotification();
     }
