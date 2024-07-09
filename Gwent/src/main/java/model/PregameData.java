@@ -4,10 +4,7 @@ import enums.CoordinateData;
 import enums.CssAddress;
 import enums.FactionType;
 import enums.MenuScene;
-import enums.cardsData.DeckCardData;
-import enums.cardsData.LeaderCardData;
-import enums.cardsData.RegularCardData;
-import enums.cardsData.SpecialCardsData;
+import enums.cardsData.*;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -170,7 +167,7 @@ class PregameUserData {
 
     void changeNumberData(DeckCardData cardData, int sign) {
         cardsInDeckNumber = cardsInDeckNumber + sign;
-        if (cardData instanceof SpecialCardsData) specialCardsNumber = specialCardsNumber + sign;
+        if (cardData instanceof SpecialCardsData || cardData instanceof WeatherCardsData) specialCardsNumber = specialCardsNumber + sign;
         else {
             RegularCardData regularCardData = (RegularCardData) cardData;
             unitCardsNumber = unitCardsNumber + sign;
