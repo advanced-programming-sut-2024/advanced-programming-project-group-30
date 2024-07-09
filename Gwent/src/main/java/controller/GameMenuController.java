@@ -55,7 +55,7 @@ public class GameMenuController {
         menu.setUpNotificationBox();
     }
 
-    private void handelHandsCardEvent(ArrayList<DecksCard> handsCards, Game game, Player player, Player opponentPlayer) {
+    public void handelHandsCardEvent(ArrayList<DecksCard> handsCards, Game game, Player player, Player opponentPlayer) {
         for (DecksCard card : handsCards) {
             if (card instanceof SpecialCard)
                 handleSpecialCardEvents((SpecialCard) card, game, player);
@@ -134,7 +134,7 @@ public class GameMenuController {
         menu.setNodeStyle(card.getCardView(), CssAddress.CARD_IN_ROW);
         if (!hbox.getChildren().contains(card.getCardView())) {
             row.addCardToRow((RegularCard) card);
-            AnimationMaker.getInstance().cardPlaceAnimation(card, row.getRowView().getRow(), player.getPlayerView().getHandView(), game, menu);
+            AnimationMaker.getInstance().cardPlaceAnimation(card, player.getPlayerView().getHandView(), row.getRowView().getRow(), game, menu, true);
         }
         player.playCard(card);
     }
@@ -144,7 +144,7 @@ public class GameMenuController {
         menu.removeNodeStyle(card.getCardView(), CssAddress.GAME_HAND_SM_CARD);
         menu.setNodeStyle(card.getCardView(), CssAddress.CARD_IN_ROW);
         game.getCurrentPlayer().playCard(card);
-        AnimationMaker.getInstance().cardPlaceAnimation(card, row.getRowView().getSpecialCardPosition(), game.getCurrentPlayer().getPlayerView().getHandView(), game, menu);
+        AnimationMaker.getInstance().cardPlaceAnimation(card, game.getCurrentPlayer().getPlayerView().getHandView(), row.getRowView().getSpecialCardPosition(), game, menu, true);
         if (card.isDiscardAfterPlaying()) {
             Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), actionEvent -> {
                 AnimationMaker.getInstance().discardAnimation(card, row.getRowView().getSpecialCardPosition(), game.getCurrentPlayer().getPlayerView().getDiscardPileView(), game, menu);
@@ -164,7 +164,7 @@ public class GameMenuController {
         if (((WeatherCardsData) weatherCard.getCardData()).getAbility().equals(Ability.CLEAR_WEATHER)) {
             clearWeather(weatherCard, game, player.getPlayerView().getHandView(), menu.getWeatherCardPosition());
         } else {
-            AnimationMaker.getInstance().cardPlaceAnimation(weatherCard, menu.getWeatherCardPosition(), player.getPlayerView().getHandView(), game, menu);
+            AnimationMaker.getInstance().cardPlaceAnimation(weatherCard, player.getPlayerView().getHandView(), menu.getWeatherCardPosition(), game, menu, true);
         }
         game.addWeatherCard(weatherCard);
         player.playCard(weatherCard);
@@ -371,7 +371,8 @@ public class GameMenuController {
             setLoserOfTheRound(game.getOpponentPlayer());
             setLoserOfTheRound(game.getCurrentPlayer());
         } else {
-            setLoserOfTheRound(loser);
+            if (loser.equals(game.getCurrentPlayer())) setLoserOfTheRound(game.getCurrentPlayer());
+            else setLoserOfTheRound(game.getOpponentPlayer());
         }
     }
 

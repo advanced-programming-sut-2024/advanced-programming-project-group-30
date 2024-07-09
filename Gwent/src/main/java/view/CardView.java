@@ -57,11 +57,18 @@ public class CardView extends Pane {
     private void setPointColor() {
         int point = ((RegularCard) card).getPoint();
         int pointInGame = ((RegularCard) card).getPointInGame();
-        if (pointInGame > point) this.point.getStyleClass().add(CssAddress.EXTRA_POINT.getStyleClass());
+        if (pointInGame > point) {
+            System.out.println("in yellow");
+            this.point.getStyleClass().add(CssAddress.EXTRA_POINT.getStyleClass());
+        }
         if (pointInGame < point) {
+            System.out.println("in red");
             this.point.getStyleClass().add(CssAddress.POINT_LOSS.getStyleClass());
         }
-        if (pointInGame == point) this.point.getStyleClass().add(CssAddress.REGULAR_POINT.getStyleClass());
+        if (pointInGame == point) {
+            System.out.println("in regular");
+            this.point.getStyleClass().add(CssAddress.REGULAR_POINT.getStyleClass());
+        }
     }
 
     private void setUpWeatherCardView() {

@@ -1,6 +1,7 @@
 package model.ability;
 
 import enums.Ability;
+import enums.MenuScene;
 import enums.cardsData.CardData;
 import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
@@ -14,6 +15,7 @@ import model.card.DecksCard;
 import model.card.RegularCard;
 import view.AnimationMaker;
 import view.CardView;
+import view.GameMenu;
 import view.PlayerView;
 
 import javax.swing.text.PlainView;
@@ -80,21 +82,14 @@ public class RegularCardsAbility {
             }
             cards.add(deck.get(secondIndex));
         }
+        GameMenu gameMenu = (GameMenu) MenuScene.GAME_SCENE.getMenu();
         for (DecksCard decksCard : cards){
-            //TODO: need access to game controller
             currentPlayer.addCardToHand(decksCard);
             currentPlayer.getPlayerView().addCardToDeck(decksCard);
-            Bounds nodeBounds = decksCard.getCardView().localToScene(decksCard.getCardView().getBoundsInLocal());
-            TranslateTransition translate = AnimationMaker.getInstance().getTranslate(decksCard, nodeBounds,
-                    currentGame.getCurrentPlayer().getPlayerView().getHandView(), 0.4);
-            SequentialTransition sequentialTransition = new SequentialTransition(translate);
-            sequentialTransition.setOnFinished(event -> {
-                playerView.getHandView().getChildren().add(decksCard.getCardView());
-                decksCard.getCardView().setTranslateX(0);
-                decksCard.getCardView().setTranslateY(0);
-            });
-            sequentialTransition.play();
+            AnimationMaker.getInstance().cardPlaceAnimation(decksCard, playerView.getDiscardPileView(),
+                    playerView.getHandView(), currentGame, gameMenu, false);
         }
+        gameMenu.setHandCardEventHandler(currentPlayer, currentGame.getOpponentPlayer(), currentGame, cards);
     }
     public void berserker(Game currentGame){
 

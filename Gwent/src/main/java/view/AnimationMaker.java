@@ -30,7 +30,7 @@ public class AnimationMaker {
     }
 
     //TODO: changed this
-    public void cardPlaceAnimation(DecksCard card, HBox destinationHBox, HBox sourceHBox, Game game, GameMenu gameMenu) {
+    public void cardPlaceAnimation(DecksCard card, HBox sourceHBox, HBox destinationHBox, Game game, GameMenu gameMenu, boolean needsToBeRun) {
         Bounds nodeBounds = card.getCardView().localToScene(card.getCardView().getBoundsInLocal());
         try {
             TranslateTransition translate = getTranslate(card, nodeBounds, destinationHBox, 0.4);
@@ -40,12 +40,14 @@ public class AnimationMaker {
                 destinationHBox.getChildren().add(card.getCardView());
                 card.getCardView().setTranslateX(0);
                 card.getCardView().setTranslateY(0);
-                runAbility(card, game);
-                if (card instanceof SpecialCard specialCard){
-                    if (!specialCard.isDiscardAfterPlaying()) {
-                        gameMenu.updateGame(game);
-                    }
-                }else gameMenu.updateGame(game);
+                if (needsToBeRun) {
+                    runAbility(card, game);
+                    if (card instanceof SpecialCard specialCard) {
+                        if (!specialCard.isDiscardAfterPlaying()) {
+                            gameMenu.updateGame(game);
+                        }
+                    } else gameMenu.updateGame(game);
+                }
                 card.getCardView().removeEventHandling();
             });
             sequentialTransition.play();
