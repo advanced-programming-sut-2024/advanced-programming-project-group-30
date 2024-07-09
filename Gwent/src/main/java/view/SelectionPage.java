@@ -17,9 +17,11 @@ public class SelectionPage<T> extends VBox {
     private final ArrayList<Rectangle> regions;
     private final Rectangle mainRegion;
     private final ArrayList<ChosenModelView<T>> chosenModelViews;
+    private final SizeData regionSizes;
     private int index;
 
-    public SelectionPage(ArrayList<ChosenModelView<T>> chosenModelViews, int index) {
+    public SelectionPage(ArrayList<ChosenModelView<T>> chosenModelViews, int index, SizeData regionSizes) {
+        this.regionSizes = regionSizes;
         this.regions = createRegions();
         mainRegion = regions.get(number / 2);
         this.chosenModelViews = chosenModelViews;
@@ -90,10 +92,10 @@ public class SelectionPage<T> extends VBox {
     }
 
     private void setSize(Rectangle region, double scale) {
-        region.setArcHeight(SizeData.GAME_LG_CARD.getRadius() * scale);
-        region.setArcWidth(SizeData.GAME_LG_CARD.getRadius() * scale);
-        region.setHeight(SizeData.GAME_LG_CARD.getHeight() * scale);
-        region.setWidth(SizeData.GAME_LG_CARD.getWidth() * scale);
+        region.setArcHeight(regionSizes.getRadius() * scale);
+        region.setArcWidth(regionSizes.getRadius() * scale);
+        region.setHeight(regionSizes.getHeight() * scale);
+        region.setWidth(regionSizes.getWidth() * scale);
     }
 
     private DropShadow createEffect() {

@@ -2,7 +2,8 @@ package enums;
 
 public enum SizeData {
     PRE_GAME_CARD(210, 110, 15),
-    GAME_LG_CARD(400, 260, 30),
+    FATION_CARD(400, 260, 30),
+    GAME_LG_CARD(400, 220, 40),
     NUMBER_OF_CARD_TYPE(14, 11, 0),
     GAME_SM_CARD(77, 55, 0),
     GAME_SMALL_CARD_POSITION(15, 15, 0),
