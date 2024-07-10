@@ -143,17 +143,19 @@ public class GameMenuController {
         resetRowStyles(game);
         menu.removeNodeStyle(card.getCardView(), CssAddress.GAME_HAND_SM_CARD);
         menu.setNodeStyle(card.getCardView(), CssAddress.CARD_IN_ROW);
-        game.getCurrentPlayer().playCard(card);
-        AnimationMaker.getInstance().cardPlaceAnimation(card, game.getCurrentPlayer().getPlayerView().getHandView(), row.getRowView().getSpecialCardPosition(), game, menu, true);
+        AnimationMaker.getInstance().cardPlaceAnimation(card, game.getCurrentPlayer().getPlayerView().getHandView(),
+                row.getRowView().getSpecialCardPosition(), game, menu, true);
         if (card.isDiscardAfterPlaying()) {
             Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), actionEvent -> {
-                AnimationMaker.getInstance().discardAnimation(card, row.getRowView().getSpecialCardPosition(), game.getCurrentPlayer().getPlayerView().getDiscardPileView(), game, menu);
+                AnimationMaker.getInstance().discardAnimation(card, row.getRowView().getSpecialCardPosition(),
+                        game.getCurrentPlayer().getPlayerView().getDiscardPileView(), game, menu);
             }));
             timeline.setCycleCount(1);
             timeline.play();
             game.getCurrentPlayer().discardCard(card);
         } else row.setSpecialCard(card);
         game.getCurrentPlayer().playCard(card);
+        resetRowStyles(game);
     }
 
     private void handleWeatherCardMovement(WeatherCard weatherCard, Game game) {
@@ -164,7 +166,7 @@ public class GameMenuController {
         if (((WeatherCardsData) weatherCard.getCardData()).getAbility().equals(Ability.CLEAR_WEATHER)) {
             clearWeather(weatherCard, game, player.getPlayerView().getHandView(), menu.getWeatherCardPosition());
         } else {
-            AnimationMaker.getInstance().cardPlaceAnimation(weatherCard, player.getPlayerView().getHandView(), menu.getWeatherCardPosition(), game, menu, true);
+            AnimationMaker.getInstance().cardPlaceAnimation(weatherCard, player.getPlayerView().getHandView(), menu.getWeatherCardPosition() , game, menu, true);
         }
         game.addWeatherCard(weatherCard);
         player.playCard(weatherCard);
@@ -192,20 +194,15 @@ public class GameMenuController {
                 resetRowStyles(game);
                 for (Row row : player1.getRows()) {
                     if (row.getRowView().getSpecialCardPosition().getChildren().isEmpty()) {
-                        if (specialCard.getName().equals("Decoy")) {
-                            handleDecoy(game, specialCard);
-                        } else {
                             menu.setNodeStyle(row.getRowView().getSpecialCardPosition(), CssAddress.CARD_ROW);
                             row.getRowView().addStyle(CssAddress.CARD_ROW);
                             try {
                                 handleRowEvents(specialCard, game, method, row);
-                            } catch (InvocationTargetException e) {
-                                throw new RuntimeException(e);
-                            } catch (IllegalAccessException e) {
+                            } catch (InvocationTargetException | IllegalAccessException e) {
                                 throw new RuntimeException(e);
                             }
-                        }
                     }
+
                 }
             });
         } catch (Exception e) {
@@ -230,18 +227,11 @@ public class GameMenuController {
                 }
             });
         }
+        removeHandler(card);
     }
-    public void removeCardEventHandler(Node node) {
-
-//        removeEventHandlers(node, MouseEvent.MOUSE_PRESSED);
-        // Add more event types as needed
+    private void removeHandler(DecksCard card) {
+        card.getCardView().setOnMouseClicked(null);
     }
-
-//    private <T extends javafx.event.Event> void removeEventHandlers(Node node, EventType<T> eventType) {
-//        EventHandler<T> dummyHandler = event -> {};
-//        node.addEventHandler(eventType, dummyHandler);
-//        node.removeEventHandler(eventType, dummyHandler);
-//    }
     public void resetRowStyles(Game game) {
         for (Row row : game.getCurrentPlayer().getRows()) {
             menu.resetStyles(row.getRowView());
@@ -477,6 +467,7 @@ public class GameMenuController {
             menu.setNodeStyle(row.getRowView().getRow(), CssAddress.CARD_ROW);
             handleRowEvents(card, game, method, row);
         }
+        removeHandler(card);
     }
 
     private void swapBoardViews(PlayerView currentPlayerView, PlayerView opponentPlayerView) {
@@ -545,16 +536,5 @@ public class GameMenuController {
             card.run(game);
         });
         translate.play();
-    }
-
-    private void handleDecoy(Game game, SpecialCard decoy) {
-        Row row = game.getSelectedRow();
-        for (DecksCard decksCard : row.getCards()) {
-            decksCard.getCardView().getStyleClass().add(CssAddress.GAME_HAND_SM_CARD.getStyleClass());
-            decksCard.getCardView().setOnMousePressed(mouseEvent -> {
-                game.getCurrentPlayer().getPlayerView().getHandView().getChildren().remove(decoy.getCardView());
-                game.getSelectedRow().getRowView().getRow().getChildren().add(decoy.getCardView());
-            });
-        }
     }
 }

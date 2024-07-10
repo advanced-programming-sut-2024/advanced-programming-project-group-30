@@ -14,6 +14,8 @@ import javafx.util.Duration;
 import model.*;
 import model.card.DecksCard;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 

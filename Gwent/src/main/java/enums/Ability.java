@@ -38,7 +38,7 @@ public enum Ability {
     MORAL_BOOST("Moral Boost", "Adds +1 to all units in the same row.",
             RegularCardsAbility.createNewAbilityByName("moralBoost"), CssAddress.MORAL_BOOST_ABILITY_ICON),
     HORN_COMMANDER("Horn Commander", "Doubles the strength of all unit cards in that row.\n" +
-            " Limited to 1 per row.", RegularCardsAbility.createNewAbilityByName("commanderHorn"), CssAddress.COMMANDERS_HORN_ABILITY_ICON),
+            " Limited to 1 per row.", SpecialCardAbility.createNewAbilityByName("commanderHorn"), CssAddress.COMMANDERS_HORN_ABILITY_ICON),
     MEDIC("Medic", "Choose one card from your discard pile and play it instantly (no Heroes or Special Cards).",
             RegularCardsAbility.createNewAbilityByName("medic"), CssAddress.MEDIC_ABILITY_ICON),
     TRANSFORMER("Transformer", "When this card is removed from the battlefield,\n" +

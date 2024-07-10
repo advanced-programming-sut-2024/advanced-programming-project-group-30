@@ -1,12 +1,10 @@
 package view;
 
 import enums.CssAddress;
+import enums.FactionType;
 import enums.GameNotification;
 import enums.cardsData.DeckCardData;
-import javafx.animation.KeyFrame;
-import javafx.animation.SequentialTransition;
-import javafx.animation.Timeline;
-import javafx.animation.TranslateTransition;
+import javafx.animation.*;
 import javafx.geometry.Bounds;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -14,6 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import model.Game;
+import model.Row;
 import model.card.DecksCard;
 import model.card.RegularCard;
 import model.card.SpecialCard;
@@ -114,11 +113,20 @@ public class AnimationMaker {
         }
         return null;
     }
+    public void explosionAnimation(DecksCard card, ImageView explosion, HBox row, HBox discardPile){
+        Transition transition = new Transition() {
+            @Override
+            protected void interpolate(double v) {
 
+            }
+        };
+
+    }
     private void runAbility(DecksCard card, Game game) {
         if (((DeckCardData) card.getCardData()).getAbility() == null) return;
         if (card instanceof RegularCard regularCard) regularCard.run(game);
         else if (card instanceof WeatherCard weatherCard) weatherCard.run(game);
+        else if (card instanceof SpecialCard specialCard) specialCard.run(game);
 
     }
 }

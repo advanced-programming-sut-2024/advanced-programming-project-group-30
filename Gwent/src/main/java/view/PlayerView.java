@@ -55,7 +55,10 @@ public class PlayerView {
         deckNumber.setText(String.valueOf(player.getDeck().size()));
         pane.getChildren().addAll(deckView, deckNumber);
     }
-
+    private void setUpLeader(HBox leader) {
+        clone(leaderView, leader);
+        pane.getChildren().add(leaderView);
+    }
     public HBox getDeckView() {
         return deckView;
     }

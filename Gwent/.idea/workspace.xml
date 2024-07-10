@@ -7,12 +7,13 @@
     <list default="true" id="124b1a9a-c6f6-4977-bbc2-df42d5ff586a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/GameMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/GameMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/Ability.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/Ability.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/ability/RegularCardsAbility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/ability/RegularCardsAbility.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/ability/SpecialCardAbility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/ability/SpecialCardAbility.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/card/SpecialCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/card/SpecialCard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/AnimationMaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/AnimationMaker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/CardView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/CardView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/GameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/GameMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/PlayerView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/PlayerView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,6 +151,7 @@
       <workItem from="1720464090091" duration="5000" />
       <workItem from="1720464683755" duration="2219000" />
       <workItem from="1720468209347" duration="11737000" />
+      <workItem from="1720585501716" duration="1499000" />
     </task>
     <servers />
   </component>

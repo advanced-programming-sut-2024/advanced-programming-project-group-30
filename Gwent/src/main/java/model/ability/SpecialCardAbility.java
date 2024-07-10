@@ -11,6 +11,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SpecialCardAbility {
+    private static SpecialCardAbility instance;
+    public static SpecialCardAbility getInstance() {
+        if (instance == null) {
+            instance = new SpecialCardAbility();
+        }
+        return instance;
+    }
     public static Method createNewAbilityByName(String name) {
         Method method = null;
         try {
@@ -37,10 +44,13 @@ public class SpecialCardAbility {
         int maxPoint = 0;
         for (Row row : allRows) {
             for (DecksCard card : row.getCards()) {
-                if (card instanceof RegularCard regularCard) {
-                    if (regularCard.getPointInGame() >= maxPoint) {
-                        maxCards.put(regularCard, row);
+                if (card instanceof RegularCard regularCard && !regularCard.isHero()
+                        && regularCard.getPointInGame() >= maxPoint) {
+                    if (regularCard.getPointInGame() > maxPoint) {
+                        maxCards.clear();
                     }
+                    maxCards.put(regularCard, row);
+                   maxPoint = regularCard.getPointInGame();
                 }
             }
         }
@@ -50,9 +60,5 @@ public class SpecialCardAbility {
             game.getCurrentPlayer().getPlayerView().discardCard(card);
             row.getRowView().getRow().getChildren().remove(card.getCardView());
         }
-    }
-
-    public void spy(Game game) {
-
     }
 }
