@@ -42,15 +42,15 @@ public class WeatherCardAbility {
     }
 
     private void clearEffect(Player player) {
-        for (Row row : player.getRows()) {
-            clean(Objects.requireNonNull(CssAddress.getCssAddress(
-                    WeatherCardsData.IMPENETRABLE_FOG.toString().toLowerCase())), row.getRowView().getRow());
-            clean(Objects.requireNonNull(CssAddress.getCssAddress(
-                    WeatherCardsData.BITING_FROST.toString().toLowerCase())), row.getRowView().getRow());
-            clean(Objects.requireNonNull(CssAddress.getCssAddress(
-                    WeatherCardsData.TORRENTIAL_RAIN.toString().toLowerCase())), row.getRowView().getRow());
-            row.setDamaged(false);
-        }
+//        for (Row row : player.getRows()) {
+//            clean(Objects.requireNonNull(CssAddress.getCssAddress(
+//                    WeatherCardsData.IMPENETRABLE_FOG.toString().toLowerCase())), row.getRowView().getRow());
+//            clean(Objects.requireNonNull(CssAddress.getCssAddress(
+//                    WeatherCardsData.BITING_FROST.toString().toLowerCase())), row.getRowView().getRow());
+//            clean(Objects.requireNonNull(CssAddress.getCssAddress(
+//                    WeatherCardsData.TORRENTIAL_RAIN.toString().toLowerCase())), row.getRowView().getRow());
+//            row.setDamaged(false);
+//        }
     }
 
     private void clean(CssAddress cssAddress, HBox hBox) {
@@ -116,13 +116,13 @@ public class WeatherCardAbility {
     }
 
     private void setEffects(ArrayList<CssAddress> styles, ArrayList<Row> rows) {
-        int i = 0;
-        for (Row row : rows) {
-            if (i <= 1)
-                row.getRowView().getRow().getStyleClass().add(styles.get(0).getStyleClass());
-            else row.getRowView().getRow().getStyleClass().add(styles.get(1).getStyleClass());
-            i++;
-            row.setDamaged(true);
-        }
+//        int i = 0;
+//        for (Row row : rows) {
+//            if (i <= 1)
+//                row.getRowView().getRow().getStyleClass().add(styles.get(0).getStyleClass());
+//            else row.getRowView().getRow().getStyleClass().add(styles.get(1).getStyleClass());
+//            i++;
+//            row.setDamaged(true);
+//        }
     }
 }

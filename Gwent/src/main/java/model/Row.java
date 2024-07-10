@@ -12,22 +12,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class Row extends Position{
+public class Row extends Position {
     private final String name;
-    //TODO:changed this from RegularCard to DecksCard
     private final ArrayList<DecksCard> cards = new ArrayList<>();
     private int rowPoint = 0;
     private int bonus = 1; //coefficient of tight bonds
     private int extraPoint = 0; //moral boost
     private boolean isDamaged = false; //weather card effects
-    private RowView rowView;
     private SpecialCardPosition specialCardPosition;
     private HashMap<CardData, ArrayList<RegularCard>> cardDataMap = new HashMap<>();
 
     public Row(String name) {
         this.name = name;
         specialCardPosition = new SpecialCardPosition();
-        rowView = new RowView(this, Objects.requireNonNull(CoordinateData.getCoordinateData(name)));
     }
 
     public String getName() {
@@ -37,13 +34,14 @@ public class Row extends Position{
     public ArrayList<DecksCard> getCards() {
         return cards;
     }
-    public void addCardToRow(RegularCard card){
+
+    public void addCardToRow(RegularCard card) {
         cards.add(card);
     }
-    //TODO: changed this
+
     public int getRowPoint() {
         rowPoint = 0;
-        for (DecksCard decksCard : cards){
+        for (DecksCard decksCard : cards) {
             if (!(decksCard instanceof RegularCard card)) continue;
             rowPoint += card.getPointInGame();
         }
@@ -77,7 +75,8 @@ public class Row extends Position{
     public void setExtraPoint(int extraPoint) {
         this.extraPoint = extraPoint;
     }
-    public void addExtraPoint(){
+
+    public void addExtraPoint() {
         this.extraPoint++;
     }
 
@@ -88,24 +87,20 @@ public class Row extends Position{
     public void setDamaged(boolean damaged) {
         isDamaged = damaged;
     }
-    public RowView getRowView(){
-        return rowView;
-    }
-    public void updateRowScore(){
-        rowView.updateRowScore();
-    }
+
     //TODO:added these
-    public void addToCardDataMap(RegularCard card){
+    public void addToCardDataMap(RegularCard card) {
         CardData cardData = card.getCardData();
-        if (cardDataMap.containsKey(cardData)){
+        if (cardDataMap.containsKey(cardData)) {
             cardDataMap.get(cardData).add(card);
-        }else {
+        } else {
             ArrayList<RegularCard> cards = new ArrayList<>();
             cards.add(card);
             cardDataMap.put(cardData, cards);
         }
     }
-    public HashMap<CardData, ArrayList<RegularCard>> getCardDataMap(){
+
+    public HashMap<CardData, ArrayList<RegularCard>> getCardDataMap() {
         return this.cardDataMap;
     }
 
@@ -117,9 +112,5 @@ public class Row extends Position{
         isDamaged = false;
         specialCardPosition.setCard(null);
         cardDataMap.clear();
-        rowView.resetRow();
     }
-    //TODO: added these
-
-
 }

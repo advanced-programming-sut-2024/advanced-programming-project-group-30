@@ -77,16 +77,16 @@ public class PlayerView {
     }
 
     public void discardCard(DecksCard decksCard) {
-        discardPileView.getChildren().clear();
-        discardPileView.getChildren().add(decksCard.getCardView());
+//        discardPileView.getChildren().clear();
+//        discardPileView.getChildren().add(decksCard.getCardView());
     }
 
     public void addCardToHand(DecksCard decksCard) {
-        handView.getChildren().add(decksCard.getCardView());
+//        handView.getChildren().add(decksCard.getCardView());
     }
 
     public void addCardToDeck(DecksCard decksCard) {
-        deckView.getChildren().add(decksCard.getCardView());
+//        deckView.getChildren().add(decksCard.getCardView());
     }
 
     private void clone(HBox node1, HBox node2) {

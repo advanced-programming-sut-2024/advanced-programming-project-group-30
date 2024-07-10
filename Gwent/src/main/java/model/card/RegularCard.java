@@ -23,7 +23,6 @@ public class RegularCard extends DecksCard {
         this.ability = ability;
         this.pointInGame = cardData.getPoint();
         this.positionType = position;
-        this.cardView = new CardView(this);
     }
 
     public Method getAbility() {
@@ -44,7 +43,6 @@ public class RegularCard extends DecksCard {
 
     public void setPointInGame(int pointInGame) {
         this.pointInGame = pointInGame;
-//        this.cardView.updatePoint();
     }
 
     public RegularCardPositionType getPositionType() {
@@ -52,11 +50,11 @@ public class RegularCard extends DecksCard {
     }
 
     public void run(Game game) {
-        try {
-            ability.invoke(RegularCardsAbility.getInstance(),game);
-        } catch (IllegalAccessException | InvocationTargetException e) {
-            System.err.println("ability " + ability.getName() + " not found");
-        }
+//        try {
+//            ability.invoke(RegularCardsAbility.getInstance(),game);
+//        } catch (IllegalAccessException | InvocationTargetException e) {
+//            System.err.println("ability " + ability.getName() + " not found");
+//        }
     }
 
     public int getPoint() {

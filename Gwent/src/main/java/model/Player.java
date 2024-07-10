@@ -1,16 +1,7 @@
 package model;
 
-import enums.CoordinateData;
-import enums.CssAddress;
-import javafx.scene.Node;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import enums.cardsData.LeaderCardData;
 import model.card.DecksCard;
-import view.GameMenu;
-import view.PlayerInformationView;
-import view.PlayerView;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -27,24 +18,14 @@ public class Player {
     private int point = 0;
     private final int[] roundsPoint = new int[3];
     private int life = 2;
-    private final PlayerView playerView;
 
-    public Player(User user, LeaderCardData leader, ArrayList<DecksCard> deck, GameMenu gameMenu, CoordinateData coordinateData,
-                  CssAddress cssAddress, boolean isOpponent) {
+    public Player(User user, LeaderCardData leader, ArrayList<DecksCard> deck) {
         this.user = user;
         this.deck = deck;
         this.leader = leader;
         Random random = new Random();
         for (int i = 0; i < 10; i++)
             addCardToHand(deck.remove(random.nextInt(deck.size())));
-        if (isOpponent)
-            this.playerView = createPlayerView(gameMenu.getOpponentPlayerViewField(), coordinateData, cssAddress);
-        else this.playerView = createPlayerView(gameMenu.getCurrentPlayerViewField(), coordinateData, cssAddress);
-    }
-
-    public PlayerView createPlayerView(Node[] nodes, CoordinateData coordinateData, CssAddress cssAddress) {
-        return new PlayerView(this, (Pane) nodes[0], (VBox) nodes[1], (HBox) nodes[2], (HBox) nodes[3], (HBox) nodes[4],
-                (HBox) nodes[5], coordinateData, cssAddress);
     }
 
     public User getUser() {
@@ -72,7 +53,6 @@ public class Player {
     }
 
     public void addCardToHand(DecksCard card) {
-        card.getCardView().getStyleClass().add(CssAddress.GAME_HAND_SM_CARD.getStyleClass());
         hand.add(card);
     }
 
@@ -105,12 +85,10 @@ public class Player {
 
     public void updatePoint(int point) {
         this.point += point;
-        playerView.getPlayerInformationView().updateTotalScore();
     }
 
     private void resetPoints() {
         point = 0;
-        getPlayerInformationView().resetRound();
     }
 
     public int[] getRoundsPoint() {
@@ -137,14 +115,6 @@ public class Player {
         life--;
     }
 
-    public PlayerView getPlayerView() {
-        return playerView;
-    }
-
-    public PlayerInformationView getPlayerInformationView() {
-        return playerView.getPlayerInformationView();
-    }
-
     public void playCard(DecksCard decksCard) {
         hand.remove(decksCard);
     }
@@ -167,10 +137,8 @@ public class Player {
     }
 
     private void evacuateRow(Row row) {
-        for (DecksCard decksCard : row.getCards()) {
+        for (DecksCard decksCard : row.getCards())
             discardPile.add(decksCard);
-            playerView.discardCard(decksCard);
-        }
     }
 
     private void resetLives() {

@@ -77,11 +77,11 @@ public class SceneManager {
     }
 
     public void goToGame(Game game) {
-        App.setCurrentGame(game);
-        GameMenu menu = (GameMenu) MenuScene.GAME_SCENE.getMenu();
-        menu.setup();
-        App.setCurrentMenuScene(MenuScene.GAME_SCENE);
-        App.getPrimaryStage().setScene(MenuScene.GAME_SCENE.getScene());
+//        App.setCurrentGame(game);
+//        GameMenu menu = (GameMenu) MenuScene.GAME_SCENE.getMenu();
+//        menu.setup();
+//        App.setCurrentMenuScene(MenuScene.GAME_SCENE);
+//        App.getPrimaryStage().setScene(MenuScene.GAME_SCENE.getScene());
     }
 
     private stageSizeData getStageSizeData() {
