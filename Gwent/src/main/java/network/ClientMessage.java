@@ -3,18 +3,18 @@ package network;
 import java.util.ArrayList;
 
 public class ClientMessage {
-    private final String classAddress;
-    private final String methodName;
-    private final ArrayList<Object> fields;
+    private String controllerName;
+    private String methodName;
+    private ArrayList<Object> fields;
 
-    public ClientMessage(String classAddress, String methodName, ArrayList<Object> fields) {
-        this.classAddress = classAddress;
-        this.methodName = methodName;
+    public ClientMessage(String classAddress, String methodAddress, ArrayList<Object> fields) {
+        this.controllerName = classAddress;
+        this.methodName = methodAddress;
         this.fields = fields;
     }
 
-    public String getClassAddress() {
-        return classAddress;
+    public String getControllerName() {
+        return controllerName;
     }
 
     public String getMethodName() {

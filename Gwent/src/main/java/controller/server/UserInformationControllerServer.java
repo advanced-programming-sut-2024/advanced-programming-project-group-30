@@ -54,6 +54,7 @@ public class UserInformationControllerServer {
         return new Result(true, "");
     }
 
+    // TODO: server.
     public Result checkPasswordForChange(String newPassword, String oldPassword) {
         User user = App.getLoggedInUser();
         if (newPassword.isEmpty()) return new Result(false, "** password cannot be empty.");

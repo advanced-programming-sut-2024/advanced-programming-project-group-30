@@ -2,10 +2,13 @@ package network;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import model.Result;
 
+import javax.naming.spi.DirStateFactory;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.net.Socket;
 
 public class Client {
@@ -27,12 +30,8 @@ public class Client {
     private boolean establishConnection() {
         try {
             socket = new Socket(serverIP, serverPort);
-            sendBuffer = new DataOutputStream(
-                    socket.getOutputStream()
-            );
-            recieveBuffer = new DataInputStream(
-                    socket.getInputStream()
-            );
+            sendBuffer = new DataOutputStream(socket.getOutputStream());
+            recieveBuffer = new DataInputStream(socket.getInputStream());
             return true;
         } catch (Exception e) {
             System.err.println("Unable to initialize socket!");
@@ -42,7 +41,7 @@ public class Client {
     }
 
     private boolean endConnection() {
-        if(socket == null) return true;
+        if (socket == null) return true;
         try {
             socket.close();
             recieveBuffer.close();
@@ -56,7 +55,6 @@ public class Client {
     public void sendMessageToServer(ClientMessage clientMessage) {
         establishConnection();
         String message = gsonAgent.toJson(clientMessage);
-        System.out.println(message);
         try {
             sendBuffer.writeUTF(message);
             this.lastServerMessage = recieveBuffer.readUTF();
@@ -65,8 +63,7 @@ public class Client {
         }
     }
 
-    public String getLastDataSentByServer() {
-        System.out.println(lastServerMessage);
-        return lastServerMessage;
+    public Object getLastServerData(Type type) {
+        return gsonAgent.fromJson(lastServerMessage, type);
     }
 }

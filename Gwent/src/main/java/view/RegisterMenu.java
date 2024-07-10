@@ -1,7 +1,6 @@
 package view;
 
 import controller.RegisterMenuController;
-import controller.UserInformationController;
 import enums.SecurityQuestion;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -15,12 +14,11 @@ import network.ClientMessage;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 
 public class RegisterMenu implements Menu {
     private final Client client = ClientView.getClient();
-    private final RegisterMenuController registerController = new RegisterMenuController();
-    private final UserInformationController userInformationController = new UserInformationController();
 
     @FXML
     private Pane firstPage;
@@ -68,23 +66,16 @@ public class RegisterMenu implements Menu {
     public void initialize() {
         questions.setItems(FXCollections.observableArrayList(SecurityQuestion.values()));
         username.textProperty().addListener((Void) -> setUsernameError());
-        password.textProperty().addListener((Void) -> {
-            passwordError.setText(userInformationController.checkPassword(password.getText()).toString());
-            if (shownPassword.isDisable()) shownPassword.setText(password.getText());
-        });
+        password.textProperty().addListener((Void) -> handlePasswordFieldEvent());
         shownPassword.textProperty().addListener((Void) -> {
             if (password.isDisable()) password.setText(shownPassword.getText());
         });
-        passwordConfirm.textProperty().addListener((Void) -> {
-            passwordConfirmError.setText(userInformationController.checkPasswordConfirm(passwordConfirm.getText()).toString());
-            if (shownPasswordConfirm.isDisable()) shownPasswordConfirm.setText(passwordConfirm.getText());
-        });
+        passwordConfirm.textProperty().addListener((Void) -> handlePasswordConfirmEvent());
         shownPasswordConfirm.textProperty().addListener((Void) -> {
             if (passwordConfirm.isDisable()) passwordConfirm.setText(shownPasswordConfirm.getText());
         });
-        nickname.textProperty().addListener((Void) ->
-                nicknameError.setText(userInformationController.checkNickname(nickname.getText()).toString()));
-        email.textProperty().addListener((Void) -> emailError.setText(userInformationController.checkEmail(email.getText()).toString()));
+        nickname.textProperty().addListener((Void) -> setNicknameError());
+        email.textProperty().addListener((Void) -> setEmailError());
     }
 
     @FXML
@@ -105,7 +96,9 @@ public class RegisterMenu implements Menu {
 
     @FXML
     private void setRandomPassword() {
-        String randomPassword = registerController.createRandomPassword();
+        ClientMessage clientMessage = new ClientMessage("RegisterController", "createRandomPassword", null);
+        client.sendMessageToServer(clientMessage);
+        String randomPassword = (String) client.getLastServerData(String.class);
         password.setText(randomPassword);
         shownPassword.setText(randomPassword);
         passwordConfirm.setText(randomPassword);
@@ -120,8 +113,11 @@ public class RegisterMenu implements Menu {
 
     @FXML
     private void continueSignUp() {
-        Result result = userInformationController.checkInformation(username.getText(), password.getText(),
-                passwordConfirm.getText(), nickname.getText(), email.getText());
+        ClientMessage clientMessage = new ClientMessage("UserInformationController", "checkInformation",
+                new ArrayList<>(List.of(new String[]{username.getText(), password.getText(), passwordConfirm.getText(),
+                        nickname.getText(), email.getText()})));
+        client.sendMessageToServer(clientMessage);
+        Result result = (Result) client.getLastServerData(Result.class);
         if (result.isNotSuccessful()) continueError.setText(result.toString());
         else {
             changePage(firstPage, secondPage);
@@ -131,11 +127,16 @@ public class RegisterMenu implements Menu {
 
     @FXML
     private void signup() {
-        Result result = registerController.checkSecurityQuestion(questions.getValue().toString(), answer.getText());
+        ClientMessage clientMessage = new ClientMessage("RegisterController", "checkSecurityQuestion",
+                new ArrayList<>(List.of(new String[]{questions.getValue().toString(), answer.getText()})));
+        client.sendMessageToServer(clientMessage);
+        Result result = (Result) client.getLastServerData(Result.class);
         if (result.isNotSuccessful()) completeError.setText(result.toString());
         else {
-            registerController.register(username.getText(), password.getText(), nickname.getText(), email.getText(),
-                    questions.getValue().toString(), answer.getText());
+            clientMessage = new ClientMessage("RegisterController", "register",
+                    new ArrayList<>(List.of(new String[]{username.getText(), password.getText(), nickname.getText(),
+                            email.getText(), questions.getValue().toString(), answer.getText()})));
+            client.sendMessageToServer(clientMessage);
             goToLoginMenu();
         }
     }
@@ -144,7 +145,37 @@ public class RegisterMenu implements Menu {
         ClientMessage clientMessage = new ClientMessage("UserInformationController",
                 "checkUsername", new ArrayList<>(Collections.singleton(username.getText())));
         client.sendMessageToServer(clientMessage);
-        usernameError.setText((String) client.getLastDataSentByServer());
+        usernameError.setText(client.getLastServerData(Result.class).toString());
+    }
+
+    private void handlePasswordFieldEvent() {
+        ClientMessage clientMessage = new ClientMessage("UserInformationController",
+                "checkPassword", new ArrayList<>(Collections.singleton(password.getText())));
+        client.sendMessageToServer(clientMessage);
+        passwordError.setText(client.getLastServerData(Result.class).toString());
+        if (shownPassword.isDisable()) shownPassword.setText(password.getText());
+    }
+
+    private void handlePasswordConfirmEvent() {
+        ClientMessage clientMessage = new ClientMessage("UserInformationController",
+                "checkPasswordConfirm", new ArrayList<>(Collections.singleton(passwordConfirm.getText())));
+        client.sendMessageToServer(clientMessage);
+        passwordConfirmError.setText(client.getLastServerData(Result.class).toString());
+        if (shownPasswordConfirm.isDisable()) shownPasswordConfirm.setText(passwordConfirm.getText());
+    }
+
+    private void setNicknameError() {
+        ClientMessage clientMessage = new ClientMessage("UserInformationController",
+                "checkNickname", new ArrayList<>(Collections.singleton(nickname.getText())));
+        client.sendMessageToServer(clientMessage);
+        nicknameError.setText(client.getLastServerData(Result.class).toString());
+    }
+
+    private void setEmailError() {
+        ClientMessage clientMessage = new ClientMessage("UserInformationController",
+                "checkEmail", new ArrayList<>(Collections.singleton(email.getText())));
+        client.sendMessageToServer(clientMessage);
+        emailError.setText(client.getLastServerData(Result.class).toString());
     }
 
     private void changePage(Pane previousPage, Pane destinationPage) {

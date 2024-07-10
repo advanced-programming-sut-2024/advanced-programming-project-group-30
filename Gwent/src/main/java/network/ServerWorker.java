@@ -2,12 +2,12 @@ package network;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import controller.server.RegisterMenuControllerServer;
 import controller.server.UserInformationControllerServer;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Objects;
 
 public class ServerWorker extends Thread {
     private final ServerSocket serverSocket;
@@ -15,6 +15,8 @@ public class ServerWorker extends Thread {
     private DataInputStream recieveBuffer;
     private final Gson gsonAgent;
     private final UserInformationControllerServer userInformationControllerServer = new UserInformationControllerServer();
+    private final RegisterMenuControllerServer registerMenuControllerServer = new RegisterMenuControllerServer();
+
 
     public ServerWorker(ServerSocket serverSocket) {
         this.serverSocket = serverSocket;
@@ -43,23 +45,51 @@ public class ServerWorker extends Thread {
 
     private void handleConnection(Socket socket) {
         try {
-            recieveBuffer = new DataInputStream(socket.getInputStream());
-            sendBuffer = new DataOutputStream(socket.getOutputStream());
+            recieveBuffer = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
+            sendBuffer = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
             String messageString = recieveBuffer.readUTF();
             ClientMessage clientMessage = gsonAgent.fromJson(messageString, ClientMessage.class);
-            Object serverMessage = null;
-            switch (clientMessage.getClassAddress()) {
-                case "UserInformationController" -> {
-                    serverMessage = handleUserInformationControllerRequest(clientMessage);
-                }
+            String serverMessage = switch (clientMessage.getControllerName()) {
+                case "UserInformationController" ->
+                        gsonAgent.toJson(handleUserInformationControllerRequest(clientMessage));
+                case "RegisterController" -> gsonAgent.toJson(handleRegisterControllerRequest(clientMessage));
+                default -> null;
+            };
+            if (serverMessage != null)
+                sendBuffer.writeUTF(serverMessage);
+            else {
+                System.err.println("Control Error!!! (not find controller " + clientMessage.getControllerName() + ")");
+                System.exit(1);
             }
-            sendBuffer.writeUTF(gsonAgent.toJson(serverMessage));
             sendBuffer.close();
             recieveBuffer.close();
             socket.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private Object handleRegisterControllerRequest(ClientMessage clientMessage) {
+        switch (clientMessage.getMethodName()) {
+            case "register" -> {
+                return registerMenuControllerServer.register((String) clientMessage.getFields().get(0),
+                        (String) clientMessage.getFields().get(1), (String) clientMessage.getFields().get(2),
+                        (String) clientMessage.getFields().get(3), (String) clientMessage.getFields().get(4),
+                        (String) clientMessage.getFields().get(5));
+            }
+            case "checkSecurityQuestion" -> {
+                return registerMenuControllerServer.checkSecurityQuestion((String) clientMessage.getFields().get(0),
+                        (String) clientMessage.getFields().get(1));
+            }
+            case "createRandomPassword" -> {
+                return registerMenuControllerServer.createRandomPassword();
+            }
+            default -> {
+                System.err.println("invalid method!! in register controller ->  name:" + clientMessage.getMethodName());
+                System.exit(-1);
+            }
+        }
+        return null;
     }
 
     private Object handleUserInformationControllerRequest(ClientMessage clientMessage) {
@@ -95,3 +125,4 @@ public class ServerWorker extends Thread {
         }
     }
 }
+

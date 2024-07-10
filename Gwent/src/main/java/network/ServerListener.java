@@ -22,7 +22,7 @@ public class ServerListener extends Thread {
                 continue;
             }
             synchronized (Server.getConnections()) {
-                System.out.println(Server.getConnections().add(socket));
+                Server.getConnections().add(socket);
                 Server.getConnections().notify();
             }
         }
