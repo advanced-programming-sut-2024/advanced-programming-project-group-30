@@ -4,10 +4,7 @@ import enums.Ability;
 import enums.CssAddress;
 import enums.GameNotification;
 import enums.RegularCardPositionType;
-import enums.cardsData.CardData;
-import enums.cardsData.DeckCardData;
-import enums.cardsData.RegularCardData;
-import enums.cardsData.WeatherCardsData;
+import enums.cardsData.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
@@ -192,8 +189,11 @@ public class GameMenuController {
             Method method = RowView.class.getDeclaredMethod("getSpecialCardPosition");
             cardView.setOnMouseClicked(event -> {
                 resetRowStyles(game);
-                for (Row row : player1.getRows()) {
-                    if (row.getRowView().getSpecialCardPosition().getChildren().isEmpty()) {
+                if (((SpecialCardsData)specialCard.getCardData()).getAbility().equals(Ability.DECOY))
+                    specialCard.run(game);
+                else {
+                    for (Row row : player1.getRows()) {
+                        if (row.getRowView().getSpecialCardPosition().getChildren().isEmpty()) {
                             menu.setNodeStyle(row.getRowView().getSpecialCardPosition(), CssAddress.CARD_ROW);
                             row.getRowView().addStyle(CssAddress.CARD_ROW);
                             try {
@@ -201,8 +201,9 @@ public class GameMenuController {
                             } catch (InvocationTargetException | IllegalAccessException e) {
                                 throw new RuntimeException(e);
                             }
-                    }
+                        }
 
+                    }
                 }
             });
         } catch (Exception e) {
@@ -216,9 +217,9 @@ public class GameMenuController {
             Object object = method.invoke(rowView);
             ((Node) object).setOnMousePressed(event -> {
                 game.selectRow(row);
-                if (card instanceof SpecialCard) {
-                    handleSpecialCardMovement((SpecialCard) card, game, row);
-                } else {
+                if (card instanceof SpecialCard)
+                        handleSpecialCardMovement((SpecialCard) card, game, row);
+                else {
                     try {
                         handleRegularCardMovement(card, game, row);
                     } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {

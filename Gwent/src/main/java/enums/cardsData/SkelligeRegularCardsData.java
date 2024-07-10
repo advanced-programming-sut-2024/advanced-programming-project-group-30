@@ -104,7 +104,7 @@ public enum SkelligeRegularCardsData implements RegularCardData {
                 this.getClass().getResourceAsStream(lgImageAddress)), this, ability.getExplanation(), ability.getAbilityMethodName());
     }
 
-    private RegularCard createCard() {
+    public RegularCard createCard() {
         Method ability = null;
         if (this.ability != null)
             ability = this.ability.getAbility();

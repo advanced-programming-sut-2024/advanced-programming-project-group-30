@@ -13,6 +13,7 @@ import javafx.scene.layout.*;
 import javafx.util.Duration;
 import model.*;
 import model.card.DecksCard;
+import model.card.SpecialCard;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -193,7 +194,6 @@ public class GameMenu implements Menu {
     public void setHandCardEventHandler(Player currentPlayer, Player opponentPlayer, Game game ,ArrayList<DecksCard> cards){
         gameMenuController.handelHandsCardEvent(cards, game, currentPlayer, opponentPlayer);
     }
-
     @FXML
     private void passTurn() {
         gameMenuController.checkRound(App.getCurrentGame());

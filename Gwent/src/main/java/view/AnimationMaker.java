@@ -1,9 +1,11 @@
 package view;
 
+import enums.Ability;
 import enums.CssAddress;
 import enums.FactionType;
 import enums.GameNotification;
 import enums.cardsData.DeckCardData;
+import enums.cardsData.SpecialCardsData;
 import javafx.animation.*;
 import javafx.geometry.Bounds;
 import javafx.scene.control.Label;
@@ -126,7 +128,9 @@ public class AnimationMaker {
         if (((DeckCardData) card.getCardData()).getAbility() == null) return;
         if (card instanceof RegularCard regularCard) regularCard.run(game);
         else if (card instanceof WeatherCard weatherCard) weatherCard.run(game);
-        else if (card instanceof SpecialCard specialCard) specialCard.run(game);
+        else if (card instanceof SpecialCard specialCard) {
+            if (!((SpecialCardsData)specialCard.getCardData()).getAbility().equals(Ability.BERKSER)) specialCard.run(game);
+        }
 
     }
 }

@@ -1,7 +1,10 @@
 package model.ability;
 
+import enums.Ability;
 import enums.MenuScene;
 import enums.RegularCardPositionType;
+import enums.cardsData.RegularCardData;
+import enums.cardsData.SkelligeRegularCardsData;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -15,6 +18,7 @@ import model.Row;
 import model.card.DecksCard;
 import model.card.RegularCard;
 import view.AnimationMaker;
+import view.CardView;
 import view.GameMenu;
 import view.PlayerView;
 
@@ -76,6 +80,7 @@ public class RegularCardsAbility {
                 if (card instanceof RegularCard && card.getName().contains(name)) {
                     boolean isDecksCard = currentPlayer.getDeck().contains(card);
                     Row row = findCardRow(card, currentGame);
+                    row.addCardToRow((RegularCard) card);
                     if (isDecksCard) {
                         AnimationMaker.getInstance().cardPlaceAnimation(card,
                                 currentPlayer.getPlayerView().getDeckView(),
@@ -157,17 +162,34 @@ public class RegularCardsAbility {
         for (DecksCard decksCard : cards) {
             currentPlayer.addCardToHand(decksCard);
             currentPlayer.getPlayerView().addCardToDeck(decksCard);
-            AnimationMaker.getInstance().cardPlaceAnimation(decksCard, playerView.getDiscardPileView(), playerView.getHandView(), currentGame, gameMenu, false);
+            AnimationMaker.getInstance().cardPlaceAnimation(decksCard, playerView.getDiscardPileView(),
+                    playerView.getHandView(), currentGame, gameMenu, false);
         }
         gameMenu.setHandCardEventHandler(currentPlayer, currentGame.getOpponentPlayer(), currentGame, cards);
     }
 
     public void berserker(Game currentGame) {
-
+        RegularCard regularCard;
+        if (currentGame.getSelectedCard().getName().contains("Young"))
+            regularCard = SkelligeRegularCardsData.TRANSFORMED_YOUNG_VILDKAARL.createCard();
+        else  regularCard = SkelligeRegularCardsData.TRANSFORMED_VILDKAARL.createCard();
+        currentGame.getSelectedRow().getRowView().getRow().getChildren().add(regularCard.getCardView());
+        currentGame.getSelectedRow().addCardToRow(regularCard);
     }
 
     public void mardroeme(Game currentGame) {
-
+        for (Row row : currentGame.getCurrentPlayer().getRows()) {
+            for (DecksCard card : row.getCards()) {
+                if (card instanceof RegularCard regularCard &&
+                        (((RegularCardData) regularCard.getCardData())).getAbility().equals(Ability.BERKSER)) {
+                    row.getCards().remove(currentGame.getSelectedCard());
+                    row.getRowView().getRow().getChildren().remove(currentGame.getSelectedCard().getCardView());
+                    currentGame.selectCard(card);
+                    currentGame.selectRow(row);
+                    card.run(currentGame);
+                }
+            }
+        }
     }
 
     public void transformer(Game currentGame) {

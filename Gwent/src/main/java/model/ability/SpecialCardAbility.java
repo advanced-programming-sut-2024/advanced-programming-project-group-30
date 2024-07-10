@@ -1,10 +1,15 @@
 package model.ability;
 
 import enums.MenuScene;
+import javafx.scene.layout.HBox;
 import model.Game;
+import model.Player;
 import model.Row;
 import model.card.DecksCard;
 import model.card.RegularCard;
+import model.card.SpecialCard;
+import view.AnimationMaker;
+import view.GameMenu;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -33,6 +38,31 @@ public class SpecialCardAbility {
     }
 
     public void decoy(Game game) {
+        System.out.println("in decoy");
+        Player player = game.getCurrentPlayer();
+        ArrayList<Row> allRows = player.getRows();
+        GameMenu gameMenu = (GameMenu) MenuScene.GAME_SCENE.getMenu();
+        for (Row row : allRows){
+            for (DecksCard card : row.getCards()){
+                card.getCardView().setOnMouseClicked(mouseEvent -> {
+                    HBox box;
+                    if (card instanceof SpecialCard) {
+                        box = row.getRowView().getSpecialCardPosition();
+                    }
+                    else box = row.getRowView().getRow();
+                    AnimationMaker.getInstance().
+                            cardPlaceAnimation(card,
+                                   box, player.getPlayerView().getHandView(),
+                                    game, gameMenu, false);
+                    AnimationMaker.getInstance().cardPlaceAnimation(game.getSelectedCard(), player.getPlayerView().getHandView(),
+                            box, game, gameMenu, false);
+                    game.selectCard(card);
+                    game.selectRow(row);
+                });
+            }
+        }
+        if (game.getSelectedCard() instanceof SpecialCard) game.getSelectedRow().setSpecialCard((SpecialCard) game.getSelectedCard());
+        else game.getSelectedRow().addCardToRow((RegularCard) game.getSelectedCard());
 
     }
 

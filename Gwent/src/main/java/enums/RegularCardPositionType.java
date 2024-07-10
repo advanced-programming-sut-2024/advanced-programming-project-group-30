@@ -12,6 +12,7 @@ public enum RegularCardPositionType {
     OPPONENT_CLOSE_COMBAT(),
     OPPONENT_RANGED_COMBAT(),
     OPPONENT_SIEGE(),
+    ALL_BOARD(),
     ;
 
     private final String iconAddress = "/Images/Icons/" + this.toString().toLowerCase() + ".png";

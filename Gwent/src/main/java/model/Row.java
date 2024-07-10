@@ -17,9 +17,9 @@ public class Row extends Position{
     //TODO:changed this from RegularCard to DecksCard
     private final ArrayList<DecksCard> cards = new ArrayList<>();
     private int rowPoint = 0;
-    private int bonus = 1; //coefficient of tight bonds
-    private int extraPoint = 0; //moral boost
-    private boolean isDamaged = false; //weather card effects
+    private boolean bonus = false;
+    private int extraPoint = 0;
+    private boolean isDamaged = false;
     private RowView rowView;
     private SpecialCardPosition specialCardPosition;
     private HashMap<CardData, ArrayList<RegularCard>> cardDataMap = new HashMap<>();
@@ -62,11 +62,11 @@ public class Row extends Position{
         this.specialCardPosition.setCard(specialCard);
     }
 
-    public int getBonus() {
+    public boolean getBonus() {
         return bonus;
     }
 
-    public void setBonus(int bonus) {
+    public void setBonus(boolean bonus) {
         this.bonus = bonus;
     }
 
@@ -112,7 +112,7 @@ public class Row extends Position{
     public void resetRow() {
         cards.clear();
         rowPoint = 0;
-        bonus = 1;
+        bonus = false;
         extraPoint = 0;
         isDamaged = false;
         specialCardPosition.setCard(null);
