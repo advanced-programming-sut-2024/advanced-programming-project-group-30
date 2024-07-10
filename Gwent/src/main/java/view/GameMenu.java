@@ -1,8 +1,10 @@
 package view;
 
 import controller.GameMenuController;
+import enums.Ability;
 import enums.CssAddress;
 import enums.GameNotification;
+import enums.cardsData.RegularCardData;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -13,6 +15,7 @@ import javafx.scene.layout.*;
 import javafx.util.Duration;
 import model.*;
 import model.card.DecksCard;
+import model.card.RegularCard;
 import model.card.SpecialCard;
 
 import java.lang.reflect.InvocationTargetException;
@@ -163,8 +166,15 @@ public class GameMenu implements Menu {
         game.getOpponentPlayer().getPlayerInformationView().getStyleClass().remove("brownBoxShadowed");
         for (DecksCard card : game.getOpponentPlayer().getHand())
             hand.getChildren().remove(card.getCardView());
-        for (DecksCard card : game.getCurrentPlayer().getHand())
+        for (DecksCard card : game.getCurrentPlayer().getHand()) {
+            if (card instanceof RegularCard) {
+                if (((RegularCard) card).getAbility() != null){
+                    if (((RegularCard) card).getAbility().equals(Ability.MUSTER))
+                        System.out.println("hand adding " + card);
+                }
+            }
             hand.getChildren().add(card.getCardView());
+        }
         showPassTurnNotification();
     }
 

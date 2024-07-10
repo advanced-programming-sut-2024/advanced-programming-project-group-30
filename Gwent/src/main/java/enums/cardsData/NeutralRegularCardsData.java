@@ -14,7 +14,8 @@ import java.util.Objects;
 public enum NeutralRegularCardsData implements RegularCardData {
     CIRILLA_FIONA_ELEN_RIANNON("Cirilla fiona elen riannon", null, true, 15, 1, RegularCardPositionType.CLOSE_COMBAT),
     GERALT_OF_RIVIA("Geralt of Rivia", null, true, 15, 1, RegularCardPositionType.CLOSE_COMBAT),
-    TRISS_MERIGOLD("Triss Merigold", null, true, 7, 1, RegularCardPositionType.CLOSE_COMBAT),
+    BOVINE_DEFENSE_FORCE("Bovine Defense Force", null, false, 8, 0, RegularCardPositionType.CLOSE_COMBAT),
+    TRISS_MERIGOLD("Triss Merigold", null, true, 7, 0, RegularCardPositionType.CLOSE_COMBAT),
     VILLENTRETENMERTH("Villentretenmerth", Ability.SCORCH, false, 7, 1, RegularCardPositionType.CLOSE_COMBAT),
     YENNEFER_OF_VENGERBERG("Yennefer of Vengerberg", Ability.MEDIC, true, 7, 1, RegularCardPositionType.RANGED_COMBAT),
     OLGIERD_VON_EVEREC("Olgierd von Everec", Ability.MORAL_BOOST, false, 6, 1, RegularCardPositionType.AGILE),
@@ -90,7 +91,7 @@ public enum NeutralRegularCardsData implements RegularCardData {
                 this.getClass().getResourceAsStream(lgImageAddress)), this, ability.getExplanation(), ability.getAbilityMethodName());
     }
 
-    private RegularCard createCard() {
+    public RegularCard createCard() {
         Method ability = null;
         if (this.ability != null)
             ability = this.ability.getAbility();

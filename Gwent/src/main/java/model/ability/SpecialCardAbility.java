@@ -99,9 +99,8 @@ public class SpecialCardAbility {
     public void mardroeme(Game currentGame) {
         for (Row row : currentGame.getCurrentPlayer().getRows()) {
             for (DecksCard card : row.getCards()) {
-                if (card instanceof RegularCard regularCard && (((RegularCardData) regularCard.getCardData())).getAbility().equals(Ability.BERKSER)) {
-                    row.getCards().remove(currentGame.getSelectedCard());
-                    row.getRowView().getSpecialCardPosition().getChildren().remove(currentGame.getSelectedCard().getCardView());
+                if (card instanceof RegularCard regularCard &&
+                        (((RegularCardData) regularCard.getCardData())).getAbility().equals(Ability.BERKSER)) {
                     currentGame.selectCard(card);
                     currentGame.selectRow(row);
                     card.run(currentGame);

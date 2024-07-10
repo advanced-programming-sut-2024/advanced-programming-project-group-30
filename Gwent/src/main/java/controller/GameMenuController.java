@@ -8,7 +8,6 @@ import enums.cardsData.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
-import javafx.event.EventType;
 import javafx.geometry.Bounds;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
@@ -23,14 +22,10 @@ import model.card.SpecialCard;
 import model.card.WeatherCard;
 import view.*;
 
-import java.awt.event.MouseEvent;
-import java.beans.EventHandler;
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 
 public class GameMenuController {
@@ -44,7 +39,7 @@ public class GameMenuController {
         Game game = App.getCurrentGame();
         Player player = game.getCurrentPlayer();
         Player opponentPlayer = game.getOpponentPlayer();
-        menu.addInformationViews(player.getPlayerInformationView(),opponentPlayer.getPlayerInformationView());
+        menu.addInformationViews(player.getPlayerInformationView(), opponentPlayer.getPlayerInformationView());
         setupRows(player, opponentPlayer);
         handelHandsCardEvent(player.getHand(), game, player, opponentPlayer);
         handelHandsCardEvent(opponentPlayer.getHand(), game, opponentPlayer, player);
@@ -54,10 +49,8 @@ public class GameMenuController {
 
     public void handelHandsCardEvent(ArrayList<DecksCard> handsCards, Game game, Player player, Player opponentPlayer) {
         for (DecksCard card : handsCards) {
-            if (card instanceof SpecialCard)
-                handleSpecialCardEvents((SpecialCard) card, game, player);
-            if (card instanceof RegularCard)
-                handleRegularCardEvents((RegularCard) card, game, player, opponentPlayer);
+            if (card instanceof SpecialCard) handleSpecialCardEvents((SpecialCard) card, game, player);
+            if (card instanceof RegularCard) handleRegularCardEvents((RegularCard) card, game, player, opponentPlayer);
             if (card instanceof WeatherCard) handleWeatherCardEvents((WeatherCard) card, game);
         }
     }
@@ -140,12 +133,10 @@ public class GameMenuController {
         resetRowStyles(game);
         menu.removeNodeStyle(card.getCardView(), CssAddress.GAME_HAND_SM_CARD);
         menu.setNodeStyle(card.getCardView(), CssAddress.CARD_IN_ROW);
-        AnimationMaker.getInstance().cardPlaceAnimation(card, game.getCurrentPlayer().getPlayerView().getHandView(),
-                row.getRowView().getSpecialCardPosition(), game, menu, true);
+        AnimationMaker.getInstance().cardPlaceAnimation(card, game.getCurrentPlayer().getPlayerView().getHandView(), row.getRowView().getSpecialCardPosition(), game, menu, true);
         if (card.isDiscardAfterPlaying()) {
             Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), actionEvent -> {
-                AnimationMaker.getInstance().discardAnimation(card, row.getRowView().getSpecialCardPosition(),
-                        game.getCurrentPlayer().getPlayerView().getDiscardPileView(), game, menu);
+                AnimationMaker.getInstance().discardAnimation(card, row.getRowView().getSpecialCardPosition(), game.getCurrentPlayer().getPlayerView().getDiscardPileView(), game, menu);
             }));
             timeline.setCycleCount(1);
             timeline.play();
@@ -163,7 +154,7 @@ public class GameMenuController {
         if (((WeatherCardsData) weatherCard.getCardData()).getAbility().equals(Ability.CLEAR_WEATHER)) {
             clearWeather(weatherCard, game, player.getPlayerView().getHandView(), menu.getWeatherCardPosition());
         } else {
-            AnimationMaker.getInstance().cardPlaceAnimation(weatherCard, player.getPlayerView().getHandView(), menu.getWeatherCardPosition() , game, menu, true);
+            AnimationMaker.getInstance().cardPlaceAnimation(weatherCard, player.getPlayerView().getHandView(), menu.getWeatherCardPosition(), game, menu, true);
         }
         game.addWeatherCard(weatherCard);
         player.playCard(weatherCard);
@@ -189,7 +180,7 @@ public class GameMenuController {
             Method method = RowView.class.getDeclaredMethod("getSpecialCardPosition");
             cardView.setOnMouseClicked(event -> {
                 resetRowStyles(game);
-                if (((SpecialCardsData)specialCard.getCardData()).getAbility().equals(Ability.DECOY))
+                if (((SpecialCardsData) specialCard.getCardData()).getAbility().equals(Ability.DECOY))
                     specialCard.run(game);
                 else {
                     for (Row row : player1.getRows()) {
@@ -217,8 +208,7 @@ public class GameMenuController {
             Object object = method.invoke(rowView);
             ((Node) object).setOnMousePressed(event -> {
                 game.selectRow(row);
-                if (card instanceof SpecialCard)
-                        handleSpecialCardMovement((SpecialCard) card, game, row);
+                if (card instanceof SpecialCard) handleSpecialCardMovement((SpecialCard) card, game, row);
                 else {
                     try {
                         handleRegularCardMovement(card, game, row);
@@ -229,9 +219,11 @@ public class GameMenuController {
             });
         }
     }
+
     private void removeHandler(DecksCard card) {
         card.getCardView().setOnMouseClicked(null);
     }
+
     public void resetRowStyles(Game game) {
         for (Row row : game.getCurrentPlayer().getRows()) {
             menu.resetStyles(row.getRowView());
@@ -240,6 +232,7 @@ public class GameMenuController {
             menu.resetStyles(row.getRowView());
         }
     }
+
     public void updateGame(Game game) {
         updateScores(game);
         updateHandCardNumber(game);
@@ -249,7 +242,8 @@ public class GameMenuController {
         menu.updateScores(allRows);
         if (!game.isRoundPassed()) passTurn(game);
     }
-    public void updateScores(Game game) {
+
+    private void updateScores(Game game) {
         Player player = game.getCurrentPlayer();
         Player opponentPlayer = game.getOpponentPlayer();
         for (Row row : game.getCurrentPlayer().getRows()) {
@@ -262,13 +256,7 @@ public class GameMenuController {
         opponentPlayer.getPlayerInformationView().updateTotalScore();
     }
 
-    public void setUpUsername(Game game) {
-        Player player = game.getCurrentPlayer();
-        PlayerInformationView playerInformationView = player.getPlayerInformationView();
-        menu.setUpUserInformation(playerInformationView.getUsernameLabel(), player.getUser().getUsername());
-    }
-
-    public void updateHandCardNumber(Game game) {
+    private void updateHandCardNumber(Game game) {
         Player player = game.getCurrentPlayer();
         PlayerInformationView playerInformationView = player.getPlayerInformationView();
         menu.updateHandCardNumber(playerInformationView.getHandCardNumber(), player.getHand().size());
@@ -285,7 +273,7 @@ public class GameMenuController {
     }
 
     //TODO: complete endRound method
-    public void endRound(Game game) {
+    private void endRound(Game game) {
         Player winner = checkForHigherScore(game);
         Player loser = null;
         Player beginner = setBeginnerOfTheRound(game);
@@ -305,6 +293,7 @@ public class GameMenuController {
         }
         if (gameIsOver(game)) endGame(game);
         else {
+            checkForTransformers(game);
             setUpNextRound(game, loser);
             boolean isBeginnerYou = (beginner == game.getCurrentPlayer());
             resetRound(game, isBeginnerYou);
@@ -320,6 +309,24 @@ public class GameMenuController {
             }
             game.roundFinished();
             menu.endRound(message);
+        }
+    }
+
+    private void checkForTransformers(Game game) {
+        Player currentPlayer = game.getCurrentPlayer();
+        for (Row row : currentPlayer.getRows()) {
+            for (DecksCard decksCard : row.getCards()) {
+                Method ability;
+                if (!(decksCard instanceof RegularCard)) continue;
+                if (((RegularCardData) decksCard.getCardData()).getAbility() != null) {
+                    ability = ((RegularCard) decksCard).getAbility();
+                    if (ability.equals(Ability.TRANSFORMER)) {
+                        game.selectCard(decksCard);
+                        game.selectRow(row);
+                        decksCard.run(game);
+                    }
+                }
+            }
         }
     }
 
@@ -374,10 +381,10 @@ public class GameMenuController {
     }
 
     private void setUpLoserCrystal(Player player, int roundNumber) {
-        if (roundNumber == 1){
+        if (roundNumber == 1) {
             System.out.println("set up loser crystal");
             player.getPlayerView().getPlayerInformationView().setFirstRoundOfLoss();
-        }else if (roundNumber == 2) {
+        } else if (roundNumber == 2) {
             System.out.println("set up loser crystal");
             player.getPlayerView().getPlayerInformationView().setSecondRoundOfLoss();
         }
@@ -399,6 +406,7 @@ public class GameMenuController {
             timeline.play();
         }
     }
+
     private void setCardsPoint(Row row) {
         int point;
         boolean hasCommanderHorn = hasRegularCommanderHorn(row);
@@ -535,8 +543,7 @@ public class GameMenuController {
             ArrayList<Node> nodes = new ArrayList<>(menu.getWeatherCardPosition().getChildren());
             for (Node cardView : nodes) {
                 game.getCurrentPlayer().discardCard((DecksCard) ((CardView) cardView).getCard());
-                AnimationMaker.getInstance().discardAnimation((DecksCard) ((CardView) cardView).getCard(),
-                        destinationHBox, game.getCurrentPlayer().getPlayerView().getDiscardPileView(), game, menu);
+                AnimationMaker.getInstance().discardAnimation((DecksCard) ((CardView) cardView).getCard(), destinationHBox, game.getCurrentPlayer().getPlayerView().getDiscardPileView(), game, menu);
             }
             game.getWeatherCards().clear();
             card.run(game);

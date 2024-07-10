@@ -58,15 +58,12 @@ public class CardView extends Pane {
         int point = ((RegularCard) card).getPoint();
         int pointInGame = ((RegularCard) card).getPointInGame();
         if (pointInGame > point) {
-            System.out.println("in yellow");
             this.point.getStyleClass().add(CssAddress.EXTRA_POINT.getStyleClass());
         }
         if (pointInGame < point) {
-            System.out.println("in red");
             this.point.getStyleClass().add(CssAddress.POINT_LOSS.getStyleClass());
         }
         if (pointInGame == point) {
-            System.out.println("in regular");
             this.point.getStyleClass().add(CssAddress.REGULAR_POINT.getStyleClass());
         }
     }

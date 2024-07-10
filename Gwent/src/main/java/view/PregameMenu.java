@@ -102,7 +102,7 @@ public class PregameMenu implements Menu {
 
     public void addToCardCollection(PregameCardView cardView) {
         cardCollection.getChildren().add(controller.getIndex(cardView, cardCollection.getChildren()), cardView);
-        cardView.setOnMouseClicked((Void) -> controller.addCardToDeck(cardView));
+        cardView.setOnMouseClicked((Void) -> addCardToDeck(cardView));
     }
 
     public void removeFromCardCollection(PregameCardView cardView) {
@@ -111,7 +111,32 @@ public class PregameMenu implements Menu {
 
     public void addToCardsInDeck(PregameCardView cardView) {
         cardsInDeck.getChildren().add(controller.getIndex(cardView, cardsInDeck.getChildren()), cardView);
-        cardView.setOnMouseClicked((Void) -> controller.removeCardFromDeck(cardView));
+        cardView.setOnMouseClicked((Void) -> removeCardFromDeck(cardView));
+    }
+    public void addCardToDeck(PregameCardView cardView) {
+        controller.getPregameData().addToPreDeck(cardView.getCardData());
+        cardView.setNumber(cardView.getNumber() - 1);
+        if (cardView.getNumber() < 1) removeFromCardCollection(cardView);
+        PregameCardView deckCardView = getDeckCardView(cardView.getCardData());
+        if (deckCardView == null) {
+            deckCardView = new PregameCardView(cardView.getCardData());
+            deckCardView.setNumber(1);
+            addToCardsInDeck(deckCardView);
+        } else deckCardView.setNumber(deckCardView.getNumber() + 1);
+        updateNumberData();
+    }
+
+    public void removeCardFromDeck(PregameCardView cardView) {
+        controller.getPregameData().removeFromPreDeck(cardView.getCardData());
+        cardView.setNumber(cardView.getNumber() - 1);
+        if (cardView.getNumber() < 1) removeFromCardsInDeck(cardView);
+        PregameCardView collectionCardView = getCollectionCardView(cardView.getCardData());
+        if (collectionCardView == null) {
+            collectionCardView = new PregameCardView(cardView.getCardData());
+            collectionCardView.setNumber(1);
+            addToCardCollection(collectionCardView);
+        } else collectionCardView.setNumber(collectionCardView.getNumber() + 1);
+        updateNumberData();
     }
 
     public void removeFromCardsInDeck(PregameCardView cardView) {

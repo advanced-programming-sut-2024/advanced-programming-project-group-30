@@ -38,7 +38,7 @@ public enum SkelligeRegularCardsData implements RegularCardData {
     BIRNA_BRAN("Birna Bran", Ability.MEDIC, false, 2, 1, RegularCardPositionType.CLOSE_COMBAT),
     DRAIG_BON_DHU("Draig Bon-Dhu", Ability.HORN_COMMANDER, false, 2, 1, RegularCardPositionType.SIEGE),
     YOUNG_BERSERKER("Young Berserker", Ability.BERKSER, false, 2, 3, RegularCardPositionType.RANGED_COMBAT),
-    KAMBI("Kambi", Ability.TRANSFORMER, true, 0, 1, RegularCardPositionType.CLOSE_COMBAT),
+    KAMBI("Kambi", Ability.TRANSFORMER, false, 0, 1, RegularCardPositionType.CLOSE_COMBAT),
     ;
 
     private final String name;

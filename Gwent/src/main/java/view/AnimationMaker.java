@@ -128,7 +128,8 @@ public class AnimationMaker {
     private void runAbility(DecksCard card, Game game) {
         if (((DeckCardData) card.getCardData()).getAbility() == null) return;
         if (card instanceof RegularCard regularCard) {
-            if (!(((RegularCardData)regularCard.getCardData())).getAbility().equals(Ability.BERKSER))
+            if (!(((RegularCardData)regularCard.getCardData())).getAbility().equals(Ability.BERKSER) &&
+            !(((RegularCardData) regularCard.getCardData()).getAbility().equals(Ability.TRANSFORMER)))
                 regularCard.run(game);
         }
 

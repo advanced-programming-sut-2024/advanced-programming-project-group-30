@@ -4,6 +4,7 @@ import enums.Ability;
 import enums.CssAddress;
 import enums.MenuScene;
 import enums.RegularCardPositionType;
+import enums.cardsData.NeutralRegularCardsData;
 import enums.cardsData.RegularCardData;
 import enums.cardsData.SkelligeRegularCardsData;
 import javafx.scene.image.Image;
@@ -73,16 +74,18 @@ public class RegularCardsAbility {
         for (DecksCard card : allCards) {
             if (card instanceof RegularCard && card.getName().contains(name)) {
                 boolean isDecksCard = currentPlayer.getDeck().contains(card);
-                System.out.println("is deck card " + isDecksCard);
                 Row row = findCardRow(card, currentGame);
                 row.addCardToRow((RegularCard) card);
                 card.getCardView().getStyleClass().add(CssAddress.CARD_IN_ROW.getStyleClass());
                 if (isDecksCard) {
-                    AnimationMaker.getInstance().cardPlaceAnimation(card, currentPlayer.getPlayerView().getDeckView(), row.getRowView().getRow(), currentGame, (GameMenu) MenuScene.GAME_SCENE.getMenu(), false);
+                    AnimationMaker.getInstance().cardPlaceAnimation(card, currentPlayer.getPlayerView().getDeckView(), row.getRowView().getRow(), currentGame,
+                            (GameMenu) MenuScene.GAME_SCENE.getMenu(), false);
                     currentPlayer.getDeck().remove(card);
                 } else {
-                    currentPlayer.playCard(decksCard);
-                    AnimationMaker.getInstance().cardPlaceAnimation(card, currentPlayer.getPlayerView().getHandView(), row.getRowView().getRow(), currentGame, (GameMenu) MenuScene.GAME_SCENE.getMenu(), false);
+                    System.out.println("card is in hand " + card);
+                    currentPlayer.getHand().remove(decksCard);
+                    AnimationMaker.getInstance().cardPlaceAnimation(card, currentPlayer.getPlayerView().getHandView(), row.getRowView().getRow(), currentGame,
+                            (GameMenu) MenuScene.GAME_SCENE.getMenu(), false);
                 }
 
             }
@@ -158,8 +161,10 @@ public class RegularCardsAbility {
         if (currentGame.getSelectedCard().getName().contains("Young"))
             regularCard = SkelligeRegularCardsData.TRANSFORMED_YOUNG_VILDKAARL.createCard();
         else regularCard = SkelligeRegularCardsData.TRANSFORMED_VILDKAARL.createCard();
+        regularCard.getCardView().getStyleClass().add(CssAddress.CARD_IN_ROW.getStyleClass());
         currentGame.getSelectedRow().getRowView().getRow().getChildren().add(regularCard.getCardView());
         currentGame.getSelectedRow().addCardToRow(regularCard);
+
     }
 
     public void mardroeme(Game currentGame) {
@@ -177,7 +182,17 @@ public class RegularCardsAbility {
     }
 
     public void transformer(Game currentGame) {
-
+        RegularCard card = (RegularCard) currentGame.getSelectedCard();
+        RegularCard regularCard;
+        if (card.getName().equals("Cow")) {
+            regularCard = NeutralRegularCardsData.BOVINE_DEFENSE_FORCE.createCard();
+        }else regularCard = SkelligeRegularCardsData.ERMION.createCard();
+        Row row = currentGame.getSelectedRow();
+        regularCard.getCardView().getStyleClass().add(CssAddress.CARD_IN_ROW.getStyleClass());
+        row.getRowView().getRow().getChildren().remove(card.getCardView());
+        row.getRowView().getRow().getChildren().add(regularCard.getCardView());
+        row.addCardToRow(regularCard);
+        row.getCards().remove(card);
     }
 
 }

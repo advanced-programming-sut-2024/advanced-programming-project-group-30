@@ -72,31 +72,7 @@ public class PregameMenuController {
         menu.updateNumberData();
     }
 
-    public void addCardToDeck(PregameCardView cardView) {
-        pregameData.addToPreDeck(cardView.getCardData());
-        cardView.setNumber(cardView.getNumber() - 1);
-        if (cardView.getNumber() < 1) menu.removeFromCardCollection(cardView);
-        PregameCardView deckCardView = menu.getDeckCardView(cardView.getCardData());
-        if (deckCardView == null) {
-            deckCardView = new PregameCardView(cardView.getCardData());
-            deckCardView.setNumber(1);
-            menu.addToCardsInDeck(deckCardView);
-        } else deckCardView.setNumber(deckCardView.getNumber() + 1);
-        menu.updateNumberData();
-    }
 
-    public void removeCardFromDeck(PregameCardView cardView) {
-        pregameData.removeFromPreDeck(cardView.getCardData());
-        cardView.setNumber(cardView.getNumber() - 1);
-        if (cardView.getNumber() < 1) menu.removeFromCardsInDeck(cardView);
-        PregameCardView collectionCardView = menu.getCollectionCardView(cardView.getCardData());
-        if (collectionCardView == null) {
-            collectionCardView = new PregameCardView(cardView.getCardData());
-            collectionCardView.setNumber(1);
-            menu.addToCardCollection(collectionCardView);
-        } else collectionCardView.setNumber(collectionCardView.getNumber() + 1);
-        menu.updateNumberData();
-    }
 
     public void changeFation(FactionType faction) {
         pregameData.setFaction(faction);
