@@ -2,6 +2,7 @@ package network;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import controller.server.LoginMenuControllerServer;
 import controller.server.RegisterMenuControllerServer;
 import controller.server.UserInformationControllerServer;
 
@@ -16,6 +17,7 @@ public class ServerWorker extends Thread {
     private final Gson gsonAgent;
     private final UserInformationControllerServer userInformationControllerServer = new UserInformationControllerServer();
     private final RegisterMenuControllerServer registerMenuControllerServer = new RegisterMenuControllerServer();
+    private final LoginMenuControllerServer loginMenuControllerServer = new LoginMenuControllerServer();
 
 
     public ServerWorker(ServerSocket serverSocket) {
@@ -53,6 +55,7 @@ public class ServerWorker extends Thread {
                 case "UserInformationController" ->
                         gsonAgent.toJson(handleUserInformationControllerRequest(clientMessage));
                 case "RegisterController" -> gsonAgent.toJson(handleRegisterControllerRequest(clientMessage));
+                case "LoginController" -> gsonAgent.toJson(handleLoginControllerRequest(clientMessage));
                 default -> null;
             };
             if (serverMessage != null)
@@ -67,29 +70,6 @@ public class ServerWorker extends Thread {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    private Object handleRegisterControllerRequest(ClientMessage clientMessage) {
-        switch (clientMessage.getMethodName()) {
-            case "register" -> {
-                return registerMenuControllerServer.register((String) clientMessage.getFields().get(0),
-                        (String) clientMessage.getFields().get(1), (String) clientMessage.getFields().get(2),
-                        (String) clientMessage.getFields().get(3), (String) clientMessage.getFields().get(4),
-                        (String) clientMessage.getFields().get(5));
-            }
-            case "checkSecurityQuestion" -> {
-                return registerMenuControllerServer.checkSecurityQuestion((String) clientMessage.getFields().get(0),
-                        (String) clientMessage.getFields().get(1));
-            }
-            case "createRandomPassword" -> {
-                return registerMenuControllerServer.createRandomPassword();
-            }
-            default -> {
-                System.err.println("invalid method!! in register controller ->  name:" + clientMessage.getMethodName());
-                System.exit(-1);
-            }
-        }
-        return null;
     }
 
     private Object handleUserInformationControllerRequest(ClientMessage clientMessage) {
@@ -123,6 +103,50 @@ public class ServerWorker extends Thread {
                 return "invalid method";
             }
         }
+    }
+
+    private Object handleRegisterControllerRequest(ClientMessage clientMessage) {
+        switch (clientMessage.getMethodName()) {
+            case "register" -> {
+                return registerMenuControllerServer.register((String) clientMessage.getFields().get(0),
+                        (String) clientMessage.getFields().get(1), (String) clientMessage.getFields().get(2),
+                        (String) clientMessage.getFields().get(3), (String) clientMessage.getFields().get(4),
+                        (String) clientMessage.getFields().get(5));
+            }
+            case "checkSecurityQuestion" -> {
+                return registerMenuControllerServer.checkSecurityQuestion((String) clientMessage.getFields().get(0),
+                        (String) clientMessage.getFields().get(1));
+            }
+            case "createRandomPassword" -> {
+                return registerMenuControllerServer.createRandomPassword();
+            }
+            default -> {
+                System.err.println("invalid method!! in register controller ->  name:" + clientMessage.getMethodName());
+                System.exit(-1);
+            }
+        }
+        return null;
+    }
+
+    private Object handleLoginControllerRequest(ClientMessage clientMessage) {
+        switch (clientMessage.getMethodName()) {
+            case "login" -> {
+                return loginMenuControllerServer.login((String) clientMessage.getFields().get(0));
+            }
+            case "checkInformationForLogin" -> {
+                return loginMenuControllerServer.checkInformationForLogin((String) clientMessage.getFields().get(0),
+                        (String) clientMessage.getFields().get(1));
+            }
+            case "getEmptyError" -> {
+                return loginMenuControllerServer.getEmptyError((String) clientMessage.getFields().get(0),
+                        (String) clientMessage.getFields().get(1));
+            }
+            default -> {
+                System.err.println("invalid method!! in login controller ->  name:" + clientMessage.getMethodName());
+                System.exit(-1);
+            }
+        }
+        return null;
     }
 }
 

@@ -56,15 +56,15 @@ public class UserInformationControllerServer {
 
     // TODO: server.
     public Result checkPasswordForChange(String newPassword, String oldPassword) {
-        User user = App.getLoggedInUser();
-        if (newPassword.isEmpty()) return new Result(false, "** password cannot be empty.");
-        if (oldPassword.isEmpty()) return new Result(false, "** please enter your current password.");
-        if (!user.getPassword().equals(oldPassword)) return new Result(false, "** your current password is incorrect.");
-        if (!isPasswordFormatValid(newPassword))
-            return new Result(false, "** password must only contain english letters, numbers and special characters.");
-        if (!isPasswordStrong(newPassword)) return new Result(false, "** password is weak.");
-        if (user.getPassword().equals(newPassword))
-            return new Result(false, "** new password is the same as your current password.");
+//        User user = App.getLoggedInUsersUsername();
+//        if (newPassword.isEmpty()) return new Result(false, "** password cannot be empty.");
+//        if (oldPassword.isEmpty()) return new Result(false, "** please enter your current password.");
+//        if (!user.getPassword().equals(oldPassword)) return new Result(false, "** your current password is incorrect.");
+//        if (!isPasswordFormatValid(newPassword))
+//            return new Result(false, "** password must only contain english letters, numbers and special characters.");
+//        if (!isPasswordStrong(newPassword)) return new Result(false, "** password is weak.");
+//        if (user.getPassword().equals(newPassword))
+//            return new Result(false, "** new password is the same as your current password.");
         return new Result(true, "");
     }
 

@@ -13,6 +13,7 @@ public class User {
     private String nickName;
     private final SecurityQuestion securityQuestion;
     private final String securityAnswer;
+    private boolean isLoggedIn = false;
     private int rank;
     private int wins;
     private int losses;
@@ -53,6 +54,10 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setLoggedIn(boolean loggedIn) {
+        isLoggedIn = loggedIn;
     }
 
     public String getNickName() {

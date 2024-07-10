@@ -2,9 +2,8 @@ package network;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import model.Result;
+import model.App;
 
-import javax.naming.spi.DirStateFactory;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -65,5 +64,9 @@ public class Client {
 
     public Object getLastServerData(Type type) {
         return gsonAgent.fromJson(lastServerMessage, type);
+    }
+
+    public void login(String username,String nickname, String email, boolean stayLoggedIn) {
+        App.setLoggedInUser(username,nickname, email, stayLoggedIn);
     }
 }

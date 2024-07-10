@@ -1,15 +1,14 @@
-package controller;
+package controller.server;
 
-import model.App;
 import model.Result;
 import model.User;
 import network.Server;
 
-public class LoginMenuController {
-    public void login(String username, boolean stayLoggedIn) {
+public class LoginMenuControllerServer {
+    public Result login(String username) {
         User user = Server.getUserByUsername(username);
-        App.setLoggedInUser(user, stayLoggedIn);
-        App.getSceneManager().goToMainMenu();
+        user.setLoggedIn(true);
+        return new Result(true, username + " logged in");
     }
 
     public Result checkInformationForLogin(String username, String password) {

@@ -4,7 +4,7 @@ import model.App;
 
 public class MainMenuController {
     public void logout() {
-        App.setLoggedInUser(null, false);
+//        App.setLoggedInUser(null, false);
         App.getSceneManager().goToLoginMenu();
     }
 

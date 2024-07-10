@@ -1,6 +1,5 @@
 package view;
 
-import controller.RegisterMenuController;
 import enums.SecurityQuestion;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;

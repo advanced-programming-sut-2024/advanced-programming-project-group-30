@@ -5,7 +5,6 @@ import model.App;
 import model.Game;
 import model.PregameData;
 import model.User;
-import view.GameMenu;
 import view.MainMenu;
 import view.PregameMenu;
 import view.ProfileMenu;
@@ -39,10 +38,10 @@ public class SceneManager {
         setupStage(sizeData);
     }
 
-    public void goToMainMenu() {
+    public void goToMainMenu(String username, String nickname) {
         stageSizeData sizeData = getStageSizeData();
         MainMenu mainMenu = (MainMenu) MenuScene.MAIN_SCENE.getMenu();
-        mainMenu.setUserInfo(App.getLoggedInUser().getUsername(), App.getLoggedInUser().getNickName());
+        mainMenu.setUserInfo(username, nickname);
         App.setCurrentMenuScene(MenuScene.MAIN_SCENE);
         App.getPrimaryStage().setScene(MenuScene.MAIN_SCENE.getScene());
         setupStage(sizeData);
@@ -51,10 +50,10 @@ public class SceneManager {
     public void goToProfileMenu() {
         stageSizeData sizeData = getStageSizeData();
         ProfileMenu profileMenu = (ProfileMenu) MenuScene.PROFILE_SCENE.getMenu();
-        User user = App.getLoggedInUser();
-        profileMenu.setFields(user.getUsername(), user.getNickName(), user.getEmail(),
-                user.getRank(), user.getHighestScore(), user.getGameHistories().size(),
-                user.getWins(), user.getLosses(), user.getDraws());
+//        User user = App.getLoggedInUsersUsername();
+//        profileMenu.setFields(user.getUsername(), user.getNickName(), user.getEmail(),
+//                user.getRank(), user.getHighestScore(), user.getGameHistories().size(),
+//                user.getWins(), user.getLosses(), user.getDraws());
         App.setCurrentMenuScene(MenuScene.PROFILE_SCENE);
         App.getPrimaryStage().setScene(MenuScene.PROFILE_SCENE.getScene());
         setupStage(sizeData);

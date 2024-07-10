@@ -19,7 +19,7 @@ public class ChooseOpponentMenu implements Menu {
 
     @FXML
     private void backToMainMenu() {
-        App.getSceneManager().goToMainMenu();
+//        App.getSceneManager().goToMainMenu();
     }
 
     @FXML

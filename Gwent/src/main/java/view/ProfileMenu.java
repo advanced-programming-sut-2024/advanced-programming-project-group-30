@@ -81,18 +81,18 @@ public class ProfileMenu implements Menu {
     @FXML
     public void initialize() {
         gameHistoryCount.setFocusTraversable(false);
-        usernameTextField.textProperty().addListener((observableValue, s, t1) -> {
-            handleUsernameError();
-            usernameTextField.setPromptText(App.getLoggedInUser().getUsername());
-        });
-        nicknameTextField.textProperty().addListener((observableValue, s, t1) -> {
-            handleNicknameError();
-            nicknameTextField.setPromptText(App.getLoggedInUser().getNickName());
-        });
-        emailTextField.textProperty().addListener((observableValue, s, t1) -> {
-            handleEmailError();
-            emailTextField.setPromptText(App.getLoggedInUser().getEmail());
-        });
+//        usernameTextField.textProperty().addListener((observableValue, s, t1) -> {
+//            handleUsernameError();
+//            usernameTextField.setPromptText(App.getLoggedInUsersUsername().getUsername());
+//        });
+//        nicknameTextField.textProperty().addListener((observableValue, s, t1) -> {
+//            handleNicknameError();
+//            nicknameTextField.setPromptText(App.getLoggedInUsersUsername().getNickName());
+//        });
+//        emailTextField.textProperty().addListener((observableValue, s, t1) -> {
+//            handleEmailError();
+//            emailTextField.setPromptText(App.getLoggedInUsersUsername().getEmail());
+//        });
         newPassword.textProperty().addListener((observableValue, s, t1) ->
                 newPasswordError.setText(userInformationController.checkPassword(newPassword.getText()).toString()));
         oldPassword.textProperty().addListener((observableValue, s, t1) -> oldPassword.setPromptText("old password"));
@@ -194,20 +194,20 @@ public class ProfileMenu implements Menu {
 
     @FXML
     private void cancelChangingUsername() {
-        cancelEditingTextField(usernameTextField, editUsernameButton, setNewUsernameButton,
-                cancelChangingUsernameButton, usernameErrorField, App.getLoggedInUser().getUsername());
+//        cancelEditingTextField(usernameTextField, editUsernameButton, setNewUsernameButton,
+//                cancelChangingUsernameButton, usernameErrorField, App.getLoggedInUsersUsername().getUsername());
     }
 
     @FXML
     private void cancelChangingNickname() {
-        cancelEditingTextField(nicknameTextField, editNicknameButton, setNewNicknameButton,
-                cancelChangingNicknameButton, nicknameErrorField, App.getLoggedInUser().getNickName());
+//        cancelEditingTextField(nicknameTextField, editNicknameButton, setNewNicknameButton,
+//                cancelChangingNicknameButton, nicknameErrorField, App.getLoggedInUsersUsername().getNickName());
     }
 
     @FXML
     private void cancelChangingEmail() {
-        cancelEditingTextField(emailTextField, editEmailButton, setNewEmailButton,
-                cancelChangingEmailButton, emailErrorField, App.getLoggedInUser().getEmail());
+//        cancelEditingTextField(emailTextField, editEmailButton, setNewEmailButton,
+//                cancelChangingEmailButton, emailErrorField, App.getLoggedInUsersUsername().getEmail());
     }
 
     @FXML
