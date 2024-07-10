@@ -1,4 +1,4 @@
-package controller;
+package controller.server;
 
 import enums.CheckInformationRegex;
 import model.App;
@@ -8,8 +8,9 @@ import network.Server;
 
 import java.util.Random;
 
-public class UserInformationController {
-    public Result checkInformation(String username, String password, String passwordConfirm, String nickname, String email) {
+public class UserInformationControllerServer {
+    public Result checkInformation(String username, String password, String passwordConfirm, String
+            nickname, String email) {
         if (checkUsername(username).isNotSuccessful()) return new Result(false, "please check username field");
         if (checkPassword(password).isNotSuccessful()) return new Result(false, "please check password field");
         if (!checkPasswordConfirm(password, passwordConfirm))

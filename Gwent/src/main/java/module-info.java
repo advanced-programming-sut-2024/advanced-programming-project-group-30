@@ -16,4 +16,6 @@ module Gwent {
     opens model.card to com.google.gson;
     opens model.ability to com.google.gson;
     opens enums to com.google.gson;
+    exports network;
+    opens network to com.google.gson;
 }

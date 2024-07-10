@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class Listener extends Thread {
+public class ServerListener extends Thread {
     private final ServerSocket serverSocket;
 
-    public Listener(ServerSocket serverSocket) {
+    public ServerListener(ServerSocket serverSocket) {
         this.serverSocket = serverSocket;
     }
 
@@ -22,7 +22,7 @@ public class Listener extends Thread {
                 continue;
             }
             synchronized (Server.getConnections()) {
-                Server.getConnections().add(socket);
+                System.out.println(Server.getConnections().add(socket));
                 Server.getConnections().notify();
             }
         }

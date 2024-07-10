@@ -4,6 +4,7 @@ import enums.SecurityQuestion;
 import model.App;
 import model.Result;
 import model.User;
+import network.Server;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,7 +13,7 @@ import java.util.Random;
 public class RegisterMenuController {
     public void register(String username, String password, String nickname, String email, String securityQuestion, String securityAnswer) {
         User user = new User(username, password, email, nickname, SecurityQuestion.getSecurityQuestion(securityQuestion), securityAnswer);
-        App.addUser(user);
+        Server.addUser(user);
     }
 
     public Result checkSecurityQuestion(String question, String answer) {

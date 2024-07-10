@@ -10,9 +10,15 @@ import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import model.App;
 import model.Result;
+import network.Client;
+import network.ClientMessage;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 
-public class RegisterMenu implements Menu{
+public class RegisterMenu implements Menu {
+    private final Client client = ClientView.getClient();
     private final RegisterMenuController registerController = new RegisterMenuController();
     private final UserInformationController userInformationController = new UserInformationController();
 
@@ -61,8 +67,7 @@ public class RegisterMenu implements Menu{
     @FXML
     public void initialize() {
         questions.setItems(FXCollections.observableArrayList(SecurityQuestion.values()));
-        username.textProperty().addListener((Void) ->
-                usernameError.setText(userInformationController.checkUsername(username.getText()).toString()));
+        username.textProperty().addListener((Void) -> setUsernameError());
         password.textProperty().addListener((Void) -> {
             passwordError.setText(userInformationController.checkPassword(password.getText()).toString());
             if (shownPassword.isDisable()) shownPassword.setText(password.getText());
@@ -133,6 +138,13 @@ public class RegisterMenu implements Menu{
                     questions.getValue().toString(), answer.getText());
             goToLoginMenu();
         }
+    }
+
+    private void setUsernameError() {
+        ClientMessage clientMessage = new ClientMessage("UserInformationController",
+                "checkUsername", new ArrayList<>(Collections.singleton(username.getText())));
+        client.sendMessageToServer(clientMessage);
+        usernameError.setText((String) client.getLastDataSentByServer());
     }
 
     private void changePage(Pane previousPage, Pane destinationPage) {
