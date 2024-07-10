@@ -5,10 +5,10 @@ import model.User;
 import network.Server;
 
 public class LoginMenuControllerServer {
-    public Result login(String username) {
+    public String[] login(String username) {
         User user = Server.getUserByUsername(username);
         user.setLoggedIn(true);
-        return new Result(true, username + " logged in");
+        return new String[]{user.getUsername(), user.getNickName(), user.getEmail()};
     }
 
     public Result checkInformationForLogin(String username, String password) {
