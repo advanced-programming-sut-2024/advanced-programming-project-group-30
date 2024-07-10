@@ -1,6 +1,5 @@
 package view;
 
-import controller.ForgetPasswordMenuController;
 import enums.SecurityQuestion;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -10,10 +9,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import model.App;
 import model.Result;
+import network.Client;
+import network.ClientMessage;
 
-public class ForgetPasswordMenu implements Menu{
-    private final ForgetPasswordMenuController controller = new ForgetPasswordMenuController();
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
+public class ForgetPasswordMenu implements Menu {
+    private final Client client = ClientView.getClient();
     @FXML
     private Pane firstPage;
     @FXML
@@ -46,7 +50,10 @@ public class ForgetPasswordMenu implements Menu{
 
     @FXML
     private void continueForgetPassword() {
-        Result result = controller.checkUsername(username.getText());
+        ClientMessage clientMessage = new ClientMessage("ForgetPasswordController", "checkUsername",
+                new ArrayList<>(Collections.singleton(username.getText())));
+        client.sendMessageToServer(clientMessage);
+        Result result = (Result) client.getLastServerData(Result.class);
         if (result.isNotSuccessful()) {
             continueError.setText(result.toString());
             return;
@@ -63,7 +70,10 @@ public class ForgetPasswordMenu implements Menu{
 
     @FXML
     private void getPassword() {
-        Result result = controller.getPassword(username.getText(), questions.getValue().toString(), answer.getText());
+        ClientMessage clientMessage = new ClientMessage("ForgetPasswordController", "getPassword",
+                new ArrayList<>(List.of(new String[]{username.getText(), questions.getValue().toString(), answer.getText()})));
+        client.sendMessageToServer(clientMessage);
+        Result result = (Result) client.getLastServerData(Result.class);
         if (result.isNotSuccessful()) getPasswordError.setText(result.toString());
         else showPassword(result.toString());
     }

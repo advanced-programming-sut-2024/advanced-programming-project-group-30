@@ -2,6 +2,7 @@ package network;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import controller.server.ForgetPasswordControllerServer;
 import controller.server.LoginMenuControllerServer;
 import controller.server.RegisterMenuControllerServer;
 import controller.server.UserInformationControllerServer;
@@ -18,7 +19,7 @@ public class ServerWorker extends Thread {
     private final UserInformationControllerServer userInformationControllerServer = new UserInformationControllerServer();
     private final RegisterMenuControllerServer registerMenuControllerServer = new RegisterMenuControllerServer();
     private final LoginMenuControllerServer loginMenuControllerServer = new LoginMenuControllerServer();
-
+    private final ForgetPasswordControllerServer forgetPasswordControllerServer = new ForgetPasswordControllerServer();
 
     public ServerWorker(ServerSocket serverSocket) {
         this.serverSocket = serverSocket;
@@ -56,6 +57,7 @@ public class ServerWorker extends Thread {
                         gsonAgent.toJson(handleUserInformationControllerRequest(clientMessage));
                 case "RegisterController" -> gsonAgent.toJson(handleRegisterControllerRequest(clientMessage));
                 case "LoginController" -> gsonAgent.toJson(handleLoginControllerRequest(clientMessage));
+                case "ForgetPasswordController" -> gsonAgent.toJson(handleForgetPasswordControllerRequest(clientMessage));
                 default -> null;
             };
             if (serverMessage != null)
@@ -143,6 +145,23 @@ public class ServerWorker extends Thread {
             }
             default -> {
                 System.err.println("invalid method!! in login controller ->  name:" + clientMessage.getMethodName());
+                System.exit(-1);
+            }
+        }
+        return null;
+    }
+
+    private Object handleForgetPasswordControllerRequest(ClientMessage clientMessage) {
+        switch (clientMessage.getMethodName()) {
+            case "checkUsername" -> {
+                return forgetPasswordControllerServer.checkUsername((String) clientMessage.getFields().get(0));
+            }
+            case "getPassword" -> {
+                return forgetPasswordControllerServer.getPassword((String) clientMessage.getFields().get(0),
+                        (String) clientMessage.getFields().get(1), (String) clientMessage.getFields().get(2));
+            }
+            default -> {
+                System.err.println("invalid method!! in forget password controller ->  name:" + clientMessage.getMethodName());
                 System.exit(-1);
             }
         }
