@@ -25,6 +25,9 @@
     -fx-pref-height: 169;
     -fx-pref-width: 1100;
 }
+.end-game-box{
+    -fx-background-color: rgba(23, 18, 16, 0.89);
+}
 .brownBoxShadowed{
     -fx-border-width: 2;
     -fx-effect: dropshadow(three-pass-box, rgb(210, 181, 97), 10, 0, 0, 0);

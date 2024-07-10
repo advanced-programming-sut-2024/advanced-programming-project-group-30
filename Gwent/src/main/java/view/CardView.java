@@ -170,8 +170,4 @@ public class CardView extends Pane {
         weatherAbilityImage.setLayoutY(NORMAL_POINT_Y);
         return weatherAbilityImage;
     }
-
-    public void removeEventHandling() {
-        this.setOnMousePressed(null);
-    }
 }

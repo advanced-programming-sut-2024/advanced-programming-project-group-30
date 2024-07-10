@@ -150,8 +150,8 @@ public class GameMenu implements Menu {
     }
 
     //TODO: added these
-    public void endRound(GameNotification gameNotification) {
-        showRoundEndNotification(gameNotification);
+    public void endRound(String message) {
+        showRoundEndNotification(message);
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), actionEvent -> {
             showRoundStart();
         }));
@@ -188,9 +188,6 @@ public class GameMenu implements Menu {
         notifPane.getChildren().addAll(notifLabel, notifImageView);
     }
 
-    public void showResult(Player winner, GameNotification gameNotification) {
-        showRoundEndNotification(gameNotification);
-    }
     public void setHandCardEventHandler(Player currentPlayer, Player opponentPlayer, Game game ,ArrayList<DecksCard> cards){
         gameMenuController.handelHandsCardEvent(cards, game, currentPlayer, opponentPlayer);
     }
@@ -200,12 +197,15 @@ public class GameMenu implements Menu {
     }
 
     private void showPassTurnNotification() {
-        Timeline timeline = AnimationMaker.getInstance().getNotificationTimeline(pane, notifPane, notifImageView, notifLabel, GameNotification.PASS_TURN);
+        Timeline timeline = AnimationMaker.getInstance().getNotificationTimeline(pane, notifPane, notifImageView, notifLabel,
+                GameNotification.PASS_TURN.getNotification(),
+                GameNotification.PASS_TURN.getNotificationImage(),2);
         timeline.play();
     }
 
-    private void showRoundEndNotification(GameNotification notification) {
-        Timeline timeline = AnimationMaker.getInstance().getNotificationTimeline(pane, notifPane, notifImageView, notifLabel, notification);
+    private void showRoundEndNotification(String message) {
+        Timeline timeline = AnimationMaker.getInstance().getNotificationTimeline(pane, notifPane, notifImageView, notifLabel,
+                    message, GameNotification.WIN_ROUND.getNotificationImage(), 2);
         timeline.play();
     }
 
@@ -222,7 +222,8 @@ public class GameMenu implements Menu {
         pane.setLayoutY((root.getHeight() - 660) / 2 + 5 * scaleCoef);
     }
     private void showRoundStart() {
-        Timeline timeline = AnimationMaker.getInstance().getNotificationTimeline(pane, notifPane, notifImageView, notifLabel, GameNotification.ROUND_STARTS);
+        Timeline timeline = AnimationMaker.getInstance().getNotificationTimeline(pane, notifPane, notifImageView, notifLabel,
+                GameNotification.ROUND_STARTS.getNotification(), GameNotification.ROUND_STARTS.getNotificationImage(), 1);
         timeline.play();
     }
 }

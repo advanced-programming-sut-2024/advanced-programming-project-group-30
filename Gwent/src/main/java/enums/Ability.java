@@ -14,7 +14,7 @@ public enum Ability {
     MARDROEME("Mardroeme", "Triggers transformation of all Berserker cards on the same row..",
             RegularCardsAbility.createNewAbilityByName("mardroeme"), CssAddress.SPECIAL_MARDROEME_ICON),
     SPECIAL_MARDROEME("Mardroeme", "Triggers transformation of all Berserker cards on the same row..",
-            RegularCardsAbility.createNewAbilityByName("mardroeme"), CssAddress.MARDROEME_ABILITY_ICON),
+            SpecialCardAbility.createNewAbilityByName("mardroeme"), CssAddress.MARDROEME_ABILITY_ICON),
     SCORCH("Scorch", "Discard after playing. Kills the strongest card(s) on the battlefield. ",
             RegularCardsAbility.createNewAbilityByName("scorch"), CssAddress.SCORCH_ABILITY_ICON),
     SPECIAL_SCORCH("Special Scorch", "Discard after playing. Kills the strongest card(s) on the battlefield. ",
@@ -38,7 +38,7 @@ public enum Ability {
     MORAL_BOOST("Moral Boost", "Adds +1 to all units in the same row.",
             RegularCardsAbility.createNewAbilityByName("moralBoost"), CssAddress.MORAL_BOOST_ABILITY_ICON),
     HORN_COMMANDER("Horn Commander", "Doubles the strength of all unit cards in that row.\n" +
-            " Limited to 1 per row.", SpecialCardAbility.createNewAbilityByName("commanderHorn"), CssAddress.COMMANDERS_HORN_ABILITY_ICON),
+            " Limited to 1 per row.", RegularCardsAbility.createNewAbilityByName("commanderHorn"), CssAddress.HORN_COMMANDER_ABILITY_ICON),
     MEDIC("Medic", "Choose one card from your discard pile and play it instantly (no Heroes or Special Cards).",
             RegularCardsAbility.createNewAbilityByName("medic"), CssAddress.MEDIC_ABILITY_ICON),
     TRANSFORMER("Transformer", "When this card is removed from the battlefield,\n" +

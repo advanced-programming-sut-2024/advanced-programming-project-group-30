@@ -1,24 +1,19 @@
 package model.ability;
 
 import enums.Ability;
+import enums.CssAddress;
 import enums.MenuScene;
 import enums.RegularCardPositionType;
 import enums.cardsData.RegularCardData;
 import enums.cardsData.SkelligeRegularCardsData;
-import javafx.animation.FadeTransition;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.animation.Transition;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.util.Duration;
 import model.Game;
 import model.Player;
 import model.Row;
 import model.card.DecksCard;
 import model.card.RegularCard;
 import view.AnimationMaker;
-import view.CardView;
 import view.GameMenu;
 import view.PlayerView;
 
@@ -26,8 +21,6 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 public class RegularCardsAbility {
@@ -59,7 +52,7 @@ public class RegularCardsAbility {
     }
 
     public void commanderHorn(Game currentGame) {
-
+        currentGame.getSelectedRow().setBonus(true);
     }
 
     public void moralBoost(Game currentGame) {
@@ -70,37 +63,33 @@ public class RegularCardsAbility {
     public void muster(Game currentGame) {
         Player currentPlayer = currentGame.getCurrentPlayer();
         DecksCard decksCard = currentGame.getSelectedCard();
-        Matcher matcher = Pattern.compile("(?<name>.+):.*").matcher(decksCard.getName());
-        if (matcher.find()) {
-            ArrayList<DecksCard> allCards = new ArrayList<>();
-            allCards.addAll(currentPlayer.getDeck());
-            allCards.addAll(currentPlayer.getHand());
-            String name = matcher.group("name");
-            for (DecksCard card : allCards) {
-                if (card instanceof RegularCard && card.getName().contains(name)) {
-                    boolean isDecksCard = currentPlayer.getDeck().contains(card);
-                    Row row = findCardRow(card, currentGame);
-                    row.addCardToRow((RegularCard) card);
-                    if (isDecksCard) {
-                        AnimationMaker.getInstance().cardPlaceAnimation(card,
-                                currentPlayer.getPlayerView().getDeckView(),
-                                row.getRowView().getRow(), currentGame, (GameMenu) MenuScene.GAME_SCENE.getMenu(),
-                                false);
-                        currentPlayer.getDeck().remove(card);
-                    }
-                    else {
-                        currentPlayer.playCard(decksCard);
-                        AnimationMaker.getInstance().cardPlaceAnimation(card,
-                                currentPlayer.getPlayerView().getHandView(),
-                                row.getRowView().getRow(), currentGame, (GameMenu) MenuScene.GAME_SCENE.getMenu(),
-                                false);
-                    }
+        String name = decksCard.getName();
+        if (name.contains(":")) name = name.split(":")[0];
 
+        ArrayList<DecksCard> allCards = new ArrayList<>();
+        allCards.addAll(currentPlayer.getDeck());
+        allCards.addAll(currentPlayer.getHand());
+
+        for (DecksCard card : allCards) {
+            if (card instanceof RegularCard && card.getName().contains(name)) {
+                boolean isDecksCard = currentPlayer.getDeck().contains(card);
+                System.out.println("is deck card " + isDecksCard);
+                Row row = findCardRow(card, currentGame);
+                row.addCardToRow((RegularCard) card);
+                card.getCardView().getStyleClass().add(CssAddress.CARD_IN_ROW.getStyleClass());
+                if (isDecksCard) {
+                    AnimationMaker.getInstance().cardPlaceAnimation(card, currentPlayer.getPlayerView().getDeckView(), row.getRowView().getRow(), currentGame, (GameMenu) MenuScene.GAME_SCENE.getMenu(), false);
+                    currentPlayer.getDeck().remove(card);
+                } else {
+                    currentPlayer.playCard(decksCard);
+                    AnimationMaker.getInstance().cardPlaceAnimation(card, currentPlayer.getPlayerView().getHandView(), row.getRowView().getRow(), currentGame, (GameMenu) MenuScene.GAME_SCENE.getMenu(), false);
                 }
+
             }
         }
     }
-    private Row findCardRow(DecksCard decksCard, Game currentGame){
+
+    private Row findCardRow(DecksCard decksCard, Game currentGame) {
         RegularCardPositionType positionType = ((RegularCard) decksCard).getPositionType();
         return switch (positionType) {
             case CLOSE_COMBAT -> currentGame.getCurrentPlayer().getCloseCombat();
@@ -108,6 +97,7 @@ public class RegularCardsAbility {
             default -> currentGame.getCurrentPlayer().getSiege();
         };
     }
+
     public void scorch(Game currentGame) {
         Player opponentPlayer = currentGame.getOpponentPlayer();
         Row row = opponentPlayer.getCloseCombat();
@@ -121,17 +111,13 @@ public class RegularCardsAbility {
             if (card instanceof RegularCard regularCard && regularCard.getPointInGame() > maxPoint)
                 maxPoint = regularCard.getPointInGame();
         for (DecksCard card : row.getCards())
-            if (card instanceof RegularCard regularCard && !regularCard.isHero() &&
-                    regularCard.getPointInGame() == maxPoint)
+            if (card instanceof RegularCard regularCard && !regularCard.isHero() && regularCard.getPointInGame() == maxPoint)
                 cards.add(regularCard);
-        ImageView imageView = new ImageView
-                (new Image(Objects.requireNonNull(getClass().getResourceAsStream(
-                        "/Images/Icons/anim_scorch.png"))));
+        ImageView imageView = new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/Icons/anim_scorch.png"))));
         for (DecksCard card : cards) {
             row.getCards().remove(card);
             opponentPlayer.discardCard(card);
-            AnimationMaker.getInstance().explosionAnimation(card, imageView, row.getRowView().getRow(),
-                    opponentPlayer.getPlayerView().getDiscardPileView());
+            AnimationMaker.getInstance().explosionAnimation(card, imageView, row.getRowView().getRow(), opponentPlayer.getPlayerView().getDiscardPileView());
         }
     }
 
@@ -162,8 +148,7 @@ public class RegularCardsAbility {
         for (DecksCard decksCard : cards) {
             currentPlayer.addCardToHand(decksCard);
             currentPlayer.getPlayerView().addCardToDeck(decksCard);
-            AnimationMaker.getInstance().cardPlaceAnimation(decksCard, playerView.getDiscardPileView(),
-                    playerView.getHandView(), currentGame, gameMenu, false);
+            AnimationMaker.getInstance().cardPlaceAnimation(decksCard, playerView.getDiscardPileView(), playerView.getHandView(), currentGame, gameMenu, false);
         }
         gameMenu.setHandCardEventHandler(currentPlayer, currentGame.getOpponentPlayer(), currentGame, cards);
     }
@@ -172,7 +157,7 @@ public class RegularCardsAbility {
         RegularCard regularCard;
         if (currentGame.getSelectedCard().getName().contains("Young"))
             regularCard = SkelligeRegularCardsData.TRANSFORMED_YOUNG_VILDKAARL.createCard();
-        else  regularCard = SkelligeRegularCardsData.TRANSFORMED_VILDKAARL.createCard();
+        else regularCard = SkelligeRegularCardsData.TRANSFORMED_VILDKAARL.createCard();
         currentGame.getSelectedRow().getRowView().getRow().getChildren().add(regularCard.getCardView());
         currentGame.getSelectedRow().addCardToRow(regularCard);
     }
@@ -180,8 +165,7 @@ public class RegularCardsAbility {
     public void mardroeme(Game currentGame) {
         for (Row row : currentGame.getCurrentPlayer().getRows()) {
             for (DecksCard card : row.getCards()) {
-                if (card instanceof RegularCard regularCard &&
-                        (((RegularCardData) regularCard.getCardData())).getAbility().equals(Ability.BERKSER)) {
+                if (card instanceof RegularCard regularCard && (((RegularCardData) regularCard.getCardData())).getAbility().equals(Ability.BERKSER)) {
                     row.getCards().remove(currentGame.getSelectedCard());
                     row.getRowView().getRow().getChildren().remove(currentGame.getSelectedCard().getCardView());
                     currentGame.selectCard(card);

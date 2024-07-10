@@ -1,6 +1,9 @@
 package model.ability;
 
+import enums.Ability;
+import enums.CssAddress;
 import enums.MenuScene;
+import enums.cardsData.RegularCardData;
 import javafx.scene.layout.HBox;
 import model.Game;
 import model.Player;
@@ -17,12 +20,14 @@ import java.util.HashMap;
 
 public class SpecialCardAbility {
     private static SpecialCardAbility instance;
+
     public static SpecialCardAbility getInstance() {
         if (instance == null) {
             instance = new SpecialCardAbility();
         }
         return instance;
     }
+
     public static Method createNewAbilityByName(String name) {
         Method method = null;
         try {
@@ -34,39 +39,39 @@ public class SpecialCardAbility {
     }
 
     public void commanderHorn(Game game) {
-
+        game.getSelectedRow().setBonus(true);
     }
 
     public void decoy(Game game) {
-        System.out.println("in decoy");
         Player player = game.getCurrentPlayer();
         ArrayList<Row> allRows = player.getRows();
         GameMenu gameMenu = (GameMenu) MenuScene.GAME_SCENE.getMenu();
-        for (Row row : allRows){
-            for (DecksCard card : row.getCards()){
+        for (Row row : allRows) {
+            for (DecksCard card : row.getCards()) {
+                card.getCardView().getStyleClass().add(CssAddress.GAME_HAND_SM_CARD.getStyleClass());
                 card.getCardView().setOnMouseClicked(mouseEvent -> {
                     HBox box;
                     if (card instanceof SpecialCard) {
                         box = row.getRowView().getSpecialCardPosition();
-                    }
-                    else box = row.getRowView().getRow();
-                    AnimationMaker.getInstance().
-                            cardPlaceAnimation(card,
-                                   box, player.getPlayerView().getHandView(),
-                                    game, gameMenu, false);
-                    AnimationMaker.getInstance().cardPlaceAnimation(game.getSelectedCard(), player.getPlayerView().getHandView(),
-                            box, game, gameMenu, false);
+                    } else box = row.getRowView().getRow();
+                    box.getChildren().remove(card.getCardView());
+                    player.getPlayerView().getHandView().getChildren().add(card.getCardView());
+                    box.getChildren().add(game.getSelectedCard().getCardView());
+                    player.getPlayerView().getHandView().getChildren().remove(game.getSelectedCard().getCardView());
+//                    AnimationMaker.getInstance().cardPlaceAnimation(card, box, player.getPlayerView().getHandView(), game, gameMenu, false);
+//                    AnimationMaker.getInstance().cardPlaceAnimation(game.getSelectedCard(), player.getPlayerView().getHandView(), box, game, gameMenu, false);
                     game.selectCard(card);
                     game.selectRow(row);
                 });
             }
         }
-        if (game.getSelectedCard() instanceof SpecialCard) game.getSelectedRow().setSpecialCard((SpecialCard) game.getSelectedCard());
+        if (game.getSelectedCard() instanceof SpecialCard)
+            game.getSelectedRow().setSpecialCard((SpecialCard) game.getSelectedCard());
         else game.getSelectedRow().addCardToRow((RegularCard) game.getSelectedCard());
 
     }
 
-    public void scorch(Game game){
+    public void scorch(Game game) {
         ArrayList<Row> allRows = new ArrayList<>();
         allRows.addAll(game.getCurrentPlayer().getRows());
         allRows.addAll(game.getOpponentPlayer().getRows());
@@ -74,13 +79,12 @@ public class SpecialCardAbility {
         int maxPoint = 0;
         for (Row row : allRows) {
             for (DecksCard card : row.getCards()) {
-                if (card instanceof RegularCard regularCard && !regularCard.isHero()
-                        && regularCard.getPointInGame() >= maxPoint) {
+                if (card instanceof RegularCard regularCard && !regularCard.isHero() && regularCard.getPointInGame() >= maxPoint) {
                     if (regularCard.getPointInGame() > maxPoint) {
                         maxCards.clear();
                     }
                     maxCards.put(regularCard, row);
-                   maxPoint = regularCard.getPointInGame();
+                    maxPoint = regularCard.getPointInGame();
                 }
             }
         }
@@ -91,4 +95,19 @@ public class SpecialCardAbility {
             row.getRowView().getRow().getChildren().remove(card.getCardView());
         }
     }
+
+    public void mardroeme(Game currentGame) {
+        for (Row row : currentGame.getCurrentPlayer().getRows()) {
+            for (DecksCard card : row.getCards()) {
+                if (card instanceof RegularCard regularCard && (((RegularCardData) regularCard.getCardData())).getAbility().equals(Ability.BERKSER)) {
+                    row.getCards().remove(currentGame.getSelectedCard());
+                    row.getRowView().getSpecialCardPosition().getChildren().remove(currentGame.getSelectedCard().getCardView());
+                    currentGame.selectCard(card);
+                    currentGame.selectRow(row);
+                    card.run(currentGame);
+                }
+            }
+        }
+    }
+
 }

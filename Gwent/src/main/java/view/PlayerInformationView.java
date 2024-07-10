@@ -29,10 +29,12 @@ public class PlayerInformationView extends Pane {
     private ImageView factionImage;
     private ImageView totalScoreImage;
     private Label passedLabel;
+    private CoordinateData coordinateData;
 
     public PlayerInformationView(Player player, CoordinateData coordinateData, CssAddress cssAddress) {
         this.player = player;
         this.cssAddress = cssAddress;
+        this.coordinateData = coordinateData;
         design();
         this.getStyleClass().add(CssAddress.INFORMATION_BOX.getStyleClass());
         this.setLayoutX(coordinateData.getX());
@@ -43,6 +45,10 @@ public class PlayerInformationView extends Pane {
     public void updateTotalScore() {
         int score = player.getPoint();
         totalScore.setText(String.valueOf(score));
+    }
+    private void setPaneCoordinate(){
+        this.setLayoutX(coordinateData.getX());
+        this.setLayoutY(coordinateData.getY());
     }
 
     public Label getUsernameLabel() {
@@ -56,16 +62,29 @@ public class PlayerInformationView extends Pane {
     //TODO:needs debug
     public void setFirstRoundOfLoss() {
         lives.getChildren().remove(rightGem);
-        rightGem.getStyleClass().remove(CssAddress.GEM_ON_IMAGE.getStyleClass());
+        this.getChildren().remove(lives);
+        lives = new HBox();
+        setLivesBoxCoordinate();
+        rightGem = new Region();
         rightGem.getStyleClass().add(CssAddress.GEM_OFF_IMAGE.getStyleClass());
-        lives.getChildren().add(rightGem);
+        lives.getChildren().addAll(rightGem, leftGem);
+        this.getChildren().add(lives);
+        System.out.println("in first round");
     }
 
     public void setSecondRoundOfLoss() {
+        this.getChildren().remove(lives);
         lives.getChildren().remove(leftGem);
-        leftGem.getStyleClass().remove(CssAddress.GEM_ON_IMAGE.getStyleClass());
+        leftGem = new Region();
+        lives = new HBox();
+        setLivesBoxCoordinate();
+//        leftGem.getStyleClass().remove(CssAddress.GEM_ON_IMAGE.getStyleClass());
         leftGem.getStyleClass().add(CssAddress.GEM_OFF_IMAGE.getStyleClass());
-        lives.getChildren().add(leftGem);
+        lives.getChildren().addAll(rightGem,leftGem);
+        this.getChildren().add(lives);
+        System.out.println("in second round");
+
+
     }
 
     public void resetRound() {
@@ -154,12 +173,15 @@ public class PlayerInformationView extends Pane {
         faction.getStyleClass().add(CssAddress.INFORMATION_FACTION_LABEL.getStyleClass());
         userInfoBox.getChildren().add(faction);
     }
+    private void setLivesBoxCoordinate(){
+        lives.setLayoutX(CoordinateData.LIVES_HBOX.getX());
+        lives.setLayoutY(CoordinateData.LIVES_HBOX.getY());
+        lives.getStyleClass().add(CssAddress.GEMS_BOX.getStyleClass());
+    }
 
     private void setUpLives() {
         lives = new HBox();
-        lives.getStyleClass().add(CssAddress.GEMS_BOX.getStyleClass());
-        lives.setLayoutX(CoordinateData.LIVES_HBOX.getX());
-        lives.setLayoutY(CoordinateData.LIVES_HBOX.getY());
+        setLivesBoxCoordinate();
         rightGem = new Region();
         leftGem = new Region();
         rightGem.getStyleClass().add(CssAddress.GEM_ON_IMAGE.getStyleClass());

@@ -5,7 +5,7 @@ import enums.CssAddress;
 import enums.FactionType;
 import enums.GameNotification;
 import enums.cardsData.DeckCardData;
-import enums.cardsData.SpecialCardsData;
+import enums.cardsData.RegularCardData;
 import javafx.animation.*;
 import javafx.geometry.Bounds;
 import javafx.scene.control.Label;
@@ -49,7 +49,7 @@ public class AnimationMaker {
                         }
                     } else gameMenu.updateGame(game);
                 }
-                card.getCardView().removeEventHandling();
+
             });
             sequentialTransition.play();
         } catch (RuntimeException e) {
@@ -92,18 +92,19 @@ public class AnimationMaker {
         return translate;
     }
 
-    public Timeline getNotificationTimeline(Pane pane, Pane notifPane, ImageView notifImageView, Label notifLabel, GameNotification gameNotification) {
-        notifImageView.getStyleClass().add(gameNotification.getNotificationImage());
-        notifLabel.setText(gameNotification.getNotification());
+    public Timeline getNotificationTimeline(Pane pane, Pane notifPane, ImageView notifImageView,
+                                            Label notifLabel, String notif, String  cssAddress, int time) {
+        notifImageView.getStyleClass().add(cssAddress);
+        notifLabel.setText(notif);
         if (pane.getChildren().contains(notifPane)) {
             pane.getChildren().remove(notifPane);
         }
         pane.getChildren().add(notifPane);
         pane.getStyleClass().add("rootPaneNotifStyle");
         try {
-            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), event -> {
+            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(time), event -> {
                 pane.getStyleClass().remove("rootPaneNotifStyle");
-                notifImageView.getStyleClass().remove(gameNotification.getNotification());
+                notifImageView.getStyleClass().remove(cssAddress);
                 notifLabel.setText("");
                 pane.setDisable(false);
                 pane.getChildren().remove(notifPane);
@@ -126,11 +127,13 @@ public class AnimationMaker {
     }
     private void runAbility(DecksCard card, Game game) {
         if (((DeckCardData) card.getCardData()).getAbility() == null) return;
-        if (card instanceof RegularCard regularCard) regularCard.run(game);
-        else if (card instanceof WeatherCard weatherCard) weatherCard.run(game);
-        else if (card instanceof SpecialCard specialCard) {
-            if (!((SpecialCardsData)specialCard.getCardData()).getAbility().equals(Ability.BERKSER)) specialCard.run(game);
+        if (card instanceof RegularCard regularCard) {
+            if (!(((RegularCardData)regularCard.getCardData())).getAbility().equals(Ability.BERKSER))
+                regularCard.run(game);
         }
+
+        else if (card instanceof WeatherCard weatherCard) weatherCard.run(game);
+        else if (card instanceof SpecialCard specialCard) specialCard.run(game);
 
     }
 }

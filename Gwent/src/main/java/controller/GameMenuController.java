@@ -228,7 +228,6 @@ public class GameMenuController {
                 }
             });
         }
-        removeHandler(card);
     }
     private void removeHandler(DecksCard card) {
         card.getCardView().setOnMouseClicked(null);
@@ -290,19 +289,19 @@ public class GameMenuController {
         Player winner = checkForHigherScore(game);
         Player loser = null;
         Player beginner = setBeginnerOfTheRound(game);
-        GameNotification gameNotification;
+        String message;
         if (winner == null) {
-            gameNotification = GameNotification.DRAW_ROUND;
+            message = GameNotification.DRAW_ROUND.getNotification();
             game.getOpponentPlayer().reduceLife();
             game.getCurrentPlayer().reduceLife();
         } else if (winner.equals(App.getCurrentGame().getCurrentPlayer())) {
-            gameNotification = GameNotification.WIN_ROUND;
+            message = winner.getUser().getUsername() + " won";
             loser = game.getOpponentPlayer();
-            game.getCurrentPlayer().reduceLife();
-        } else {
             game.getOpponentPlayer().reduceLife();
+        } else {
+            game.getCurrentPlayer().reduceLife();
             loser = game.getCurrentPlayer();
-            gameNotification = GameNotification.LOSE_ROUND;
+            message = winner.getUser().getUsername() + " won";
         }
         if (gameIsOver(game)) endGame(game);
         else {
@@ -320,7 +319,7 @@ public class GameMenuController {
                 throw new RuntimeException(e);
             }
             game.roundFinished();
-            menu.endRound(gameNotification);
+            menu.endRound(message);
         }
     }
 
@@ -362,6 +361,8 @@ public class GameMenuController {
             setLoserOfTheRound(game.getOpponentPlayer());
             setLoserOfTheRound(game.getCurrentPlayer());
         } else {
+            System.out.println(loser == game.getCurrentPlayer());
+            System.out.println(loser == game.getOpponentPlayer());
             if (loser == game.getCurrentPlayer()) setLoserOfTheRound(game.getCurrentPlayer());
             else setLoserOfTheRound(game.getOpponentPlayer());
         }
@@ -373,8 +374,13 @@ public class GameMenuController {
     }
 
     private void setUpLoserCrystal(Player player, int roundNumber) {
-        if (roundNumber == 1) player.getPlayerView().getPlayerInformationView().setFirstRoundOfLoss();
-        else if (roundNumber == 2) player.getPlayerView().getPlayerInformationView().setSecondRoundOfLoss();
+        if (roundNumber == 1){
+            System.out.println("set up loser crystal");
+            player.getPlayerView().getPlayerInformationView().setFirstRoundOfLoss();
+        }else if (roundNumber == 2) {
+            System.out.println("set up loser crystal");
+            player.getPlayerView().getPlayerInformationView().setSecondRoundOfLoss();
+        }
     }
 
     private void passTurn(Game game) {
@@ -468,7 +474,6 @@ public class GameMenuController {
             menu.setNodeStyle(row.getRowView().getRow(), CssAddress.CARD_ROW);
             handleRowEvents(card, game, method, row);
         }
-        removeHandler(card);
     }
 
     private void swapBoardViews(PlayerView currentPlayerView, PlayerView opponentPlayerView) {
