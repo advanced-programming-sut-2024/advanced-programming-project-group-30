@@ -3,10 +3,13 @@ package view;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.App;
+import network.Client;
 
 public class Main extends Application {
+    private static Client client;
+
     public static void main(String[] args) {
-        App.loadUsers();
+        client = new Client();
         launch(args);
     }
 

@@ -1,6 +1,5 @@
 package model;
 
-import controller.DataSaverController;
 import controller.SceneManager;
 import enums.MenuScene;
 import enums.SecurityQuestion;
@@ -10,12 +9,12 @@ import java.util.ArrayList;
 
 public class App {
     private static Stage primaryStage;
-    private static MenuScene currentMenuScene = MenuScene.LOGIN_SCENE;
+    private static MenuScene currentMenuScene = MenuScene.REGISTER_SCENE;
     private static final SceneManager sceneManager = new SceneManager();
-    private static Game currentGame;
-    private static LoggedInUser loggedInUser;
+    private static Game currentGame; //hooom??
+    private static LoggedInUser loggedInUser; //not view!
+    // TODO : remove all users from app
     private static final ArrayList<User> allUsers = new ArrayList<>();
-    private static final DataSaverController dataSaverController = new DataSaverController();
 
     public static void testSetup() {
         User testUser1 = new User("jojo", "j",
@@ -89,14 +88,6 @@ public class App {
 
     public static ArrayList<User> getAllUsers() {
         return allUsers;
-    }
-
-    public static void saveUsers() {
-        dataSaverController.saveUsers(allUsers);
-    }
-
-    public static void loadUsers() {
-        dataSaverController.loadUsers();
     }
 }
 
