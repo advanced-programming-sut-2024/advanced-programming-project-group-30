@@ -361,7 +361,7 @@ public class GameMenuController {
             setLoserOfTheRound(game.getOpponentPlayer());
             setLoserOfTheRound(game.getCurrentPlayer());
         } else {
-            if (loser.equals(game.getCurrentPlayer())) setLoserOfTheRound(game.getCurrentPlayer());
+            if (loser == game.getCurrentPlayer()) setLoserOfTheRound(game.getCurrentPlayer());
             else setLoserOfTheRound(game.getOpponentPlayer());
         }
     }

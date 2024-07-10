@@ -1,6 +1,7 @@
 package model.ability;
 
 import enums.MenuScene;
+import enums.RegularCardPositionType;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -21,6 +22,8 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class RegularCardsAbility {
@@ -61,9 +64,45 @@ public class RegularCardsAbility {
     }
 
     public void muster(Game currentGame) {
+        Player currentPlayer = currentGame.getCurrentPlayer();
+        DecksCard decksCard = currentGame.getSelectedCard();
+        Matcher matcher = Pattern.compile("(?<name>.+):.*").matcher(decksCard.getName());
+        if (matcher.find()) {
+            ArrayList<DecksCard> allCards = new ArrayList<>();
+            allCards.addAll(currentPlayer.getDeck());
+            allCards.addAll(currentPlayer.getHand());
+            String name = matcher.group("name");
+            for (DecksCard card : allCards) {
+                if (card instanceof RegularCard && card.getName().contains(name)) {
+                    boolean isDecksCard = currentPlayer.getDeck().contains(card);
+                    Row row = findCardRow(card, currentGame);
+                    if (isDecksCard) {
+                        AnimationMaker.getInstance().cardPlaceAnimation(card,
+                                currentPlayer.getPlayerView().getDeckView(),
+                                row.getRowView().getRow(), currentGame, (GameMenu) MenuScene.GAME_SCENE.getMenu(),
+                                false);
+                        currentPlayer.getDeck().remove(card);
+                    }
+                    else {
+                        currentPlayer.playCard(decksCard);
+                        AnimationMaker.getInstance().cardPlaceAnimation(card,
+                                currentPlayer.getPlayerView().getHandView(),
+                                row.getRowView().getRow(), currentGame, (GameMenu) MenuScene.GAME_SCENE.getMenu(),
+                                false);
+                    }
 
+                }
+            }
+        }
     }
-
+    private Row findCardRow(DecksCard decksCard, Game currentGame){
+        RegularCardPositionType positionType = ((RegularCard) decksCard).getPositionType();
+        return switch (positionType) {
+            case CLOSE_COMBAT -> currentGame.getCurrentPlayer().getCloseCombat();
+            case RANGED_COMBAT -> currentGame.getCurrentPlayer().getRangedCombat();
+            default -> currentGame.getCurrentPlayer().getSiege();
+        };
+    }
     public void scorch(Game currentGame) {
         Player opponentPlayer = currentGame.getOpponentPlayer();
         Row row = opponentPlayer.getCloseCombat();
