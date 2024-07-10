@@ -65,14 +65,17 @@ public class RegularCardsAbility {
         Player currentPlayer = currentGame.getCurrentPlayer();
         DecksCard decksCard = currentGame.getSelectedCard();
         String name = decksCard.getName();
-        if (name.contains(":")) name = name.split(":")[0];
-
+        String[] nameParts;
+        if (name.contains(":"))nameParts = name.split(":");
+        else nameParts = name.split(" ");
+        name = nameParts[0];
         ArrayList<DecksCard> allCards = new ArrayList<>();
         allCards.addAll(currentPlayer.getDeck());
         allCards.addAll(currentPlayer.getHand());
-
+        ArrayList<RegularCard> cardsToBeRemovedFromHand = new ArrayList<>();
         for (DecksCard card : allCards) {
-            if (card instanceof RegularCard && card.getName().contains(name)) {
+            if (card instanceof RegularCard && (card.getName().contains(name) ||
+                    card.getName().equals(name))) {
                 boolean isDecksCard = currentPlayer.getDeck().contains(card);
                 Row row = findCardRow(card, currentGame);
                 row.addCardToRow((RegularCard) card);
@@ -82,14 +85,16 @@ public class RegularCardsAbility {
                             (GameMenu) MenuScene.GAME_SCENE.getMenu(), false);
                     currentPlayer.getDeck().remove(card);
                 } else {
-                    System.out.println("card is in hand " + card);
-                    currentPlayer.getHand().remove(decksCard);
                     AnimationMaker.getInstance().cardPlaceAnimation(card, currentPlayer.getPlayerView().getHandView(), row.getRowView().getRow(), currentGame,
                             (GameMenu) MenuScene.GAME_SCENE.getMenu(), false);
+                    cardsToBeRemovedFromHand.add((RegularCard) card);
                 }
-
             }
         }
+        for (RegularCard regularCard : cardsToBeRemovedFromHand) {
+            currentPlayer.getHand().remove(regularCard);
+        }
+
     }
 
     private Row findCardRow(DecksCard decksCard, Game currentGame) {

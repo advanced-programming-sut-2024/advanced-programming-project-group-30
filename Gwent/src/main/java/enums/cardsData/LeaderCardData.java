@@ -100,4 +100,5 @@ public enum LeaderCardData implements CardData {
         return new ChosenModelView<>(Objects.requireNonNull(
                 this.getClass().getResourceAsStream(lgImageAddress)), this, "Leader Ability", explanation);
     }
+
 }

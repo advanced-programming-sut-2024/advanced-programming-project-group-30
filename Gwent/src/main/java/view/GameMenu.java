@@ -4,6 +4,7 @@ import controller.GameMenuController;
 import enums.Ability;
 import enums.CssAddress;
 import enums.GameNotification;
+import enums.SizeData;
 import enums.cardsData.RegularCardData;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -22,6 +23,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
 public class GameMenu implements Menu {
     private final Pane notifPane = new Pane();
@@ -200,6 +202,14 @@ public class GameMenu implements Menu {
 
     public void setHandCardEventHandler(Player currentPlayer, Player opponentPlayer, Game game ,ArrayList<DecksCard> cards){
         gameMenuController.handelHandsCardEvent(cards, game, currentPlayer, opponentPlayer);
+    }
+    public void showMedicCardOptions(ArrayList<RegularCard> cards, Game game){
+        ArrayList<ChosenModelView<RegularCard>> chosenModelViews = new ArrayList<>();
+        for (RegularCard card : cards) {
+            RegularCardData data = (RegularCardData) card.getCardData();
+//            ChosenModelView<RegularCard> chosenModelView = new ChosenModelView<>(Objects.requireNonNull(this.getClass().getResourceAsStream(data.lgImageAddress)));
+        }
+//        SelectionPage<RegularCard> selectionPage = new SelectionPage<>(, Math.min(2, chosenModelViews.size())-1,  SizeData.GAME_LG_CARD);
     }
     @FXML
     private void passTurn() {

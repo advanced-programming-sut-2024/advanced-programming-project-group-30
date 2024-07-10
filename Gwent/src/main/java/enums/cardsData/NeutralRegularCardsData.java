@@ -22,7 +22,7 @@ public enum NeutralRegularCardsData implements RegularCardData {
     VESEMIR("Vesemir", null, false, 6, 1, RegularCardPositionType.CLOSE_COMBAT),
     EMIEL_REGIS("EmielRegis", null, false, 5, 1, RegularCardPositionType.CLOSE_COMBAT),
     ZOLTAN_CHIVAY("Zoltan Chivay", null, false, 5, 1, RegularCardPositionType.CLOSE_COMBAT),
-    GAUNTER_ODIMM_DARKNESS("Gaunter O'Dimm Darkness", Ability.MUSTER, false, 4, 3, RegularCardPositionType.RANGED_COMBAT),
+    GAUNTER_ODIMM_DARKNESS("Gaunter O'Dimm:Darkness", Ability.MUSTER, false, 4, 3, RegularCardPositionType.RANGED_COMBAT),
     DANDELION("Dandelion", Ability.HORN_COMMANDER, false, 2, 1, RegularCardPositionType.CLOSE_COMBAT),
     GAUNTER_ODIMM("Gaunter O'Dimm", Ability.MUSTER, false, 2, 1, RegularCardPositionType.SIEGE),
     COW("Cow", Ability.TRANSFORMER, false, 0, 1, RegularCardPositionType.RANGED_COMBAT),
