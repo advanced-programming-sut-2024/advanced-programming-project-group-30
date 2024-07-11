@@ -1,15 +1,17 @@
 package view;
 
-import controller.MainMenuController;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import model.App;
+import network.Client;
+import network.ClientMessage;
+
+import java.util.ArrayList;
 
 public class MainMenu implements Menu {
-    private final MainMenuController controller = new MainMenuController();
+    Client client = ClientView.getClient();
     @FXML
     private Pane mainPane;
     @FXML
@@ -29,16 +31,23 @@ public class MainMenu implements Menu {
 
     @FXML
     private void goToProfileMenu() {
-        controller.goToProfileMenu();
+        ClientMessage clientMessage = new ClientMessage("MainMenuController", "logout", new ArrayList<>());
+        client.sendMessageToServer(clientMessage);
+        String[] fields = (String[]) client.getLastServerData(String[].class);
+        App.getSceneManager().goToProfileMenu(fields[0],fields[1], fields[2],fields[3],fields[4], fields[5],fields[6],fields[7],fields[8]);
     }
 
-    public void goToChooseOpponentMenu() {
-        App.getSceneManager().goToChooseOpponentMenu();
+    public void goToPregameMenu() {
+        // TODO.
+        App.getSceneManager().goToPregameMenu();
     }
 
     @FXML
     private void logout() {
-        controller.logout();
+        ClientMessage clientMessage = new ClientMessage("MainMenuController", "logout", new ArrayList<>());
+        client.sendMessageToServer(clientMessage);
+        App.getSceneManager().goToLoginMenu();
+        App.setLoggedInUser(null,"","",false);
     }
 
     private void scalePane(Pane pane) {

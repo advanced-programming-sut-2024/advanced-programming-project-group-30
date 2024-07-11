@@ -1,13 +1,8 @@
-package controller;
+package view;
 
 import enums.MenuScene;
 import model.App;
 import model.Game;
-import model.PregameData;
-import model.User;
-import view.MainMenu;
-import view.PregameMenu;
-import view.ProfileMenu;
 
 public class SceneManager {
     public Double getScale(double stageWidth, double stageHeight, double paneWidth, double paneHeight, double scaleCoef) {
@@ -47,32 +42,23 @@ public class SceneManager {
         setupStage(sizeData);
     }
 
-    public void goToProfileMenu() {
+    public void goToProfileMenu(String username, String nickname, String email, String rank, String highestScore,
+                                String gamesNum, String winsNum, String lossesNum, String drawsNum) {
         stageSizeData sizeData = getStageSizeData();
         ProfileMenu profileMenu = (ProfileMenu) MenuScene.PROFILE_SCENE.getMenu();
-//        User user = App.getLoggedInUsersUsername();
-//        profileMenu.setFields(user.getUsername(), user.getNickName(), user.getEmail(),
-//                user.getRank(), user.getHighestScore(), user.getGameHistories().size(),
-//                user.getWins(), user.getLosses(), user.getDraws());
+        profileMenu.setFields(username, nickname, email, rank, highestScore, gamesNum, winsNum, lossesNum, drawsNum);
         App.setCurrentMenuScene(MenuScene.PROFILE_SCENE);
         App.getPrimaryStage().setScene(MenuScene.PROFILE_SCENE.getScene());
         setupStage(sizeData);
     }
 
-    public void goToChooseOpponentMenu() {
-        stageSizeData sizeData = getStageSizeData();
-        App.setCurrentMenuScene(MenuScene.CHOOSE_OPPONENT_SCENE);
-        App.getPrimaryStage().setScene(MenuScene.CHOOSE_OPPONENT_SCENE.getScene());
-        setupStage(sizeData);
-    }
-
-    public void goToPregameMenu(PregameData pregameData) {
-        PregameMenu pregameMenu = (PregameMenu) MenuScene.PREGAME_SCENE.getMenu();
-        pregameMenu.setup(pregameData);
-        App.setCurrentMenuScene(MenuScene.PREGAME_SCENE);
-        App.getPrimaryStage().setScene(MenuScene.PREGAME_SCENE.getScene());
-        App.getPrimaryStage().sizeToScene();
-        App.getPrimaryStage().centerOnScreen();
+    public void goToPregameMenu() {
+//        PregameMenu pregameMenu = (PregameMenu) MenuScene.PREGAME_SCENE.getMenu();
+//        pregameMenu.setup(pregameData);
+//        App.setCurrentMenuScene(MenuScene.PREGAME_SCENE);
+//        App.getPrimaryStage().setScene(MenuScene.PREGAME_SCENE.getScene());
+//        App.getPrimaryStage().sizeToScene();
+//        App.getPrimaryStage().centerOnScreen();
     }
 
     public void goToGame(Game game) {

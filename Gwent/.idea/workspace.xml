@@ -6,9 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="124b1a9a-c6f6-4977-bbc2-df42d5ff586a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/ForgetPasswordMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/server/ForgetPasswordControllerServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/network/ServerWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/network/ServerWorker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/ForgetPasswordMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/ForgetPasswordMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/ChooseOpponentController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/MainMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/MainMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/SceneManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/SceneManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/ChooseOpponentMenu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MainMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,7 +170,7 @@
       <workItem from="1720468209347" duration="11737000" />
       <workItem from="1720566291552" duration="25420000" />
       <workItem from="1720609419436" duration="3711000" />
-      <workItem from="1720614016952" duration="11083000" />
+      <workItem from="1720614016952" duration="12054000" />
     </task>
     <servers />
   </component>

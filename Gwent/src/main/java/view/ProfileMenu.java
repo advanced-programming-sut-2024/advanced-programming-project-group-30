@@ -98,12 +98,13 @@ public class ProfileMenu implements Menu {
         oldPassword.textProperty().addListener((observableValue, s, t1) -> oldPassword.setPromptText("old password"));
     }
 
-    public void setFields(String username, String nickname, String email, int rank, int highestScore,
-                          int gameCount, int wins, int losses, int draws) {
+    public void setFields(String username, String nickname, String email, String rank, String highestScore,
+                          String gameCount, String wins, String losses, String draws) {
         usernameTextField.setPromptText(username);
         nicknameTextField.setPromptText(nickname);
         emailTextField.setPromptText(email);
         setUserInformation(rank, highestScore, gameCount, wins, losses, draws);
+        // TODO
         Result result = profileMenuController.showDefaultGameHistory();
         if (result.isNotSuccessful()) gameHistoryNumberErrorField.setText(result.toString());
         else {
@@ -117,10 +118,11 @@ public class ProfileMenu implements Menu {
     @FXML
     private void backToMainMenu() {
         resetFields();
+        // TODO :)
         profileMenuController.goToMainMenu();
     }
 
-    private void setUserInformation(int rank, int highestScore, int gameCount, int wins, int losses, int draws) {
+    private void setUserInformation(String rank, String highestScore, String gameCount, String wins, String losses, String draws) {
         this.rank.setText(rank + "TH");
         this.highestScore.setText(highestScore + " is your best score");
         this.gameCount.setText("Games Played: " + gameCount);

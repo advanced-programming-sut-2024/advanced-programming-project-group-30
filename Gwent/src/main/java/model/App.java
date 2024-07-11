@@ -1,6 +1,6 @@
 package model;
 
-import controller.SceneManager;
+import view.SceneManager;
 import enums.MenuScene;
 import javafx.stage.Stage;
 
