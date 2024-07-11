@@ -1,6 +1,6 @@
 package controller.server;
 
-import model.App;
+import model.GameHistory;
 import model.Result;
 import model.User;
 import network.Server;
@@ -33,71 +33,71 @@ public class ProfileMenuControllerServer {
         return result;
     }
 
-    public Result changePassword(String newPassword, String oldPassword) {
-        Result result = userInformationController.checkPasswordForChange(App.getLoggedInUsersUsername(), newPassword, oldPassword);
-//        if (!result.isNotSuccessful()) {
-//            App.getLoggedInUsersUsername().setPassword(newPassword);
-//        }
+    public Result changePassword(String username, String newPassword, String oldPassword) {
+        User user = Server.getUserByUsername(username);
+        if (user == null) return new Result(false, "Wtf! who are you?");
+        Result result = userInformationController.checkPasswordForChange(username, newPassword, oldPassword);
+        if (!result.isNotSuccessful()) user.setPassword(newPassword);
         return result;
     }
 
-    public Result checkGameHistory(String gameHistoryCount) {
-//        User user = App.getLoggedInUsersUsername();
-//        if (!gameHistoryCount.matches("\\d+")) return new Result(false, "** please enter a number.");
-//        else if (user != null && Integer.parseInt(gameHistoryCount) == 0)
-//            return new Result(false, "** please enter a number greater than 0.");
-//        else if (user != null && user.getGameHistories().size() < Integer.parseInt(gameHistoryCount))
-//            return new Result(false, "** you don't have that many games.");
-//        else return new Result(true, "");
-        return null;
+    public Result checkGameHistory(String username, String gameHistoryCount) {
+        User user = Server.getUserByUsername(username);
+        if (user == null) return new Result(false, "Wtf! who are you?");
+        if (!gameHistoryCount.matches("\\d+")) return new Result(false, "** please enter a number.");
+        else if (Integer.parseInt(gameHistoryCount) == 0)
+            return new Result(false, "** please enter a number greater than 0.");
+        else if (user.getGameHistories().size() < Integer.parseInt(gameHistoryCount))
+            return new Result(false, "** you don't have that many games.");
+        else return new Result(true, "");
     }
 
     public Result getDefaultGameHistory(String username) {
         User user = Server.getUserByUsername(username);
         if (user == null) return new Result(false, "Wtf! who are you?");
-        int count = 0;
+        int count;
         count = user.getGameHistories().size();
         if (count == 0) return new Result(false, "** There are no games to show.");
         if (count > 5) count = 5;
-        return new Result(true, getGameHistory(count));
+        return new Result(true, getGameHistory(user, count));
     }
 
-    public Result showGameHistoryByUserRequest(String gameHistoryCount) {
-//        if (!gameHistoryCount.matches("-?\\d+")) return new Result(false, "** please enter a number.");
-//        else if (Integer.parseInt(gameHistoryCount) <= 0)
-//            return new Result(false, "** please enter a number greater than 0.");
-//        else if (App.getLoggedInUsersUsername().getGameHistories().size() < Integer.parseInt(gameHistoryCount))
-//            return new Result(false, "** you don't have that many games.");
-        return new Result(true, getGameHistory(Integer.parseInt(gameHistoryCount)));
+    public Result getGameHistoryByUserRequest(String username, String gameHistoryCount) {
+        User user = Server.getUserByUsername(username);
+        if (user == null) return new Result(false, "Wtf! who are you?");
+        if (!gameHistoryCount.matches("-?\\d+")) return new Result(false, "** please enter a number.");
+        else if (Integer.parseInt(gameHistoryCount) <= 0)
+            return new Result(false, "** please enter a number greater than 0.");
+        else if (user.getGameHistories().size() < Integer.parseInt(gameHistoryCount))
+            return new Result(false, "** you don't have that many games.");
+        return new Result(true, getGameHistory(user,Integer.parseInt(gameHistoryCount)));
     }
 
-    private String getGameHistory(int count) {
-//        StringBuilder gameHistoryBuilder = new StringBuilder();
-//        User user = App.getLoggedInUsersUsername();
-//        GameHistory gameHistory;
-//        for (int i = 0; i < count; i++) {
-//            gameHistory = user.getGameHistories().get(i);
-//            gameHistoryBuilder.append(i + 1).append(". ");
-//            gameHistoryBuilder.append("Opponent: ").append(gameHistory.getOpponent().getUsername()).append("\n");
-//            gameHistoryBuilder.append("Winner: ").append(gameHistory.getWinner().getUsername());
-//            gameHistoryBuilder.append("Date: ").append(gameHistory.getDate()).append("\n");
-//            gameHistoryBuilder.append("Result of the game\n").append("-------------------\n");
-//            for (int j = 0; j < 3; j++) {
-//                gameHistoryBuilder.append("         round ").append(j + 1).append("       ");
-//            }
-//            gameHistoryBuilder.append("\n");
-//            gameHistoryBuilder.append("You: ");
-//            for (int j = 0; j < 3; j++) {
-//                gameHistoryBuilder.append(gameHistory.getRoundsScore()[0][j]).append("               ");
-//            }
-//            gameHistoryBuilder.append("\n");
-//            gameHistoryBuilder.append("Opponent: ");
-//            for (int j = 0; j < 3; j++) {
-//                gameHistoryBuilder.append(gameHistory.getRoundsScore()[1][j]).append("               ");
-//            }
-//            gameHistoryBuilder.append("\n\n");
-//        }
-//        return gameHistoryBuilder.toString();
-        return null;
+    private String getGameHistory(User user, int count) {
+        StringBuilder gameHistoryBuilder = new StringBuilder();
+        GameHistory gameHistory;
+        for (int i = 0; i < count; i++) {
+            gameHistory = user.getGameHistories().get(i);
+            gameHistoryBuilder.append(i + 1).append(". ");
+            gameHistoryBuilder.append("Opponent: ").append(gameHistory.getOpponent().getUsername()).append("\n");
+            gameHistoryBuilder.append("Winner: ").append(gameHistory.getWinner().getUsername());
+            gameHistoryBuilder.append("Date: ").append(gameHistory.getDate()).append("\n");
+            gameHistoryBuilder.append("Result of the game\n").append("-------------------\n");
+            for (int j = 0; j < 3; j++) {
+                gameHistoryBuilder.append("         round ").append(j + 1).append("       ");
+            }
+            gameHistoryBuilder.append("\n");
+            gameHistoryBuilder.append("You: ");
+            for (int j = 0; j < 3; j++) {
+                gameHistoryBuilder.append(gameHistory.getRoundsScore()[0][j]).append("               ");
+            }
+            gameHistoryBuilder.append("\n");
+            gameHistoryBuilder.append("Opponent: ");
+            for (int j = 0; j < 3; j++) {
+                gameHistoryBuilder.append(gameHistory.getRoundsScore()[1][j]).append("               ");
+            }
+            gameHistoryBuilder.append("\n\n");
+        }
+        return gameHistoryBuilder.toString();
     }
 }

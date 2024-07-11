@@ -249,17 +249,20 @@ public class ProfileMenu implements Menu {
 
     @FXML
     private void setNewPassword() {
-//        Result result = profileMenuController.changePassword(newPassword.getText(), oldPassword.getText());
-//        if (result.isNotSuccessful()) passwordConfirmationErrorField.setText(result.toString());
-//        else {
-//            newPassword.clear();
-//            oldPassword.clear();
-//            passwordConfirmationErrorField.setText("");
-//            newPasswordError.setText("");
-//            changePasswordPane.setVisible(false);
-//            editInformationBox.setVisible(true);
-//            changePasswordButton.setVisible(true);
-//        }
+        ClientMessage clientMessage = new ClientMessage("ProfileMenuController", "changePassword",
+                new ArrayList<>(List.of(new String[]{App.getLoggedInUsersUsername(), newPassword.getText(), oldPassword.getText()})));
+        client.sendMessageToServer(clientMessage);
+        Result result = (Result) client.getLastServerData(Result.class);
+        if (result.isNotSuccessful()) passwordConfirmationErrorField.setText(result.toString());
+        else {
+            newPassword.clear();
+            oldPassword.clear();
+            passwordConfirmationErrorField.setText("");
+            newPasswordError.setText("");
+            changePasswordPane.setVisible(false);
+            editInformationBox.setVisible(true);
+            changePasswordButton.setVisible(true);
+        }
     }
 
     @FXML
@@ -275,17 +278,23 @@ public class ProfileMenu implements Menu {
 
     @FXML
     private void setGameHistoryCount() {
-//        Result result = profileMenuController.checkGameHistory(gameHistoryCount.getText());
-//        if (result.isNotSuccessful()) {
-//            gameHistoryNumberErrorField.setText(result.toString());
-//        } else {
-//            scrollPaneVbox.getChildren().clear();
-//            Text text = new Text(profileMenuController.showGameHistoryByUserRequest(gameHistoryCount.getText()).toString());
-//            text.getStyleClass().add("profileMenu-scrollbar-textArea");
-//            scrollPaneVbox.getChildren().add(text);
-//            gameHistoryScrollPane.setContent(scrollPaneVbox);
-//            gameHistoryNumberErrorField.setText("");
-//        }
+        ClientMessage clientMessage = new ClientMessage("ProfileMenuController", "checkGameHistory",
+                new ArrayList<>(List.of(new String[]{App.getLoggedInUsersUsername(), gameHistoryCount.getText()})));
+        client.sendMessageToServer(clientMessage);
+        Result result = (Result) client.getLastServerData(Result.class);
+        if (result.isNotSuccessful()) {
+            gameHistoryNumberErrorField.setText(result.toString());
+        } else {
+            scrollPaneVbox.getChildren().clear();
+            clientMessage = new ClientMessage("ProfileMenuController", "getGameHistoryByUserRequest",
+                    new ArrayList<>(List.of(new String[]{App.getLoggedInUsersUsername(), gameHistoryCount.getText()})));
+            client.sendMessageToServer(clientMessage);
+            Text text = new Text(client.getLastServerData(Result.class).toString());
+            text.getStyleClass().add("profileMenu-scrollbar-textArea");
+            scrollPaneVbox.getChildren().add(text);
+            gameHistoryScrollPane.setContent(scrollPaneVbox);
+            gameHistoryNumberErrorField.setText("");
+        }
     }
 
     private void checkAndSetNewInfo(Result result, TextField textField, Button editButton, Button cancel,

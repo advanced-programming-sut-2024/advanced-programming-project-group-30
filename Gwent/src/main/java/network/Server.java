@@ -57,7 +57,7 @@ public class Server {
             connections = new ArrayList<>();
             serverListener = new ServerListener(serverSocket);
             for (int i = 0; i < WORKERS; i++)
-                serverWorkers.add(new ServerWorker(serverSocket));
+                serverWorkers.add(new ServerWorker());
         } catch (IOException e) {
             System.err.println("The setup server encountered a problem");
             e.getCause().printStackTrace(System.err);

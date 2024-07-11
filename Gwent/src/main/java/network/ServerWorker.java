@@ -5,13 +5,9 @@ import com.google.gson.GsonBuilder;
 import controller.server.*;
 
 import java.io.*;
-import java.net.ServerSocket;
 import java.net.Socket;
 
 public class ServerWorker extends Thread {
-    private final ServerSocket serverSocket;
-    private DataOutputStream sendBuffer;
-    private DataInputStream recieveBuffer;
     private final Gson gsonAgent;
     private final UserInformationControllerServer userInformationControllerServer = new UserInformationControllerServer();
     private final RegisterMenuControllerServer registerMenuControllerServer = new RegisterMenuControllerServer();
@@ -20,8 +16,7 @@ public class ServerWorker extends Thread {
     private final MainMenuControllerServer mainMenuControllerServer = new MainMenuControllerServer();
     private final ProfileMenuControllerServer profileMenuControllerServer = new ProfileMenuControllerServer();
 
-    public ServerWorker(ServerSocket serverSocket) {
-        this.serverSocket = serverSocket;
+    public ServerWorker() {
         this.gsonAgent = new GsonBuilder().create();
     }
 
@@ -47,9 +42,9 @@ public class ServerWorker extends Thread {
 
     private void handleConnection(Socket socket) {
         try {
-            recieveBuffer = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
-            sendBuffer = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
-            String messageString = recieveBuffer.readUTF();
+            DataInputStream receiveBuffer = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
+            DataOutputStream sendBuffer = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
+            String messageString = receiveBuffer.readUTF();
             ClientMessage clientMessage = gsonAgent.fromJson(messageString, ClientMessage.class);
             String serverMessage = switch (clientMessage.getControllerName()) {
                 case "UserInformationController" ->
@@ -59,8 +54,7 @@ public class ServerWorker extends Thread {
                 case "ForgetPasswordController" ->
                         gsonAgent.toJson(handleForgetPasswordControllerRequest(clientMessage));
                 case "MainMenuController" -> gsonAgent.toJson(handleMainMenuControllerRequest(clientMessage));
-                case "ProfileMenuController" ->
-                        gsonAgent.toJson(handleProfileMenuControllerRequest(clientMessage));
+                case "ProfileMenuController" -> gsonAgent.toJson(handleProfileMenuControllerRequest(clientMessage));
                 default -> null;
             };
             if (serverMessage != null)
@@ -70,7 +64,7 @@ public class ServerWorker extends Thread {
                 System.exit(1);
             }
             sendBuffer.close();
-            recieveBuffer.close();
+            receiveBuffer.close();
             socket.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -198,8 +192,20 @@ public class ServerWorker extends Thread {
             case "changeEmail" -> {
                 return profileMenuControllerServer.changeEmail((String) clientMessage.getFields().get(0), (String) clientMessage.getFields().get(1));
             }
-            case "getDefaultGameHistory"-> {
+            case "getDefaultGameHistory" -> {
                 return profileMenuControllerServer.getDefaultGameHistory((String) clientMessage.getFields().get(0));
+            }
+            case "changePassword" -> {
+                return profileMenuControllerServer.changePassword((String) clientMessage.getFields().get(0),
+                        (String) clientMessage.getFields().get(1), (String) clientMessage.getFields().get(2));
+            }
+            case "checkGameHistory" -> {
+                return profileMenuControllerServer.checkGameHistory((String) clientMessage.getFields().get(0),
+                        (String) clientMessage.getFields().get(1));
+            }
+            case "getGameHistoryByUserRequest" -> {
+                return profileMenuControllerServer.getGameHistoryByUserRequest((String) clientMessage.getFields().get(0),
+                        (String) clientMessage.getFields().get(1));
             }
             default -> {
                 System.err.println("invalid method!! in profile menu controller ->  name:" + clientMessage.getMethodName());
@@ -209,4 +215,3 @@ public class ServerWorker extends Thread {
         return null;
     }
 }
-
