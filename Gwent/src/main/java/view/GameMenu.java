@@ -258,9 +258,9 @@ public class GameMenu implements Menu {
             }
         });
     }
-    public void addWeatherCard(String playerName, WeatherCard weatherCard, Game game){
-        weatherCardPosition.getChildren().add(weatherCard.getCardView());
-
+    public void addWeatherCard(WeatherCard weatherCard){
+        if (!weatherCardPosition.getChildren().contains(weatherCard.getCardView()))
+            weatherCardPosition.getChildren().add(weatherCard.getCardView());
     }
     @FXML
     private void passTurn() {

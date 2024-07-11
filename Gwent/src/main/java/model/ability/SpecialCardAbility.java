@@ -64,13 +64,13 @@ public class SpecialCardAbility {
                             System.err.println("Error in add decoy to row in decoy");
                     }
                     swapCards(game.getSelectedCard(), card, box, player);
-
                     if (!player.getHand().add(card)) System.err.println("Error in add card to hand in decoy");
                     ArrayList<DecksCard> chosenCards = new ArrayList<>();
                     chosenCards.add(card);
                     gameMenu.setHandCardEventHandler(player, game.getOpponentPlayer(), game, chosenCards);
                     gameMenu.updateGame(game);
                     if (!player.getHand().remove(game.getSelectedCard())) System.err.println("Error in playing card in decoy");
+                    ((GameMenu) MenuScene.GAME_SCENE.getMenu()).updateGame(game);
                 });
             }
         }
@@ -90,6 +90,8 @@ public class SpecialCardAbility {
         player.getPlayerView().getHandView().getChildren().add(card.getCardView());
         box.getChildren().add(decoy.getCardView());
         player.getPlayerView().getHandView().getChildren().remove(decoy.getCardView());
+        card.getCardView().setTranslateX(0);
+        card.getCardView().setTranslateY(0);
     }
     public void scorch(Game game) {
         ArrayList<Row> allRows = new ArrayList<>();
