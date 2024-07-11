@@ -49,7 +49,7 @@ public class ServerWorker extends Thread {
             String messageString = receiveBuffer.readUTF();
             ClientMessage clientMessage = gsonAgent.fromJson(messageString, ClientMessage.class);
             String serverMessage = switch (clientMessage.getControllerName()) {
-                case "GameRequestHandler" -> gsonAgent.toJson(handleGameRequest(clientMessage, socket));
+                case "GameRequestHandler" -> gsonAgent.toJson(handleGameRequest(clientMessage, socket, receiveBuffer, sendBuffer));
                 case "UserInformationController" ->
                         gsonAgent.toJson(handleUserInformationControllerRequest(clientMessage));
                 case "RegisterController" -> gsonAgent.toJson(handleRegisterControllerRequest(clientMessage));
@@ -61,6 +61,7 @@ public class ServerWorker extends Thread {
                 case "PregameController" -> gsonAgent.toJson(handlePregameControllerRequest(clientMessage));
                 default -> null;
             };
+            if (clientMessage.getControllerName().equals("GameRequestHandler")) return;
             if (serverMessage != null)
                 sendBuffer.writeUTF(serverMessage);
             else {
@@ -69,7 +70,6 @@ public class ServerWorker extends Thread {
             }
             sendBuffer.close();
             receiveBuffer.close();
-            if (!clientMessage.getControllerName().equals("RandomGameRequestHandler")) socket.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -239,12 +239,12 @@ public class ServerWorker extends Thread {
         return null;
     }
 
-    private String handleGameRequest(ClientMessage clientMessage, Socket socket) {
+    private String handleGameRequest(ClientMessage clientMessage, Socket socket, DataInputStream dataInputStream, DataOutputStream dataOutputStream) {
         switch (clientMessage.getMethodName()) {
-            case "requestToRandomUser" -> Server.getRandomGameRequest().add(socket);
+            case "requestToRandomUser" -> Server.getRandomGameRequest().add(new Connection(socket, dataInputStream, dataOutputStream));
             case "requestToFriend" -> Server.getGameWithFriendRequest().put((String) clientMessage.getFields().get(0), socket);
             default -> {
-                System.err.println("invalid method!! inhandleGameRequestr ->  name:" + clientMessage.getMethodName());
+                System.err.println("invalid method!! in handleGameRequest ->  name:" + clientMessage.getMethodName());
                 System.exit(-1);
             }
         }

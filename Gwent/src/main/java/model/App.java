@@ -8,8 +8,8 @@ public class App {
     private static Stage primaryStage;
     private static MenuScene currentMenuScene = MenuScene.REGISTER_SCENE;
     private static final SceneManager sceneManager = new SceneManager();
-    private static Game currentGame;
     private static LoggedInUser loggedInUser = null;
+    private static String currentGameId;
 
     public static Stage getPrimaryStage() {
         return primaryStage;
@@ -52,12 +52,12 @@ public class App {
         else loggedInUser = new LoggedInUser(username, nickName, email, stayLoggedIn);
     }
 
-    public static Game getCurrentGame() {
-        return currentGame;
+    public static String getCurrentGame() {
+        return currentGameId;
     }
 
-    public static void setCurrentGame(Game currentGame) {
-        App.currentGame = currentGame;
+    public static void setCurrentGameId(String currentGameId) {
+        App.currentGameId = currentGameId;
     }
 
 

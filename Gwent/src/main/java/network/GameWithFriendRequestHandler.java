@@ -1,4 +1,4 @@
 package network;
 
-public class GameWithFriendRequestHandler extends Thread{
+public class GameWithFriendRequestHandler extends Thread {
 }

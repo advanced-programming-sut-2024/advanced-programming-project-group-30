@@ -3,10 +3,14 @@ package model;
 import enums.FactionType;
 import enums.cardsData.*;
 import model.card.DecksCard;
+import model.card.RegularCard;
+import model.card.SpecialCard;
+import model.card.WeatherCard;
 
 import java.util.*;
 
 public class PregameData {
+    private final String username;
     private final CardCollection userCardCollection;
     private FactionType faction;
     private final TreeMap<DeckCardData, ArrayList<DecksCard>> cardCollection = new TreeMap<>(CardComparator.getCardComparator());
@@ -18,10 +22,15 @@ public class PregameData {
     private int totalCardsStrength = 0;
     private int heroCardsNumber = 0;
 
-    public PregameData(CardCollection userCardCollection, FactionType faction) {
+    public PregameData(String username, CardCollection userCardCollection, FactionType faction) {
+        this.username = username;
         this.userCardCollection = userCardCollection;
         this.faction = faction;
         this.cardCollection.putAll(userCardCollection.getCardsMapByFactionsType(faction));
+    }
+
+    public String getUsername() {
+        return username;
     }
 
     public FactionType getFaction() {
@@ -119,7 +128,20 @@ public class PregameData {
         }
     }
 
-    public ArrayList<DecksCard> getDeck() {
+    public ShippablePregameData getShippablePregameData() {
+        ArrayList<DecksCard> deck = getDeck();
+        ArrayList<RegularCard> deckRegularCards = new ArrayList<>();
+        ArrayList<SpecialCard> deckSpecialCards = new ArrayList<>();
+        ArrayList<WeatherCard> deckWeatherCards = new ArrayList<>();
+        for (DecksCard card : deck) {
+            if (card instanceof SpecialCard) deckSpecialCards.add((SpecialCard) card);
+            else if (card instanceof WeatherCard) deckWeatherCards.add((WeatherCard) card);
+            else if (card instanceof RegularCard) deckRegularCards.add((RegularCard) card);
+        }
+        return new ShippablePregameData(username,faction, leader, deckRegularCards, deckSpecialCards, deckWeatherCards);
+    }
+
+    private ArrayList<DecksCard> getDeck() {
         ArrayList<DecksCard> deck = new ArrayList<>();
         for (DeckCardData cardData : cardsInDeck.keySet())
             deck.addAll(cardsInDeck.get(cardData));

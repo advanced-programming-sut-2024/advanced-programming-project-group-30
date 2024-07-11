@@ -76,7 +76,7 @@ public class PregameMenu implements Menu {
         ClientMessage clientMessage = new ClientMessage("PregameController", "getUserCardCollection",
                 new ArrayList<>(Collections.singleton(App.getLoggedInUsersUsername())));
         client.sendMessageToServer(clientMessage);
-        this.pregameData = new PregameData((CardCollection) client.getLastServerData(CardCollection.class), faction);
+        this.pregameData = new PregameData(App.getLoggedInUsersUsername(), (CardCollection) client.getLastServerData(CardCollection.class), faction);
         updateFactionsFields(pregameData.getFaction());
         uploadToCardCollection(pregameData.getCardCollection());
         SelectionPage<FactionType> factionSelectionPage = new SelectionPage<>(FactionType.getAllChooseModelView(),
@@ -231,11 +231,11 @@ public class PregameMenu implements Menu {
 
     @FXML
     private void startGameWithFriend() {
-        Result result = checkPregameData();
-        if (result.isNotSuccessful()) {
-            errorMessage.setText(result.toString());
-            return;
-        }
+//        Result result = checkPregameData();
+//        if (result.isNotSuccessful()) {
+//            errorMessage.setText(result.toString());
+//            return;
+//        }
     }
 
     @FXML
@@ -245,6 +245,11 @@ public class PregameMenu implements Menu {
             errorMessage.setText(result.toString());
             return;
         }
+        errorMessage.setText("waiting...");
+        errorMessage.setStyle("-fx-text-fill: rgba(182,175,97,0.9)");
+        client.requestForRandomGame(pregameData);
+        errorMessage.setStyle("");
+        errorMessage.setText("");
     }
 
     private Result checkPregameData() {

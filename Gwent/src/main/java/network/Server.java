@@ -1,6 +1,7 @@
 package network;
 
 import enums.SecurityQuestion;
+import model.Game;
 import model.User;
 
 import java.io.IOException;
@@ -11,6 +12,7 @@ import java.util.HashMap;
 
 public class Server {
     private static final ArrayList<User> allUsers = new ArrayList<>();
+    private static final HashMap<String, Game> allGames = new HashMap<>();
     private static final int PORT = 7000;
     private static final int WORKERS = 5;
     private static final int RANDOM_GAME_REQUEST_HANDLERS = 5;
@@ -18,7 +20,7 @@ public class Server {
     private static ServerSocket serverSocket;
     private static ServerListener serverListener;
     private static ArrayList<Socket> connections;
-    private static ArrayList<Socket> randomGameRequest;
+    private static ArrayList<Connection> randomGameRequest;
     private static HashMap<String, Socket> gameWithFriendRequest;
     private static final ArrayList<ServerWorker> serverWorkers = new ArrayList<>();
     private static final ArrayList<RandomGameRequestHandler> randomGameRequestHandlers = new ArrayList<>();
@@ -37,10 +39,6 @@ public class Server {
         allUsers.add(user);
     }
 
-    public static void removeUser(User user) {
-        allUsers.remove(user);
-    }
-
     public static User getUserByUsername(String username) {
         for (User user : allUsers)
             if (user.getUsername().equals(username)) return user;
@@ -48,15 +46,19 @@ public class Server {
 
     }
 
-    public static ArrayList<Socket> getConnections() {
+    public static HashMap<String, Game> getAllGames() {
+        return allGames;
+    }
+
+    protected static ArrayList<Socket> getConnections() {
         return connections;
     }
 
-    public static ArrayList<Socket> getRandomGameRequest() {
+    protected static ArrayList<Connection> getRandomGameRequest() {
         return randomGameRequest;
     }
 
-    public static HashMap<String, Socket> getGameWithFriendRequest() {
+    protected static HashMap<String, Socket> getGameWithFriendRequest() {
         return gameWithFriendRequest;
     }
 
