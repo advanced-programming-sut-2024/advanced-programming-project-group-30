@@ -1,6 +1,7 @@
 package controller.server;
 
 import enums.CheckInformationRegex;
+import enums.FactionType;
 import model.Result;
 import model.User;
 import network.Server;
@@ -31,9 +32,9 @@ public class UserInformationControllerServer {
 
     public Result checkPassword(String password) {
         if (password.isEmpty()) return new Result(false, "** password cannot be empty.");
-        if (!isPasswordFormatValid(password))
+        if (isPasswordFormatInvalid(password))
             return new Result(false, "** password must only contain letters, numbers and special characters.");
-        if (!isPasswordStrong(password)) return new Result(false, "** password is weak.");
+        if (isPasswordWeak(password)) return new Result(false, "** password is weak.");
         return new Result(true, "");
     }
 
@@ -53,19 +54,31 @@ public class UserInformationControllerServer {
         return new Result(true, "");
     }
 
-    // TODO: server.
     public Result checkPasswordForChange(String username, String newPassword, String oldPassword) {
         User user = Server.getUserByUsername(username);
         if (user == null) return new Result(false, "Wtf! who are you?");
         if (newPassword.isEmpty()) return new Result(false, "** password cannot be empty.");
         if (oldPassword.isEmpty()) return new Result(false, "** please enter your current password.");
         if (!user.getPassword().equals(oldPassword)) return new Result(false, "** your current password is incorrect.");
-        if (!isPasswordFormatValid(newPassword))
+        if (isPasswordFormatInvalid(newPassword))
             return new Result(false, "** password must only contain english letters, numbers and special characters.");
-        if (!isPasswordStrong(newPassword)) return new Result(false, "** password is weak.");
+        if (isPasswordWeak(newPassword)) return new Result(false, "** password is weak.");
         if (user.getPassword().equals(newPassword))
             return new Result(false, "** new password is the same as your current password.");
         return new Result(true, "");
+    }
+
+    public FactionType getUserFaction(String username) {
+        User user = Server.getUserByUsername(username);
+        if (user == null) return null;
+        return user.getSelectedFaction();
+    }
+
+    public Result setUserFaction(String username, FactionType factionType) {
+        User user = Server.getUserByUsername(username);
+        if (user == null) return new Result(false, "User not find");
+        user.setSelectedFaction(factionType);
+        return new Result(true, "set faction (" + factionType + ") for " + username);
     }
 
     private boolean checkPasswordConfirm(String password, String passwordConfirm) {
@@ -81,12 +94,12 @@ public class UserInformationControllerServer {
         return CheckInformationRegex.VALID_USERNAME.getMatcher(username).matches();
     }
 
-    private boolean isPasswordFormatValid(String password) {
-        return CheckInformationRegex.VALID_PASSWORD.getMatcher(password).matches();
+    private boolean isPasswordFormatInvalid(String password) {
+        return !CheckInformationRegex.VALID_PASSWORD.getMatcher(password).matches();
     }
 
-    private boolean isPasswordStrong(String password) {
-        return CheckInformationRegex.STRONG_PASSWORD.getMatcher(password).matches();
+    private boolean isPasswordWeak(String password) {
+        return !CheckInformationRegex.STRONG_PASSWORD.getMatcher(password).matches();
     }
 
     private boolean isEmailFormatValid(String email) {

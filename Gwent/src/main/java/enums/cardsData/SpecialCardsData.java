@@ -65,6 +65,6 @@ public enum SpecialCardsData implements DeckCardData {
     }
 
     private SpecialCard createCard() {
-        return new SpecialCard(name, null, this, isDiscardAfterPlaying, ability.getAbility());
+        return new SpecialCard(name, null, isDiscardAfterPlaying, this.toString(), ability.getAbility());
     }
 }

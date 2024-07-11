@@ -1,5 +1,6 @@
 package view;
 
+import enums.FactionType;
 import enums.MenuScene;
 import model.App;
 import model.Game;
@@ -52,13 +53,13 @@ public class SceneManager {
         setupStage(sizeData);
     }
 
-    public void goToPregameMenu() {
-//        PregameMenu pregameMenu = (PregameMenu) MenuScene.PREGAME_SCENE.getMenu();
-//        pregameMenu.setup(pregameData);
-//        App.setCurrentMenuScene(MenuScene.PREGAME_SCENE);
-//        App.getPrimaryStage().setScene(MenuScene.PREGAME_SCENE.getScene());
-//        App.getPrimaryStage().sizeToScene();
-//        App.getPrimaryStage().centerOnScreen();
+    public void goToPregameMenu(FactionType factionType) {
+        PregameMenu pregameMenu = (PregameMenu) MenuScene.PREGAME_SCENE.getMenu();
+        pregameMenu.setup(factionType);
+        App.setCurrentMenuScene(MenuScene.PREGAME_SCENE);
+        App.getPrimaryStage().setScene(MenuScene.PREGAME_SCENE.getScene());
+        App.getPrimaryStage().sizeToScene();
+        App.getPrimaryStage().centerOnScreen();
     }
 
     public void goToGame(Game game) {

@@ -131,15 +131,15 @@ public class Player {
         resetLives();
         resetPoints();
         for (Row row : getRows()) {
-            evacuateRow(row);
+//            evacuateRow(row);
             row.resetRow();
         }
     }
 
-    private void evacuateRow(Row row) {
-        for (DecksCard decksCard : row.getCards())
-            discardPile.add(decksCard);
-    }
+//    private void evacuateRow(Row row) {
+//        for (DecksCard decksCard : row.getCards())
+//            discardPile.add(decksCard);
+//    }
 
     private void resetLives() {
         life = 2;

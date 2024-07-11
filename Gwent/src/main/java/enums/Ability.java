@@ -40,7 +40,7 @@ public enum Ability {
     MEDIC("Medic", "Choose one card from your discard pile and play it instantly (no Heroes or Special Cards).",
             RegularCardsAbility.createNewAbilityByName("medic"), CssAddress.MEDIC_ABILITY_ICON),
     TRANSFORMER("Transformer", "When this card is removed from the battlefield,\n" +
-            "it summons a powerful new Unit Card to take its place.", RegularCardsAbility.createNewAbilityByName("transformer"), CssAddress.AVENGER_ABILITY_ICON),
+            "it summons a powerful new Unit DrcksCard to take its place.", RegularCardsAbility.createNewAbilityByName("transformer"), CssAddress.AVENGER_ABILITY_ICON),
     BERKSER("Berserker", "Transforms into a bear when a Mardroeme card is on its row. ", RegularCardsAbility.createNewAbilityByName("berserker"), CssAddress.BERSERKER_ABILITY_ICON);;
 
     private final String abilityName;

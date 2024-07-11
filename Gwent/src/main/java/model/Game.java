@@ -16,10 +16,10 @@ public class Game {
     private ArrayList<WeatherCard> weatherCards = new ArrayList<>();
     private boolean roundIsPassed = false;
 
-    public Game(PregameData gameData) {
-        currentPlayer = gameData.getCurrentPlayer();
-        opponentPlayer = gameData.getOpponentPlayer();
-    }
+//    public Game(PregameData gameData) {
+//        currentPlayer = gameData.getCurrentPlayer();
+//        opponentPlayer = gameData.getOpponentPlayer();
+//    }
 
     public void setOpponentPlayer(Player opponentPlayer) {
         this.opponentPlayer = opponentPlayer;

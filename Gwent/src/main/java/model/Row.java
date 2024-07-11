@@ -1,16 +1,12 @@
 package model;
 
-import enums.CoordinateData;
 import enums.cardsData.CardData;
-import enums.cardsData.RegularCardData;
 import model.card.DecksCard;
 import model.card.RegularCard;
 import model.card.SpecialCard;
-import view.RowView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
 
 public class Row extends Position {
     private final String name;

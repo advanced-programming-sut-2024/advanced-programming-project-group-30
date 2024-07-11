@@ -2,7 +2,9 @@ package network;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import controller.PregameController;
 import controller.server.*;
+import enums.FactionType;
 
 import java.io.*;
 import java.net.Socket;
@@ -15,6 +17,7 @@ public class ServerWorker extends Thread {
     private final ForgetPasswordControllerServer forgetPasswordControllerServer = new ForgetPasswordControllerServer();
     private final MainMenuControllerServer mainMenuControllerServer = new MainMenuControllerServer();
     private final ProfileMenuControllerServer profileMenuControllerServer = new ProfileMenuControllerServer();
+    private final PregameController pregameController = new PregameController();
 
     public ServerWorker() {
         this.gsonAgent = new GsonBuilder().create();
@@ -55,6 +58,7 @@ public class ServerWorker extends Thread {
                         gsonAgent.toJson(handleForgetPasswordControllerRequest(clientMessage));
                 case "MainMenuController" -> gsonAgent.toJson(handleMainMenuControllerRequest(clientMessage));
                 case "ProfileMenuController" -> gsonAgent.toJson(handleProfileMenuControllerRequest(clientMessage));
+                case "PregameController" -> gsonAgent.toJson(handlePregameControllerRequest(clientMessage));
                 default -> null;
             };
             if (serverMessage != null)
@@ -96,6 +100,13 @@ public class ServerWorker extends Thread {
             case "checkPasswordForChange" -> {
                 return userInformationControllerServer.checkPasswordForChange((String) clientMessage.getFields().get(0),
                         (String) clientMessage.getFields().get(1), (String) clientMessage.getFields().get(2));
+            }
+            case "getUserFaction" -> {
+                return userInformationControllerServer.getUserFaction((String) clientMessage.getFields().get(0));
+            }
+            case "setUserFaction" -> {
+                return userInformationControllerServer.setUserFaction((String) clientMessage.getFields().get(0),
+                        FactionType.valueOf((String) clientMessage.getFields().get(1)));
             }
             default -> {
                 System.err.println("invalid method!! in userInformation ->  name:" + clientMessage.getMethodName());
@@ -209,6 +220,19 @@ public class ServerWorker extends Thread {
             }
             default -> {
                 System.err.println("invalid method!! in profile menu controller ->  name:" + clientMessage.getMethodName());
+                System.exit(-1);
+            }
+        }
+        return null;
+    }
+
+    private Object handlePregameControllerRequest(ClientMessage clientMessage) {
+        switch (clientMessage.getMethodName()) {
+            case "getUserCardCollection" -> {
+                return pregameController.getUserCardCollection((String) clientMessage.getFields().get(0));
+            }
+            default -> {
+                System.err.println("invalid method!! in pregame controller ->  name:" + clientMessage.getMethodName());
                 System.exit(-1);
             }
         }

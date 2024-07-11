@@ -11,12 +11,12 @@ import enums.cardsData.WeatherCardsData;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import model.card.Card;
+import model.card.DecksCard;
 import model.card.RegularCard;
 import model.card.SpecialCard;
 import model.card.WeatherCard;
 
-//TODO: handle Card and CardView loop in saving
+//TODO: handle DecksCard and CardView loop in saving
 public class CardView extends Pane {
     private static final double HERO_POINT_X = -2;
     private static final double HERO_POINT_Y = -2;
@@ -31,10 +31,10 @@ public class CardView extends Pane {
     private static final double ABILITY_X = 23;
     private static final double ABILITY_Y = 60;
     private final CardData cardData;
-    private final Card card;
+    private final DecksCard card;
     private final Label point;
 
-    public CardView(Card card) {
+    public CardView(DecksCard card) {
         this.card = card;
         this.cardData = card.getCardData();
         this.point = new Label();
@@ -43,7 +43,7 @@ public class CardView extends Pane {
         if (card instanceof WeatherCard) setUpWeatherCardView();
     }
 
-    public Card getCard() {
+    public DecksCard getCard() {
         return card;
     }
 

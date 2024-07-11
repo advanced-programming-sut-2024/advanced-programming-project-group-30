@@ -1,22 +1,5 @@
 package view;
 
-import enums.GameNotification;
-import enums.cardsData.DeckCardData;
-import javafx.animation.KeyFrame;
-import javafx.animation.SequentialTransition;
-import javafx.animation.Timeline;
-import javafx.animation.TranslateTransition;
-import javafx.geometry.Bounds;
-import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.util.Duration;
-import model.Game;
-import model.card.DecksCard;
-import model.card.RegularCard;
-import model.card.WeatherCard;
-
 public class AnimationMaker {
     private static AnimationMaker animationMaker;
 

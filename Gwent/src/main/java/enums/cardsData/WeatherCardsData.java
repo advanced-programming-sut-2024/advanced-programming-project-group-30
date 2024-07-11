@@ -65,6 +65,6 @@ public enum WeatherCardsData implements DeckCardData {
     }
 
     private WeatherCard createCard() {
-        return new WeatherCard(name, null, this, this.isDiscardAfterPlaying, ability.getAbility());
+        return new WeatherCard(name, null, this.toString(), ability.getAbility());
     }
 }

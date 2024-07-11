@@ -108,6 +108,6 @@ public enum SkelligeRegularCardsData implements RegularCardData {
         Method ability = null;
         if (this.ability != null)
             ability = this.ability.getAbility();
-        return new RegularCard(this.name, FactionType.MONSTERS, this, this.isHero, ability, this.cardPositionType);
+        return new RegularCard(this.name, FactionType.SKELLIGE, this.isHero, this.cardPositionType, this.toString(), ability);
     }
 }

@@ -1,5 +1,6 @@
 package view;
 
+import enums.FactionType;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
@@ -39,9 +40,12 @@ public class MainMenu implements Menu {
         App.getSceneManager().goToProfileMenu(fields[0], fields[1], fields[2], fields[3], fields[4], fields[5], fields[6], fields[7], fields[8]);
     }
 
-    public void goToPregameMenu() {
-        // TODO.
-        App.getSceneManager().goToPregameMenu();
+    @FXML
+    private void goToPregameMenu() {
+        ClientMessage clientMessage = new ClientMessage("UserInformationController", "getUserFaction",
+                new ArrayList<>(Collections.singleton(App.getLoggedInUsersUsername())));
+        client.sendMessageToServer(clientMessage);
+        App.getSceneManager().goToPregameMenu((FactionType) client.getLastServerData(FactionType.class));
     }
 
     @FXML

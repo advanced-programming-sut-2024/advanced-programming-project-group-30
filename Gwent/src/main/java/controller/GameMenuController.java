@@ -1,37 +1,5 @@
 package controller;
 
-import enums.Ability;
-import enums.CssAddress;
-import enums.GameNotification;
-import enums.RegularCardPositionType;
-import enums.cardsData.CardData;
-import enums.cardsData.DeckCardData;
-import enums.cardsData.RegularCardData;
-import enums.cardsData.WeatherCardsData;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.animation.TranslateTransition;
-import javafx.geometry.Bounds;
-import javafx.scene.Node;
-import javafx.scene.layout.HBox;
-import javafx.util.Duration;
-import model.App;
-import model.Game;
-import model.Player;
-import model.Row;
-import model.card.DecksCard;
-import model.card.RegularCard;
-import model.card.SpecialCard;
-import model.card.WeatherCard;
-import view.*;
-
-import java.awt.event.MouseEvent;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Random;
-
 public class GameMenuController {
 //    private final GameMenu menu;
 //

@@ -1,15 +1,14 @@
 package model.card;
 
 import enums.FactionType;
-import enums.cardsData.CardData;
 
 import java.lang.reflect.Method;
 
 public class SpecialCard extends DecksCard {
     private final boolean discardAfterPlaying;
 
-    public SpecialCard(String name, FactionType faction, CardData cardData, boolean discardAfterPlaying, Method ability) {
-        super(name, faction, cardData, ability, true);
+    public SpecialCard(String name, FactionType faction, boolean discardAfterPlaying, String cardDataName, Method method) {
+        super(name, faction, cardDataName, method);
         this.discardAfterPlaying = discardAfterPlaying;
     }
 

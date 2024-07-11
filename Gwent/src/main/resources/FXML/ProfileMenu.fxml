@@ -14,7 +14,7 @@
             <Group layoutX="23.0" layoutY="35.0">
                 <Label fx:id="highestScore" contentDisplay="CENTER" layoutY="141.0" prefHeight="17.0" prefWidth="159.0" style="-fx-font-size: 12; -fx-alignment: center;" styleClass="profileMenu-info-label" text="100 is your best score" textAlignment="CENTER" />
                 <ImageView fitHeight="119.0" fitWidth="97.0" layoutX="29.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@../Images/profile.png" />
+                    <Image url="@../Images/Icons/profile.png" />
                 </ImageView>
                 <ImageView fitHeight="92.0" fitWidth="108.0" layoutX="25.0" layoutY="16.0" pickOnBounds="true">
                     <Image url="@../Images/Icons/icon_high_score.png" />
@@ -76,7 +76,7 @@
                 <PasswordField fx:id="newPassword" layoutX="31.0" layoutY="130.0" prefHeight="42.0" prefWidth="280.0" promptText="new password" styleClass="profileMenu-password-field" />
                 <Button layoutX="90.0" layoutY="189.0" mnemonicParsing="false" onAction="#setNewPassword" prefHeight="25.0" prefWidth="70.0" styleClass="changePasswordButton" text="confirm" />
                 <Button layoutX="172.0" layoutY="189.0" mnemonicParsing="false" onAction="#backToEditInformation" prefHeight="25.0" prefWidth="70.0" styleClass="changePasswordButton" text="cancel" />
-                <Label fx:id="newPasswordError" layoutX="72.0" layoutY="111.0" prefHeight="0.0" prefWidth="200.0" style="-fx-text-fill: rgba(238,0,1,0.7); -fx-alignment: Center;" styleClass="errorMessage" />
+                <Label fx:id="newPasswordError" layoutX="12.0" layoutY="111.0" prefHeight="14.0" prefWidth="319.0" style="-fx-text-fill: rgba(238,0,1,0.7); -fx-alignment: Center;" styleClass="errorMessage" />
                 <Label fx:id="passwordConfirmationErrorField" layoutX="47.0" layoutY="222.0" prefHeight="0.0" prefWidth="237.0" style="-fx-alignment: Center;" styleClass="errorMessage" />
             </Pane>
             <ScrollPane fx:id="gameHistoryScrollPane" accessibleText="" hbarPolicy="NEVER" layoutX="384.0" layoutY="76.0" prefHeight="426.0" prefWidth="395.0" styleClass="profileMenu-scrollPane">

@@ -4,6 +4,7 @@ import enums.FactionType;
 import enums.cardsData.*;
 import model.card.DecksCard;
 import model.card.RegularCard;
+import model.card.SpecialCard;
 import model.card.WeatherCard;
 
 import java.util.ArrayList;
@@ -11,20 +12,24 @@ import java.util.HashMap;
 import java.util.TreeMap;
 
 public class CardCollection {
-    private final ArrayList<DecksCard> decksCards;
+    private final ArrayList<RegularCard> deckRegularCards;
+    private final ArrayList<SpecialCard> deckSpecialCards;
+    private final ArrayList<WeatherCard> decksWeatherCards;
     private final HashMap<FactionType, ArrayList<RegularCard>> FactionsCard;
 
     public CardCollection() {
-        decksCards = new ArrayList<>(SpecialCardsData.getAllSpecialCard());
-        decksCards.addAll(WeatherCardsData.getAllWeatherCards());
-        decksCards.addAll(NeutralRegularCardsData.getAllRegularCard());
+        deckSpecialCards = new ArrayList<>(SpecialCardsData.getAllSpecialCard());
+        decksWeatherCards = new ArrayList<>(WeatherCardsData.getAllWeatherCards());
+        deckRegularCards = new ArrayList<>(NeutralRegularCardsData.getAllRegularCard());
         FactionsCard = new HashMap<>();
         for (FactionType type : FactionType.values())
             FactionsCard.put(type, type.getFactionRegularCards());
     }
 
     public TreeMap<DeckCardData, ArrayList<DecksCard>> getCardsMapByFactionsType(FactionType factionType) {
-        ArrayList<DecksCard> cards = new ArrayList<>(decksCards);
+        ArrayList<DecksCard> cards = new ArrayList<>(deckRegularCards);
+        cards.addAll(deckSpecialCards);
+        cards.addAll(decksWeatherCards);
         cards.addAll(FactionsCard.get(factionType));
         TreeMap<DeckCardData, ArrayList<DecksCard>> cardsMap = new TreeMap<>(CardComparator.getCardComparator());
         ArrayList<DecksCard> oneTypeCards = new ArrayList<>();

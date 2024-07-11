@@ -14,7 +14,7 @@ public enum FactionType {
             NorthernRealmsRegularCardsData.class),
     NILFGAARDIAN_EMPIRE("Nilfgaardian Empire", "Wins any round that ends in a draw.",
             NilfgaardianEmpireRegularCardsData.class),
-    MONSTERS("Monsters", "Keeps a random Unit Card out after each round.",
+    MONSTERS("Monsters", "Keeps a random Unit DrcksCard out after each round.",
             MonstersRegularCardsData.class),
     SCOIA_TAEL("Scoia'tael", "Decides who takes first turn.",
             ScoiaTaelRegularCardsData.class),
@@ -54,6 +54,10 @@ public enum FactionType {
 
     public String getDescription() {
         return description;
+    }
+
+    public Class getRegularCardsData() {
+        return regularCardsData;
     }
 
     public Image getLgImage() {

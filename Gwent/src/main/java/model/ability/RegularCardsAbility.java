@@ -1,26 +1,9 @@
 package model.ability;
 
-import enums.Ability;
-import enums.cardsData.CardData;
-import javafx.animation.SequentialTransition;
-import javafx.animation.TranslateTransition;
-import javafx.geometry.Bounds;
-import javafx.scene.Node;
 import model.Game;
-import model.Player;
 import model.Row;
-import model.card.Card;
-import model.card.DecksCard;
-import model.card.RegularCard;
-import view.AnimationMaker;
-import view.CardView;
-import view.PlayerView;
 
-import javax.swing.text.PlainView;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Random;
 
 
 public class RegularCardsAbility {
@@ -58,13 +41,14 @@ public class RegularCardsAbility {
     public void scorch(Game currentGame){
 
     }
-    //TODO: added this method
+
     public void tightBond(Game currentGame){
 //        currentGame.getSelectedRow().addToCardDataMap((RegularCard) currentGame.getSelectedCard());
     }
+
     public void spy(Game currentGame){
 //        Player currentPlayer = currentGame.getCurrentPlayer();
-////        PlayerView playerView  = currentPlayer.getPlayerView();
+//        PlayerView playerView  = currentPlayer.getPlayerView();
 //        ArrayList<DecksCard> deck = currentPlayer.getDeck();
 //        ArrayList<DecksCard> cards = new ArrayList<>();
 //        Random random = new Random();
@@ -105,6 +89,4 @@ public class RegularCardsAbility {
     public void transformer(Game currentGame){
 
     }
-
 }
-

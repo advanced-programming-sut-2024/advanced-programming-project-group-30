@@ -97,7 +97,7 @@ public class ProfileMenu implements Menu {
         nicknameTextField.setPromptText(nickname);
         emailTextField.setPromptText(email);
         setUserInformation(rank, highestScore, gameCount, wins, losses, draws);
-        ClientMessage clientMessage = new ClientMessage("UserInformationController", "getDefaultGameHistory",
+        ClientMessage clientMessage = new ClientMessage("ProfileMenuController", "getDefaultGameHistory",
                 new ArrayList<>(Collections.singleton(App.getLoggedInUsersUsername())));
         client.sendMessageToServer(clientMessage);
         Result result = (Result) client.getLastServerData(Result.class);
@@ -319,7 +319,6 @@ public class ProfileMenu implements Menu {
         checkButton.setVisible(false);
         cancelButton.setVisible(false);
         editButton.setVisible(true);
-
     }
 
     private void resetFields() {

@@ -33,7 +33,7 @@
         </Group>
         <VBox alignment="CENTER" style="-fx-spacing: 13;">
             <VBox styleClass="mainMenuBox">
-                <Button layoutX="135.0" layoutY="26.0" styleClass="playButton"/>
+                <Button onMouseClicked="#goToPregameMenu" layoutX="135.0" layoutY="26.0" styleClass="playButton"/>
                 <Button layoutX="152.0" layoutY="129.0" minHeight="10.0" mnemonicParsing="false" onAction="#goToProfileMenu"
                         prefHeight="36.0" prefWidth="143.0" style="-fx-font-size: 30;" styleClass="mainMenuButtonWithoutBack"
                         text="Profile Menu"/>

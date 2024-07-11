@@ -1,21 +1,5 @@
 package view;
 
-import controller.GameMenuController;
-import enums.CssAddress;
-import enums.GameNotification;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
-import javafx.util.Duration;
-import model.*;
-import model.card.DecksCard;
-
-import java.util.ArrayList;
-
 public class GameMenu implements Menu {
 //    private final Pane notifPane = new Pane();
 //    private final Label notifLabel = new Label();
