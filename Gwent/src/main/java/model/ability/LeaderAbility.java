@@ -1,6 +1,11 @@
 package model.ability;
 
+import enums.MenuScene;
+import enums.cardsData.WeatherCardsData;
 import model.Game;
+import model.card.WeatherCard;
+import view.CardView;
+import view.GameMenu;
 
 import java.lang.reflect.Method;
 
@@ -27,7 +32,11 @@ public class LeaderAbility {
     }
 
     public void theSiegemasterAbility(Game currentGame) {
-
+        WeatherCard weatherCard = WeatherCardsData.IMPENETRABLE_FOG.createCard();
+        currentGame.addWeatherCard(weatherCard);
+        GameMenu gameMenu = (GameMenu) MenuScene.GAME_SCENE.getMenu();
+        gameMenu.getWeatherCardPosition().getChildren().add(weatherCard.getCardView());
+        weatherCard.run(currentGame);
     }
 
     public void theSteelForgedAbility(Game currentGame) {

@@ -407,3 +407,21 @@
     -fx-image: url('../Images/Icons/notif_round_start.png');
     -fx-background-size: 100% 100%;
 }
+.gabriolaText {
+    -fx-text-fill: #f3d6b0;
+    -fx-alignment: CENTER;
+    -fx-font-family: Gabriola;
+    -fx-font-size: 22;
+}
+.backToMainMenuButton {
+    -fx-background-color: rgba(251, 202, 127, 0.8);
+    -fx-text-fill: rgb(21, 17, 15);
+    -fx-font-family: "Times New Roman";
+    -fx-font-size: 14;
+    -fx-padding: -5;
+    -fx-font-weight: Bold;
+    -fx-border-color: rgba(21, 17, 15, 0.9);
+    -fx-border-insets: 1 1 0 1;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}

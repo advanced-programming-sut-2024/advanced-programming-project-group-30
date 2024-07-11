@@ -4,6 +4,7 @@ import controller.PregameMenuController;
 import enums.FactionType;
 import enums.cardsData.*;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -149,11 +150,11 @@ public class PregameMenu implements Menu {
     }
 
     public PregameCardView getCollectionCardView(CardData cardData) {
-        return controller.getCardView(cardData, cardCollection);
+        return getCardView(cardData, cardCollection);
     }
 
     public PregameCardView getDeckCardView(CardData cardData) {
-        return controller.getCardView(cardData, cardsInDeck);
+        return getCardView(cardData, cardsInDeck);
     }
 
     public void updateFactionsFields(FactionType faction) {
@@ -179,6 +180,13 @@ public class PregameMenu implements Menu {
         this.specialCardsNumber.setText(pregameData.getSpecialCardsNumber() + "/10");
         this.totalStrength.setText(pregameData.getTotalCardsStrength() + "");
         this.heroCardsNumber.setText("×" + pregameData.getHeroCardsNumber());
+    }
+    public PregameCardView getCardView(CardData cardData, FlowPane flowPane) {
+        for (Node node : flowPane.getChildren()) {
+            if (!(node instanceof PregameCardView cardView)) continue;
+            if (cardView.getCardData() == cardData) return cardView;
+        }
+        return null;
     }
 
     @FXML

@@ -159,7 +159,6 @@ public class Player {
     }
 
     public void resetRound() {
-        resetLives();
         resetPoints();
         for (Row row : getRows()) {
             evacuateRow(row);

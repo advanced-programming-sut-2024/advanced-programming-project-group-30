@@ -100,10 +100,6 @@ public class Game {
     public void roundFinished() {
         currentPlayer.setRoundPoint(roundNumber - 1, currentPlayer.getPoint());
         opponentPlayer.setRoundPoint(roundNumber - 1, opponentPlayer.getPoint());
-        if (roundNumber == 3) {
-            endGame();
-        } else {
-            endRound();
-        }
+        endRound();
     }
 }

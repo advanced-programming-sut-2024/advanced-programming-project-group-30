@@ -69,7 +69,6 @@ public class PlayerInformationView extends Pane {
         rightGem.getStyleClass().add(CssAddress.GEM_OFF_IMAGE.getStyleClass());
         lives.getChildren().addAll(rightGem, leftGem);
         this.getChildren().add(lives);
-        System.out.println("in first round");
     }
 
     public void setSecondRoundOfLoss() {
@@ -78,13 +77,10 @@ public class PlayerInformationView extends Pane {
         leftGem = new Region();
         lives = new HBox();
         setLivesBoxCoordinate();
-//        leftGem.getStyleClass().remove(CssAddress.GEM_ON_IMAGE.getStyleClass());
         leftGem.getStyleClass().add(CssAddress.GEM_OFF_IMAGE.getStyleClass());
         lives.getChildren().addAll(rightGem,leftGem);
         this.getChildren().add(lives);
         System.out.println("in second round");
-
-
     }
 
     public void resetRound() {

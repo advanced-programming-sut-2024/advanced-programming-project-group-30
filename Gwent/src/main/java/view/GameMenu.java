@@ -1,13 +1,11 @@
 package view;
 
 import controller.GameMenuController;
-import enums.Ability;
-import enums.CssAddress;
-import enums.GameNotification;
-import enums.SizeData;
+import enums.*;
 import enums.cardsData.RegularCardData;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -30,6 +28,26 @@ public class GameMenu implements Menu {
     private final Label notifLabel = new Label();
     private final ImageView notifImageView = new ImageView();
     private final GameMenuController gameMenuController = new GameMenuController(this);
+    @FXML
+    private Label result;
+    @FXML
+    private Pane endGamePane;
+    @FXML
+    private Label loser;
+    @FXML
+    private Label winnerRound1;
+    @FXML
+    private Label loserRound1;
+    @FXML
+    private Label winnerRound2;
+    @FXML
+    private Label loserRound2;
+    @FXML
+    private Label winnerRound3;
+    @FXML
+    private Label loserRound3;
+    @FXML
+    private Label winner;
     @FXML
     private VBox root;
     @FXML
@@ -168,15 +186,9 @@ public class GameMenu implements Menu {
         game.getOpponentPlayer().getPlayerInformationView().getStyleClass().remove("brownBoxShadowed");
         for (DecksCard card : game.getOpponentPlayer().getHand())
             hand.getChildren().remove(card.getCardView());
-        for (DecksCard card : game.getCurrentPlayer().getHand()) {
-            if (card instanceof RegularCard) {
-                if (((RegularCard) card).getAbility() != null){
-                    if (((RegularCard) card).getAbility().equals(Ability.MUSTER))
-                        System.out.println("hand adding " + card);
-                }
-            }
+        for (DecksCard card : game.getCurrentPlayer().getHand())
             hand.getChildren().add(card.getCardView());
-        }
+
         showPassTurnNotification();
     }
 
@@ -203,7 +215,7 @@ public class GameMenu implements Menu {
     public void setHandCardEventHandler(Player currentPlayer, Player opponentPlayer, Game game ,ArrayList<DecksCard> cards){
         gameMenuController.handelHandsCardEvent(cards, game, currentPlayer, opponentPlayer);
     }
-    public void showMedicCardOptions(ArrayList<RegularCard> cards, Game game){
+    public void showMedicCardOptions(ArrayList<RegularCard> cards, Game game) {
         ArrayList<ChosenModelView<RegularCard>> chosenModelViews = new ArrayList<>();
         for (RegularCard card : cards) {
             RegularCardData data = (RegularCardData) card.getCardData();
@@ -211,6 +223,90 @@ public class GameMenu implements Menu {
         }
 //        SelectionPage<RegularCard> selectionPage = new SelectionPage<>(, Math.min(2, chosenModelViews.size())-1,  SizeData.GAME_LG_CARD);
     }
+    public void setUpLeaderView(){
+
+    }
+    public void endGame(String message,String winner, int[] winnerRoundPoint, String loser, int[] loserRoundsPoint) {
+        pane.getChildren().remove(endGamePane);
+        pane.getChildren().add(endGamePane);
+        endGamePane.setVisible(true);
+        result.setText(message);
+        this.winner.setText(winner);
+        this.loser.setText(loser);
+        winnerRound1.setText(String.valueOf(winnerRoundPoint[0]));
+        winnerRound2.setText(String.valueOf(winnerRoundPoint[1]));
+        winnerRound3.setText(String.valueOf(winnerRoundPoint[2]));
+        loserRound1.setText(String.valueOf(loserRoundsPoint[0]));
+        loserRound2.setText(String.valueOf(loserRoundsPoint[1]));
+        loserRound3.setText(String.valueOf(loserRoundsPoint[2]));
+    }
+//    public void setupViewsAfterSwitch(PlayerView currentPlayerView, PlayerView opponentPlayerView) {
+//        setUpAfterSwitch(pane, currentPlayerView.getDeckView(), opponentPlayerView.getDeckView());
+//        setUpAfterSwitch(pane, currentPlayerView.getDiscardPileView(), opponentPlayerView.getDiscardPileView());
+//        setUpAfterSwitch(pane, currentPlayerView.getPlayerInformationView(), opponentPlayerView.getPlayerInformationView());
+//        setUpAfterSwitch(pane, currentPlayerView.getLeaderView(), opponentPlayerView.getHandView());
+//    }
+//    public void switchBoard(Game game) throws NoSuchMethodException {
+//        Player currentPlayer = game.getCurrentPlayer();
+//        Player opponentPlayer = game.getOpponentPlayer();
+//        PlayerView currentPlayerView = currentPlayer.getPlayerView();
+//        PlayerView opponentPlayerView = opponentPlayer.getPlayerView();
+//        gameMenuController.resetRowStyles(game);
+//
+//        swapBoardViews(currentPlayerView, opponentPlayerView);
+//        clearBoardViews(currentPlayerView, opponentPlayerView);
+//
+//        swapPlayerViews(currentPlayerView, opponentPlayerView, PlayerView.class.getDeclaredMethod("getDiscardPileView"),
+//                PlayerView.class.getDeclaredMethod("getDeckView"),
+//                PlayerView.class.getDeclaredMethod("getPlayerInformationView"),
+//                PlayerView.class.getDeclaredMethod("getLeaderView"));
+//
+//        setupViewsAfterSwitch(currentPlayerView, opponentPlayerView);
+//
+//        swapRows(currentPlayer, opponentPlayer);
+//    }
+//
+//
+//    private void swapBoardViews(PlayerView currentPlayerView, PlayerView opponentPlayerView) {
+//        rowsPane.getChildren().removeAll(currentPlayerView.getBoardView(), opponentPlayerView.getBoardView());
+//        switchCoordinates(currentPlayerView.getBoardView(), opponentPlayerView.getBoardView());
+//        rowsPane.getChildren().addAll(currentPlayerView.getBoardView(), opponentPlayerView.getBoardView());
+//    }
+//
+//    private void clearBoardViews(PlayerView currentPlayerView, PlayerView opponentPlayerView) {
+//        currentPlayerView.getBoardView().getChildren().clear();
+//        opponentPlayerView.getBoardView().getChildren().clear();
+//    }
+//
+//    private void swapPlayerViews(PlayerView currentPlayerView, PlayerView opponentPlayerView, Method... methods) {
+//        try {
+//            for (Method method : methods) {
+//                Node node1 = (Node) method.invoke(currentPlayerView);
+//                Node node2 = (Node) method.invoke(opponentPlayerView);
+//                pane.getChildren().removeAll(node1, node2);
+//                switchCoordinates(node1, node2);
+//            }
+//        } catch (InvocationTargetException | IllegalAccessException e) {
+//            throw new RuntimeException("Failed to switch player views", e);
+//        }
+//    }
+//
+//    private void swapRows(Player currentPlayer, Player opponentPlayer) {
+//        switchCoordinates(currentPlayer.getCloseCombat().getRowView(), opponentPlayer.getCloseCombat().getRowView());
+//        switchCoordinates(currentPlayer.getRangedCombat().getRowView(), opponentPlayer.getRangedCombat().getRowView());
+//        switchCoordinates(currentPlayer.getSiege().getRowView(), opponentPlayer.getSiege().getRowView());
+//        currentPlayer.getPlayerView().getBoardView().getChildren().addAll(currentPlayer.getSiege().getRowView(), currentPlayer.getRangedCombat().getRowView(), currentPlayer.getCloseCombat().getRowView());
+//        opponentPlayer.getPlayerView().getBoardView().getChildren().addAll(opponentPlayer.getCloseCombat().getRowView(), opponentPlayer.getRangedCombat().getRowView(), opponentPlayer.getSiege().getRowView());
+//    }
+//
+//    private void switchCoordinates(Node component1, Node component2) {
+//        double tempX = component1.getLayoutX();
+//        double tempY = component1.getLayoutY();
+//        component1.setLayoutX(component2.getLayoutX());
+//        component1.setLayoutY(component2.getLayoutY());
+//        component2.setLayoutX(tempX);
+//        component2.setLayoutY(tempY);
+//    }
     @FXML
     private void passTurn() {
         gameMenuController.checkRound(App.getCurrentGame());
@@ -246,4 +342,9 @@ public class GameMenu implements Menu {
                 GameNotification.ROUND_STARTS.getNotification(), GameNotification.ROUND_STARTS.getNotificationImage(), 1);
         timeline.play();
     }
+    @FXML
+    private void goToMainMenu() {
+        App.getSceneManager().goToMainMenu();
+    }
+
 }

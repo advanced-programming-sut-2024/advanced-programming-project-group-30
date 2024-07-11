@@ -64,7 +64,7 @@ public enum WeatherCardsData implements DeckCardData {
                 this.getClass().getResourceAsStream(lgImageAddress)), this, ability.getExplanation(), ability.getAbilityMethodName());
     }
 
-    private WeatherCard createCard() {
+    public WeatherCard createCard() {
         return new WeatherCard(name, null, this, this.isDiscardAfterPlaying, ability.getAbility());
     }
 }

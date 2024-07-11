@@ -45,25 +45,28 @@ public class SpecialCardAbility {
     public void decoy(Game game) {
         Player player = game.getCurrentPlayer();
         ArrayList<Row> allRows = player.getRows();
+        ArrayList<DecksCard> cards = new ArrayList<>();
         GameMenu gameMenu = (GameMenu) MenuScene.GAME_SCENE.getMenu();
+        System.out.println(game.getSelectedCard().getName());
         for (Row row : allRows) {
-            for (DecksCard card : row.getCards()) {
+            cards.addAll(row.getCards());
+            if (row.getSpecialCard() != null) cards.add(row.getSpecialCard());
+            for (DecksCard card : cards) {
                 card.getCardView().getStyleClass().add(CssAddress.GAME_HAND_SM_CARD.getStyleClass());
                 card.getCardView().setOnMouseClicked(mouseEvent -> {
                     HBox box;
                     if (card instanceof SpecialCard) {
                         box = row.getRowView().getSpecialCardPosition();
                     } else box = row.getRowView().getRow();
-                    box.getChildren().remove(card.getCardView());
-                    player.getPlayerView().getHandView().getChildren().add(card.getCardView());
-                    box.getChildren().add(game.getSelectedCard().getCardView());
-                    player.getPlayerView().getHandView().getChildren().remove(game.getSelectedCard().getCardView());
-//                    AnimationMaker.getInstance().cardPlaceAnimation(card, box, player.getPlayerView().getHandView(), game, gameMenu, false);
-//                    AnimationMaker.getInstance().cardPlaceAnimation(game.getSelectedCard(), player.getPlayerView().getHandView(), box, game, gameMenu, false);
-                    game.selectCard(card);
-                    game.selectRow(row);
+//                    box.getChildren().remove(card.getCardView());
+//                    player.getPlayerView().getHandView().getChildren().add(card.getCardView());
+//                    box.getChildren().add(game.getSelectedCard().getCardView());
+//                    player.getPlayerView().getHandView().getChildren().remove(game.getSelectedCard().getCardView());
+                    AnimationMaker.getInstance().cardPlaceAnimation(card, box, player.getPlayerView().getHandView(), game, gameMenu, false);
+                    AnimationMaker.getInstance().cardPlaceAnimation(game.getSelectedCard(), player.getPlayerView().getHandView(), box, game, gameMenu, false);
                 });
             }
+            cards.clear();
         }
         if (game.getSelectedCard() instanceof SpecialCard)
             game.getSelectedRow().setSpecialCard((SpecialCard) game.getSelectedCard());

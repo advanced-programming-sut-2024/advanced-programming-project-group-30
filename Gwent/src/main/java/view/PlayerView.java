@@ -36,6 +36,7 @@ public class PlayerView {
         this.deckNumber = new Label();
         setUpDeck(deckView);
         setUpDiscardPile(discardPileView);
+        setUpLeader(leaderView);
     }
 
     private void setUpDiscardPile(HBox discardPile) {
@@ -53,10 +54,14 @@ public class PlayerView {
         deckNumber.setLayoutY(imageView.getFitHeight() - 10);
         deckNumber.setLayoutX(imageView.getFitWidth() + 5);
         deckNumber.setText(String.valueOf(player.getDeck().size()));
-        pane.getChildren().addAll(deckView, deckNumber);
+        pane.getChildren().addAll(deckView);
     }
     private void setUpLeader(HBox leader) {
         clone(leaderView, leader);
+        ImageView imageView = new ImageView(player.getLeader().getSmImage());
+        leaderView.getChildren().add(imageView);
+        imageView.setFitHeight(80);
+        imageView.setFitWidth(57);
         pane.getChildren().add(leaderView);
     }
     public HBox getDeckView() {
@@ -100,5 +105,9 @@ public class PlayerView {
         node1.setLayoutY(node2.getLayoutY());
         node1.setPrefWidth(node2.getPrefWidth());
         node1.setPrefHeight(node2.getPrefHeight());
+    }
+
+    public HBox getLeaderView() {
+        return leaderView;
     }
 }

@@ -87,13 +87,6 @@ public class PregameMenuController {
         pregameData.setLeader(leaderCardData);
     }
 
-    public PregameCardView getCardView(CardData cardData, FlowPane flowPane) {
-        for (Node node : flowPane.getChildren()) {
-            if (!(node instanceof PregameCardView cardView)) continue;
-            if (cardView.getCardData() == cardData) return cardView;
-        }
-        return null;
-    }
 
     public int getIndex(PregameCardView cardView, List<Node> nodes) {
         ArrayList<DeckCardData> list = new ArrayList<>();

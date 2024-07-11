@@ -62,7 +62,7 @@ public class Row extends Position{
         this.specialCardPosition.setCard(specialCard);
     }
 
-    public boolean getBonus() {
+    public boolean isBonused() {
         return bonus;
     }
 
