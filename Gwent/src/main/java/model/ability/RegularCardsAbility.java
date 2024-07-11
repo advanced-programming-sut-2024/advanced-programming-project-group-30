@@ -78,7 +78,7 @@ public class RegularCardsAbility {
                     card.getName().equals(name))) {
                 boolean isDecksCard = currentPlayer.getDeck().contains(card);
                 Row row = findCardRow(card, currentGame);
-                row.addCardToRow((RegularCard) card);
+                if (row.getCards().add((RegularCard) card)) System.err.println("Error in adding cards to row in muster");;
                 card.getCardView().getStyleClass().add(CssAddress.CARD_IN_ROW.getStyleClass());
                 if (isDecksCard) {
                     AnimationMaker.getInstance().cardPlaceAnimation(card, currentPlayer.getPlayerView().getDeckView(), row.getRowView().getRow(), currentGame,
@@ -93,7 +93,8 @@ public class RegularCardsAbility {
         }
 
         for (RegularCard regularCard : cardsToBeRemovedFromHand) {
-            currentPlayer.getHand().remove(regularCard);
+            if (!currentPlayer.getHand().remove((DecksCard) regularCard))
+                System.err.println("Error in removing card from hand in muster");;
         }
 
     }
@@ -108,6 +109,7 @@ public class RegularCardsAbility {
     }
 
     public void scorch(Game currentGame) {
+        System.out.println("in scorch");
         Player opponentPlayer = currentGame.getOpponentPlayer();
         Row row = opponentPlayer.getCloseCombat();
         ArrayList<DecksCard> cards = new ArrayList<>();
@@ -121,12 +123,14 @@ public class RegularCardsAbility {
                 maxPoint = regularCard.getPointInGame();
         for (DecksCard card : row.getCards())
             if (card instanceof RegularCard regularCard && !regularCard.isHero() && regularCard.getPointInGame() == maxPoint)
-                cards.add(regularCard);
-        ImageView imageView = new ImageView(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/Images/Icons/anim_scorch.png"))));
+                if (!cards.add(regularCard)) System.err.println("Error adding card to card array list in regular scorch");;
         for (DecksCard card : cards) {
-            row.getCards().remove(card);
+            if (!row.getCards().remove(card)) System.err.println("Error removing card from row in regular scorch");;
             opponentPlayer.discardCard(card);
-            AnimationMaker.getInstance().explosionAnimation(card, imageView, row.getRowView().getRow(), opponentPlayer.getPlayerView().getDiscardPileView());
+            row.getRowView().getRow().getChildren().remove(card.getCardView());
+            opponentPlayer.getPlayerView().getDiscardPileView().getChildren().clear();
+            if (opponentPlayer.getPlayerView().getDiscardPileView().getChildren().isEmpty())
+                opponentPlayer.getPlayerView().getDiscardPileView().getChildren().add(card.getCardView());
         }
     }
 

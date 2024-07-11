@@ -170,7 +170,6 @@ public class PregameMenu implements Menu {
         rightFactionIcon.setImage(faction.getShieldIcon());
         leftFactionIcon.setImage(faction.getShieldIcon());
     }
-
     public void updateNumberData() {
         errorMessage.setText("");
         PregameData pregameData = controller.getPregameData();
@@ -188,14 +187,6 @@ public class PregameMenu implements Menu {
         this.totalStrength.setText(pregameData.getTotalCardsStrength() + "");
         this.heroCardsNumber.setText("×" + pregameData.getHeroCardsNumber());
     }
-    public PregameCardView getCardView(CardData cardData, FlowPane flowPane) {
-        for (Node node : flowPane.getChildren()) {
-            if (!(node instanceof PregameCardView cardView)) continue;
-            if (cardView.getCardData() == cardData) return cardView;
-        }
-        return null;
-    }
-
     @FXML
     private void openFactionSelectionPage() {
         mainPane.setDisable(true);

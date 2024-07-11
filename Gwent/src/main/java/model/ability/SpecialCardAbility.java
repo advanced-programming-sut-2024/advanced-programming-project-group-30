@@ -49,27 +49,22 @@ public class SpecialCardAbility {
             ArrayList<DecksCard> cards = new ArrayList<>(row.getCards());
             cards.add(row.getSpecialCard());
             for (DecksCard card : row.getCards()) {
-                card.getCardView().getStyleClass().add(CssAddress.GAME_HAND_SM_CARD.getStyleClass());
+                if (card instanceof RegularCard regularCard && regularCard.isHero()) continue;
                 card.getCardView().setOnMouseClicked(mouseEvent -> {
                     HBox box;
                     if (card instanceof SpecialCard) {
                         box = row.getRowView().getSpecialCardPosition();
                         row.setSpecialCard((SpecialCard) game.getSelectedCard());
                     } else {
+                        ((RegularCard)card).setPointInGame(((RegularCard)card).getPoint());
                         box = row.getRowView().getRow();
                         if (!row.getCards().remove(card))
                             System.err.println("Error in remove card from row in decoy");
                         if (!row.getCards().add(game.getSelectedCard()))
                             System.err.println("Error in add decoy to row in decoy");
                     }
-                    game.getSelectedCard().getCardView().getStyleClass().add(CssAddress.CARD_IN_ROW.getStyleClass());
-                    card.getCardView().setScaleX(1);
-                    card.getCardView().setScaleY(1);
-                    card.getCardView().getStyleClass().add(CssAddress.GAME_HAND_SM_CARD.getStyleClass());
-                    box.getChildren().remove(card.getCardView());
-                    player.getPlayerView().getHandView().getChildren().add(card.getCardView());
-                    box.getChildren().add(game.getSelectedCard().getCardView());
-                    player.getPlayerView().getHandView().getChildren().remove(game.getSelectedCard().getCardView());
+                    swapCards(game.getSelectedCard(), card, box, player);
+
                     if (!player.getHand().add(card)) System.err.println("Error in add card to hand in decoy");
                     ArrayList<DecksCard> chosenCards = new ArrayList<>();
                     chosenCards.add(card);
@@ -79,12 +74,23 @@ public class SpecialCardAbility {
                 });
             }
         }
+
         if (game.getSelectedCard() instanceof SpecialCard)
             game.getSelectedRow().setSpecialCard((SpecialCard) game.getSelectedCard());
         else game.getSelectedRow().addCardToRow((RegularCard) game.getSelectedCard());
 
     }
-
+    private void swapCards(DecksCard decoy, DecksCard card, HBox box, Player player) {
+        card.getCardView().getStyleClass().add(CssAddress.GAME_HAND_SM_CARD.getStyleClass());
+        decoy.getCardView().getStyleClass().add(CssAddress.CARD_IN_ROW.getStyleClass());
+        decoy.getCardView().getStyleClass().remove(CssAddress.GAME_HAND_SM_CARD.getStyleClass());
+        card.getCardView().setScaleX(1.2);
+        card.getCardView().setScaleY(1.2);
+        box.getChildren().remove(card.getCardView());
+        player.getPlayerView().getHandView().getChildren().add(card.getCardView());
+        box.getChildren().add(decoy.getCardView());
+        player.getPlayerView().getHandView().getChildren().remove(decoy.getCardView());
+    }
     public void scorch(Game game) {
         ArrayList<Row> allRows = new ArrayList<>();
         allRows.addAll(game.getCurrentPlayer().getRows());

@@ -40,7 +40,7 @@ public class PregameData {
     }
 
     public TreeMap<DeckCardData, ArrayList<DecksCard>> getCardsInDeck() {
-        return currentData.cardCollection;
+        return currentData.cardsInDeck;
     }
 
     public void setLeader(LeaderCardData leader) {

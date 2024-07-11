@@ -38,7 +38,9 @@ public class AnimationMaker {
             SequentialTransition sequentialTransition = new SequentialTransition(translate);
             sequentialTransition.setOnFinished(event -> {
                 sourceHBox.getChildren().remove(card.getCardView());
-                destinationHBox.getChildren().add(card.getCardView());
+                if (!destinationHBox.getChildren().contains(card.getCardView()))
+                    destinationHBox.getChildren().add(card.getCardView());
+                else System.err.println("duplicate children adding " + card.getName() + " in animation");
                 card.getCardView().setTranslateX(0);
                 card.getCardView().setTranslateY(0);
                 if (needsToBeRun) {

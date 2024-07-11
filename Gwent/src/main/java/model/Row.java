@@ -20,6 +20,7 @@ public class Row extends Position{
     private boolean bonus = false;
     private int extraPoint = 0;
     private boolean isDamaged = false;
+    private boolean hasLeaderEffect = false;
     private RowView rowView;
     private SpecialCardPosition specialCardPosition;
     private HashMap<CardData, ArrayList<RegularCard>> cardDataMap = new HashMap<>();
@@ -118,6 +119,10 @@ public class Row extends Position{
         specialCardPosition.setCard(null);
         cardDataMap.clear();
         rowView.resetRow();
+    }
+
+    public void leaderHasEffected(boolean hasLeaderEffect) {
+        this.hasLeaderEffect = hasLeaderEffect;
     }
     //TODO: added these
 

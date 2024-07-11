@@ -179,6 +179,7 @@ public class GameMenu implements Menu {
 
     //TODO: added these
     public void endRound(String message) {
+        pane.setDisable(true);
         showRoundEndNotification(message);
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(3), actionEvent -> {
             showRoundStart();
@@ -246,7 +247,10 @@ public class GameMenu implements Menu {
     public void handleLeader(Player player, Game game){
         player.getPlayerView().getLeaderView().setOnMouseClicked(mouseEvent -> {
             try {
-                player.getLeader().getAbility().invoke(LeaderAbility.getInstance(), game);
+                if (!player.hasPlayedLeader()) {
+                    player.getLeader().getAbility().invoke(LeaderAbility.getInstance(), game);
+                    player.playLeader();
+                }
             } catch (IllegalAccessException e) {
                 throw new RuntimeException(e);
             } catch (InvocationTargetException e) {
@@ -295,11 +299,20 @@ public class GameMenu implements Menu {
     }
     @FXML
     private void goToMainMenu() {
+        App.getCurrentGame().resetGame();
+        App.getCurrentGame().getCurrentPlayer().resetLives();
+        App.getCurrentGame().getCurrentPlayer().resetLives();
         pane.getChildren().remove(notifPane);
         pane.getChildren().remove(endGamePane);
+        evacuateBoard();
         App.getSceneManager().goToMainMenu();
     }
-
+    private void evacuateBoard(){
+        discardPile.getChildren().clear();
+        opponentDiscardPile.getChildren().clear();
+        hand.getChildren().clear();
+        weatherCardPosition.getChildren().clear();
+    }
     public void evacuateWeatherCards(Game game) {
         Player currentPlayer = game.getCurrentPlayer();
         for (Node cardView : weatherCardPosition.getChildren()) {

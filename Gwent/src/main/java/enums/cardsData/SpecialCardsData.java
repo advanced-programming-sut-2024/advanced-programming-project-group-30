@@ -64,7 +64,7 @@ public enum SpecialCardsData implements DeckCardData {
                 this.getClass().getResourceAsStream(lgImageAddress)), this, ability.getExplanation(), ability.getAbilityMethodName());
     }
 
-    private SpecialCard createCard() {
+    public SpecialCard createCard() {
         return new SpecialCard(name, null, this, isDiscardAfterPlaying, ability.getAbility());
     }
 }

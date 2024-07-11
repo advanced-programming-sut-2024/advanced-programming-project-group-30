@@ -29,6 +29,7 @@ public class Player {
     private final int[] roundsPoint = new int[3];
     private int life = 2;
     private final PlayerView playerView;
+    private boolean hasPlayedLeader;
 
     public Player(User user, LeaderCardData leader, ArrayList<DecksCard> deck, GameMenu gameMenu, CoordinateData coordinateData,
                   CssAddress cssAddress, boolean isOpponent) {
@@ -173,7 +174,15 @@ public class Player {
         }
     }
 
-    private void resetLives() {
+    public void resetLives() {
         life = 2;
+    }
+
+    public boolean hasPlayedLeader() {
+        return hasPlayedLeader;
+    }
+
+    public void playLeader() {
+        hasPlayedLeader = true;
     }
 }
