@@ -31,6 +31,10 @@ public class App {
         return sceneManager;
     }
 
+    public static boolean getStayLoggedIn() {
+        return loggedInUser.stayLoggedIn();
+    }
+
     public static String getLoggedInUsersUsername() {
         return loggedInUser.username();
     }

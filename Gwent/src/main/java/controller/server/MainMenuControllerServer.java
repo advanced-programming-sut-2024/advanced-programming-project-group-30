@@ -7,7 +7,12 @@ import network.Server;
 
 public class MainMenuControllerServer {
     public Result logout(String username) {
-        Server.getUserByUsername(username).setLoggedIn(false);
+        User user = Server.getUserByUsername(username);
+        if (user == null) {
+            System.err.println("ye ahmaghi login nakarde omade bood to.");
+            return new Result(false, "chejoori omadi inja vaghan.");
+        }
+        user.setLoggedIn(false);
         return new Result(true, username + " logout");
     }
 

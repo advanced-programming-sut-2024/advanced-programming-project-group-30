@@ -1,6 +1,5 @@
 package view;
 
-import controller.server.ProfileMenuController;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -11,12 +10,12 @@ import network.Client;
 import network.ClientMessage;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
 public class ProfileMenu implements Menu {
     private final Client client = ClientView.getClient();
-    private final ProfileMenuController profileMenuController = new ProfileMenuController();
     @FXML
     private Label passwordConfirmationErrorField;
     @FXML
@@ -98,15 +97,17 @@ public class ProfileMenu implements Menu {
         nicknameTextField.setPromptText(nickname);
         emailTextField.setPromptText(email);
         setUserInformation(rank, highestScore, gameCount, wins, losses, draws);
-        // TODO
-//        Result result = profileMenuController.showDefaultGameHistory();
-//        if (result.isNotSuccessful()) gameHistoryNumberErrorField.setText(result.toString());
-//        else {
-//            Text text = new Text(result.toString());
-//            text.getStyleClass().add("profileMenu-scrollbar-textArea");
-//            scrollPaneVbox.getChildren().add(text);
-//            gameHistoryScrollPane.setContent(scrollPaneVbox);
-//        }
+        ClientMessage clientMessage = new ClientMessage("UserInformationController", "getDefaultGameHistory",
+                new ArrayList<>(Collections.singleton(App.getLoggedInUsersUsername())));
+        client.sendMessageToServer(clientMessage);
+        Result result = (Result) client.getLastServerData(Result.class);
+        if (result.isNotSuccessful()) gameHistoryNumberErrorField.setText(result.toString());
+        else {
+            Text text = new Text(result.toString());
+            text.getStyleClass().add("profileMenu-scrollbar-textArea");
+            scrollPaneVbox.getChildren().add(text);
+            gameHistoryScrollPane.setContent(scrollPaneVbox);
+        }
     }
 
     @FXML
@@ -190,38 +191,53 @@ public class ProfileMenu implements Menu {
 
     @FXML
     private void checkAndSetNewUsername() {
-        Result result = profileMenuController.changeUsername(usernameTextField.getText());
+        ClientMessage clientMessage = new ClientMessage("ProfileMenuController", "changeUsername",
+                new ArrayList<>(List.of(new String[]{App.getLoggedInUsersUsername(), usernameTextField.getText()})));
+        client.sendMessageToServer(clientMessage);
+        Result result = (Result) client.getLastServerData(Result.class);
+        if (!result.isNotSuccessful())
+            App.setLoggedInUser(usernameTextField.getText(), App.getLoggedInUsersNickname(), App.getLoggedInUsersEmail(), App.getStayLoggedIn());
         checkAndSetNewInfo(result, usernameTextField, editUsernameButton, cancelChangingUsernameButton, setNewUsernameButton, usernameErrorField);
     }
 
     @FXML
     private void checkAndSetNewNickname() {
-        Result result = profileMenuController.changeNickname(nicknameTextField.getText());
+        ClientMessage clientMessage = new ClientMessage("ProfileMenuController", "changeNickname",
+                new ArrayList<>(List.of(new String[]{App.getLoggedInUsersUsername(), nicknameTextField.getText()})));
+        client.sendMessageToServer(clientMessage);
+        Result result = (Result) client.getLastServerData(Result.class);
+        if (!result.isNotSuccessful())
+            App.setLoggedInUser(App.getLoggedInUsersUsername(), nicknameTextField.getText(), App.getLoggedInUsersEmail(), App.getStayLoggedIn());
         checkAndSetNewInfo(result, nicknameTextField, editNicknameButton, cancelChangingNicknameButton, setNewNicknameButton, nicknameErrorField);
     }
 
     @FXML
     private void checkAndSetNewEmail() {
-        Result result = profileMenuController.changeEmail(emailTextField.getText());
+        ClientMessage clientMessage = new ClientMessage("ProfileMenuController", "changeEmail",
+                new ArrayList<>(List.of(new String[]{App.getLoggedInUsersUsername(), emailTextField.getText()})));
+        client.sendMessageToServer(clientMessage);
+        Result result = (Result) client.getLastServerData(Result.class);
+        if (!result.isNotSuccessful())
+            App.setLoggedInUser(App.getLoggedInUsersUsername(), App.getLoggedInUsersNickname(), emailTextField.getText(), App.getStayLoggedIn());
         checkAndSetNewInfo(result, emailTextField, editEmailButton, cancelChangingEmailButton, setNewEmailButton, emailErrorField);
     }
 
     @FXML
     private void cancelChangingUsername() {
-//        cancelEditingTextField(usernameTextField, editUsernameButton, setNewUsernameButton,
-//                cancelChangingUsernameButton, usernameErrorField, App.getLoggedInUsersUsername().getUsername());
+        cancelEditingTextField(usernameTextField, editUsernameButton, setNewUsernameButton,
+                cancelChangingUsernameButton, usernameErrorField, App.getLoggedInUsersUsername());
     }
 
     @FXML
     private void cancelChangingNickname() {
-//        cancelEditingTextField(nicknameTextField, editNicknameButton, setNewNicknameButton,
-//                cancelChangingNicknameButton, nicknameErrorField, App.getLoggedInUsersUsername().getNickName());
+        cancelEditingTextField(nicknameTextField, editNicknameButton, setNewNicknameButton,
+                cancelChangingNicknameButton, nicknameErrorField, App.getLoggedInUsersNickname());
     }
 
     @FXML
     private void cancelChangingEmail() {
-//        cancelEditingTextField(emailTextField, editEmailButton, setNewEmailButton,
-//                cancelChangingEmailButton, emailErrorField, App.getLoggedInUsersUsername().getEmail());
+        cancelEditingTextField(emailTextField, editEmailButton, setNewEmailButton,
+                cancelChangingEmailButton, emailErrorField, App.getLoggedInUsersEmail());
     }
 
     @FXML
@@ -233,17 +249,17 @@ public class ProfileMenu implements Menu {
 
     @FXML
     private void setNewPassword() {
-        Result result = profileMenuController.changePassword(newPassword.getText(), oldPassword.getText());
-        if (result.isNotSuccessful()) passwordConfirmationErrorField.setText(result.toString());
-        else {
-            newPassword.clear();
-            oldPassword.clear();
-            passwordConfirmationErrorField.setText("");
-            newPasswordError.setText("");
-            changePasswordPane.setVisible(false);
-            editInformationBox.setVisible(true);
-            changePasswordButton.setVisible(true);
-        }
+//        Result result = profileMenuController.changePassword(newPassword.getText(), oldPassword.getText());
+//        if (result.isNotSuccessful()) passwordConfirmationErrorField.setText(result.toString());
+//        else {
+//            newPassword.clear();
+//            oldPassword.clear();
+//            passwordConfirmationErrorField.setText("");
+//            newPasswordError.setText("");
+//            changePasswordPane.setVisible(false);
+//            editInformationBox.setVisible(true);
+//            changePasswordButton.setVisible(true);
+//        }
     }
 
     @FXML
@@ -259,24 +275,23 @@ public class ProfileMenu implements Menu {
 
     @FXML
     private void setGameHistoryCount() {
-        Result result = profileMenuController.checkGameHistory(gameHistoryCount.getText());
-        if (result.isNotSuccessful()) {
-            gameHistoryNumberErrorField.setText(result.toString());
-        } else {
-            scrollPaneVbox.getChildren().clear();
-            Text text = new Text(profileMenuController.showGameHistoryByUserRequest(gameHistoryCount.getText()).toString());
-            text.getStyleClass().add("profileMenu-scrollbar-textArea");
-            scrollPaneVbox.getChildren().add(text);
-            gameHistoryScrollPane.setContent(scrollPaneVbox);
-            gameHistoryNumberErrorField.setText("");
-        }
+//        Result result = profileMenuController.checkGameHistory(gameHistoryCount.getText());
+//        if (result.isNotSuccessful()) {
+//            gameHistoryNumberErrorField.setText(result.toString());
+//        } else {
+//            scrollPaneVbox.getChildren().clear();
+//            Text text = new Text(profileMenuController.showGameHistoryByUserRequest(gameHistoryCount.getText()).toString());
+//            text.getStyleClass().add("profileMenu-scrollbar-textArea");
+//            scrollPaneVbox.getChildren().add(text);
+//            gameHistoryScrollPane.setContent(scrollPaneVbox);
+//            gameHistoryNumberErrorField.setText("");
+//        }
     }
 
     private void checkAndSetNewInfo(Result result, TextField textField, Button editButton, Button cancel,
                                     Button check, Label errorField) {
-        if (result.isNotSuccessful()) {
-            errorField.setText(result.toString());
-        } else {
+        if (result.isNotSuccessful()) errorField.setText(result.toString());
+        else {
             textField.setEditable(false);
             check.setVisible(false);
             textField.clear();

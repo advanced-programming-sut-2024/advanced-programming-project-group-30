@@ -18,6 +18,7 @@ public class ServerWorker extends Thread {
     private final LoginMenuControllerServer loginMenuControllerServer = new LoginMenuControllerServer();
     private final ForgetPasswordControllerServer forgetPasswordControllerServer = new ForgetPasswordControllerServer();
     private final MainMenuControllerServer mainMenuControllerServer = new MainMenuControllerServer();
+    private final ProfileMenuControllerServer profileMenuControllerServer = new ProfileMenuControllerServer();
 
     public ServerWorker(ServerSocket serverSocket) {
         this.serverSocket = serverSocket;
@@ -58,7 +59,8 @@ public class ServerWorker extends Thread {
                 case "ForgetPasswordController" ->
                         gsonAgent.toJson(handleForgetPasswordControllerRequest(clientMessage));
                 case "MainMenuController" -> gsonAgent.toJson(handleMainMenuControllerRequest(clientMessage));
-                case "ProfileMenuController" -> gsonAgent.toJson(handleProfileMenuControllerRequest(clientMessage));
+                case "ProfileMenuController" ->
+                        gsonAgent.toJson(handleProfileMenuControllerRequest(clientMessage));
                 default -> null;
             };
             if (serverMessage != null)
@@ -187,8 +189,17 @@ public class ServerWorker extends Thread {
 
     private Object handleProfileMenuControllerRequest(ClientMessage clientMessage) {
         switch (clientMessage.getMethodName()) {
-            case "logout" -> {
-                return mainMenuControllerServer.logout((String) clientMessage.getFields().get(0));
+            case "changeUsername" -> {
+                return profileMenuControllerServer.changeUsername((String) clientMessage.getFields().get(0), (String) clientMessage.getFields().get(1));
+            }
+            case "changeNickname" -> {
+                return profileMenuControllerServer.changeNickname((String) clientMessage.getFields().get(0), (String) clientMessage.getFields().get(1));
+            }
+            case "changeEmail" -> {
+                return profileMenuControllerServer.changeEmail((String) clientMessage.getFields().get(0), (String) clientMessage.getFields().get(1));
+            }
+            case "getDefaultGameHistory"-> {
+                return profileMenuControllerServer.getDefaultGameHistory((String) clientMessage.getFields().get(0));
             }
             default -> {
                 System.err.println("invalid method!! in profile menu controller ->  name:" + clientMessage.getMethodName());

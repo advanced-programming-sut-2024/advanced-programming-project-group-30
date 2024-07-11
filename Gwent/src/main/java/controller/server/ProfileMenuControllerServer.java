@@ -2,27 +2,34 @@ package controller.server;
 
 import model.App;
 import model.Result;
-import network.Client;
-import view.ClientView;
+import model.User;
+import network.Server;
 
 
-public class ProfileMenuController {
-    private final Client client = ClientView.getClient();
+public class ProfileMenuControllerServer {
     private final UserInformationControllerServer userInformationController = new UserInformationControllerServer();
 
-    public Result changeUsername(String newUsername) {
+    public Result changeUsername(String oldUsername, String newUsername) {
+        User user = Server.getUserByUsername(oldUsername);
+        if (user == null) return new Result(false, "Wtf! who are you?");
         Result result = userInformationController.checkUsername(newUsername);
-//        if (!result.isNotSuccessful()) {
-//            App.getLoggedInUsersUsername().setUsername(newUsername);
-//        }
+        if (!result.isNotSuccessful()) user.setUsername(newUsername);
         return result;
     }
 
-    public Result changeNickname(String newNickname) {
+    public Result changeNickname(String username, String newNickname) {
+        User user = Server.getUserByUsername(username);
+        if (user == null) return new Result(false, "Wtf! who are you?");
         Result result = userInformationController.checkNickname(newNickname);
-        if (!result.isNotSuccessful()) {
-//            App.getLoggedInUsersUsername().setNickName(newNickname);
-        }
+        if (!result.isNotSuccessful()) user.setNickName(newNickname);
+        return result;
+    }
+
+    public Result changeEmail(String username, String newEmail) {
+        User user = Server.getUserByUsername(username);
+        if (user == null) return new Result(false, "Wtf! who are you?");
+        Result result = userInformationController.checkEmail(newEmail);
+        if (!result.isNotSuccessful()) user.setEmail(newEmail);
         return result;
     }
 
@@ -31,14 +38,6 @@ public class ProfileMenuController {
 //        if (!result.isNotSuccessful()) {
 //            App.getLoggedInUsersUsername().setPassword(newPassword);
 //        }
-        return result;
-    }
-
-    public Result changeEmail(String newEmail) {
-        Result result = userInformationController.checkEmail(newEmail);
-        if (!result.isNotSuccessful()) {
-//            App.getLoggedInUsersUsername().setEmail(newEmail);
-        }
         return result;
     }
 
@@ -53,16 +52,14 @@ public class ProfileMenuController {
         return null;
     }
 
-    public Result showDefaultGameHistory() {
-//        User user = App.getLoggedInUsersUsername();
-//        int count = 0;
-//        if (user != null){
-//            count = user.getGameHistories().size();
-//            if (count == 0) return new Result(false, "** There are no games to show.");
-//            if (count > 5) count = 5;
-//        }
-//        return new Result(true, showGameHistory(count));
-        return null;
+    public Result getDefaultGameHistory(String username) {
+        User user = Server.getUserByUsername(username);
+        if (user == null) return new Result(false, "Wtf! who are you?");
+        int count = 0;
+        count = user.getGameHistories().size();
+        if (count == 0) return new Result(false, "** There are no games to show.");
+        if (count > 5) count = 5;
+        return new Result(true, getGameHistory(count));
     }
 
     public Result showGameHistoryByUserRequest(String gameHistoryCount) {
@@ -71,10 +68,10 @@ public class ProfileMenuController {
 //            return new Result(false, "** please enter a number greater than 0.");
 //        else if (App.getLoggedInUsersUsername().getGameHistories().size() < Integer.parseInt(gameHistoryCount))
 //            return new Result(false, "** you don't have that many games.");
-        return new Result(true, showGameHistory(Integer.parseInt(gameHistoryCount)));
+        return new Result(true, getGameHistory(Integer.parseInt(gameHistoryCount)));
     }
 
-    private String showGameHistory(int count) {
+    private String getGameHistory(int count) {
 //        StringBuilder gameHistoryBuilder = new StringBuilder();
 //        User user = App.getLoggedInUsersUsername();
 //        GameHistory gameHistory;

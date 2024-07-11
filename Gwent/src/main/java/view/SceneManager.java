@@ -49,7 +49,6 @@ public class SceneManager {
         profileMenu.setFields(username, nickname, email, rank, highestScore, gamesNum, winsNum, lossesNum, drawsNum);
         App.setCurrentMenuScene(MenuScene.PROFILE_SCENE);
         App.getPrimaryStage().setScene(MenuScene.PROFILE_SCENE.getScene());
-        System.out.println("salam");
         setupStage(sizeData);
     }
 

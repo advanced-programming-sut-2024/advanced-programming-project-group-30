@@ -56,7 +56,7 @@ public class UserInformationControllerServer {
     // TODO: server.
     public Result checkPasswordForChange(String username, String newPassword, String oldPassword) {
         User user = Server.getUserByUsername(username);
-        if (user == null) return new Result(false, "Wtf! how are you?");
+        if (user == null) return new Result(false, "Wtf! who are you?");
         if (newPassword.isEmpty()) return new Result(false, "** password cannot be empty.");
         if (oldPassword.isEmpty()) return new Result(false, "** please enter your current password.");
         if (!user.getPassword().equals(oldPassword)) return new Result(false, "** your current password is incorrect.");
