@@ -1,7 +1,7 @@
 package model;
 
 import controller.DataSaverController;
-import controller.SceneManager;
+import view.SceneManager;
 import enums.MenuScene;
 import enums.SecurityQuestion;
 import javafx.stage.Stage;

@@ -1,14 +1,10 @@
-package controller;
+package view;
 
 import enums.MenuScene;
 import model.App;
 import model.Game;
 import model.PregameData;
 import model.User;
-import view.GameMenu;
-import view.MainMenu;
-import view.PregameMenu;
-import view.ProfileMenu;
 
 public class SceneManager {
     public Double getScale(double stageWidth, double stageHeight, double paneWidth, double paneHeight, double scaleCoef) {

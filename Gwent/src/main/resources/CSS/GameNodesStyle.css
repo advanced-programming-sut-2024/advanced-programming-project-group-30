@@ -425,3 +425,6 @@
     -fx-border-radius: 5;
     -fx-background-radius: 5;
 }
+.cheatCodeBox{
+    -fx-background-color: rgba(0, 0, 0, 0.71);
+}

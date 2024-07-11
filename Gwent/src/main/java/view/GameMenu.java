@@ -9,9 +9,11 @@ import enums.cardsData.RegularCardData;
 import enums.cardsData.WeatherCardsData;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.util.Duration;
@@ -33,6 +35,8 @@ public class GameMenu implements Menu {
     private final Label notifLabel = new Label();
     private final ImageView notifImageView = new ImageView();
     private final GameMenuController gameMenuController = new GameMenuController(this);
+    public Pane cheatMenu;
+    public TextField cheatMenuTextField;
     @FXML
     private Label result;
     @FXML
@@ -320,5 +324,10 @@ public class GameMenu implements Menu {
                 System.err.println("Error in removing card from discard pile in steel forged");
         }
         weatherCardPosition.getChildren().clear();
+    }
+    @FXML
+    private void cheatMenu() {
+        pane.getChildren().remove(cheatMenu);
+        pane.getChildren().add(cheatMenu);
     }
 }
