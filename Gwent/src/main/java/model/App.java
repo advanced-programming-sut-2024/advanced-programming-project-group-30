@@ -35,6 +35,14 @@ public class App {
         return loggedInUser.username();
     }
 
+    public static String getLoggedInUsersNickname() {
+        return loggedInUser.nickname();
+    }
+
+    public static String getLoggedInUsersEmail() {
+        return loggedInUser.email();
+    }
+
     public static void setLoggedInUser(String username, String nickName, String email, boolean stayLoggedIn) {
         if (username == null) loggedInUser = null;
         else loggedInUser = new LoggedInUser(username, nickName, email, stayLoggedIn);
@@ -52,7 +60,6 @@ public class App {
     public static int getUserRank() {
         return 1;
     }
-
 }
 
 record LoggedInUser(String username, String nickname, String email, boolean stayLoggedIn) {

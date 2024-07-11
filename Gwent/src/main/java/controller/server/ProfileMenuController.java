@@ -1,13 +1,14 @@
-package controller;
+package controller.server;
 
 import model.App;
-import model.GameHistory;
 import model.Result;
-import model.User;
+import network.Client;
+import view.ClientView;
 
 
 public class ProfileMenuController {
-    private final UserInformationController userInformationController = new UserInformationController();
+    private final Client client = ClientView.getClient();
+    private final UserInformationControllerServer userInformationController = new UserInformationControllerServer();
 
     public Result changeUsername(String newUsername) {
         Result result = userInformationController.checkUsername(newUsername);
@@ -26,7 +27,7 @@ public class ProfileMenuController {
     }
 
     public Result changePassword(String newPassword, String oldPassword) {
-        Result result = userInformationController.checkPasswordForChange(newPassword, oldPassword);
+        Result result = userInformationController.checkPasswordForChange(App.getLoggedInUsersUsername(), newPassword, oldPassword);
 //        if (!result.isNotSuccessful()) {
 //            App.getLoggedInUsersUsername().setPassword(newPassword);
 //        }
@@ -35,12 +36,13 @@ public class ProfileMenuController {
 
     public Result changeEmail(String newEmail) {
         Result result = userInformationController.checkEmail(newEmail);
-        if (!result.isNotSuccessful()){
+        if (!result.isNotSuccessful()) {
 //            App.getLoggedInUsersUsername().setEmail(newEmail);
         }
         return result;
     }
-    public Result checkGameHistory(String gameHistoryCount){
+
+    public Result checkGameHistory(String gameHistoryCount) {
 //        User user = App.getLoggedInUsersUsername();
 //        if (!gameHistoryCount.matches("\\d+")) return new Result(false, "** please enter a number.");
 //        else if (user != null && Integer.parseInt(gameHistoryCount) == 0)
@@ -62,7 +64,8 @@ public class ProfileMenuController {
 //        return new Result(true, showGameHistory(count));
         return null;
     }
-    public Result showGameHistoryByUserRequest(String gameHistoryCount){
+
+    public Result showGameHistoryByUserRequest(String gameHistoryCount) {
 //        if (!gameHistoryCount.matches("-?\\d+")) return new Result(false, "** please enter a number.");
 //        else if (Integer.parseInt(gameHistoryCount) <= 0)
 //            return new Result(false, "** please enter a number greater than 0.");
@@ -70,7 +73,8 @@ public class ProfileMenuController {
 //            return new Result(false, "** you don't have that many games.");
         return new Result(true, showGameHistory(Integer.parseInt(gameHistoryCount)));
     }
-    private String showGameHistory(int count){
+
+    private String showGameHistory(int count) {
 //        StringBuilder gameHistoryBuilder = new StringBuilder();
 //        User user = App.getLoggedInUsersUsername();
 //        GameHistory gameHistory;
@@ -98,9 +102,5 @@ public class ProfileMenuController {
 //        }
 //        return gameHistoryBuilder.toString();
         return null;
-    }
-
-    public void goToMainMenu() {
-//        App.getSceneManager().goToMainMenu();
     }
 }

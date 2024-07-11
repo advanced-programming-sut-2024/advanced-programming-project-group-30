@@ -1,17 +1,21 @@
 package view;
 
-import controller.ProfileMenuController;
-import controller.UserInformationController;
+import controller.server.ProfileMenuController;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import model.App;
 import model.Result;
+import network.Client;
+import network.ClientMessage;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class ProfileMenu implements Menu {
-    private final UserInformationController userInformationController = new UserInformationController();
+    private final Client client = ClientView.getClient();
     private final ProfileMenuController profileMenuController = new ProfileMenuController();
     @FXML
     private Label passwordConfirmationErrorField;
@@ -81,21 +85,11 @@ public class ProfileMenu implements Menu {
     @FXML
     public void initialize() {
         gameHistoryCount.setFocusTraversable(false);
-//        usernameTextField.textProperty().addListener((observableValue, s, t1) -> {
-//            handleUsernameError();
-//            usernameTextField.setPromptText(App.getLoggedInUsersUsername().getUsername());
-//        });
-//        nicknameTextField.textProperty().addListener((observableValue, s, t1) -> {
-//            handleNicknameError();
-//            nicknameTextField.setPromptText(App.getLoggedInUsersUsername().getNickName());
-//        });
-//        emailTextField.textProperty().addListener((observableValue, s, t1) -> {
-//            handleEmailError();
-//            emailTextField.setPromptText(App.getLoggedInUsersUsername().getEmail());
-//        });
-        newPassword.textProperty().addListener((observableValue, s, t1) ->
-                newPasswordError.setText(userInformationController.checkPassword(newPassword.getText()).toString()));
-        oldPassword.textProperty().addListener((observableValue, s, t1) -> oldPassword.setPromptText("old password"));
+        usernameTextField.textProperty().addListener((observableValue, s, t1) -> handleUsernameSetup());
+        nicknameTextField.textProperty().addListener((observableValue, s, t1) -> handleNicknameSetup());
+        emailTextField.textProperty().addListener((observableValue, s, t1) -> handleEmailSetup());
+        newPassword.textProperty().addListener((observableValue, s, t1) -> handelNewPasswordError());
+        oldPassword.setPromptText("old password");
     }
 
     public void setFields(String username, String nickname, String email, String rank, String highestScore,
@@ -105,21 +99,20 @@ public class ProfileMenu implements Menu {
         emailTextField.setPromptText(email);
         setUserInformation(rank, highestScore, gameCount, wins, losses, draws);
         // TODO
-        Result result = profileMenuController.showDefaultGameHistory();
-        if (result.isNotSuccessful()) gameHistoryNumberErrorField.setText(result.toString());
-        else {
-            Text text = new Text(result.toString());
-            text.getStyleClass().add("profileMenu-scrollbar-textArea");
-            scrollPaneVbox.getChildren().add(text);
-            gameHistoryScrollPane.setContent(scrollPaneVbox);
-        }
+//        Result result = profileMenuController.showDefaultGameHistory();
+//        if (result.isNotSuccessful()) gameHistoryNumberErrorField.setText(result.toString());
+//        else {
+//            Text text = new Text(result.toString());
+//            text.getStyleClass().add("profileMenu-scrollbar-textArea");
+//            scrollPaneVbox.getChildren().add(text);
+//            gameHistoryScrollPane.setContent(scrollPaneVbox);
+//        }
     }
 
     @FXML
     private void backToMainMenu() {
         resetFields();
-        // TODO :)
-        profileMenuController.goToMainMenu();
+        App.getSceneManager().goToMainMenu(App.getLoggedInUsersUsername(), App.getLoggedInUsersNickname());
     }
 
     private void setUserInformation(String rank, String highestScore, String gameCount, String wins, String losses, String draws) {
@@ -131,22 +124,41 @@ public class ProfileMenu implements Menu {
         this.draws.setText("Draws: " + draws);
     }
 
-    private void handleUsernameError() {
-        if (!editUsernameButton.isVisible())
-            usernameErrorField.setText(userInformationController.checkUsername(usernameTextField.getText()).toString());
-        else usernameErrorField.setText("");
+    private void handleUsernameSetup() {
+        if (!editUsernameButton.isVisible()) {
+            ClientMessage clientMessage = new ClientMessage("UserInformationController", "checkUsername",
+                    new ArrayList<>(List.of(new String[]{usernameTextField.getText()})));
+            client.sendMessageToServer(clientMessage);
+            usernameErrorField.setText(client.getLastServerData(Result.class).toString());
+        } else usernameErrorField.setText("");
+        usernameTextField.setPromptText(App.getLoggedInUsersUsername());
     }
 
-    private void handleNicknameError() {
-        if (!editNicknameButton.isVisible())
-            nicknameErrorField.setText(userInformationController.checkNickname(nicknameTextField.getText()).toString());
-        else nicknameErrorField.setText("");
+    private void handleNicknameSetup() {
+        if (!editNicknameButton.isVisible()) {
+            ClientMessage clientMessage = new ClientMessage("UserInformationController", "checkNickname",
+                    new ArrayList<>(List.of(new String[]{nicknameTextField.getText()})));
+            client.sendMessageToServer(clientMessage);
+            nicknameErrorField.setText(client.getLastServerData(Result.class).toString());
+        } else nicknameErrorField.setText("");
+        nicknameTextField.setPromptText(App.getLoggedInUsersNickname());
     }
 
-    private void handleEmailError() {
-        if (!editEmailButton.isVisible())
-            emailErrorField.setText(userInformationController.checkEmail(emailTextField.getText()).toString());
-        else emailErrorField.setText("");
+    private void handleEmailSetup() {
+        if (!editEmailButton.isVisible()) {
+            ClientMessage clientMessage = new ClientMessage("UserInformationController", "checkEmail",
+                    new ArrayList<>(List.of(new String[]{emailTextField.getText()})));
+            client.sendMessageToServer(clientMessage);
+            emailErrorField.setText(client.getLastServerData(Result.class).toString());
+        } else emailErrorField.setText("");
+        emailTextField.setPromptText(App.getLoggedInUsersEmail());
+    }
+
+    private void handelNewPasswordError() {
+        ClientMessage clientMessage = new ClientMessage("UserInformationController", "checkPassword",
+                new ArrayList<>(List.of(new String[]{newPassword.getText()})));
+        client.sendMessageToServer(clientMessage);
+        newPasswordError.setText(client.getLastServerData(Result.class).toString());
     }
 
     @FXML

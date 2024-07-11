@@ -14,7 +14,7 @@ public class MainMenuControllerServer {
     public String[] getProfileData(String userName) {
         User user = Server.getUserByUsername(userName);
         if (user == null) return null;
-        return new String[]{user.getUsername(), user.getNickName(), user.getEmail(), String.valueOf(user.getRank()),
+        return new String[]{user.getUsername(), user.getNickName(), user.getEmail(), String.valueOf(user.getRank()), String.valueOf(user.getHighestScore()),
                 String.valueOf(user.getGameHistories().size()), String.valueOf(user.getWins()), String.valueOf(user.getLosses()), String.valueOf(user.getDraws())};
     }
 

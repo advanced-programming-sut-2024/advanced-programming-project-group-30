@@ -9,9 +9,10 @@ import network.Client;
 import network.ClientMessage;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class MainMenu implements Menu {
-    Client client = ClientView.getClient();
+    private final Client client = ClientView.getClient();
     @FXML
     private Pane mainPane;
     @FXML
@@ -31,10 +32,11 @@ public class MainMenu implements Menu {
 
     @FXML
     private void goToProfileMenu() {
-        ClientMessage clientMessage = new ClientMessage("MainMenuController", "logout", new ArrayList<>());
+        ClientMessage clientMessage = new ClientMessage("MainMenuController", "getProfileData",
+                new ArrayList<>(Collections.singleton(App.getLoggedInUsersUsername())));
         client.sendMessageToServer(clientMessage);
         String[] fields = (String[]) client.getLastServerData(String[].class);
-        App.getSceneManager().goToProfileMenu(fields[0],fields[1], fields[2],fields[3],fields[4], fields[5],fields[6],fields[7],fields[8]);
+        App.getSceneManager().goToProfileMenu(fields[0], fields[1], fields[2], fields[3], fields[4], fields[5], fields[6], fields[7], fields[8]);
     }
 
     public void goToPregameMenu() {
@@ -44,10 +46,11 @@ public class MainMenu implements Menu {
 
     @FXML
     private void logout() {
-        ClientMessage clientMessage = new ClientMessage("MainMenuController", "logout", new ArrayList<>());
+        ClientMessage clientMessage = new ClientMessage("MainMenuController", "logout",
+                new ArrayList<>(Collections.singleton(App.getLoggedInUsersUsername())));
         client.sendMessageToServer(clientMessage);
         App.getSceneManager().goToLoginMenu();
-        App.setLoggedInUser(null,"","",false);
+        App.setLoggedInUser(null, "", "", false);
     }
 
     private void scalePane(Pane pane) {
