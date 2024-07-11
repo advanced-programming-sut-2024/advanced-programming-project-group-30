@@ -7,6 +7,7 @@ module Gwent {
     requires com.google.gson;
     requires jdk.compiler;
     requires java.sql;
+    requires java.management;
 
     exports view;
     exports model;

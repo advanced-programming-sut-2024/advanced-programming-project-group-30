@@ -95,6 +95,6 @@ public enum NeutralRegularCardsData implements RegularCardData {
         Method ability = null;
         if (this.ability != null)
             ability = this.ability.getAbility();
-        return new RegularCard(this.name, FactionType.MONSTERS, this, this.isHero, ability, this.cardPositionType);
+        return new RegularCard(this.name, null, this, this.isHero, ability, this.cardPositionType);
     }
 }

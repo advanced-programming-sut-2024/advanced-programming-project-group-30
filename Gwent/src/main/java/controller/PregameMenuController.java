@@ -72,8 +72,6 @@ public class PregameMenuController {
         menu.updateNumberData();
     }
 
-
-
     public void changeFation(FactionType faction) {
         pregameData.setFaction(faction);
         SelectionPage<LeaderCardData> leaderSelectionPage = new SelectionPage<>(LeaderCardData.getFactionsLeaderChooseView(pregameData.getFaction()),

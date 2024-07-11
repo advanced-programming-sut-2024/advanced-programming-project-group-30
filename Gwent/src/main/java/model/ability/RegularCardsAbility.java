@@ -78,7 +78,7 @@ public class RegularCardsAbility {
                     card.getName().equals(name))) {
                 boolean isDecksCard = currentPlayer.getDeck().contains(card);
                 Row row = findCardRow(card, currentGame);
-                if (row.getCards().add((RegularCard) card)) System.err.println("Error in adding cards to row in muster");;
+                if (!row.getCards().add(card)) System.err.println("Error in adding cards to row in muster");;
                 card.getCardView().getStyleClass().add(CssAddress.CARD_IN_ROW.getStyleClass());
                 if (isDecksCard) {
                     AnimationMaker.getInstance().cardPlaceAnimation(card, currentPlayer.getPlayerView().getDeckView(), row.getRowView().getRow(), currentGame,
@@ -161,8 +161,9 @@ public class RegularCardsAbility {
         for (DecksCard decksCard : cards) {
             currentPlayer.addCardToHand(decksCard);
             currentPlayer.getPlayerView().addCardToDeck(decksCard);
-            AnimationMaker.getInstance().cardPlaceAnimation(decksCard, playerView.getDiscardPileView(), playerView.getHandView(), currentGame, gameMenu, false);
+            AnimationMaker.getInstance().cardPlaceAnimation(decksCard, playerView.getDeckView(), playerView.getHandView(), currentGame, gameMenu, false);
         }
+        currentPlayer.getPlayerView().updateDeckNumber();
         gameMenu.setHandCardEventHandler(currentPlayer, currentGame.getOpponentPlayer(), currentGame, cards);
     }
 

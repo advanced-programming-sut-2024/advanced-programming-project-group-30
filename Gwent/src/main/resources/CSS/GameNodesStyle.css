@@ -425,6 +425,14 @@
     -fx-border-radius: 5;
     -fx-background-radius: 5;
 }
-.cheatCodeBox{
+.cheatCodeBox {
     -fx-background-color: rgba(0, 0, 0, 0.71);
+}
+.deckNumberLabel{
+    -fx-background-color: rgba(215, 170, 94, 0.96);
+    -fx-text-fill: #ffff;
+    -fx-font-size: 15;
+    -fx-font-family: "Times New Roman";
+    -fx-alignment: center;
+    -fx-pref-width: 30;
 }

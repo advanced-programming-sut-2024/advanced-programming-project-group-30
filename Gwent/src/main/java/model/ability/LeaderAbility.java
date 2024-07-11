@@ -277,8 +277,10 @@ public class LeaderAbility {
                 if (currentPlayer.getDeck().contains(decksCard)) {
                     if (!currentPlayer.getDeck().remove(decksCard))
                         System.err.println("Error in removing card from deck in siegemaster");
-                } else if (!currentPlayer.getHand().remove(decksCard))
+                    } else if (!currentPlayer.getHand().remove(decksCard))
                     System.err.println("Error in removing card from hand in siegemaster");
+                currentPlayer.updateDeckCardNumber();
+                currentPlayer.updateHandCardNumber();
                 break;
             }
         }

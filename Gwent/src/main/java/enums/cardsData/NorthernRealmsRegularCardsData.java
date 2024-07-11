@@ -109,6 +109,6 @@ public enum NorthernRealmsRegularCardsData implements RegularCardData {
         Method ability = null;
         if (this.ability != null)
             ability = this.ability.getAbility();
-        return new RegularCard(this.name, FactionType.MONSTERS, this, this.isHero, ability, this.cardPositionType);
+        return new RegularCard(this.name, FactionType.NORTHERN_REALMS, this, this.isHero, ability, this.cardPositionType);
     }
 }

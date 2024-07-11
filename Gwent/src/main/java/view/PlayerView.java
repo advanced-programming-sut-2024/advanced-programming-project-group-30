@@ -24,7 +24,7 @@ public class PlayerView {
     private final HBox leaderView;
 
     public PlayerView(Player player, Pane pane, VBox boardView, HBox discardPileView, HBox deckView,
-                      HBox handView, HBox leaderView, CoordinateData coordinateData, CssAddress cssAddress) {
+                      HBox handView, HBox leaderView, Label deckNumber,CoordinateData coordinateData, CssAddress cssAddress) {
         playerInformationView = new PlayerInformationView(player, coordinateData, cssAddress);
         this.boardView = boardView;
         this.pane = pane;
@@ -33,36 +33,11 @@ public class PlayerView {
         this.leaderView = new HBox(leaderView);
         this.deckView = new HBox(deckView);
         this.discardPileView = new HBox(discardPileView);
-        this.deckNumber = new Label();
+        this.deckNumber = deckNumber;
+        deckNumber.setText(String.valueOf(player.getDeck().size()));
         setUpDeck(deckView);
         setUpDiscardPile(discardPileView);
         setUpLeader(leaderView);
-    }
-
-    private void setUpDiscardPile(HBox discardPile) {
-        clone(discardPileView, discardPile);
-        pane.getChildren().add(discardPileView);
-    }
-
-    private void setUpDeck(HBox deck) {
-        clone(deckView, deck);
-        Image image = player.getUser().getSelectedFaction().getLgImage();
-        ImageView imageView = new ImageView(image);
-        deckView.getChildren().add(imageView);
-        imageView.setFitHeight(90);
-        imageView.setFitWidth(61);
-        deckNumber.setLayoutY(imageView.getFitHeight() - 10);
-        deckNumber.setLayoutX(imageView.getFitWidth() + 5);
-        deckNumber.setText(String.valueOf(player.getDeck().size()));
-        pane.getChildren().addAll(deckView);
-    }
-    private void setUpLeader(HBox leader) {
-        clone(leaderView, leader);
-        ImageView imageView = new ImageView(player.getLeader().getSmImage());
-        leaderView.getChildren().add(imageView);
-        imageView.setFitHeight(80);
-        imageView.setFitWidth(57);
-        pane.getChildren().add(leaderView);
     }
     public HBox getDeckView() {
         return deckView;
@@ -88,15 +63,9 @@ public class PlayerView {
         discardPileView.getChildren().clear();
         discardPileView.getChildren().add(decksCard.getCardView());
     }
-
-    public void addCardToHand(DecksCard decksCard) {
-        handView.getChildren().add(decksCard.getCardView());
+    public Label getDeckCardNumber(){
+        return deckNumber;
     }
-
-    public void addCardToDeck(DecksCard decksCard) {
-        deckView.getChildren().add(decksCard.getCardView());
-    }
-
     private void clone(HBox node1, HBox node2) {
         node1.getChildren().clear();
         for (Node node : node2.getChildren())
@@ -109,5 +78,34 @@ public class PlayerView {
 
     public HBox getLeaderView() {
         return leaderView;
+    }
+    public void updateDeckNumber(){
+        deckNumber.setText(String.valueOf(player.getDeck().size()));
+    }
+    private void setUpDiscardPile(HBox discardPile) {
+        clone(discardPileView, discardPile);
+        pane.getChildren().add(discardPileView);
+    }
+
+    private void setUpDeck(HBox deck) {
+        clone(deckView, deck);
+        Image image = player.getUser().getSelectedFaction().getLgImage();
+        ImageView imageView = new ImageView(image);
+        deckView.getChildren().add(imageView);
+        imageView.setFitHeight(90);
+        imageView.setFitWidth(61);
+        pane.getChildren().addAll(deckView);
+    }
+    private void setUpLeader(HBox leader) {
+        clone(leaderView, leader);
+        ImageView imageView = new ImageView(player.getLeader().getSmImage());
+        leaderView.getChildren().add(imageView);
+        imageView.setFitHeight(80);
+        imageView.setFitWidth(57);
+        pane.getChildren().add(leaderView);
+    }
+
+    public void addCardToDeck(DecksCard decksCard) {
+        deckView.getChildren().add(decksCard.getCardView());
     }
 }

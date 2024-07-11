@@ -61,14 +61,16 @@ public class PlayerInformationView extends Pane {
 
     //TODO:needs debug
     public void setFirstRoundOfLoss() {
-        lives.getChildren().remove(rightGem);
-        this.getChildren().remove(lives);
-        lives = new HBox();
-        setLivesBoxCoordinate();
-        rightGem = new Region();
+//        lives.getChildren().remove(rightGem);
+//        this.getChildren().remove(lives);
+//        lives = new HBox();
+//        setLivesBoxCoordinate();
+//        rightGem = new Region();
+//        rightGem.getStyleClass().add(CssAddress.GEM_OFF_IMAGE.getStyleClass());
+//        lives.getChildren().addAll(rightGem, leftGem);
+//        this.getChildren().add(lives);
+        rightGem.getStyleClass().remove(CssAddress.GEM_ON_IMAGE.getStyleClass());
         rightGem.getStyleClass().add(CssAddress.GEM_OFF_IMAGE.getStyleClass());
-        lives.getChildren().addAll(rightGem, leftGem);
-        this.getChildren().add(lives);
     }
 
     public void setSecondRoundOfLoss() {
@@ -85,6 +87,9 @@ public class PlayerInformationView extends Pane {
 
     public void resetRound() {
         totalScore.setText("0");
+    }
+    public void updateHandCardNumber() {
+        handCardNumber.setText(String.valueOf(player.getHand().size()));
     }
     //TODO: added these
 
@@ -196,5 +201,14 @@ public class PlayerInformationView extends Pane {
         totalScoreImage.setLayoutY(CoordinateData.TOTAL_SCORE_IMAGE.getY());
         totalScoreImage.setFitHeight(SizeData.TOTAL_SCORE_IMAGE.getHeight());
         totalScoreImage.setFitWidth(SizeData.TOTAL_SCORE_IMAGE.getWidth());
+    }
+
+    public void resetLeftGem() {
+        leftGem.getStyleClass().remove(CssAddress.GEM_OFF_IMAGE.getStyleClass());
+        leftGem.getStyleClass().add(CssAddress.GEM_ON_IMAGE.getStyleClass());
+    }
+    public void resetRightGem(){
+        rightGem.getStyleClass().remove(CssAddress.GEM_OFF_IMAGE.getStyleClass());
+        rightGem.getStyleClass().add(CssAddress.GEM_ON_IMAGE.getStyleClass());
     }
 }

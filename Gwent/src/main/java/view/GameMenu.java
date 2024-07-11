@@ -5,9 +5,12 @@ import enums.Ability;
 import enums.CssAddress;
 import enums.GameNotification;
 import enums.SizeData;
+import enums.cardsData.MonstersRegularCardsData;
 import enums.cardsData.RegularCardData;
+import enums.cardsData.SpecialCardsData;
 import enums.cardsData.WeatherCardsData;
 import javafx.animation.KeyFrame;
+import javafx.animation.ParallelTransition;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,11 +22,14 @@ import javafx.scene.layout.*;
 import javafx.util.Duration;
 import model.*;
 import model.ability.LeaderAbility;
+import model.ability.WeatherCardAbility;
 import model.card.DecksCard;
 import model.card.RegularCard;
 import model.card.SpecialCard;
 import model.card.WeatherCard;
 
+import javax.management.MBeanAttributeInfo;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -37,6 +43,10 @@ public class GameMenu implements Menu {
     private final GameMenuController gameMenuController = new GameMenuController(this);
     public Pane cheatMenu;
     public TextField cheatMenuTextField;
+    @FXML
+    private Label deckNumber;
+    @FXML
+    private Label opponentDeckNumber;
     @FXML
     private Label result;
     @FXML
@@ -76,11 +86,7 @@ public class GameMenu implements Menu {
     @FXML
     private HBox deck;
     @FXML
-    private HBox decksCardNumber;
-    @FXML
     private HBox opponentDeck;
-    @FXML
-    private HBox opponentDecksCardNumber;
     @FXML
     private Region activeLeaderIcon;
     @FXML
@@ -120,11 +126,11 @@ public class GameMenu implements Menu {
     }
 
     public Node[] getCurrentPlayerViewField() {
-        return new Node[]{pane, currentRowArea, discardPile, deck, hand, leader};
+        return new Node[]{pane, currentRowArea, discardPile, deck, hand, leader, deckNumber};
     }
 
     public Node[] getOpponentPlayerViewField() {
-        return new Node[]{pane, opponentRowsArea, opponentDiscardPile, opponentDeck, hand, opponentLeader};
+        return new Node[]{pane, opponentRowsArea, opponentDiscardPile, opponentDeck, hand, opponentLeader, opponentDeckNumber};
     }
 
     public HBox getWeatherCardPosition() {
@@ -142,11 +148,32 @@ public class GameMenu implements Menu {
         }
         weatherCardPosition.getStyleClass().remove(CssAddress.CARD_ROW.getStyleClass());
     }
-
     public void updateGame(Game game) {
-        gameMenuController.updateGame(game);
+        updateScores(game);
+        updateHandCardNumber(game);
+        updateDeckNumber(game);
+        ArrayList<Row> allRows = new ArrayList<>();
+        allRows.addAll(game.getCurrentPlayer().getRows());
+        allRows.addAll(game.getOpponentPlayer().getRows());
+        updateScores(allRows);
+        if (!game.isRoundPassed()) passTurn(game);
     }
-
+    private void updateScores(Game game) {
+        Player player = game.getCurrentPlayer();
+        Player opponentPlayer = game.getOpponentPlayer();
+        for (Row row : game.getCurrentPlayer().getRows()) {
+            gameMenuController.setCardsPoint(row);
+        }
+        for (Row row : game.getOpponentPlayer().getRows()) {
+            gameMenuController.setCardsPoint(row);
+        }
+        player.getPlayerInformationView().updateTotalScore();
+        opponentPlayer.getPlayerInformationView().updateTotalScore();
+    }
+    public void updateDeckNumber(Game game){
+        game.getCurrentPlayer().updateDeckCardNumber();
+        game.getOpponentPlayer().updateDeckCardNumber();
+    }
     public void updateScores(ArrayList<Row> allRows) {
         for (Row row : allRows) {
             row.updateRowScore();
@@ -166,12 +193,9 @@ public class GameMenu implements Menu {
         currentRowArea.getChildren().addAll(close, ranged, siege);
     }
 
-    public void setUpUserInformation(Label usernameLabel, String username) {
-        usernameLabel.setText(username);
-    }
-
-    public void updateHandCardNumber(Label cardNumber, int number) {
-        cardNumber.setText(String.valueOf(number));
+    private void updateHandCardNumber(Game game) {
+        Player player = game.getCurrentPlayer();
+        player.updateHandCardNumber();
     }
 
     public void setUpAfterSwitch(Node pane, Node node1, Node node2) {
@@ -207,10 +231,6 @@ public class GameMenu implements Menu {
     public VBox getRowsPane() {
         return rowsPane;
     }
-
-    public Pane getPane() {
-        return pane;
-    }
     public void setUpNotificationBox() {
         notifPane.getStyleClass().add(CssAddress.NOTIF_BOX.getStyleClass());
         notifPane.setLayoutY(notifBox.getLayoutY());
@@ -221,7 +241,8 @@ public class GameMenu implements Menu {
         notifImageView.setLayoutX(notifImage.getLayoutX());
         notifImageView.setFitWidth(notifImage.getFitWidth());
         notifImageView.setFitHeight(notifImage.getFitHeight());
-        notifPane.getChildren().addAll(notifLabel, notifImageView);
+        if (!notifPane.getChildren().contains(notifLabel) && !notifPane.getChildren().contains(notifImageView))
+            notifPane.getChildren().addAll(notifLabel, notifImageView);
     }
 
     public void setHandCardEventHandler(Player currentPlayer, Player opponentPlayer, Game game ,ArrayList<DecksCard> cards){
@@ -234,7 +255,8 @@ public class GameMenu implements Menu {
 //            ChosenModelView<RegularCard> chosenModelView = new ChosenModelView<>(Objects.requireNonNull(this.getClass().getResourceAsStream(data.lgImageAddress)));
         }
 //        SelectionPage<RegularCard> selectionPage = new SelectionPage<>(, Math.min(2, chosenModelViews.size())-1,  SizeData.GAME_LG_CARD);
-    }public void endGame(String message,String winner, int[] winnerRoundPoint, String loser, int[] loserRoundsPoint) {
+    }
+    public void endGame(String message,String winner, int[] winnerRoundPoint, String loser, int[] loserRoundsPoint) {
         pane.getChildren().remove(endGamePane);
         pane.getChildren().add(endGamePane);
         endGamePane.setVisible(true);
@@ -270,6 +292,22 @@ public class GameMenu implements Menu {
     private void passTurn() {
         gameMenuController.checkRound(App.getCurrentGame());
     }
+    public void passTurn(Game game) {
+        disablePane();
+        if (!game.isRoundPassed()) {
+            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), actionEvent -> {
+                try {
+                    gameMenuController.switchBoard(game);
+                    game.changeTurn();
+                    handlePassTurn(game);
+                } catch (NoSuchMethodException e) {
+                    throw new RuntimeException(e);
+                }
+            }));
+            timeline.setCycleCount(1);
+            timeline.play();
+        }
+    }
 
     private void showPassTurnNotification() {
         Timeline timeline = AnimationMaker.getInstance().getNotificationTimeline(pane, notifPane, notifImageView, notifLabel,
@@ -302,7 +340,7 @@ public class GameMenu implements Menu {
         timeline.play();
     }
     @FXML
-    private void goToMainMenu() {
+    private void goToMainMenu() throws IllegalAccessException {
         App.getCurrentGame().resetGame();
         App.getCurrentGame().getCurrentPlayer().resetLives();
         App.getCurrentGame().getCurrentPlayer().resetLives();
@@ -311,11 +349,23 @@ public class GameMenu implements Menu {
         evacuateBoard();
         App.getSceneManager().goToMainMenu();
     }
-    private void evacuateBoard(){
+    private void evacuateBoard() throws IllegalAccessException {
         discardPile.getChildren().clear();
         opponentDiscardPile.getChildren().clear();
         hand.getChildren().clear();
         weatherCardPosition.getChildren().clear();
+        removeNodes(App.getCurrentGame().getCurrentPlayer().getPlayerView());
+        removeNodes(App.getCurrentGame().getOpponentPlayer().getPlayerView());
+        App.getCurrentGame().getCurrentPlayer().getPlayerView().getBoardView().getChildren().clear();
+        App.getCurrentGame().getOpponentPlayer().getPlayerView().getBoardView().getChildren().clear();
+    }
+    private void removeNodes(PlayerView playerview) throws IllegalAccessException {
+        Field[] fields = playerview.getClass().getDeclaredFields();
+        for (Field field : fields){
+            field.setAccessible(true);
+            Object value = field.get(playerview);
+            if (value instanceof Node node) pane.getChildren().remove(node);
+        }
     }
     public void evacuateWeatherCards(Game game) {
         Player currentPlayer = game.getCurrentPlayer();
@@ -324,10 +374,74 @@ public class GameMenu implements Menu {
                 System.err.println("Error in removing card from discard pile in steel forged");
         }
         weatherCardPosition.getChildren().clear();
+        WeatherCardAbility.getInstance().clearWeather(game);
     }
     @FXML
     private void cheatMenu() {
         pane.getChildren().remove(cheatMenu);
+        cheatMenu.setVisible(true);
+        cheatMenuTextField.clear();
         pane.getChildren().add(cheatMenu);
+
+    }
+    @FXML
+    private void confirmCheat() {
+        int code = Integer.parseInt(cheatMenuTextField.getText());
+        switch (code) {
+            case 1: createRandomCard();
+                break;
+            case 2: addToPlayerLife();
+                break;
+            case 3 : addCommanderHorn(App.getCurrentGame().getCurrentPlayer().getCloseCombat());
+                break;
+            case 4 : addCommanderHorn(App.getCurrentGame().getCurrentPlayer().getRangedCombat());
+                break;
+            case 5: addCommanderHorn(App.getCurrentGame().getCurrentPlayer().getSiege());
+                break;
+            case 6: {
+                App.getCurrentGame().setRoundIsPassed(false);
+                gameMenuController.endRound(App.getCurrentGame());
+            }
+            break;
+            case 7:
+                createRain();
+                break;
+        }
+        pane.getChildren().remove(cheatMenu);
+
+    }
+    private void addCommanderHorn(Row row){
+        SpecialCard specialCard = SpecialCardsData.COMMANDER_HORN.createCard();
+        if (row.getSpecialCard() == null) {
+            row.setSpecialCard(specialCard);
+            row.getRowView().getSpecialCardPosition().getChildren().add(specialCard.getCardView());
+            row.setBonus(true);
+        }
+    }
+    private void createRain(){
+        WeatherCard weatherCard = WeatherCardsData.TORRENTIAL_RAIN.createCard();
+        if (!weatherCardPosition.getChildren().contains(weatherCard.getCardView()))
+            weatherCardPosition.getChildren().add(weatherCard.getCardView());
+        weatherCard.run(App.getCurrentGame());
+    }
+    private void createRandomCard(){
+        DecksCard decksCard = MonstersRegularCardsData.ARACHAS.createCard();
+        if (!App.getCurrentGame().getCurrentPlayer().getDeck().add(decksCard))
+            System.err.println("Error adding card to deck in cheat code");
+        App.getCurrentGame().getCurrentPlayer().updateDeckCardNumber();
+    }
+    private void addToPlayerLife(){
+        int life = gameMenuController.addPlayerLife();
+        Player player = App.getCurrentGame().getCurrentPlayer();
+        if (life == 1) player.getPlayerInformationView().resetRightGem();
+        if (life == 2) player.getPlayerInformationView().resetLeftGem();
+    }
+    @FXML
+    private void backToGame() {
+        pane.getChildren().remove(cheatMenu);
+    }
+
+    public Pane getPane() {
+        return pane;
     }
 }

@@ -4,6 +4,7 @@ import enums.CoordinateData;
 import enums.CssAddress;
 import enums.MenuScene;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -46,7 +47,7 @@ public class Player {
 
     public PlayerView createPlayerView(Node[] nodes, CoordinateData coordinateData, CssAddress cssAddress) {
         return new PlayerView(this, (Pane) nodes[0], (VBox) nodes[1], (HBox) nodes[2], (HBox) nodes[3], (HBox) nodes[4],
-                (HBox) nodes[5], coordinateData, cssAddress);
+                (HBox) nodes[5], (Label) nodes[6],coordinateData, cssAddress);
     }
 
     public User getUser() {
@@ -59,14 +60,6 @@ public class Player {
 
     public ArrayList<DecksCard> getDeck() {
         return deck;
-    }
-
-    public void addCardToDeck(DecksCard card) {
-        deck.add(card);
-    }
-
-    public void removeCardFromDeck(DecksCard card) {
-        deck.remove(card);
     }
 
     public ArrayList<DecksCard> getHand() {
@@ -171,7 +164,10 @@ public class Player {
         for (DecksCard decksCard : row.getCards()) {
             discardPile.add(decksCard);
             playerView.discardCard(decksCard);
+            if (row.getSpecialCard() != null)
+                playerView.discardCard(row.getSpecialCard());
         }
+
     }
 
     public void resetLives() {
@@ -184,5 +180,15 @@ public class Player {
 
     public void playLeader() {
         hasPlayedLeader = true;
+    }
+
+    public void updateHandCardNumber() {
+        getPlayerInformationView().updateHandCardNumber();
+    }
+    public void updateDeckCardNumber(){
+        playerView.updateDeckNumber();
+    }
+    public void addLife(){
+        life++;
     }
 }

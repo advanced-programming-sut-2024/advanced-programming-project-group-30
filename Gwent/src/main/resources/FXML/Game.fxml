@@ -67,10 +67,14 @@
          </children>
       </Pane>
       <Button layoutX="170.0" layoutY="31.0" mnemonicParsing="false" onAction="#cheatMenu" prefHeight="30.0" prefWidth="60.0" style="-fx-font-size: 10;" styleClass="pass-button" text="cheat menu" />
-      <Pane fx:id="cheatMenu" layoutX="100.0" layoutY="73.0" prefHeight="118.0" prefWidth="201.0" styleClass="cheatCodeBox" stylesheets="@../CSS/NodeStyle.css" visible="true">
+      <Pane fx:id="cheatMenu" layoutX="100.0" layoutY="73.0" prefHeight="118.0" prefWidth="201.0" styleClass="cheatCodeBox" stylesheets="@../CSS/NodeStyle.css" visible="false">
          <children>
-            <TextField fx:id="cheatMenuTextField" layoutX="15.0" layoutY="46.0" prefHeight="26.0" prefWidth="171.0" styleClass="bottomBorderField" />
+            <TextField fx:id="cheatMenuTextField" alignment="CENTER" layoutX="16.0" layoutY="33.0" prefHeight="26.0" prefWidth="171.0" styleClass="bottomBorderField" />
+            <Button layoutX="48.0" layoutY="79.0" mnemonicParsing="false" onAction="#confirmCheat" prefHeight="17.0" prefWidth="53.0" styleClass="backToMainMenuButton" text="Confirm" />
+            <Button layoutX="108.0" layoutY="79.0" mnemonicParsing="false" onAction="#backToGame" prefHeight="17.0" prefWidth="53.0" styleClass="backToMainMenuButton" text="Back" />
          </children>
       </Pane>
+      <Label fx:id="deckNumber" layoutX="1006.0" layoutY="603.0" prefWidth="30.0" styleClass="deckNumberLabel" />
+      <Label fx:id="opponentDeckNumber" layoutX="1006.0" layoutY="138.0" styleClass="deckNumberLabel" />
    </Pane>
 </VBox>

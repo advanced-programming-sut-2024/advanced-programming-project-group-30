@@ -232,40 +232,11 @@ public class GameMenuController {
         }
     }
 
-    public void updateGame(Game game) {
-        updateScores(game);
-        updateHandCardNumber(game);
-        ArrayList<Row> allRows = new ArrayList<>();
-        allRows.addAll(game.getCurrentPlayer().getRows());
-        allRows.addAll(game.getOpponentPlayer().getRows());
-        menu.updateScores(allRows);
-        if (!game.isRoundPassed()) passTurn(game);
-    }
-
-    private void updateScores(Game game) {
-        Player player = game.getCurrentPlayer();
-        Player opponentPlayer = game.getOpponentPlayer();
-        for (Row row : game.getCurrentPlayer().getRows()) {
-            setCardsPoint(row);
-        }
-        for (Row row : game.getOpponentPlayer().getRows()) {
-            setCardsPoint(row);
-        }
-        player.getPlayerInformationView().updateTotalScore();
-        opponentPlayer.getPlayerInformationView().updateTotalScore();
-    }
-
-    private void updateHandCardNumber(Game game) {
-        Player player = game.getCurrentPlayer();
-        PlayerInformationView playerInformationView = player.getPlayerInformationView();
-        menu.updateHandCardNumber(playerInformationView.getHandCardNumber(), player.getHand().size());
-    }
-
     public void checkRound(Game game) {
         if (game.isRoundPassed()) {
             endRound(game);
         } else {
-            passTurn(game);
+            menu.passTurn(game);
             game.setRoundIsPassed(true);
         }
         //TODO: leader abilities should be considered
@@ -281,7 +252,7 @@ public class GameMenuController {
             setUpLoserCrystal(game.getOpponentPlayer());
             game.getCurrentPlayer().getUser().addToDraws();
             game.getOpponentPlayer().getUser().addToDraws();
-            menu.endGame("DRAW",null, game.getCurrentPlayer().getRoundsPoint(), null, game.getOpponentPlayer().getRoundsPoint());
+            menu.endGame("DRAW",game.getCurrentPlayer().getUser().getUsername(), game.getCurrentPlayer().getRoundsPoint(), game.getOpponentPlayer().getUser().getUsername(), game.getOpponentPlayer().getRoundsPoint());
         }
         else if (currentPlayerLife == 0) {
             setUpLoserCrystal(game.getCurrentPlayer());
@@ -329,6 +300,7 @@ public class GameMenuController {
 
     private void resetRound(Game game) {
         game.resetGame();
+        menu.evacuateWeatherCards(game);
     }
 
     private Player setBeginnerOfTheRound(Game game) {
@@ -344,43 +316,19 @@ public class GameMenuController {
 
     private void setUpNextRound(Game game, Player loser) {
         if (loser == null) {
-            setLoserOfTheRound(game.getOpponentPlayer());
-            setLoserOfTheRound(game.getCurrentPlayer());
+            setUpLoserCrystal(game.getOpponentPlayer());
+            setUpLoserCrystal(game.getCurrentPlayer());
         } else {
-            System.out.println(loser == game.getCurrentPlayer());
-            System.out.println(loser == game.getOpponentPlayer());
-            if (loser == game.getCurrentPlayer()) setLoserOfTheRound(game.getCurrentPlayer());
-            else setLoserOfTheRound(game.getOpponentPlayer());
+            if (loser == game.getCurrentPlayer()) setUpLoserCrystal(game.getCurrentPlayer());
+            else setUpLoserCrystal(game.getOpponentPlayer());
         }
     }
 
-    private void setLoserOfTheRound(Player loser) {
-        if (loser.getLife() == 1) setUpLoserCrystal(loser);
-        else if (loser.getLife() == 0) setUpLoserCrystal(loser);
-    }
-
-    private void passTurn(Game game) {
-        menu.disablePane();
-        if (!game.isRoundPassed()) {
-            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), actionEvent -> {
-                try {
-                    switchBoard(game);
-                    game.changeTurn();
-                    menu.handlePassTurn(game);
-                } catch (NoSuchMethodException e) {
-                    throw new RuntimeException(e);
-                }
-            }));
-            timeline.setCycleCount(1);
-            timeline.play();
-        }
-    }
-    private void endRound(Game game) {
+    public void endRound(Game game) {
         Player winner = checkForHigherScore(game);
         Player loser = null;
         Player beginner = setBeginnerOfTheRound(game);
         String message;
-        System.out.println(winner + " " + game.getCurrentPlayer() + " " + game.getOpponentPlayer());
         if (winner == null) {
             message = GameNotification.DRAW_ROUND.getNotification();
             game.getOpponentPlayer().reduceLife();
@@ -415,7 +363,7 @@ public class GameMenuController {
             menu.endRound(message);
         }
     }
-    private void setCardsPoint(Row row) {
+    public void setCardsPoint(Row row) {
         int point;
         boolean hasCommanderHorn = hasRegularCommanderHorn(row);
         HashMap<CardData, ArrayList<RegularCard>> cardMap = row.getCardDataMap();
@@ -447,7 +395,7 @@ public class GameMenuController {
         }
     }
 
-    private void switchBoard(Game game) throws NoSuchMethodException {
+    public void switchBoard(Game game) throws NoSuchMethodException {
         Player currentPlayer = game.getCurrentPlayer();
         Player opponentPlayer = game.getOpponentPlayer();
         PlayerView currentPlayerView = currentPlayer.getPlayerView();
@@ -460,7 +408,8 @@ public class GameMenuController {
         swapPlayerViews(currentPlayerView, opponentPlayerView, PlayerView.class.getDeclaredMethod("getDiscardPileView"),
                 PlayerView.class.getDeclaredMethod("getDeckView"),
                 PlayerView.class.getDeclaredMethod("getPlayerInformationView"),
-                PlayerView.class.getDeclaredMethod("getLeaderView"));
+                PlayerView.class.getDeclaredMethod("getLeaderView"),
+                PlayerView.class.getDeclaredMethod("getDeckCardNumber"));
 
         setupViewsAfterSwitch(currentPlayerView, opponentPlayerView);
 
@@ -524,6 +473,7 @@ public class GameMenuController {
         menu.setUpAfterSwitch(menu.getPane(), currentPlayerView.getDiscardPileView(), opponentPlayerView.getDiscardPileView());
         menu.setUpAfterSwitch(menu.getPane(), currentPlayerView.getPlayerInformationView(), opponentPlayerView.getPlayerInformationView());
         menu.setUpAfterSwitch(menu.getPane(), currentPlayerView.getLeaderView(), opponentPlayerView.getLeaderView());
+        menu.setUpAfterSwitch(menu.getPane(), currentPlayerView.getDeckCardNumber(), opponentPlayerView.getDeckCardNumber());
     }
 
     private void swapRows(Player currentPlayer, Player opponentPlayer) {
@@ -563,4 +513,10 @@ public class GameMenuController {
         translate.play();
     }
 
+    public int addPlayerLife() {
+        Player currentPlayer = App.getCurrentGame().getCurrentPlayer();
+        if (currentPlayer.getLife() == 2) return 2;
+        currentPlayer.addLife();
+        return currentPlayer.getLife() -1;
+    }
 }
