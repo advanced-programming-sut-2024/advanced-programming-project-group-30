@@ -87,7 +87,6 @@ public class PregameMenuController {
         pregameData.setLeader(leaderCardData);
     }
 
-
     public int getIndex(PregameCardView cardView, List<Node> nodes) {
         ArrayList<DeckCardData> list = new ArrayList<>();
         for (Node node : nodes) {

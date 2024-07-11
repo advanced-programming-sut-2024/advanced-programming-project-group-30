@@ -1,11 +1,14 @@
 package view;
 
 import controller.GameMenuController;
-import enums.*;
+import enums.Ability;
+import enums.CssAddress;
+import enums.GameNotification;
+import enums.SizeData;
 import enums.cardsData.RegularCardData;
+import enums.cardsData.WeatherCardsData;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -13,9 +16,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.util.Duration;
 import model.*;
+import model.ability.LeaderAbility;
 import model.card.DecksCard;
 import model.card.RegularCard;
 import model.card.SpecialCard;
+import model.card.WeatherCard;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -186,9 +191,11 @@ public class GameMenu implements Menu {
         game.getOpponentPlayer().getPlayerInformationView().getStyleClass().remove("brownBoxShadowed");
         for (DecksCard card : game.getOpponentPlayer().getHand())
             hand.getChildren().remove(card.getCardView());
-        for (DecksCard card : game.getCurrentPlayer().getHand())
-            hand.getChildren().add(card.getCardView());
-
+        for (DecksCard card : game.getCurrentPlayer().getHand()) {
+            if (!hand.getChildren().contains(card.getCardView()))
+                hand.getChildren().add(card.getCardView());
+            else System.err.println("Error in adding card to hand in pass turn");
+        }
         showPassTurnNotification();
     }
 
@@ -215,18 +222,14 @@ public class GameMenu implements Menu {
     public void setHandCardEventHandler(Player currentPlayer, Player opponentPlayer, Game game ,ArrayList<DecksCard> cards){
         gameMenuController.handelHandsCardEvent(cards, game, currentPlayer, opponentPlayer);
     }
-    public void showMedicCardOptions(ArrayList<RegularCard> cards, Game game) {
+    public void showMedicCardOptions(ArrayList<RegularCard> cards, Game game){
         ArrayList<ChosenModelView<RegularCard>> chosenModelViews = new ArrayList<>();
         for (RegularCard card : cards) {
             RegularCardData data = (RegularCardData) card.getCardData();
 //            ChosenModelView<RegularCard> chosenModelView = new ChosenModelView<>(Objects.requireNonNull(this.getClass().getResourceAsStream(data.lgImageAddress)));
         }
 //        SelectionPage<RegularCard> selectionPage = new SelectionPage<>(, Math.min(2, chosenModelViews.size())-1,  SizeData.GAME_LG_CARD);
-    }
-    public void setUpLeaderView(){
-
-    }
-    public void endGame(String message,String winner, int[] winnerRoundPoint, String loser, int[] loserRoundsPoint) {
+    }public void endGame(String message,String winner, int[] winnerRoundPoint, String loser, int[] loserRoundsPoint) {
         pane.getChildren().remove(endGamePane);
         pane.getChildren().add(endGamePane);
         endGamePane.setVisible(true);
@@ -240,73 +243,21 @@ public class GameMenu implements Menu {
         loserRound2.setText(String.valueOf(loserRoundsPoint[1]));
         loserRound3.setText(String.valueOf(loserRoundsPoint[2]));
     }
-//    public void setupViewsAfterSwitch(PlayerView currentPlayerView, PlayerView opponentPlayerView) {
-//        setUpAfterSwitch(pane, currentPlayerView.getDeckView(), opponentPlayerView.getDeckView());
-//        setUpAfterSwitch(pane, currentPlayerView.getDiscardPileView(), opponentPlayerView.getDiscardPileView());
-//        setUpAfterSwitch(pane, currentPlayerView.getPlayerInformationView(), opponentPlayerView.getPlayerInformationView());
-//        setUpAfterSwitch(pane, currentPlayerView.getLeaderView(), opponentPlayerView.getHandView());
-//    }
-//    public void switchBoard(Game game) throws NoSuchMethodException {
-//        Player currentPlayer = game.getCurrentPlayer();
-//        Player opponentPlayer = game.getOpponentPlayer();
-//        PlayerView currentPlayerView = currentPlayer.getPlayerView();
-//        PlayerView opponentPlayerView = opponentPlayer.getPlayerView();
-//        gameMenuController.resetRowStyles(game);
-//
-//        swapBoardViews(currentPlayerView, opponentPlayerView);
-//        clearBoardViews(currentPlayerView, opponentPlayerView);
-//
-//        swapPlayerViews(currentPlayerView, opponentPlayerView, PlayerView.class.getDeclaredMethod("getDiscardPileView"),
-//                PlayerView.class.getDeclaredMethod("getDeckView"),
-//                PlayerView.class.getDeclaredMethod("getPlayerInformationView"),
-//                PlayerView.class.getDeclaredMethod("getLeaderView"));
-//
-//        setupViewsAfterSwitch(currentPlayerView, opponentPlayerView);
-//
-//        swapRows(currentPlayer, opponentPlayer);
-//    }
-//
-//
-//    private void swapBoardViews(PlayerView currentPlayerView, PlayerView opponentPlayerView) {
-//        rowsPane.getChildren().removeAll(currentPlayerView.getBoardView(), opponentPlayerView.getBoardView());
-//        switchCoordinates(currentPlayerView.getBoardView(), opponentPlayerView.getBoardView());
-//        rowsPane.getChildren().addAll(currentPlayerView.getBoardView(), opponentPlayerView.getBoardView());
-//    }
-//
-//    private void clearBoardViews(PlayerView currentPlayerView, PlayerView opponentPlayerView) {
-//        currentPlayerView.getBoardView().getChildren().clear();
-//        opponentPlayerView.getBoardView().getChildren().clear();
-//    }
-//
-//    private void swapPlayerViews(PlayerView currentPlayerView, PlayerView opponentPlayerView, Method... methods) {
-//        try {
-//            for (Method method : methods) {
-//                Node node1 = (Node) method.invoke(currentPlayerView);
-//                Node node2 = (Node) method.invoke(opponentPlayerView);
-//                pane.getChildren().removeAll(node1, node2);
-//                switchCoordinates(node1, node2);
-//            }
-//        } catch (InvocationTargetException | IllegalAccessException e) {
-//            throw new RuntimeException("Failed to switch player views", e);
-//        }
-//    }
-//
-//    private void swapRows(Player currentPlayer, Player opponentPlayer) {
-//        switchCoordinates(currentPlayer.getCloseCombat().getRowView(), opponentPlayer.getCloseCombat().getRowView());
-//        switchCoordinates(currentPlayer.getRangedCombat().getRowView(), opponentPlayer.getRangedCombat().getRowView());
-//        switchCoordinates(currentPlayer.getSiege().getRowView(), opponentPlayer.getSiege().getRowView());
-//        currentPlayer.getPlayerView().getBoardView().getChildren().addAll(currentPlayer.getSiege().getRowView(), currentPlayer.getRangedCombat().getRowView(), currentPlayer.getCloseCombat().getRowView());
-//        opponentPlayer.getPlayerView().getBoardView().getChildren().addAll(opponentPlayer.getCloseCombat().getRowView(), opponentPlayer.getRangedCombat().getRowView(), opponentPlayer.getSiege().getRowView());
-//    }
-//
-//    private void switchCoordinates(Node component1, Node component2) {
-//        double tempX = component1.getLayoutX();
-//        double tempY = component1.getLayoutY();
-//        component1.setLayoutX(component2.getLayoutX());
-//        component1.setLayoutY(component2.getLayoutY());
-//        component2.setLayoutX(tempX);
-//        component2.setLayoutY(tempY);
-//    }
+    public void handleLeader(Player player, Game game){
+        player.getPlayerView().getLeaderView().setOnMouseClicked(mouseEvent -> {
+            try {
+                player.getLeader().getAbility().invoke(LeaderAbility.getInstance(), game);
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            } catch (InvocationTargetException e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
+    public void addWeatherCard(String playerName, WeatherCard weatherCard, Game game){
+        weatherCardPosition.getChildren().add(weatherCard.getCardView());
+
+    }
     @FXML
     private void passTurn() {
         gameMenuController.checkRound(App.getCurrentGame());
@@ -344,7 +295,17 @@ public class GameMenu implements Menu {
     }
     @FXML
     private void goToMainMenu() {
+        pane.getChildren().remove(notifPane);
+        pane.getChildren().remove(endGamePane);
         App.getSceneManager().goToMainMenu();
     }
 
+    public void evacuateWeatherCards(Game game) {
+        Player currentPlayer = game.getCurrentPlayer();
+        for (Node cardView : weatherCardPosition.getChildren()) {
+            if (!currentPlayer.getDiscardPile().add(((WeatherCard) ((CardView) cardView).getCard())))
+                System.err.println("Error in removing card from discard pile in steel forged");
+        }
+        weatherCardPosition.getChildren().clear();
+    }
 }

@@ -1,13 +1,16 @@
 package model.ability;
 
+import enums.Ability;
 import enums.MenuScene;
 import enums.cardsData.WeatherCardsData;
 import model.Game;
+import model.Player;
+import model.card.DecksCard;
 import model.card.WeatherCard;
-import view.CardView;
 import view.GameMenu;
 
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 
 public class LeaderAbility {
     private static LeaderAbility instance;
@@ -32,15 +35,31 @@ public class LeaderAbility {
     }
 
     public void theSiegemasterAbility(Game currentGame) {
-        WeatherCard weatherCard = WeatherCardsData.IMPENETRABLE_FOG.createCard();
-        currentGame.addWeatherCard(weatherCard);
+        Player currentPlayer = currentGame.getCurrentPlayer();
         GameMenu gameMenu = (GameMenu) MenuScene.GAME_SCENE.getMenu();
-        gameMenu.getWeatherCardPosition().getChildren().add(weatherCard.getCardView());
-        weatherCard.run(currentGame);
+        ArrayList<DecksCard> cards = new ArrayList<>();
+        cards.addAll(currentPlayer.getDeck());
+        cards.addAll(currentPlayer.getHand());
+        for (DecksCard decksCard : cards){
+            if (decksCard instanceof WeatherCard &&
+                    ((WeatherCardsData)decksCard.getCardData()).getAbility().equals(Ability.IMPENETRABLE_FOG)){
+                gameMenu.addWeatherCard(currentPlayer.getUser().getUsername(), (WeatherCard) decksCard, currentGame);
+                decksCard.run(currentGame);
+                currentGame.addWeatherCard((WeatherCard) decksCard);
+                if (currentPlayer.getDeck().contains(decksCard)) {
+                   if(!currentPlayer.getDeck().remove(decksCard)) System.err.println("Error in removing card from deck in siegemaster");
+                }
+                else if (!currentPlayer.getHand().remove(decksCard))
+                    System.err.println("Error in removing card from hand in siegemaster");
+                break;
+            }
+        }
     }
 
     public void theSteelForgedAbility(Game currentGame) {
-
+        WeatherCardsData.CLEAR_WEATHER.createCard().run(currentGame);
+        GameMenu gameMenu = (GameMenu) MenuScene.GAME_SCENE.getMenu();
+        gameMenu.evacuateWeatherCards(currentGame);
     }
 
     public void kingOfTemeriaAbility(Game currentGame) {

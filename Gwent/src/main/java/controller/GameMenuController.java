@@ -45,6 +45,8 @@ public class GameMenuController {
         handelHandsCardEvent(opponentPlayer.getHand(), game, opponentPlayer, player);
         menu.setHand(player.getHand());
         menu.setUpNotificationBox();
+        menu.handleLeader(player, game);
+        menu.handleLeader(opponentPlayer, game);
     }
 
     public void handelHandsCardEvent(ArrayList<DecksCard> handsCards, Game game, Player player, Player opponentPlayer) {
@@ -115,22 +117,6 @@ public class GameMenuController {
             }
         });
     }
-    private void setRowEvent(DecksCard card, Game game, Method method, ArrayList<Method> methods, Player player) throws InvocationTargetException, IllegalAccessException {
-        if (methods.size() == 2) {
-            Row row1 = (Row) methods.get(0).invoke(player);
-            Row row2 = (Row) methods.get(1).invoke(player);
-            row1.getRowView().addStyle(CssAddress.CARD_ROW);
-            row2.getRowView().addStyle(CssAddress.CARD_ROW);
-            menu.setNodeStyle(row1.getRowView().getRow(), CssAddress.CARD_ROW);
-            menu.setNodeStyle(row2.getRowView().getRow(), CssAddress.CARD_ROW);
-            handleRowEvents(card, game, method, row1, row2);
-        } else {
-            Row row = (Row) methods.get(0).invoke(player);
-            row.getRowView().addStyle(CssAddress.CARD_ROW);
-            menu.setNodeStyle(row.getRowView().getRow(), CssAddress.CARD_ROW);
-            handleRowEvents(card, game, method, row);
-        }
-    }
 
     private void handleRegularCardMovement(DecksCard card, Game game, Row row) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
         Player player = game.getCurrentPlayer();
@@ -149,12 +135,10 @@ public class GameMenuController {
         resetRowStyles(game);
         menu.removeNodeStyle(card.getCardView(), CssAddress.GAME_HAND_SM_CARD);
         menu.setNodeStyle(card.getCardView(), CssAddress.CARD_IN_ROW);
-        AnimationMaker.getInstance().cardPlaceAnimation(card, game.getCurrentPlayer().getPlayerView().getHandView(),
-                row.getRowView().getSpecialCardPosition(), game, menu, true);
+        AnimationMaker.getInstance().cardPlaceAnimation(card, game.getCurrentPlayer().getPlayerView().getHandView(), row.getRowView().getSpecialCardPosition(), game, menu, true);
         if (card.isDiscardAfterPlaying()) {
             Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), actionEvent -> {
-                AnimationMaker.getInstance().discardAnimation(card, row.getRowView().getSpecialCardPosition(),
-                        game.getCurrentPlayer().getPlayerView().getDiscardPileView(), game, menu);
+                AnimationMaker.getInstance().discardAnimation(card, row.getRowView().getSpecialCardPosition(), game.getCurrentPlayer().getPlayerView().getDiscardPileView(), game, menu);
             }));
             timeline.setCycleCount(1);
             timeline.play();
@@ -172,7 +156,9 @@ public class GameMenuController {
         if (((WeatherCardsData) weatherCard.getCardData()).getAbility().equals(Ability.CLEAR_WEATHER)) {
             clearWeather(weatherCard, game, player.getPlayerView().getHandView(), menu.getWeatherCardPosition());
         } else {
-            AnimationMaker.getInstance().cardPlaceAnimation(weatherCard, player.getPlayerView().getHandView(), menu.getWeatherCardPosition(), game, menu, true);
+            AnimationMaker.getInstance().cardPlaceAnimation(weatherCard,
+                    player.getPlayerView().getHandView(),
+                    menu.getWeatherCardPosition(), game, menu, true);
         }
         game.addWeatherCard(weatherCard);
         player.playCard(weatherCard);
@@ -193,11 +179,10 @@ public class GameMenuController {
 
     public void handleSpecialCardEvents(SpecialCard specialCard, Game game, Player player1) {
         CardView cardView = specialCard.getCardView();
-        game.selectCard(specialCard);
-        System.err.println(specialCard.getName());
         try {
             Method method = RowView.class.getDeclaredMethod("getSpecialCardPosition");
             cardView.setOnMouseClicked(event -> {
+                game.selectCard(specialCard);
                 resetRowStyles(game);
                 if (((SpecialCardsData) specialCard.getCardData()).getAbility().equals(Ability.DECOY))
                     specialCard.run(game);
@@ -238,11 +223,6 @@ public class GameMenuController {
             });
         }
     }
-
-    private void removeHandler(DecksCard card) {
-        card.getCardView().setOnMouseClicked(null);
-    }
-
     public void resetRowStyles(Game game) {
         for (Row row : game.getCurrentPlayer().getRows()) {
             menu.resetStyles(row.getRowView());
@@ -291,7 +271,110 @@ public class GameMenuController {
         //TODO: leader abilities should be considered
     }
 
-    //TODO: complete endRound method
+
+
+    private void endGame(Game game) {
+        int currentPlayerLife = game.getCurrentPlayer().getLife();
+        int opponentPlayerLife = game.getOpponentPlayer().getLife();
+        if (opponentPlayerLife == 0 && currentPlayerLife == 0) {
+            setUpLoserCrystal(game.getCurrentPlayer());
+            setUpLoserCrystal(game.getOpponentPlayer());
+            game.getCurrentPlayer().getUser().addToDraws();
+            game.getOpponentPlayer().getUser().addToDraws();
+            menu.endGame("DRAW",null, game.getCurrentPlayer().getRoundsPoint(), null, game.getOpponentPlayer().getRoundsPoint());
+        }
+        else if (currentPlayerLife == 0) {
+            setUpLoserCrystal(game.getCurrentPlayer());
+            game.getCurrentPlayer().getUser().addToLosses();
+            game.getOpponentPlayer().getUser().addToWins();
+            menu.endGame(game.getOpponentPlayer().getUser().getUsername() + " WON",game.getOpponentPlayer().getUser().getUsername(), game.getOpponentPlayer().getRoundsPoint(),
+                    game.getCurrentPlayer().getUser().getUsername(), game.getCurrentPlayer().getRoundsPoint());
+        } else if (opponentPlayerLife == 0){
+            setUpLoserCrystal(game.getOpponentPlayer());
+            game.getCurrentPlayer().getUser().addToWins();
+            game.getOpponentPlayer().getUser().addToLosses();
+            menu.endGame(game.getCurrentPlayer().getUser().getUsername() + " WON",game.getCurrentPlayer().getUser().getUsername(), game.getCurrentPlayer().getRoundsPoint(),
+                    game.getOpponentPlayer().getUser().getUsername(), game.getOpponentPlayer().getRoundsPoint());
+        }
+        resetRound(game);
+
+    }
+
+    private void setUpLoserCrystal(Player player) {
+        if (player.getLife() == 1)
+            player.getPlayerView().getPlayerInformationView().setFirstRoundOfLoss();
+        else if (player.getLife() == 0)
+            player.getPlayerView().getPlayerInformationView().setSecondRoundOfLoss();
+
+    }
+
+
+    private void checkForTransformers(Game game) {
+        Player currentPlayer = game.getCurrentPlayer();
+        for (Row row : currentPlayer.getRows()) {
+            for (DecksCard decksCard : row.getCards()) {
+                Method ability;
+                if (!(decksCard instanceof RegularCard)) continue;
+                if (((RegularCardData) decksCard.getCardData()).getAbility() != null) {
+                    ability = ((RegularCard) decksCard).getAbility();
+                    if (ability.equals(Ability.TRANSFORMER)) {
+                        game.selectCard(decksCard);
+                        game.selectRow(row);
+                        decksCard.run(game);
+                    }
+                }
+            }
+        }
+    }
+
+    private void resetRound(Game game) {
+        game.resetGame();
+    }
+
+    private Player setBeginnerOfTheRound(Game game) {
+        Random random = new Random();
+        int randomInt = random.nextInt(2);
+        if (randomInt == 0) return game.getCurrentPlayer();
+        else return game.getOpponentPlayer();
+    }
+
+    private boolean gameIsOver(Game game) {
+        return game.getCurrentPlayer().getLife() == 0 || game.getOpponentPlayer().getLife() == 0;
+    }
+
+    private void setUpNextRound(Game game, Player loser) {
+        if (loser == null) {
+            setLoserOfTheRound(game.getOpponentPlayer());
+            setLoserOfTheRound(game.getCurrentPlayer());
+        } else {
+            System.out.println(loser == game.getCurrentPlayer());
+            System.out.println(loser == game.getOpponentPlayer());
+            if (loser == game.getCurrentPlayer()) setLoserOfTheRound(game.getCurrentPlayer());
+            else setLoserOfTheRound(game.getOpponentPlayer());
+        }
+    }
+
+    private void setLoserOfTheRound(Player loser) {
+        if (loser.getLife() == 1) setUpLoserCrystal(loser);
+        else if (loser.getLife() == 0) setUpLoserCrystal(loser);
+    }
+
+    private void passTurn(Game game) {
+        menu.disablePane();
+        if (!game.isRoundPassed()) {
+            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), actionEvent -> {
+                try {
+                    switchBoard(game);
+                    game.changeTurn();
+                    menu.handlePassTurn(game);
+                } catch (NoSuchMethodException e) {
+                    throw new RuntimeException(e);
+                }
+            }));
+            timeline.setCycleCount(1);
+            timeline.play();
+        }
+    }
     private void endRound(Game game) {
         Player winner = checkForHigherScore(game);
         Player loser = null;
@@ -332,109 +415,9 @@ public class GameMenuController {
             menu.endRound(message);
         }
     }
-
-    private void checkForTransformers(Game game) {
-        Player currentPlayer = game.getCurrentPlayer();
-        for (Row row : currentPlayer.getRows()) {
-            for (DecksCard decksCard : row.getCards()) {
-                Method ability;
-                if (!(decksCard instanceof RegularCard)) continue;
-                if (((RegularCardData) decksCard.getCardData()).getAbility() != null) {
-                    ability = ((RegularCard) decksCard).getAbility();
-                    if (ability.equals(Ability.TRANSFORMER)) {
-                        game.selectCard(decksCard);
-                        game.selectRow(row);
-                        decksCard.run(game);
-                    }
-                }
-            }
-        }
-    }
-
-    private void resetRound(Game game) {
-        game.resetGame();
-    }
-
-    private Player setBeginnerOfTheRound(Game game) {
-        Random random = new Random();
-        int randomInt = random.nextInt(2);
-        if (randomInt == 0) return game.getCurrentPlayer();
-        else return game.getOpponentPlayer();
-    }
-
-    private boolean gameIsOver(Game game) {
-        return game.getCurrentPlayer().getLife() == 0 || game.getOpponentPlayer().getLife() == 0;
-    }
-
-    private void endGame(Game game) {
-        int currentPlayerLife = game.getCurrentPlayer().getLife();
-        int opponentPlayerLife = game.getOpponentPlayer().getLife();
-        if (opponentPlayerLife == 0 && currentPlayerLife == 0) {
-            setUpLoserCrystal(game.getCurrentPlayer());
-            setUpLoserCrystal(game.getOpponentPlayer());
-            game.getCurrentPlayer().getUser().addToDraws();
-            game.getOpponentPlayer().getUser().addToDraws();
-            menu.endGame("DRAW",null, game.getCurrentPlayer().getRoundsPoint(), null, game.getOpponentPlayer().getRoundsPoint());
-        }
-        else if (currentPlayerLife == 0) {
-            setUpLoserCrystal(game.getCurrentPlayer());
-            game.getCurrentPlayer().getUser().addToLosses();
-            game.getOpponentPlayer().getUser().addToWins();
-            menu.endGame(game.getOpponentPlayer().getUser().getUsername() + " WON",game.getOpponentPlayer().getUser().getUsername(), game.getOpponentPlayer().getRoundsPoint(),
-                    game.getCurrentPlayer().getUser().getUsername(), game.getCurrentPlayer().getRoundsPoint());
-        } else if (opponentPlayerLife == 0){
-            setUpLoserCrystal(game.getOpponentPlayer());
-            game.getCurrentPlayer().getUser().addToWins();
-            game.getOpponentPlayer().getUser().addToLosses();
-            menu.endGame(game.getCurrentPlayer().getUser().getUsername() + " WON",game.getCurrentPlayer().getUser().getUsername(), game.getCurrentPlayer().getRoundsPoint(),
-                    game.getOpponentPlayer().getUser().getUsername(), game.getOpponentPlayer().getRoundsPoint());
-        }
-        resetRound(game);
-
-    }
-
-    private void setUpNextRound(Game game, Player loser) {
-        if (loser == null) {
-            setLoserOfTheRound(game.getOpponentPlayer());
-            setLoserOfTheRound(game.getCurrentPlayer());
-        } else {
-            if (loser == game.getCurrentPlayer()) setLoserOfTheRound(game.getCurrentPlayer());
-            else setLoserOfTheRound(game.getOpponentPlayer());
-        }
-    }
-
-    private void setLoserOfTheRound(Player loser) {
-        if (loser.getLife() == 1) setUpLoserCrystal(loser);
-        else if (loser.getLife() == 0) setUpLoserCrystal(loser);
-    }
-
-    private void setUpLoserCrystal(Player player) {
-        if (player.getLife() == 1)
-            player.getPlayerView().getPlayerInformationView().setFirstRoundOfLoss();
-        else if (player.getLife() == 0)
-            player.getPlayerView().getPlayerInformationView().setSecondRoundOfLoss();
-
-    }
-
-    private void passTurn(Game game) {
-        menu.disablePane();
-        if (!game.isRoundPassed()) {
-            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), actionEvent -> {
-                try {
-                    switchBoard(game);
-                    game.changeTurn();
-                    menu.handlePassTurn(game);
-                } catch (NoSuchMethodException e) {
-                    throw new RuntimeException(e);
-                }
-            }));
-            timeline.setCycleCount(1);
-            timeline.play();
-        }
-    }
-
     private void setCardsPoint(Row row) {
         int point;
+        boolean hasCommanderHorn = hasRegularCommanderHorn(row);
         HashMap<CardData, ArrayList<RegularCard>> cardMap = row.getCardDataMap();
         for (DecksCard decksCard : row.getCards()) {
             if (!(decksCard instanceof RegularCard card)) continue;
@@ -454,12 +437,8 @@ public class GameMenuController {
             SpecialCard specialCard = row.getSpecialCard();
             if (ability != null) {
                 if (ability.equals(Ability.MORAL_BOOST) && row.getExtraPoint() > 0) point--;
-                if (row.isBonused()){
-                    if (((SpecialCardsData)(row.getSpecialCard().getCardData())).getAbility().equals(Ability.SPECIAL_COMMANDER_HORN))
-                        point *= 2;
-                    else if (!ability.equals(Ability.HORN_COMMANDER)) point *= 2;
-                }
-            } else if (row.isBonused()) point *= 2;
+                if (hasCommanderHorn && !ability.equals(Ability.HORN_COMMANDER)) point *= 2;
+            } else if (hasCommanderHorn) point *= 2;
             if (specialCard != null) {
                 if (((DeckCardData) specialCard.getCardData()).getAbility().equals(Ability.SPECIAL_COMMANDER_HORN))
                     point *= 2;
@@ -468,32 +447,7 @@ public class GameMenuController {
         }
     }
 
-    private void clearWeather(WeatherCard card, Game game, HBox sourceHBox, HBox destinationHBox) {
-        Bounds nodeBounds = card.getCardView().localToScene(card.getCardView().getBoundsInLocal());
-        game.getCurrentPlayer().discardCard(card);
-        TranslateTransition translate = AnimationMaker.getInstance().getTranslate(card, nodeBounds, destinationHBox, 0.4);
-        translate.setOnFinished(event -> {
-            sourceHBox.getChildren().remove(card.getCardView());
-            destinationHBox.getChildren().add(card.getCardView());
-            card.getCardView().setTranslateX(0);
-            card.getCardView().setTranslateY(0);
-            ArrayList<Node> nodes = new ArrayList<>(menu.getWeatherCardPosition().getChildren());
-            for (Node cardView : nodes) {
-                game.getCurrentPlayer().discardCard((DecksCard) ((CardView) cardView).getCard());
-                AnimationMaker.getInstance().discardAnimation((DecksCard) ((CardView) cardView).getCard(), destinationHBox, game.getCurrentPlayer().getPlayerView().getDiscardPileView(), game, menu);
-            }
-            game.getWeatherCards().clear();
-            card.run(game);
-        });
-        translate.play();
-    }
-    public void setupViewsAfterSwitch(PlayerView currentPlayerView, PlayerView opponentPlayerView) {
-        menu.setUpAfterSwitch(menu.getPane(), currentPlayerView.getDeckView(), opponentPlayerView.getDeckView());
-        menu.setUpAfterSwitch(menu.getPane(), currentPlayerView.getDiscardPileView(), opponentPlayerView.getDiscardPileView());
-        menu.setUpAfterSwitch(menu.getPane(), currentPlayerView.getPlayerInformationView(), opponentPlayerView.getPlayerInformationView());
-        menu.setUpAfterSwitch(menu.getPane(), currentPlayerView.getLeaderView(), opponentPlayerView.getHandView());
-    }
-    public void switchBoard(Game game) throws NoSuchMethodException {
+    private void switchBoard(Game game) throws NoSuchMethodException {
         Player currentPlayer = game.getCurrentPlayer();
         Player opponentPlayer = game.getOpponentPlayer();
         PlayerView currentPlayerView = currentPlayer.getPlayerView();
@@ -513,6 +467,33 @@ public class GameMenuController {
         swapRows(currentPlayer, opponentPlayer);
     }
 
+    private boolean hasRegularCommanderHorn(Row row) {
+        for (DecksCard decksCard : row.getCards()) {
+            if (!(decksCard instanceof RegularCard regularCard)) continue;
+            if (regularCard.isHero()) continue;
+            if (((DeckCardData) regularCard.getCardData()).getAbility() != null && ((DeckCardData) regularCard.getCardData()).getAbility().equals(Ability.HORN_COMMANDER)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void setRowEvent(DecksCard card, Game game, Method method, ArrayList<Method> methods, Player player) throws InvocationTargetException, IllegalAccessException {
+        if (methods.size() == 2) {
+            Row row1 = (Row) methods.get(0).invoke(player);
+            Row row2 = (Row) methods.get(1).invoke(player);
+            row1.getRowView().addStyle(CssAddress.CARD_ROW);
+            row2.getRowView().addStyle(CssAddress.CARD_ROW);
+            menu.setNodeStyle(row1.getRowView().getRow(), CssAddress.CARD_ROW);
+            menu.setNodeStyle(row2.getRowView().getRow(), CssAddress.CARD_ROW);
+            handleRowEvents(card, game, method, row1, row2);
+        } else {
+            Row row = (Row) methods.get(0).invoke(player);
+            row.getRowView().addStyle(CssAddress.CARD_ROW);
+            menu.setNodeStyle(row.getRowView().getRow(), CssAddress.CARD_ROW);
+            handleRowEvents(card, game, method, row);
+        }
+    }
 
     private void swapBoardViews(PlayerView currentPlayerView, PlayerView opponentPlayerView) {
         menu.getRowsPane().getChildren().removeAll(currentPlayerView.getBoardView(), opponentPlayerView.getBoardView());
@@ -538,6 +519,13 @@ public class GameMenuController {
         }
     }
 
+    private void setupViewsAfterSwitch(PlayerView currentPlayerView, PlayerView opponentPlayerView) {
+        menu.setUpAfterSwitch(menu.getPane(), currentPlayerView.getDeckView(), opponentPlayerView.getDeckView());
+        menu.setUpAfterSwitch(menu.getPane(), currentPlayerView.getDiscardPileView(), opponentPlayerView.getDiscardPileView());
+        menu.setUpAfterSwitch(menu.getPane(), currentPlayerView.getPlayerInformationView(), opponentPlayerView.getPlayerInformationView());
+        menu.setUpAfterSwitch(menu.getPane(), currentPlayerView.getLeaderView(), opponentPlayerView.getLeaderView());
+    }
+
     private void swapRows(Player currentPlayer, Player opponentPlayer) {
         switchCoordinates(currentPlayer.getCloseCombat().getRowView(), opponentPlayer.getCloseCombat().getRowView());
         switchCoordinates(currentPlayer.getRangedCombat().getRowView(), opponentPlayer.getRangedCombat().getRowView());
@@ -554,4 +542,25 @@ public class GameMenuController {
         component2.setLayoutX(tempX);
         component2.setLayoutY(tempY);
     }
+
+    private void clearWeather(WeatherCard card, Game game, HBox sourceHBox, HBox destinationHBox) {
+        Bounds nodeBounds = card.getCardView().localToScene(card.getCardView().getBoundsInLocal());
+        game.getCurrentPlayer().discardCard(card);
+        TranslateTransition translate = AnimationMaker.getInstance().getTranslate(card, nodeBounds, destinationHBox, 0.4);
+        translate.setOnFinished(event -> {
+            sourceHBox.getChildren().remove(card.getCardView());
+            destinationHBox.getChildren().add(card.getCardView());
+            card.getCardView().setTranslateX(0);
+            card.getCardView().setTranslateY(0);
+            ArrayList<Node> nodes = new ArrayList<>(menu.getWeatherCardPosition().getChildren());
+            for (Node cardView : nodes) {
+                game.getCurrentPlayer().discardCard((DecksCard) ((CardView) cardView).getCard());
+                AnimationMaker.getInstance().discardAnimation((DecksCard) ((CardView) cardView).getCard(), destinationHBox, game.getCurrentPlayer().getPlayerView().getDiscardPileView(), game, menu);
+            }
+            game.getWeatherCards().clear();
+            card.run(game);
+        });
+        translate.play();
+    }
+
 }

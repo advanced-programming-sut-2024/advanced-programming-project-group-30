@@ -11,7 +11,6 @@ import model.Row;
 import model.card.DecksCard;
 import model.card.RegularCard;
 import model.card.SpecialCard;
-import view.AnimationMaker;
 import view.GameMenu;
 
 import java.lang.reflect.Method;
@@ -45,28 +44,40 @@ public class SpecialCardAbility {
     public void decoy(Game game) {
         Player player = game.getCurrentPlayer();
         ArrayList<Row> allRows = player.getRows();
-        ArrayList<DecksCard> cards = new ArrayList<>();
         GameMenu gameMenu = (GameMenu) MenuScene.GAME_SCENE.getMenu();
-        System.out.println(game.getSelectedCard().getName());
         for (Row row : allRows) {
-            cards.addAll(row.getCards());
-            if (row.getSpecialCard() != null) cards.add(row.getSpecialCard());
-            for (DecksCard card : cards) {
+            ArrayList<DecksCard> cards = new ArrayList<>(row.getCards());
+            cards.add(row.getSpecialCard());
+            for (DecksCard card : row.getCards()) {
                 card.getCardView().getStyleClass().add(CssAddress.GAME_HAND_SM_CARD.getStyleClass());
                 card.getCardView().setOnMouseClicked(mouseEvent -> {
                     HBox box;
                     if (card instanceof SpecialCard) {
                         box = row.getRowView().getSpecialCardPosition();
-                    } else box = row.getRowView().getRow();
-//                    box.getChildren().remove(card.getCardView());
-//                    player.getPlayerView().getHandView().getChildren().add(card.getCardView());
-//                    box.getChildren().add(game.getSelectedCard().getCardView());
-//                    player.getPlayerView().getHandView().getChildren().remove(game.getSelectedCard().getCardView());
-                    AnimationMaker.getInstance().cardPlaceAnimation(card, box, player.getPlayerView().getHandView(), game, gameMenu, false);
-                    AnimationMaker.getInstance().cardPlaceAnimation(game.getSelectedCard(), player.getPlayerView().getHandView(), box, game, gameMenu, false);
+                        row.setSpecialCard((SpecialCard) game.getSelectedCard());
+                    } else {
+                        box = row.getRowView().getRow();
+                        if (!row.getCards().remove(card))
+                            System.err.println("Error in remove card from row in decoy");
+                        if (!row.getCards().add(game.getSelectedCard()))
+                            System.err.println("Error in add decoy to row in decoy");
+                    }
+                    game.getSelectedCard().getCardView().getStyleClass().add(CssAddress.CARD_IN_ROW.getStyleClass());
+                    card.getCardView().setScaleX(1);
+                    card.getCardView().setScaleY(1);
+                    card.getCardView().getStyleClass().add(CssAddress.GAME_HAND_SM_CARD.getStyleClass());
+                    box.getChildren().remove(card.getCardView());
+                    player.getPlayerView().getHandView().getChildren().add(card.getCardView());
+                    box.getChildren().add(game.getSelectedCard().getCardView());
+                    player.getPlayerView().getHandView().getChildren().remove(game.getSelectedCard().getCardView());
+                    if (!player.getHand().add(card)) System.err.println("Error in add card to hand in decoy");
+                    ArrayList<DecksCard> chosenCards = new ArrayList<>();
+                    chosenCards.add(card);
+                    gameMenu.setHandCardEventHandler(player, game.getOpponentPlayer(), game, chosenCards);
+                    gameMenu.updateGame(game);
+                    if (!player.getHand().remove(game.getSelectedCard())) System.err.println("Error in playing card in decoy");
                 });
             }
-            cards.clear();
         }
         if (game.getSelectedCard() instanceof SpecialCard)
             game.getSelectedRow().setSpecialCard((SpecialCard) game.getSelectedCard());

@@ -91,6 +91,7 @@ public class RegularCardsAbility {
                 }
             }
         }
+
         for (RegularCard regularCard : cardsToBeRemovedFromHand) {
             currentPlayer.getHand().remove(regularCard);
         }

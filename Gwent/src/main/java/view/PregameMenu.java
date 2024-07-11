@@ -139,6 +139,13 @@ public class PregameMenu implements Menu {
         } else collectionCardView.setNumber(collectionCardView.getNumber() + 1);
         updateNumberData();
     }
+    public PregameCardView getCardView(CardData cardData, FlowPane flowPane) {
+        for (Node node : flowPane.getChildren()) {
+            if (!(node instanceof PregameCardView cardView)) continue;
+            if (cardView.getCardData() == cardData) return cardView;
+        }
+        return null;
+    }
 
     public void removeFromCardsInDeck(PregameCardView cardView) {
         cardsInDeck.getChildren().remove(cardView);
