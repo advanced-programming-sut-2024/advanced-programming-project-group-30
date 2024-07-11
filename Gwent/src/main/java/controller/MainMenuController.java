@@ -1,6 +1,7 @@
 package controller;
 
 import model.App;
+import view.ScoreBoard;
 
 public class MainMenuController {
     public void logout() {
@@ -14,6 +15,7 @@ public class MainMenuController {
     public void goToProfileMenu() {
         App.getSceneManager().goToProfileMenu();
     }
+
 }
 
 

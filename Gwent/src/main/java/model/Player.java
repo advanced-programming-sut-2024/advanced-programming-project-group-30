@@ -27,7 +27,7 @@ public class Player {
     private final Row rangedCombat = new Row("rangedCombat");
     private final Row siege = new Row("siege");
     private int point = 0;
-    private final int[] roundsPoint = new int[3];
+    private final int[] roundsPoint = new int[10];
     private int life = 2;
     private final PlayerView playerView;
     private boolean hasPlayedLeader;
@@ -191,4 +191,5 @@ public class Player {
     public void addLife(){
         life++;
     }
+
 }

@@ -17,5 +17,7 @@ public class Main extends Application {
         stage.setScene(App.getCurrentMenuScene().getScene());
         stage.setTitle("Gwent");
         stage.show();
+        App.saveUsers();
+
     }
 }

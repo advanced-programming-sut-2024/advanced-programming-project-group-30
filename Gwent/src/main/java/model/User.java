@@ -2,6 +2,7 @@ package model;
 
 import enums.FactionType;
 import enums.SecurityQuestion;
+import model.card.UserData;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,6 +30,22 @@ public class User {
         this.nickName = nickName;
         this.securityQuestion = securityQuestion;
         this.securityAnswer = securityAnswer;
+
+    }
+    public User (UserData userData){
+        this.username = userData.getUsername();
+        this.password = userData.getPassword();
+        this.email = userData.getEmail();
+        this.nickName = userData.getNickname();
+        this.securityQuestion = userData.getSecurityQuestion();
+        this.securityAnswer = userData.getQuestionAnswer();
+        this.rank = userData.getRank();
+        this.wins = userData.getWins();
+        this.losses = userData.getLosses();
+        this.draws = userData.getDraws();
+        this.highestScore = userData.getHighestScore();
+        this.selectedFaction = userData.getFactionType();
+        this.gameHistories.addAll(userData.getGameHistories());
     }
 
     public String getUsername() {

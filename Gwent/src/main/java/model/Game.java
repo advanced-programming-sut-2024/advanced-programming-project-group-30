@@ -1,7 +1,12 @@
 package model;
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 
 import model.card.DecksCard;
 import model.card.WeatherCard;
@@ -55,8 +60,28 @@ public class Game {
         roundNumber++;
     }
 
-    public GameHistory endGame() {
-        return null;
+    public void endGame() {
+        String winnerName;
+        String loserName;
+        if (currentPlayer.getLife() == 0) {
+            winnerName = currentPlayer.getUser().getUsername();
+            loserName = opponentPlayer.getUser().getUsername();
+        }
+        else {
+            winnerName = opponentPlayer.getUser().getUsername();
+            loserName = currentPlayer.getUser().getUsername();
+        }
+        LocalDateTime localDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM H");
+        String formattedDateTime = localDateTime.format(formatter);
+        SimpleDateFormat sdf = new SimpleDateFormat("d MMMM H");
+        Date date = null;
+        try {
+             date = sdf.parse(formattedDateTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        GameHistory gameHistory = new GameHistory(currentPlayer, opponentPlayer, loserName, winnerName, date);
     }
 
     public void selectRow(Row row) {
@@ -98,6 +123,7 @@ public class Game {
     }
 
     public void roundFinished() {
+
         currentPlayer.setRoundPoint(roundNumber - 1, currentPlayer.getPoint());
         opponentPlayer.setRoundPoint(roundNumber - 1, opponentPlayer.getPoint());
         endRound();

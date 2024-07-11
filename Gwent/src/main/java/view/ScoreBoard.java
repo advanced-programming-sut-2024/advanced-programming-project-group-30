@@ -4,6 +4,7 @@ import controller.ScoreBoardController;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -65,7 +66,17 @@ public class ScoreBoard extends Application {
                 };
             }
         });
-
+        Button button = new Button("back");
+        button.getStylesheets().add(getClass().getResource("/CSS/NodeStyle.css").toExternalForm());
+        button.getStyleClass().add("changePasswordButton");
+        button.setLayoutX(10);
+        button.setLayoutY(10);
+        button.setPrefWidth(30);
+        button.setPrefHeight(40);
+        button.setOnAction(e -> {
+            ScoreBoardController.goToMainMenu();
+        });
+        vbox.getChildren().add(button);
         // Get the sorted list of users
         ArrayList<User> users = ScoreBoardController.calculateRankings();
 
@@ -84,7 +95,7 @@ public class ScoreBoard extends Application {
         vbox.getChildren().addAll(label, listView);
 
         // Create a scene with the VBox as the root node
-        Scene scene = new Scene(vbox, 1000, 625); // Increased size for a modern look
+        Scene scene = new Scene(vbox, 800, 500); // Increased size for a modern look
 
         // Set the scene on the primary stage
         primaryStage.setScene(scene);
@@ -95,10 +106,11 @@ public class ScoreBoard extends Application {
 
     public static void main(String[] args) {
         App.loadUsers();
-        App.testSetup();
-        App.getUserByUsername("pishi").addToWins();
-        App.getUserByUsername("pishi").addToWins();
-        App.getUserByUsername("jojo").addToWins();
+
+//        App.testSetup();
+//        App.getUserByUsername("pishi").addToWins();
+//        App.getUserByUsername("pishi").addToWins();
+//        App.getUserByUsername("jojo").addToWins();
         launch(args);
     }
 

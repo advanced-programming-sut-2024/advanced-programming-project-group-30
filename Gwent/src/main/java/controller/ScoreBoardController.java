@@ -21,4 +21,7 @@ public class ScoreBoardController {
 
         return users;
     }
+    public static void goToMainMenu(){
+        App.getSceneManager().goToMainMenu();
+    }
 }

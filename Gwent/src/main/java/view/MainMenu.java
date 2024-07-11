@@ -49,4 +49,9 @@ public class MainMenu implements Menu {
         pane.setLayoutX((root.getWidth() - 1150) / 2);
         pane.setLayoutY((root.getHeight() - 660) / 2 + 5 * (double) 1);
     }
+    @FXML
+    public void goToScoreBoard() {
+        ScoreBoard scoreBoard = new ScoreBoard();
+        scoreBoard.start(App.getPrimaryStage());
+    }
 }

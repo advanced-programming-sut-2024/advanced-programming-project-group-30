@@ -1,6 +1,7 @@
 package model;
 
 import controller.DataSaverController;
+import model.card.UserData;
 import view.SceneManager;
 import enums.MenuScene;
 import enums.SecurityQuestion;
@@ -82,9 +83,21 @@ public class App {
         return 1;
     }
 
-    public static void setAllUsers(ArrayList<User> users) {
-        allUsers.clear();
-        allUsers.addAll(users);
+    public static void setAllUsers(ArrayList<UserData> userDatas) {
+        for (UserData userData: userDatas) {
+            boolean isUserUnique = true;
+            if (allUsers != null){
+                for (User user : allUsers) {
+                    if (user.getUsername().equals(userData.getUsername())) {
+                        isUserUnique = false;
+                        break;
+                    }
+                }
+            }
+            if (isUserUnique)
+                allUsers.add(new User(userData));
+        }
+
     }
 
     public static ArrayList<User> getAllUsers() {
@@ -92,7 +105,11 @@ public class App {
     }
 
     public static void saveUsers() {
-        dataSaverController.saveUsers(allUsers);
+        ArrayList<UserData> userDatas = new ArrayList<>();
+        for (User user : allUsers) {
+            userDatas.add(new UserData(user));
+        }
+        dataSaverController.saveUsers(userDatas);
     }
 
     public static void loadUsers() {

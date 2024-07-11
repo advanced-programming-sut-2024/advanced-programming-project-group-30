@@ -5,6 +5,8 @@ import model.GameHistory;
 import model.Result;
 import model.User;
 
+import java.time.LocalDateTime;
+
 
 public class ProfileMenuController {
     private final UserInformationController userInformationController = new UserInformationController();
@@ -79,9 +81,10 @@ public class ProfileMenuController {
         for (int i = 0; i < count; i++) {
             gameHistory = user.getGameHistories().get(i);
             gameHistoryBuilder.append(i + 1).append(". ");
-            gameHistoryBuilder.append("Opponent: ").append(gameHistory.getOpponent().getUsername()).append("\n");
-            gameHistoryBuilder.append("Winner: ").append(gameHistory.getWinner().getUsername());
-            gameHistoryBuilder.append("Date: ").append(gameHistory.getDate()).append("\n");
+            gameHistoryBuilder.append("Opponent: ").append(gameHistory.getOpponentName()).append("\n");
+            gameHistoryBuilder.append("Winner: ").append(gameHistory.getWinnerName());
+            LocalDateTime convertedDateTime = gameHistory.getDate().toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDateTime();
+            gameHistoryBuilder.append("Date: ").append(convertedDateTime).append("\n");
             gameHistoryBuilder.append("Result of the game\n").append("-------------------\n");
             for (int j = 0; j < 3; j++) {
                 gameHistoryBuilder.append("         round ").append(j + 1).append("       ");

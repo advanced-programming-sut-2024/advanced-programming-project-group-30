@@ -1,9 +1,6 @@
 package controller;
 
-import enums.Ability;
-import enums.CssAddress;
-import enums.GameNotification;
-import enums.RegularCardPositionType;
+import enums.*;
 import enums.cardsData.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -267,6 +264,7 @@ public class GameMenuController {
             menu.endGame(game.getCurrentPlayer().getUser().getUsername() + " WON",game.getCurrentPlayer().getUser().getUsername(), game.getCurrentPlayer().getRoundsPoint(),
                     game.getOpponentPlayer().getUser().getUsername(), game.getOpponentPlayer().getRoundsPoint());
         }
+        game.endGame();
         resetRound(game);
 
     }
@@ -330,10 +328,17 @@ public class GameMenuController {
         Player beginner = setBeginnerOfTheRound(game);
         String message;
         if (winner == null) {
-            message = GameNotification.DRAW_ROUND.getNotification();
-            game.getOpponentPlayer().reduceLife();
-            game.getCurrentPlayer().reduceLife();
-        } else if (winner.equals(App.getCurrentGame().getCurrentPlayer())) {
+            if (game.getCurrentPlayer().getUser().getSelectedFaction().equals(FactionType.NILFGAARDIAN_EMPIRE))
+                winner = game.getCurrentPlayer();
+            else if (game.getOpponentPlayer().getUser().getSelectedFaction().equals(FactionType.NILFGAARDIAN_EMPIRE)) {
+                winner = game.getOpponentPlayer();
+            }else {
+                message = GameNotification.DRAW_ROUND.getNotification();
+                game.getOpponentPlayer().reduceLife();
+                game.getCurrentPlayer().reduceLife();
+            }
+        }
+        if (winner.equals(App.getCurrentGame().getCurrentPlayer())) {
             message = winner.getUser().getUsername() + " won";
             loser = game.getOpponentPlayer();
             game.getOpponentPlayer().reduceLife();
@@ -359,6 +364,7 @@ public class GameMenuController {
                 throw new RuntimeException(e);
             }
             game.roundFinished();
+            if (game.getRoundNumber() == 3)
             resetRound(game);
             menu.endRound(message);
         }

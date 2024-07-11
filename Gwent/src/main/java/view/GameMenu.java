@@ -5,10 +5,7 @@ import enums.Ability;
 import enums.CssAddress;
 import enums.GameNotification;
 import enums.SizeData;
-import enums.cardsData.MonstersRegularCardsData;
-import enums.cardsData.RegularCardData;
-import enums.cardsData.SpecialCardsData;
-import enums.cardsData.WeatherCardsData;
+import enums.cardsData.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.ParallelTransition;
 import javafx.animation.Timeline;
@@ -204,8 +201,6 @@ public class GameMenu implements Menu {
             ((Pane) pane).getChildren().addAll(node1, node2);
         }
     }
-
-    //TODO: added these
     public void endRound(String message) {
         pane.setDisable(true);
         showRoundEndNotification(message);
@@ -248,14 +243,6 @@ public class GameMenu implements Menu {
     public void setHandCardEventHandler(Player currentPlayer, Player opponentPlayer, Game game ,ArrayList<DecksCard> cards){
         gameMenuController.handelHandsCardEvent(cards, game, currentPlayer, opponentPlayer);
     }
-    public void showMedicCardOptions(ArrayList<RegularCard> cards, Game game){
-        ArrayList<ChosenModelView<RegularCard>> chosenModelViews = new ArrayList<>();
-        for (RegularCard card : cards) {
-            RegularCardData data = (RegularCardData) card.getCardData();
-//            ChosenModelView<RegularCard> chosenModelView = new ChosenModelView<>(Objects.requireNonNull(this.getClass().getResourceAsStream(data.lgImageAddress)));
-        }
-//        SelectionPage<RegularCard> selectionPage = new SelectionPage<>(, Math.min(2, chosenModelViews.size())-1,  SizeData.GAME_LG_CARD);
-    }
     public void endGame(String message,String winner, int[] winnerRoundPoint, String loser, int[] loserRoundsPoint) {
         pane.getChildren().remove(endGamePane);
         pane.getChildren().add(endGamePane);
@@ -271,9 +258,10 @@ public class GameMenu implements Menu {
         loserRound3.setText(String.valueOf(loserRoundsPoint[2]));
     }
     public void handleLeader(Player player, Game game){
+        if (game.getOpponentPlayer().getLeader().equals(LeaderCardData.NILFGAARD_EMHYR_BRONZE)) return;
         player.getPlayerView().getLeaderView().setOnMouseClicked(mouseEvent -> {
             try {
-                if (!player.hasPlayedLeader()) {
+                if (!player.getLeader().isAbilityOneTime() || !player.hasPlayedLeader()) {
                     player.getLeader().getAbility().invoke(LeaderAbility.getInstance(), game);
                     player.playLeader();
                 }
