@@ -229,6 +229,32 @@ public class PregameMenu implements Menu {
         root.getChildren().add(leaderSelectionPage);
     }
 
+    @FXML
+    private void startGameWithFriend() {
+        Result result = checkPregameData();
+        if (result.isNotSuccessful()) {
+            errorMessage.setText(result.toString());
+            return;
+        }
+    }
+
+    @FXML
+    private void startRandomGame() {
+        Result result = checkPregameData();
+        if (result.isNotSuccessful()) {
+            errorMessage.setText(result.toString());
+            return;
+        }
+    }
+
+    private Result checkPregameData() {
+        if (!pregameData.isSpecialCardsNumberValid())
+            return new Result(false, "you can't choose more than 10 special cards");
+        if (!pregameData.isUnitCardsNumberValid())
+            return new Result(false, "choose at least 22 unit cards");
+        return new Result(true, "");
+    }
+
     private void closeFactionSelectionPage() {
         mainPane.setDisable(false);
         helperPane.setVisible(false);
