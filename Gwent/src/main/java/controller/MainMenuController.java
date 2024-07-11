@@ -1,10 +1,10 @@
-package controller.server;
+package controller;
 
 import model.Result;
 import model.User;
 import network.Server;
 
-public class MainMenuControllerServer {
+public class MainMenuController {
     public Result logout(String username) {
         User user = Server.getUserByUsername(username);
         if (user == null) {

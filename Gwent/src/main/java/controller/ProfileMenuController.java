@@ -1,4 +1,4 @@
-package controller.server;
+package controller;
 
 import model.GameHistory;
 import model.Result;
@@ -6,8 +6,8 @@ import model.User;
 import network.Server;
 
 
-public class ProfileMenuControllerServer {
-    private final UserInformationControllerServer userInformationController = new UserInformationControllerServer();
+public class ProfileMenuController {
+    private final UserInformationController userInformationController = new UserInformationController();
 
     public Result changeUsername(String oldUsername, String newUsername) {
         User user = Server.getUserByUsername(oldUsername);

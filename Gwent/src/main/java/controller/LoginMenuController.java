@@ -1,10 +1,10 @@
-package controller.server;
+package controller;
 
 import model.Result;
 import model.User;
 import network.Server;
 
-public class LoginMenuControllerServer {
+public class LoginMenuController {
     public String[] login(String username) {
         User user = Server.getUserByUsername(username);
         user.setLoggedIn(true);

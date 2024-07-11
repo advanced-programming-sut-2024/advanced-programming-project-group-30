@@ -1,11 +1,11 @@
-package controller.server;
+package controller;
 
 import enums.SecurityQuestion;
 import model.Result;
 import model.User;
 import network.Server;
 
-public class ForgetPasswordControllerServer {
+public class ForgetPasswordController {
     public Result checkUsername(String username) {
         if (username.isEmpty()) return new Result(false, "please enter your username");
         if (Server.getUserByUsername(username) == null) return new Result(false, "this username does not exist");

@@ -1,4 +1,4 @@
-package controller.server;
+package controller;
 
 import enums.SecurityQuestion;
 import model.Result;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-public class RegisterMenuControllerServer {
+public class RegisterMenuController {
     public Result register(String username, String password, String nickname, String email, String securityQuestion, String securityAnswer) {
         User user = new User(username, password, email, nickname, SecurityQuestion.getSecurityQuestion(securityQuestion), securityAnswer);
         Server.addUser(user);

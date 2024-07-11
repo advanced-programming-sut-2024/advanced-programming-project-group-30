@@ -2,8 +2,7 @@ package network;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import controller.PregameController;
-import controller.server.*;
+import controller.*;
 import enums.FactionType;
 
 import java.io.*;
@@ -11,12 +10,12 @@ import java.net.Socket;
 
 public class ServerWorker extends Thread {
     private final Gson gsonAgent;
-    private final UserInformationControllerServer userInformationControllerServer = new UserInformationControllerServer();
-    private final RegisterMenuControllerServer registerMenuControllerServer = new RegisterMenuControllerServer();
-    private final LoginMenuControllerServer loginMenuControllerServer = new LoginMenuControllerServer();
-    private final ForgetPasswordControllerServer forgetPasswordControllerServer = new ForgetPasswordControllerServer();
-    private final MainMenuControllerServer mainMenuControllerServer = new MainMenuControllerServer();
-    private final ProfileMenuControllerServer profileMenuControllerServer = new ProfileMenuControllerServer();
+    private final UserInformationController userInformationController = new UserInformationController();
+    private final RegisterMenuController registerMenuController = new RegisterMenuController();
+    private final LoginMenuController loginMenuController = new LoginMenuController();
+    private final ForgetPasswordController forgetPasswordController = new ForgetPasswordController();
+    private final MainMenuController mainMenuController = new MainMenuController();
+    private final ProfileMenuController profileMenuController = new ProfileMenuController();
     private final PregameController pregameController = new PregameController();
 
     public ServerWorker() {
@@ -50,6 +49,7 @@ public class ServerWorker extends Thread {
             String messageString = receiveBuffer.readUTF();
             ClientMessage clientMessage = gsonAgent.fromJson(messageString, ClientMessage.class);
             String serverMessage = switch (clientMessage.getControllerName()) {
+                case "GameRequestHandler" -> gsonAgent.toJson(handleGameRequest(clientMessage, socket));
                 case "UserInformationController" ->
                         gsonAgent.toJson(handleUserInformationControllerRequest(clientMessage));
                 case "RegisterController" -> gsonAgent.toJson(handleRegisterControllerRequest(clientMessage));
@@ -69,7 +69,7 @@ public class ServerWorker extends Thread {
             }
             sendBuffer.close();
             receiveBuffer.close();
-            socket.close();
+            if (!clientMessage.getControllerName().equals("RandomGameRequestHandler")) socket.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -78,34 +78,34 @@ public class ServerWorker extends Thread {
     private Object handleUserInformationControllerRequest(ClientMessage clientMessage) {
         switch (clientMessage.getMethodName()) {
             case "checkInformation" -> {
-                return userInformationControllerServer.checkInformation((String) clientMessage.getFields().get(0),
+                return userInformationController.checkInformation((String) clientMessage.getFields().get(0),
                         (String) clientMessage.getFields().get(1), (String) clientMessage.getFields().get(2),
                         (String) clientMessage.getFields().get(3), (String) clientMessage.getFields().get(4));
             }
             case "checkUsername" -> {
-                return userInformationControllerServer.checkUsername((String) clientMessage.getFields().get(0));
+                return userInformationController.checkUsername((String) clientMessage.getFields().get(0));
             }
             case "checkPassword" -> {
-                return userInformationControllerServer.checkPassword((String) clientMessage.getFields().get(0));
+                return userInformationController.checkPassword((String) clientMessage.getFields().get(0));
             }
             case "checkPasswordConfirm" -> {
-                return userInformationControllerServer.checkPasswordConfirm((String) clientMessage.getFields().get(0));
+                return userInformationController.checkPasswordConfirm((String) clientMessage.getFields().get(0));
             }
             case "checkNickname" -> {
-                return userInformationControllerServer.checkNickname((String) clientMessage.getFields().get(0));
+                return userInformationController.checkNickname((String) clientMessage.getFields().get(0));
             }
             case "checkEmail" -> {
-                return userInformationControllerServer.checkEmail((String) clientMessage.getFields().get(0));
+                return userInformationController.checkEmail((String) clientMessage.getFields().get(0));
             }
             case "checkPasswordForChange" -> {
-                return userInformationControllerServer.checkPasswordForChange((String) clientMessage.getFields().get(0),
+                return userInformationController.checkPasswordForChange((String) clientMessage.getFields().get(0),
                         (String) clientMessage.getFields().get(1), (String) clientMessage.getFields().get(2));
             }
             case "getUserFaction" -> {
-                return userInformationControllerServer.getUserFaction((String) clientMessage.getFields().get(0));
+                return userInformationController.getUserFaction((String) clientMessage.getFields().get(0));
             }
             case "setUserFaction" -> {
-                return userInformationControllerServer.setUserFaction((String) clientMessage.getFields().get(0),
+                return userInformationController.setUserFaction((String) clientMessage.getFields().get(0),
                         FactionType.valueOf((String) clientMessage.getFields().get(1)));
             }
             default -> {
@@ -118,17 +118,17 @@ public class ServerWorker extends Thread {
     private Object handleRegisterControllerRequest(ClientMessage clientMessage) {
         switch (clientMessage.getMethodName()) {
             case "register" -> {
-                return registerMenuControllerServer.register((String) clientMessage.getFields().get(0),
+                return registerMenuController.register((String) clientMessage.getFields().get(0),
                         (String) clientMessage.getFields().get(1), (String) clientMessage.getFields().get(2),
                         (String) clientMessage.getFields().get(3), (String) clientMessage.getFields().get(4),
                         (String) clientMessage.getFields().get(5));
             }
             case "checkSecurityQuestion" -> {
-                return registerMenuControllerServer.checkSecurityQuestion((String) clientMessage.getFields().get(0),
+                return registerMenuController.checkSecurityQuestion((String) clientMessage.getFields().get(0),
                         (String) clientMessage.getFields().get(1));
             }
             case "createRandomPassword" -> {
-                return registerMenuControllerServer.createRandomPassword();
+                return registerMenuController.createRandomPassword();
             }
             default -> {
                 System.err.println("invalid method!! in register controller ->  name:" + clientMessage.getMethodName());
@@ -141,14 +141,14 @@ public class ServerWorker extends Thread {
     private Object handleLoginControllerRequest(ClientMessage clientMessage) {
         switch (clientMessage.getMethodName()) {
             case "login" -> {
-                return loginMenuControllerServer.login((String) clientMessage.getFields().get(0));
+                return loginMenuController.login((String) clientMessage.getFields().get(0));
             }
             case "checkInformationForLogin" -> {
-                return loginMenuControllerServer.checkInformationForLogin((String) clientMessage.getFields().get(0),
+                return loginMenuController.checkInformationForLogin((String) clientMessage.getFields().get(0),
                         (String) clientMessage.getFields().get(1));
             }
             case "getEmptyError" -> {
-                return loginMenuControllerServer.getEmptyError((String) clientMessage.getFields().get(0),
+                return loginMenuController.getEmptyError((String) clientMessage.getFields().get(0),
                         (String) clientMessage.getFields().get(1));
             }
             default -> {
@@ -162,10 +162,10 @@ public class ServerWorker extends Thread {
     private Object handleForgetPasswordControllerRequest(ClientMessage clientMessage) {
         switch (clientMessage.getMethodName()) {
             case "checkUsername" -> {
-                return forgetPasswordControllerServer.checkUsername((String) clientMessage.getFields().get(0));
+                return forgetPasswordController.checkUsername((String) clientMessage.getFields().get(0));
             }
             case "getPassword" -> {
-                return forgetPasswordControllerServer.getPassword((String) clientMessage.getFields().get(0),
+                return forgetPasswordController.getPassword((String) clientMessage.getFields().get(0),
                         (String) clientMessage.getFields().get(1), (String) clientMessage.getFields().get(2));
             }
             default -> {
@@ -179,10 +179,10 @@ public class ServerWorker extends Thread {
     private Object handleMainMenuControllerRequest(ClientMessage clientMessage) {
         switch (clientMessage.getMethodName()) {
             case "logout" -> {
-                return mainMenuControllerServer.logout((String) clientMessage.getFields().get(0));
+                return mainMenuController.logout((String) clientMessage.getFields().get(0));
             }
             case "getProfileData" -> {
-                return mainMenuControllerServer.getProfileData((String) clientMessage.getFields().get(0));
+                return mainMenuController.getProfileData((String) clientMessage.getFields().get(0));
             }
             default -> {
                 System.err.println("invalid method!! in main menu controller ->  name:" + clientMessage.getMethodName());
@@ -195,27 +195,27 @@ public class ServerWorker extends Thread {
     private Object handleProfileMenuControllerRequest(ClientMessage clientMessage) {
         switch (clientMessage.getMethodName()) {
             case "changeUsername" -> {
-                return profileMenuControllerServer.changeUsername((String) clientMessage.getFields().get(0), (String) clientMessage.getFields().get(1));
+                return profileMenuController.changeUsername((String) clientMessage.getFields().get(0), (String) clientMessage.getFields().get(1));
             }
             case "changeNickname" -> {
-                return profileMenuControllerServer.changeNickname((String) clientMessage.getFields().get(0), (String) clientMessage.getFields().get(1));
+                return profileMenuController.changeNickname((String) clientMessage.getFields().get(0), (String) clientMessage.getFields().get(1));
             }
             case "changeEmail" -> {
-                return profileMenuControllerServer.changeEmail((String) clientMessage.getFields().get(0), (String) clientMessage.getFields().get(1));
+                return profileMenuController.changeEmail((String) clientMessage.getFields().get(0), (String) clientMessage.getFields().get(1));
             }
             case "getDefaultGameHistory" -> {
-                return profileMenuControllerServer.getDefaultGameHistory((String) clientMessage.getFields().get(0));
+                return profileMenuController.getDefaultGameHistory((String) clientMessage.getFields().get(0));
             }
             case "changePassword" -> {
-                return profileMenuControllerServer.changePassword((String) clientMessage.getFields().get(0),
+                return profileMenuController.changePassword((String) clientMessage.getFields().get(0),
                         (String) clientMessage.getFields().get(1), (String) clientMessage.getFields().get(2));
             }
             case "checkGameHistory" -> {
-                return profileMenuControllerServer.checkGameHistory((String) clientMessage.getFields().get(0),
+                return profileMenuController.checkGameHistory((String) clientMessage.getFields().get(0),
                         (String) clientMessage.getFields().get(1));
             }
             case "getGameHistoryByUserRequest" -> {
-                return profileMenuControllerServer.getGameHistoryByUserRequest((String) clientMessage.getFields().get(0),
+                return profileMenuController.getGameHistoryByUserRequest((String) clientMessage.getFields().get(0),
                         (String) clientMessage.getFields().get(1));
             }
             default -> {
@@ -237,5 +237,17 @@ public class ServerWorker extends Thread {
             }
         }
         return null;
+    }
+
+    private String handleGameRequest(ClientMessage clientMessage, Socket socket) {
+        switch (clientMessage.getMethodName()) {
+            case "requestToRandomUser" -> Server.getRandomGameRequest().add(socket);
+            case "requestToFriend" -> Server.getGameWithFriendRequest().put((String) clientMessage.getFields().get(0), socket);
+            default -> {
+                System.err.println("invalid method!! inhandleGameRequestr ->  name:" + clientMessage.getMethodName());
+                System.exit(-1);
+            }
+        }
+        return "your request received";
     }
 }
