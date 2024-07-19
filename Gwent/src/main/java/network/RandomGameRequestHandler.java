@@ -21,17 +21,21 @@ public class RandomGameRequestHandler extends Thread {
         while (true) {
             synchronized (Server.getRandomGameRequest()) {
                 while (Server.getRandomGameRequest().size() < 2) {
+                    System.out.println(Server.getRandomGameRequest().size());
                     if (!Server.getRandomGameRequest().isEmpty()) {
+                        System.out.println("salam3");
                         Connection connection = Server.getRandomGameRequest().get(0);
                         try {
+                            System.out.println("salam1");
                             connection.dataOutputStream().writeUTF("wait");
-                            connection.dataInputStream();
-                            this.join(5);
+                            connection.dataInputStream().readUTF();
+                            this.join(1000);
                         } catch (IOException | InterruptedException e) {
                             throw new RuntimeException(e);
                         }
                     }
                 }
+                if (Server.getRandomGameRequest().size() > 2)
                 connection1 = Server.getRandomGameRequest().remove(0);
                 connection2 = Server.getRandomGameRequest().remove(1);
             }

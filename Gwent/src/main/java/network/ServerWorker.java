@@ -49,7 +49,8 @@ public class ServerWorker extends Thread {
             String messageString = receiveBuffer.readUTF();
             ClientMessage clientMessage = gsonAgent.fromJson(messageString, ClientMessage.class);
             String serverMessage = switch (clientMessage.getControllerName()) {
-                case "GameRequestHandler" -> gsonAgent.toJson(handleGameRequest(clientMessage, socket, receiveBuffer, sendBuffer));
+                case "GameRequestHandler" ->
+                        gsonAgent.toJson(handleGameRequest(clientMessage, socket, receiveBuffer, sendBuffer));
                 case "UserInformationController" ->
                         gsonAgent.toJson(handleUserInformationControllerRequest(clientMessage));
                 case "RegisterController" -> gsonAgent.toJson(handleRegisterControllerRequest(clientMessage));
@@ -241,8 +242,13 @@ public class ServerWorker extends Thread {
 
     private String handleGameRequest(ClientMessage clientMessage, Socket socket, DataInputStream dataInputStream, DataOutputStream dataOutputStream) {
         switch (clientMessage.getMethodName()) {
-            case "requestToRandomUser" -> Server.getRandomGameRequest().add(new Connection(socket, dataInputStream, dataOutputStream));
-            case "requestToFriend" -> Server.getGameWithFriendRequest().put((String) clientMessage.getFields().get(0), socket);
+            case "requestToRandomUser" -> {
+                synchronized (Server.getRandomGameRequest()){
+                    Server.getRandomGameRequest().add(new Connection(socket, dataInputStream, dataOutputStream));
+                }
+            }
+            case "requestToFriend" ->
+                    Server.getGameWithFriendRequest().put((String) clientMessage.getFields().get(0), socket);
             default -> {
                 System.err.println("invalid method!! in handleGameRequest ->  name:" + clientMessage.getMethodName());
                 System.exit(-1);

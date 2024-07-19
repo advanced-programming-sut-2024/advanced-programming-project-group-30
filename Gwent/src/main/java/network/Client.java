@@ -80,13 +80,20 @@ public class Client {
         String message = gsonAgent.toJson(new ClientMessage("GameRequestHandler", "requestToRandomUser", new ArrayList<>()));
         try {
             sendBuffer.writeUTF(message);
+            System.out.println("to json successfully");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         try {
             while (true) {
-                if (receiveBuffer.readUTF().equals("wait")) sendBuffer.writeUTF("ok");
-                else break;
+                System.out.println("salam be server");
+                if (receiveBuffer.readUTF().equals("wait")) {
+                    sendBuffer.writeUTF("ok");
+                }
+                else {
+                    System.out.println("kpkpk");
+                    break;
+                }
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
