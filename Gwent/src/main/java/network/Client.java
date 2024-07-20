@@ -77,53 +77,46 @@ public class Client {
             e.printStackTrace();
             return false;
         }
-        String message = gsonAgent.toJson(new ClientMessage("GameRequestHandler", "requestToRandomUser", new ArrayList<>()));
+        String message = gsonAgent.toJson(new ClientMessage("GameRequestHandler", "requestToRandomUser", null));
         try {
             sendBuffer.writeUTF(message);
             System.out.println("to json successfully");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+        String messageInput;
         try {
-            while (true) {
-                System.out.println("salam be server");
-                if (receiveBuffer.readUTF().equals("wait")) {
-                    sendBuffer.writeUTF("ok");
-                }
-                else {
-                    System.out.println("kpkpk");
-                    break;
-                }
+            System.out.println("try to get message");
+            messageInput = receiveBuffer.readUTF();
+            System.out.println("got message");
+            System.out.println("first m :" + messageInput);
+            if (messageInput.equals("Waiting...")) {
+                messageInput = receiveBuffer.readUTF();
+                System.out.println("second m :" + messageInput);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         try {
             sendBuffer.writeUTF(gsonAgent.toJson(pregameData.getShippablePregameData()));
+            System.out.println("send pregameData successfully");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         try {
             Integer id = receiveBuffer.readInt();
+            System.out.println(id);
+            // get id
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         try {
             sendBuffer.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        try {
             receiveBuffer.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        try {
             socket.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("salam");
         return true;
     }
 

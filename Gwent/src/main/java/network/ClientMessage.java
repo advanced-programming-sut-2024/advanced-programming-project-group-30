@@ -3,9 +3,9 @@ package network;
 import java.util.ArrayList;
 
 public class ClientMessage {
-    private String controllerName;
-    private String methodName;
-    private ArrayList<Object> fields;
+    private final String controllerName;
+    private final String methodName;
+    private final ArrayList<Object> fields;
 
     public ClientMessage(String classAddress, String methodAddress, ArrayList<Object> fields) {
         this.controllerName = classAddress;

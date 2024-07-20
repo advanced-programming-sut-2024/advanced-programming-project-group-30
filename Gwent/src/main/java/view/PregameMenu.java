@@ -246,7 +246,6 @@ public class PregameMenu implements Menu {
             return;
         }
         errorMessage.setText("waiting...");
-        errorMessage.setStyle("-fx-text-fill: rgba(182,175,97,0.9)");
         client.requestForRandomGame(pregameData);
         errorMessage.setStyle("");
         errorMessage.setText("");

@@ -245,6 +245,8 @@ public class ServerWorker extends Thread {
             case "requestToRandomUser" -> {
                 synchronized (Server.getRandomGameRequest()){
                     Server.getRandomGameRequest().add(new Connection(socket, dataInputStream, dataOutputStream));
+                    Server.getRandomGameRequest().notify();
+                    System.out.println("nofity!");
                 }
             }
             case "requestToFriend" ->

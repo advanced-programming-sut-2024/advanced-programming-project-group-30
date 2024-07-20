@@ -7,9 +7,11 @@
     <list default="true" id="124b1a9a-c6f6-4977-bbc2-df42d5ff586a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/network/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/network/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/network/ClientMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/network/ClientMessage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/network/RandomGameRequestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/network/RandomGameRequestHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/network/ServerMessage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/network/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/network/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/network/ServerWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/network/ServerWorker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/PregameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/PregameMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +96,7 @@
       <recent name="C:\Users\ASUS\Documents\Uni\AP\Project\Gwent\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Client2">
+  <component name="RunManager" selected="Application.ClientView">
     <configuration name="Client2" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="view.ClientView" />
       <module name="Gwent" />

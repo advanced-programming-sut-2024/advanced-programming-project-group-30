@@ -19,31 +19,29 @@ public class RandomGameRequestHandler extends Thread {
     public void run() {
         this.gsonAgent = new GsonBuilder().create();
         while (true) {
-            synchronized (Server.getRandomGameRequest()) {
-                while (Server.getRandomGameRequest().size() < 2) {
-                    System.out.println(Server.getRandomGameRequest().size());
-                    if (!Server.getRandomGameRequest().isEmpty()) {
-                        System.out.println("salam3");
-                        Connection connection = Server.getRandomGameRequest().get(0);
-                        try {
-                            System.out.println("salam1");
-                            connection.dataOutputStream().writeUTF("wait");
-                            connection.dataInputStream().readUTF();
-                            this.join(1000);
-                        } catch (IOException | InterruptedException e) {
-                            throw new RuntimeException(e);
-                        }
+            try {
+                synchronized (Server.getRandomGameRequest()) {
+                    if (Server.getRandomGameRequest().isEmpty()) {
+                        System.out.println("waiting for the request");
+                        Server.getRandomGameRequest().wait();
+                    }
+                    if (Server.getRandomGameRequest().size() < 2) {
+                        connection1 = Server.getRandomGameRequest().get(0);
+                        connection1.dataOutputStream().writeUTF("Waiting...");
+                        System.out.println("waiting for the request2");
+                        Server.getRandomGameRequest().wait();
+                    }
+                    if (Server.getRandomGameRequest().size() > 1) {
+                        System.out.println("get request");
+                        connection1 = Server.getRandomGameRequest().remove(0);
+                        connection2 = Server.getRandomGameRequest().remove(0);
+                        System.out.println("create game");
+                        createGame();
                     }
                 }
-                if (Server.getRandomGameRequest().size() > 2)
-                connection1 = Server.getRandomGameRequest().remove(0);
-                connection2 = Server.getRandomGameRequest().remove(1);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            if ((connection1 == null) != (connection2 == null)) {
-                if (connection2 != null) Server.getRandomGameRequest().add(connection2);
-                else Server.getRandomGameRequest().add(connection1);
-            }
-            if (connection2 != null && connection1 != null) createGame();
         }
     }
 
@@ -72,6 +70,7 @@ public class RandomGameRequestHandler extends Thread {
             receiveBuffer2.close();
             sendBuffer2.close();
             connection2.socket().close();
+            System.out.println("game with id: " + id + "  " + pregameData1.getUsername() + " vs " + pregameData2.getUsername());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

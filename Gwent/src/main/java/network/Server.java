@@ -64,6 +64,7 @@ public class Server {
 
     private static void setupServer() {
         try {
+            testSetup();
             serverSocket = new ServerSocket(PORT);
             connections = new ArrayList<>();
             randomGameRequest = new ArrayList<>();
