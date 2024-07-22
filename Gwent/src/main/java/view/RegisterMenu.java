@@ -9,7 +9,7 @@ import javafx.scene.layout.Pane;
 import model.App;
 import model.Result;
 import network.Client;
-import network.ClientMessage;
+import network.ClientRequest;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -95,8 +95,8 @@ public class RegisterMenu implements Menu {
 
     @FXML
     private void setRandomPassword() {
-        ClientMessage clientMessage = new ClientMessage("RegisterController", "createRandomPassword", null);
-        client.sendMessageToServer(clientMessage);
+        ClientRequest clientRequest = new ClientRequest("RegisterController", "createRandomPassword", null);
+        client.sendMessageToServer(clientRequest);
         String randomPassword = (String) client.getLastServerData(String.class);
         password.setText(randomPassword);
         shownPassword.setText(randomPassword);
@@ -112,10 +112,10 @@ public class RegisterMenu implements Menu {
 
     @FXML
     private void continueSignUp() {
-        ClientMessage clientMessage = new ClientMessage("UserInformationController", "checkInformation",
+        ClientRequest clientRequest = new ClientRequest("UserInformationController", "checkInformation",
                 new ArrayList<>(List.of(new String[]{username.getText(), password.getText(), passwordConfirm.getText(),
                         nickname.getText(), email.getText()})));
-        client.sendMessageToServer(clientMessage);
+        client.sendMessageToServer(clientRequest);
         Result result = (Result) client.getLastServerData(Result.class);
         if (result.isNotSuccessful()) continueError.setText(result.toString());
         else {
@@ -126,54 +126,54 @@ public class RegisterMenu implements Menu {
 
     @FXML
     private void signup() {
-        ClientMessage clientMessage = new ClientMessage("RegisterController", "checkSecurityQuestion",
+        ClientRequest clientRequest = new ClientRequest("RegisterController", "checkSecurityQuestion",
                 new ArrayList<>(List.of(new String[]{questions.getValue().toString(), answer.getText()})));
-        client.sendMessageToServer(clientMessage);
+        client.sendMessageToServer(clientRequest);
         Result result = (Result) client.getLastServerData(Result.class);
         if (result.isNotSuccessful()) completeError.setText(result.toString());
         else {
-            clientMessage = new ClientMessage("RegisterController", "register",
+            clientRequest = new ClientRequest("RegisterController", "register",
                     new ArrayList<>(List.of(new String[]{username.getText(), password.getText(), nickname.getText(),
                             email.getText(), questions.getValue().toString(), answer.getText()})));
-            client.sendMessageToServer(clientMessage);
+            client.sendMessageToServer(clientRequest);
             goToLoginMenu();
         }
     }
 
     private void setUsernameError() {
-        ClientMessage clientMessage = new ClientMessage("UserInformationController",
+        ClientRequest clientRequest = new ClientRequest("UserInformationController",
                 "checkUsername", new ArrayList<>(Collections.singleton(username.getText())));
-        client.sendMessageToServer(clientMessage);
+        client.sendMessageToServer(clientRequest);
         usernameError.setText(client.getLastServerData(Result.class).toString());
     }
 
     private void handlePasswordFieldEvent() {
-        ClientMessage clientMessage = new ClientMessage("UserInformationController",
+        ClientRequest clientRequest = new ClientRequest("UserInformationController",
                 "checkPassword", new ArrayList<>(Collections.singleton(password.getText())));
-        client.sendMessageToServer(clientMessage);
+        client.sendMessageToServer(clientRequest);
         passwordError.setText(client.getLastServerData(Result.class).toString());
         if (shownPassword.isDisable()) shownPassword.setText(password.getText());
     }
 
     private void handlePasswordConfirmEvent() {
-        ClientMessage clientMessage = new ClientMessage("UserInformationController",
+        ClientRequest clientRequest = new ClientRequest("UserInformationController",
                 "checkPasswordConfirm", new ArrayList<>(Collections.singleton(passwordConfirm.getText())));
-        client.sendMessageToServer(clientMessage);
+        client.sendMessageToServer(clientRequest);
         passwordConfirmError.setText(client.getLastServerData(Result.class).toString());
         if (shownPasswordConfirm.isDisable()) shownPasswordConfirm.setText(passwordConfirm.getText());
     }
 
     private void setNicknameError() {
-        ClientMessage clientMessage = new ClientMessage("UserInformationController",
+        ClientRequest clientRequest = new ClientRequest("UserInformationController",
                 "checkNickname", new ArrayList<>(Collections.singleton(nickname.getText())));
-        client.sendMessageToServer(clientMessage);
+        client.sendMessageToServer(clientRequest);
         nicknameError.setText(client.getLastServerData(Result.class).toString());
     }
 
     private void setEmailError() {
-        ClientMessage clientMessage = new ClientMessage("UserInformationController",
+        ClientRequest clientRequest = new ClientRequest("UserInformationController",
                 "checkEmail", new ArrayList<>(Collections.singleton(email.getText())));
-        client.sendMessageToServer(clientMessage);
+        client.sendMessageToServer(clientRequest);
         emailError.setText(client.getLastServerData(Result.class).toString());
     }
 

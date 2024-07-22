@@ -1,10 +1,9 @@
-package view;
+package view.nodes;
 
 import enums.CoordinateData;
 import enums.CssAddress;
 import enums.FactionType;
 import enums.SizeData;
-import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;

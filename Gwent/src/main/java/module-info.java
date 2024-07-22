@@ -19,4 +19,6 @@ module Gwent {
     opens enums to com.google.gson;
     exports network;
     opens network to com.google.gson;
+    exports view.nodes;
+    opens view.nodes to com.google.gson, javafx.fxml;
 }

@@ -10,7 +10,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.net.Socket;
-import java.util.ArrayList;
 
 public class Client {
     private Socket socket;
@@ -19,7 +18,7 @@ public class Client {
     private final String serverIP;
     private final int serverPort;
     private final Gson gsonAgent;
-    private String lastServerMessage;
+    private String lastServerMessage; // TODO: remove
 
     public Client(String serverIP, int serverPort) {
         GsonBuilder builder = new GsonBuilder();
@@ -28,33 +27,9 @@ public class Client {
         this.serverPort = serverPort;
     }
 
-    private boolean establishConnection() {
-        try {
-            socket = new Socket(serverIP, serverPort);
-            sendBuffer = new DataOutputStream(socket.getOutputStream());
-            receiveBuffer = new DataInputStream(socket.getInputStream());
-            return true;
-        } catch (Exception e) {
-            System.err.println("Unable to initialize socket!");
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    private void endConnection() {
-        if (socket == null) return;
-        try {
-            socket.close();
-            receiveBuffer.close();
-            sendBuffer.close();
-        } catch (IOException e) {
-            System.err.println("end connection failed!");
-        }
-    }
-
-    public void sendMessageToServer(ClientMessage clientMessage) {
+    public void sendMessageToServer(ClientRequest clientRequest) {
         if (!establishConnection()) return;
-        String message = gsonAgent.toJson(clientMessage);
+        String message = gsonAgent.toJson(clientRequest);
         try {
             sendBuffer.writeUTF(message);
             this.lastServerMessage = receiveBuffer.readUTF();
@@ -77,7 +52,7 @@ public class Client {
             e.printStackTrace();
             return false;
         }
-        String message = gsonAgent.toJson(new ClientMessage("GameRequestHandler", "requestToRandomUser", null));
+        String message = gsonAgent.toJson(new ClientRequest("GameRequestHandler", "requestToRandomUser", null));
         try {
             sendBuffer.writeUTF(message);
             System.out.println("to json successfully");
@@ -126,5 +101,29 @@ public class Client {
 
     public void login(String username, String nickname, String email, boolean stayLoggedIn) {
         App.setLoggedInUser(username, nickname, email, stayLoggedIn);
+    }
+
+    private boolean establishConnection() {
+        try {
+            socket = new Socket(serverIP, serverPort);
+            sendBuffer = new DataOutputStream(socket.getOutputStream());
+            receiveBuffer = new DataInputStream(socket.getInputStream());
+            return true;
+        } catch (Exception e) {
+            System.err.println("Unable to initialize socket!");
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    private void endConnection() {
+        if (socket == null) return;
+        try {
+            socket.close();
+            receiveBuffer.close();
+            sendBuffer.close();
+        } catch (IOException e) {
+            System.err.println("end connection failed!");
+        }
     }
 }

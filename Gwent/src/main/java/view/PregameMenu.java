@@ -15,7 +15,9 @@ import javafx.scene.shape.Rectangle;
 import model.*;
 import model.card.DecksCard;
 import network.Client;
-import network.ClientMessage;
+import network.ClientRequest;
+import view.nodes.PregameCardView;
+import view.nodes.SelectionPage;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -73,9 +75,9 @@ public class PregameMenu implements Menu {
         scalePanes();
         errorMessage.setText("");
         nicknameLabel.setText("hi " + App.getLoggedInUsersNickname() + ". please choose your deck.");
-        ClientMessage clientMessage = new ClientMessage("PregameController", "getUserCardCollection",
+        ClientRequest clientRequest = new ClientRequest("PregameController", "getUserCardCollection",
                 new ArrayList<>(Collections.singleton(App.getLoggedInUsersUsername())));
-        client.sendMessageToServer(clientMessage);
+        client.sendMessageToServer(clientRequest);
         this.pregameData = new PregameData(App.getLoggedInUsersUsername(), (CardCollection) client.getLastServerData(CardCollection.class), faction);
         updateFactionsFields(pregameData.getFaction());
         uploadToCardCollection(pregameData.getCardCollection());
@@ -122,9 +124,9 @@ public class PregameMenu implements Menu {
     }
 
     private void changeFation(FactionType faction) {
-        ClientMessage clientMessage = new ClientMessage("UserInformationController", "setUserFaction",
+        ClientRequest clientRequest = new ClientRequest("UserInformationController", "setUserFaction",
                 new ArrayList<>(List.of(new Object[]{App.getLoggedInUsersUsername(), faction.name()})));
-        client.sendMessageToServer(clientMessage);
+        client.sendMessageToServer(clientRequest);
         pregameData.setFaction(faction);
         SelectionPage<LeaderCardData> leaderSelectionPage = new SelectionPage<>(LeaderCardData.getFactionsLeaderChooseView(pregameData.getFaction()),
                 0, SizeData.GAME_LG_CARD);

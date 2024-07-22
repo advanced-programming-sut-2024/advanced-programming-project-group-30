@@ -5,7 +5,7 @@ import enums.FactionType;
 import enums.RegularCardPositionType;
 import javafx.scene.image.Image;
 import model.card.RegularCard;
-import view.ChosenModelView;
+import view.nodes.ChosenModelView;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;

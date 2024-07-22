@@ -3,7 +3,7 @@ package enums;
 import enums.cardsData.*;
 import javafx.scene.image.Image;
 import model.card.RegularCard;
-import view.ChosenModelView;
+import view.nodes.ChosenModelView;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;

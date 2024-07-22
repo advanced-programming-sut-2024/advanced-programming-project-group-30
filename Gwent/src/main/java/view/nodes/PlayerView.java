@@ -1,4 +1,4 @@
-package view;
+package view.nodes;
 
 import enums.CoordinateData;
 import enums.CssAddress;

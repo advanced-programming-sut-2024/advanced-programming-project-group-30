@@ -3,7 +3,7 @@ package enums.cardsData;
 import enums.Ability;
 import javafx.scene.image.Image;
 import model.card.SpecialCard;
-import view.ChosenModelView;
+import view.nodes.ChosenModelView;
 
 import java.util.ArrayList;
 import java.util.Objects;

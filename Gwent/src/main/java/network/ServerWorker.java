@@ -47,26 +47,26 @@ public class ServerWorker extends Thread {
             DataInputStream receiveBuffer = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
             DataOutputStream sendBuffer = new DataOutputStream(new BufferedOutputStream(socket.getOutputStream()));
             String messageString = receiveBuffer.readUTF();
-            ClientMessage clientMessage = gsonAgent.fromJson(messageString, ClientMessage.class);
-            String serverMessage = switch (clientMessage.getControllerName()) {
+            ClientRequest clientRequest = gsonAgent.fromJson(messageString, ClientRequest.class);
+            String serverMessage = switch (clientRequest.getRequestType()) {
                 case "GameRequestHandler" ->
-                        gsonAgent.toJson(handleGameRequest(clientMessage, socket, receiveBuffer, sendBuffer));
+                        gsonAgent.toJson(handleGameRequest(clientRequest, socket, receiveBuffer, sendBuffer));
                 case "UserInformationController" ->
-                        gsonAgent.toJson(handleUserInformationControllerRequest(clientMessage));
-                case "RegisterController" -> gsonAgent.toJson(handleRegisterControllerRequest(clientMessage));
-                case "LoginController" -> gsonAgent.toJson(handleLoginControllerRequest(clientMessage));
+                        gsonAgent.toJson(handleUserInformationControllerRequest(clientRequest));
+                case "RegisterController" -> gsonAgent.toJson(handleRegisterControllerRequest(clientRequest));
+                case "LoginController" -> gsonAgent.toJson(handleLoginControllerRequest(clientRequest));
                 case "ForgetPasswordController" ->
-                        gsonAgent.toJson(handleForgetPasswordControllerRequest(clientMessage));
-                case "MainMenuController" -> gsonAgent.toJson(handleMainMenuControllerRequest(clientMessage));
-                case "ProfileMenuController" -> gsonAgent.toJson(handleProfileMenuControllerRequest(clientMessage));
-                case "PregameController" -> gsonAgent.toJson(handlePregameControllerRequest(clientMessage));
+                        gsonAgent.toJson(handleForgetPasswordControllerRequest(clientRequest));
+                case "MainMenuController" -> gsonAgent.toJson(handleMainMenuControllerRequest(clientRequest));
+                case "ProfileMenuController" -> gsonAgent.toJson(handleProfileMenuControllerRequest(clientRequest));
+                case "PregameController" -> gsonAgent.toJson(handlePregameControllerRequest(clientRequest));
                 default -> null;
             };
-            if (clientMessage.getControllerName().equals("GameRequestHandler")) return;
+            if (clientRequest.getRequestType().equals("GameRequestHandler")) return;
             if (serverMessage != null)
                 sendBuffer.writeUTF(serverMessage);
             else {
-                System.err.println("Control Error!!! (not find controller " + clientMessage.getControllerName() + ")");
+                System.err.println("Control Error!!! (not find controller " + clientRequest.getRequestType() + ")");
                 System.exit(1);
             }
             sendBuffer.close();
@@ -76,172 +76,172 @@ public class ServerWorker extends Thread {
         }
     }
 
-    private Object handleUserInformationControllerRequest(ClientMessage clientMessage) {
-        switch (clientMessage.getMethodName()) {
+    private Object handleUserInformationControllerRequest(ClientRequest clientRequest) {
+        switch (clientRequest.getRequest()) {
             case "checkInformation" -> {
-                return userInformationController.checkInformation((String) clientMessage.getFields().get(0),
-                        (String) clientMessage.getFields().get(1), (String) clientMessage.getFields().get(2),
-                        (String) clientMessage.getFields().get(3), (String) clientMessage.getFields().get(4));
+                return userInformationController.checkInformation((String) clientRequest.getContents().get(0),
+                        (String) clientRequest.getContents().get(1), (String) clientRequest.getContents().get(2),
+                        (String) clientRequest.getContents().get(3), (String) clientRequest.getContents().get(4));
             }
             case "checkUsername" -> {
-                return userInformationController.checkUsername((String) clientMessage.getFields().get(0));
+                return userInformationController.checkUsername((String) clientRequest.getContents().get(0));
             }
             case "checkPassword" -> {
-                return userInformationController.checkPassword((String) clientMessage.getFields().get(0));
+                return userInformationController.checkPassword((String) clientRequest.getContents().get(0));
             }
             case "checkPasswordConfirm" -> {
-                return userInformationController.checkPasswordConfirm((String) clientMessage.getFields().get(0));
+                return userInformationController.checkPasswordConfirm((String) clientRequest.getContents().get(0));
             }
             case "checkNickname" -> {
-                return userInformationController.checkNickname((String) clientMessage.getFields().get(0));
+                return userInformationController.checkNickname((String) clientRequest.getContents().get(0));
             }
             case "checkEmail" -> {
-                return userInformationController.checkEmail((String) clientMessage.getFields().get(0));
+                return userInformationController.checkEmail((String) clientRequest.getContents().get(0));
             }
             case "checkPasswordForChange" -> {
-                return userInformationController.checkPasswordForChange((String) clientMessage.getFields().get(0),
-                        (String) clientMessage.getFields().get(1), (String) clientMessage.getFields().get(2));
+                return userInformationController.checkPasswordForChange((String) clientRequest.getContents().get(0),
+                        (String) clientRequest.getContents().get(1), (String) clientRequest.getContents().get(2));
             }
             case "getUserFaction" -> {
-                return userInformationController.getUserFaction((String) clientMessage.getFields().get(0));
+                return userInformationController.getUserFaction((String) clientRequest.getContents().get(0));
             }
             case "setUserFaction" -> {
-                return userInformationController.setUserFaction((String) clientMessage.getFields().get(0),
-                        FactionType.valueOf((String) clientMessage.getFields().get(1)));
+                return userInformationController.setUserFaction((String) clientRequest.getContents().get(0),
+                        FactionType.valueOf((String) clientRequest.getContents().get(1)));
             }
             default -> {
-                System.err.println("invalid method!! in userInformation ->  name:" + clientMessage.getMethodName());
+                System.err.println("invalid method!! in userInformation ->  name:" + clientRequest.getRequest());
                 return "invalid method";
             }
         }
     }
 
-    private Object handleRegisterControllerRequest(ClientMessage clientMessage) {
-        switch (clientMessage.getMethodName()) {
+    private Object handleRegisterControllerRequest(ClientRequest clientRequest) {
+        switch (clientRequest.getRequest()) {
             case "register" -> {
-                return registerMenuController.register((String) clientMessage.getFields().get(0),
-                        (String) clientMessage.getFields().get(1), (String) clientMessage.getFields().get(2),
-                        (String) clientMessage.getFields().get(3), (String) clientMessage.getFields().get(4),
-                        (String) clientMessage.getFields().get(5));
+                return registerMenuController.register((String) clientRequest.getContents().get(0),
+                        (String) clientRequest.getContents().get(1), (String) clientRequest.getContents().get(2),
+                        (String) clientRequest.getContents().get(3), (String) clientRequest.getContents().get(4),
+                        (String) clientRequest.getContents().get(5));
             }
             case "checkSecurityQuestion" -> {
-                return registerMenuController.checkSecurityQuestion((String) clientMessage.getFields().get(0),
-                        (String) clientMessage.getFields().get(1));
+                return registerMenuController.checkSecurityQuestion((String) clientRequest.getContents().get(0),
+                        (String) clientRequest.getContents().get(1));
             }
             case "createRandomPassword" -> {
                 return registerMenuController.createRandomPassword();
             }
             default -> {
-                System.err.println("invalid method!! in register controller ->  name:" + clientMessage.getMethodName());
+                System.err.println("invalid method!! in register controller ->  name:" + clientRequest.getRequest());
                 System.exit(-1);
             }
         }
         return null;
     }
 
-    private Object handleLoginControllerRequest(ClientMessage clientMessage) {
-        switch (clientMessage.getMethodName()) {
+    private Object handleLoginControllerRequest(ClientRequest clientRequest) {
+        switch (clientRequest.getRequest()) {
             case "login" -> {
-                return loginMenuController.login((String) clientMessage.getFields().get(0));
+                return loginMenuController.login((String) clientRequest.getContents().get(0));
             }
             case "checkInformationForLogin" -> {
-                return loginMenuController.checkInformationForLogin((String) clientMessage.getFields().get(0),
-                        (String) clientMessage.getFields().get(1));
+                return loginMenuController.checkInformationForLogin((String) clientRequest.getContents().get(0),
+                        (String) clientRequest.getContents().get(1));
             }
             case "getEmptyError" -> {
-                return loginMenuController.getEmptyError((String) clientMessage.getFields().get(0),
-                        (String) clientMessage.getFields().get(1));
+                return loginMenuController.getEmptyError((String) clientRequest.getContents().get(0),
+                        (String) clientRequest.getContents().get(1));
             }
             default -> {
-                System.err.println("invalid method!! in login controller ->  name:" + clientMessage.getMethodName());
+                System.err.println("invalid method!! in login controller ->  name:" + clientRequest.getRequest());
                 System.exit(-1);
             }
         }
         return null;
     }
 
-    private Object handleForgetPasswordControllerRequest(ClientMessage clientMessage) {
-        switch (clientMessage.getMethodName()) {
+    private Object handleForgetPasswordControllerRequest(ClientRequest clientRequest) {
+        switch (clientRequest.getRequest()) {
             case "checkUsername" -> {
-                return forgetPasswordController.checkUsername((String) clientMessage.getFields().get(0));
+                return forgetPasswordController.checkUsername((String) clientRequest.getContents().get(0));
             }
             case "getPassword" -> {
-                return forgetPasswordController.getPassword((String) clientMessage.getFields().get(0),
-                        (String) clientMessage.getFields().get(1), (String) clientMessage.getFields().get(2));
+                return forgetPasswordController.getPassword((String) clientRequest.getContents().get(0),
+                        (String) clientRequest.getContents().get(1), (String) clientRequest.getContents().get(2));
             }
             default -> {
-                System.err.println("invalid method!! in forget password controller ->  name:" + clientMessage.getMethodName());
+                System.err.println("invalid method!! in forget password controller ->  name:" + clientRequest.getRequest());
                 System.exit(-1);
             }
         }
         return null;
     }
 
-    private Object handleMainMenuControllerRequest(ClientMessage clientMessage) {
-        switch (clientMessage.getMethodName()) {
+    private Object handleMainMenuControllerRequest(ClientRequest clientRequest) {
+        switch (clientRequest.getRequest()) {
             case "logout" -> {
-                return mainMenuController.logout((String) clientMessage.getFields().get(0));
+                return mainMenuController.logout((String) clientRequest.getContents().get(0));
             }
             case "getProfileData" -> {
-                return mainMenuController.getProfileData((String) clientMessage.getFields().get(0));
+                return mainMenuController.getProfileData((String) clientRequest.getContents().get(0));
             }
             default -> {
-                System.err.println("invalid method!! in main menu controller ->  name:" + clientMessage.getMethodName());
+                System.err.println("invalid method!! in main menu controller ->  name:" + clientRequest.getRequest());
                 System.exit(-1);
             }
         }
         return null;
     }
 
-    private Object handleProfileMenuControllerRequest(ClientMessage clientMessage) {
-        switch (clientMessage.getMethodName()) {
+    private Object handleProfileMenuControllerRequest(ClientRequest clientRequest) {
+        switch (clientRequest.getRequest()) {
             case "changeUsername" -> {
-                return profileMenuController.changeUsername((String) clientMessage.getFields().get(0), (String) clientMessage.getFields().get(1));
+                return profileMenuController.changeUsername((String) clientRequest.getContents().get(0), (String) clientRequest.getContents().get(1));
             }
             case "changeNickname" -> {
-                return profileMenuController.changeNickname((String) clientMessage.getFields().get(0), (String) clientMessage.getFields().get(1));
+                return profileMenuController.changeNickname((String) clientRequest.getContents().get(0), (String) clientRequest.getContents().get(1));
             }
             case "changeEmail" -> {
-                return profileMenuController.changeEmail((String) clientMessage.getFields().get(0), (String) clientMessage.getFields().get(1));
+                return profileMenuController.changeEmail((String) clientRequest.getContents().get(0), (String) clientRequest.getContents().get(1));
             }
             case "getDefaultGameHistory" -> {
-                return profileMenuController.getDefaultGameHistory((String) clientMessage.getFields().get(0));
+                return profileMenuController.getDefaultGameHistory((String) clientRequest.getContents().get(0));
             }
             case "changePassword" -> {
-                return profileMenuController.changePassword((String) clientMessage.getFields().get(0),
-                        (String) clientMessage.getFields().get(1), (String) clientMessage.getFields().get(2));
+                return profileMenuController.changePassword((String) clientRequest.getContents().get(0),
+                        (String) clientRequest.getContents().get(1), (String) clientRequest.getContents().get(2));
             }
             case "checkGameHistory" -> {
-                return profileMenuController.checkGameHistory((String) clientMessage.getFields().get(0),
-                        (String) clientMessage.getFields().get(1));
+                return profileMenuController.checkGameHistory((String) clientRequest.getContents().get(0),
+                        (String) clientRequest.getContents().get(1));
             }
             case "getGameHistoryByUserRequest" -> {
-                return profileMenuController.getGameHistoryByUserRequest((String) clientMessage.getFields().get(0),
-                        (String) clientMessage.getFields().get(1));
+                return profileMenuController.getGameHistoryByUserRequest((String) clientRequest.getContents().get(0),
+                        (String) clientRequest.getContents().get(1));
             }
             default -> {
-                System.err.println("invalid method!! in profile menu controller ->  name:" + clientMessage.getMethodName());
+                System.err.println("invalid method!! in profile menu controller ->  name:" + clientRequest.getRequest());
                 System.exit(-1);
             }
         }
         return null;
     }
 
-    private Object handlePregameControllerRequest(ClientMessage clientMessage) {
-        switch (clientMessage.getMethodName()) {
+    private Object handlePregameControllerRequest(ClientRequest clientRequest) {
+        switch (clientRequest.getRequest()) {
             case "getUserCardCollection" -> {
-                return pregameController.getUserCardCollection((String) clientMessage.getFields().get(0));
+                return pregameController.getUserCardCollection((String) clientRequest.getContents().get(0));
             }
             default -> {
-                System.err.println("invalid method!! in pregame controller ->  name:" + clientMessage.getMethodName());
+                System.err.println("invalid method!! in pregame controller ->  name:" + clientRequest.getRequest());
                 System.exit(-1);
             }
         }
         return null;
     }
 
-    private String handleGameRequest(ClientMessage clientMessage, Socket socket, DataInputStream dataInputStream, DataOutputStream dataOutputStream) {
-        switch (clientMessage.getMethodName()) {
+    private String handleGameRequest(ClientRequest clientRequest, Socket socket, DataInputStream dataInputStream, DataOutputStream dataOutputStream) {
+        switch (clientRequest.getRequest()) {
             case "requestToRandomUser" -> {
                 synchronized (Server.getRandomGameRequest()){
                     Server.getRandomGameRequest().add(new Connection(socket, dataInputStream, dataOutputStream));
@@ -250,9 +250,9 @@ public class ServerWorker extends Thread {
                 }
             }
             case "requestToFriend" ->
-                    Server.getGameWithFriendRequest().put((String) clientMessage.getFields().get(0), socket);
+                    Server.getGameWithFriendRequest().put((String) clientRequest.getContents().get(0), socket);
             default -> {
-                System.err.println("invalid method!! in handleGameRequest ->  name:" + clientMessage.getMethodName());
+                System.err.println("invalid method!! in handleGameRequest ->  name:" + clientRequest.getRequest());
                 System.exit(-1);
             }
         }

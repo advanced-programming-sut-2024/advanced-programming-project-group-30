@@ -7,7 +7,7 @@ import javafx.scene.text.Text;
 import model.App;
 import model.Result;
 import network.Client;
-import network.ClientMessage;
+import network.ClientRequest;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -97,9 +97,9 @@ public class ProfileMenu implements Menu {
         nicknameTextField.setPromptText(nickname);
         emailTextField.setPromptText(email);
         setUserInformation(rank, highestScore, gameCount, wins, losses, draws);
-        ClientMessage clientMessage = new ClientMessage("ProfileMenuController", "getDefaultGameHistory",
+        ClientRequest clientRequest = new ClientRequest("ProfileMenuController", "getDefaultGameHistory",
                 new ArrayList<>(Collections.singleton(App.getLoggedInUsersUsername())));
-        client.sendMessageToServer(clientMessage);
+        client.sendMessageToServer(clientRequest);
         Result result = (Result) client.getLastServerData(Result.class);
         if (result.isNotSuccessful()) gameHistoryNumberErrorField.setText(result.toString());
         else {
@@ -127,9 +127,9 @@ public class ProfileMenu implements Menu {
 
     private void handleUsernameSetup() {
         if (!editUsernameButton.isVisible()) {
-            ClientMessage clientMessage = new ClientMessage("UserInformationController", "checkUsername",
+            ClientRequest clientRequest = new ClientRequest("UserInformationController", "checkUsername",
                     new ArrayList<>(List.of(new String[]{usernameTextField.getText()})));
-            client.sendMessageToServer(clientMessage);
+            client.sendMessageToServer(clientRequest);
             usernameErrorField.setText(client.getLastServerData(Result.class).toString());
         } else usernameErrorField.setText("");
         usernameTextField.setPromptText(App.getLoggedInUsersUsername());
@@ -137,9 +137,9 @@ public class ProfileMenu implements Menu {
 
     private void handleNicknameSetup() {
         if (!editNicknameButton.isVisible()) {
-            ClientMessage clientMessage = new ClientMessage("UserInformationController", "checkNickname",
+            ClientRequest clientRequest = new ClientRequest("UserInformationController", "checkNickname",
                     new ArrayList<>(List.of(new String[]{nicknameTextField.getText()})));
-            client.sendMessageToServer(clientMessage);
+            client.sendMessageToServer(clientRequest);
             nicknameErrorField.setText(client.getLastServerData(Result.class).toString());
         } else nicknameErrorField.setText("");
         nicknameTextField.setPromptText(App.getLoggedInUsersNickname());
@@ -147,18 +147,18 @@ public class ProfileMenu implements Menu {
 
     private void handleEmailSetup() {
         if (!editEmailButton.isVisible()) {
-            ClientMessage clientMessage = new ClientMessage("UserInformationController", "checkEmail",
+            ClientRequest clientRequest = new ClientRequest("UserInformationController", "checkEmail",
                     new ArrayList<>(List.of(new String[]{emailTextField.getText()})));
-            client.sendMessageToServer(clientMessage);
+            client.sendMessageToServer(clientRequest);
             emailErrorField.setText(client.getLastServerData(Result.class).toString());
         } else emailErrorField.setText("");
         emailTextField.setPromptText(App.getLoggedInUsersEmail());
     }
 
     private void handelNewPasswordError() {
-        ClientMessage clientMessage = new ClientMessage("UserInformationController", "checkPassword",
+        ClientRequest clientRequest = new ClientRequest("UserInformationController", "checkPassword",
                 new ArrayList<>(List.of(new String[]{newPassword.getText()})));
-        client.sendMessageToServer(clientMessage);
+        client.sendMessageToServer(clientRequest);
         newPasswordError.setText(client.getLastServerData(Result.class).toString());
     }
 
@@ -191,9 +191,9 @@ public class ProfileMenu implements Menu {
 
     @FXML
     private void checkAndSetNewUsername() {
-        ClientMessage clientMessage = new ClientMessage("ProfileMenuController", "changeUsername",
+        ClientRequest clientRequest = new ClientRequest("ProfileMenuController", "changeUsername",
                 new ArrayList<>(List.of(new String[]{App.getLoggedInUsersUsername(), usernameTextField.getText()})));
-        client.sendMessageToServer(clientMessage);
+        client.sendMessageToServer(clientRequest);
         Result result = (Result) client.getLastServerData(Result.class);
         if (!result.isNotSuccessful())
             App.setLoggedInUser(usernameTextField.getText(), App.getLoggedInUsersNickname(), App.getLoggedInUsersEmail(), App.getStayLoggedIn());
@@ -202,9 +202,9 @@ public class ProfileMenu implements Menu {
 
     @FXML
     private void checkAndSetNewNickname() {
-        ClientMessage clientMessage = new ClientMessage("ProfileMenuController", "changeNickname",
+        ClientRequest clientRequest = new ClientRequest("ProfileMenuController", "changeNickname",
                 new ArrayList<>(List.of(new String[]{App.getLoggedInUsersUsername(), nicknameTextField.getText()})));
-        client.sendMessageToServer(clientMessage);
+        client.sendMessageToServer(clientRequest);
         Result result = (Result) client.getLastServerData(Result.class);
         if (!result.isNotSuccessful())
             App.setLoggedInUser(App.getLoggedInUsersUsername(), nicknameTextField.getText(), App.getLoggedInUsersEmail(), App.getStayLoggedIn());
@@ -213,9 +213,9 @@ public class ProfileMenu implements Menu {
 
     @FXML
     private void checkAndSetNewEmail() {
-        ClientMessage clientMessage = new ClientMessage("ProfileMenuController", "changeEmail",
+        ClientRequest clientRequest = new ClientRequest("ProfileMenuController", "changeEmail",
                 new ArrayList<>(List.of(new String[]{App.getLoggedInUsersUsername(), emailTextField.getText()})));
-        client.sendMessageToServer(clientMessage);
+        client.sendMessageToServer(clientRequest);
         Result result = (Result) client.getLastServerData(Result.class);
         if (!result.isNotSuccessful())
             App.setLoggedInUser(App.getLoggedInUsersUsername(), App.getLoggedInUsersNickname(), emailTextField.getText(), App.getStayLoggedIn());
@@ -249,9 +249,9 @@ public class ProfileMenu implements Menu {
 
     @FXML
     private void setNewPassword() {
-        ClientMessage clientMessage = new ClientMessage("ProfileMenuController", "changePassword",
+        ClientRequest clientRequest = new ClientRequest("ProfileMenuController", "changePassword",
                 new ArrayList<>(List.of(new String[]{App.getLoggedInUsersUsername(), newPassword.getText(), oldPassword.getText()})));
-        client.sendMessageToServer(clientMessage);
+        client.sendMessageToServer(clientRequest);
         Result result = (Result) client.getLastServerData(Result.class);
         if (result.isNotSuccessful()) passwordConfirmationErrorField.setText(result.toString());
         else {
@@ -278,17 +278,17 @@ public class ProfileMenu implements Menu {
 
     @FXML
     private void setGameHistoryCount() {
-        ClientMessage clientMessage = new ClientMessage("ProfileMenuController", "checkGameHistory",
+        ClientRequest clientRequest = new ClientRequest("ProfileMenuController", "checkGameHistory",
                 new ArrayList<>(List.of(new String[]{App.getLoggedInUsersUsername(), gameHistoryCount.getText()})));
-        client.sendMessageToServer(clientMessage);
+        client.sendMessageToServer(clientRequest);
         Result result = (Result) client.getLastServerData(Result.class);
         if (result.isNotSuccessful()) {
             gameHistoryNumberErrorField.setText(result.toString());
         } else {
             scrollPaneVbox.getChildren().clear();
-            clientMessage = new ClientMessage("ProfileMenuController", "getGameHistoryByUserRequest",
+            clientRequest = new ClientRequest("ProfileMenuController", "getGameHistoryByUserRequest",
                     new ArrayList<>(List.of(new String[]{App.getLoggedInUsersUsername(), gameHistoryCount.getText()})));
-            client.sendMessageToServer(clientMessage);
+            client.sendMessageToServer(clientRequest);
             Text text = new Text(client.getLastServerData(Result.class).toString());
             text.getStyleClass().add("profileMenu-scrollbar-textArea");
             scrollPaneVbox.getChildren().add(text);

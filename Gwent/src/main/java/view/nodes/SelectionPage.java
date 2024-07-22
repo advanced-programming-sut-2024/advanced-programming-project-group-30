@@ -1,4 +1,4 @@
-package view;
+package view.nodes;
 
 import enums.SizeData;
 import javafx.geometry.Pos;

@@ -1,7 +1,7 @@
 package enums.cardsData;
 
 import javafx.scene.image.Image;
-import view.ChosenModelView;
+import view.nodes.ChosenModelView;
 
 public interface CardData {
     Image getLgImage();

@@ -6,12 +6,36 @@
   <component name="ChangeListManager">
     <list default="true" id="124b1a9a-c6f6-4977-bbc2-df42d5ff586a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/FactionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/FactionType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/CardData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/CardData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/LeaderCardData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/LeaderCardData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/MonstersRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/MonstersRegularCardsData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/NeutralRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/NeutralRegularCardsData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/NilfgaardianEmpireRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/NilfgaardianEmpireRegularCardsData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/NorthernRealmsRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/NorthernRealmsRegularCardsData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/ScoiaTaelRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/ScoiaTaelRegularCardsData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/SkelligeRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/SkelligeRegularCardsData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/SpecialCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/SpecialCardsData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/WeatherCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/WeatherCardsData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/network/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/network/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/network/ClientMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/network/ClientMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/network/RandomGameRequestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/network/RandomGameRequestHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/network/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/network/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/network/ClientMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/network/ClientRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/network/ServerWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/network/ServerWorker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/CardView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/nodes/CardView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/ChosenModelView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/nodes/ChosenModelView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/DescriptionBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/nodes/DescriptionBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/ForgetPasswordMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/ForgetPasswordMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/GameNotificationView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/nodes/GameNotificationView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/LoginMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/LoginMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/PlayerInformationView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/nodes/PlayerInformationView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/PlayerView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/nodes/PlayerView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/PregameCardView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/nodes/PregameCardView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/PregameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/PregameMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/ProfileMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/ProfileMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/RegisterMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/RegisterMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/RowView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/nodes/RowView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/SelectionPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/nodes/SelectionPage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,32 +80,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Client2.executor&quot;: &quot;Run&quot;,
-    &quot;Application.ClientView.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Server.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
-    &quot;database.data.extractors.current.export.id&quot;: &quot;JSON-Groovy.json.groovy&quot;,
-    &quot;database.data.extractors.current.id&quot;: &quot;JSON-Groovy.json.groovy&quot;,
-    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;NetworkBase-Fatemeh&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/ASUS/Documents/Uni/AP/Project/Gwent/src/main/resources/Images/Icons&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon&quot;: &quot;&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;http.proxy&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Client2.executor": "Run",
+    "Application.ClientView.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.Server.executor": "Run",
+    "Application.Unnamed.executor": "Run",
+    "database.data.extractors.current.export.id": "JSON-Groovy.json.groovy",
+    "database.data.extractors.current.id": "JSON-Groovy.json.groovy",
+    "extract.method.default.visibility": "private",
+    "git-widget-placeholder": "Network-Fatemeh-2",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/ASUS/Documents/Uni/AP/Project/Gwent/src/main/resources/Images/Icons",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon": "",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "http.proxy",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\ASUS\Documents\Uni\AP\Project\Gwent\src\main\resources\Images\Icons" />
@@ -96,7 +120,7 @@
       <recent name="C:\Users\ASUS\Documents\Uni\AP\Project\Gwent\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ClientView">
+  <component name="RunManager" selected="Application.Client2">
     <configuration name="Client2" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="view.ClientView" />
       <module name="Gwent" />
@@ -188,6 +212,7 @@
       <workItem from="1720609419436" duration="3711000" />
       <workItem from="1720614016952" duration="59325000" />
       <workItem from="1721374863471" duration="15000" />
+      <workItem from="1721634986495" duration="1612000" />
     </task>
     <servers />
   </component>

@@ -2,26 +2,39 @@ package network;
 
 import java.util.ArrayList;
 
-public class ClientMessage {
-    private final String controllerName;
-    private final String methodName;
-    private final ArrayList<Object> fields;
+public class ClientRequest {
+    private final String clientId;
+    private final String requestType;
+    private final String request;
+    private final ArrayList<Object> contents;
 
-    public ClientMessage(String classAddress, String methodAddress, ArrayList<Object> fields) {
-        this.controllerName = classAddress;
-        this.methodName = methodAddress;
-        this.fields = fields;
+    public ClientRequest(String clientId, String classAddress, String methodAddress, ArrayList<Object> contents) {
+        this.clientId = clientId;
+        this.requestType = classAddress;
+        this.request = methodAddress;
+        this.contents = contents;
     }
 
-    public String getControllerName() {
-        return controllerName;
+    public ClientRequest(String classAddress, String methodAddress, ArrayList<Object> contents) {
+        this.clientId = null;
+        this.requestType = classAddress;
+        this.request = methodAddress;
+        this.contents = contents;
     }
 
-    public String getMethodName() {
-        return methodName;
+    public String getClientId() {
+        return clientId;
     }
 
-    public ArrayList<Object> getFields() {
-        return fields;
+    public String getRequestType() {
+        return requestType;
+    }
+
+    public String getRequest() {
+        return request;
+    }
+
+    public ArrayList<Object> getContents() {
+        return contents;
     }
 }
