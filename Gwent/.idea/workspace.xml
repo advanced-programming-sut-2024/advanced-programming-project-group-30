@@ -5,37 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="124b1a9a-c6f6-4977-bbc2-df42d5ff586a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/network/ServerResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/network/ServerSender.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/FactionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/FactionType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/CardData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/CardData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/LeaderCardData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/LeaderCardData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/MonstersRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/MonstersRegularCardsData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/NeutralRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/NeutralRegularCardsData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/NilfgaardianEmpireRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/NilfgaardianEmpireRegularCardsData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/NorthernRealmsRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/NorthernRealmsRegularCardsData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/ScoiaTaelRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/ScoiaTaelRegularCardsData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/SkelligeRegularCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/SkelligeRegularCardsData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/SpecialCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/SpecialCardsData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/enums/cardsData/WeatherCardsData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/enums/cardsData/WeatherCardsData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/network/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/network/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/network/ClientMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/network/ClientRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/network/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/network/Server.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/network/ServerWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/network/ServerWorker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/CardView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/nodes/CardView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/ChosenModelView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/nodes/ChosenModelView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/DescriptionBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/nodes/DescriptionBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/ClientView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/ClientView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/ForgetPasswordMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/ForgetPasswordMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/GameNotificationView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/nodes/GameNotificationView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/LoginMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/LoginMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/PlayerInformationView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/nodes/PlayerInformationView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/PlayerView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/nodes/PlayerView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/PregameCardView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/nodes/PregameCardView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/PregameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/PregameMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/ProfileMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/ProfileMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/RegisterMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/RegisterMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/RowView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/nodes/RowView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/SelectionPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/nodes/SelectionPage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +75,7 @@
     "git-widget-placeholder": "Network-Fatemeh-2",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/ASUS/Documents/Uni/AP/Project/Gwent/src/main/resources/Images/Icons",
+    "last_opened_file_path": "C:/Users/Fatemeh/Documents/Uni/AP/ApProject/Gwent",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -140,7 +122,7 @@
       <module name="Gwent" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="network.*" />
+          <option name="PATTERN" value="network.ServerResponse" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -212,7 +194,11 @@
       <workItem from="1720609419436" duration="3711000" />
       <workItem from="1720614016952" duration="59325000" />
       <workItem from="1721374863471" duration="15000" />
-      <workItem from="1721634986495" duration="1612000" />
+      <workItem from="1721634986495" duration="5615000" />
+      <workItem from="1721831817915" duration="282000" />
+      <workItem from="1722082035724" duration="12905000" />
+      <workItem from="1722267313464" duration="1321000" />
+      <workItem from="1725204698041" duration="211000" />
     </task>
     <servers />
   </component>

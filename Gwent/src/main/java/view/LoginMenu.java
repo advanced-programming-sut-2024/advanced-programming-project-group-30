@@ -57,7 +57,7 @@ public class LoginMenu implements Menu {
     private void login() {
         ClientRequest clientRequest = new ClientRequest("LoginController", "checkInformationForLogin",
                 new ArrayList<>(List.of(new String[]{username.getText(), password.getText()})));
-        client.sendMessageToServer(clientRequest);
+        client.sendMessageToServer2(clientRequest);
         Result result = (Result) client.getLastServerData(Result.class);
         if (result.isNotSuccessful()) {
             loginError.setText(result.toString());
@@ -65,7 +65,7 @@ public class LoginMenu implements Menu {
         }
         clientRequest = new ClientRequest("LoginController", "login",
                 new ArrayList<>(Collections.singleton(username.getText())));
-        client.sendMessageToServer(clientRequest);
+        client.sendMessageToServer2(clientRequest);
         String[] userData = (String[]) client.getLastServerData(String[].class);
         client.login(userData[0], userData[1], userData[2], rememberMe.isSelected());
         App.getSceneManager().goToMainMenu(userData[0], userData[1]);
@@ -81,14 +81,14 @@ public class LoginMenu implements Menu {
     private void setPasswordError() {
         ClientRequest clientRequest = new ClientRequest("LoginController", "getEmptyError",
                 new ArrayList<>(List.of(new String[]{password.getText(), "password"})));
-        client.sendMessageToServer(clientRequest);
+        client.sendMessageToServer2(clientRequest);
         passwordError.setText(client.getLastServerData(Result.class).toString());
     }
 
     private void setUsernameError() {
         ClientRequest clientRequest = new ClientRequest("LoginController", "getEmptyError",
                 new ArrayList<>(List.of(new String[]{username.getText(), "username"})));
-        client.sendMessageToServer(clientRequest);
+        client.sendMessageToServer2(clientRequest);
         usernameError.setText(client.getLastServerData(Result.class).toString());
     }
 

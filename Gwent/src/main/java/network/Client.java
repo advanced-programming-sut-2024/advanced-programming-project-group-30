@@ -2,16 +2,21 @@ package network;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import javafx.application.Platform;
 import model.App;
 import model.PregameData;
+import view.Menu;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 import java.net.Socket;
 
-public class Client {
+public class Client extends Thread {
+    private String id;
     private Socket socket;
     private DataInputStream receiveBuffer;
     private DataOutputStream sendBuffer;
@@ -27,12 +32,71 @@ public class Client {
         this.serverPort = serverPort;
     }
 
-    public void sendMessageToServer(ClientRequest clientRequest) {
+    public String getClientId() {
+        return id;
+    }
+
+    @Override
+    public void run() {
+        Socket getterSocket;
+        DataInputStream getterBuffer = null;
+        DataOutputStream outToServer = null;
+        try {
+            getterSocket = new Socket(serverIP, serverPort);
+            outToServer = new DataOutputStream(getterSocket.getOutputStream());
+            getterBuffer = new DataInputStream(getterSocket.getInputStream());
+        } catch (Exception e) {
+            System.err.println("Unable to initialize socket in run methode!");
+            // TODO: disable current view and show error message in popup
+            System.exit(1); // TODO: refresh button. boolean? or ...
+        }
+        try {
+            outToServer.writeUTF(gsonAgent.toJson(new ClientRequest(null, "Connection", "id request", null)));
+            this.id = gsonAgent.fromJson(getterBuffer.readUTF(), String.class);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        while (true) {
+            ServerResponse response;
+            try {
+                String message = getterBuffer.readUTF();
+                response = gsonAgent.fromJson(message, ServerResponse.class);
+                if (response.getResponseType().equals("view")) {
+                    Method method = App.getCurrentMenuScene().getMenu().getClass().getDeclaredMethod(response.getResponse(), String.class);
+                    Menu menu = App.getCurrentMenuScene().getMenu();
+                    Platform.runLater(() -> {
+                        System.out.println("salam");
+                        try {
+                            method.invoke(menu, response.getContents().get(0).toString());
+                        } catch (IllegalAccessException | InvocationTargetException e) {
+                            throw new RuntimeException(e);
+                        }
+                    });
+                }
+            } catch (IOException | NoSuchMethodException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    public void sendMessageToServer2(ClientRequest clientRequest) {
         if (!establishConnection()) return;
         String message = gsonAgent.toJson(clientRequest);
         try {
             sendBuffer.writeUTF(message);
             this.lastServerMessage = receiveBuffer.readUTF();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        endConnection();
+    }
+
+    public void sendMessageToServer(ClientRequest clientRequest) {
+        if (!establishConnection()) return;
+        String message = gsonAgent.toJson(clientRequest);
+        try {
+            sendBuffer.writeUTF(message);
+            receiveBuffer.readUTF();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

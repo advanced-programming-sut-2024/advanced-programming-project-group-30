@@ -7,6 +7,8 @@ import enums.FactionType;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class ServerWorker extends Thread {
     private final Gson gsonAgent;
@@ -36,9 +38,7 @@ public class ServerWorker extends Thread {
                 }
                 socket = Server.getConnections().remove(0);
             }
-            if (socket != null) {
-                handleConnection(socket);
-            }
+            if (socket != null) handleConnection(socket);
         }
     }
 
@@ -49,10 +49,13 @@ public class ServerWorker extends Thread {
             String messageString = receiveBuffer.readUTF();
             ClientRequest clientRequest = gsonAgent.fromJson(messageString, ClientRequest.class);
             String serverMessage = switch (clientRequest.getRequestType()) {
+                case "Connection" -> gsonAgent.toJson(handleConnectionRequest(clientRequest, socket));
                 case "GameRequestHandler" ->
                         gsonAgent.toJson(handleGameRequest(clientRequest, socket, receiveBuffer, sendBuffer));
                 case "UserInformationController" ->
                         gsonAgent.toJson(handleUserInformationControllerRequest(clientRequest));
+                case "UserInformationController2" ->
+                        gsonAgent.toJson(handleUserInformationControllerRequest2(clientRequest));
                 case "RegisterController" -> gsonAgent.toJson(handleRegisterControllerRequest(clientRequest));
                 case "LoginController" -> gsonAgent.toJson(handleLoginControllerRequest(clientRequest));
                 case "ForgetPasswordController" ->
@@ -62,17 +65,29 @@ public class ServerWorker extends Thread {
                 case "PregameController" -> gsonAgent.toJson(handlePregameControllerRequest(clientRequest));
                 default -> null;
             };
-            if (clientRequest.getRequestType().equals("GameRequestHandler")) return;
-            if (serverMessage != null)
+            if (serverMessage != null) {
                 sendBuffer.writeUTF(serverMessage);
-            else {
-                System.err.println("Control Error!!! (not find controller " + clientRequest.getRequestType() + ")");
-                System.exit(1);
+                sendBuffer.flush();
             }
+            else System.err.println("Control Error!!! (not find controller " + clientRequest.getRequestType() + ")");
+            if (clientRequest.getRequestType().equals("Connection")) return; // don't close // TODO: clean
             sendBuffer.close();
             receiveBuffer.close();
+            socket.close();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private Object handleConnectionRequest(ClientRequest clientRequest, Socket socket) {
+        switch (clientRequest.getRequest()) {
+            case "id request" -> {
+                return Server.addClient(socket);
+            }
+            default -> {
+                System.err.println("invalid method!! in connection request ->  name:" + clientRequest.getRequest());
+                return "invalid method";
+            }
         }
     }
 
@@ -114,6 +129,18 @@ public class ServerWorker extends Thread {
                 return "invalid method";
             }
         }
+    }
+
+    private Object handleUserInformationControllerRequest2(ClientRequest clientRequest) {
+        ServerResponse response;
+        switch (clientRequest.getRequest()) {
+            case "checkUsername" -> {
+                response = new ServerResponse(clientRequest.getClientId(), "view", "setUsernameError",
+                        new ArrayList<>(Collections.singleton(userInformationController.checkUsername((String) clientRequest.getContents().get(0)).toString())));
+                Server.getResponses().put(clientRequest.getClientId(), response);
+            }
+        }
+        return "get your request";
     }
 
     private Object handleRegisterControllerRequest(ClientRequest clientRequest) {
@@ -240,10 +267,11 @@ public class ServerWorker extends Thread {
         return null;
     }
 
-    private String handleGameRequest(ClientRequest clientRequest, Socket socket, DataInputStream dataInputStream, DataOutputStream dataOutputStream) {
+    private String handleGameRequest(ClientRequest clientRequest, Socket socket, DataInputStream
+            dataInputStream, DataOutputStream dataOutputStream) {
         switch (clientRequest.getRequest()) {
             case "requestToRandomUser" -> {
-                synchronized (Server.getRandomGameRequest()){
+                synchronized (Server.getRandomGameRequest()) {
                     Server.getRandomGameRequest().add(new Connection(socket, dataInputStream, dataOutputStream));
                     Server.getRandomGameRequest().notify();
                     System.out.println("nofity!");
@@ -257,5 +285,9 @@ public class ServerWorker extends Thread {
             }
         }
         return "your request received";
+    }
+
+    private void addResponse(String clientId, ServerResponse response) {
+        Server.getResponses().put(clientId, response);
     }
 }

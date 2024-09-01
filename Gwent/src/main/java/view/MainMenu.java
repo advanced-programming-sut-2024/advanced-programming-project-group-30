@@ -35,7 +35,7 @@ public class MainMenu implements Menu {
     private void goToProfileMenu() {
         ClientRequest clientRequest = new ClientRequest("MainMenuController", "getProfileData",
                 new ArrayList<>(Collections.singleton(App.getLoggedInUsersUsername())));
-        client.sendMessageToServer(clientRequest);
+        client.sendMessageToServer2(clientRequest);
         String[] fields = (String[]) client.getLastServerData(String[].class);
         App.getSceneManager().goToProfileMenu(fields[0], fields[1], fields[2], fields[3], fields[4], fields[5], fields[6], fields[7], fields[8]);
     }
@@ -44,7 +44,7 @@ public class MainMenu implements Menu {
     private void goToPregameMenu() {
         ClientRequest clientRequest = new ClientRequest("UserInformationController", "getUserFaction",
                 new ArrayList<>(Collections.singleton(App.getLoggedInUsersUsername())));
-        client.sendMessageToServer(clientRequest);
+        client.sendMessageToServer2(clientRequest);
         App.getSceneManager().goToPregameMenu((FactionType) client.getLastServerData(FactionType.class));
     }
 
@@ -52,7 +52,7 @@ public class MainMenu implements Menu {
     private void logout() {
         ClientRequest clientRequest = new ClientRequest("MainMenuController", "logout",
                 new ArrayList<>(Collections.singleton(App.getLoggedInUsersUsername())));
-        client.sendMessageToServer(clientRequest);
+        client.sendMessageToServer2(clientRequest);
         App.getSceneManager().goToLoginMenu();
         App.setLoggedInUser(null, "", "", false);
     }

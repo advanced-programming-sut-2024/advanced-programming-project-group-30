@@ -52,7 +52,7 @@ public class ForgetPasswordMenu implements Menu {
     private void continueForgetPassword() {
         ClientRequest clientRequest = new ClientRequest("ForgetPasswordController", "checkUsername",
                 new ArrayList<>(Collections.singleton(username.getText())));
-        client.sendMessageToServer(clientRequest);
+        client.sendMessageToServer2(clientRequest);
         Result result = (Result) client.getLastServerData(Result.class);
         if (result.isNotSuccessful()) {
             continueError.setText(result.toString());
@@ -72,7 +72,7 @@ public class ForgetPasswordMenu implements Menu {
     private void getPassword() {
         ClientRequest clientRequest = new ClientRequest("ForgetPasswordController", "getPassword",
                 new ArrayList<>(List.of(new String[]{username.getText(), questions.getValue().toString(), answer.getText()})));
-        client.sendMessageToServer(clientRequest);
+        client.sendMessageToServer2(clientRequest);
         Result result = (Result) client.getLastServerData(Result.class);
         if (result.isNotSuccessful()) getPasswordError.setText(result.toString());
         else showPassword(result.toString());

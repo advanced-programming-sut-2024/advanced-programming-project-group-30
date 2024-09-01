@@ -77,7 +77,7 @@ public class PregameMenu implements Menu {
         nicknameLabel.setText("hi " + App.getLoggedInUsersNickname() + ". please choose your deck.");
         ClientRequest clientRequest = new ClientRequest("PregameController", "getUserCardCollection",
                 new ArrayList<>(Collections.singleton(App.getLoggedInUsersUsername())));
-        client.sendMessageToServer(clientRequest);
+        client.sendMessageToServer2(clientRequest);
         this.pregameData = new PregameData(App.getLoggedInUsersUsername(), (CardCollection) client.getLastServerData(CardCollection.class), faction);
         updateFactionsFields(pregameData.getFaction());
         uploadToCardCollection(pregameData.getCardCollection());
@@ -126,7 +126,7 @@ public class PregameMenu implements Menu {
     private void changeFation(FactionType faction) {
         ClientRequest clientRequest = new ClientRequest("UserInformationController", "setUserFaction",
                 new ArrayList<>(List.of(new Object[]{App.getLoggedInUsersUsername(), faction.name()})));
-        client.sendMessageToServer(clientRequest);
+        client.sendMessageToServer2(clientRequest);
         pregameData.setFaction(faction);
         SelectionPage<LeaderCardData> leaderSelectionPage = new SelectionPage<>(LeaderCardData.getFactionsLeaderChooseView(pregameData.getFaction()),
                 0, SizeData.GAME_LG_CARD);

@@ -10,6 +10,7 @@ import model.App;
 import model.Result;
 import network.Client;
 import network.ClientRequest;
+import network.ServerResponse;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -64,7 +65,9 @@ public class RegisterMenu implements Menu {
     @FXML
     public void initialize() {
         questions.setItems(FXCollections.observableArrayList(SecurityQuestion.values()));
-        username.textProperty().addListener((Void) -> setUsernameError());
+        username.textProperty().addListener((Void) ->
+                client.sendMessageToServer(new ClientRequest(client.getClientId(), "UserInformationController2",
+                        "checkUsername", new ArrayList<>(Collections.singleton(username.getText())))));
         password.textProperty().addListener((Void) -> handlePasswordFieldEvent());
         shownPassword.textProperty().addListener((Void) -> {
             if (password.isDisable()) password.setText(shownPassword.getText());
@@ -96,7 +99,7 @@ public class RegisterMenu implements Menu {
     @FXML
     private void setRandomPassword() {
         ClientRequest clientRequest = new ClientRequest("RegisterController", "createRandomPassword", null);
-        client.sendMessageToServer(clientRequest);
+        client.sendMessageToServer2(clientRequest);
         String randomPassword = (String) client.getLastServerData(String.class);
         password.setText(randomPassword);
         shownPassword.setText(randomPassword);
@@ -115,7 +118,7 @@ public class RegisterMenu implements Menu {
         ClientRequest clientRequest = new ClientRequest("UserInformationController", "checkInformation",
                 new ArrayList<>(List.of(new String[]{username.getText(), password.getText(), passwordConfirm.getText(),
                         nickname.getText(), email.getText()})));
-        client.sendMessageToServer(clientRequest);
+        client.sendMessageToServer2(clientRequest);
         Result result = (Result) client.getLastServerData(Result.class);
         if (result.isNotSuccessful()) continueError.setText(result.toString());
         else {
@@ -128,29 +131,26 @@ public class RegisterMenu implements Menu {
     private void signup() {
         ClientRequest clientRequest = new ClientRequest("RegisterController", "checkSecurityQuestion",
                 new ArrayList<>(List.of(new String[]{questions.getValue().toString(), answer.getText()})));
-        client.sendMessageToServer(clientRequest);
+        client.sendMessageToServer2(clientRequest);
         Result result = (Result) client.getLastServerData(Result.class);
         if (result.isNotSuccessful()) completeError.setText(result.toString());
         else {
             clientRequest = new ClientRequest("RegisterController", "register",
                     new ArrayList<>(List.of(new String[]{username.getText(), password.getText(), nickname.getText(),
                             email.getText(), questions.getValue().toString(), answer.getText()})));
-            client.sendMessageToServer(clientRequest);
+            client.sendMessageToServer2(clientRequest);
             goToLoginMenu();
         }
     }
 
-    private void setUsernameError() {
-        ClientRequest clientRequest = new ClientRequest("UserInformationController",
-                "checkUsername", new ArrayList<>(Collections.singleton(username.getText())));
-        client.sendMessageToServer(clientRequest);
-        usernameError.setText(client.getLastServerData(Result.class).toString());
+    public void setUsernameError(String errorMessage) {
+        usernameError.setText(errorMessage);
     }
 
     private void handlePasswordFieldEvent() {
         ClientRequest clientRequest = new ClientRequest("UserInformationController",
                 "checkPassword", new ArrayList<>(Collections.singleton(password.getText())));
-        client.sendMessageToServer(clientRequest);
+        client.sendMessageToServer2(clientRequest);
         passwordError.setText(client.getLastServerData(Result.class).toString());
         if (shownPassword.isDisable()) shownPassword.setText(password.getText());
     }
@@ -158,7 +158,7 @@ public class RegisterMenu implements Menu {
     private void handlePasswordConfirmEvent() {
         ClientRequest clientRequest = new ClientRequest("UserInformationController",
                 "checkPasswordConfirm", new ArrayList<>(Collections.singleton(passwordConfirm.getText())));
-        client.sendMessageToServer(clientRequest);
+        client.sendMessageToServer2(clientRequest);
         passwordConfirmError.setText(client.getLastServerData(Result.class).toString());
         if (shownPasswordConfirm.isDisable()) shownPasswordConfirm.setText(passwordConfirm.getText());
     }
@@ -166,14 +166,14 @@ public class RegisterMenu implements Menu {
     private void setNicknameError() {
         ClientRequest clientRequest = new ClientRequest("UserInformationController",
                 "checkNickname", new ArrayList<>(Collections.singleton(nickname.getText())));
-        client.sendMessageToServer(clientRequest);
+        client.sendMessageToServer2(clientRequest);
         nicknameError.setText(client.getLastServerData(Result.class).toString());
     }
 
     private void setEmailError() {
         ClientRequest clientRequest = new ClientRequest("UserInformationController",
                 "checkEmail", new ArrayList<>(Collections.singleton(email.getText())));
-        client.sendMessageToServer(clientRequest);
+        client.sendMessageToServer2(clientRequest);
         emailError.setText(client.getLastServerData(Result.class).toString());
     }
 
