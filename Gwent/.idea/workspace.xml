@@ -5,19 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="124b1a9a-c6f6-4977-bbc2-df42d5ff586a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/network/ServerResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/network/ServerSender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/network/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/network/Client.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/network/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/network/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/network/ServerWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/network/ServerWorker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/ClientView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/ClientView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/ForgetPasswordMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/ForgetPasswordMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/LoginMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/LoginMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/PregameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/PregameMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/ProfileMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/ProfileMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/view/RegisterMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/RegisterMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +90,7 @@
       <recent name="C:\Users\ASUS\Documents\Uni\AP\Project\Gwent\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Client2">
+  <component name="RunManager" selected="Application.Server">
     <configuration name="Client2" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="view.ClientView" />
       <module name="Gwent" />
@@ -198,7 +186,7 @@
       <workItem from="1721831817915" duration="282000" />
       <workItem from="1722082035724" duration="12905000" />
       <workItem from="1722267313464" duration="1321000" />
-      <workItem from="1725204698041" duration="211000" />
+      <workItem from="1725204698041" duration="1076000" />
     </task>
     <servers />
   </component>

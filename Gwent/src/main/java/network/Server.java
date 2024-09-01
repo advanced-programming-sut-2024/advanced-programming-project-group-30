@@ -13,24 +13,19 @@ import java.util.HashMap;
 public class Server {
     private static final ArrayList<User> allUsers = new ArrayList<>();
     private static final HashMap<String, Game> allGames = new HashMap<>();
+
+    private static ServerSocket serverSocket;
     private static final int PORT = 7000;
     private static final int WORKERS = 5;
-    private static final int RANDOM_GAME_REQUEST_HANDLERS = 5;
-    private static final int GAME_WITH_FRIEND_REQUEST_HANDLERS = 5;
-    private static final int SENDERS = 5;
-    private static ServerSocket serverSocket;
+
     private static ServerListener serverListener;
+    private static ServerSender serverSender;
     private static final ArrayList<ServerWorker> serverWorkers = new ArrayList<>();
-    private static final ArrayList<ServerSender> serverSenders = new ArrayList<>();
-    private static final ArrayList<RandomGameRequestHandler> randomGameRequestHandlers = new ArrayList<>(); // TODO: remove
-    private static final ArrayList<GameWithFriendRequestHandler> gameWithFriendRequestHandlers = new ArrayList<>();
     private static final HashMap<String, Socket> clients = new HashMap<>();
     private static ArrayList<Socket> connections;
     private static final HashMap<String, ServerResponse> responses = new HashMap<>();
-    // TODO !!!
-    private static ArrayList<Connection> randomGameRequest;
-    private static HashMap<String, Socket> gameWithFriendRequest;
 
+    // TODO : remove (just for test)
     public static void testSetup() {
         User testUser1 = new User("jojo", "j",
                 "jojo@gmail.com", "jojo", SecurityQuestion.QUESTION_1, "j");
@@ -47,13 +42,11 @@ public class Server {
     }
 
     public static User getUserByUsername(String username) {
-        for (User user : allUsers)
-            if (user.getUsername().equals(username)) return user;
+        synchronized (allUsers) {
+            for (User user : allUsers)
+                if (user.getUsername().equals(username)) return user;
+        }
         return null;
-    }
-
-    protected static HashMap<String, Game> getAllGames() {
-        return allGames;
     }
 
     protected static String addClient(Socket client) {
@@ -70,34 +63,22 @@ public class Server {
         }
     }
 
+    // TODO : synchronized
     protected static ArrayList<Socket> getConnections() {
         return connections;
     }
 
+    // TODO : synchronized
     protected synchronized static HashMap<String, ServerResponse> getResponses() {
         return responses;
     }
-
-    protected static ArrayList<Connection> getRandomGameRequest() {
-        return randomGameRequest;
-    }
-
-    protected static HashMap<String, Socket> getGameWithFriendRequest() {
-        return gameWithFriendRequest;
-    }
-
 
     public static void main(String[] args) {
         try {
             Server.setupServer();
             for (ServerWorker serverWorker : serverWorkers)
                 serverWorker.start();
-            for (GameWithFriendRequestHandler gameWithFriendRequestHandler : gameWithFriendRequestHandlers)
-                gameWithFriendRequestHandler.start();
-            for (RandomGameRequestHandler randomGameRequestHandler : randomGameRequestHandlers)
-                randomGameRequestHandler.start();
-            for (ServerSender serverSender : serverSenders)
-                serverSender.start();
+            serverSender.start();
             serverListener.start();
         } catch (Exception e) {
             System.out.println("Server encountered a problem!");
@@ -110,17 +91,10 @@ public class Server {
             testSetup();
             serverSocket = new ServerSocket(PORT);
             connections = new ArrayList<>();
-            randomGameRequest = new ArrayList<>();
-            gameWithFriendRequest = new HashMap<>();
             serverListener = new ServerListener(serverSocket);
+            serverSender = new ServerSender(serverSocket);
             for (int i = 0; i < WORKERS; i++)
                 serverWorkers.add(new ServerWorker());
-            for (int i = 0; i < GAME_WITH_FRIEND_REQUEST_HANDLERS; i++)
-                gameWithFriendRequestHandlers.add(new GameWithFriendRequestHandler());
-            for (int i = 0; i < RANDOM_GAME_REQUEST_HANDLERS; i++)
-                randomGameRequestHandlers.add(new RandomGameRequestHandler());
-            for (int i = 0; i < SENDERS; i++)
-                serverSenders.add(new ServerSender(serverSocket));
         } catch (IOException e) {
             System.err.println("The setup server encountered a problem");
             e.getCause().printStackTrace(System.err);
