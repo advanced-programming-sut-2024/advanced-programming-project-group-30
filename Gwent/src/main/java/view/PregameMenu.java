@@ -248,7 +248,7 @@ public class PregameMenu implements Menu {
             return;
         }
         errorMessage.setText("waiting...");
-        client.requestForRandomGame(pregameData);
+//        client.requestForRandomGame(pregameData);
         errorMessage.setStyle("");
         errorMessage.setText("");
     }

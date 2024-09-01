@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import javafx.application.Platform;
 import model.App;
-import model.PregameData;
 import view.Menu;
 
 import java.io.DataInputStream;
@@ -16,13 +15,20 @@ import java.lang.reflect.Type;
 import java.net.Socket;
 
 public class Client extends Thread {
-    private String id;
-    private Socket socket;
-    private DataInputStream receiveBuffer;
-    private DataOutputStream sendBuffer;
     private final String serverIP;
     private final int serverPort;
     private final Gson gsonAgent;
+
+    private String id;
+
+    private Socket mainSocket = null;
+    private DataInputStream mainReceiveBuffer = null;
+    private DataOutputStream mainSendBuffer = null;
+
+    private Socket socket;
+    private DataInputStream receiveBuffer;
+    private DataOutputStream sendBuffer;
+
     private String lastServerMessage; // TODO: remove
 
     public Client(String serverIP, int serverPort) {
@@ -38,35 +44,19 @@ public class Client extends Thread {
 
     @Override
     public void run() {
-        Socket getterSocket;
-        DataInputStream getterBuffer = null;
-        DataOutputStream outToServer = null;
-        try {
-            getterSocket = new Socket(serverIP, serverPort);
-            outToServer = new DataOutputStream(getterSocket.getOutputStream());
-            getterBuffer = new DataInputStream(getterSocket.getInputStream());
-        } catch (Exception e) {
-            System.err.println("Unable to initialize socket in run methode!");
-            // TODO: disable current view and show error message in popup
-            System.exit(1); // TODO: refresh button. boolean? or ...
-        }
-        try {
-            outToServer.writeUTF(gsonAgent.toJson(new ClientRequest(null, "Connection", "id request", null)));
-            this.id = gsonAgent.fromJson(getterBuffer.readUTF(), String.class);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        setup();
+        requestForId();
         while (true) {
             ServerResponse response;
             try {
-                String message = getterBuffer.readUTF();
+                String message = mainReceiveBuffer.readUTF();
                 response = gsonAgent.fromJson(message, ServerResponse.class);
                 if (response.getResponseType().equals("view")) {
-                    Method method = App.getCurrentMenuScene().getMenu().getClass().getDeclaredMethod(response.getResponse(), String.class);
                     Menu menu = App.getCurrentMenuScene().getMenu();
+                    Method method = menu.getClass().getDeclaredMethod(response.getResponse(), String.class);
                     Platform.runLater(() -> {
-                        System.out.println("salam");
                         try {
+                            // TODO
                             method.invoke(menu, response.getContents().get(0).toString());
                         } catch (IllegalAccessException | InvocationTargetException e) {
                             throw new RuntimeException(e);
@@ -74,8 +64,30 @@ public class Client extends Thread {
                     });
                 }
             } catch (IOException | NoSuchMethodException e) {
+                // TODO : connection error
                 throw new RuntimeException(e);
             }
+        }
+    }
+
+    private void setup() {
+        try {
+            mainSocket = new Socket(serverIP, serverPort);
+            mainSendBuffer = new DataOutputStream(mainSocket.getOutputStream());
+            mainReceiveBuffer = new DataInputStream(mainSocket.getInputStream());
+        } catch (Exception e) {
+            System.err.println("Unable to initialize main socket!");
+            // TODO: disable current view and show error message in popup
+            System.exit(1); // TODO: refresh button. boolean? or ...
+        }
+    }
+
+    private void requestForId() {
+        try {
+            mainSendBuffer.writeUTF(gsonAgent.toJson(new ClientRequest(null, "Connection", "id request", null)));
+            this.id = gsonAgent.fromJson(mainReceiveBuffer.readUTF(), String.class);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -96,67 +108,11 @@ public class Client extends Thread {
         String message = gsonAgent.toJson(clientRequest);
         try {
             sendBuffer.writeUTF(message);
-            receiveBuffer.readUTF();
+            receiveBuffer.readUTF(); // TODO : remove or ...
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         endConnection();
-    }
-
-    public boolean requestForRandomGame(PregameData pregameData) {
-        Socket socket;
-        DataOutputStream sendBuffer;
-        DataInputStream receiveBuffer;
-        try {
-            socket = new Socket(serverIP, serverPort);
-            sendBuffer = new DataOutputStream(socket.getOutputStream());
-            receiveBuffer = new DataInputStream(socket.getInputStream());
-        } catch (Exception e) {
-            System.err.println("Unable to initialize socket! (game Request)");
-            e.printStackTrace();
-            return false;
-        }
-        String message = gsonAgent.toJson(new ClientRequest("GameRequestHandler", "requestToRandomUser", null));
-        try {
-            sendBuffer.writeUTF(message);
-            System.out.println("to json successfully");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        String messageInput;
-        try {
-            System.out.println("try to get message");
-            messageInput = receiveBuffer.readUTF();
-            System.out.println("got message");
-            System.out.println("first m :" + messageInput);
-            if (messageInput.equals("Waiting...")) {
-                messageInput = receiveBuffer.readUTF();
-                System.out.println("second m :" + messageInput);
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            sendBuffer.writeUTF(gsonAgent.toJson(pregameData.getShippablePregameData()));
-            System.out.println("send pregameData successfully");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            Integer id = receiveBuffer.readInt();
-            System.out.println(id);
-            // get id
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            sendBuffer.close();
-            receiveBuffer.close();
-            socket.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return true;
     }
 
     public Object getLastServerData(Type type) {
@@ -175,7 +131,6 @@ public class Client extends Thread {
             return true;
         } catch (Exception e) {
             System.err.println("Unable to initialize socket!");
-            e.printStackTrace();
             return false;
         }
     }

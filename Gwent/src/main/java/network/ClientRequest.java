@@ -21,20 +21,4 @@ public class ClientRequest {
         this.request = methodAddress;
         this.contents = contents;
     }
-
-    public String getClientId() {
-        return clientId;
-    }
-
-    public String getRequestType() {
-        return requestType;
-    }
-
-    public String getRequest() {
-        return request;
-    }
-
-    public ArrayList<Object> getContents() {
-        return contents;
-    }
 }

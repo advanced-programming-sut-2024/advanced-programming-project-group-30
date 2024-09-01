@@ -24,7 +24,7 @@ public class ServerSender extends Thread {
         while (true) {
             synchronized (Server.getResponses()) {
                 while (Server.getResponses().keySet().isEmpty()) {
-
+                    // TODO : wait
                 }
                 response = Server.getResponses().remove(Server.getResponses().keySet().iterator().next());
             }
